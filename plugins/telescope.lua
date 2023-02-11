@@ -3,20 +3,21 @@ return {
 		"nvim-telescope/telescope.nvim",
 		config = function(_, opts)
 			require("plugins.configs.telescope")(opts)
+			local utils = require("core.utils")
 			local telescope = require("telescope")
 
-			astronvim.conditional_func(telescope.load_extension, astronvim.is_available("project.nvim"), "projects")
+			utils.conditional_func(telescope.load_extension, utils.is_available("project.nvim"), "projects")
 
-			astronvim.conditional_func(
+			utils.conditional_func(
 				telescope.load_extension,
-				astronvim.is_available("telescope-file-browser.nvim"),
+				utils.is_available("telescope-file-browser.nvim"),
 				"file_browser"
 			)
-			astronvim.conditional_func(telescope.load_extension, astronvim.is_available("telescope-hop.nvim"), "hop")
+			utils.conditional_func(telescope.load_extension, utils.is_available("telescope-hop.nvim"), "hop")
 
-			astronvim.conditional_func(
+			utils.conditional_func(
 				telescope.load_extension,
-				astronvim.is_available("telescope-media-files.nvim"),
+				utils.is_available("telescope-media-files.nvim"),
 				"media_files"
 			)
 			return opts

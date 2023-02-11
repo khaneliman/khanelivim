@@ -1,6 +1,7 @@
 return {
 	"goolord/alpha-nvim",
 	opts = function(_, opts)
+		local utils = require("core.utils")
 		-- customize the dashboard header
 		opts.section.header.val = {
 			"                                                       ",
@@ -18,11 +19,11 @@ return {
 			"                                                       ",
 		}
 		opts.section.buttons.val = {
-			astronvim.alpha_button("LDR f f", "  Find File  "),
-			astronvim.alpha_button("LDR f o", "  Recents  "),
-			astronvim.alpha_button("LDR f p", "P  Projects  "),
-			astronvim.alpha_button("LDR f n", "  New File  "),
-			astronvim.alpha_button("LDR S l", "  Last Session  "),
+			utils.alpha_button("LDR f f", "  Find File  "),
+			utils.alpha_button("LDR f o", "  Recents  "),
+			utils.alpha_button("LDR f p", "P  Projects  "),
+			utils.alpha_button("LDR f n", "  New File  "),
+			utils.alpha_button("LDR S l", "  Last Session  "),
 		}
 
 		return opts

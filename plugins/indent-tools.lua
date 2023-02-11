@@ -1,7 +1,7 @@
 return {
 	"arsham/indent-tools.nvim",
 	setup = function()
-		table.insert(astronvim.file_plugins, "indent-tools.nvim")
+		table.insert(require("core.utils").file_plugins, "indent-tools.nvim")
 	end,
 	dependencies = { "arsham/arshlib.nvim" },
 	config = true,
