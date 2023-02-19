@@ -1,0 +1,27 @@
+{
+  "file_read_by_line": {
+    "prefix": "file_read_by_line",
+    "body": "{\nwhile IFS= read -r \"lineNum\"\ndo\n\techo \"\\${lineNum}\"\ndone\n} < \"${0:FILE_NAME}\"",
+    "description": "Read a text file line by line."
+  },
+  "file_batch_rename": {
+    "prefix": "file_batch_rename",
+    "body": "ls | xargs -i mv {} {}.${1:old}",
+    "description": "Rename all files in a directory."
+  },
+  "awk_substr": {
+    "prefix": "awk_substr",
+    "body": "echo \"${1:VAR_OR_STRING}\" | awk '{print substr(\\$0,0,length(\\$0)-${2|AMOUNT_TO_CUT_BY,1,2,3|}'",
+    "description": "A sub string with awk.  Change AMOUNT_TO_CUT_BY to a valid integer."
+  },
+  "awk_printf": {
+    "prefix": "awk_printf",
+    "body": "awk  -F ':'  '{printf(\"filename:%10s,linenumber:%s,columns:%s,linecontent:%s\\n\",FILENAME,NR,NF,\\$0)\\}' /etc/passwd",
+    "description": "A printf example inside of awk."
+  },
+  "awk_for_loop": {
+    "prefix": "awk_for_loop",
+    "body": "awk -F ':' 'BEGIN {count=0;} {name[count] = \\$1;count++;\\}; END{for (i = 0; i < NR; i++) print i, name[i]\\}' /etc/passwd",
+    "description": "A loop example in awk to show all users in /etc/passwd"
+  }
+}
