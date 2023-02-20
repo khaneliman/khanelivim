@@ -6,9 +6,10 @@ return {
 	calc = 650,
 	path = 500,
 	fish = 300,
+	zsh = 300,
 	npm = 300,
 	git = 300,
 	buffer = 250,
-	cmdline = 200,
 	nerdfont = 200,
+	cmdline = 200,
 }
