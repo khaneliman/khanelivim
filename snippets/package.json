@@ -12,15 +12,6 @@
           "sh",
           "zsh"
         ],
-        "path": "./shell/shellscript.json"
-      },
-      {
-        "language": [
-          "shellscript",
-          "shell",
-          "sh",
-          "zsh"
-        ],
         "path": "./shell/bulk-snippets.json"
       },
       {
