@@ -9,4 +9,6 @@ return {
 	npm = 300,
 	git = 300,
 	buffer = 250,
+	cmdline = 200,
+	nerdfont = 200,
 }

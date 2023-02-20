@@ -1,67 +1,55 @@
 return {
 	{
 		"hrsh7th/nvim-cmp",
-		opts = function(_, opts)
+		dependencies = {
+			"hrsh7th/cmp-calc",
+			"hrsh7th/nvim-cmp",
+			"hrsh7th/cmp-emoji",
+			"chrisgrieser/cmp-nerdfont",
+			"hrsh7th/cmp-cmdline",
+		},
+		config = function(plugin, opts)
+			local cmp = require("cmp")
 			-- require("plugins.cmp")(plugin, opts) -- include the default astronvim config that calls the setup call
-			opts.sources = {
-				opts.sources,
+			opts.sources = cmp.config.sources({
 				{ name = "nvim_lsp", priority = 1000 },
-				{ name = "omni",     priority = 800 },
-				{ name = "luasnip",  priority = 750 },
-				{ name = "emoji",    priority = 700 },
-				{ name = "calc",     priority = 650 },
-				{ name = "path",     priority = 500 },
-				{ name = "fish",     priority = 300 },
-				{ name = "npm",      priority = 300 },
-				{ name = "git",      priority = 300 },
-				{ name = "buffer",   priority = 250 },
-			}
-			return opts
+				{ name = "omni", priority = 800 },
+				{ name = "luasnip", priority = 750 },
+				{ name = "emoji", priority = 700 },
+				{ name = "calc", priority = 650 },
+				{ name = "path", priority = 500 },
+				-- { name = "fish", priority = 300 },
+				-- { name = "npm", priority = 300 },
+				-- { name = "git", priority = 300 },
+				{ name = "buffer", priority = 250 },
+				{ name = "nerdfont", priority = 200 },
+				{ name = "cmdline", priority = 200 },
+			})
+			-- run cmp setup
+			cmp.setup(opts)
+
+			-- configure `cmp-cmdline` as described in their repo: https://github.com/hrsh7th/cmp-cmdline#setup
+			cmp.setup.cmdline("/", {
+				mapping = cmp.mapping.preset.cmdline(),
+				sources = {
+					{ name = "buffer" },
+				},
+			})
+			cmp.setup.cmdline(":", {
+				mapping = cmp.mapping.preset.cmdline(),
+				sources = cmp.config.sources({
+					{ name = "path" },
+				}, {
+					{
+						name = "cmdline",
+						option = {
+							ignore_cmds = { "Man", "!" },
+						},
+					},
+				}),
+			})
+			-- return opts
 		end,
-	},
-	{
-		"hrsh7th/cmp-calc",
-		dependencies = {
-			"hrsh7th/nvim-cmp",
-		},
-		event = "InsertEnter",
-		-- config = function()
-		-- 	local cmp = require("cmp")
-		-- 	local config = cmp.get_config()
-		-- 	table.insert(config.sources, {
-		-- 		{ name = "calc" },
-		-- 	})
-		-- 	cmp.setup(config)
-		-- end,
-	},
-	{
-		"hrsh7th/cmp-emoji",
-		dependencies = {
-			"hrsh7th/nvim-cmp",
-		},
-		event = "InsertEnter",
-		-- config = function()
-		-- 	local cmp = require("cmp")
-		-- 	local config = cmp.get_config()
-		-- 	table.insert(config.sources, {
-		-- 		{ name = "emoji" },
-		-- 	})
-		-- 	cmp.setup(config)
-		-- end,
-	},
-	{
-		"chrisgrieser/cmp-nerdfont",
-		dependencies = {
-			"hrsh7th/nvim-cmp",
-		},
-		-- config = function(plugin, opts)
-		-- 	local cmp = require("cmp")
-		-- 	local config = cmp.get_config()
-		-- 	table.insert(config.sources, {
-		-- 		{ name = "nerdfont" },
-		-- 	})
-		-- 	cmp.setup(config)
-		-- end,
 	},
 	{
 		"mtoohey31/cmp-fish",
