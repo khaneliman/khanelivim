@@ -3,7 +3,7 @@ return {
 		"nvim-telescope/telescope.nvim",
 		config = function(_, opts)
 			require("plugins.configs.telescope")(opts)
-			local utils = require("core.utils")
+			local utils = require("astronvim.utils")
 			local telescope = require("telescope")
 
 			utils.conditional_func(telescope.load_extension, utils.is_available("project.nvim"), "projects")

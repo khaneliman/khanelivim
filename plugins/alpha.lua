@@ -1,7 +1,7 @@
 return {
 	"goolord/alpha-nvim",
 	opts = function(_, opts)
-		local utils = require("core.utils")
+		local utils = require("astronvim.utils")
 		-- customize the dashboard header
 		opts.section.header.val = {
 			"                                                       ",
