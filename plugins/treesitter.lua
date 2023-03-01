@@ -122,4 +122,9 @@ return {
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
 		ft = "fish",
 	},
+	{
+		"theRealCarneiro/hyprland-vim-syntax",
+		dependencies = { "nvim-treesitter/nvim-treesitter" },
+		ft = "hypr",
+	},
 }
