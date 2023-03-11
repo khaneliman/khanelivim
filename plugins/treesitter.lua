@@ -6,7 +6,6 @@ return {
 			"nvim-treesitter/nvim-treesitter-refactor",
 			"nvim-treesitter/nvim-treesitter-context",
 		},
-
 		opts = function(_, opts)
 			opts.ensure_installed = {
 				"bash",
@@ -24,9 +23,11 @@ return {
 				"javascript",
 				"jq",
 				"json",
+				"jsonc",
 				"llvm",
 				"lua",
 				"markdown",
+				"markdown_inline",
 				"python",
 				"rasi",
 				"regex",
@@ -41,7 +42,7 @@ return {
 
 			opts.highlight = { disable = { "help" } }
 
-			opts.indent = { enable = true, disable = { "python" } }
+			opts.indent = { enable = true }
 
 			opts.matchup = { enable = true }
 
@@ -127,4 +128,9 @@ return {
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
 		ft = "hypr",
 	},
+	{
+		"elkowar/yuck.vim",
+		dependencies = { "nvim-treesitter/nvim-treesitter" },
+		ft = "yuck",
+	}
 }

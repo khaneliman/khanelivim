@@ -9,7 +9,6 @@ return {
 				"csharp_ls",
 				"cssls",
 				"dockerls",
-				"eslint",
 				"grammarly",
 				"html",
 				"intelephense",
@@ -41,32 +40,19 @@ return {
 				"isort",
 				"jq",
 				"markdownlint",
-				"prettierd",
 				"rust-analyzer",
 				"rustfmt",
-				"shellcheck",
 				"shfmt",
 				"sql_formatter",
-				"stylua",
 			}
 			opts.setup_handlers = {
-				prettier = function()
-					require("null-ls").register(require("null-ls").builtins.formatting.prettier.with({
-						condition = function(utils)
-							return utils.root_has_file("package.json")
-								or utils.root_has_file(".prettierrc")
-								or utils.root_has_file(".prettierrc.json")
-								or utils.root_has_file(".prettierrc.js")
-						end,
-					}))
-				end,
 				prettierd = function()
 					require("null-ls").register(require("null-ls").builtins.formatting.prettierd.with({
 						condition = function(utils)
 							return utils.root_has_file("package.json")
-								or utils.root_has_file(".prettierrc")
-								or utils.root_has_file(".prettierrc.json")
-								or utils.root_has_file(".prettierrc.js")
+									or utils.root_has_file(".prettierrc")
+									or utils.root_has_file(".prettierrc.json")
+									or utils.root_has_file(".prettierrc.js")
 						end,
 					}))
 				end,
@@ -74,8 +60,8 @@ return {
 					require("null-ls").register(require("null-ls").builtins.diagnostics.eslint_d.with({
 						condition = function(utils)
 							return utils.root_has_file("package.json")
-								or utils.root_has_file(".eslintrc.json")
-								or utils.root_has_file(".eslintrc.js")
+									or utils.root_has_file(".eslintrc.json")
+									or utils.root_has_file(".eslintrc.js")
 						end,
 					}))
 				end,
