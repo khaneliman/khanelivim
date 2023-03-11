@@ -42,6 +42,8 @@ return {
 				"jq",
 				"markdownlint",
 				"prettierd",
+				"rust-analyzer",
+				"rustfmt",
 				"shellcheck",
 				"shfmt",
 				"sql_formatter",
