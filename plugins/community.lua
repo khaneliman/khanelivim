@@ -68,6 +68,9 @@ return {
 	{ import = "astrocommunity.utility.neodim" },
 	-- Notification system
 	{ import = "astrocommunity.utility.noice-nvim" },
+	-- Copilot
+	{ import = "astrocommunity.completion.copilot-lua" },
+	{ import = "astrocommunity.completion.copilot-lua-cmp" },
 	{
 		-- further customize the options set by the community
 		"catppuccin",
