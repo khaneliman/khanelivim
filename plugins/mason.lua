@@ -18,7 +18,7 @@ return {
 				"neocmake",
 				"omnisharp",
 				"pyright",
-				"sqls",
+				"sqlls",
 				"lua_ls",
 				"tsserver",
 				"yamlls",
