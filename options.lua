@@ -12,7 +12,7 @@ return {
 			nbsp = "␣",
 		},
 		showbreak = "↪ ",
-		shell = "/bin/zsh",
+		shell = "zsh",
 		spellfile = vim.fn.expand("~/.config/nvim/lua/user/spell/en.utf-8.add"),
 		swapfile = false,
 		thesaurus = vim.fn.expand("~/.config/nvim/lua/user/spell/mthesaur.txt"),
