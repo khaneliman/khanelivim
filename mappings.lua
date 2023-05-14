@@ -1,5 +1,9 @@
 return {
   n = {
+    ["<C-h>"] = { '<cmd>TmuxNavigateLeft<cr>', desc = "window left" },
+    ["<C-l>"] = { '<cmd>TmuxNavigateRight<cr>', desc = "window right" },
+    ["<C-j>"] = { '<cmd>TmuxNavigateDown<cr>', desc = "window down" },
+    ["<C-k>"] = { '<cmd>TmuxNavigateUp<cr>', desc = "window up" },
     ["<leader><cr>"] = { '<esc>/<++><cr>"_c4l', desc = "Next Template" },
     ["<leader>."] = { "<cmd>Neotree dir=%:p:h<cr>", desc = "Set CWD" },
     -- Telescope
