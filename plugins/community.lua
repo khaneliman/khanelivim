@@ -66,6 +66,8 @@ return {
 	-- Test Runner
 	{ import = "astrocommunity.test.neotest" },
 	{ import = "astrocommunity.utility.neodim" },
+	-- Tmux integration
+	{ import = "astrocommunity.terminal-integration.vim-tmux-yank" },
 	-- Notification system
 	{ import = "astrocommunity.utility.noice-nvim" },
 	-- Copilot
@@ -112,12 +114,12 @@ return {
 		},
 		opts = {
 			mappings = {
-				add = "s" .. "a", -- Add surrounding in Normal and Visual modes
-				delete = "s" .. "d", -- Delete surrounding
-				find = "s" .. "f", -- Find surrounding (to the right)
-				find_left = "s" .. "F", -- Find surrounding (to the left)
-				highlight = "s" .. "h", -- Highlight surrounding
-				replace = "s" .. "r", -- Replace surrounding
+				add = "s" .. "a",        -- Add surrounding in Normal and Visual modes
+				delete = "s" .. "d",     -- Delete surrounding
+				find = "s" .. "f",       -- Find surrounding (to the right)
+				find_left = "s" .. "F",  -- Find surrounding (to the left)
+				highlight = "s" .. "h",  -- Highlight surrounding
+				replace = "s" .. "r",    -- Replace surrounding
 				update_n_lines = "s" .. "n", -- Update `n_lines`
 			},
 		},
