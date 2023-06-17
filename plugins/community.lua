@@ -48,14 +48,20 @@ return {
 	-- Org-like
 	-- { import = "astrocommunity.note-taking/neorg" },
 	-- Language Packs
+	{ import = "astrocommunity.pack.angular" },
 	{ import = "astrocommunity.pack.bash" },
+	{ import = "astrocommunity.pack.cmake" },
+	{ import = "astrocommunity.pack.docker" },
+	{ import = "astrocommunity.pack.html-css" },
 	{ import = "astrocommunity.pack.json" },
 	{ import = "astrocommunity.pack.lua" },
 	{ import = "astrocommunity.pack.markdown" },
 	{ import = "astrocommunity.pack.nix" },
 	{ import = "astrocommunity.pack.python" },
 	{ import = "astrocommunity.pack.rust" },
-	{ import = "astrocommunity.pack.typescript" },
+	{ import = "astrocommunity.pack.toml" },
+	{ import = "astrocommunity.pack.typescript-all-in-one" },
+	{ import = "astrocommunity.pack.yaml" },
 	-- Project management
 	{ import = "astrocommunity.project.neoconf-nvim" },
 	{ import = "astrocommunity.project.nvim-spectre" },
