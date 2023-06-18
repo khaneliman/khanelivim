@@ -15,12 +15,12 @@ return {
     ["<leader>uz"] = { "<cmd>ZenMode<cr>", desc = "Toggle Zen Mode" },
     ["<leader>uT"] = { "<cmd>Twilight<cr>", desc = "Toggle Twilight" },
     -- Navigate buffer
-    ["<leader>s"] = { name = "Surf" },
+    ["<leader>s"] = { name = "Surf / Spectre" },
     ["<leader>ss"] = {
       function() require("syntax-tree-surfer").select() end,
-      desc = "Surf",
+      desc = "surf",
     },
-    ["<leader>sS"] = {
+    ["<leader>sn"] = {
       function() require("syntax-tree-surfer").select_current_node() end,
       desc = "Surf Node",
     },
@@ -32,7 +32,7 @@ return {
       end,
       desc = "Go to Variables",
     },
-    ["<leader>sf"] = {
+    ["<leader>sF"] = {
       function() require("syntax-tree-surfer").targeted_jump { "function" } end,
       desc = "Go to Functions",
     },
