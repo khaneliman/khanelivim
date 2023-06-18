@@ -19,6 +19,16 @@ return {
 	{ import = "astrocommunity.code-runner.overseer-nvim" },
 	-- Color picker/highlighter
 	{ import = "astrocommunity.color.ccc-nvim" },
+	{ import = "astrocommunity.color.twilight-nvim" },
+	{
+		"twilight.nvim",
+		keys = { { "<leader>uT", "<cmd>Twilight<cr>", desc = "Toggle Twilight" } },
+		cmd = {
+			"Twilight",
+			"TwilightEnable",
+			"TwilightDisable",
+		},
+	},
 	-- Theme
 	{ import = "astrocommunity.colorscheme.catppuccin" },
 	{

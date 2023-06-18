@@ -13,7 +13,6 @@ return {
     ["<leader>fp"] = { "<cmd>Telescope projects<cr>", desc = "Find projects" },
     -- UI
     ["<leader>uz"] = { "<cmd>ZenMode<cr>", desc = "Toggle Zen Mode" },
-    ["<leader>uT"] = { "<cmd>Twilight<cr>", desc = "Toggle Twilight" },
     -- Navigate buffer
     ["<leader>s"] = { name = "Surf / Spectre" },
     ["<leader>ss"] = {
