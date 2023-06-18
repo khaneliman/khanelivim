@@ -137,10 +137,5 @@ return {
 		"peterhoeg/vim-qml",
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
 		ft = "qml",
-	},
-	{
-		"LnL7/vim-nix",
-		dependencies = { "nvim-treesitter/nvim-treesitter" },
-		ft = "nix",
 	}
 }
