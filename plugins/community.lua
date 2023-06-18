@@ -69,7 +69,7 @@ return {
 	{ import = "astrocommunity.indent.indent-blankline-nvim" },
 	{ import = "astrocommunity.indent.mini-indentscope" },
 	-- Markdown preview
-	{ import = "astrocommunity.markdown-and-latex.glow-nvim" },
+	{ import = "astrocommunity.markdown-and-latex.markdown-preview-nvim" },
 	-- Idle animation
 	{ import = "astrocommunity.media.drop-nvim" },
 	-- Discord status
