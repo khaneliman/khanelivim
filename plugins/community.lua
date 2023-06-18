@@ -19,13 +19,6 @@ return {
 	{ import = "astrocommunity.code-runner.overseer-nvim" },
 	-- Color picker/highlighter
 	{ import = "astrocommunity.color.ccc-nvim" },
-	{
-		-- further customize the options set by the community
-		"uga-rosa/ccc.nvim",
-		config = function(_, opts)
-			require("ccc").setup(opts)
-		end,
-	},
 	-- Theme
 	{ import = "astrocommunity.colorscheme.catppuccin" },
 	{
