@@ -20,15 +20,6 @@ return {
 	-- Color picker/highlighter
 	{ import = "astrocommunity.color.ccc-nvim" },
 	{ import = "astrocommunity.color.twilight-nvim" },
-	{
-		"twilight.nvim",
-		keys = { { "<leader>uT", "<cmd>Twilight<cr>", desc = "Toggle Twilight" } },
-		cmd = {
-			"Twilight",
-			"TwilightEnable",
-			"TwilightDisable",
-		},
-	},
 	-- Theme
 	{ import = "astrocommunity.colorscheme.catppuccin" },
 	{
@@ -64,6 +55,8 @@ return {
 	{ import = "astrocommunity.editing-support.nvim-regexplainer" },
 	-- Code refactoring
 	{ import = "astrocommunity.editing-support.refactoring-nvim" },
+	-- Sudo write
+	{ import = "astrocommunity.editing-support.suda-vim" },
 	-- Highlight todo comments
 	{ import = "astrocommunity.editing-support.todo-comments-nvim" },
 	-- Hide distractions
@@ -73,6 +66,7 @@ return {
 	{ import = "astrocommunity.indent.mini-indentscope" },
 	-- Markdown preview
 	{ import = "astrocommunity.markdown-and-latex.markdown-preview-nvim" },
+	{ import = "astrocommunity.markdown-and-latex.peek-nvim" },
 	-- Idle animation
 	{ import = "astrocommunity.media.drop-nvim" },
 	-- Discord status
@@ -89,12 +83,12 @@ return {
 		},
 		opts = {
 			mappings = {
-				add = "s" .. "a",        -- Add surrounding in Normal and Visual modes
-				delete = "s" .. "d",     -- Delete surrounding
-				find = "s" .. "f",       -- Find surrounding (to the right)
-				find_left = "s" .. "F",  -- Find surrounding (to the left)
-				highlight = "s" .. "h",  -- Highlight surrounding
-				replace = "s" .. "r",    -- Replace surrounding
+				add = "s" .. "a", -- Add surrounding in Normal and Visual modes
+				delete = "s" .. "d", -- Delete surrounding
+				find = "s" .. "f", -- Find surrounding (to the right)
+				find_left = "s" .. "F", -- Find surrounding (to the left)
+				highlight = "s" .. "h", -- Highlight surrounding
+				replace = "s" .. "r", -- Replace surrounding
 				update_n_lines = "s" .. "n", -- Update `n_lines`
 			},
 		},
