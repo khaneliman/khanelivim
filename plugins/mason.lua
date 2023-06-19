@@ -43,6 +43,7 @@ return {
 				"rust-analyzer",
 				"rustfmt",
 				"shfmt",
+				"stylua",
 				"sql_formatter",
 			}
 			return opts
