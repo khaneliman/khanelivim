@@ -98,6 +98,7 @@ return {
 	-- Language Packs
 	{ import = "astrocommunity.pack.angular" },
 	{ import = "astrocommunity.pack.bash" },
+	{ import = "astrocommunity.pack.cpp" },
 	{ import = "astrocommunity.pack.cmake" },
 	{ import = "astrocommunity.pack.docker" },
 	{ import = "astrocommunity.pack.html-css" },
