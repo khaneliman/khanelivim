@@ -112,7 +112,6 @@ return {
 	{ import = "astrocommunity.pack.typescript-all-in-one" },
 	{ import = "astrocommunity.pack.yaml" },
 	-- Project management
-	{ import = "astrocommunity.project.neoconf-nvim" },
 	{ import = "astrocommunity.project.nvim-spectre" },
 	-- UI animation
 	{ import = "astrocommunity.scrolling.mini-animate" },
