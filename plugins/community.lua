@@ -27,16 +27,32 @@ return {
 		"catppuccin",
 		opts = {
 			integrations = {
-				sandwich = true,
-				noice = true,
-				mini = true,
-				leap = true,
-				markdown = true,
-				neotest = true,
+				alpha = true,
 				cmp = true,
-				overseer = true,
+				gitsigns = true,
+				illuminate = true,
+				indent_blankline = { enabled = true },
 				lsp_trouble = true,
-				ts_rainbow2 = true,
+				mason = true,
+				mini = true,
+				native_lsp = {
+					enabled = true,
+					underlines = {
+						errors = { "undercurl" },
+						hints = { "undercurl" },
+						warnings = { "undercurl" },
+						information = { "undercurl" },
+					},
+				},
+				navic = { enabled = true, custom_bg = "lualine" },
+				neotest = true,
+				noice = true,
+				notify = true,
+				neotree = true,
+				semantic_tokens = true,
+				telescope = true,
+				treesitter = true,
+				which_key = true,
 			},
 		},
 	},
@@ -69,8 +85,6 @@ return {
 	{ import = "astrocommunity.markdown-and-latex.peek-nvim" },
 	-- Idle animation
 	{ import = "astrocommunity.media.drop-nvim" },
-	-- Discord status
-	{ import = "astrocommunity.media.presence-nvim" },
 	-- Development time analytics
 	{ import = "astrocommunity.media.vim-wakatime" },
 	-- Quick surround text
@@ -93,6 +107,8 @@ return {
 			},
 		},
 	},
+	-- Quick jump
+	{ import = "astrocommunity.motion.harpoon" },
 	-- Org-like
 	-- { import = "astrocommunity.note-taking/neorg" },
 	-- Language Packs
