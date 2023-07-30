@@ -19,6 +19,7 @@ return {
 				"neocmake",
 				"pyright",
 				"nil_ls",
+				"rnix",
 				"sqlls",
 				"tsserver",
 				"yamlls",
