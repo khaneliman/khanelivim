@@ -22,40 +22,6 @@ return {
 	{ import = "astrocommunity.color.twilight-nvim" },
 	-- Theme
 	{ import = "astrocommunity.colorscheme.catppuccin" },
-	{
-		-- further customize the options set by the community
-		"catppuccin",
-		opts = {
-			integrations = {
-				alpha = true,
-				cmp = true,
-				gitsigns = true,
-				illuminate = true,
-				indent_blankline = { enabled = true },
-				lsp_trouble = true,
-				mason = true,
-				mini = true,
-				native_lsp = {
-					enabled = true,
-					underlines = {
-						errors = { "undercurl" },
-						hints = { "undercurl" },
-						warnings = { "undercurl" },
-						information = { "undercurl" },
-					},
-				},
-				navic = { enabled = true, custom_bg = "lualine" },
-				neotest = true,
-				noice = true,
-				notify = true,
-				neotree = true,
-				semantic_tokens = true,
-				telescope = true,
-				treesitter = true,
-				which_key = true,
-			},
-		},
-	},
 	-- Code commenting
 	{ import = "astrocommunity.comment.mini-comment" },
 	{ import = "astrocommunity.debugging.nvim-bqf" },
@@ -75,6 +41,9 @@ return {
 	{ import = "astrocommunity.editing-support.suda-vim" },
 	-- Highlight todo comments
 	{ import = "astrocommunity.editing-support.todo-comments-nvim" },
+	-- Treesitter endwise
+	{ import = "astrocommunity.editing-support.nvim-treesitter-endwise" },
+	-- Improved Yank
 	{ import = "astrocommunity.editing-support.yanky-nvim" },
 	-- Hide distractions
 	{ import = "astrocommunity.editing-support.zen-mode-nvim" },
@@ -136,9 +105,9 @@ return {
 	{ import = "astrocommunity.syntax.hlargs-nvim" },
 	-- Test Runner
 	{ import = "astrocommunity.test.neotest" },
-	{ import = "astrocommunity.utility.neodim" },
 	-- Tmux integration
 	{ import = "astrocommunity.terminal-integration.vim-tmux-yank" },
+	{ import = "astrocommunity.utility.neodim" },
 	-- Notification system
 	{ import = "astrocommunity.utility.noice-nvim" },
 	-- Copilot
