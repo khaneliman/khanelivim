@@ -75,6 +75,7 @@ return {
 	{ import = "astrocommunity.editing-support.suda-vim" },
 	-- Highlight todo comments
 	{ import = "astrocommunity.editing-support.todo-comments-nvim" },
+	{ import = "astrocommunity.editing-support.yanky-nvim" },
 	-- Hide distractions
 	{ import = "astrocommunity.editing-support.zen-mode-nvim" },
 	-- Indent improvements
