@@ -121,7 +121,7 @@ return {
 	{ import = "astrocommunity.pack.json" },
 	{ import = "astrocommunity.pack.lua" },
 	{ import = "astrocommunity.pack.markdown" },
-	{ import = "astrocommunity.pack.nix" },
+	-- { import = "astrocommunity.pack.nix" },
 	{ import = "astrocommunity.pack.python" },
 	{ import = "astrocommunity.pack.rust" },
 	{ import = "astrocommunity.pack.toml" },
