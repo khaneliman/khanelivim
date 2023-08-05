@@ -17,18 +17,18 @@ return {
 			-- require("plugins.cmp")(plugin, opts) -- include the default astronvim config that calls the setup call
 			opts.sources = cmp.config.sources({
 				{ name = "nvim_lsp", priority = 1000 },
-				{ name = "omni", priority = 800 },
-				{ name = "luasnip", priority = 750 },
-				{ name = "emoji", priority = 700 },
-				{ name = "calc", priority = 650 },
-				{ name = "path", priority = 500 },
-				{ name = "fish", priority = 300 },
-				{ name = "zsh", priority = 300 },
-				{ name = "npm", priority = 300 },
-				{ name = "git", priority = 300 },
-				{ name = "buffer", priority = 250 },
+				{ name = "omni",     priority = 800 },
+				{ name = "luasnip",  priority = 750 },
+				{ name = "emoji",    priority = 700 },
+				{ name = "calc",     priority = 650 },
+				{ name = "path",     priority = 500 },
+				{ name = "fish",     priority = 300 },
+				{ name = "zsh",      priority = 300 },
+				{ name = "npm",      priority = 300 },
+				{ name = "git",      priority = 300 },
+				{ name = "buffer",   priority = 250 },
 				{ name = "nerdfont", priority = 200 },
-				{ name = "cmdline", priority = 200 },
+				{ name = "cmdline",  priority = 200 },
 			})
 			-- run cmp setup
 			cmp.setup(opts)

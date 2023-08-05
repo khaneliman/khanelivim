@@ -1,1 +1,9 @@
-return { settings = { Lua = { hint = { enable = true } } } }
+return {
+  settings = {
+    Lua = {
+      hint = {
+        enable = true
+      }
+    }
+  }
+}
