@@ -44,7 +44,8 @@ return {
 	-- Treesitter endwise
 	{ import = "astrocommunity.editing-support.nvim-treesitter-endwise" },
 	-- Improved Yank
-	{ import = "astrocommunity.editing-support.yanky-nvim" },
+	-- TODO: fix on nixos
+	-- { import = "astrocommunity.editing-support.yanky-nvim" },
 	-- Hide distractions
 	{ import = "astrocommunity.editing-support.zen-mode-nvim" },
 	-- Indent improvements
