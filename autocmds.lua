@@ -28,12 +28,3 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.opt_local.spell = true
 	end,
 })
-
-vim.api.nvim_create_autocmd("VimLeave", {
-	desc = "Stop running auto compiler on leave",
-	group = vim.api.nvim_create_augroup("quit_autocomp", { clear = true }),
-	pattern = "*",
-	callback = function()
-		vim.fn.jobstart({ "autocomp", vim.fn.expand("%:p"), "stop" })
-	end,
-})
