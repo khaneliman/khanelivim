@@ -22,6 +22,14 @@ return {
 	{ import = "astrocommunity.color.twilight-nvim" },
 	-- Theme
 	{ import = "astrocommunity.colorscheme.catppuccin" },
+	{
+		"catppuccin/nvim",
+		name = "catppuccin",
+		opts = {
+			dim_inactive = { enabled = false, percentage = 0.25 },
+			transparent_background = true, -- disables setting the background color.
+		},
+	},
 	-- Code commenting
 	{ import = "astrocommunity.comment.mini-comment" },
 	{ import = "astrocommunity.debugging.nvim-bqf" },
