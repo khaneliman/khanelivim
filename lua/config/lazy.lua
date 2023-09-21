@@ -23,16 +23,78 @@ require("lazy").setup {
     -- TODO: Remove branch v4 on release
     { "AstroNvim/astrocommunity", branch = "v4" },
 
+    -- UI tweaks
+    { import = "astrocommunity.bars-and-lines.smartcolumn-nvim" },
+
+    -- FIX: v4 broken
+    -- Heirline
+    -- { import = "astrocommunity.bars-and-lines.heirline-vscode-winbar" },
+    -- { import = "astrocommunity.bars-and-lines.heirline-mode-text-statusline" },
+
+    -- Run commands in nvim
+    { import = "astrocommunity.code-runner.overseer-nvim" },
+
+    -- FIX: v4 broken
+    -- Color picker/highlighter
+    -- { import = "astrocommunity.color.ccc-nvim" },
+    -- { import = "astrocommunity.color.twilight-nvim" },
+
+    -- Code commenting
+    { import = "astrocommunity.comment.mini-comment" },
+
+    -- Debugging
+    { import = "astrocommunity.debugging.nvim-bqf" },
+
+    -- Elegant lsp virtual lines
+    { import = "astrocommunity.diagnostics.lsp_lines-nvim" },
+
+    -- Diagnostic summary
+    { import = "astrocommunity.diagnostics.trouble-nvim" },
+
+    -- Code formatting
+    { import = "astrocommunity.editing-support.mini-splitjoin" },
+
+    -- Document generation
+    { import = "astrocommunity.editing-support.neogen" },
+
+    -- Regex explanations
+    { import = "astrocommunity.editing-support.nvim-regexplainer" },
+
+    -- Code refactoring
+    -- { import = "astrocommunity.editing-support.refactoring-nvim" },
+    --
     -- Sudo write
     { import = "astrocommunity.editing-support.suda-vim" },
 
-    -- Development time analytics
-    { import = "astrocommunity.media.vim-wakatime" },
+    -- Highlight todo comments
+    { import = "astrocommunity.editing-support.todo-comments-nvim" },
+
+    -- Treesitter endwise
+    { import = "astrocommunity.editing-support.nvim-treesitter-endwise" },
+
+    -- Improved Yank
+    -- FIX: nixos broken
+    -- { import = "astrocommunity.editing-support.yanky-nvim" },
 
     -- Hide distractions
     { import = "astrocommunity.editing-support.zen-mode-nvim" },
 
-    -- Packs
+    -- Indent improvements
+    { import = "astrocommunity.indent.indent-blankline-nvim" },
+
+    -- Markdown preview
+    { import = "astrocommunity.markdown-and-latex.markdown-preview-nvim" },
+    -- Idle animation
+    -- FIX: doesn't work with transparent background
+    -- { import = "astrocommunity.media.drop-nvim" },
+
+    -- Quick jump
+    { import = "astrocommunity.motion.harpoon" },
+
+    -- Org-like
+    -- { import = "astrocommunity.note-taking/neorg" },
+
+    -- Language Packs
     { import = "astrocommunity.pack.angular" },
     { import = "astrocommunity.pack.bash" },
     { import = "astrocommunity.pack.cpp" },
@@ -49,6 +111,26 @@ require("lazy").setup {
     { import = "astrocommunity.pack.toml" },
     { import = "astrocommunity.pack.typescript-all-in-one" },
     { import = "astrocommunity.pack.yaml" },
+
+    -- Project management
+    { import = "astrocommunity.project.nvim-spectre" },
+
+    -- UI animation
+    { import = "astrocommunity.scrolling.mini-animate" },
+
+    -- Syntax highlighting
+    -- { import = "astrocommunity.syntax.hlargs-nvim" },
+    -- Test Runner
+    { import = "astrocommunity.test.neotest" },
+
+    -- Tmux integration
+    { import = "astrocommunity.terminal-integration.vim-tmux-yank" },
+
+    -- dim
+    { import = "astrocommunity.utility.neodim" },
+
+    -- Notification system
+    { import = "astrocommunity.utility.noice-nvim" },
 
     { import = "plugins" }, -- import/override with your plugins
   }),

@@ -35,9 +35,18 @@ return {
     },
     -- customize language server configuration options passed to `lspconfig`
     config = {
-      clangd = { capabilities = { offsetEncoding = "utf-8" } },
+      clangd = { settings = { capabilities = { offsetEncoding = "utf-8" } } },
       julials = { autostart = false },
       lua_ls = { settings = { Lua = { hint = { enable = true, arrayIndex = "Disable" } } } },
+      nil_ls = {
+        settings = {
+          ["nil"] = {
+            formatting = {
+              command = { "nixpkgs-fmt" },
+            },
+          },
+        },
+      },
       taplo = { evenBetterToml = { schema = { catalogs = { "https://www.schemastore.org/api/json/catalog.json" } } } },
       rust_analyzer = {
         settings = {
