@@ -5,7 +5,7 @@ return {
     ---@type AstroLSPOpts
     opts = {
       config = {
-        clangd = { settings = { capabilities = { offsetEncoding = "utf-8" } } },
+        clangd = { capabilities = { offsetEncoding = "utf-8" } },
         julials = { autostart = false },
         lua_ls = { settings = { Lua = { hint = { enable = true, arrayIndex = "Disable" } } } },
         nil_ls = {

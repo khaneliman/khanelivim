@@ -7,8 +7,25 @@ return {
     opts = function(_, opts)
       -- add more things to the ensure_installed table protecting against community packs modifying it
       opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
-        -- "lua_ls",
+        "angularls",
+        "bashls",
+        "clangd",
+        "csharp_ls",
+        "cssls",
+        "docker_compose_language_service",
+        "dockerls",
+        "grammarly",
+        "html",
+        "jsonls",
+        "lemminx",
+        "lua_ls",
+        "marksman",
+        "neocmake",
         "nil_ls",
+        "pyright",
+        "sqlls",
+        "tsserver",
+        "yamlls",
       })
     end,
   },
@@ -19,8 +36,20 @@ return {
     opts = function(_, opts)
       -- add more things to the ensure_installed table protecting against community packs modifying it
       opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
-        -- "prettier",
-        -- "stylua",
+        "black",
+        "cbfmt",
+        "clang_format",
+        "csharpier",
+        "eslint_d",
+        "gitlint",
+        "hadolint",
+        "isort",
+        "jq",
+        "markdownlint",
+        "rust-analyzer",
+        "shfmt",
+        "sql_formatter",
+        "stylua",
       })
     end,
   },
@@ -30,7 +59,14 @@ return {
     opts = function(_, opts)
       -- add more things to the ensure_installed table protecting against community packs modifying it
       opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
-        -- "python",
+        "bash",
+        "codelldb",
+        "coreclr",
+        "cppdbg",
+        "firefox",
+        "js",
+        "node2",
+        "python",
       })
     end,
   },
