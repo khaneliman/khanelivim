@@ -1,4 +1,9 @@
 local prefix = "<Leader>x"
+local maps = { n = {}, x = {} }
+
+local icon = vim.g.icons_enabled and "󰒡  " or ""
+maps.n[prefix] = { desc = icon .. "Trouble" }
+
 return {
   "folke/trouble.nvim",
   cmd = { "TroubleToggle", "Trouble" },
@@ -7,7 +12,6 @@ return {
     opts = {
       mappings = {
         n = {
-          [prefix] = { desc = "󰒡 Trouble" },
           [prefix .. "x"] = { "<Cmd>TroubleToggle document_diagnostics<CR>", desc = "Document Diagnostics (Trouble)" },
           [prefix .. "X"] = { "<Cmd>TroubleToggle workspace_diagnostics<CR>", desc = "Workspace Diagnostics (Trouble)" },
           [prefix .. "l"] = { "<Cmd>TroubleToggle loclist<CR>", desc = "Location List (Trouble)" },
