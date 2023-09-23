@@ -29,8 +29,6 @@ require("lazy").setup {
     -- { import = "astrocommunity.bars-and-lines.heirline-mode-text-statusline" },
 
     -- FIX: v4 broken
-    -- Color picker/highlighter
-    -- { import = "astrocommunity.color.ccc-nvim" },
     -- { import = "astrocommunity.color.twilight-nvim" },
 
     -- Code refactoring
