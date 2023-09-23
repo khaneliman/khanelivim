@@ -79,9 +79,6 @@ require("lazy").setup {
     -- Project management
     { import = "astrocommunity.project.nvim-spectre" },
 
-    -- UI animation
-    { import = "astrocommunity.scrolling.mini-animate" },
-
     -- Syntax highlighting
     -- { import = "astrocommunity.syntax.hlargs-nvim" },
 
