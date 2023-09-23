@@ -1,8 +1,13 @@
 return {
   { import = "plugins.code-runner" },
   { import = "plugins.color" },
+  { import = "plugins.diagnostics" },
+  { import = "plugins.editing-support" },
   { import = "plugins.language-support" },
+  { import = "plugins.motion" },
+  { import = "plugins.test" },
   { import = "plugins.theme" },
+  { import = "plugins.ui" },
 
   -- disable core plugins
   { "max397574/better-escape.nvim", enabled = false },
@@ -10,11 +15,8 @@ return {
   -- Very small specs not worth their own files
   { "kevinhwang91/nvim-bqf", ft = "qf", opts = {} }, --Debugging
   { "akinsho/toggleterm.nvim", opts = { terminal_mappings = false } },
-  { "rcarriga/nvim-notify", opts = { timeout = 0 } },
   { "wakatime/vim-wakatime", event = "User AstroFile" }, -- Development time analytics
-  { "folke/todo-comments.nvim", opts = {}, event = "User AstroFile" }, -- higlight todo comments
   { "jabirali/vim-tmux-yank", event = "User AstroFile" }, --tmux yank integration
-  { "iamcco/markdown-preview.nvim", build = "cd app && npm install", ft = "markdown" }, --markdown preview
   { "m-demare/hlargs.nvim", opts = {}, event = "User AstroFile" },
   {
     "toppair/peek.nvim",

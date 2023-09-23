@@ -21,7 +21,6 @@ return {
         "cbfmt",
         "gitlint",
         "isort",
-        "jq",
       })
     end,
   },
