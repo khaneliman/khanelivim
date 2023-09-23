@@ -40,9 +40,6 @@ require("lazy").setup {
     -- FIX: nixos broken
     -- { import = "astrocommunity.editing-support.yanky-nvim" },
 
-    -- Hide distractions
-    { import = "astrocommunity.editing-support.zen-mode-nvim" },
-
     -- Indent improvements
     { import = "astrocommunity.indent.indent-blankline-nvim" },
 
