@@ -4,6 +4,19 @@ return {
   {
     "AstroNvim/astrolsp",
     opts = {
+      config = {
+        rust_analyzer = {
+          settings = {
+            ["rust-analyzer"] = {
+              completion = {
+                postfix = {
+                  enable = false,
+                },
+              },
+            },
+          },
+        },
+      },
       handlers = { rust_analyzer = false },
     },
   },
