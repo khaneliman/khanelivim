@@ -98,4 +98,16 @@ return {
       },
     },
   },
+  {
+    "echasnovski/mini.splitjoin",
+    event = "User AstroFile",
+    opts = {},
+    dependencies = {
+      {
+        "catppuccin/nvim",
+        optional = true,
+        opts = { integrations = { mini = true } },
+      },
+    },
+  },
 }
