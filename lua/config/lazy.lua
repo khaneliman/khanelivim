@@ -22,12 +22,6 @@ require("lazy").setup {
     -- AstroCommunity import any community modules here
     -- TODO: Remove branch v4 on release
     { "AstroNvim/astrocommunity", branch = "v4" },
-
-    -- FIX: v4 broken
-    -- Heirline
-    -- { import = "astrocommunity.bars-and-lines.heirline-vscode-winbar" },
-    -- { import = "astrocommunity.bars-and-lines.heirline-mode-text-statusline" },
-
     -- Code refactoring
     -- { import = "astrocommunity.editing-support.refactoring-nvim" },
 
