@@ -23,9 +23,6 @@ require("lazy").setup {
     -- TODO: Remove branch v4 on release
     { "AstroNvim/astrocommunity", branch = "v4" },
 
-    -- UI tweaks
-    { import = "astrocommunity.bars-and-lines.smartcolumn-nvim" },
-
     -- FIX: v4 broken
     -- Heirline
     -- { import = "astrocommunity.bars-and-lines.heirline-vscode-winbar" },
