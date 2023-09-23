@@ -19,7 +19,6 @@ return {
       opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, { "stylua", "luacheck" })
     end,
   },
-
   {
     "NTBBloodbath/zig-tools.nvim",
     -- Load zig-tools.nvim only in Zig buffers

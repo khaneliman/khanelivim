@@ -5,12 +5,16 @@ return {
     "nvim-treesitter/nvim-treesitter",
     opts = function(_, opts)
       if opts.ensure_installed ~= "all" then
-        opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, { "json", "jsonc" })
+        opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, { "json", "jsonc", "jq" })
       end
     end,
   },
   {
     "williamboman/mason-lspconfig.nvim",
     opts = function(_, opts) opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, "jsonls") end,
+  },
+  {
+    "jay-babu/mason-null-ls.nvim",
+    opts = function(_, opts) opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, { "jq" }) end,
   },
 }

@@ -156,4 +156,5 @@ return {
       end
     end,
   },
+  { "rcarriga/nvim-notify", opts = { timeout = 0 } },
 }
