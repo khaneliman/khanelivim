@@ -33,9 +33,6 @@ require("lazy").setup {
     -- { import = "astrocommunity.color.ccc-nvim" },
     -- { import = "astrocommunity.color.twilight-nvim" },
 
-    -- Document generation
-    { import = "astrocommunity.editing-support.neogen" },
-
     -- Regex explanations
     { import = "astrocommunity.editing-support.nvim-regexplainer" },
 
