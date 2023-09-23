@@ -91,9 +91,6 @@ require("lazy").setup {
     -- Tmux integration
     { import = "astrocommunity.terminal-integration.vim-tmux-yank" },
 
-    -- dim
-    { import = "astrocommunity.utility.neodim" },
-
     { import = "plugins" }, -- import/override with your plugins
   }),
   defaults = {
