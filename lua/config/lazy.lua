@@ -28,8 +28,6 @@ require("lazy").setup {
     -- { import = "astrocommunity.bars-and-lines.heirline-vscode-winbar" },
     -- { import = "astrocommunity.bars-and-lines.heirline-mode-text-statusline" },
 
-    -- Run commands in nvim
-    { import = "astrocommunity.code-runner.overseer-nvim" },
 
     -- FIX: v4 broken
     -- Color picker/highlighter
