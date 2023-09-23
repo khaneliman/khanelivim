@@ -76,9 +76,6 @@ require("lazy").setup {
     { import = "astrocommunity.pack.typescript-all-in-one" },
     { import = "astrocommunity.pack.yaml" },
 
-    -- Project management
-    { import = "astrocommunity.project.nvim-spectre" },
-
     -- Syntax highlighting
     -- { import = "astrocommunity.syntax.hlargs-nvim" },
 
