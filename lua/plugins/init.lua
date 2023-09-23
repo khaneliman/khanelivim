@@ -1,4 +1,9 @@
 return {
+  { import = "plugins.code-runner" },
+  { import = "plugins.color" },
+  { import = "plugins.language-support" },
+  { import = "plugins.theme" },
+
   -- disable core plugins
   { "max397574/better-escape.nvim", enabled = false },
 
@@ -10,6 +15,7 @@ return {
   { "folke/todo-comments.nvim", opts = {}, event = "User AstroFile" }, -- higlight todo comments
   { "jabirali/vim-tmux-yank", event = "User AstroFile" }, --tmux yank integration
   { "iamcco/markdown-preview.nvim", build = "cd app && npm install", ft = "markdown" }, --markdown preview
+  { "m-demare/hlargs.nvim", opts = {}, event = "User AstroFile" },
   {
     "toppair/peek.nvim",
     build = "deno task --quiet build:fast",
