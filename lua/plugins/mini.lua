@@ -80,4 +80,22 @@ return {
       }
     end,
   },
+  { "numToStr/Comment.nvim", enabled = false },
+  {
+    "echasnovski/mini.comment",
+    dependencies = {
+      "JoosepAlviste/nvim-ts-context-commentstring",
+      {
+        "catppuccin/nvim",
+        optional = true,
+        opts = { integrations = { mini = true } },
+      },
+    },
+    event = "User AstroFile",
+    opts = {
+      hooks = {
+        pre = function() require("ts_context_commentstring.internal").update_commentstring {} end,
+      },
+    },
+  },
 }
