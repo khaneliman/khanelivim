@@ -7,6 +7,7 @@ return {
   { "akinsho/toggleterm.nvim", opts = { terminal_mappings = false } },
   { "rcarriga/nvim-notify", opts = { timeout = 0 } },
   { "wakatime/vim-wakatime", event = "User AstroFile" }, -- Development time analytics
+  { "folke/todo-comments.nvim", opts = {}, event = "User AstroFile" },
   {
     "toppair/peek.nvim",
     build = "deno task --quiet build:fast",
