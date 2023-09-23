@@ -22,8 +22,6 @@ require("lazy").setup {
     -- AstroCommunity import any community modules here
     -- TODO: Remove branch v4 on release
     { "AstroNvim/astrocommunity", branch = "v4" },
-    -- Code refactoring
-    -- { import = "astrocommunity.editing-support.refactoring-nvim" },
 
     -- Improved Yank
     -- FIX: nixos broken
@@ -32,9 +30,6 @@ require("lazy").setup {
     -- Idle animation
     -- FIX: doesn't work with transparent background
     -- { import = "astrocommunity.media.drop-nvim" },
-
-    -- Org-like
-    -- { import = "astrocommunity.note-taking/neorg" },
 
     -- Language Packs
     { import = "astrocommunity.pack.angular" },
