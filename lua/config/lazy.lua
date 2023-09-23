@@ -79,9 +79,6 @@ require("lazy").setup {
     -- Syntax highlighting
     -- { import = "astrocommunity.syntax.hlargs-nvim" },
 
-    -- Tmux integration
-    { import = "astrocommunity.terminal-integration.vim-tmux-yank" },
-
     { import = "plugins" }, -- import/override with your plugins
   }),
   defaults = {
