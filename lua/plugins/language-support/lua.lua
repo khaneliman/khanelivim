@@ -2,6 +2,23 @@ local utils = require "astrocore"
 
 return {
   {
+    "AstroNvim/astrolsp",
+    opts = {
+      config = {
+        lua_ls = {
+          settings = {
+            Lua = {
+              hint = {
+                enable = true,
+                arrayIndex = "Disable",
+              },
+            },
+          },
+        },
+      },
+    },
+  },
+  {
     "nvim-treesitter/nvim-treesitter",
     opts = function(_, opts)
       if opts.ensure_installed ~= "all" then

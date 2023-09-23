@@ -26,4 +26,20 @@ return {
       end
     end,
   },
+  {
+    "AstroNvim/astrolsp",
+    opts = {
+      config = {
+        nil_ls = {
+          settings = {
+            ["nil"] = {
+              formatting = {
+                command = { "nixpkgs-fmt" },
+              },
+            },
+          },
+        },
+      },
+    },
+  },
 }

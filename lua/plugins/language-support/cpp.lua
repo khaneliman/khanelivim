@@ -4,6 +4,9 @@ return {
   {
     "AstroNvim/astrolsp",
     opts = {
+      config = {
+        clangd = { capabilities = { offsetEncoding = "utf-8" } },
+      },
       handlers = { clangd = false },
     },
   },

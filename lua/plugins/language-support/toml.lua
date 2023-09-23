@@ -2,6 +2,14 @@ local utils = require "astrocore"
 
 return {
   {
+    "AstroNvim/astrolsp",
+    opts = {
+      config = {
+        taplo = { evenBetterToml = { schema = { catalogs = { "https://www.schemastore.org/api/json/catalog.json" } } } },
+      },
+    },
+  },
+  {
     "nvim-treesitter/nvim-treesitter",
     opts = function(_, opts)
       -- Ensure that opts.ensure_installed exists and is a table or string "all".
