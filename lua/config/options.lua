@@ -9,3 +9,5 @@
 -- vim.opt.wrap = false -- sets vim.opt.wrap
 
 -- vim.g.mapleader = " " -- sets vim.g.mapleader
+--
+vim.g.icons_enabled = true
