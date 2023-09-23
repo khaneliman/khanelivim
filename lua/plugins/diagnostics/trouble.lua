@@ -4,10 +4,19 @@ local maps = { n = {}, x = {} }
 local icon = vim.g.icons_enabled and "󰒡  " or ""
 maps.n[prefix] = { desc = icon .. "Trouble" }
 
+require("astrocore").set_mappings(maps)
+
 return {
-  "folke/trouble.nvim",
+  { "folke/trouble.nvim" },
   cmd = { "TroubleToggle", "Trouble" },
-  dependencies = {
+  opts = {
+    use_diagnostic_signs = true,
+    action_keys = {
+      close = { "q", "<Esc>" },
+      cancel = "<C-e>",
+    },
+  },
+  {
     "AstroNvim/astrocore",
     opts = {
       mappings = {
@@ -19,25 +28,18 @@ return {
         },
       },
     },
-    {
-      "folke/edgy.nvim",
-      optional = true,
-      opts = function(_, opts)
-        if not opts.bottom then opts.bottom = {} end
-        table.insert(opts.bottom, "Trouble")
-      end,
-    },
-    {
-      "catppuccin/nvim",
-      optional = true,
-      opts = { integrations = { lsp_trouble = true } },
-    },
   },
-  opts = {
-    use_diagnostic_signs = true,
-    action_keys = {
-      close = { "q", "<Esc>" },
-      cancel = "<C-e>",
-    },
+  {
+    "folke/edgy.nvim",
+    optional = true,
+    opts = function(_, opts)
+      if not opts.bottom then opts.bottom = {} end
+      table.insert(opts.bottom, "Trouble")
+    end,
+  },
+  {
+    "catppuccin/nvim",
+    optional = true,
+    opts = { integrations = { lsp_trouble = true } },
   },
 }
