@@ -28,9 +28,6 @@ require("lazy").setup {
     -- { import = "astrocommunity.bars-and-lines.heirline-vscode-winbar" },
     -- { import = "astrocommunity.bars-and-lines.heirline-mode-text-statusline" },
 
-    -- FIX: v4 broken
-    -- { import = "astrocommunity.color.twilight-nvim" },
-
     -- Code refactoring
     -- { import = "astrocommunity.editing-support.refactoring-nvim" },
 
