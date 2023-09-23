@@ -7,8 +7,9 @@ return {
   { "akinsho/toggleterm.nvim", opts = { terminal_mappings = false } },
   { "rcarriga/nvim-notify", opts = { timeout = 0 } },
   { "wakatime/vim-wakatime", event = "User AstroFile" }, -- Development time analytics
-  { "folke/todo-comments.nvim", opts = {}, event = "User AstroFile" },
-  { "jabirali/vim-tmux-yank", event = "User AstroFile" },
+  { "folke/todo-comments.nvim", opts = {}, event = "User AstroFile" }, -- higlight todo comments
+  { "jabirali/vim-tmux-yank", event = "User AstroFile" }, --tmux yank integration
+  { "iamcco/markdown-preview.nvim", build = "cd app && npm install", ft = "markdown" }, --markdown preview
   {
     "toppair/peek.nvim",
     build = "deno task --quiet build:fast",
