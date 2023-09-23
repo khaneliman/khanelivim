@@ -35,9 +35,6 @@ require("lazy").setup {
 
     -- Code refactoring
     -- { import = "astrocommunity.editing-support.refactoring-nvim" },
-    --
-    -- Sudo write
-    { import = "astrocommunity.editing-support.suda-vim" },
 
     -- Highlight todo comments
     { import = "astrocommunity.editing-support.todo-comments-nvim" },
