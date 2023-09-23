@@ -45,9 +45,6 @@ require("lazy").setup {
     -- Highlight todo comments
     { import = "astrocommunity.editing-support.todo-comments-nvim" },
 
-    -- Treesitter endwise
-    { import = "astrocommunity.editing-support.nvim-treesitter-endwise" },
-
     -- Improved Yank
     -- FIX: nixos broken
     -- { import = "astrocommunity.editing-support.yanky-nvim" },
