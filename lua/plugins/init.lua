@@ -3,10 +3,10 @@ return {
   { "max397574/better-escape.nvim", enabled = false },
 
   -- Very small specs not worth their own files
+  { "kevinhwang91/nvim-bqf", ft = "qf", opts = {} }, --Debugging
   { "akinsho/toggleterm.nvim", opts = { terminal_mappings = false } },
   { "rcarriga/nvim-notify", opts = { timeout = 0 } },
-  -- Development time analytics
-  { "wakatime/vim-wakatime", event = "User AstroFile" },
+  { "wakatime/vim-wakatime", event = "User AstroFile" }, -- Development time analytics
   {
     "toppair/peek.nvim",
     build = "deno task --quiet build:fast",

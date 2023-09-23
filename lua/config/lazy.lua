@@ -33,9 +33,6 @@ require("lazy").setup {
     -- { import = "astrocommunity.color.ccc-nvim" },
     -- { import = "astrocommunity.color.twilight-nvim" },
 
-    -- Debugging
-    { import = "astrocommunity.debugging.nvim-bqf" },
-
     -- Elegant lsp virtual lines
     { import = "astrocommunity.diagnostics.lsp_lines-nvim" },
 
