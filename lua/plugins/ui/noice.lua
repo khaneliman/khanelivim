@@ -156,5 +156,8 @@ return {
       end
     end,
   },
-  { "rcarriga/nvim-notify", opts = { timeout = 0 } },
+  { "rcarriga/nvim-notify", opts = {
+    background_colour = "#24273a",
+    timeout = 0,
+  } },
 }
