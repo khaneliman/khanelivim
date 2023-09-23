@@ -1,4 +1,5 @@
 local utils = require "astrocore"
+
 return {
   {
     "nvim-treesitter/nvim-treesitter",
