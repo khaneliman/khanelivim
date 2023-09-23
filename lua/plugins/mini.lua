@@ -27,11 +27,6 @@ return {
     "echasnovski/mini.surround",
     dependencies = {
       { "machakann/vim-sandwich", enabled = false },
-      {
-        "catppuccin/nvim",
-        optional = true,
-        opts = { integrations = { mini = true } },
-      },
     },
     keys = {
       { "sa", desc = "Add surrounding", mode = { "n", "v" } },
@@ -85,11 +80,6 @@ return {
     "echasnovski/mini.comment",
     dependencies = {
       "JoosepAlviste/nvim-ts-context-commentstring",
-      {
-        "catppuccin/nvim",
-        optional = true,
-        opts = { integrations = { mini = true } },
-      },
     },
     event = "User AstroFile",
     opts = {
@@ -102,12 +92,11 @@ return {
     "echasnovski/mini.splitjoin",
     event = "User AstroFile",
     opts = {},
-    dependencies = {
-      {
-        "catppuccin/nvim",
-        optional = true,
-        opts = { integrations = { mini = true } },
-      },
-    },
+    dependencies = {},
+  },
+  {
+    "catppuccin/nvim",
+    optional = true,
+    opts = { integrations = { mini = true } },
   },
 }
