@@ -33,9 +33,6 @@ require("lazy").setup {
     -- { import = "astrocommunity.color.ccc-nvim" },
     -- { import = "astrocommunity.color.twilight-nvim" },
 
-    -- Regex explanations
-    { import = "astrocommunity.editing-support.nvim-regexplainer" },
-
     -- Code refactoring
     -- { import = "astrocommunity.editing-support.refactoring-nvim" },
     --
