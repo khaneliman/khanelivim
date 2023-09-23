@@ -36,9 +36,6 @@ require("lazy").setup {
     -- Diagnostic summary
     { import = "astrocommunity.diagnostics.trouble-nvim" },
 
-    -- Code formatting
-    { import = "astrocommunity.editing-support.mini-splitjoin" },
-
     -- Document generation
     { import = "astrocommunity.editing-support.neogen" },
 
