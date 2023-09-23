@@ -46,9 +46,6 @@ require("lazy").setup {
     -- FIX: doesn't work with transparent background
     -- { import = "astrocommunity.media.drop-nvim" },
 
-    -- Quick jump
-    { import = "astrocommunity.motion.harpoon" },
-
     -- Org-like
     -- { import = "astrocommunity.note-taking/neorg" },
 
