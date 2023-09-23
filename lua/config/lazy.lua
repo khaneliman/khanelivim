@@ -94,9 +94,6 @@ require("lazy").setup {
     -- dim
     { import = "astrocommunity.utility.neodim" },
 
-    -- Notification system
-    { import = "astrocommunity.utility.noice-nvim" },
-
     { import = "plugins" }, -- import/override with your plugins
   }),
   defaults = {
