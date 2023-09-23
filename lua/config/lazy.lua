@@ -85,9 +85,6 @@ require("lazy").setup {
     -- Syntax highlighting
     -- { import = "astrocommunity.syntax.hlargs-nvim" },
 
-    -- Test Runner
-    { import = "astrocommunity.test.neotest" },
-
     -- Tmux integration
     { import = "astrocommunity.terminal-integration.vim-tmux-yank" },
 
