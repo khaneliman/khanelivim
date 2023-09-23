@@ -15,6 +15,19 @@ return {
         },
       },
     },
+    {
+      "folke/edgy.nvim",
+      optional = true,
+      opts = function(_, opts)
+        if not opts.bottom then opts.bottom = {} end
+        table.insert(opts.bottom, "Trouble")
+      end,
+    },
+    {
+      "catppuccin/nvim",
+      optional = true,
+      opts = { integrations = { lsp_trouble = true } },
+    },
   },
   opts = {
     use_diagnostic_signs = true,
