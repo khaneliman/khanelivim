@@ -41,8 +41,8 @@ return {
     "AstroNvim/astrolsp",
     opts = {
       handlers = {
-        tsserver = false,
-        denols = false,
+        -- tsserver = false,
+        -- denols = false,
       },
     },
   },
