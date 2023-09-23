@@ -40,9 +40,6 @@ require("lazy").setup {
     -- FIX: nixos broken
     -- { import = "astrocommunity.editing-support.yanky-nvim" },
 
-    -- Indent improvements
-    { import = "astrocommunity.indent.indent-blankline-nvim" },
-
     -- Markdown preview
     { import = "astrocommunity.markdown-and-latex.markdown-preview-nvim" },
     -- Idle animation
