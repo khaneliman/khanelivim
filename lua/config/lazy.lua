@@ -40,8 +40,6 @@ require("lazy").setup {
     -- FIX: nixos broken
     -- { import = "astrocommunity.editing-support.yanky-nvim" },
 
-    -- Markdown preview
-    { import = "astrocommunity.markdown-and-latex.markdown-preview-nvim" },
     -- Idle animation
     -- FIX: doesn't work with transparent background
     -- { import = "astrocommunity.media.drop-nvim" },
