@@ -36,9 +36,6 @@ require("lazy").setup {
     -- Code refactoring
     -- { import = "astrocommunity.editing-support.refactoring-nvim" },
 
-    -- Highlight todo comments
-    { import = "astrocommunity.editing-support.todo-comments-nvim" },
-
     -- Improved Yank
     -- FIX: nixos broken
     -- { import = "astrocommunity.editing-support.yanky-nvim" },
@@ -87,6 +84,7 @@ require("lazy").setup {
 
     -- Syntax highlighting
     -- { import = "astrocommunity.syntax.hlargs-nvim" },
+
     -- Test Runner
     { import = "astrocommunity.test.neotest" },
 
