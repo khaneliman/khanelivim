@@ -11,3 +11,4 @@
 -- vim.g.mapleader = " " -- sets vim.g.mapleader
 --
 vim.g.icons_enabled = true
+vim.lsp.set_log_level "debug"
