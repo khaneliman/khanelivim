@@ -17,7 +17,7 @@ return {
           },
         },
       },
-      -- handlers = { rust_analyzer = false },
+      handlers = { rust_analyzer = false },
     },
   },
   {
