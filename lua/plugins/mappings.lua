@@ -18,6 +18,7 @@ return {
         --   desc = "Previous buffer",
         -- },
 
+        ["<leader>li"] = { "<cmd>LspInfo<cr>", desc = "LSP Information" },
         ["<leader>."] = { "<cmd>Neotree dir=%:p:h<cr>", desc = "Set CWD" },
 
         -- Telescope

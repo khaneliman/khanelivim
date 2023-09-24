@@ -41,8 +41,13 @@ return {
     "AstroNvim/astrolsp",
     opts = {
       handlers = {
-        -- tsserver = false,
-        -- denols = false,
+        tsserver = false,
+        denols = false,
+      },
+      servers = {
+        tsserver = {
+          root_dir = function(...) return require("lspconfig.util").root_pattern ".git"(...) end,
+        },
       },
     },
   },
