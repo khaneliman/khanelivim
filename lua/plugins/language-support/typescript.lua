@@ -44,7 +44,7 @@ return {
         tsserver = false,
         denols = false,
       },
-      servers = {
+      config = {
         tsserver = {
           root_dir = function(...) return require("lspconfig.util").root_pattern ".git"(...) end,
         },
