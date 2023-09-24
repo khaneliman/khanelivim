@@ -4,9 +4,7 @@ return {
     "AstroNvim/astrolsp",
     ---@type AstroLSPOpts
     opts = {
-      config = {
-        julials = { autostart = false },
-      },
+      config = {},
       features = {
         inlay_hints = true,
       },
