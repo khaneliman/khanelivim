@@ -3,13 +3,29 @@ return {
   dependencies = {
     "theHamsta/nvim-dap-virtual-text",
     "rcarriga/nvim-dap-ui",
+    {
+      "microsoft/vscode-js-debug",
+      version = "1.x",
+      build = "npm i && npm run compile vsDebugServerBundle && rm -rf out && mv dist out",
+    },
+    {
+      "mxsdev/nvim-dap-vscode-js",
+      config = function()
+        require("dap-vscode-js").setup {
+          debugger_path = os.getenv "HOME" .. "/.local/share/nvim/lazy/vscode-js-debug",
+          adapters = {
+            "pwa-node",
+            "pwa-chrome",
+            "pwa-msedge",
+            "node-terminal",
+            "pwa-extensionHost",
+          },
+        }
+      end,
+    },
   },
   config = function()
-    -- local dap = require "dap"
-
     local dap_virtual_text_status = require "nvim-dap-virtual-text"
-
-    -- local dapui = require "dapui"
 
     dap_virtual_text_status.setup {
       enabled = true, -- enable this plugin (the default)
@@ -29,13 +45,10 @@ return {
       -- e.g. 80 to position at column 80, see `:h nvim_buf_set_extmark()`
     }
 
-    require "plugins.debugging.adapter.lldb"
+    require "plugins.debugging.adapters.lldb"
     --
-    require "plugins.debugging.settings.cpp"
-    require "plugins.debugging.settings.c"
-
-    -- dap.listeners.after.event_initialized["dapui_config"] = function() dapui.open() end
-    -- dap.listeners.before.event_terminated["dapui_config"] = function() dapui.close() end
-    -- dap.listeners.before.event_exited["dapui_config"] = function() dapui.close() end
+    require "plugins.debugging.configurations.cpp"
+    require "plugins.debugging.configurations.c"
+    require "plugins.debugging.configurations.javascript"
   end,
 }
