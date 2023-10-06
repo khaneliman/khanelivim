@@ -15,6 +15,15 @@ return {
     end,
   },
   {
+    "nvim-telescope/telescope-dap.nvim",
+    config = function()
+      local telescope = require "telescope"
+
+      telescope.load_extension "dap"
+    end,
+    dependencies = { "nvim-telescope/telescope.nvim" },
+  },
+  {
     "nvim-telescope/telescope-media-files.nvim",
     config = function()
       local telescope = require "telescope"
