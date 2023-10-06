@@ -4,28 +4,40 @@ return {
     name = "catppuccin",
     opts = {
       flavour = "macchiato", -- latte, frappe, macchiato, mocha
-      dim_inactive = { enabled = false, percentage = 0.25 },
+      dim_inactive = {
+        enabled = false,
+        percentage = 0.25,
+      },
       integration_default = false,
       transparent_background = true, -- disables setting the background color.
       integrations = {
         aerial = true,
         cmp = true,
-        dap = { enabled = true, enable_ui = true },
+        dap = {
+          enabled = true,
+          enable_ui = true,
+        },
         gitsigns = true,
         headlines = true,
         markdown = true,
         mason = true,
         mini = true,
-        native_lsp = { enabled = true, inlay_hints = { background = false } },
+        native_lsp = {
+          enabled = true,
+          inlay_hints = { background = false },
+        },
         neogit = true,
-        neotree = true,
+        neotree = false,
         noice = true,
         notify = true,
         rainbow_delimiters = true,
         sandwich = true,
         semantic_tokens = true,
         symbols_outline = true,
-        telescope = { enabled = true, style = "nvchad" },
+        telescope = {
+          enabled = true,
+          style = "nvchad",
+        },
         treesitter = true,
         which_key = true,
       },
