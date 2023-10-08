@@ -24,7 +24,21 @@ return {
         mini = true,
         native_lsp = {
           enabled = true,
-          inlay_hints = { background = false },
+          virtual_text = {
+            errors = { "italic" },
+            hints = { "italic" },
+            warnings = { "italic" },
+            information = { "italic" },
+          },
+          underlines = {
+            errors = { "underline" },
+            hints = { "underline" },
+            warnings = { "underline" },
+            information = { "underline" },
+          },
+          inlay_hints = {
+            background = false,
+          },
         },
         neogit = true,
         neotree = false,
