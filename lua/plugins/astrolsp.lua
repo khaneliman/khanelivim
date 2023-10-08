@@ -9,7 +9,7 @@ return {
         inlay_hints = true,
       },
       diagnostics = {
-        virtual_text = true,
+        virtual_text = false,
         underline = true,
       },
     },
