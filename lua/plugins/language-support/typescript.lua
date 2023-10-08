@@ -92,6 +92,7 @@ return {
           or util.root_has_file ".eslintrc.yaml"
           or util.root_has_file ".eslintrc.yml"
           or util.root_has_file ".eslintrc.json"
+          or util.root_has_file ".eslintrc"
           or check_json_key_exists(vim.fn.getcwd() .. "/package.json", "eslintConfig")
       end
 
