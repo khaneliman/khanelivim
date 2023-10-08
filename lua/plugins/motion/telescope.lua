@@ -61,6 +61,7 @@ return {
   },
   {
     "ahmedkhalf/project.nvim",
+    main = "project_nvim",
     config = function()
       local telescope = require "telescope"
 
