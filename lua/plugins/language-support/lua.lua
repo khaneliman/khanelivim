@@ -44,4 +44,10 @@ return {
       end
     end,
   },
+  {
+    "luckasRanarison/nvim-devdocs",
+    opts = {
+      ensure_installed = { "lua" },
+    },
+  },
 }

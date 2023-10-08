@@ -19,4 +19,10 @@ return {
       opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, { "tflint", "tfsec" })
     end,
   },
+  {
+    "luckasRanarison/nvim-devdocs",
+    opts = {
+      ensure_installed = { "terraform" },
+    },
+  },
 }

@@ -183,4 +183,10 @@ return {
       })
     end,
   },
+  {
+    "luckasRanarison/nvim-devdocs",
+    opts = {
+      ensure_installed = { "java" },
+    },
+  },
 }

@@ -15,4 +15,10 @@ return {
       opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, { "html", "cssls", "emmet_ls" })
     end,
   },
+  {
+    "luckasRanarison/nvim-devdocs",
+    opts = {
+      ensure_installed = { "html" },
+    },
+  },
 }

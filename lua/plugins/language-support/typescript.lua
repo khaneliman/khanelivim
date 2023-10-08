@@ -184,4 +184,10 @@ return {
       })
     end,
   },
+  {
+    "luckasRanarison/nvim-devdocs",
+    opts = {
+      ensure_installed = { "eslint", "typescript", "rxjs" },
+    },
+  },
 }

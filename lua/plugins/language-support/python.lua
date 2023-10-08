@@ -50,4 +50,10 @@ return {
       require("dap-python").setup(path, opts)
     end,
   },
+  {
+    "luckasRanarison/nvim-devdocs",
+    opts = {
+      ensure_installed = { "python" },
+    },
+  },
 }

@@ -19,4 +19,10 @@ return {
       opts.ensure_installed = utils.list_insert_unique(opts.ensure_installed, { "sql_formatter" })
     end,
   },
+  {
+    "luckasRanarison/nvim-devdocs",
+    opts = {
+      ensure_installed = { "sql" },
+    },
+  },
 }

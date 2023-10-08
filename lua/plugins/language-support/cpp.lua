@@ -60,4 +60,10 @@ return {
     },
     opts = {},
   },
+  {
+    "luckasRanarison/nvim-devdocs",
+    opts = {
+      ensure_installed = { "c", "cpp" },
+    },
+  },
 }
