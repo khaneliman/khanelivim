@@ -13,6 +13,7 @@ return {
       "tamago324/cmp-zsh",
       "petertriho/cmp-git",
       "David-Kunz/cmp-npm",
+      "rcarriga/cmp-dap",
     },
     config = function(_, opts)
       -- require("plugins.cmp")(plugin, opts) -- include the default astronvim config that calls the setup call
@@ -53,6 +54,21 @@ return {
               ignore_cmds = { "Man", "!" },
             },
           },
+        }),
+      })
+
+      cmp.setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
+        sources = {
+          { name = "dap" },
+        },
+      })
+
+      -- Set configuration for git
+      cmp.setup.filetype("gitcommit", {
+        sources = cmp.config.sources({
+          { name = "cmp_git" }, -- You can specify the `cmp_git` source if you were installed it.
+        }, {
+          { name = "buffer" },
         }),
       })
       -- return opts
