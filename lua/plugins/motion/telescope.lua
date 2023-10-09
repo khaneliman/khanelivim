@@ -86,7 +86,8 @@ return {
     config = function()
       require("dir-telescope").setup {
         hidden = true,
-        respect_gitignore = true,
+        no_ignore = false,
+        show_preview = true,
       }
 
       require("telescope").load_extension "dir"
