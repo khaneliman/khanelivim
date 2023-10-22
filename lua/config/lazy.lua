@@ -17,6 +17,13 @@ local spec = {
 }
 if USE_STABLE then table.insert(spec, { import = "astronvim.lazy_snapshot" }) end -- pin plugins to known stable versions/commits
 
+PLUGINS = function()
+  for _, value in pairs(require("lazy").plugins()) do
+    local plugin_name = string.match(value.url, "[^/]+$"):gsub("%.git$", "")
+    print(plugin_name)
+  end
+end
+
 require("lazy").setup {
   spec = vim.list_extend(spec, {
     -- AstroCommunity import any community modules here
