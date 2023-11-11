@@ -15,7 +15,7 @@ vim.g.icons_enabled = true
 
 -- Neovide variables
 if vim.g.neovide then
-  vim.o.guifont = "Liga SFMono Nerd Font:h16,SF_PRO_TEXT:h16"
+  vim.o.guifont = "Monaspace Krypton:h16,SF_PRO_TEXT:h16"
   vim.g.neovide_scroll_animation_length = 0.3
   vim.g.neovide_input_use_logo = true -- true on macOS
   vim.g.neovide_cursor_animation_length = 0

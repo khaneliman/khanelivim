@@ -1,5 +1,3 @@
-local utils = require "astrocore"
-
 return {
   {
     "folke/noice.nvim",
@@ -50,7 +48,7 @@ return {
         bottom_search = true, -- use a classic bottom cmdline for search
         command_palette = true, -- position the cmdline and popupmenu together
         long_message_to_split = true, -- long messages will be sent to a split
-        inc_rename = utils.is_available "inc-rename.nvim", -- enables an input dialog for inc-rename.nvim
+        -- inc_rename = utils.is_available "inc-rename.nvim", -- enables an input dialog for inc-rename.nvim
         lsp_doc_border = false, -- add a border to hover docs and signature help
       },
       cmdline = {
@@ -164,15 +162,15 @@ return {
     optional = true,
     opts = { integrations = { noice = true } },
   },
-  {
-    "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts)
-      if opts.ensure_installed ~= "all" then
-        opts.ensure_installed =
-          utils.list_insert_unique(opts.ensure_installed, { "bash", "markdown", "markdown_inline", "regex", "vim" })
-      end
-    end,
-  },
+  -- {
+  --   "nvim-treesitter/nvim-treesitter",
+  --   opts = function(_, opts)
+  --     if opts.ensure_installed ~= "all" then
+  --       opts.ensure_installed =
+  --         utils.list_insert_unique(opts.ensure_installed, { "bash", "markdown", "markdown_inline", "regex", "vim" })
+  --     end
+  --   end,
+  -- },
   { "rcarriga/nvim-notify", opts = {
     background_colour = "#24273a",
     timeout = 0,
