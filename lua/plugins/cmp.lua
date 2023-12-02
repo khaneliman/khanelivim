@@ -14,10 +14,22 @@ return {
       "petertriho/cmp-git",
       "David-Kunz/cmp-npm",
       "rcarriga/cmp-dap",
+      -- codeium
+      {
+        "Exafunction/codeium.nvim",
+        cmd = "Codeium",
+        build = ":Codeium Auth",
+        opts = {},
+      },
     },
     config = function(_, opts)
       -- require("plugins.cmp")(plugin, opts) -- include the default astronvim config that calls the setup call
       opts.sources = cmp.config.sources {
+        {
+          name = "codeium",
+          group_index = 1,
+          priority = 100,
+        },
         { name = "nvim_lsp", priority = 1000 },
         { name = "omni", priority = 800 },
         { name = "luasnip", priority = 750 },
