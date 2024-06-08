@@ -1,2 +1,2 @@
 # KhaneliVim
-Dotfiles for my neovim configuration. Currently utilizing astronvim. 
+Dotfiles for my neovim config.ation. Currently utilizing astronvim. 
