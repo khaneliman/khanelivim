@@ -67,69 +67,67 @@ In your system's Nix configuration (e.g., ~/.config/nixpkgs/flake.nix or
 nix build . && ./result/bin/nvim
 ```
 
-## Configuration Highlights
+## Plugins
 
-- Plugins:
-  - UI/UX Enhancements:
-    - bufferline: A buffer line to show open buffers
-    - catppuccin: A color theme with a focus on aesthetics
-    - lualine: A highly customizable statusline
-    - mini.nvim: A collection of minimalist plugins
-    - neo-tree: A file explorer
-    - noice.nvim: A highly customizable notification system
-    - which-key: A popup that displays possible keybindings
+- UI/UX Enhancements:
+  - bufferline: A buffer line to show open buffers
+  - catppuccin: A color theme with a focus on aesthetics
+  - lualine: A highly customizable statusline
+  - mini.nvim: A collection of minimalist plugins
+  - neo-tree: A file explorer
+  - noice.nvim: A highly customizable notification system
+  - which-key: A popup that displays possible keybindings
 
-  - Git Integration:
-    - git-conflict: A plugin to help resolve git conflicts
-    - git-worktree: A plugin to help manage git worktrees
-    - gitsigns.nvim: A plugin that provides git integration
+- Git Integration:
+  - git-conflict: A plugin to help resolve git conflicts
+  - git-worktree: A plugin to help manage git worktrees
+  - gitsigns.nvim: A plugin that provides git integration
 
-  - Coding Productivity:
-    - cmp: A completion engine
-    - codeium: An AI powered autocompletion tool
-    - conform.nvim: A formatter
-    - dap: A debugger adapter protocol
-    - illuminate: A plugin that highlights occurrences of the word under the
-      cursor
-    - leap: A motion plugin to jump to any word in the visible text
-    - lightbulb: A plugin that shows a lightbulb when code actions are available
-    - lsp: Language server protocol integration
-    - navic: A navigation plugin that uses lsp symbols to provide a breadcrumb
-      trail
-    - neotest: A test runner
-    - nvim-treesitter: A parser for better syntax highlighting and code
-      navigation
-    - project.nvim: A project management plugin
-    - refactoring: A plugin to help with refactoring code
-    - telescope: A fuzzy finder
-    - trouble.nvim: A diagnostics list
+- Coding Productivity:
+  - cmp: A completion engine
+  - codeium: An AI powered autocompletion tool
+  - conform.nvim: A formatter
+  - dap: A debugger adapter protocol
+  - illuminate: A plugin that highlights occurrences of the word under the
+    cursor
+  - leap: A motion plugin to jump to any word in the visible text
+  - lightbulb: A plugin that shows a lightbulb when code actions are available
+  - lsp: Language server protocol integration
+  - navic: A navigation plugin that uses lsp symbols to provide a breadcrumb
+    trail
+  - neotest: A test runner
+  - nvim-treesitter: A parser for better syntax highlighting and code navigation
+  - project.nvim: A project management plugin
+  - refactoring: A plugin to help with refactoring code
+  - telescope: A fuzzy finder
+  - trouble.nvim: A diagnostics list
 
-  - Note Taking and Markdown:
-    - neorg: A note taking plugin
-    - markdown-preview: A plugin to preview markdown files
-    - markview: A plugin to view markdown files
+- Note Taking and Markdown:
+  - neorg: A note taking plugin
+  - markdown-preview: A plugin to preview markdown files
+  - markview: A plugin to view markdown files
 
-  - Other:
-    - colorizer: A plugin that shows colors in css, scss, sass, html, and
-      javascript files
-    - debugprint: A plugin that makes it easier to debug print statements
-    - diffview: A plugin to view diffs
-    - dirtytalk: A plugin that provides some funny messages
-    - efm: A file manager
-    - glow.nvim: A markdown previewer
-    - harpoon: A plugin to mark and quickly navigate between files
-    - hop.nvim: A plugin to quickly jump to any location on the screen
-    - indent-blankline.nvim: A plugin that shows indent lines
-    - smartcolumn: A plugin to automatically adjust column widths
-    - spectre: A search and replace tool
-    - statuscol: A plugin to show git status in the sign column
-    - todo-comments: A plugin to highlight todo comments
-    - toggleterm: A terminal emulator
-    - undotree: A plugin to visualize the undo tree
-    - wakatime: A plugin that tracks your time spent coding
-    - wilder: A fuzzy finder
-    - yanky: A clipboard manager
-    - yazi: Yet Another Zsh Integration (for zsh shell integration)
+- Other:
+  - colorizer: A plugin that shows colors in css, scss, sass, html, and
+    javascript files
+  - debugprint: A plugin that makes it easier to debug print statements
+  - diffview: A plugin to view diffs
+  - dirtytalk: A plugin that provides some funny messages
+  - efm: A file manager
+  - glow.nvim: A markdown previewer
+  - harpoon: A plugin to mark and quickly navigate between files
+  - hop.nvim: A plugin to quickly jump to any location on the screen
+  - indent-blankline.nvim: A plugin that shows indent lines
+  - smartcolumn: A plugin to automatically adjust column widths
+  - spectre: A search and replace tool
+  - statuscol: A plugin to show git status in the sign column
+  - todo-comments: A plugin to highlight todo comments
+  - toggleterm: A terminal emulator
+  - undotree: A plugin to visualize the undo tree
+  - wakatime: A plugin that tracks your time spent coding
+  - wilder: A fuzzy finder
+  - yanky: A clipboard manager
+  - yazi: Yet Another Zsh Integration (for zsh shell integration)
 
 ## LSP (Language Server Protocol) Configuration
 
@@ -207,12 +205,78 @@ The configuration defines key mappings for common LSP actions under the
   `conform-nvim` for formatting.
 - You can further customize the LSP behavior in your Neovim config.
 
-- Theme: `Catppuccin`
+## Key Mappings
 
-- Key Mappings: [Describe any important custom key mappings]
+### Normal Mode
+
+| Key          | Action                      | Description                                |
+| ------------ | --------------------------- | ------------------------------------------ |
+| `<Space>`    | `<NOP>`                     | Disable default space behavior             |
+| `<Esc>`      | `:noh<CR>`                  | Clear search highlighting                  |
+| `<BS>`       | `<BS>x`                     | Delete character with backspace            |
+| `Y`          | `y$`                        | Yank to end of line                        |
+| `<C-c>`      | `:b#<CR>`                   | Switch between recent buffers              |
+| `<leader>[`  | `<C-w>h`                    | Move to left window                        |
+| `<leader>]`  | `<C-w>l`                    | Move to right window                       |
+| `<C-k>`      | `:cnext<CR>`                | Next quickfix item                         |
+| `<C-j>`      | `:cprev<CR>`                | Previous quickfix item                     |
+| `<C-Up>`     | `:resize -2<CR>`            | Decrease window height                     |
+| `<C-Down>`   | `:resize +2<CR>`            | Increase window height                     |
+| `<C-Left>`   | `:vertical resize +2<CR>`   | Increase window width                      |
+| `<C-Right>`  | `:vertical resize -2<CR>`   | Decrease window width                      |
+| `<M-k>`      | `:move-2<CR>`               | Move line up (Alt+k)                       |
+| `<M-j>`      | `:move+<CR>`                | Move line down (Alt+j)                     |
+| `<Leader>w`  | `<Cmd>w<CR>`                | Save file                                  |
+| `j`          | `v:count == 0 ? 'gj' : 'j'` | Move cursor down (smart for wrapped lines) |
+| `k`          | `v:count == 0 ? 'gk' : 'k'` | Move cursor up (smart for wrapped lines)   |
+| `<Leader>q`  | `<Cmd>confirm q<CR>`        | Quit with confirmation                     |
+| `<Leader>n`  | `<Cmd>enew<CR>`             | New file                                   |
+| `<leader>W`  | `<Cmd>w!<CR>`               | Force write                                |
+| `<leader>Q`  | `<Cmd>q!<CR>`               | Force quit                                 |
+| `\|`         | `<Cmd>vsplit<CR>`           | Vertical split                             |
+| `\`          | `<Cmd>split<CR>`            | Horizontal split                           |
+| `<leader>bC` | `:%bd!<CR>`                 | Close all buffers                          |
+| `<leader>b]` | `:bnext<CR>`                | Next buffer                                |
+| `<TAB>`      | `:bnext<CR>`                | Next buffer (default)                      |
+| `<leader>b[` | `:bprevious<CR>`            | Previous buffer                            |
+| `<S-TAB>`    | `:bprevious<CR>`            | Previous buffer                            |
+
+### Toggle Mappings
+
+| Key          | Action       | Description                   |
+| ------------ | ------------ | ----------------------------- |
+| `<leader>ud` | Lua function | Toggle buffer diagnostics     |
+| `<leader>uD` | Lua function | Toggle global diagnostics     |
+| `<leader>uf` | Lua function | Toggle buffer auto-formatting |
+| `<leader>uF` | Lua function | Toggle global auto-formatting |
+| `<leader>uS` | Lua function | Toggle spell check            |
+| `<leader>uw` | Lua function | Toggle word wrap              |
+| `<leader>uh` | Lua function | Toggle fold column            |
+| `<leader>uc` | Lua function | Toggle completions            |
+
+### Visual Mode
+
+| Key       | Action             | Description                   |
+| --------- | ------------------ | ----------------------------- |
+| `<S-Tab>` | `<gv`              | Unindent line                 |
+| `<`       | `<gv`              | Unindent line                 |
+| `<Tab>`   | `>gv`              | Indent line                   |
+| `>`       | `>gv`              | Indent line                   |
+| `K`       | `:m '<-2<CR>gv=gv` | Move selected line/block up   |
+| `J`       | `:m '>+1<CR>gv=gv` | Move selected line/block down |
+| `<BS>`    | `x`                | Delete character              |
+
+### Insert Mode
+
+| Key     | Action    | Description          |
+| ------- | --------- | -------------------- |
+| `<C-k>` | `<C-o>gk` | Move line/block up   |
+| `<C-j>` | `<C-o>gj` | Move line/block down |
+| `<C-h>` | `<Left>`  | Move Cursor Left     |
+| `<C-l>` | `<Right>` | Move Cursor Right    |
 
 For the full configuration details, please explore the flake.nix file in the
-repository. Usage
+repository.
 
 ### Updating
 
