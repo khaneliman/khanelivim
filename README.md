@@ -67,6 +67,33 @@ In your system's Nix configuration (e.g., ~/.config/nixpkgs/flake.nix or
 nix build . && ./result/bin/nvim
 ```
 
+### Updating
+
+```bash
+nix flake update
+```
+
+### Rebuild your Neovim:
+
+```bash
+nix build
+```
+
+### Run the updated Neovim:
+
+```bash
+./result/bin/nvim
+```
+
+### Enter Nix Shell:
+
+```bash
+cd ~/.config/nvim nix develop
+```
+
+*(If you have direnv installed, it should automatically activate the environment
+when you cd into the directory.)
+
 ## Plugins
 
 - UI/UX Enhancements:
@@ -278,24 +305,6 @@ The configuration defines key mappings for common LSP actions under the
 For the full configuration details, please explore the flake.nix file in the
 repository.
 
-### Updating
-
-```bash
-nix flake update
-```
-
-### Rebuild your Neovim:
-
-```bash
-nix build
-```
-
-### Run the updated Neovim:
-
-```bash
-./result/bin/nvim
-```
-
 ## Customization / Contributing
 
 Feel free to fork the repository and modify the flake.nix file to personalize
@@ -303,12 +312,3 @@ your Neovim configuration. Contributing
 
 Pull requests are welcome! If you'd like to make improvements, please open an
 issue or submit a PR.
-
-### Enter Nix Shell:
-
-```bash
-cd ~/.config/nvim nix develop
-```
-
-*(If you have direnv installed, it should automatically activate the environment
-when you cd into the directory.)
