@@ -130,9 +130,86 @@ nix build . && ./result/bin/nvim
     - wilder: A fuzzy finder
     - yanky: A clipboard manager
     - yazi: Yet Another Zsh Integration (for zsh shell integration)
-  - LSP Servers: [List the languages you have LSP support for]
-  - Theme: [Name your theme]
-  - Key Mappings: [Describe any important custom key mappings]
+
+## LSP (Language Server Protocol) Configuration
+
+This configuration emphasizes LSP support to enhance your coding experience with
+features like:
+
+- Diagnostics: Visual feedback for errors, warnings, hints, and information
+  using symbols (e.g., ❌ for errors).
+- Navigation: Quickly jump to definitions, references, implementations, and type
+  definitions.
+- Code Actions: Access context-aware suggestions for code improvements.
+- Hover Information: Get detailed information about symbols by hovering over
+  them.
+- Rename: Refactor symbols accurately across your codebase.
+- Formatting: Automatically format your code (either through a dedicated
+  formatter or LSP capabilities).
+
+### Key LSP Plugins:
+
+- `lspkind`: Provides informative icons for LSP completions.
+- `lsp-lines`: Enhances the display of LSP diagnostics within the code lines.
+- `lsp-format`: Integrates LSP formatting capabilities (if you're not using the
+  `conform-nvim` plugin).
+- `nvim-jdtls`: Configures the Java LSP server (jdtls).
+
+### LSP Servers:
+
+The configuration includes a comprehensive list of LSP servers to support
+various programming languages, including:
+
+- Bash/Shell (bashls)
+- C/C++ (ccls, clangd)
+- CMake (cmake)
+- C# (csharp-ls)
+- CSS/Less/SCSS (cssls)
+- Docker (dockerls)
+- JavaScript/TypeScript (eslint, tsserver)
+- F# (fsautocomplete)
+- Godot (gdscript)
+- HTML (html)
+- Java (java-language-server or jdt-language-server)
+- JSON (jsonls)
+- Lua (lua-ls)
+- Markdown (marksman)
+- Nix (nil-ls)
+- Python (pyright)
+- Rust (rust-analyzer, optionally if not using rustaceanvim)
+- SQL (sqls)
+- TOML (taplo)
+- YAML (yamlls)
+
+Each server has specific settings tailored to its language, such as filetype
+associations, initialization options, and formatting configurations.
+
+### Custom Keymappings:
+
+The configuration defines key mappings for common LSP actions under the
+`<leader>l` prefix:
+
+- `<leader>la`: Code actions
+- `<leader>ld`: Go to definition
+- `<leader>lf`: Format code (in visual mode)
+- `<leader>lD`: Find references
+- `<leader>lt`: Go to type definition
+- `<leader>li`: Go to implementation
+- `<leader>lh`: Hover for information
+- `<leader>lr`: Rename symbol
+
+### Additional Notes:
+
+- You can enable/disable specific LSP servers based on your needs.
+- The `nvim-jdtls` plugin configuration is separate due to its specific
+  requirements.
+- The `lsp-format` plugin is conditionally enabled if you're not using
+  `conform-nvim` for formatting.
+- You can further customize the LSP behavior in your Neovim config.
+
+- Theme: `Catppuccin`
+
+- Key Mappings: [Describe any important custom key mappings]
 
 For the full configuration details, please explore the flake.nix file in the
 repository. Usage
