@@ -104,6 +104,7 @@ when you cd into the directory.)
   - neo-tree: A file explorer
   - noice.nvim: A highly customizable notification system
   - which-key: A popup that displays possible keybindings
+  - yazi: A plugin that is the best way to navigate filesystems
 
 - Git Integration:
   - git-conflict: A plugin to help resolve git conflicts
@@ -154,7 +155,6 @@ when you cd into the directory.)
   - wakatime: A plugin that tracks your time spent coding
   - wilder: A fuzzy finder
   - yanky: A clipboard manager
-  - yazi: Yet Another Zsh Integration (for zsh shell integration)
 
 ## LSP (Language Server Protocol) Configuration
 
