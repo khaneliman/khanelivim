@@ -7,7 +7,7 @@
       url = "github:nixos/nixpkgs/nixos-unstable";
     };
 
-    # Neovim nix config.ation
+    # Neovim nix configuration
     nixvim = {
       url = "github:nix-community/nixvim";
       # url = "git+file:///Users/khaneliman/Documents/github/nixvim";
@@ -50,7 +50,10 @@
     in
     lib.mkFlake {
       alias = {
-        packages.default = "khanelivim";
+        packages = {
+          default = "khanelivim";
+          nvim = "khanelivim";
+        };
       };
 
       channels-config = {
