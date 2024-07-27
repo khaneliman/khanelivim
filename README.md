@@ -5,7 +5,7 @@ powerful [Nixvim flake](https://github.com/nix-community/nixvim). Enjoy a
 consistent, reproducible, and easy-to-manage Neovim environment across different
 machines.
 
-![Screenshot of your Neovim setup] (optional)
+![Screenshot](assets/screenshot.png)
 
 ## Key Features
 
