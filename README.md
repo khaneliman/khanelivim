@@ -69,19 +69,73 @@ nix build . && ./result/bin/nvim
 
 ## Configuration Highlights
 
-    Plugins:
-        [List your key plugins here with a brief description of their purpose]
-    LSP Servers:
-        [List the languages you have LSP support for]
-    Theme:
-        [Name your theme]
-    Key Mappings:
-        [Describe any important custom key mappings]
+- Plugins:
+  - UI/UX Enhancements:
+    - bufferline: A buffer line to show open buffers
+    - catppuccin: A color theme with a focus on aesthetics
+    - lualine: A highly customizable statusline
+    - mini.nvim: A collection of minimalist plugins
+    - neo-tree: A file explorer
+    - noice.nvim: A highly customizable notification system
+    - which-key: A popup that displays possible keybindings
+
+  - Git Integration:
+    - git-conflict: A plugin to help resolve git conflicts
+    - git-worktree: A plugin to help manage git worktrees
+    - gitsigns.nvim: A plugin that provides git integration
+
+  - Coding Productivity:
+    - cmp: A completion engine
+    - codeium: An AI powered autocompletion tool
+    - conform.nvim: A formatter
+    - dap: A debugger adapter protocol
+    - illuminate: A plugin that highlights occurrences of the word under the
+      cursor
+    - leap: A motion plugin to jump to any word in the visible text
+    - lightbulb: A plugin that shows a lightbulb when code actions are available
+    - lsp: Language server protocol integration
+    - navic: A navigation plugin that uses lsp symbols to provide a breadcrumb
+      trail
+    - neotest: A test runner
+    - nvim-treesitter: A parser for better syntax highlighting and code
+      navigation
+    - project.nvim: A project management plugin
+    - refactoring: A plugin to help with refactoring code
+    - telescope: A fuzzy finder
+    - trouble.nvim: A diagnostics list
+
+  - Note Taking and Markdown:
+    - neorg: A note taking plugin
+    - markdown-preview: A plugin to preview markdown files
+    - markview: A plugin to view markdown files
+
+  - Other:
+    - colorizer: A plugin that shows colors in css, scss, sass, html, and
+      javascript files
+    - debugprint: A plugin that makes it easier to debug print statements
+    - diffview: A plugin to view diffs
+    - dirtytalk: A plugin that provides some funny messages
+    - efm: A file manager
+    - glow.nvim: A markdown previewer
+    - harpoon: A plugin to mark and quickly navigate between files
+    - hop.nvim: A plugin to quickly jump to any location on the screen
+    - indent-blankline.nvim: A plugin that shows indent lines
+    - smartcolumn: A plugin to automatically adjust column widths
+    - spectre: A search and replace tool
+    - statuscol: A plugin to show git status in the sign column
+    - todo-comments: A plugin to highlight todo comments
+    - toggleterm: A terminal emulator
+    - undotree: A plugin to visualize the undo tree
+    - wakatime: A plugin that tracks your time spent coding
+    - wilder: A fuzzy finder
+    - yanky: A clipboard manager
+    - yazi: Yet Another Zsh Integration (for zsh shell integration)
+  - LSP Servers: [List the languages you have LSP support for]
+  - Theme: [Name your theme]
+  - Key Mappings: [Describe any important custom key mappings]
 
 For the full configuration details, please explore the flake.nix file in the
 repository. Usage
-
-Simply run nvim from your terminal.
 
 ### Updating
 
