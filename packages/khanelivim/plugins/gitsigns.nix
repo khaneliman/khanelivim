@@ -25,14 +25,16 @@ in
       };
     };
 
-    which-key.registrations."<leader>" = {
-      "g" = {
-        "h" = mkIf config.plugins.gitsigns.enable { name = "  Hunks"; };
-      };
-      "u" = {
-        "g" = mkIf config.plugins.gitsigns.enable { name = "󰊢 Git"; };
-      };
-    };
+    which-key.settings.spec = lib.optionals config.plugins.gitsigns.enable [
+      {
+        __unkeyed = "<leader>gh";
+        group = "  Hunks";
+      }
+      {
+        __unkeyed = "<leader>ug";
+        group = "󰊢 Git";
+      }
+    ];
   };
 
   keymaps = mkIf config.plugins.gitsigns.enable [

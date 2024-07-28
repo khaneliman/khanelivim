@@ -39,6 +39,14 @@
         };
       };
     };
+
+    which-key.settings.spec = lib.optionals config.plugins.trouble.enable [
+      {
+        __unkeyed = "<leader>x";
+        mode = "n";
+        group = " Trouble";
+      }
+    ];
   };
 
   keymaps = lib.mkIf config.plugins.trouble.enable [
@@ -98,8 +106,4 @@
     }
   ];
 
-  plugins.which-key.registrations."<leader>x" = {
-    mode = "n";
-    name = " Trouble";
-  };
 }

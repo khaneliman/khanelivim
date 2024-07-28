@@ -204,10 +204,13 @@ in
       };
     };
 
-    which-key.registrations."<leader>d" = mkIf config.plugins.dap.extensions.dap-ui.enable {
-      mode = "v";
-      name = "  Debug";
-    };
+    which-key.settings.spec = lib.optionals config.plugins.dap.extensions.dap-ui.enable [
+      {
+        __unkeyed = "<leader>d";
+        mode = "n";
+        desc = "  Debug";
+      }
+    ];
   };
 
   keymaps = lib.optionals config.plugins.dap.extensions.dap-ui.enable [

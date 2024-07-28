@@ -11,10 +11,13 @@ in
 
     telescope.enabledExtensions = mkIf config.plugins.telescope.enable [ "refactoring" ];
 
-    which-key.registrations."<leader>r" = mkIf config.plugins.refactoring.enable {
-      mode = "x";
-      name = " Refactor";
-    };
+    which-key.settings.spec = lib.optionals config.plugins.telescope.enable [
+      {
+        __unkeyed = "<leader>r";
+        mode = "x";
+        group = " Refactor";
+      }
+    ];
   };
 
   keymaps =
