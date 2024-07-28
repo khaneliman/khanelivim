@@ -40,8 +40,11 @@ in
     }
   ];
 
-  plugins.which-key.registrations."<leader>p" = {
-    mode = "n";
-    name = " Preview";
-  };
+  plugins.which-key.settings.spec = [
+    {
+      __unkeyed = "<leader>p";
+      mode = "n";
+      group = " Preview";
+    }
+  ];
 }

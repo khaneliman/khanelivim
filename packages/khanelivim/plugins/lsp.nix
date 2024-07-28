@@ -277,9 +277,51 @@ in
       };
     };
 
-    which-key.registrations."<leader>l" = {
-      mode = "v";
-      name = "  LSP";
-    };
+    which-key.settings.spec = [
+      {
+        __unkeyed = "<leader>l";
+        group = "  LSP";
+      }
+      {
+        __unkeyed = "<leader>la";
+        desc = "Code Action";
+      }
+      {
+        __unkeyed = "<leader>ld";
+        desc = "Definition";
+      }
+      {
+        __unkeyed = "<leader>lD";
+        desc = "References";
+      }
+      {
+        __unkeyed = "<leader>lf";
+        desc = "Format";
+      }
+      {
+        __unkeyed = "<leader>lp";
+        desc = "Prev";
+      }
+      {
+        __unkeyed = "<leader>ln";
+        desc = "Next";
+      }
+      {
+        __unkeyed = "<leader>lt";
+        desc = "Type Definition";
+      }
+      {
+        __unkeyed = "<leader>li";
+        desc = "Implementation";
+      }
+      {
+        __unkeyed = "<leader>lh";
+        desc = "Hover";
+      }
+      {
+        __unkeyed = "<leader>lr";
+        desc = "Rename";
+      }
+    ];
   };
 }

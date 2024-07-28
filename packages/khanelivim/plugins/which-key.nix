@@ -12,6 +12,43 @@
       };
     });
 
+    settings = {
+      spec = [
+        {
+          __unkeyed = "<leader>b";
+          group = "󰓩 Buffers";
+        }
+        {
+          __unkeyed = "<leader>bs";
+          group = "󰒺 Sort";
+        }
+        {
+          __unkeyed = "<leader>d";
+          group = "  Debug";
+        }
+        {
+          __unkeyed = "<leader>g";
+          group = "󰊢 Git";
+        }
+        {
+          __unkeyed = "<leader>f";
+          group = " Find";
+        }
+        {
+          __unkeyed = "<leader>r";
+          group = " Refactor";
+        }
+        {
+          __unkeyed = "<leader>t";
+          group = " Terminal";
+        }
+        {
+          __unkeyed = "<leader>u";
+          group = " UI/UX";
+        }
+      ];
+    };
+
     keyLabels = {
       "<space>" = "SPACE";
       "<leader>" = "SPACE";
@@ -21,46 +58,6 @@
       "<TAB>" = "TAB";
       "<bs>" = "BACKSPACE";
       "<BS>" = "BACKSPACE";
-    };
-
-    registrations = {
-      "<leader>" = {
-        "b" = {
-          name = "󰓩 Buffers";
-          s = "󰒺 Sort";
-        };
-        "d" = {
-          name = "  Debug";
-        };
-        "g" = {
-          name = "󰊢 Git";
-        };
-        "f" = {
-          name = " Find";
-        };
-        "l" = {
-          name = "  LSP";
-          a = "Code Action";
-          d = "Definition";
-          D = "References";
-          f = "Format";
-          p = "Prev";
-          n = "Next";
-          t = "Type Definition";
-          i = "Implementation";
-          h = "Hover";
-          r = "Rename";
-        };
-        "r" = {
-          name = " Refactor";
-        };
-        "t" = {
-          name = " Terminal";
-        };
-        "u" = {
-          name = " UI/UX";
-        };
-      };
     };
 
     window = {

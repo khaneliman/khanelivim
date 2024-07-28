@@ -26,10 +26,13 @@ in
       };
     };
 
-    which-key.registrations."<leader>c" = mkIf config.plugins.codesnap.enable {
-      mode = "v";
-      name = "󰄄 Codesnap";
-    };
+    which-key.settings.spec = lib.optionals config.plugins.codesnap.enable [
+      {
+        __unkeyed = "<leader>c";
+        mode = "v";
+        group = "󰄄 Codesnap";
+      }
+    ];
   };
 
   keymaps = lib.mkIf config.plugins.codesnap.enable [

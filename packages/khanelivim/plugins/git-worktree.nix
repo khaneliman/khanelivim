@@ -12,9 +12,12 @@ in
       enableTelescope = true;
     };
 
-    which-key.registrations."<leader>"."g"."W" = mkIf (cfg.enableTelescope && cfg.enable) {
-      name = "󰙅 Worktree";
-    };
+    which-key.settings.spec = lib.optionals (cfg.enableTelescope && cfg.enable) [
+      {
+        __unkeyed = "<leader>gW";
+        group = "󰙅 Worktree";
+      }
+    ];
   };
 
   keymaps = mkIf cfg.enableTelescope [

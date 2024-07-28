@@ -1,4 +1,5 @@
-_: {
+{ config, lib, ... }:
+{
 
   plugins = {
     harpoon = {
@@ -18,14 +19,35 @@ _: {
       };
     };
 
-    which-key.registrations."<leader>"."h" = {
-      name = "󱡀 Harpoon";
-      a = "Add";
-      e = "QuickMenu";
-      j = "1";
-      k = "2";
-      l = "3";
-      m = "4";
-    };
+    which-key.settings.spec = lib.optionals config.plugins.harpoon.enable [
+      {
+        __unkeyed = "<leader>h";
+        group = "󱡀 Harpoon";
+      }
+      {
+        __unkeyed = "<leader>ha";
+        desc = "Add";
+      }
+      {
+        __unkeyed = "<leader>he";
+        desc = "QuickMenu";
+      }
+      {
+        __unkeyed = "<leader>hj";
+        desc = "1";
+      }
+      {
+        __unkeyed = "<leader>hk";
+        desc = "2";
+      }
+      {
+        __unkeyed = "<leader>hl";
+        desc = "3";
+      }
+      {
+        __unkeyed = "<leader>hm";
+        desc = "4";
+      }
+    ];
   };
 }
