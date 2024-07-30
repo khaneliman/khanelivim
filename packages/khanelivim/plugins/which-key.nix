@@ -5,8 +5,7 @@
     # TODO: remove override after nixpkgs gets bumped
     package = pkgs.vimPlugins.which-key-nvim.overrideAttrs (oldAttrs: {
       src = pkgs.fetchFromGitHub {
-        owner = oldAttrs.src.owner;
-        repo = oldAttrs.src.repo;
+        inherit (oldAttrs.src) owner repo;
         rev = "6c1584eb76b55629702716995cca4ae2798a9cca";
         hash = "sha256-nv9s4/ax2BoL9IQdk42uN7mxIVFYiTK+1FVvWDKRnGM=";
       };
