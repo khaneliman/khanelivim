@@ -39,4 +39,11 @@ luac.out
 *.x86_64
 *.hex
 
+# ░█▀█░▀█▀░█░█░█▀█░█▀▀
+# ░█░█░░█░░▄▀▄░█░█░▀▀█
+# ░▀░▀░▀▀▀░▀░▀░▀▀▀░▀▀▀
+.direnv/*
+result
+.ccls-cache
+flake
 .pre-commit-config.yaml
