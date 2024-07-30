@@ -65,6 +65,7 @@ let
 
   sh-config = lib.mkIf pkgs.stdenv.isLinux {
     type = "bashdb";
+    terminalKind = "integrated";
     request = "launch";
     name = "Launch (BashDB)";
     showDebugOutput = true;
@@ -74,13 +75,12 @@ let
     file = ''''${file}'';
     program = ''''${file}'';
     cwd = ''''${workspaceFolder}'';
-    pathCat = "cat";
+    pathCat = "${lib.getExe' pkgs.coreutils "cat"}";
     pathBash = "${lib.getExe pkgs.bash}";
-    pathMkfifo = "mkfifo";
-    pathPkill = "pkill";
+    pathMkfifo = "${lib.getExe' pkgs.coreutils "mkfifo"}";
+    pathPkill = "${lib.getExe' pkgs.coreutils "pkill"}";
     args = { };
     env = { };
-    terminalKind = "integrated";
   };
 in
 {

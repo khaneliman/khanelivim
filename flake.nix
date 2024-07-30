@@ -4,13 +4,15 @@
   inputs = {
     # NixPkgs (nixos-unstable)
     nixpkgs = {
-      url = "github:nixos/nixpkgs/nixos-unstable";
+      # url = "github:nixos/nixpkgs/nixos-unstable";
+      url = "git+file:///home/khaneliman/Documents/github/NixOS/nixpkgs";
     };
 
     # Neovim nix configuration
     nixvim = {
       url = "github:nix-community/nixvim";
       # url = "git+file:///Users/khaneliman/Documents/github/nixvim";
+      # url = "git+file:///home/khaneliman/Documents/github/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
