@@ -40,10 +40,19 @@
   keymaps = lib.mkIf config.plugins.neotest.enable [
     {
       mode = "n";
-      key = "<leader>uT";
+      key = "<leader>ut";
       action = ":Neotest summary<CR>";
       options = {
         desc = "Neotest Summary toggle";
+        silent = true;
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>uT";
+      action = ":Neotest output-panel<CR>";
+      options = {
+        desc = "Neotest Output toggle";
         silent = true;
       };
     }
