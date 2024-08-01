@@ -72,6 +72,20 @@
     }
     {
       mode = "n";
+      key = "<leader>f?";
+      action.__raw = # lua
+        ''
+          function()
+            require("telescope.builtin").live_grep { grep_open_files=true }
+          end
+        '';
+      options = {
+        desc = "Find words in all open buffers";
+        silent = true;
+      };
+    }
+    {
+      mode = "n";
       key = "<leader>fe";
       action = ":Telescope file_browser<CR>";
       options = {
