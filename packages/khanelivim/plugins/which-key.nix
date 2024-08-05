@@ -13,10 +13,6 @@ _: {
           group = "󰒺 Sort";
         }
         {
-          __unkeyed = "<leader>d";
-          group = "  Debug";
-        }
-        {
           __unkeyed = "<leader>g";
           group = "󰊢 Git";
         }
