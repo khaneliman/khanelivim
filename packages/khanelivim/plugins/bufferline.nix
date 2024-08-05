@@ -3,6 +3,10 @@ let
   inherit (lib) mkIf;
 in
 {
+  extraConfigLua = # Lua
+    ''
+      vim.diagnostic.config { update_in_insert = true }
+    '';
 
   plugins.bufferline =
     let
@@ -26,7 +30,8 @@ in
       closeCommand.__raw = mouse.close;
       closeIcon = "";
       diagnostics = "nvim_lsp";
-      diagnosticsUpdateInInsert = true;
+      # FIXME: update upstream nixvim
+      # diagnosticsUpdateInInsert = true;
       diagnosticsIndicator = # lua
         ''
           function(count, level, diagnostics_dict, context)
