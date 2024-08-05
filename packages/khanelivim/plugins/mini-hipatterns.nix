@@ -54,9 +54,6 @@ _: {
             #     ''in_comment("NOTE")'';
             #   group = "MiniHipatternsNote";
             # };
-            extmark_opts = {
-              priority = 2000;
-            };
             hex_color.__raw = # Lua
               ''require("mini.hipatterns").gen_highlighter.hex_color()'';
           };
