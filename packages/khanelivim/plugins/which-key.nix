@@ -33,21 +33,43 @@ _: {
           group = " UI/UX";
         }
       ];
-    };
 
-    keyLabels = {
-      "<space>" = "SPACE";
-      "<leader>" = "SPACE";
-      "<cr>" = "RETURN";
-      "<CR>" = "RETURN";
-      "<tab>" = "TAB";
-      "<TAB>" = "TAB";
-      "<bs>" = "BACKSPACE";
-      "<BS>" = "BACKSPACE";
-    };
+      replace = {
+        # key = [
+        #   [
+        #     "<Space>"
+        #     "SPC"
+        #   ]
+        # ];
 
-    window = {
-      border = "single";
+        desc = [
+          [
+            "<space>"
+            "SPACE"
+          ]
+          [
+            "<leader>"
+            "SPACE"
+          ]
+          [
+            "<[cC][rR]>"
+            "RETURN"
+          ]
+          [
+            "<[tT][aA][bB]>"
+            "TAB"
+          ]
+          [
+            "<[bB][sS]>"
+            "BACKSPACE"
+          ]
+        ];
+      };
+      win = {
+        border = "single";
+      };
+
+      # preset = "helix";
     };
   };
 }
