@@ -1,7 +1,5 @@
-{ pkgs, ... }:
-{
-
-  extraPlugins = [ pkgs.vimPlugins.yazi-nvim ];
+_: {
+  plugins.yazi.enable = true;
 
   keymaps = [
     {
