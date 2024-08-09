@@ -3,20 +3,6 @@ let
   inherit (lib) mkIf;
 in
 {
-
-  extraConfigLuaPre = # lua
-    ''
-      -- required to fix offset_encoding errors
-      local notify = vim.notify
-      vim.notify = function(msg, ...)
-        if msg:match("warning: multiple different client offset_encodings") then
-          return
-        end
-
-        notify(msg, ...)
-      end
-    '';
-
   plugins = {
     noice = {
       enable = true;
