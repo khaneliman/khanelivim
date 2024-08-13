@@ -1,10 +1,21 @@
-{ pkgs, ... }:
-{
+_: {
+  plugins.markview = {
+    enable = true;
+    settings = {
 
-  extraPlugins = [ pkgs.vimPlugins.markview-nvim ];
+      buf_ignore = [ ];
 
-  extraConfigLuaPre = # lua
-    ''
-      require("markview").setup()
-    '';
+      mode = [
+        "n"
+        "x"
+        "i"
+        "r"
+      ];
+
+      hybrid_modes = [
+        "i"
+        "r"
+      ];
+    };
+  };
 }
