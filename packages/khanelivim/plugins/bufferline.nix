@@ -3,11 +3,6 @@ let
   inherit (lib) mkIf;
 in
 {
-  extraConfigLua = # Lua
-    ''
-      vim.diagnostic.config { update_in_insert = true }
-    '';
-
   plugins.bufferline =
     let
       mouse = {
@@ -24,163 +19,168 @@ in
     {
       enable = true;
 
-      mode = "buffers";
-      alwaysShowBufferline = true;
-      bufferCloseIcon = "󰅖";
-      closeCommand.__raw = mouse.close;
-      closeIcon = "";
-      diagnostics = "nvim_lsp";
-      # FIXME: update upstream nixvim
-      # diagnosticsUpdateInInsert = true;
-      diagnosticsIndicator = # lua
-        ''
-          function(count, level, diagnostics_dict, context)
-             local s = ""
-             for e, n in pairs(diagnostics_dict) do
-                local sym = e == "error" and " "
-                   or (e == "warning" and " " or "" )
-                if(sym ~= "") then
-                s = s .. " " .. n .. sym
-                end
-             end
-             return s
-          end
-        '';
-      # Will make sure all names in bufferline are unique
-      enforceRegularTabs = false;
+      diagnosticsUpdateInInsert = true;
 
-      groups = {
+      settings = {
         options = {
-          toggleHiddenOnEnter = true;
+          mode = "buffers";
+          always_show_bufferline = true;
+          buffer_close_icon = "󰅖";
+          close_command.__raw = mouse.close;
+          close_icon = "";
+          diagnostics = "nvim_lsp";
+          diagnostics_indicator = # lua
+            ''
+              function(count, level, diagnostics_dict, context)
+                local s = ""
+                for e, n in pairs(diagnostics_dict) do
+                  local sym = e == "error" and " "
+                    or (e == "warning" and " " or "" )
+                  if(sym ~= "") then
+                    s = s .. " " .. n .. sym
+                  end
+                end
+                return s
+              end
+            '';
+          # Will make sure all names in bufferline are unique
+          enforce_regular_tabs = false;
+
+          groups = {
+            options = {
+              toggle_hidden_on_enter = true;
+            };
+
+            items = [
+              {
+                name = "Tests";
+                highlight = {
+                  underline = true;
+                  fg = "#a6da95";
+                  sp = "#494d64";
+                };
+                priority = 2;
+                # icon = "";
+                matcher.__raw = # lua
+                  ''
+                    function(buf)
+                      return buf.name:match('%test') or buf.name:match('%.spec')
+                    end
+                  '';
+              }
+              {
+                name = "Docs";
+                highlight = {
+                  undercurl = true;
+                  fg = "#ffffff";
+                  sp = "#494d64";
+                };
+                auto_close = false;
+                matcher.__raw = # lua
+                  ''
+                    function(buf)
+                      return buf.name:match('%.md') or buf.name:match('%.txt')
+                    end
+                  '';
+              }
+            ];
+          };
+
+          indicator = {
+            style = "icon";
+            icon = "▎";
+          };
+
+          left_trunc_marker = "";
+          max_name_length = 18;
+          max_prefix_length = 15;
+          modified_icon = "●";
+
+          numbers.__raw = # lua
+            ''
+              function(opts)
+                return string.format('%s·%s', opts.raise(opts.id), opts.lower(opts.ordinal))
+              end
+            '';
+
+          persist_buffer_sort = true;
+          right_mouse_command.__raw = mouse.right;
+          right_trunc_marker = "";
+          separator_style = "slant";
+          show_buffer_close_icons = true;
+          show_buffer_icons = true;
+          show_close_icon = true;
+          show_tab_indicators = true;
+          sort_by = "extension";
+          tab_size = 18;
+
+          offsets = [
+            {
+              filetype = "neo-tree";
+              text = "File Explorer";
+              text_align = "center";
+              highlight = "Directory";
+            }
+          ];
         };
 
-        items = [
-          {
-            name = "Tests";
-            highlight = {
-              underline = true;
-              fg = "#a6da95";
-              sp = "#494d64";
+        # NOTE: fixes colorscheme with transparent_background
+        # and better contrast selected tabs
+        highlights =
+          let
+            commonBgColor = "#363a4f";
+            commonFgColor = "#1e2030";
+
+            commonSelectedAttrs = {
+              bg = commonBgColor;
             };
-            priority = 2;
-            # icon = "";
-            matcher.__raw = # lua
-              ''
-                function(buf)
-                  return buf.name:match('%test') or buf.name:match('%.spec')
-                end
-              '';
-          }
-          {
-            name = "Docs";
-            highlight = {
-              undercurl = true;
-              fg = "#ffffff";
-              sp = "#494d64";
+
+            # Define a set with common selected attributes
+            selectedAttrsSet = builtins.listToAttrs (
+              map
+                (name: {
+                  inherit name;
+                  value = commonSelectedAttrs;
+                })
+                [
+                  # "separator_selected" # Handled uniquely
+                  "buffer_selected"
+                  "tab_selected"
+                  "numbers_selected"
+                  "close_button_selected"
+                  "duplicate_selected"
+                  "modified_selected"
+                  "info_selected"
+                  "warning_selected"
+                  "error_selected"
+                  "hint_selected"
+                  "diagnostic_selected"
+                  "info_diagnostic_selected"
+                  "warning_diagnostic_selected"
+                  "error_diagnostic_selected"
+                  "hint_diagnostic_selected"
+                ]
+            );
+          in
+          # Merge the common selected attributes with the unique attributes
+          selectedAttrsSet
+          // {
+            fill = {
+              bg = commonFgColor;
             };
-            auto_close = false;
-            matcher.__raw = # lua
-              ''
-                function(buf)
-                  return buf.name:match('%.md') or buf.name:match('%.txt')
-                end
-              '';
-          }
-        ];
+            separator = {
+              fg = commonFgColor;
+            };
+            separator_visible = {
+              fg = commonFgColor;
+            };
+            separator_selected = {
+              bg = commonBgColor;
+              fg = commonFgColor;
+            };
+          };
       };
 
-      # NOTE: fixes colorscheme with transparent_background
-      # and better contrast selected tabs
-      highlights =
-        let
-          commonBgColor = "#363a4f";
-          commonFgColor = "#1e2030";
-
-          commonSelectedAttrs = {
-            bg = commonBgColor;
-          };
-
-          # Define a set with common selected attributes
-          selectedAttrsSet = builtins.listToAttrs (
-            map
-              (name: {
-                inherit name;
-                value = commonSelectedAttrs;
-              })
-              [
-                # "separatorSelected" # Handled uniquely
-                "bufferSelected"
-                "tabSelected"
-                "numbersSelected"
-                "closeButtonSelected"
-                "duplicateSelected"
-                "modifiedSelected"
-                "infoSelected"
-                "warningSelected"
-                "errorSelected"
-                "hintSelected"
-                "diagnosticSelected"
-                "infoDiagnosticSelected"
-                "warningDiagnosticSelected"
-                "errorDiagnosticSelected"
-                "hintDiagnosticSelected"
-              ]
-          );
-        in
-        # Merge the common selected attributes with the unique attributes
-        selectedAttrsSet
-        // {
-          fill = {
-            bg = commonFgColor;
-          };
-          separator = {
-            fg = commonFgColor;
-          };
-          separatorVisible = {
-            fg = commonFgColor;
-          };
-          separatorSelected = {
-            bg = commonBgColor;
-            fg = commonFgColor;
-          };
-        };
-
-      indicator = {
-        style = "icon";
-        icon = "▎";
-      };
-
-      leftTruncMarker = "";
-      maxNameLength = 18;
-      maxPrefixLength = 15;
-      modifiedIcon = "●";
-
-      numbers.__raw = # lua
-        ''
-          function(opts)
-            return string.format('%s·%s', opts.raise(opts.id), opts.lower(opts.ordinal))
-          end
-        '';
-
-      persistBufferSort = true;
-      rightMouseCommand.__raw = mouse.right;
-      rightTruncMarker = "";
-      separatorStyle = "slant";
-      showBufferCloseIcons = true;
-      showBufferIcons = true;
-      showCloseIcon = true;
-      showTabIndicators = true;
-      sortBy = "extension";
-      tabSize = 18;
-
-      offsets = [
-        {
-          filetype = "neo-tree";
-          text = "File Explorer";
-          text_align = "center";
-          highlght = "Directory";
-        }
-      ];
     };
 
   keymaps = mkIf config.plugins.bufferline.enable [
