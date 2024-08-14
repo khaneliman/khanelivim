@@ -30,6 +30,7 @@
                     vim.o.laststatus = 0
                     vim.o.showtabline = 0
                     require('lualine').hide()
+                    local ok, _ = pcall(vim.cmd, "colorscheme sorbet")
                 end
             end
           '';
