@@ -228,6 +228,12 @@
         ];
         set_env.COLORTERM = "truecolor";
       };
+
+      pickers = {
+        colorscheme = {
+          enable_preview = true;
+        };
+      };
     };
   };
 }
