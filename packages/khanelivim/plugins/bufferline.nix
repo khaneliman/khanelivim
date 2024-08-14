@@ -19,8 +19,6 @@ in
     {
       enable = true;
 
-      diagnosticsUpdateInInsert = true;
-
       settings = {
         options = {
           mode = "buffers";

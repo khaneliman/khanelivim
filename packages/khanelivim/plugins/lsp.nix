@@ -8,7 +8,6 @@ let
   inherit (lib) getExe mkIf;
 in
 {
-
   extraConfigLuaPre = # lua
     ''
       vim.fn.sign_define("DiagnosticSignError", { text = " ", texthl = "DiagnosticError", linehl = "", numhl = "" })
