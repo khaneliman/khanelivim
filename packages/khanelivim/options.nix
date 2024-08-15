@@ -15,6 +15,11 @@ in
     };
   };
 
+  colorschemes.catppuccin.enable = true;
+  highlight.ExtraWhitespace.bg = "red"; # Highlight extra white spaces
+  luaLoader.enable = true;
+  match.ExtraWhitespace = "\\s\\+$"; # Remove extra white spaces
+
   globals = {
     # Disable useless providers
     loaded_ruby_provider = 0; # Ruby
