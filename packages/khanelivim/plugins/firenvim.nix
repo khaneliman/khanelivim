@@ -3,6 +3,8 @@
   plugins = {
     firenvim = {
       enable = true;
+      # NOTE: Call the installation for first time use
+      # :call firenvim#install(0)
 
       settings = {
         localSettings = {
