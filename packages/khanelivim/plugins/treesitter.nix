@@ -27,6 +27,9 @@ in
       enable = true;
 
       folding = true;
+      grammarPackages = config.plugins.treesitter.package.passthru.allGrammars ++ [
+        treesitter-fsharp-grammar
+      ];
       nixvimInjections = true;
 
       settings = {
@@ -55,71 +58,6 @@ in
           enable = true;
         };
       };
-
-      grammarPackages = config.plugins.treesitter.package.passthru.allGrammars ++ [
-        treesitter-fsharp-grammar
-      ];
-
-      # NOTE: Default is to install all grammars, here's a more concise list of ones i care about
-      # grammarPackages = with config.plugins.treesitter.package.builtGrammars; [
-      #   angular
-      #   bash
-      #   bicep
-      #   c
-      #   c-sharp
-      #   cmake
-      #   cpp
-      #   css
-      #   csv
-      #   diff
-      #   dockerfile
-      #   dot
-      #   fish
-      #   git_config
-      #   git_rebase
-      #   gitattributes
-      #   gitcommit
-      #   gitignore
-      #   go
-      #   html
-      #   hyprlang
-      #   java
-      #   javascript
-      #   json
-      #   json5
-      #   jsonc
-      #   kdl
-      #   latex
-      #   lua
-      #   make
-      #   markdown
-      #   markdown_inline
-      #   mermaid
-      #   meson
-      #   ninja
-      #   nix
-      #   norg
-      #   objc
-      #   python
-      #   rasi
-      #   readline
-      #   regex
-      #   rust
-      #   scss
-      #   sql
-      #   ssh-config
-      #   svelte
-      #   swift
-      #   terraform
-      #   toml
-      #   tsx
-      #   typescript
-      #   vim
-      #   vimdoc
-      #   xml
-      #   yaml
-      #   zig
-      # ];
     };
 
     treesitter-refactor = {
