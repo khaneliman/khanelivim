@@ -1,4 +1,26 @@
-_: {
+{ config, pkgs, ... }:
+let
+  treesitter-fsharp-grammar = pkgs.tree-sitter.buildGrammar {
+    language = "fsharp";
+    version = "0.0.0+rev=f54ac4e";
+
+    src = pkgs.fetchFromGitHub {
+      owner = "ionide";
+      repo = "tree-sitter-fsharp";
+      rev = "f54ac4e66843b5af4887b586888e01086646b515";
+      hash = "sha256-zKfMfue20B8sbS1tQKZAlokRV7efMsxBk7ySQmzLo0Y=";
+    };
+
+    fixupPhase = ''
+      mkdir -p $out/queries/fsharp
+      mv $out/queries/*.scm $out/queries/fsharp/
+    '';
+
+    meta.homepage = "https://github.com/ionide/tree-sitter-fsharp";
+  };
+in
+{
+  extraPlugins = [ treesitter-fsharp-grammar ];
 
   plugins = {
     treesitter = {
@@ -33,6 +55,10 @@ _: {
           enable = true;
         };
       };
+
+      grammarPackages = config.plugins.treesitter.package.passthru.allGrammars ++ [
+        treesitter-fsharp-grammar
+      ];
 
       # NOTE: Default is to install all grammars, here's a more concise list of ones i care about
       # grammarPackages = with config.plugins.treesitter.package.builtGrammars; [
