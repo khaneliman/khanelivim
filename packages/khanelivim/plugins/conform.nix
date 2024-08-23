@@ -97,12 +97,12 @@
         css = [ "stylelint" ];
         fish = [ "fish_indent" ];
         fsharp = [ "fantomas" ];
-        javascript = [
-          [
-            "prettierd"
-            "prettier"
-          ]
-        ];
+        javascript = {
+          __unkeyed-1 = "prettierd";
+          __unkeyed-2 = "prettier";
+          timeout_ms = 2000;
+          stop_after_first = true;
+        };
         json = [ "jq" ];
         lua = [ "stylua" ];
         markdown = [ "deno_fmt" ];
@@ -121,12 +121,12 @@
         swift = [ "swift_format" ];
         terraform = [ "terraform_fmt" ];
         toml = [ "taplo" ];
-        typescript = [
-          [
-            "prettierd"
-            "prettier"
-          ]
-        ];
+        typescript = {
+          __unkeyed-1 = "prettierd";
+          __unkeyed-2 = "prettier";
+          timeout_ms = 2000;
+          stop_after_first = true;
+        };
         xml = [
           "xmlformat"
           "xmllint"
