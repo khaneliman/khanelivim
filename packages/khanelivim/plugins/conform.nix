@@ -109,7 +109,7 @@
         nix = [ "nixfmt" ];
         python = [
           "isort"
-          "black"
+          "ruff"
         ];
         rust = [ "rustfmt" ];
         sh = [
@@ -170,6 +170,9 @@
         };
         prettierd = {
           command = lib.getExe pkgs.prettierd;
+        };
+        ruff = {
+          command = lib.getExe pkgs.ruff;
         };
         rustfmt = {
           command = lib.getExe pkgs.rustfmt;
