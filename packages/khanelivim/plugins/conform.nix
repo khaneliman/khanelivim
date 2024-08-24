@@ -190,7 +190,7 @@
           command = lib.getExe pkgs.sqlfluff;
         };
         squeeze_blanks = {
-          comamnd = lib.getExe' pkgs.coreutils "cat";
+          command = lib.getExe' pkgs.coreutils "cat";
         };
         stylelint = {
           command = lib.getExe pkgs.stylelint;
