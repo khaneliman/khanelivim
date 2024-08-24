@@ -207,6 +207,11 @@ in
           filetypes = [ "python" ];
         };
 
+        ruff = {
+          enable = true;
+          filetypes = [ "python" ];
+        };
+
         rust-analyzer = {
           enable = mkIf (!config.plugins.rustaceanvim.enable) true;
           filetypes = [ "rust" ];
