@@ -1,6 +1,6 @@
 { lib, pkgs, ... }:
 {
-  extraConfigLuaPre = # lua
+  extraConfigLuaPre = # Lua
     ''
       local slow_format_filetypes = {}
 
@@ -40,45 +40,47 @@
       enable = true;
 
       settings = {
-        format_on_save = ''
-          function(bufnr)
-            if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
-              return
-            end
-
-            if slow_format_filetypes[vim.bo[bufnr].filetype] then
-              return
-            end
-
-            local function on_format(err)
-              if err and err:match("timeout$") then
-                slow_format_filetypes[vim.bo[bufnr].filetype] = true
+        format_on_save = # Lua
+          ''
+            function(bufnr)
+              if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+                return
               end
+
+              if slow_format_filetypes[vim.bo[bufnr].filetype] then
+                return
+              end
+
+              local function on_format(err)
+                if err and err:match("timeout$") then
+                  slow_format_filetypes[vim.bo[bufnr].filetype] = true
+                end
+              end
+
+              return { timeout_ms = 200, lsp_fallback = true }, on_format
+             end
+          '';
+
+        format_after_save = # Lua
+          ''
+            function(bufnr)
+              if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+                return
+              end
+
+              if not slow_format_filetypes[vim.bo[bufnr].filetype] then
+                return
+              end
+
+              return { lsp_fallback = true }
             end
-
-            return { timeout_ms = 200, lsp_fallback = true }, on_format
-           end
-        '';
-
-        format_after_save = ''
-          function(bufnr)
-            if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
-              return
-            end
-
-            if not slow_format_filetypes[vim.bo[bufnr].filetype] then
-              return
-            end
-
-            return { lsp_fallback = true }
-          end
-        '';
+          '';
 
         # NOTE:
         # Conform will run multiple formatters sequentially
         # [ "1" "2" "3"]
-        # Use a sub-list to run only the first available formatter
-        # [ ["1"] ["2"] ["3"] ]
+        # Add stop_after_first to run only the first available formatter
+        # { "__unkeyed-1" = "foo"; "__unkeyed-2" = "bar"; stop_after_first = true; }
         # Use the "*" filetype to run formatters on all filetypes.
         # Use the "_" filetype to run formatters on filetypes that don't
         # have other formatters configured.
