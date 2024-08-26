@@ -1,4 +1,4 @@
-_: {
+{
 
   plugins = {
     git-conflict = {

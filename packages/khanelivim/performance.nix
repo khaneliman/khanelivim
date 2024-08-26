@@ -1,4 +1,4 @@
-_: {
+{
   performance = {
     byteCompileLua = {
       enable = true;

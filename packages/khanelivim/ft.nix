@@ -1,4 +1,4 @@
-_: {
+{
   filetype = {
     extension = {
       "avsc" = "json";

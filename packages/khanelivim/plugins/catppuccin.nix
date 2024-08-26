@@ -1,4 +1,4 @@
-_: {
+{
 
   colorschemes.catppuccin = {
     settings = {
