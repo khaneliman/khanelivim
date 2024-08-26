@@ -1,3 +1,4 @@
+{ lib, config, ... }:
 {
   plugins = {
     comment-box = {
@@ -22,21 +23,47 @@
         #   outer_blank_lines_below = true;
       };
     };
+
+    which-key.settings.spec = lib.optionals config.plugins.comment-box.enable [
+      {
+        __unkeyed = "<leader>lc";
+        group = " Comment-box";
+      }
+    ];
   };
 
-  # TODO: add keybinds
-  # keymaps = lib.mkIf config.plugins.nvim-colorizer.enable [
-  #   {
-  #     mode = "n";
-  #     key = "<leader>uC";
-  #     action.__raw = ''
-  #       function ()
-  #       end
-  #     '';
-  #     options = {
-  #       desc = "Colorizing toggle";
-  #       silent = true;
-  #     };
-  #   }
-  # ];
+  keymaps = lib.mkIf config.plugins.comment-box.enable [
+    {
+      mode = "n";
+      key = "<leader>lcd";
+      action = "<cmd>CBd<cr>";
+      options = {
+        desc = "Delete a box";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>lcb";
+      action = "<cmd>CBccbox<cr>";
+      options = {
+        desc = "Box Title";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>lct";
+      action = "<cmd>CBllline<cr>";
+      options = {
+        desc = "Titled Line";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>lcl";
+      action = "<cmd>CBline<cr>";
+      options = {
+        desc = "Simple Line";
+      };
+    }
+  ];
 }
