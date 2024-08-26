@@ -33,12 +33,11 @@ in
     {
       mode = "n";
       key = "<leader>gWc";
-      action.__raw = # Lua
-        ''
-          function()
-            require('telescope').extensions.git_worktree.create_git_worktree()
-          end
-        '';
+      action.__raw = ''
+        function()
+          require('telescope').extensions.git_worktree.create_git_worktree()
+        end
+      '';
       options = {
         desc = "Create worktree";
         silent = true;
@@ -47,12 +46,11 @@ in
     {
       mode = "n";
       key = "<leader>gWs";
-      action.__raw = # Lua
-        ''
-          function()
-            require('telescope').extensions.git_worktree.git_worktrees()
-          end
-        '';
+      action.__raw = ''
+        function()
+          require('telescope').extensions.git_worktree.git_worktrees()
+        end
+      '';
       options = {
         desc = "Switch / Delete worktree";
         silent = true;

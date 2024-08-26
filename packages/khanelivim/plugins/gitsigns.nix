@@ -96,10 +96,9 @@ in
     {
       mode = "n";
       key = "<leader>gb";
-      action.__raw = # Lua
-        ''
-          function() require("gitsigns").blame_line{full=true} end
-        '';
+      action.__raw = ''
+        function() require("gitsigns").blame_line{full=true} end
+      '';
       options = {
         desc = "Git Blame toggle";
         silent = true;
@@ -109,16 +108,15 @@ in
     {
       mode = "n";
       key = "<leader>ghp";
-      action.__raw = # Lua
-        ''
-          function()
-            if vim.wo.diff then return ${toJSON "<leader>gp"} end
+      action.__raw = ''
+        function()
+          if vim.wo.diff then return ${toJSON "<leader>gp"} end
 
-            vim.schedule(function() require("gitsigns").prev_hunk() end)
+          vim.schedule(function() require("gitsigns").prev_hunk() end)
 
-            return '<Ignore>'
-          end
-        '';
+          return '<Ignore>'
+        end
+      '';
       options = {
         desc = "Previous hunk";
         silent = true;
@@ -127,16 +125,15 @@ in
     {
       mode = "n";
       key = "<leader>ghn";
-      action.__raw = # Lua
-        ''
-          function()
-            if vim.wo.diff then return ${toJSON "<leader>gn"} end
+      action.__raw = ''
+        function()
+          if vim.wo.diff then return ${toJSON "<leader>gn"} end
 
-            vim.schedule(function() require("gitsigns").next_hunk() end)
+          vim.schedule(function() require("gitsigns").next_hunk() end)
 
-            return '<Ignore>'
-          end
-        '';
+          return '<Ignore>'
+        end
+      '';
       options = {
         desc = "Next hunk";
         silent = true;

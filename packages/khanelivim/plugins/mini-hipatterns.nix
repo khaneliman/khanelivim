@@ -30,32 +30,31 @@ _: {
           highlighters = {
             # TODO: enable again if i find a good TODO Telescope replacement from todo-comments
             # fixme = {
-            #   pattern.__raw = # Lua
+            #   pattern.__raw =
             #     ''in_comment("FIXME")'';
             #   group = "MiniHipatternsFixme";
             # };
             # fix = {
-            #   pattern.__raw = # Lua
+            #   pattern.__raw =
             #     ''in_comment("FIX")'';
             #   group = "MiniHipatternsFixme";
             # };
             # hack = {
-            #   pattern.__raw = # Lua
+            #   pattern.__raw =
             #     ''in_comment("HACK")'';
             #   group = "MiniHipatternsHack";
             # };
             # todo = {
-            #   pattern.__raw = # Lua
+            #   pattern.__raw =
             #     ''in_comment("TODO")'';
             #   group = "MiniHipatternsTodo";
             # };
             # note = {
-            #   pattern.__raw = # Lua
+            #   pattern.__raw =
             #     ''in_comment("NOTE")'';
             #   group = "MiniHipatternsNote";
             # };
-            hex_color.__raw = # Lua
-              ''require("mini.hipatterns").gen_highlighter.hex_color()'';
+            hex_color.__raw = ''require("mini.hipatterns").gen_highlighter.hex_color()'';
           };
         };
       };

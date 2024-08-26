@@ -90,12 +90,11 @@ in
       {
         mode = "n";
         key = "<leader>fR";
-        action.__raw = # Lua
-          ''
-            function()
-              require('telescope').extensions.refactoring.refactors()
-            end
-          '';
+        action.__raw = ''
+          function()
+            require('telescope').extensions.refactoring.refactors()
+          end
+        '';
         options = {
           desc = "Refactoring";
           silent = true;

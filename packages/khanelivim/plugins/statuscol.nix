@@ -9,12 +9,7 @@ _: {
       segments = [
         {
           hl = "FoldColumn";
-          text = [
-            {
-              __raw = # Lua
-                "require('statuscol.builtin').foldfunc";
-            }
-          ];
+          text = [ { __raw = "require('statuscol.builtin').foldfunc"; } ];
           click = "v:lua.ScFa";
         }
         {
@@ -31,10 +26,7 @@ _: {
         {
           text = [
             " "
-            {
-              __raw = # Lua
-                "require('statuscol.builtin').lnumfunc";
-            }
+            { __raw = "require('statuscol.builtin').lnumfunc"; }
             " "
           ];
           click = "v:lua.ScLa";

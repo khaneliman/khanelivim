@@ -59,12 +59,9 @@
           ]
         ];
         mappings = {
-          q.__raw = # Lua
-            "require('ccc').mapping.quit";
-          L.__raw = # Lua
-            "require('ccc').mapping.increase10";
-          H.__raw = # Lua
-            "require('ccc').mapping.decrease10";
+          q.__raw = "require('ccc').mapping.quit";
+          L.__raw = "require('ccc').mapping.increase10";
+          H.__raw = "require('ccc').mapping.decrease10";
         };
       };
     };

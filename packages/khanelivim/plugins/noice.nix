@@ -103,19 +103,18 @@ in
           filter = {
             event = "lsp";
             kind = "progress";
-            cond.__raw = # Lua
-              ''
-                function(message)
-                  local client = vim.tbl_get(message.opts, 'progress', 'client')
-                  local servers = { 'jdtls' }
+            cond.__raw = ''
+              function(message)
+                local client = vim.tbl_get(message.opts, 'progress', 'client')
+                local servers = { 'jdtls' }
 
-                  for index, value in ipairs(servers) do
-                      if value == client then
-                          return true
-                      end
-                  end
+                for index, value in ipairs(servers) do
+                    if value == client then
+                        return true
+                    end
                 end
-              '';
+              end
+            '';
           };
           opts = {
             skip = true;

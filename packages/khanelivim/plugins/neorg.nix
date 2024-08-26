@@ -33,20 +33,19 @@
     modules = {
       "core.defaults".__empty = null;
 
-      "core.keybinds".config.hook.__raw = # Lua
-        ''
-          function(keybinds)
-            keybinds.unmap('norg', 'n', '<C-s>')
+      "core.keybinds".config.hook.__raw = ''
+        function(keybinds)
+          keybinds.unmap('norg', 'n', '<C-s>')
 
-            keybinds.map(
-              'norg',
-              'n',
-              '<leader>c',
-              ':Neorg toggle-concealer<CR>',
-              {silent=true}
-            )
-          end
-        '';
+          keybinds.map(
+            'norg',
+            'n',
+            '<leader>c',
+            ':Neorg toggle-concealer<CR>',
+            {silent=true}
+          )
+        end
+      '';
 
       "core.dirman".config.workspaces = {
         notes = "~/notes";

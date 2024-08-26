@@ -1,19 +1,18 @@
 _:
 let
-  get_bufnrs.__raw = # Lua
-    ''
-      function()
-        local buf_size_limit = 1024 * 1024 -- 1MB size limit
-        local bufs = vim.api.nvim_list_bufs()
-        local valid_bufs = {}
-        for _, buf in ipairs(bufs) do
-          if vim.api.nvim_buf_is_loaded(buf) and vim.api.nvim_buf_get_offset(buf, vim.api.nvim_buf_line_count(buf)) < buf_size_limit then
-            table.insert(valid_bufs, buf)
-          end
+  get_bufnrs.__raw = ''
+    function()
+      local buf_size_limit = 1024 * 1024 -- 1MB size limit
+      local bufs = vim.api.nvim_list_bufs()
+      local valid_bufs = {}
+      for _, buf in ipairs(bufs) do
+        if vim.api.nvim_buf_is_loaded(buf) and vim.api.nvim_buf_get_offset(buf, vim.api.nvim_buf_line_count(buf)) < buf_size_limit then
+          table.insert(valid_bufs, buf)
         end
-        return valid_bufs
       end
-    '';
+      return valid_bufs
+    end
+  '';
 in
 {
 
@@ -143,10 +142,8 @@ in
         ];
 
         window = {
-          completion.__raw = # Lua
-            ''cmp.config.window.bordered()'';
-          documentation.__raw = # Lua
-            ''cmp.config.window.bordered()'';
+          completion.__raw = ''cmp.config.window.bordered()'';
+          documentation.__raw = ''cmp.config.window.bordered()'';
         };
       };
     };

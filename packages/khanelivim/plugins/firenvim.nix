@@ -24,18 +24,17 @@
     {
       event = "UIEnter";
       callback = {
-        __raw = # Lua
-          ''
-            function(event)
-                local client = vim.api.nvim_get_chan_info(vim.v.event.chan).client
-                if client ~= nil and client.name == "Firenvim" then
-                    vim.o.laststatus = 0
-                    vim.o.showtabline = 0
-                    require('lualine').hide()
-                    local ok, _ = pcall(vim.cmd, "colorscheme sorbet")
-                end
-            end
-          '';
+        __raw = ''
+          function(event)
+              local client = vim.api.nvim_get_chan_info(vim.v.event.chan).client
+              if client ~= nil and client.name == "Firenvim" then
+                  vim.o.laststatus = 0
+                  vim.o.showtabline = 0
+                  require('lualine').hide()
+                  local ok, _ = pcall(vim.cmd, "colorscheme sorbet")
+              end
+          end
+        '';
       };
     }
 

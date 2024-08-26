@@ -59,12 +59,11 @@ in
                 };
                 priority = 2;
                 # icon = "";
-                matcher.__raw = # Lua
-                  ''
-                    function(buf)
-                      return buf.name:match('%test') or buf.name:match('%.spec')
-                    end
-                  '';
+                matcher.__raw = ''
+                  function(buf)
+                    return buf.name:match('%test') or buf.name:match('%.spec')
+                  end
+                '';
               }
               {
                 name = "Docs";
@@ -74,12 +73,11 @@ in
                   sp = "#494d64";
                 };
                 auto_close = false;
-                matcher.__raw = # Lua
-                  ''
-                    function(buf)
-                      return buf.name:match('%.md') or buf.name:match('%.txt')
-                    end
-                  '';
+                matcher.__raw = ''
+                  function(buf)
+                    return buf.name:match('%.md') or buf.name:match('%.txt')
+                  end
+                '';
               }
             ];
           };
@@ -94,12 +92,11 @@ in
           max_prefix_length = 15;
           modified_icon = "●";
 
-          numbers.__raw = # Lua
-            ''
-              function(opts)
-                return string.format('%s·%s', opts.raise(opts.id), opts.lower(opts.ordinal))
-              end
-            '';
+          numbers.__raw = ''
+            function(opts)
+              return string.format('%s·%s', opts.raise(opts.id), opts.lower(opts.ordinal))
+            end
+          '';
 
           persist_buffer_sort = true;
           right_mouse_command.__raw = mouse.right;

@@ -9,12 +9,11 @@ let
     name = "Launch (CodeLLDB)";
     type = "codelldb";
     request = "launch";
-    program.__raw = # Lua
-      ''
-        function()
-            return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. '/', "file")
-        end
-      '';
+    program.__raw = ''
+      function()
+          return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. '/', "file")
+      end
+    '';
     cwd = ''''${workspaceFolder}'';
     stopOnEntry = false;
   };
@@ -23,15 +22,14 @@ let
     type = "coreclr";
     name = "launch - netcoredbg";
     request = "launch";
-    program__raw = # Lua
-      ''
-        function()
-          if vim.fn.confirm('Should I recompile first?', '&yes\n&no', 2) == 1 then
-            vim.g.dotnet_build_project()
-          end
+    progra.__raw = ''
+      function()
+        if vim.fn.confirm('Should I recompile first?', '&yes\n&no', 2) == 1 then
+          vim.g.dotnet_build_project()
+        end
 
-          return vim.g.dotnet_get_dll_path()
-        end'';
+        return vim.g.dotnet_get_dll_path()
+      end'';
     cwd = ''''${workspaceFolder}'';
   };
 
@@ -39,11 +37,10 @@ let
     name = "Launch (GDB)";
     type = "gdb";
     request = "launch";
-    program.__raw = # Lua
-      ''
-        function()
-            return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. '/', "file")
-        end'';
+    program.__raw = ''
+      function()
+          return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. '/', "file")
+      end'';
     cwd = ''''${workspaceFolder}'';
     stopOnEntry = false;
   };
@@ -52,11 +49,10 @@ let
     name = "Launch (LLDB)";
     type = "lldb";
     request = "launch";
-    program.__raw = # Lua
-      ''
-        function()
-            return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. '/', "file")
-        end'';
+    program.__raw = ''
+      function()
+          return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. '/', "file")
+      end'';
     cwd = ''''${workspaceFolder}'';
     stopOnEntry = false;
   };
@@ -97,52 +93,50 @@ in
   #   extraPlugins = with pkgs.vimPlugins; [ nvim-gdb ];
 
   globals = {
-    dotnet_build_project.__raw = # Lua
-      ''
-        function()
-          local default_path = vim.fn.getcwd() .. '/'
+    dotnet_build_project.__raw = ''
+      function()
+        local default_path = vim.fn.getcwd() .. '/'
 
-          if vim.g['dotnet_last_proj_path'] ~= nil then
-              default_path = vim.g['dotnet_last_proj_path']
-          end
-
-          local path = vim.fn.input('Path to your *proj file', default_path, 'file')
-
-          vim.g['dotnet_last_proj_path'] = path
-
-          local cmd = 'dotnet build -c Debug ' .. path .. ' > /dev/null'
-
-          print("")
-          print('Cmd to execute: ' .. cmd)
-
-          local f = os.execute(cmd)
-
-          if f == 0 then
-              print('\nBuild: ✔️ ')
-          else
-              print('\nBuild: ❌ (code: ' .. f .. ')')
-          end
+        if vim.g['dotnet_last_proj_path'] ~= nil then
+            default_path = vim.g['dotnet_last_proj_path']
         end
-      '';
 
-    dotnet_get_dll_path.__raw = # Lua
-      ''
-        function()
-          local request = function()
-              return vim.fn.input('Path to dll', vim.fn.getcwd() .. '/bin/Debug/', 'file')
-          end
+        local path = vim.fn.input('Path to your *proj file', default_path, 'file')
 
-          if vim.g['dotnet_last_dll_path'] == nil then
-              vim.g['dotnet_last_dll_path'] = request()
-          else
-              if vim.fn.confirm('Do you want to change the path to dll?\n' .. vim.g['dotnet_last_dll_path'], '&yes\n&no', 2) == 1 then
-                  vim.g['dotnet_last_dll_path'] = request()
-              end
-          end
+        vim.g['dotnet_last_proj_path'] = path
 
-          return vim.g['dotnet_last_dll_path']
+        local cmd = 'dotnet build -c Debug ' .. path .. ' > /dev/null'
+
+        print("")
+        print('Cmd to execute: ' .. cmd)
+
+        local f = os.execute(cmd)
+
+        if f == 0 then
+            print('\nBuild: ✔️ ')
+        else
+            print('\nBuild: ❌ (code: ' .. f .. ')')
         end
-      '';
+      end
+    '';
+
+    dotnet_get_dll_path.__raw = ''
+      function()
+        local request = function()
+            return vim.fn.input('Path to dll', vim.fn.getcwd() .. '/bin/Debug/', 'file')
+        end
+
+        if vim.g['dotnet_last_dll_path'] == nil then
+            vim.g['dotnet_last_dll_path'] = request()
+        else
+            if vim.fn.confirm('Do you want to change the path to dll?\n' .. vim.g['dotnet_last_dll_path'], '&yes\n&no', 2) == 1 then
+                vim.g['dotnet_last_dll_path'] = request()
+            end
+        end
+
+        return vim.g['dotnet_last_dll_path']
+      end
+    '';
   };
 
   plugins = {
@@ -264,12 +258,11 @@ in
     {
       mode = "n";
       key = "<leader>db";
-      action.__raw = # Lua
-        ''
-          function()
-            require("dap").toggle_breakpoint()
-          end
-        '';
+      action.__raw = ''
+        function()
+          require("dap").toggle_breakpoint()
+        end
+      '';
       options = {
         desc = "Breakpoint toggle";
         silent = true;
@@ -278,12 +271,11 @@ in
     {
       mode = "n";
       key = "<leader>dc";
-      action.__raw = # Lua
-        ''
-          function()
-            require("dap").continue()
-          end
-        '';
+      action.__raw = ''
+        function()
+          require("dap").continue()
+        end
+      '';
       options = {
         desc = "Continue Debugging (Start)";
         silent = true;
@@ -292,10 +284,9 @@ in
     {
       mode = "v";
       key = "<leader>de";
-      action.__raw = # Lua
-        ''
-          function() require("dapui").eval() end
-        '';
+      action.__raw = ''
+        function() require("dapui").eval() end
+      '';
       options = {
         desc = "Evaluate Input";
         silent = true;
@@ -304,14 +295,13 @@ in
     {
       mode = "n";
       key = "<leader>de";
-      action.__raw = # Lua
-        ''
-          function()
-            vim.ui.input({ prompt = "Expression: " }, function(expr)
-              if expr then require("dapui").eval(expr, { enter = true }) end
-            end)
-          end
-        '';
+      action.__raw = ''
+        function()
+          vim.ui.input({ prompt = "Expression: " }, function(expr)
+            if expr then require("dapui").eval(expr, { enter = true }) end
+          end)
+        end
+      '';
       options = {
         desc = "Evaluate Input";
         silent = true;
@@ -320,10 +310,9 @@ in
     {
       mode = "n";
       key = "<leader>dh";
-      action.__raw = # Lua
-        ''
-          function() require("dap.ui.widgets").hover() end
-        '';
+      action.__raw = ''
+        function() require("dap.ui.widgets").hover() end
+      '';
       options = {
         desc = "Debugger Hover";
         silent = true;
@@ -332,12 +321,11 @@ in
     {
       mode = "n";
       key = "<leader>do";
-      action.__raw = # Lua
-        ''
-          function()
-            require("dap").step_out()
-          end
-        '';
+      action.__raw = ''
+        function()
+          require("dap").step_out()
+        end
+      '';
       options = {
         desc = "Step Out";
         silent = true;
@@ -346,12 +334,11 @@ in
     {
       mode = "n";
       key = "<leader>ds";
-      action.__raw = # Lua
-        ''
-          function()
-            require("dap").step_over()
-          end
-        '';
+      action.__raw = ''
+        function()
+          require("dap").step_over()
+        end
+      '';
       options = {
         desc = "Step Over";
         silent = true;
@@ -360,12 +347,11 @@ in
     {
       mode = "n";
       key = "<leader>dS";
-      action.__raw = # Lua
-        ''
-          function()
-            require("dap").step_into()
-          end
-        '';
+      action.__raw = ''
+        function()
+          require("dap").step_into()
+        end
+      '';
       options = {
         desc = "Step Into";
         silent = true;
@@ -374,10 +360,9 @@ in
     {
       mode = "n";
       key = "<leader>dt";
-      action.__raw = # Lua
-        ''
-          function() require("dap").terminate() end
-        '';
+      action.__raw = ''
+        function() require("dap").terminate() end
+      '';
       options = {
         desc = "Terminate Debugging";
         silent = true;
@@ -386,13 +371,12 @@ in
     {
       mode = "n";
       key = "<leader>du";
-      action.__raw = # Lua
-        ''
-          function()
-            require('dap.ext.vscode').load_launchjs(nil, {})
-            require("dapui").toggle()
-          end
-        '';
+      action.__raw = ''
+        function()
+          require('dap.ext.vscode').load_launchjs(nil, {})
+          require("dapui").toggle()
+        end
+      '';
       options = {
         desc = "Toggle Debugger UI";
         silent = true;

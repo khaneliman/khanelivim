@@ -17,12 +17,11 @@
         "toggleterm"
         "lazyterm"
       ];
-      callback.__raw = # Lua
-        ''
-          function()
-            vim.b.miniindentscope_disable = true
-          end
-        '';
+      callback.__raw = ''
+        function()
+          vim.b.miniindentscope_disable = true
+        end
+      '';
     }
   ];
   plugins = {
