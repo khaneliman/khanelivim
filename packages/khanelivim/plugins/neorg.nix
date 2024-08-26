@@ -33,7 +33,7 @@
     modules = {
       "core.defaults".__empty = null;
 
-      "core.keybinds".config.hook.__raw = # lua
+      "core.keybinds".config.hook.__raw = # Lua
         ''
           function(keybinds)
             keybinds.unmap('norg', 'n', '<C-s>')

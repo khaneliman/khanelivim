@@ -6,9 +6,9 @@ in
   plugins.bufferline =
     let
       mouse = {
-        right = # lua
+        right = # Lua
           "'vertical sbuffer %d'";
-        close = # lua
+        close = # Lua
           ''
             function(bufnum)
               require("mini.bufremove").delete(bufnum)
@@ -27,7 +27,7 @@ in
           close_command.__raw = mouse.close;
           close_icon = "";
           diagnostics = "nvim_lsp";
-          diagnostics_indicator = # lua
+          diagnostics_indicator = # Lua
             ''
               function(count, level, diagnostics_dict, context)
                 local s = ""
@@ -59,7 +59,7 @@ in
                 };
                 priority = 2;
                 # icon = "";
-                matcher.__raw = # lua
+                matcher.__raw = # Lua
                   ''
                     function(buf)
                       return buf.name:match('%test') or buf.name:match('%.spec')
@@ -74,7 +74,7 @@ in
                   sp = "#494d64";
                 };
                 auto_close = false;
-                matcher.__raw = # lua
+                matcher.__raw = # Lua
                   ''
                     function(buf)
                       return buf.name:match('%.md') or buf.name:match('%.txt')
@@ -94,7 +94,7 @@ in
           max_prefix_length = 15;
           modified_icon = "●";
 
-          numbers.__raw = # lua
+          numbers.__raw = # Lua
             ''
               function(opts)
                 return string.format('%s·%s', opts.raise(opts.id), opts.lower(opts.ordinal))

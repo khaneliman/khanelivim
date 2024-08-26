@@ -1,6 +1,6 @@
 { helpers, lib, ... }:
 {
-  extraConfigLuaPre = # lua
+  extraConfigLuaPre = # Lua
     ''
       function bool2str(bool) return bool and "on" or "off" end
     '';
@@ -188,7 +188,7 @@
             };
 
             "<leader>ud" = {
-              action.__raw = # lua
+              action.__raw = # Lua
                 ''
                   function ()
                     vim.b.disable_diagnostics = not vim.b.disable_diagnostics
@@ -205,7 +205,7 @@
             };
 
             "<leader>uD" = {
-              action.__raw = # lua
+              action.__raw = # Lua
                 ''
                   function ()
                     vim.g.disable_diagnostics = not vim.g.disable_diagnostics
@@ -222,7 +222,7 @@
             };
 
             "<leader>uf" = {
-              action.__raw = # lua
+              action.__raw = # Lua
                 ''
                   function ()
                     -- vim.g.disable_autoformat = not vim.g.disable_autoformat
@@ -235,7 +235,7 @@
             };
 
             "<leader>uF" = {
-              action.__raw = # lua
+              action.__raw = # Lua
                 ''
                   function ()
                     -- vim.g.disable_autoformat = not vim.g.disable_autoformat
@@ -248,7 +248,7 @@
             };
 
             "<leader>uS" = {
-              action.__raw = # lua
+              action.__raw = # Lua
                 ''
                   function ()
                     if vim.g.spell_enabled then vim.cmd('setlocal nospell') end
@@ -262,7 +262,7 @@
             };
 
             "<leader>uw" = {
-              action.__raw = # lua
+              action.__raw = # Lua
                 ''
                   function ()
                     vim.wo.wrap = not vim.wo.wrap
@@ -274,7 +274,7 @@
             };
 
             "<leader>uh" = {
-              action.__raw = # lua
+              action.__raw = # Lua
                 ''
                   function ()
                     local curr_foldcolumn = vim.wo.foldcolumn
@@ -288,7 +288,7 @@
             };
 
             "<leader>uc" = {
-              action.__raw = # lua
+              action.__raw = # Lua
                 ''
                   function ()
                     vim.g.cmp_enabled = not vim.g.cmp_enabled

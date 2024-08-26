@@ -22,7 +22,7 @@
     {
       mode = "n";
       key = "<leader>tg";
-      action.__raw = # lua
+      action.__raw = # Lua
         ''
           function()
             local toggleterm = require('toggleterm.terminal')
@@ -38,7 +38,7 @@
     {
       mode = "n";
       key = "<leader>gg";
-      action.__raw = # lua
+      action.__raw = # Lua
         ''
           function()
             local toggleterm = require('toggleterm.terminal')

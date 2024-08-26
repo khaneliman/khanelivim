@@ -10,11 +10,11 @@
           # __raw = lua code
           # __unkeyed.* = no key, just the value
           integrations = {
-            "__unkeyed.builtin_search".__raw = # lua
+            "__unkeyed.builtin_search".__raw = # Lua
               "require('mini.map').gen_integration.builtin_search()";
-            "__unkeyed.gitsigns".__raw = # lua
+            "__unkeyed.gitsigns".__raw = # Lua
               "require('mini.map').gen_integration.gitsigns()";
-            "__unkeyed.diagnostic".__raw = # lua
+            "__unkeyed.diagnostic".__raw = # Lua
               "require('mini.map').gen_integration.diagnostic()";
           };
 
@@ -30,7 +30,7 @@
     {
       mode = "n";
       key = "<leader>um";
-      action.__raw = # lua
+      action.__raw = # Lua
         "MiniMap.toggle";
       options = {
         desc = "MiniMap toggle";

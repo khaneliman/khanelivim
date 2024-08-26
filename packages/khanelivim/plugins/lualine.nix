@@ -51,7 +51,7 @@ in
 
         # Show active language server
         {
-          name.__raw = # lua
+          name.__raw = # Lua
             ''
               function()
                   local msg = ""

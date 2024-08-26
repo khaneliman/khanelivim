@@ -15,7 +15,7 @@
     {
       mode = "n";
       key = "<leader>c";
-      action.__raw = # lua
+      action.__raw = # Lua
         ''require("mini.bufremove").delete'';
       options = {
         desc = "Close buffer";
@@ -25,7 +25,7 @@
     {
       mode = "n";
       key = "<C-w>";
-      action.__raw = # lua
+      action.__raw = # Lua
         ''require("mini.bufremove").delete'';
       options = {
         desc = "Close buffer";
@@ -35,7 +35,7 @@
     {
       mode = "n";
       key = "<leader>bc";
-      action.__raw = # lua
+      action.__raw = # Lua
         ''
           function ()
             local current = vim.api.nvim_get_current_buf()

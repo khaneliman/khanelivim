@@ -16,7 +16,7 @@ in
     {
       mode = "n";
       key = "<leader>gi";
-      action.__raw = # lua
+      action.__raw = # Lua
         ''require('gitignore').generate'';
       options = {
         desc = "Gitignore generate";

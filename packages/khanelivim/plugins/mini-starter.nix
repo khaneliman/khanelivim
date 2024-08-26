@@ -29,9 +29,9 @@ _: {
           };
 
           content_hooks = {
-            "__unkeyed.adding_bullet".__raw = # lua
+            "__unkeyed.adding_bullet".__raw = # Lua
               "require('mini.starter').gen_hook.adding_bullet()";
-            "__unkeyed.indexing".__raw = # lua
+            "__unkeyed.indexing".__raw = # Lua
               "require('mini.starter').gen_hook.indexing('all', { 'Builtin actions' })";
             "__unkeyed.padding".__raw = # Lua
               "require('mini.starter').gen_hook.aligning('center', 'center')";

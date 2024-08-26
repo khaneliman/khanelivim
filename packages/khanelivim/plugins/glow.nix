@@ -19,7 +19,7 @@ in
 
   extraPlugins = with pkgs.vimPlugins; [ glow-nvim ];
 
-  extraConfigLuaPre = # lua
+  extraConfigLuaPre = # Lua
     ''
       require('glow').setup({
         border = "single";

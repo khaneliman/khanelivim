@@ -22,7 +22,7 @@ in
       ];
 
       pipeline = [
-        # lua
+        # Lua
         ''
           wilder.branch(
               wilder.python_file_finder_pipeline({
@@ -61,7 +61,7 @@ in
         ''
       ];
 
-      renderer = # lua
+      renderer = # Lua
         ''
           wilder.renderer_mux({
             [':'] = wilder.popupmenu_renderer(

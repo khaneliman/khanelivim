@@ -11,7 +11,7 @@
     {
       mode = "n";
       key = "<leader>gd";
-      action.__raw = # lua
+      action.__raw = # Lua
         ''
           function()
             vim.g.diffview_enabled = not vim.g.diffview_enabled

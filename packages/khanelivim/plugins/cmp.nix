@@ -1,6 +1,6 @@
 _:
 let
-  get_bufnrs.__raw = # lua
+  get_bufnrs.__raw = # Lua
     ''
       function()
         local buf_size_limit = 1024 * 1024 -- 1MB size limit
@@ -30,26 +30,26 @@ in
 
       settings = {
         mapping = {
-          "<C-d>" = # lua
+          "<C-d>" = # Lua
             "cmp.mapping.scroll_docs(-4)";
-          "<C-f>" = # lua
+          "<C-f>" = # Lua
             "cmp.mapping.scroll_docs(4)";
-          "<C-Space>" = # lua
+          "<C-Space>" = # Lua
             "cmp.mapping.complete()";
-          "<C-e>" = # lua
+          "<C-e>" = # Lua
             "cmp.mapping.close()";
-          "<Tab>" = # lua
+          "<Tab>" = # Lua
             "cmp.mapping(cmp.mapping.select_next_item({behavior = cmp.SelectBehavior.Select}), {'i', 's'})";
-          "<S-Tab>" = # lua
+          "<S-Tab>" = # Lua
             "cmp.mapping(cmp.mapping.select_prev_item({behavior = cmp.SelectBehavior.Select}), {'i', 's'})";
-          "<CR>" = # lua
+          "<CR>" = # Lua
             "cmp.mapping.confirm({ select = false, behavior = cmp.ConfirmBehavior.Replace })";
         };
 
-        preselect = # lua
+        preselect = # Lua
           "cmp.PreselectMode.None";
 
-        snippet.expand = # lua
+        snippet.expand = # Lua
           "function(args) require('luasnip').lsp_expand(args.body) end";
 
         sources = [
@@ -143,9 +143,9 @@ in
         ];
 
         window = {
-          completion.__raw = # lua
+          completion.__raw = # Lua
             ''cmp.config.window.bordered()'';
-          documentation.__raw = # lua
+          documentation.__raw = # Lua
             ''cmp.config.window.bordered()'';
         };
       };

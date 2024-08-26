@@ -50,7 +50,7 @@
     #   event = "BufRead";
     #   once = true;
     #   callback = {
-    #     __raw = # lua
+    #     __raw = # Lua
     #       "MiniMap.open";
     #   };
     # }
@@ -59,7 +59,7 @@
     # {
     #   event = "BufWinEnter";
     #   callback = {
-    #     __raw = # lua
+    #     __raw = # Lua
     #       ''
     #         function(table)
     #           if vim.api.nvim_buf_get_name(0) ~= "" and not vim.g.first_buffer_opened then

@@ -8,7 +8,7 @@ let
   inherit (lib) getExe mkIf;
 in
 {
-  extraConfigLuaPre = # lua
+  extraConfigLuaPre = # Lua
     ''
       vim.fn.sign_define("DiagnosticSignError", { text = " ", texthl = "DiagnosticError", linehl = "", numhl = "" })
       vim.fn.sign_define("DiagnosticSignWarn", { text = " ", texthl = "DiagnosticWarn", linehl = "", numhl = "" })
@@ -41,7 +41,7 @@ in
 
         extra = [
           {
-            action.__raw = # lua
+            action.__raw = # Lua
               ''
                 function()
                   vim.lsp.buf.format({

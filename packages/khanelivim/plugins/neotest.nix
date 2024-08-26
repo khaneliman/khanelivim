@@ -6,7 +6,7 @@
 
     settings = {
       adapters = lib.optionals config.plugins.rustaceanvim.enable [
-        # lua
+        # Lua
         ''require('rustaceanvim.neotest')''
       ];
     };

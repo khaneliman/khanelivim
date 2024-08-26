@@ -9,7 +9,7 @@ let
     name = "Launch (CodeLLDB)";
     type = "codelldb";
     request = "launch";
-    program.__raw = # lua
+    program.__raw = # Lua
       ''
         function()
             return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. '/', "file")
@@ -23,7 +23,7 @@ let
     type = "coreclr";
     name = "launch - netcoredbg";
     request = "launch";
-    program__raw = # lua
+    program__raw = # Lua
       ''
         function()
           if vim.fn.confirm('Should I recompile first?', '&yes\n&no', 2) == 1 then
@@ -39,7 +39,7 @@ let
     name = "Launch (GDB)";
     type = "gdb";
     request = "launch";
-    program.__raw = # lua
+    program.__raw = # Lua
       ''
         function()
             return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. '/', "file")
@@ -52,7 +52,7 @@ let
     name = "Launch (LLDB)";
     type = "lldb";
     request = "launch";
-    program.__raw = # lua
+    program.__raw = # Lua
       ''
         function()
             return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. '/', "file")
@@ -97,7 +97,7 @@ in
   #   extraPlugins = with pkgs.vimPlugins; [ nvim-gdb ];
 
   globals = {
-    dotnet_build_project.__raw = # lua
+    dotnet_build_project.__raw = # Lua
       ''
         function()
           local default_path = vim.fn.getcwd() .. '/'
@@ -125,7 +125,7 @@ in
         end
       '';
 
-    dotnet_get_dll_path.__raw = # lua
+    dotnet_get_dll_path.__raw = # Lua
       ''
         function()
           local request = function()
@@ -264,7 +264,7 @@ in
     {
       mode = "n";
       key = "<leader>db";
-      action.__raw = # lua
+      action.__raw = # Lua
         ''
           function()
             require("dap").toggle_breakpoint()
@@ -278,7 +278,7 @@ in
     {
       mode = "n";
       key = "<leader>dc";
-      action.__raw = # lua
+      action.__raw = # Lua
         ''
           function()
             require("dap").continue()
@@ -292,7 +292,7 @@ in
     {
       mode = "v";
       key = "<leader>de";
-      action.__raw = # lua
+      action.__raw = # Lua
         ''
           function() require("dapui").eval() end
         '';
@@ -304,7 +304,7 @@ in
     {
       mode = "n";
       key = "<leader>de";
-      action.__raw = # lua
+      action.__raw = # Lua
         ''
           function()
             vim.ui.input({ prompt = "Expression: " }, function(expr)
@@ -320,7 +320,7 @@ in
     {
       mode = "n";
       key = "<leader>dh";
-      action.__raw = # lua
+      action.__raw = # Lua
         ''
           function() require("dap.ui.widgets").hover() end
         '';
@@ -332,7 +332,7 @@ in
     {
       mode = "n";
       key = "<leader>do";
-      action.__raw = # lua
+      action.__raw = # Lua
         ''
           function()
             require("dap").step_out()
@@ -346,7 +346,7 @@ in
     {
       mode = "n";
       key = "<leader>ds";
-      action.__raw = # lua
+      action.__raw = # Lua
         ''
           function()
             require("dap").step_over()
@@ -360,7 +360,7 @@ in
     {
       mode = "n";
       key = "<leader>dS";
-      action.__raw = # lua
+      action.__raw = # Lua
         ''
           function()
             require("dap").step_into()
@@ -374,7 +374,7 @@ in
     {
       mode = "n";
       key = "<leader>dt";
-      action.__raw = # lua
+      action.__raw = # Lua
         ''
           function() require("dap").terminate() end
         '';
@@ -386,7 +386,7 @@ in
     {
       mode = "n";
       key = "<leader>du";
-      action.__raw = # lua
+      action.__raw = # Lua
         ''
           function()
             require('dap.ext.vscode').load_launchjs(nil, {})

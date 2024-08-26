@@ -19,7 +19,7 @@
     {
       mode = "n";
       key = "<leader>ugo";
-      action.__raw = # lua
+      action.__raw = # Lua
         "MiniDiff.toggle_overlay";
       options = {
         desc = "Git Overlay toggle";

@@ -33,7 +33,7 @@ in
     {
       mode = "n";
       key = "<leader>gWc";
-      action.__raw = # lua
+      action.__raw = # Lua
         ''
           function()
             require('telescope').extensions.git_worktree.create_git_worktree()
@@ -47,7 +47,7 @@ in
     {
       mode = "n";
       key = "<leader>gWs";
-      action.__raw = # lua
+      action.__raw = # Lua
         ''
           function()
             require('telescope').extensions.git_worktree.git_worktrees()

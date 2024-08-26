@@ -103,7 +103,7 @@ in
           filter = {
             event = "lsp";
             kind = "progress";
-            cond.__raw = # lua
+            cond.__raw = # Lua
               ''
                 function(message)
                   local client = vim.tbl_get(message.opts, 'progress', 'client')

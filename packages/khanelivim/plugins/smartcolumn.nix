@@ -3,7 +3,7 @@
 
   extraPlugins = with pkgs.vimPlugins; [ smartcolumn-nvim ];
 
-  extraConfigLuaPre = # lua
+  extraConfigLuaPre = # Lua
     ''
       require("smartcolumn").setup({
         colorcolumn = "80",

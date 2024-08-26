@@ -11,7 +11,7 @@
     {
       mode = "n";
       key = "<leader>uC";
-      action.__raw = # lua
+      action.__raw = # Lua
         ''
           function ()
            vim.g.colorizing_enabled = not vim.g.colorizing_enabled

@@ -11,7 +11,7 @@ _: {
           hl = "FoldColumn";
           text = [
             {
-              __raw = # lua
+              __raw = # Lua
                 "require('statuscol.builtin').foldfunc";
             }
           ];
@@ -32,7 +32,7 @@ _: {
           text = [
             " "
             {
-              __raw = # lua
+              __raw = # Lua
                 "require('statuscol.builtin').lnumfunc";
             }
             " "
