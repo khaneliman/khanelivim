@@ -15,6 +15,7 @@
 
   opts.spelllang = [
     "en_us"
-    "programming"
+    # FIXME: throwing errors
+    # "programming"
   ];
 }
