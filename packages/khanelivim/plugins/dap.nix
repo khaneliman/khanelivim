@@ -262,7 +262,8 @@ in
       {
         __unkeyed = "<leader>d";
         mode = "n";
-        desc = "  Debug";
+        desc = "Debug";
+        # icon = " ";
       }
     ];
   };

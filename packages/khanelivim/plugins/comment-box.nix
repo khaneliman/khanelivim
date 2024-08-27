@@ -27,7 +27,8 @@
     which-key.settings.spec = lib.optionals config.plugins.comment-box.enable [
       {
         __unkeyed = "<leader>lc";
-        group = " Comment-box";
+        group = "Comment-box";
+        icon = " ";
       }
     ];
   };

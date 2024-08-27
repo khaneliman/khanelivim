@@ -28,11 +28,12 @@ in
     which-key.settings.spec = lib.optionals config.plugins.gitsigns.enable [
       {
         __unkeyed = "<leader>gh";
-        group = "  Hunks";
+        group = "Hunks";
+        icon = " ";
       }
       {
         __unkeyed = "<leader>ug";
-        group = "󰊢 Git";
+        group = "Git";
       }
     ];
   };

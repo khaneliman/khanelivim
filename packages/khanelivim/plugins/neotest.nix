@@ -50,7 +50,8 @@
     which-key.settings.spec = lib.optionals config.plugins.neotest.enable [
       {
         __unkeyed = "<leader>n";
-        group = "󰙨 Neotest";
+        group = "Neotest";
+        icon = "󰙨";
       }
     ];
   };

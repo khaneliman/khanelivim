@@ -30,7 +30,8 @@ in
       {
         __unkeyed = "<leader>c";
         mode = "v";
-        group = "󰄄 Codesnap";
+        group = "Codesnap";
+        icon = "󰄄 ";
       }
     ];
   };

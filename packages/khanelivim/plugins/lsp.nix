@@ -283,7 +283,8 @@ in
     which-key.settings.spec = [
       {
         __unkeyed = "<leader>l";
-        group = "  LSP";
+        group = "LSP";
+        icon = " ";
       }
       {
         __unkeyed = "<leader>la";

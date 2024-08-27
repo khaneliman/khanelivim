@@ -6,31 +6,33 @@
       spec = [
         {
           __unkeyed = "<leader>b";
-          group = "󰓩 Buffers";
+          group = "Buffers";
         }
         {
           __unkeyed = "<leader>bs";
           group = "󰒺 Sort";
+          icon = "";
         }
         {
           __unkeyed = "<leader>g";
-          group = "󰊢 Git";
+          group = "Git";
         }
         {
           __unkeyed = "<leader>f";
-          group = " Find";
+          group = "Find";
         }
         {
           __unkeyed = "<leader>r";
-          group = " Refactor";
+          group = "Refactor";
+          icon = " ";
         }
         {
           __unkeyed = "<leader>t";
-          group = " Terminal";
+          group = "Terminal";
         }
         {
           __unkeyed = "<leader>u";
-          group = " UI/UX";
+          group = "UI/UX";
         }
       ];
 

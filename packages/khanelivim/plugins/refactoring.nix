@@ -15,7 +15,8 @@ in
       {
         __unkeyed = "<leader>r";
         mode = "x";
-        group = " Refactor";
+        group = "Refactor";
+        icon = " ";
       }
     ];
   };

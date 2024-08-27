@@ -44,7 +44,8 @@ in
     {
       __unkeyed = "<leader>p";
       mode = "n";
-      group = " Preview";
+      group = "Preview";
+      icon = " ";
     }
   ];
 }

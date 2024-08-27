@@ -22,7 +22,8 @@
     which-key.settings.spec = lib.optionals config.plugins.harpoon.enable [
       {
         __unkeyed = "<leader>h";
-        group = "󱡀 Harpoon";
+        group = "Harpoon";
+        icon = "󱡀 ";
       }
       {
         __unkeyed = "<leader>ha";
