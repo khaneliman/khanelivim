@@ -67,6 +67,18 @@
     {
       mode = "n";
       key = "<leader>dn";
+      action.__raw = ''
+        function()
+          require("neotest").run.run({strategy = "dap"})
+        end
+      '';
+      options = {
+        desc = "Neotest Debug";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>dN";
       action = "<CMD>Neotest run<CR>";
       options = {
         desc = "Neotest Run";
