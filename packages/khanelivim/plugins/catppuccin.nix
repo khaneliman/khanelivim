@@ -1,5 +1,65 @@
 {
-  plugins.lualine.theme = "catppuccin";
+  plugins = {
+    bufferline.settings = {
+      # NOTE: fixes colorscheme with transparent_background
+      # and better contrast selected tabs
+      highlights =
+        let
+          commonBgColor = "#363a4f";
+          commonFgColor = "#1e2030";
+
+          commonSelectedAttrs = {
+            bg = commonBgColor;
+          };
+
+          # Define a set with common selected attributes
+          selectedAttrsSet = builtins.listToAttrs (
+            map
+              (name: {
+                inherit name;
+                value = commonSelectedAttrs;
+              })
+              [
+                # "separator_selected" # Handled uniquely
+                "buffer_selected"
+                "tab_selected"
+                "numbers_selected"
+                "close_button_selected"
+                "duplicate_selected"
+                "modified_selected"
+                "info_selected"
+                "warning_selected"
+                "error_selected"
+                "hint_selected"
+                "diagnostic_selected"
+                "info_diagnostic_selected"
+                "warning_diagnostic_selected"
+                "error_diagnostic_selected"
+                "hint_diagnostic_selected"
+              ]
+          );
+        in
+        # Merge the common selected attributes with the unique attributes
+        selectedAttrsSet
+        // {
+          fill = {
+            bg = commonFgColor;
+          };
+          separator = {
+            fg = commonFgColor;
+          };
+          separator_visible = {
+            fg = commonFgColor;
+          };
+          separator_selected = {
+            bg = commonBgColor;
+            fg = commonFgColor;
+          };
+        };
+    };
+
+    lualine.theme = "catppuccin";
+  };
 
   colorschemes.catppuccin = {
     settings = {
