@@ -51,19 +51,25 @@
     {
       mode = "n";
       key = "<leader>ut";
-      action = ":Neotest summary<CR>";
+      action = "<CMD>Neotest summary<CR>";
       options = {
         desc = "Neotest Summary toggle";
-        silent = true;
       };
     }
     {
       mode = "n";
       key = "<leader>uT";
-      action = ":Neotest output-panel<CR>";
+      action = "<CMD>Neotest output-panel<CR>";
       options = {
         desc = "Neotest Output toggle";
-        silent = true;
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>dn";
+      action = "<CMD>Neotest run<CR>";
+      options = {
+        desc = "Neotest Run";
       };
     }
   ];
