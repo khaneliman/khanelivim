@@ -14,7 +14,17 @@
     adapters = {
       bash.enable = true;
       deno.enable = true;
-      dotnet.enable = true;
+      dotnet = {
+        enable = true;
+
+        settings = {
+          dap = {
+            args = {
+              justMyCode = false;
+            };
+          };
+        };
+      };
       go.enable = true;
       java.enable = true;
       # NOTE: just run NeotestJava setup
