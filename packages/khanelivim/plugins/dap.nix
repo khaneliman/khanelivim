@@ -33,6 +33,8 @@ let
     cwd = ''''${workspaceFolder}'';
   };
 
+  netcoredb-config = coreclr-config;
+
   gdb-config = {
     name = "Launch (GDB)";
     type = "gdb";
@@ -171,6 +173,11 @@ in
             command = "${lib.getExe pkgs.netcoredbg}";
             args = [ "--interpreter=vscode" ];
           };
+
+          netcoredbg = {
+            command = "${lib.getExe pkgs.netcoredbg}";
+            args = [ "--interpreter=vscode" ];
+          };
         };
 
         servers = {
@@ -197,9 +204,15 @@ in
             codelldb-config
           ];
 
-        cs = [ coreclr-config ];
+        cs = [
+          coreclr-config
+          netcoredb-config
+        ];
 
-        fsharp = [ coreclr-config ];
+        fsharp = [
+          coreclr-config
+          netcoredb-config
+        ];
 
         rust =
           [ lldb-config ]
