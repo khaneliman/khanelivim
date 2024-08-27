@@ -37,6 +37,7 @@ in
           # Navigate in diagnostics
           "<leader>lp" = "goto_prev";
           "<leader>ln" = "goto_next";
+          "<leader>lH" = "open_float";
         };
 
         extra = [
