@@ -321,7 +321,11 @@ in
       }
       {
         __unkeyed = "<leader>lh";
-        desc = "Hover";
+        desc = "Lsp Hover";
+      }
+      {
+        __unkeyed = "<leader>lH";
+        desc = "Diagnostic Hover";
       }
       {
         __unkeyed = "<leader>lr";
