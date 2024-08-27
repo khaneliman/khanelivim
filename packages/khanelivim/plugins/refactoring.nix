@@ -11,7 +11,7 @@ in
 
     telescope.enabledExtensions = mkIf config.plugins.telescope.enable [ "refactoring" ];
 
-    which-key.settings.spec = lib.optionals config.plugins.telescope.enable [
+    which-key.settings.spec = lib.optionals config.plugins.refactoring.enable [
       {
         __unkeyed = "<leader>r";
         mode = "x";
