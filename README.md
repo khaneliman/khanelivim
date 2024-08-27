@@ -257,7 +257,7 @@ The configuration defines key mappings for common LSP actions under the
 | `j`          | `v:count == 0 ? 'gj' : 'j'` | Move cursor down (smart for wrapped lines) |
 | `k`          | `v:count == 0 ? 'gk' : 'k'` | Move cursor up (smart for wrapped lines)   |
 | `<Leader>q`  | `<Cmd>confirm q<CR>`        | Quit with confirmation                     |
-| `<Leader>n`  | `<Cmd>enew<CR>`             | New file                                   |
+| `<C-n>`      | `<Cmd>enew<CR>`             | New file                                   |
 | `<leader>W`  | `<Cmd>w!<CR>`               | Force write                                |
 | `<leader>Q`  | `<Cmd>q!<CR>`               | Force quit                                 |
 | `\|`         | `<Cmd>vsplit<CR>`           | Vertical split                             |

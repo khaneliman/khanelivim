@@ -120,7 +120,7 @@
                 desc = "Quit";
               };
             };
-            "<Leader>n" = {
+            "<C-n>" = {
               action = "<Cmd>enew<CR>";
               options = {
                 desc = "New file";
