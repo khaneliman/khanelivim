@@ -14,6 +14,28 @@ in
       vim.fn.sign_define("DiagnosticSignWarn", { text = " ", texthl = "DiagnosticWarn", linehl = "", numhl = "" })
       vim.fn.sign_define("DiagnosticSignHint", { text = " 󰌵", texthl = "DiagnosticHint", linehl = "", numhl = "" })
       vim.fn.sign_define("DiagnosticSignInfo", { text = " ", texthl = "DiagnosticInfo", linehl = "", numhl = "" })
+
+      local function preview_location_callback(_, result)
+        if result == nil or vim.tbl_isempty(result) then
+          vim.notify('No location found to preview')
+          return nil
+        end
+      local buf, _ = vim.lsp.util.preview_location(result[1])
+        if buf then
+          local cur_buf = vim.api.nvim_get_current_buf()
+          vim.bo[buf].filetype = vim.bo[cur_buf].filetype
+        end
+      end
+
+      function peek_definition()
+        local params = vim.lsp.util.make_position_params()
+        return vim.lsp.buf_request(0, 'textDocument/definition', params, preview_location_callback)
+      end
+
+      local function peek_type_definition()
+        local params = vim.lsp.util.make_position_params()
+        return vim.lsp.buf_request(0, 'textDocument/typeDefinition', params, preview_location_callback)
+      end
     '';
 
   plugins = {
@@ -35,8 +57,9 @@ in
         silent = true;
         diagnostic = {
           # Navigate in diagnostics
-          "<leader>lp" = "goto_prev";
-          "<leader>ln" = "goto_next";
+          "<leader>l[" = "goto_prev";
+          "<leader>l]" = "goto_next";
+          # TODO: fix theme of float
           "<leader>lH" = "open_float";
         };
 
@@ -59,17 +82,33 @@ in
               desc = "Format selection";
             };
           }
+          {
+            action.__raw = "peek_definition";
+            mode = "n";
+            key = "<leader>lp";
+            options = {
+              desc = "Preview definition";
+            };
+          }
+          {
+            action.__raw = "peek_type_definition";
+            mode = "n";
+            key = "<leader>lP";
+            options = {
+              desc = "Preview type definition";
+            };
+          }
         ];
 
         lspBuf = {
           "<leader>la" = "code_action";
           "<leader>ld" = "definition";
-          "<leader>lf" = "format";
           "<leader>lD" = "references";
-          "<leader>lt" = "type_definition";
-          "<leader>li" = "implementation";
+          "<leader>lf" = "format";
           "<leader>lh" = "hover";
+          "<leader>li" = "implementation";
           "<leader>lr" = "rename";
+          "<leader>lt" = "type_definition";
         };
       };
 
@@ -304,11 +343,11 @@ in
         desc = "Format";
       }
       {
-        __unkeyed = "<leader>lp";
+        __unkeyed = "<leader>l[";
         desc = "Prev";
       }
       {
-        __unkeyed = "<leader>ln";
+        __unkeyed = "<leader>l]";
         desc = "Next";
       }
       {
