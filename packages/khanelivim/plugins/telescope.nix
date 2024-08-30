@@ -110,10 +110,12 @@
         };
       };
 
-      # FIX: annoying frecency validation on startup about removed files
-      # frecency = {
-      #   enable = true;
-      # };
+      frecency = {
+        enable = true;
+        settings = {
+          auto_validate = false;
+        };
+      };
 
       ui-select = {
         enable = true;
