@@ -97,6 +97,15 @@
         silent = true;
       };
     })
+    (lib.mkIf config.plugins.telescope.extensions.undo.enable {
+      mode = "n";
+      key = "<leader>fu";
+      action = ":Telescope undo<CR>";
+      options = {
+        desc = "List undo history";
+        silent = true;
+      };
+    })
   ];
 
   plugins.telescope = {
@@ -122,6 +131,10 @@
         settings = {
           __unkeyed.__raw = ''require("telescope.themes").get_dropdown{}'';
         };
+      };
+
+      undo = {
+        enable = true;
       };
     };
 
