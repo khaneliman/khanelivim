@@ -117,6 +117,9 @@
 
       ui-select = {
         enable = true;
+        settings = {
+          __unkeyed.__raw = ''require("telescope.themes").get_dropdown{}'';
+        };
       };
     };
 
