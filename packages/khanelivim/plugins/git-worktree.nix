@@ -1,7 +1,5 @@
 { config, lib, ... }:
 let
-  inherit (lib) mkIf;
-
   cfg = config.plugins.git-worktree;
 in
 {
@@ -21,7 +19,7 @@ in
     ];
   };
 
-  keymaps = mkIf cfg.enableTelescope [
+  keymaps = lib.mkIf cfg.enableTelescope [
     {
       mode = "n";
       key = "<leader>fg";

@@ -4,16 +4,13 @@
   pkgs,
   ...
 }:
-let
-  inherit (lib) mkIf;
-in
 {
 
   extraPlugins = with pkgs.vimPlugins; [ cpsm ];
 
   plugins = {
     wilder = {
-      enable = mkIf (!config.plugins.noice.enable) true;
+      enable = lib.mkIf (!config.plugins.noice.enable) true;
 
       modes = [
         "/"

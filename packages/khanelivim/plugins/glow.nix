@@ -1,7 +1,5 @@
 { pkgs, lib, ... }:
 let
-  inherit (lib) getExe;
-
   stylePkg = pkgs.fetchFromGitHub {
     owner = "catppuccin";
     repo = "glamour";
@@ -23,7 +21,7 @@ in
     ''
       require('glow').setup({
         border = "single";
-        glow_path = "${getExe pkgs.glow}";
+        glow_path = "${lib.getExe pkgs.glow}";
         style = "${style}";
       });
     '';

@@ -4,9 +4,6 @@
   pkgs,
   ...
 }:
-let
-  inherit (lib) getExe mkIf;
-in
 {
   extraConfigLuaPre = # Lua
     ''
@@ -41,7 +38,7 @@ in
   plugins = {
     lspkind.enable = true;
     lsp-lines.enable = true;
-    lsp-format.enable = mkIf (!config.plugins.conform-nvim.enable) true;
+    lsp-format.enable = lib.mkIf (!config.plugins.conform-nvim.enable) true;
 
     # TODO: set up autocmd to reconfigure data with each project
     nvim-jdtls = {
@@ -231,7 +228,7 @@ in
           filetypes = [ "nix" ];
           settings = {
             formatting = {
-              command = [ "${getExe pkgs.nixfmt-rfc-style}" ];
+              command = [ "${lib.getExe pkgs.nixfmt-rfc-style}" ];
             };
             nix = {
               flake = {
@@ -252,7 +249,7 @@ in
         };
 
         rust-analyzer = {
-          enable = mkIf (!config.plugins.rustaceanvim.enable) true;
+          enable = lib.mkIf (!config.plugins.rustaceanvim.enable) true;
           filetypes = [ "rust" ];
           installCargo = true;
           installRustc = true;

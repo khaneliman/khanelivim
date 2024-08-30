@@ -1,7 +1,6 @@
 { config, lib, ... }:
 let
   inherit (builtins) toJSON;
-  inherit (lib) mkIf;
 in
 {
 
@@ -38,7 +37,7 @@ in
     ];
   };
 
-  keymaps = mkIf config.plugins.gitsigns.enable [
+  keymaps = lib.mkIf config.plugins.gitsigns.enable [
     # UI binds
     {
       mode = "n";

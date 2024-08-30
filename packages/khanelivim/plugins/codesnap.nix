@@ -4,9 +4,6 @@
   config,
   ...
 }:
-let
-  inherit (lib) mkIf;
-in
 {
 
   plugins = {

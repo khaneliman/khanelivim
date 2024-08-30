@@ -1,7 +1,4 @@
 { config, lib, ... }:
-let
-  inherit (lib) mkIf;
-in
 {
   plugins = {
     noice = {
@@ -145,7 +142,7 @@ in
     };
   };
 
-  keymaps = mkIf config.plugins.telescope.enable [
+  keymaps = lib.mkIf config.plugins.telescope.enable [
     {
       mode = "n";
       key = "<leader>fn";

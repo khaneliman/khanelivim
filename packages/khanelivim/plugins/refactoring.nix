@@ -1,7 +1,4 @@
 { config, lib, ... }:
-let
-  inherit (lib) mkIf;
-in
 {
 
   plugins = {
@@ -9,7 +6,7 @@ in
       enable = true;
     };
 
-    telescope.enabledExtensions = mkIf config.plugins.telescope.enable [ "refactoring" ];
+    telescope.enabledExtensions = lib.mkIf config.plugins.telescope.enable [ "refactoring" ];
 
     which-key.settings.spec = lib.optionals config.plugins.refactoring.enable [
       {

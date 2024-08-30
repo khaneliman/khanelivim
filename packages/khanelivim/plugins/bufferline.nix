@@ -1,7 +1,4 @@
 { config, lib, ... }:
-let
-  inherit (lib) mkIf;
-in
 {
   plugins.bufferline =
     let
@@ -121,7 +118,7 @@ in
       };
     };
 
-  keymaps = mkIf config.plugins.bufferline.enable [
+  keymaps = lib.mkIf config.plugins.bufferline.enable [
     {
       mode = "n";
       key = "<leader>bP";

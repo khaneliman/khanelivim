@@ -1,7 +1,5 @@
 { config, lib, ... }:
 let
-  inherit (lib) mkIf;
-
   cfg = config.plugins.gitignore;
 in
 {
@@ -12,7 +10,7 @@ in
     };
   };
 
-  keymaps = mkIf cfg.enable [
+  keymaps = lib.mkIf cfg.enable [
     {
       mode = "n";
       key = "<leader>gi";
