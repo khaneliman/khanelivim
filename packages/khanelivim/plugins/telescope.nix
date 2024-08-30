@@ -145,6 +145,8 @@
       };
     };
 
+    highlightTheme = "Catppuccin Macchiato";
+
     keymaps = {
       "<leader>f'" = {
         action = "marks";
