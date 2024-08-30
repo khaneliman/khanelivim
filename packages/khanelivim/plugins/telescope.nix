@@ -79,7 +79,7 @@
         silent = true;
       };
     }
-    {
+    (lib.mkIf config.plugins.telescope.extensions.file-browser.enable {
       mode = "n";
       key = "<leader>fe";
       action = ":Telescope file_browser<CR>";
@@ -87,16 +87,16 @@
         desc = "File Explorer";
         silent = true;
       };
-    }
-    # {
-    #   mode = "n";
-    #   key = "<leader>fO";
-    #   action = ":Telescope frecency<CR>";
-    #   options = {
-    #     desc = "Find Frequent Files";
-    #     silent = true;
-    #   };
-    # }
+    })
+    (lib.mkIf config.plugins.telescope.extensions.frecency.enable {
+      mode = "n";
+      key = "<leader>fO";
+      action = ":Telescope frecency<CR>";
+      options = {
+        desc = "Find Frequent Files";
+        silent = true;
+      };
+    })
   ];
 
   plugins.telescope = {
