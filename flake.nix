@@ -12,7 +12,7 @@
       url = "github:nix-community/nixvim";
       # url = "git+file:///Users/khaneliman/Documents/github/nixvim";
       # url = "git+file:///home/khaneliman/Documents/github/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
 
     pre-commit-hooks-nix.url = "github:cachix/pre-commit-hooks.nix";
