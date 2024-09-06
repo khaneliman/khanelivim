@@ -35,7 +35,16 @@
       end
     '';
 
+  autoCmd = [
+    (lib.mkIf config.plugins.lsp.servers.helm-ls.enable {
+      event = "FileType";
+      pattern = "helm";
+      command = "LspRestart";
+    })
+  ];
+
   plugins = {
+    helm.enable = true;
     lspkind.enable = true;
     lsp-lines.enable = true;
     lsp-format.enable = lib.mkIf (!config.plugins.conform-nvim.enable) true;
@@ -188,6 +197,11 @@
             "gdscript"
             "gdscript3"
           ];
+        };
+
+        helm-ls = {
+          enable = true;
+          filetypes = [ "helm" ];
         };
 
         html = {
