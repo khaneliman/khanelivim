@@ -152,9 +152,7 @@
             command = lib.getExe pkgs.cmake-format;
           };
           csharpier = {
-            # TODO: remove when https://github.com/NixOS/nixpkgs/pull/338016 is available
-            # command = lib.getExe pkgs.csharpier;
-            command = lib.getExe pkgs.khanelivim.csharpier;
+            command = lib.getExe pkgs.csharpier;
           };
           deno_fmt = {
             command = lib.getExe pkgs.deno;
