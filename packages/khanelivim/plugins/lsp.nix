@@ -49,11 +49,10 @@
     lsp-lines.enable = true;
     lsp-format.enable = lib.mkIf (!config.plugins.conform-nvim.enable) true;
 
-    # TODO: set up autocmd to reconfigure data with each project
     nvim-jdtls = {
       enable = true;
       configuration = "$XDG_CACHE_HOME/jdtls/config";
-      data = "$XDG_CACHE_HOME/jdtls/workspace";
+      data.__raw = "vim.fn.stdpath 'cache' .. '/jdtls/' .. vim.fn.fnamemodify(vim.fn.getcwd(), ':t')";
     };
 
     lsp = {
