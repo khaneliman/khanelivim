@@ -44,7 +44,8 @@
       {
         __unkeyed = "<leader>x";
         mode = "n";
-        group = " Trouble";
+        icon = "";
+        group = "Trouble";
       }
     ];
   };
