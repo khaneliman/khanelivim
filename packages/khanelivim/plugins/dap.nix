@@ -147,7 +147,7 @@ in
 
       adapters = {
         executables = {
-          bashdb = lib.mkIf pkgs.stdenv.isLinux { command = "${lib.getExe pkgs.bashdb}"; };
+          bashdb = lib.mkIf pkgs.stdenv.isLinux { command = lib.getExe pkgs.bashdb; };
 
           cppdbg = {
             command = "gdb";
@@ -166,16 +166,16 @@ in
           };
 
           lldb = {
-            command = "${pkgs.lldb}/bin/lldb-vscode";
+            command = lib.getExe' pkgs.lldb "lldb-dap";
           };
 
           coreclr = {
-            command = "${lib.getExe pkgs.netcoredbg}";
+            command = lib.getExe pkgs.netcoredbg;
             args = [ "--interpreter=vscode" ];
           };
 
           netcoredbg = {
-            command = "${lib.getExe pkgs.netcoredbg}";
+            command = lib.getExe pkgs.netcoredbg;
             args = [ "--interpreter=vscode" ];
           };
         };
