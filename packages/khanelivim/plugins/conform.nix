@@ -119,7 +119,8 @@
             "shfmt"
           ];
           sql = [ "sqlfluff" ];
-          swift = [ "swift_format" ];
+          # FIXME: broken nixpkgs
+          # swift = [ "swift_format" ];
           terraform = [ "terraform_fmt" ];
           toml = [ "taplo" ];
           typescript = {
@@ -199,9 +200,10 @@
           stylua = {
             command = lib.getExe pkgs.stylua;
           };
-          swift_format = {
-            command = lib.getExe pkgs.swift-format;
-          };
+          # FIXME: broken nixpkgs
+          # swift_format = {
+          #   command = lib.getExe pkgs.swift-format;
+          # };
           taplo = {
             command = lib.getExe pkgs.taplo;
           };
