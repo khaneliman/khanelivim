@@ -12,6 +12,15 @@ in
         disable_mouse = false;
       };
     };
+
+    which-key.settings.spec = lib.optionals config.plugins.hardtime.enable [
+      {
+        __unkeyed = "<leader>H";
+        mode = "n";
+        desc = "Hardtime";
+        icon = "󰖵";
+      }
+    ];
   };
 
   keymaps = lib.mkIf cfg.enable [
