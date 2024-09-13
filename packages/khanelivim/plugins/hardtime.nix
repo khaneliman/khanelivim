@@ -15,10 +15,10 @@ in
 
     which-key.settings.spec = lib.optionals config.plugins.hardtime.enable [
       {
-        __unkeyed = "<leader>H";
+        __unkeyed = "<leader>v";
         mode = "n";
-        desc = "Hardtime";
-        icon = "󰖵";
+        group = "Vim training";
+        icon = "󱛊";
       }
     ];
   };
@@ -26,7 +26,7 @@ in
   keymaps = lib.mkIf cfg.enable [
     {
       mode = "n";
-      key = "<leader>Ht";
+      key = "<leader>vh";
       action.__raw = ''
         function ()
           vim.g.disable_hardtime = not vim.g.disable_hardtime
@@ -40,22 +40,7 @@ in
       '';
       options = {
         desc = "Hardtime toggle";
-      };
-    }
-    {
-      mode = "n";
-      key = "<leader>He";
-      action = "<cmd>Hardtime enable<cr>";
-      options = {
-        desc = "Hardtime enable";
-      };
-    }
-    {
-      mode = "n";
-      key = "<leader>Hd";
-      action = "<cmd>Hardtime disable<cr>";
-      options = {
-        desc = "Hardtime disable";
+        silent = true;
       };
     }
   ];
