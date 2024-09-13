@@ -75,10 +75,10 @@
             };
 
             # navigate quickfix list
-            "<C-k>" = {
+            "<C-n>" = {
               action = "<cmd>cnext<CR>";
             };
-            "<C-j>" = {
+            "<C-p>" = {
               action = "<cmd>cprev<CR>";
             };
 
@@ -132,7 +132,7 @@
                 desc = "Quit";
               };
             };
-            "<C-n>" = {
+            "<C-N>" = {
               action = "<Cmd>enew<CR>";
               options = {
                 desc = "New file";
