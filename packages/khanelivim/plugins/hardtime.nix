@@ -27,7 +27,17 @@ in
     {
       mode = "n";
       key = "<leader>Ht";
-      action = "<cmd>Hardtime toggle<cr>";
+      action.__raw = ''
+        function ()
+          vim.g.disable_hardtime = not vim.g.disable_hardtime
+          if vim.g.disable_hardtime then
+            require("hardtime").disable()
+          else
+            require("hardtime").enable()
+          end
+          vim.notify(string.format("Hardtime %s", bool2str(not vim.g.disable_hardtime), "info"))
+        end
+      '';
       options = {
         desc = "Hardtime toggle";
       };
