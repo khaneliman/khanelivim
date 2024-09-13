@@ -198,6 +198,10 @@
           ];
         };
 
+        harper-ls = {
+          enable = true;
+        };
+
         helm-ls = {
           enable = true;
           filetypes = [ "helm" ];
