@@ -61,6 +61,18 @@
                 desc = "Right window";
               };
             };
+            "<leader>." = {
+              action = "<C-w>j";
+              options = {
+                desc = "Up window";
+              };
+            };
+            "<leader>," = {
+              action = "<C-w>k";
+              options = {
+                desc = "Down window";
+              };
+            };
 
             # navigate quickfix list
             "<C-k>" = {
