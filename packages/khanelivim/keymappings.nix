@@ -30,7 +30,7 @@
 
             # Esc to clear search results
             "<esc>" = {
-              action = ":noh<CR>";
+              action = "<cmd>noh<CR>";
             };
 
             # Backspace delete in normal
@@ -45,7 +45,7 @@
 
             # back and fourth between the two most recent files
             "<C-c>" = {
-              action = ":b#<CR>";
+              action = "<cmd>b#<CR>";
             };
 
             # navigate to left/right window
@@ -76,33 +76,33 @@
 
             # navigate quickfix list
             "<C-k>" = {
-              action = ":cnext<CR>";
+              action = "<cmd>cnext<CR>";
             };
             "<C-j>" = {
-              action = ":cprev<CR>";
+              action = "<cmd>cprev<CR>";
             };
 
             # resize with arrows
             "<C-Up>" = {
-              action = ":resize -2<CR>";
+              action = "<cmd>resize -2<CR>";
             };
             "<C-Down>" = {
-              action = ":resize +2<CR>";
+              action = "<cmd>resize +2<CR>";
             };
             "<C-Left>" = {
-              action = ":vertical resize +2<CR>";
+              action = "<cmd>vertical resize +2<CR>";
             };
             "<C-Right>" = {
-              action = ":vertical resize -2<CR>";
+              action = "<cmd>vertical resize -2<CR>";
             };
 
             # move current line up/down
             # M = Alt key
             "<M-k>" = {
-              action = ":move-2<CR>";
+              action = "<cmd>move-2<CR>";
             };
             "<M-j>" = {
-              action = ":move+<CR>";
+              action = "<cmd>move+<CR>";
             };
 
             "<Leader>w" = {
@@ -164,38 +164,33 @@
             };
 
             "<leader>bC" = {
-              action = ":%bd!<CR>";
+              action = "<cmd>%bd!<CR>";
               options = {
                 desc = "Close all buffers";
-                silent = true;
               };
             };
             "<leader>b]" = {
-              action = ":bnext<CR>";
+              action = "<cmd>bnext<CR>";
               options = {
                 desc = "Next buffer";
-                silent = true;
               };
             };
             "<TAB>" = {
-              action = ":bnext<CR>";
+              action = "<cmd>bnext<CR>";
               options = {
                 desc = "Next buffer (default)";
-                silent = true;
               };
             };
             "<leader>b[" = {
-              action = ":bprevious<CR>";
+              action = "<cmd>bprevious<CR>";
               options = {
                 desc = "Previous buffer";
-                silent = true;
               };
             };
             "<S-TAB>" = {
-              action = ":bprevious<CR>";
+              action = "<cmd>bprevious<CR>";
               options = {
                 desc = "Previous buffer";
-                silent = true;
               };
             };
 
@@ -343,10 +338,10 @@
 
             # Move selected line/block in visual mode
             "K" = {
-              action = ":m '<-2<CR>gv=gv";
+              action = "<cmd>m '<-2<CR>gv=gv<cr>";
             };
             "J" = {
-              action = ":m '>+1<CR>gv=gv";
+              action = "<cmd>m '>+1<CR>gv=gv<cr>";
             };
 
             # Backspace delete in visual
