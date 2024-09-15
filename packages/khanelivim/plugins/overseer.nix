@@ -1,0 +1,5 @@
+{
+  plugins = {
+    overseer.enable = true;
+  };
+}
