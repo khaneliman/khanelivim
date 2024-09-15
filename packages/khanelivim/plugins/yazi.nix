@@ -1,7 +1,8 @@
+{ config, lib, ... }:
 {
   plugins.yazi.enable = true;
 
-  keymaps = [
+  keymaps = lib.optionals config.plugins.yazi.enable [
     {
       mode = "n";
       key = "<leader>e";
