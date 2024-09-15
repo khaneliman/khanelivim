@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 let
   stylePkg = pkgs.fetchFromGitHub {
     owner = "catppuccin";
@@ -11,19 +11,25 @@ let
   style = "${stylePkg.outPath}/themes/catppuccin-macchiato.json";
 in
 {
-  # home.file = mkIf pkgs.stdenv.isDarwin { "Library/Preferences/glow/glow.yml".text = config; };
+  plugins = {
+    glow = {
+      enable = true;
 
-  # xdg.configFile = mkIf pkgs.stdenv.isLinux { "glow/glow.yml".text = config; };
+      settings = {
+        border = "single";
+        style = "${style}";
+      };
+    };
 
-  extraPlugins = with pkgs.vimPlugins; [ glow-nvim ];
-
-  extraConfigLuaPre = ''
-    require('glow').setup({
-      border = "single";
-      glow_path = "${lib.getExe pkgs.glow}";
-      style = "${style}";
-    });
-  '';
+    which-key.settings.spec = [
+      {
+        __unkeyed = "<leader>p";
+        mode = "n";
+        group = "Preview";
+        icon = " ";
+      }
+    ];
+  };
 
   keymaps = [
     {
@@ -34,15 +40,6 @@ in
         desc = "Glow (Markdown)";
         silent = true;
       };
-    }
-  ];
-
-  plugins.which-key.settings.spec = [
-    {
-      __unkeyed = "<leader>p";
-      mode = "n";
-      group = "Preview";
-      icon = " ";
     }
   ];
 }
