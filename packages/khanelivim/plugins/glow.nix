@@ -17,14 +17,13 @@ in
 
   extraPlugins = with pkgs.vimPlugins; [ glow-nvim ];
 
-  extraConfigLuaPre = # Lua
-    ''
-      require('glow').setup({
-        border = "single";
-        glow_path = "${lib.getExe pkgs.glow}";
-        style = "${style}";
-      });
-    '';
+  extraConfigLuaPre = ''
+    require('glow').setup({
+      border = "single";
+      glow_path = "${lib.getExe pkgs.glow}";
+      style = "${style}";
+    });
+  '';
 
   keymaps = [
     {
