@@ -8,8 +8,8 @@ let
   stylePkg = pkgs.fetchFromGitHub {
     owner = "catppuccin";
     repo = "glamour";
-    rev = "66d7b09325af67b1c5cdb063343e829c04ad7d5f";
-    hash = "sha256-f3JFgqL3K/u8U/UzmBohJLDBPlT446bosRQDca9+4oA=";
+    rev = "f410083af1e9b2418bcd73dbbbc987461d4aa292";
+    hash = "sha256-a7yR19KcxIS4UPhuhB+X0B+s8D5eytw0/EB0X4z46kA=";
   };
 
   # TODO: use theme module
