@@ -4,7 +4,6 @@
       "avsc" = "json";
       "rasi" = "scss";
       "ignore" = "gitignore";
-      "http" = "http";
     };
 
     pattern = {
