@@ -1,7 +1,6 @@
-{ pkgs, ... }:
 {
 
-  extraPlugins = [ pkgs.vimPlugins.precognition-nvim ];
+  plugins.precognition.enable = true;
 
   keymaps = [
     {
