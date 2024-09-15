@@ -15,7 +15,6 @@ let
   '';
 in
 {
-
   opts.completeopt = [
     "menu"
     "menuone"

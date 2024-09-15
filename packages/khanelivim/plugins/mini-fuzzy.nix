@@ -1,5 +1,4 @@
 {
-
   plugins = {
     mini = {
       enable = true;

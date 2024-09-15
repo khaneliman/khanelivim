@@ -1,6 +1,5 @@
 { config, lib, ... }:
 {
-
   keymaps = lib.mkIf (lib.hasAttr "files" config.plugins.mini.modules) [
     {
       mode = "n";

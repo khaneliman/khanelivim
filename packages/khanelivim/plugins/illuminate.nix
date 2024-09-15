@@ -1,5 +1,4 @@
 {
-
   plugins = {
     illuminate = {
       enable = true;

@@ -5,7 +5,6 @@
   ...
 }:
 {
-
   plugins = {
     codesnap = {
       enable = true;

@@ -1,6 +1,5 @@
 { config, lib, ... }:
 {
-
   plugins = {
     mini = {
       enable = true;

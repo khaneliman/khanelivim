@@ -1,6 +1,5 @@
 { lib, config, ... }:
 {
-
   plugins = {
     ccc = {
       enable = true;

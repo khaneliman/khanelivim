@@ -12,7 +12,6 @@ let
   '';
 in
 {
-
   plugins.lualine = {
     enable = true;
 

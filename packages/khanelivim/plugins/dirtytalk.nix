@@ -1,6 +1,5 @@
 { pkgs, ... }:
 {
-
   extraPlugins = [
     (pkgs.vimUtils.buildVimPlugin {
       name = "vim-dirtytalk";

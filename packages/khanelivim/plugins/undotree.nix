@@ -1,6 +1,5 @@
 { config, lib, ... }:
 {
-
   plugins = {
     undotree = {
       enable = true;

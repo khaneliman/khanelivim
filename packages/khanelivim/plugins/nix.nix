@@ -1,5 +1,4 @@
 {
-
   plugins = {
     direnv.enable = true;
     nix.enable = true;

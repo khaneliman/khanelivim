@@ -1,6 +1,5 @@
 { config, lib, ... }:
 {
-
   keymaps = lib.mkIf config.plugins.neo-tree.enable [
     {
       mode = "n";

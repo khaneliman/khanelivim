@@ -1,6 +1,5 @@
 { config, lib, ... }:
 {
-
   plugins = {
     indent-blankline = {
       enable = true;

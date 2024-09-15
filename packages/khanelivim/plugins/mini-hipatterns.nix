@@ -1,5 +1,4 @@
 {
-
   extraConfigLuaPre = # Lua
     ''
       local function in_comment(pattern)

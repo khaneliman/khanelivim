@@ -1,5 +1,4 @@
 {
-
   plugins = {
     debugprint = {
       enable = true;

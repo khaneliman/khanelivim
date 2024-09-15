@@ -1,5 +1,4 @@
 {
-
   plugins.precognition.enable = true;
 
   keymaps = [

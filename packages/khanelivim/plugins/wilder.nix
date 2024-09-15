@@ -5,7 +5,6 @@
   ...
 }:
 {
-
   extraPlugins = with pkgs.vimPlugins; [ cpsm ];
 
   plugins = {

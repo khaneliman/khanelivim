@@ -1,6 +1,5 @@
 { config, lib, ... }:
 {
-
   autoCmd = lib.mkIf (lib.hasAttr "indentscope" config.plugins.mini.modules) [
     {
       event = [ "FileType" ];
@@ -24,6 +23,7 @@
       '';
     }
   ];
+
   plugins = {
     mini = {
       enable = true;

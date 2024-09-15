@@ -1,5 +1,4 @@
 {
-
   plugins.statuscol = {
     enable = true;
 

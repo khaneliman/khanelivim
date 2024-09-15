@@ -1,6 +1,5 @@
 { pkgs, ... }:
 {
-
   extraPlugins = with pkgs.vimPlugins; [ smartcolumn-nvim ];
 
   extraConfigLuaPre = # Lua

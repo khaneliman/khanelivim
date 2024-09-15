@@ -1,6 +1,5 @@
 { pkgs, ... }:
 {
-
   autoCmd = [
     {
       event = "FileType";

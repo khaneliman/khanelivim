@@ -3,7 +3,6 @@ let
   inherit (builtins) toJSON;
 in
 {
-
   plugins = {
     gitsigns = {
       enable = true;

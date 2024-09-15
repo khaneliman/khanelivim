@@ -3,7 +3,6 @@ let
   cfg = config.plugins.git-worktree;
 in
 {
-
   plugins = {
     git-worktree = {
       enable = true;
