@@ -1,4 +1,9 @@
-{ pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   stylePkg = pkgs.fetchFromGitHub {
     owner = "catppuccin";
@@ -31,7 +36,7 @@ in
     ];
   };
 
-  keymaps = [
+  keymaps = lib.optionals config.plugins.glow.enable [
     {
       mode = "n";
       key = "<leader>pg";
