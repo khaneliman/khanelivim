@@ -321,7 +321,7 @@
           filetypes = [ "toml" ];
         };
 
-        tsserver = {
+        ts-ls = {
           enable = true;
           filetypes = [
             "javascript"
