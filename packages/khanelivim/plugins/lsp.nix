@@ -32,6 +32,11 @@
       local params = vim.lsp.util.make_position_params()
       return vim.lsp.buf_request(0, 'textDocument/typeDefinition', params, preview_location_callback)
     end
+
+    require('lspconfig.ui.windows').default_options = {
+      border = "rounded"
+    }
+
   '';
 
   autoCmd = [
