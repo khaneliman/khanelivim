@@ -6,37 +6,42 @@
 }:
 {
   extraConfigLuaPre = ''
-    vim.fn.sign_define("DiagnosticSignError", { text = " ", texthl = "DiagnosticError", linehl = "", numhl = "" })
-    vim.fn.sign_define("DiagnosticSignWarn", { text = " ", texthl = "DiagnosticWarn", linehl = "", numhl = "" })
-    vim.fn.sign_define("DiagnosticSignHint", { text = " 󰌵", texthl = "DiagnosticHint", linehl = "", numhl = "" })
-    vim.fn.sign_define("DiagnosticSignInfo", { text = " ", texthl = "DiagnosticInfo", linehl = "", numhl = "" })
+        vim.fn.sign_define("DiagnosticSignError", { text = " ", texthl = "DiagnosticError", linehl = "", numhl = "" })
+        vim.fn.sign_define("DiagnosticSignWarn", { text = " ", texthl = "DiagnosticWarn", linehl = "", numhl = "" })
+        vim.fn.sign_define("DiagnosticSignHint", { text = " 󰌵", texthl = "DiagnosticHint", linehl = "", numhl = "" })
+        vim.fn.sign_define("DiagnosticSignInfo", { text = " ", texthl = "DiagnosticInfo", linehl = "", numhl = "" })
 
-    local function preview_location_callback(_, result)
-      if result == nil or vim.tbl_isempty(result) then
-        vim.notify('No location found to preview')
-        return nil
-      end
-    local buf, _ = vim.lsp.util.preview_location(result[1])
-      if buf then
-        local cur_buf = vim.api.nvim_get_current_buf()
-        vim.bo[buf].filetype = vim.bo[cur_buf].filetype
-      end
-    end
+        local function preview_location_callback(_, result)
+          if result == nil or vim.tbl_isempty(result) then
+            vim.notify('No location found to preview')
+            return nil
+          end
+        local buf, _ = vim.lsp.util.preview_location(result[1])
+          if buf then
+            local cur_buf = vim.api.nvim_get_current_buf()
+            vim.bo[buf].filetype = vim.bo[cur_buf].filetype
+          end
+        end
 
-    function peek_definition()
-      local params = vim.lsp.util.make_position_params()
-      return vim.lsp.buf_request(0, 'textDocument/definition', params, preview_location_callback)
-    end
+        function peek_definition()
+          local params = vim.lsp.util.make_position_params()
+          return vim.lsp.buf_request(0, 'textDocument/definition', params, preview_location_callback)
+        end
 
-    local function peek_type_definition()
-      local params = vim.lsp.util.make_position_params()
-      return vim.lsp.buf_request(0, 'textDocument/typeDefinition', params, preview_location_callback)
-    end
+        local function peek_type_definition()
+          local params = vim.lsp.util.make_position_params()
+          return vim.lsp.buf_request(0, 'textDocument/typeDefinition', params, preview_location_callback)
+        end
 
-    require('lspconfig.ui.windows').default_options = {
-      border = "rounded"
-    }
+        require('lspconfig.ui.windows').default_options = {
+          border = "rounded"
+        }
 
+
+    local nvim_jdtls_bundles = {
+      vim.fn.glob("path/to/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar", 1),
+    };
+    vim.list_extend(nvim_jdtls_bundles, vim.split(vim.fn.glob("/path/to/microsoft/vscode-java-test/server/*.jar", 1), "\n"))
   '';
 
   autoCmd = [
@@ -58,10 +63,44 @@
       configuration = "$XDG_CACHE_HOME/jdtls/config";
       data.__raw = "vim.fn.stdpath 'cache' .. '/jdtls/' .. vim.fn.fnamemodify(vim.fn.getcwd(), ':t')";
       initOptions = {
-        bundles = {
-          __unkeyed-1.__raw = ''vim.fn.glob("${pkgs.vscode-extensions.vscjava.vscode-java-debug}/share/vscode/extensions/vscjava.vscode-java-debug/server/com.microsoft.java.debug.plugin-*.jar", 1)'';
-          __unkeyed-2.__raw = ''vim.split(vim.fn.glob("${pkgs.vscode-extensions.vscjava.vscode-java-test}/share/vscode/extensions/vscjava.vscode-java-test/server/*.jar", 1), "\n")'';
-        };
+        bundles.__raw = "nvim_jdtls_bundles";
+        # bundles =
+        #   let
+        #     debugJarFiles =
+        #       builtins.filter (name: type: type == "regular" && lib.strings.hasSuffix ".jar" name)
+        #         (
+        #           builtins.readDir "${pkgs.vscode-extensions.vscjava.vscode-java-debug}/share/vscode/extensions/vscjava.vscode-java-debug/server/"
+        #         );
+        #     testJarFiles =
+        #       builtins.filter (name: type: type == "regular" && lib.strings.hasSuffix ".jar" name)
+        #         (
+        #           builtins.readDir "${pkgs.vscode-extensions.vscjava.vscode-java-test}/share/vscode/extensions/vscjava.vscode-java-test/server/"
+        #         );
+        #
+        #     # Function to prepend the directory path to each filename
+        #     prependDirPath = dirPath: fileName: "${dirPath}/${fileName}";
+        #
+        #   in
+        #   (map (prependDirPath "${pkgs.vscode-extensions.vscjava.vscode-java-debug}/share/vscode/extensions/vscjava.vscode-java-debug/server/") (
+        #     builtins.attrValues debugJarFiles
+        #   ))
+        #   ++ (map (prependDirPath "${pkgs.vscode-extensions.vscjava.vscode-java-test}/share/vscode/extensions/vscjava.vscode-java-test/server/") (
+        #     builtins.attrValues testJarFiles
+        #   ));
+        # bundles.__raw = ''
+        #   vim.list_extend(
+        #       vim.fn.glob("${pkgs.vscode-extensions.vscjava.vscode-java-debug}/share/vscode/extensions/vscjava.vscode-java-debug/server/com.microsoft.java.debug.plugin-*.jar", 1),
+        #       vim.split(vim.fn.glob("${pkgs.vscode-extensions.vscjava.vscode-java-test}/share/vscode/extensions/vscjava.vscode-java-test/server/*.jar", 1), "\n")
+        #     )
+        # '';
+        # bundles = {
+        #   __unkeyed-1.__raw = ''vim.fn.glob("${pkgs.vscode-extensions.vscjava.vscode-java-debug}/share/vscode/extensions/vscjava.vscode-java-debug/server/com.microsoft.java.debug.plugin-*.jar", 1)'';
+        #   __unkeyed-2.__raw = ''vim.split(vim.fn.glob("${pkgs.vscode-extensions.vscjava.vscode-java-test}/share/vscode/extensions/vscjava.vscode-java-test/server/*.jar", 1), "\n")'';
+        # };
+        # bundles = [
+        #   "${pkgs.vscode-extensions.vscjava.vscode-java-debug}/share/vscode/extensions/vscjava.vscode-java-debug/server/com.microsoft.java.debug.plugin-0.50.0.jar"
+        #
+        # ];
       };
     };
 
