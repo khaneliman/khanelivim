@@ -57,6 +57,12 @@
       enable = true;
       configuration = "$XDG_CACHE_HOME/jdtls/config";
       data.__raw = "vim.fn.stdpath 'cache' .. '/jdtls/' .. vim.fn.fnamemodify(vim.fn.getcwd(), ':t')";
+      initOptions = {
+        bundles = {
+          __unkeyed-1.__raw = ''vim.fn.glob("${pkgs.vscode-extensions.vscjava.vscode-java-debug}/share/vscode/extensions/vscjava.vscode-java-debug/server/com.microsoft.java.debug.plugin-*.jar", 1)'';
+          __unkeyed-2.__raw = ''vim.split(vim.fn.glob("${pkgs.vscode-extensions.vscjava.vscode-java-test}/share/vscode/extensions/vscjava.vscode-java-test/server/*.jar", 1), "\n")'';
+        };
+      };
     };
 
     lsp = {
