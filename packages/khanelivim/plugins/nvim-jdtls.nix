@@ -29,7 +29,7 @@
   plugins = {
     nvim-jdtls = {
       enable = true;
-      configuration = "$XDG_CACHE_HOME/jdtls/config";
+      configuration.__raw = ''vim.fn.stdpath 'cache' .. "/jdtls/config"'';
       data.__raw = "vim.fn.stdpath 'cache' .. '/jdtls/' .. vim.fn.fnamemodify(vim.fn.getcwd(), ':t')";
       initOptions = {
         bundles.__raw = "_M.jdtls.bundles";
