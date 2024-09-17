@@ -4,7 +4,8 @@
   inputs = {
     # NixPkgs (nixos-unstable)
     nixpkgs = {
-      url = "github:nixos/nixpkgs/nixos-unstable";
+      # url = "github:nixos/nixpkgs/nixos-unstable";
+      url = "github:khaneliman/nixpkgs/lua";
     };
 
     # Neovim nix configuration
