@@ -36,7 +36,6 @@
     require('lspconfig.ui.windows').default_options = {
       border = "rounded"
     }
-
   '';
 
   autoCmd = [
@@ -52,12 +51,6 @@
     lspkind.enable = true;
     lsp-lines.enable = true;
     lsp-format.enable = lib.mkIf (!config.plugins.conform-nvim.enable) true;
-
-    nvim-jdtls = {
-      enable = true;
-      configuration = "$XDG_CACHE_HOME/jdtls/config";
-      data.__raw = "vim.fn.stdpath 'cache' .. '/jdtls/' .. vim.fn.fnamemodify(vim.fn.getcwd(), ':t')";
-    };
 
     lsp = {
       enable = true;
@@ -222,7 +215,7 @@
         };
 
         jdt-language-server = {
-          inherit (config.plugins.nvim-jdtls) enable;
+          enable = !config.plugins.nvim-jdtls.enable;
           filetypes = [ "java" ];
         };
 
