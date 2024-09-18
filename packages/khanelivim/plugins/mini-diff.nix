@@ -14,7 +14,7 @@
     };
   };
 
-  keymaps = lib.mkIf (lib.hasAttr "diff" config.plugins.mini.modules) [
+  keymaps = lib.mkIf (config.plugins.mini.enable && lib.hasAttr "diff" config.plugins.mini.modules) [
     {
       mode = "n";
       key = "<leader>ugo";
