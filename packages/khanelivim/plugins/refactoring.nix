@@ -82,7 +82,7 @@
         };
       }
     ]
-    ++ lib.optionals config.plugins.telescope.enable [
+    ++ lib.optionals (config.plugins.telescope.enable && config.plugins.refactoring.enable) [
       {
         mode = "n";
         key = "<leader>fR";
