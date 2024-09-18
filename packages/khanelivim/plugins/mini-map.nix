@@ -22,7 +22,7 @@
     };
   };
 
-  keymaps = lib.mkIf (lib.hasAttr "map" config.plugins.mini.modules) [
+  keymaps = lib.mkIf (config.plugins.mini.enable && lib.hasAttr "map" config.plugins.mini.modules) [
     {
       mode = "n";
       key = "<leader>um";
