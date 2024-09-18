@@ -82,37 +82,33 @@
     (lib.mkIf config.plugins.telescope.extensions.file-browser.enable {
       mode = "n";
       key = "<leader>fe";
-      action = ":Telescope file_browser<CR>";
+      action = "<cmd>Telescope file_browser<CR>";
       options = {
         desc = "File Explorer";
-        silent = true;
       };
     })
     (lib.mkIf config.plugins.telescope.extensions.frecency.enable {
       mode = "n";
       key = "<leader>fO";
-      action = ":Telescope frecency<CR>";
+      action = "<cmd>Telescope frecency<CR>";
       options = {
         desc = "Find Frequent Files";
-        silent = true;
       };
     })
     (lib.mkIf config.plugins.telescope.extensions.undo.enable {
       mode = "n";
       key = "<leader>fu";
-      action = ":Telescope undo<CR>";
+      action = "<cmd>Telescope undo<CR>";
       options = {
         desc = "List undo history";
-        silent = true;
       };
     })
     (lib.mkIf config.plugins.telescope.extensions.manix.enable {
       mode = "n";
       key = "<leader>fM";
-      action = ":Telescope manix<CR>";
+      action = "<cmd>Telescope manix<CR>";
       options = {
         desc = "Search manix";
-        silent = true;
       };
     })
   ];
