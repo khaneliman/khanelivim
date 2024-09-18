@@ -3,9 +3,8 @@
   plugins = {
     refactoring = {
       enable = true;
+      enableTelescope = true;
     };
-
-    telescope.enabledExtensions = lib.mkIf config.plugins.telescope.enable [ "refactoring" ];
 
     which-key.settings.spec = lib.optionals config.plugins.refactoring.enable [
       {
