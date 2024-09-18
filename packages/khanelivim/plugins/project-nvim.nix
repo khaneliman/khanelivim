@@ -5,7 +5,7 @@
     enableTelescope = true;
   };
 
-  keymaps = lib.mkIf config.plugins.telescope.enable [
+  keymaps = lib.mkIf (config.plugins.telescope.enable && config.plugins.project-nvim.enable) [
     {
       mode = "n";
       key = "<leader>fp";
