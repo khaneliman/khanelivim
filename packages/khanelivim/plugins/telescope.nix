@@ -106,6 +106,15 @@
         silent = true;
       };
     })
+    (lib.mkIf config.plugins.telescope.extensions.manix.enable {
+      mode = "n";
+      key = "<leader>fM";
+      action = ":Telescope manix<CR>";
+      options = {
+        desc = "Search manix";
+        silent = true;
+      };
+    })
   ];
 
   plugins.telescope = {
@@ -125,6 +134,8 @@
           auto_validate = false;
         };
       };
+
+      manix.enable = true;
 
       ui-select = {
         enable = true;
