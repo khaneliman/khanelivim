@@ -111,6 +111,14 @@
         desc = "Search manix";
       };
     })
+    (lib.mkIf config.plugins.telescope.extensions.live-grep-args.enable {
+      mode = "n";
+      key = "<leader>fw";
+      action = "<cmd>Telescope live_grep_args<CR>";
+      options = {
+        desc = "Live grep (args)";
+      };
+    })
   ];
 
   plugins.telescope = {
@@ -130,6 +138,8 @@
           auto_validate = false;
         };
       };
+
+      live-grep-args.enable = true;
 
       manix.enable = true;
 
@@ -219,7 +229,7 @@
         action = "quickfix";
         options.desc = "Search quickfix";
       };
-      "<leader>fw" = {
+      "<leader>fw" = lib.mkIf (!config.plugins.telescope.extensions.live-grep-args.enable) {
         action = "live_grep";
         options.desc = "Live grep";
       };
