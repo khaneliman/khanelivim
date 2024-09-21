@@ -376,4 +376,19 @@
           };
     in
     helpers.keymaps.mkKeymaps { options.silent = true; } (normal ++ visual ++ insert);
+
+  plugins.which-key.settings.spec = [
+    {
+      __unkeyed = "<leader>w";
+      icon = "";
+    }
+    {
+      __unkeyed = "<leader>W";
+      icon = "󰽃";
+    }
+    {
+      __unkeyed = "<leader>/";
+      icon = "";
+    }
+  ];
 }
