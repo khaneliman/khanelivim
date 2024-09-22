@@ -238,7 +238,9 @@
         };
 
         nil-ls = {
-          enable = !config.plugins.lsp.servers.nixd.enable;
+          # FIXME: when nixd works again
+          # enable = !config.plugins.lsp.servers.nixd.enable;
+          enable = true;
           filetypes = [ "nix" ];
           settings = {
             formatting = {
