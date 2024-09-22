@@ -255,6 +255,11 @@
         nixd = {
           enable = true;
           filetypes = [ "nix" ];
+          settings = {
+            formatting = {
+              command = [ "${lib.getExe pkgs.nixfmt-rfc-style}" ];
+            };
+          };
         };
 
         pyright = {
