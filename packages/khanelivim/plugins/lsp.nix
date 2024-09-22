@@ -238,7 +238,7 @@
         };
 
         nil-ls = {
-          enable = true;
+          enable = !config.plugins.lsp.servers.nixd.enable;
           filetypes = [ "nix" ];
           settings = {
             formatting = {
@@ -250,6 +250,11 @@
               };
             };
           };
+        };
+
+        nixd = {
+          enable = true;
+          filetypes = [ "nix" ];
         };
 
         pyright = {
