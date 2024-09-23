@@ -1,11 +1,11 @@
 {
   plugins.markview = {
     enable = true;
-    settings = {
 
+    settings = {
       buf_ignore = [ ];
 
-      mode = [
+      modes = [
         "n"
         "x"
         "i"
