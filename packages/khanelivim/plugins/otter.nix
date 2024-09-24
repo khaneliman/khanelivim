@@ -2,6 +2,7 @@
   plugins = {
     otter = {
       enable = true;
+      autoActivate = false;
 
       settings = {
         handle_leading_whitespace = true;
