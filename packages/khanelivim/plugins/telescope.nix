@@ -233,15 +233,15 @@
         action = "live_grep";
         options.desc = "Live grep";
       };
-      "<leader>gC" = {
-        action = "git_bcommits";
-        options.desc = "View git bcommits";
-      };
+      # "<leader>gC" = {
+      #   action = "git_bcommits";
+      #   options.desc = "View git bcommits";
+      # };
       "<leader>gB" = {
         action = "git_branches";
         options.desc = "View git branches";
       };
-      "<leader>gc" = {
+      "<leader>gC" = {
         action = "git_commits";
         options.desc = "View git commits";
       };
