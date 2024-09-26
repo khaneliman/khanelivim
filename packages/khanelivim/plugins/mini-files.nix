@@ -4,7 +4,7 @@
     {
       mode = "n";
       key = "<leader>E";
-      action = "<cmd>lua MiniFiles.open()<CR>";
+      action.__raw = "MiniFiles.open()";
       options = {
         desc = "Mini Files";
       };
