@@ -21,64 +21,57 @@
       {
         mode = "x";
         key = "<leader>re";
-        action = ":Refactor extract ";
+        action = "<cmd>Refactor extract<cr>";
         options = {
           desc = "Extract";
-          silent = true;
         };
       }
       {
         mode = "x";
         key = "<leader>rE";
-        action = ":Refactor extract_to_file ";
+        action = "<cmd>Refactor extract_to_file<cr>";
         options = {
           desc = "Extract to file";
-          silent = true;
         };
       }
       {
         mode = "x";
         key = "<leader>rv";
-        action = ":Refactor extract_var ";
+        action = "cmd>Refactor extract_var<cr>";
         options = {
           desc = "Extract var";
-          silent = true;
         };
       }
       {
         mode = "n";
         key = "<leader>ri";
-        action = ":Refactor inline_var<CR>";
+        action = "<cmd>Refactor inline_var<CR>";
         options = {
           desc = "Inline var";
-          silent = true;
         };
       }
       {
         mode = "n";
         key = "<leader>rI";
-        action = ":Refactor inline_func<CR>";
+        action = "<cmd>Refactor inline_func<CR>";
         options = {
           desc = "Inline Func";
-          silent = true;
         };
       }
       {
         mode = "n";
         key = "<leader>rb";
-        action = ":Refactor extract_block<CR>";
+        action = "<cmd>Refactor extract_block<CR>";
         options = {
           desc = "Extract block";
-          silent = true;
         };
       }
       {
         mode = "n";
         key = "<leader>rB";
-        action = ":Refactor extract_block_to_file<CR>";
+        action = "<cmd>Refactor extract_block_to_file<CR>";
         options = {
           desc = "Extract block to file";
-          silent = true;
         };
       }
     ]

@@ -30,10 +30,9 @@
     {
       mode = "n";
       key = "<leader>uu";
-      action = ":UndotreeToggle<CR>";
+      action = "<cmd>UndotreeToggle<CR>";
       options = {
         desc = "Undotree toggle";
-        silent = true;
       };
     }
   ];

@@ -9,10 +9,9 @@
     {
       mode = "n";
       key = "<leader>fP";
-      action = ":Telescope package_info<CR>";
+      action = "<cmd>Telescope package_info<CR>";
       options = {
         desc = "Find package info";
-        silent = true;
       };
     }
   ];

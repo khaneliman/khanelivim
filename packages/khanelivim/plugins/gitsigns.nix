@@ -41,37 +41,33 @@ in
     {
       mode = "n";
       key = "<leader>ugb";
-      action = ":Gitsigns toggle_current_line_blame<CR>";
+      action = "<cmd>Gitsigns toggle_current_line_blame<CR>";
       options = {
         desc = "Git Blame toggle";
-        silent = true;
       };
     }
     {
       mode = "n";
       key = "<leader>ugd";
-      action = ":Gitsigns toggle_deleted<CR>";
+      action = "<cmd>Gitsigns toggle_deleted<CR>";
       options = {
         desc = "Deleted toggle";
-        silent = true;
       };
     }
     {
       mode = "n";
       key = "<leader>ugl";
-      action = ":Gitsigns toggle_linehl<CR>";
+      action = "<cmd>Gitsigns toggle_linehl<CR>";
       options = {
         desc = "Line Highlight toggle";
-        silent = true;
       };
     }
     {
       mode = "n";
       key = "<leader>ugh";
-      action = ":Gitsigns toggle_numhl<CR>";
+      action = "<cmd>Gitsigns toggle_numhl<CR>";
       options = {
         desc = "Number Highlight toggle";
-        silent = true;
       };
     }
     {
@@ -80,7 +76,6 @@ in
       action = "<cmd>Gitsigns toggle_word_diff<CR>";
       options = {
         desc = "Word Diff toggle";
-        silent = true;
       };
     }
     {
@@ -89,7 +84,6 @@ in
       action = "<cmd>Gitsigns toggle_signs<CR>";
       options = {
         desc = "Signs toggle";
-        silent = true;
       };
     }
     {
@@ -147,7 +141,6 @@ in
       action = "<cmd>Gitsigns stage_hunk<CR>";
       options = {
         desc = "Stage hunk";
-        silent = true;
       };
     }
     {
@@ -156,7 +149,6 @@ in
       action = "<cmd>Gitsigns undo_stage_hunk<CR>";
       options = {
         desc = "Undo stage hunk";
-        silent = true;
       };
     }
     {
@@ -168,7 +160,6 @@ in
       action = "<cmd>Gitsigns reset_hunk<CR>";
       options = {
         desc = "Reset hunk";
-        silent = true;
       };
     }
     {
@@ -177,7 +168,6 @@ in
       action = "<cmd>Gitsigns preview_hunk<CR>";
       options = {
         desc = "Preview hunk";
-        silent = true;
       };
     }
     {
@@ -186,7 +176,6 @@ in
       action = "<cmd>Gitsigns preview_hunk_inline<CR>";
       options = {
         desc = "Preview hunk inline";
-        silent = true;
       };
     }
     # Buffer binds
@@ -196,7 +185,6 @@ in
       action = "<cmd>Gitsigns stage_buffer<CR>";
       options = {
         desc = "Stage buffer";
-        silent = true;
       };
     }
     {
@@ -205,7 +193,6 @@ in
       action = "<cmd>Gitsigns reset_buffer<CR>";
       options = {
         desc = "Reset buffer";
-        silent = true;
       };
     }
   ];

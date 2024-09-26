@@ -14,19 +14,17 @@
     {
       mode = "n";
       key = "<leader>ui";
-      action = ":IBLToggle<CR>";
+      action = "<cmd>IBLToggle<CR>";
       options = {
         desc = "Indent-Blankline toggle";
-        silent = true;
       };
     }
     {
       mode = "n";
       key = "<leader>uI";
-      action = ":IBLToggleScope<CR>";
+      action = "<cmd>IBLToggleScope<CR>";
       options = {
         desc = "Indent-Blankline Scope toggle";
-        silent = true;
       };
     }
   ];

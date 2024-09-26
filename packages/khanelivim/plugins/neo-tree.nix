@@ -4,10 +4,9 @@
     {
       mode = "n";
       key = "<leader>E";
-      action = ":Neotree action=focus reveal toggle<CR>";
+      action = "<cmd>Neotree action=focus reveal toggle<CR>";
       options = {
         desc = "Explorer toggle";
-        silent = true;
       };
     }
   ];

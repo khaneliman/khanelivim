@@ -4,10 +4,9 @@
     {
       mode = "n";
       key = "<leader>E";
-      action = ":lua MiniFiles.open()<CR>";
+      action = "<cmd>lua MiniFiles.open()<CR>";
       options = {
         desc = "Mini Files";
-        silent = true;
       };
     }
   ];

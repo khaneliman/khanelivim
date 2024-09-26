@@ -36,37 +36,33 @@
     {
       mode = "v";
       key = "<leader>cs";
-      action = ":CodeSnap<CR>";
+      action = "<cmd>CodeSnap<CR>";
       options = {
         desc = "Copy";
-        silent = true;
       };
     }
     {
       mode = "v";
       key = "<leader>cS";
-      action = ":CodeSnapSave<CR>";
+      action = "<cmd>CodeSnapSave<CR>";
       options = {
         desc = "Save";
-        silent = true;
       };
     }
     {
       mode = "v";
       key = "<leader>ch";
-      action = ":CodeSnapHighlight<CR>";
+      action = "<cmd>CodeSnapHighlight<CR>";
       options = {
         desc = "Highlight";
-        silent = true;
       };
     }
     {
       mode = "v";
       key = "<leader>cH";
-      action = ":CodeSnapSaveHighlight<CR>";
+      action = "<cmd>CodeSnapSaveHighlight<CR>";
       options = {
         desc = "Save Highlight";
-        silent = true;
       };
     }
   ];

@@ -70,10 +70,9 @@
     {
       mode = "n";
       key = "<leader>up";
-      action = ":CccPick<CR>";
+      action = "<cmd>CccPick<CR>";
       options = {
         desc = "Color Picker toggle";
-        silent = true;
       };
     }
   ];

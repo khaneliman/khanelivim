@@ -10,10 +10,9 @@
     {
       mode = "n";
       key = "<leader>rs";
-      action = ":Spectre<CR>";
+      action = "<cmd>Spectre<CR>";
       options = {
         desc = "Spectre toggle";
-        silent = true;
       };
     }
   ];

@@ -26,10 +26,9 @@
     {
       mode = "n";
       key = "<leader>uc";
-      action = ":Codeium Chat<CR>";
+      action = "<cmd>Codeium Chat<CR>";
       options = {
         desc = "Codeium Chat";
-        silent = true;
       };
     }
   ];

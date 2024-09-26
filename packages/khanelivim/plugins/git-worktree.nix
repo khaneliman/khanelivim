@@ -22,10 +22,9 @@ in
     {
       mode = "n";
       key = "<leader>fg";
-      action = ":Telescope git_worktree<CR>";
+      action = "<cmd>Telescope git_worktree<CR>";
       options = {
         desc = "Git Worktree";
-        silent = true;
       };
     }
     {

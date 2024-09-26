@@ -13,10 +13,9 @@
     {
       mode = "n";
       key = "<leader>pm";
-      action = ":MarkdownPreview<cr>";
+      action = "<cmd>MarkdownPreview<cr>";
       options = {
         desc = "Markdown Preview";
-        silent = true;
       };
     }
   ];

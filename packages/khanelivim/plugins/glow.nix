@@ -37,10 +37,9 @@ in
     {
       mode = "n";
       key = "<leader>pg";
-      action = ":Glow<CR>";
+      action = "<cmd>Glow<CR>";
       options = {
         desc = "Glow (Markdown)";
-        silent = true;
       };
     }
   ];

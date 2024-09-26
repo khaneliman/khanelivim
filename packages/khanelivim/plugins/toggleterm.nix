@@ -12,10 +12,9 @@
     {
       mode = "n";
       key = "<leader>tt";
-      action = ":ToggleTerm<CR>";
+      action = "<cmd>ToggleTerm<CR>";
       options = {
         desc = "Open Terminal";
-        silent = true;
       };
     }
     {
