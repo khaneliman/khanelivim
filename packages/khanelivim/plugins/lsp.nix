@@ -255,7 +255,7 @@
         };
 
         nixd = {
-          enable = true;
+          enable = !config.plugins.lsp.servers.nil-ls.enable;
           filetypes = [ "nix" ];
           settings = {
             formatting = {
