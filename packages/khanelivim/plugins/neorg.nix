@@ -1,4 +1,3 @@
-{ pkgs, ... }:
 {
   autoCmd = [
     {
@@ -13,21 +12,8 @@
     }
   ];
 
-  extraPlugins = [
-    (pkgs.vimUtils.buildVimPlugin {
-      name = "lua-utils.nvim";
-      src = pkgs.fetchFromGitHub {
-        owner = "nvim-neorg";
-        repo = "lua-utils.nvim";
-        rev = "v1.0.2";
-        hash = "sha256-9ildzQEMkXKZ3LHq+khGFgRQFxlIXQclQ7QU3fcU1C4=";
-      };
-    })
-  ];
-
   plugins.neorg = {
-    # TODO: figure out errors and re-enable
-    enable = false;
+    enable = true;
 
     modules = {
       "core.defaults".__empty = null;
