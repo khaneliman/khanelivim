@@ -51,6 +51,7 @@
     lspkind.enable = true;
     lsp-lines.enable = true;
     lsp-format.enable = lib.mkIf (!config.plugins.conform-nvim.enable) true;
+    lsp-signature.enable = true;
 
     lsp = {
       enable = true;

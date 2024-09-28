@@ -70,7 +70,7 @@
         };
 
         progress.enabled = true;
-        signature.enabled = true;
+        signature.enabled = !config.plugins.lsp-signature.enable;
       };
 
       popupmenu.backend = "nui";
