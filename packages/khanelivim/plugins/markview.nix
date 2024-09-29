@@ -1,6 +1,10 @@
+{ pkgs, ... }:
 {
   plugins.markview = {
     enable = true;
+    package = pkgs.vimPlugins.markview-nvim.overrideAttrs (_oldAttrs: {
+      dependencies = [ ];
+    });
 
     settings = {
       buf_ignore = [ ];
