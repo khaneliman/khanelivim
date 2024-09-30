@@ -1,6 +1,9 @@
 { config, pkgs, ... }:
 {
-  extraPlugins = [ pkgs.khanelivim.treesitter-fsharp ];
+  extraPlugins = [
+    pkgs.khanelivim.tree-sitter-fsharp
+    pkgs.khanelivim.tree-sitter-norg-meta
+  ];
 
   plugins = {
     treesitter = {
@@ -9,6 +12,7 @@
       folding = true;
       grammarPackages = config.plugins.treesitter.package.passthru.allGrammars ++ [
         pkgs.khanelivim.tree-sitter-fsharp
+        pkgs.khanelivim.tree-sitter-norg-meta
       ];
       nixvimInjections = true;
 
