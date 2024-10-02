@@ -5,6 +5,7 @@
     # NixPkgs (nixos-unstable)
     nixpkgs = {
       url = "github:nixos/nixpkgs/nixos-unstable";
+      # url = "git+file:///home/khaneliman/Documents/github/NixOS/nixpkgs";
     };
 
     # Neovim nix configuration
