@@ -39,7 +39,7 @@
   '';
 
   autoCmd = [
-    (lib.mkIf config.plugins.lsp.servers.helm-ls.enable {
+    (lib.mkIf config.plugins.lsp.servers.helm_ls.enable {
       event = "FileType";
       pattern = "helm";
       command = "LspRestart";
@@ -153,7 +153,7 @@
           ];
         };
 
-        csharp-ls = {
+        csharp_ls = {
           enable = true;
           filetypes = [ "cs" ];
         };
@@ -196,7 +196,7 @@
           ];
         };
 
-        harper-ls = {
+        harper_ls = {
           enable = true;
           settings = {
             "harper-ls" = {
@@ -211,7 +211,7 @@
           };
         };
 
-        helm-ls = {
+        helm_ls = {
           enable = true;
           filetypes = [ "helm" ];
         };
@@ -221,12 +221,12 @@
           filetypes = [ "html" ];
         };
 
-        java-language-server = {
+        java_language_server = {
           enable = !config.plugins.nvim-jdtls.enable;
           filetypes = [ "java" ];
         };
 
-        jdt-language-server = {
+        jdtls = {
           enable = !config.plugins.nvim-jdtls.enable;
           filetypes = [ "java" ];
         };
@@ -239,7 +239,7 @@
           ];
         };
 
-        lua-ls = {
+        lua_ls = {
           enable = true;
           filetypes = [ "lua" ];
         };
@@ -249,7 +249,7 @@
           filetypes = [ "markdown" ];
         };
 
-        nil-ls = {
+        nil_ls = {
           # FIXME: when nixd works again
           # enable = !config.plugins.lsp.servers.nixd.enable;
           enable = true;
@@ -267,7 +267,7 @@
         };
 
         nixd = {
-          enable = !config.plugins.lsp.servers.nil-ls.enable;
+          enable = !config.plugins.lsp.servers.nil_ls.enable;
           filetypes = [ "nix" ];
           settings = {
             formatting = {
@@ -286,8 +286,8 @@
           filetypes = [ "python" ];
         };
 
-        rust-analyzer = {
-          enable = lib.mkIf (!config.plugins.rustaceanvim.enable) true;
+        rust_analyzer = {
+          enable = !config.plugins.rustaceanvim.enable;
           filetypes = [ "rust" ];
           installCargo = true;
           installRustc = true;
@@ -338,7 +338,7 @@
           filetypes = [ "toml" ];
         };
 
-        ts-ls = {
+        ts_ls = {
           enable = true;
           filetypes = [
             "javascript"
