@@ -198,6 +198,13 @@
 
         harper-ls = {
           enable = true;
+          settings = {
+            "harper-ls" = {
+              codeActions = {
+                forceStable = true;
+              };
+            };
+          };
         };
 
         helm-ls = {
