@@ -200,6 +200,10 @@
           enable = true;
           settings = {
             "harper-ls" = {
+              linters = {
+                linking_verbs = true;
+                wrong_quotes = true;
+              };
               codeActions = {
                 forceStable = true;
               };
