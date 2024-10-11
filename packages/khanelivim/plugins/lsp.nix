@@ -189,6 +189,7 @@
 
         gdscript = {
           enable = true;
+          package = pkgs.gdtoolkit_4;
           filetypes = [
             "gd"
             "gdscript"
