@@ -5,8 +5,11 @@
       enable = true;
 
       settings = {
+        auto_close = true;
         modes = {
           preview_split = {
+            # NOTE: can automatically open when diagnostics exist
+            # auto_open = true;
             mode = "diagnostics";
             preview = {
               type = "split";
