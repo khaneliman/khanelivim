@@ -97,6 +97,7 @@
           css = [ "stylelint" ];
           fish = [ "fish_indent" ];
           fsharp = [ "fantomas" ];
+          gdscript = [ "gdformat" ];
           java = [ "google-java-format" ];
           javascript = {
             __unkeyed-1 = "prettierd";
@@ -163,6 +164,9 @@
           };
           fantomas = {
             command = lib.getExe pkgs.fantomas;
+          };
+          gdformat = {
+            command = lib.getExe' pkgs.gdtoolkit_4 "gdformat";
           };
           google-java-format = {
             command = lib.getExe pkgs.google-java-format;
