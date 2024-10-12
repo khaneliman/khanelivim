@@ -12,10 +12,10 @@
       };
 
       adapters = {
-        bash.enable = true;
-        deno.enable = true;
+        bash.enable = config.plugins.neotest.enable;
+        deno.enable = config.plugins.neotest.enable;
         dotnet = {
-          enable = true;
+          enable = config.plugins.neotest.enable;
 
           settings = {
             dap = {
@@ -25,8 +25,8 @@
             };
           };
         };
-        go.enable = true;
-        java.enable = true;
+        go.enable = config.plugins.neotest.enable;
+        java.enable = config.plugins.neotest.enable;
         # NOTE: just run NeotestJava setup
         # java.settings = {
         # Not sure why this wasn't working
@@ -38,12 +38,12 @@
         #     }
         #     .outPath;
         # };
-        jest.enable = true;
-        playwright.enable = true;
-        plenary.enable = true;
-        python.enable = true;
-        # rust.enable = true;
-        zig.enable = true;
+        jest.enable = config.plugins.neotest.enable;
+        playwright.enable = config.plugins.neotest.enable;
+        plenary.enable = config.plugins.neotest.enable;
+        python.enable = config.plugins.neotest.enable;
+        # rust.enable = config.plugins.neotest.enable;
+        zig.enable = config.plugins.neotest.enable;
       };
     };
 
