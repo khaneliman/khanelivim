@@ -277,6 +277,11 @@
           };
         };
 
+        nushell = {
+          enable = true;
+          filetypes = [ "nu" ];
+        };
+
         pyright = {
           enable = true;
           filetypes = [ "python" ];
