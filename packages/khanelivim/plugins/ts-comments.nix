@@ -38,6 +38,7 @@
           statement_block = "// %s";
         };
         nix = "# %s";
+        nu = "# %s";
         php = "// %s";
         rego = "# %s";
         rescript = "// %s";
