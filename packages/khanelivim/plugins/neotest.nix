@@ -15,7 +15,7 @@
         bash.enable = config.plugins.neotest.enable;
         deno.enable = config.plugins.neotest.enable;
         dotnet = {
-          enable = config.plugins.neotest.enable;
+          inherit (config.plugins.neotest) enable;
 
           settings = {
             dap = {
