@@ -14,6 +14,8 @@ _: _final: prev: {
       with prev.darwin.apple_sdk.frameworks; [ IOKit ]
     );
 
+    env.LIBCLANG_PATH = prev.lib.optionalString prev.stdenv.cc.isClang "${prev.llvmPackages.libclang.lib}/lib";
+
     cargoHash = "sha256-eKQJanQ9ax5thc2DuO0yIgovor+i5Soylw58I2Y5cHw=";
 
     meta = {
