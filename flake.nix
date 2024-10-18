@@ -16,6 +16,10 @@
       # inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Neovim nightly
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+
+    # Pre commit hooks
     pre-commit-hooks-nix.url = "github:cachix/pre-commit-hooks.nix";
 
     # Snowfall Lib
