@@ -138,6 +138,7 @@ in
             name = "emoji";
             priority = 100;
           }
+          { name = "nixpkgs_maintainers"; }
         ];
 
         window = {
@@ -170,6 +171,7 @@ in
           path = "";
           spell = "";
           treesitter = "󰔱";
+          nixpkgs_maintainers = "";
         };
       };
     };
