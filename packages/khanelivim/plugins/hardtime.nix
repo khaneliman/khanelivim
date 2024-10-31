@@ -3,14 +3,15 @@ let
   cfg = config.plugins.hardtime;
 in
 {
-  globals.disable_hardtime = false;
+  globals.disable_hardtime = true;
 
   plugins = {
     hardtime = {
       enable = true;
 
       settings = {
-        enabled = true;
+        # NOTE: Default to off now.
+        # enabled = true;
         disable_mouse = false;
       };
     };
