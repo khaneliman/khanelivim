@@ -25,7 +25,6 @@
 
     # Custom for toggles
     disable_diagnostics = false;
-    disable_hardtime = false;
     disable_autoformat = false;
     spell_enabled = true;
     colorizing_enabled = 1;

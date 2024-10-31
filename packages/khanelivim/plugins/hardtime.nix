@@ -3,6 +3,8 @@ let
   cfg = config.plugins.hardtime;
 in
 {
+  globals.disable_hardtime = false;
+
   plugins = {
     hardtime = {
       enable = true;
