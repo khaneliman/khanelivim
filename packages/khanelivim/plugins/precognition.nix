@@ -1,5 +1,10 @@
 {
-  plugins.precognition.enable = true;
+  plugins.precognition = {
+    enable = true;
+    settings = {
+      startVisible = false;
+    };
+  };
 
   keymaps = [
     {
