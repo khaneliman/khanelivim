@@ -1,3 +1,4 @@
+{ lib, config, ... }:
 {
   plugins.precognition = {
     enable = true;
@@ -6,7 +7,7 @@
     };
   };
 
-  keymaps = [
+  keymaps = lib.optionals config.plugins.precognition.enable [
     {
       mode = "n";
       key = "<leader>vp";
@@ -26,14 +27,4 @@
       };
     }
   ];
-
-  # TODO: set when module is available
-  # plugins.which-key.settings.spec = lib.optionals config.plugins.hardtime.enable [
-  #   {
-  #     __unkeyed = "<leader>H";
-  #     mode = "n";
-  #     desc = "Hardtime";
-  #     icon = "󰖵";
-  #   }
-  # ];
 }
