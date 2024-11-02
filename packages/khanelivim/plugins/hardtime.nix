@@ -11,7 +11,7 @@ in
 
       settings = {
         # NOTE: Default to off now.
-        # enabled = true;
+        enabled = false;
         disable_mouse = false;
       };
     };
