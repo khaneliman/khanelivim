@@ -283,6 +283,7 @@
                 command = [ "${lib.getExe pkgs.nixfmt-rfc-style}" ];
               };
               options = {
+                nix-darwin.expr = ''${flake}.darwinConfigurations.khanelimac.options'';
                 nixos.expr = ''${flake}.nixosConfigurations.khanelinix.options'';
                 nixvim.expr = ''${flake}.packages.${pkgs.system}.nvim.options'';
                 home-manager.expr = ''${flake}.homeConfigurations."khaneliman@khanelinix".options'';
