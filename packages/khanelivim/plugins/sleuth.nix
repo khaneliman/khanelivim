@@ -1,0 +1,3 @@
+{
+  plugins.sleuth.enable = true;
+}
