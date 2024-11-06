@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  self,
   ...
 }:
 {
@@ -270,11 +271,23 @@
         nixd = {
           enable = !config.plugins.lsp.servers.nil_ls.enable;
           filetypes = [ "nix" ];
-          settings = {
-            formatting = {
-              command = [ "${lib.getExe pkgs.nixfmt-rfc-style}" ];
+          settings =
+            let
+              flake = ''(builtins.getFlake "${self}")'';
+            in
+            {
+              nixpkgs = {
+                expr = "import ${flake}.inputs.nixpkgs { }";
+              };
+              formatting = {
+                command = [ "${lib.getExe pkgs.nixfmt-rfc-style}" ];
+              };
+              options = {
+                nixos.expr = ''${flake}.nixosConfigurations.khanelinix.options'';
+                nixvim.expr = ''${flake}.packages.${pkgs.system}.nvim.options'';
+                home-manager.expr = ''${flake}.homeConfigurations."khaneliman@khanelinix".options'';
+              };
             };
-          };
         };
 
         nushell = {
