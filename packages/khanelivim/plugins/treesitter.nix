@@ -44,6 +44,15 @@
       };
     };
 
+    treesitter-context = {
+      enable = true;
+      settings = {
+        max_lines = 4;
+        min_window_height = 40;
+        separator = "-";
+      };
+    };
+
     treesitter-refactor = {
       enable = true;
 
