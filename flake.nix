@@ -63,5 +63,8 @@
       };
 
       outputs-builder = channels: { formatter = channels.nixpkgs.nixfmt-rfc-style; };
+    }
+    // {
+      inherit (inputs) self;
     };
 }
