@@ -30,13 +30,28 @@
     ];
   };
 
-  keymaps = lib.mkIf config.plugins.copilot-lua.enable [
+  keymaps = lib.mkIf config.plugins.copilot-chat.enable [
     {
       mode = "n";
       key = "<leader>ac";
       action = "<cmd>CopilotChat<CR>";
       options = {
         desc = "Copilot Chat";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>aq";
+      action.__raw = ''
+        function()
+          local input = vim.fn.input("Quick Chat: ")
+          if input ~= "" then
+            require("CopilotChat").ask(input, { selection = require("CopilotChat.select").buffer })
+          end
+        end
+      '';
+      options = {
+        desc = "Quick Chat";
       };
     }
   ];
