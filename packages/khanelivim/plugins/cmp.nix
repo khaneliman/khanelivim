@@ -1,4 +1,3 @@
-_:
 let
   get_bufnrs.__raw = ''
     function()
@@ -83,6 +82,11 @@ in
             name = "luasnip";
             priority = 750;
           }
+          {
+            name = "copilot";
+            priority = 600;
+          }
+          # TODO: figure out infinite recursion
           {
             name = "codeium";
             priority = 600;
