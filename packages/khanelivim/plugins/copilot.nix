@@ -11,13 +11,14 @@
       enable = true;
 
       settings = {
-        window = {
-          layout = "float";
-          relative = "cursor";
-          width = 1;
-          height = 0.5;
-          row = 1;
-        };
+        # NOTE: if you want float
+        # window = {
+        #   layout = "float";
+        #   relative = "cursor";
+        #   width = 1;
+        #   height = 0.5;
+        #   row = 1;
+        # };
       };
     };
 
