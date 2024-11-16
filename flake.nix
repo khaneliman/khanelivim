@@ -4,7 +4,7 @@
   inputs = {
     # NixPkgs (nixos-unstable)
     nixpkgs = {
-      url = "github:nixos/nixpkgs/nixos-unstable";
+      url = "github:nixos/nixpkgs/nixpkgs-unstable";
       # url = "git+file:///home/khaneliman/Documents/github/NixOS/nixpkgs";
     };
 
