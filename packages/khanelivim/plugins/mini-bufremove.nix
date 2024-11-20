@@ -5,7 +5,10 @@
       enable = true;
 
       modules = {
-        bufremove = { };
+        bufremove = lib.mkIf (
+          !config.plugins.snacks.enable
+          || (config.plugins.snacks.enable && (!config.plugins.snacks.settings.bufdelete.enabled))
+        ) { };
       };
     };
   };
