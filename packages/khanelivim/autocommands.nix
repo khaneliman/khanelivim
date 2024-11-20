@@ -44,6 +44,9 @@
 
               -- Disable swap file and undo file
               vim.cmd("setlocal noswapfile noundofile")
+
+              -- Disable mini animate
+              vim.b.minianimate_disable = true
             end
           end
         '';
