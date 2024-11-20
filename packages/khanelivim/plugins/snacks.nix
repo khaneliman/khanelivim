@@ -42,6 +42,9 @@
             end
           '';
         };
+        gitbrowse = {
+          enabled = true;
+        };
         statuscolumn = {
           enabled = true;
 
@@ -53,4 +56,15 @@
       };
     };
   };
+
+  keymaps = [
+    (lib.mkIf (config.plugins.snacks.enable && config.plugins.snacks.settings.gitbrowse.enabled) {
+      mode = "n";
+      key = "<leader>go";
+      action = "<cmd>lua Snacks.gitbrowse()<CR>";
+      options = {
+        desc = "Open file in browser";
+      };
+    })
+  ];
 }
