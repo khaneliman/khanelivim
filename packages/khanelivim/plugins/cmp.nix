@@ -166,6 +166,7 @@ in
           calc = "";
           cmdline = "";
           codeium = "󱜙";
+          copilot = "";
           emoji = "󰞅";
           git = "";
           luasnip = "󰩫";
