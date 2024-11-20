@@ -114,5 +114,13 @@
             desc = "Close all buffers but current";
           };
         }
+        {
+          mode = "n";
+          key = "<leader>bC";
+          action = ''<cmd>lua Snacks.bufdelete.all()<cr>'';
+          options = {
+            desc = "Close all buffers";
+          };
+        }
       ];
 }
