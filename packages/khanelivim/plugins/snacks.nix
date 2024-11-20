@@ -7,6 +7,7 @@
       settings = {
         bigfile = {
           enabled = true;
+          size = 1024 * 1024; # 1MB
         };
         statuscolumn = {
           enabled = true;
