@@ -17,35 +17,47 @@
         desc = "Open Terminal";
       };
     }
-    {
-      mode = "n";
-      key = "<leader>tg";
-      action.__raw = ''
-        function()
-          local toggleterm = require('toggleterm.terminal')
+    (lib.mkIf
+      (
+        !config.plugins.snacks.enable
+        || (config.plugins.snacks.enable && !config.plugins.snacks.settings.lazygit.enabled)
+      )
+      {
+        mode = "n";
+        key = "<leader>tg";
+        action.__raw = ''
+          function()
+            local toggleterm = require('toggleterm.terminal')
 
-          toggleterm.Terminal:new({cmd = 'lazygit',hidden = true}):toggle()
-        end
-      '';
-      options = {
-        desc = "Open Lazygit";
-        silent = true;
-      };
-    }
-    {
-      mode = "n";
-      key = "<leader>gg";
-      action.__raw = ''
-        function()
-          local toggleterm = require('toggleterm.terminal')
+            toggleterm.Terminal:new({cmd = 'lazygit',hidden = true}):toggle()
+          end
+        '';
+        options = {
+          desc = "Open Lazygit";
+          silent = true;
+        };
+      }
+    )
+    (lib.mkIf
+      (
+        !config.plugins.snacks.enable
+        || (config.plugins.snacks.enable && !config.plugins.snacks.settings.lazygit.enabled)
+      )
+      {
+        mode = "n";
+        key = "<leader>gg";
+        action.__raw = ''
+          function()
+            local toggleterm = require('toggleterm.terminal')
 
-          toggleterm.Terminal:new({cmd = 'lazygit',hidden = true}):toggle()
-        end
-      '';
-      options = {
-        desc = "Open Lazygit";
-        silent = true;
-      };
-    }
+            toggleterm.Terminal:new({cmd = 'lazygit',hidden = true}):toggle()
+          end
+        '';
+        options = {
+          desc = "Open Lazygit";
+          silent = true;
+        };
+      }
+    )
   ];
 }
