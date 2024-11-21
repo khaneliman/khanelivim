@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 {
   extraPlugins = with pkgs.vimPlugins; [
     iron-nvim
@@ -17,10 +17,10 @@
             --   -- returns a table (see below)
             --   command = {"zsh"}
             -- },
-            -- python = {
-            --   command = { "python3" },  -- or { "ipython", "--no-autoindent" }
-            --   format = require("iron.fts.common").bracketed_paste_python
-            -- }
+            python = {
+              command = { "${lib.getExe pkgs.python3}" },
+              format = require("iron.fts.common").bracketed_paste_python
+            },
             nix = {
               command = { "nix", "repl" }
             }
