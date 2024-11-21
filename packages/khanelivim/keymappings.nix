@@ -161,7 +161,7 @@
                   desc = "Vertical split";
                 };
               };
-              "\\" = {
+              "-" = {
                 action = "<Cmd>split<CR>";
                 options = {
                   desc = "Horizontal split";
