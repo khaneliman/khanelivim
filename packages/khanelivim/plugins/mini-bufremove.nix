@@ -27,15 +27,6 @@
         }
         {
           mode = "n";
-          key = "<C-w>";
-          action.__raw = ''require("mini.bufremove").delete'';
-          options = {
-            desc = "Close buffer";
-            silent = true;
-          };
-        }
-        {
-          mode = "n";
           key = "<leader>bc";
           action.__raw = ''
             function ()

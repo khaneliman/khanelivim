@@ -100,14 +100,6 @@
         }
         {
           mode = "n";
-          key = "<C-w>";
-          action = ''<cmd>lua Snacks.bufdelete.delete()<cr>'';
-          options = {
-            desc = "Close buffer";
-          };
-        }
-        {
-          mode = "n";
           key = "<leader>bc";
           action = ''<cmd>lua Snacks.bufdelete.other()<cr>'';
           options = {
