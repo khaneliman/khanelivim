@@ -86,7 +86,7 @@ in
             name = "copilot";
             priority = 600;
           }
-          # TODO: figure out infinite recursion
+          # TODO: figure out infinite recursion when making conditional
           {
             name = "codeium";
             priority = 600;
@@ -152,6 +152,12 @@ in
       };
     };
 
+    # NOTE:
+    # Split lines in a file
+    # can use when evaluating list of failed builds
+    # :s/\s\+/\r/g
+
+    # TODO: add other snippets
     friendly-snippets.enable = true;
     luasnip.enable = true;
 
