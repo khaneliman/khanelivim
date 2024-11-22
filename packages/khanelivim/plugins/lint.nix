@@ -1,4 +1,9 @@
-{ lib, pkgs, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 {
   plugins = {
     lint = {
@@ -10,7 +15,7 @@
         cpp = [ "clangtidy" ];
         # TODO:
         # cs = [ "sonarlint" ];
-        css = [ "stylelint" ];
+        css = lib.mkIf (!config.plugins.lsp.servers.stylelint_lsp.enable) [ "stylelint" ];
         fish = [ "fish" ];
         # TODO:
         # fsharp = [ "" ];
@@ -18,7 +23,7 @@
         go = [ "golangcilint" ];
         html = [ "htmlhint" ];
         java = [ "checkstyle" ];
-        javascript = [ "biomejs" ];
+        javascript = lib.mkIf (!config.plugins.lsp.servers.biome.enable) [ "biomejs" ];
         json = [ "jsonlint" ];
         lua = [ "luacheck" ];
         make = [ "checkmake" ];
@@ -26,15 +31,14 @@
         nix = [
           "deadnix"
           "nix"
-          "statix"
-        ];
+        ] ++ lib.optionals (!config.plugins.lsp.servers.statix.enable) [ "statix" ];
         # FIXME: causes ruff errors
         # python = [ "pylint" ];
         rust = [ "clippy" ];
         sh = [ "shellcheck" ];
         sql = [ "sqlfluff" ];
         swift = [ "swiftlint" ];
-        typescript = [ "biomejs" ];
+        typescript = lib.mkIf (!config.plugins.lsp.servers.biome.enable) [ "biomejs" ];
         # TODO:
         # xml = [ "xmllint" ];
         yaml = [ "yamllint" ];
