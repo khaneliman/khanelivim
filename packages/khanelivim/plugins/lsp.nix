@@ -119,21 +119,10 @@
       servers = {
         bashls = {
           enable = true;
-
-          filetypes = [
-            "sh"
-            "bash"
-          ];
         };
 
         ccls = {
           enable = true;
-          filetypes = [
-            "c"
-            "cpp"
-            "objc"
-            "objcpp"
-          ];
 
           initOptions.compilationDatabaseDirectory = "build";
         };
@@ -141,61 +130,35 @@
         # TODO: see what further configuration might be needed
         cmake = {
           enable = true;
-          filetypes = [ "cmake" ];
         };
 
         clangd = {
           enable = true;
-          filetypes = [
-            "c"
-            "cpp"
-            "objc"
-            "objcpp"
-          ];
         };
 
         csharp_ls = {
           enable = true;
-          filetypes = [ "cs" ];
         };
 
         cssls = {
           enable = true;
-          filetypes = [
-            "css"
-            "less"
-            "scss"
-          ];
         };
 
         dockerls = {
           enable = true;
-          filetypes = [ "dockerfile" ];
         };
 
         eslint = {
           enable = true;
-          filetypes = [
-            "javascript"
-            "javascriptreact"
-            "typescript"
-            "typescriptreact"
-          ];
         };
 
         fsautocomplete = {
           enable = true;
-          filetypes = [ "fsharp" ];
         };
 
         gdscript = {
           enable = true;
           package = pkgs.gdtoolkit_4;
-          filetypes = [
-            "gd"
-            "gdscript"
-            "gdscript3"
-          ];
         };
 
         harper_ls = {
@@ -215,47 +178,36 @@
 
         helm_ls = {
           enable = true;
-          filetypes = [ "helm" ];
         };
 
         html = {
           enable = true;
-          filetypes = [ "html" ];
         };
 
         java_language_server = {
           enable = !config.plugins.nvim-jdtls.enable;
-          filetypes = [ "java" ];
         };
 
         jdtls = {
           enable = !config.plugins.nvim-jdtls.enable;
-          filetypes = [ "java" ];
         };
 
         jsonls = {
           enable = true;
-          filetypes = [
-            "json"
-            "jsonc"
-          ];
         };
 
         lua_ls = {
           enable = true;
-          filetypes = [ "lua" ];
         };
 
         marksman = {
           enable = true;
-          filetypes = [ "markdown" ];
         };
 
         nil_ls = {
           # FIXME: when nixd works again
           # enable = !config.plugins.lsp.servers.nixd.enable;
           enable = true;
-          filetypes = [ "nix" ];
           settings = {
             formatting = {
               command = [ "${lib.getExe pkgs.nixfmt-rfc-style}" ];
@@ -270,7 +222,6 @@
 
         nixd = {
           enable = !config.plugins.lsp.servers.nil_ls.enable;
-          filetypes = [ "nix" ];
           settings =
             let
               flake = ''(builtins.getFlake "${self}")'';
@@ -293,22 +244,18 @@
 
         nushell = {
           enable = true;
-          filetypes = [ "nu" ];
         };
 
         pyright = {
           enable = true;
-          filetypes = [ "python" ];
         };
 
         ruff = {
           enable = true;
-          filetypes = [ "python" ];
         };
 
         rust_analyzer = {
           enable = !config.plugins.rustaceanvim.enable;
-          filetypes = [ "rust" ];
           installCargo = true;
           installRustc = true;
 
@@ -345,32 +292,22 @@
 
         sqls = {
           enable = true;
-          filetypes = [ "sql" ];
         };
 
         # tailwindcss = {
         #   enable = true;
-        #   filetypes = [ "css" ];
         # };
 
         taplo = {
           enable = true;
-          filetypes = [ "toml" ];
         };
 
         ts_ls = {
           enable = !config.plugins.typescript-tools.enable;
-          filetypes = [
-            "javascript"
-            "javascriptreact"
-            "typescript"
-            "typescriptreact"
-          ];
         };
 
         yamlls = {
           enable = true;
-          filetypes = [ "yaml" ];
         };
       };
     };
