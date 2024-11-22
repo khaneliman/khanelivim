@@ -156,8 +156,19 @@
           enable = true;
         };
 
+        # TODO: package fish-lsp
+        # fish_lsp = {
+        #   enable = true;
+        # };
+
         fsautocomplete = {
           enable = true;
+        };
+
+        fsharp_language_server = {
+          enable = false;
+          # TODO: package FSharpLanguageServer
+          # cmd = [ "${pkgs.fsharp-language-server}/FSharpLanguageServer.dll" ];
         };
 
         gdscript = {
