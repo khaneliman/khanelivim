@@ -10,7 +10,7 @@
         keywords = [
           "TODO"
           "FIX"
-          "FIX"
+          "FIXME"
         ];
       };
     };
