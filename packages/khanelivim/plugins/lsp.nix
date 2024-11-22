@@ -298,6 +298,10 @@
           enable = true;
         };
 
+        stylelint_lsp = {
+          enable = true;
+        };
+
         # tailwindcss = {
         #   enable = true;
         # };
