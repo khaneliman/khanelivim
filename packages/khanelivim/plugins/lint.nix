@@ -32,10 +32,10 @@
           "nix"
           "statix"
         ];
-        python = [
-          "pylint"
-          "ruff"
-        ];
+        # FIXME: causes ruff errors
+        # python = [
+        #   "pylint"
+        # ];
         rust = [ "clippy" ];
         sh = [
           "shellcheck"
