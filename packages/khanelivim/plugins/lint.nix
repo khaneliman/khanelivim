@@ -5,7 +5,6 @@
       enable = true;
       lintersByFt = {
         bash = [ "shellcheck" ];
-        bicep = [ "bicep" ];
         c = [ "clangtidy" ];
         cmake = [ "cmakelint" ];
         cpp = [ "clangtidy" ];
@@ -30,14 +29,9 @@
           "statix"
         ];
         # FIXME: causes ruff errors
-        # python = [
-        #   "pylint"
-        # ];
+        # python = [ "pylint" ];
         rust = [ "clippy" ];
-        sh = [
-          "shellcheck"
-          "shellharden"
-        ];
+        sh = [ "shellcheck" ];
         sql = [ "sqlfluff" ];
         swift = [ "swiftlint" ];
         typescript = [ "biomejs" ];
@@ -47,9 +41,6 @@
       };
 
       linters = {
-        bicep = {
-          cmd = lib.getExe pkgs.bicep;
-        };
         biomejs = {
           cmd = lib.getExe pkgs.biome;
         };
