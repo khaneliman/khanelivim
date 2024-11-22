@@ -100,8 +100,8 @@
           gdscript = [ "gdformat" ];
           java = [ "google-java-format" ];
           javascript = {
-            __unkeyed-1 = "prettierd";
-            __unkeyed-2 = "prettier";
+            __unkeyed-1 = "biome";
+            __unkeyed-2 = "prettierd";
             timeout_ms = 2000;
             stop_after_first = true;
           };
@@ -124,8 +124,8 @@
           terraform = [ "terraform_fmt" ];
           toml = [ "taplo" ];
           typescript = {
-            __unkeyed-1 = "prettierd";
-            __unkeyed-2 = "prettier";
+            __unkeyed-1 = "biome";
+            __unkeyed-2 = "prettierd";
             timeout_ms = 2000;
             stop_after_first = true;
           };
@@ -144,6 +144,9 @@
         };
 
         formatters = {
+          biome = {
+            command = lib.getExe pkgs.biome;
+          };
           black = {
             command = lib.getExe pkgs.black;
           };
