@@ -4,10 +4,7 @@
     lint = {
       enable = true;
       lintersByFt = {
-        bash = [
-          "bash"
-          "shellcheck"
-        ];
+        bash = [ "shellcheck" ];
         bicep = [ "bicep" ];
         c = [ "clangtidy" ];
         cmake = [ "cmakelint" ];
@@ -43,10 +40,8 @@
         ];
         sql = [ "sqlfluff" ];
         swift = [ "swiftlint" ];
-        # TODO:
-        # terraform = [ ];
-        # toml = [ "taplo" ];
         typescript = [ "biomejs" ];
+        # TODO:
         # xml = [ "xmllint" ];
         yaml = [ "yamllint" ];
       };
@@ -90,9 +85,6 @@
         };
         pylint = {
           cmd = lib.getExe pkgs.pylint;
-        };
-        ruff = {
-          cmd = lib.getExe pkgs.ruff;
         };
         shellcheck = {
           cmd = lib.getExe pkgs.shellcheck;
