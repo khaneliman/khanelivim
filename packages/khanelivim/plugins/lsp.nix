@@ -121,6 +121,10 @@
           enable = true;
         };
 
+        biome = {
+          enable = true;
+        };
+
         ccls = {
           enable = true;
 
