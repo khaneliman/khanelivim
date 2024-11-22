@@ -298,6 +298,15 @@
           enable = true;
         };
 
+        statix = {
+          enable = true;
+          cmd = [
+            "statix"
+            "check"
+            "-s"
+          ];
+        };
+
         stylelint_lsp = {
           enable = true;
         };
