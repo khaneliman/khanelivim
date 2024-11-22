@@ -47,6 +47,9 @@
       };
 
       linters = {
+        bicep = {
+          cmd = lib.getExe pkgs.bicep;
+        };
         biomejs = {
           cmd = lib.getExe pkgs.biome;
         };
@@ -55,6 +58,12 @@
         };
         checkstyle = {
           cmd = lib.getExe pkgs.checkstyle;
+        };
+        clangtidy = {
+          cmd = lib.getExe' pkgs.clang-tools "clang-tidy";
+        };
+        cmakelint = {
+          cmd = lib.getExe' pkgs.cmake-format "cmake-lint";
         };
         clippy = {
           cmd = lib.getExe pkgs.rust-analyzer;
@@ -94,6 +103,9 @@
         };
         statix = {
           cmd = lib.getExe pkgs.statix;
+        };
+        stylelint = {
+          command = lib.getExe pkgs.stylelint;
         };
         swiftlint = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin {
           cmd = lib.getExe pkgs.swiftlint;
