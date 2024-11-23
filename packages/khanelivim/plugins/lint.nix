@@ -100,7 +100,7 @@
           cmd = lib.getExe pkgs.statix;
         };
         stylelint = {
-          command = lib.getExe pkgs.stylelint;
+          cmd = lib.getExe pkgs.stylelint;
         };
         swiftlint = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin {
           cmd = lib.getExe pkgs.swiftlint;
