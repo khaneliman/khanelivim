@@ -102,9 +102,10 @@
         stylelint = {
           cmd = lib.getExe pkgs.stylelint;
         };
-        swiftlint = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin {
-          cmd = lib.getExe pkgs.swiftlint;
-        };
+        # FIXME: throwing error for some reason
+        # swiftlint = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin {
+        #   cmd = lib.getExe pkgs.swiftlint;
+        # };
         yamllint = {
           cmd = lib.getExe pkgs.yamllint;
         };
