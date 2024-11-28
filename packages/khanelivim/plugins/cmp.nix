@@ -1,3 +1,4 @@
+{ config, ... }:
 let
   get_bufnrs.__raw = ''
     function()
@@ -22,7 +23,7 @@ in
 
   plugins = {
     cmp = {
-      enable = true;
+      enable = !config.plugins.blink-cmp.enable;
       autoEnableSources = true;
 
       settings = {
