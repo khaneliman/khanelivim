@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "blink.compat": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1732744937,
+        "narHash": "sha256-vIv4dxoXiakunYHIr7X4acqjBRWBO/wAgTCZeXYdgx4=",
+        "owner": "saghen",
+        "repo": "blink.compat",
+        "rev": "669a4b0d31a2a3c2ff38959e7885644ea0299e8e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "saghen",
+        "repo": "blink.compat",
+        "type": "github"
+      }
+    },
     "devshell": {
       "inputs": {
         "nixpkgs": [
@@ -489,6 +505,7 @@
     },
     "root": {
       "inputs": {
+        "blink.compat": "blink.compat",
         "nixpkgs": "nixpkgs",
         "nixvim": "nixvim",
         "pre-commit-hooks-nix": "pre-commit-hooks-nix",

@@ -29,6 +29,11 @@
       url = "github:snowfallorg/flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    "blink.compat" = {
+      url = "github:saghen/blink.compat";
+      flake = false;
+    };
   };
 
   outputs =
