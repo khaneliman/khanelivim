@@ -87,10 +87,10 @@ in
             priority = 600;
           }
           # TODO: figure out infinite recursion when making conditional
-          {
-            name = "codeium";
-            priority = 600;
-          }
+          # {
+          #   name = "codeium";
+          #   priority = 600;
+          # }
           {
             name = "buffer";
             priority = 500;

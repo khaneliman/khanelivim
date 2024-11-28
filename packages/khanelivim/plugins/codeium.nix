@@ -7,7 +7,8 @@
 {
   plugins = {
     codeium-nvim = {
-      enable = true;
+      # TODO: properly disable only with copilot enabled
+      enable = false;
 
       settings = {
         enable_chat = true;
