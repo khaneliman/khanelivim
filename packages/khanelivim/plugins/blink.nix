@@ -1,6 +1,18 @@
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
+  extraPlugins = lib.mkIf config.plugins.blink-cmp.enable [ pkgs.khanelivim.blink-compat ];
+
   plugins.blink-cmp = {
     enable = true;
+    luaConfig.pre = # lua
+      ''
+        require('blink.compat').setup({debug = true})
+      '';
 
     settings = {
       appearance = {
