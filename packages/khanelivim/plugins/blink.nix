@@ -10,18 +10,29 @@
   plugins = lib.mkMerge [
     {
       blink-cmp = {
-        enable = true;
+        # enable = true;
         package = pkgs.khanelivim.blink-cmp;
         luaConfig.pre = # lua
           ''
-            require('blink.compat').setup({debug = true})
+            require('blink.compat').setup({debug = true, impersonate_nvim_cmp = true})
           '';
 
         settings = {
           accept.auto_brackets.enabled = true;
           nerd_font_variant = "mono";
           kind_icons = {
-            Copilot = "";
+            buffer = "";
+            calc = "";
+            copilot = "";
+            emoji = "󰞅";
+            git = "";
+            #neorg = "";
+            lsp = "";
+            nvim_lua = "";
+            path = "";
+            spell = "";
+            #treesitter = "󰔱";
+            #nixpkgs_maintainers = "";
           };
           highlight = {
             use_nvim_cmp_as_default = true;
@@ -48,56 +59,68 @@
           sources = {
             completion = {
               enabled_providers = [
+                "buffer"
+                "calc"
+                "cmdline"
                 "copilot"
+                "emoji"
+                "git"
                 "lsp"
+                #"npm"
                 "path"
                 "snippets"
-                "buffer"
-                "git"
-                "calc"
-                "luasnip"
+                "spell"
+                #"treesitter"
+                "zsh"
               ];
             };
             providers = {
-              lsp = {
-                name = "LSP";
-                module = "blink.cmp.sources.lsp";
-              };
-              path = {
-                name = "Path";
-                module = "blink.cmp.sources.path";
-                score_offset = 3;
-              };
-              snippets = {
-                name = "Snippets";
-                module = "blink.cmp.sources.snippets";
-                score_offset = -3;
-              };
-              buffer = {
-                name = "Buffer";
-                module = "blink.cmp.sources.buffer";
-                fallback_for = [ "lsp" ];
-              };
-              git = {
-                name = "git";
-                module = "blink.compat.source";
-              };
               calc = {
                 name = "calc";
+                module = "blink.compat.source";
+              };
+              cmdline = {
+                name = "cmdline";
                 module = "blink.compat.source";
               };
               copilot = {
                 name = "copilot";
                 module = "blink.compat.source";
+                transform_items.__raw = ''
+                  function(ctx, items)
+                      -- TODO: check https://github.com/Saghen/blink.cmp/pull/253#issuecomment-2454984622
+                      local kind = require("blink.cmp.types").CompletionItemKind.Text
+
+                      for i = 1, #items do
+                          items[i].kind = kind
+                      end
+
+                      return items
+                  end'';
               };
-              luasnip = {
-                name = "luasnip";
+              emoji = {
+                name = "emoji";
                 module = "blink.compat.source";
-                score_offset = -3;
-                opts = {
-                  use_show_condition = false;
-                  show_autosnippets = true;
-                };
+              };
+              git = {
+                name = "git";
+                module = "blink.compat.source";
+              };
+              #npm = {
+              #    name = "npm";
+              #    module = "blink.compat.source";
+              #  };
+              spell = {
+                name = "spell";
+                module = "blink.compat.source";
+              };
+              #treesitter = {
+              #    name = "treesitter";
+              #    module = "blink.compat.source";
+              #  };
+              zsh = {
+                name = "zsh";
+                module = "blink.compat.source";
               };
             };
           };
@@ -128,9 +151,9 @@
               auto_show = true;
               border = "rounded";
             };
-            ghost_text = {
-              enabled = true;
-            };
+            #ghost_text = {
+            #  enabled = true;
+            #};
             signature_help = {
               border = "rounded";
             };
@@ -139,9 +162,15 @@
       };
     }
     (lib.mkIf config.plugins.blink-cmp.enable {
-      cmp-git.enable = true;
       cmp-calc.enable = true;
+      cmp-cmdline.enable = true;
+      cmp-emoji.enable = true;
+      cmp-git.enable = true;
+      #cmp-nixpkgs_maintainers.enable = true;
+      cmp-npm.enable = true;
+      cmp-spell.enable = true;
       cmp-treesitter.enable = true;
+      cmp-zsh.enable = true;
       copilot-cmp.enable = true;
 
       lsp.capabilities = # Lua
