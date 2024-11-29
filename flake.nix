@@ -65,6 +65,12 @@
 
       channels-config = {
         allowUnfree = true;
+        permittedInsecurePackages = [
+          "dotnet-core-combined"
+          "dotnet-sdk-6.0.428"
+          "dotnet-sdk-7.0.410"
+          "dotnet-sdk-wrapped-6.0.428"
+        ];
       };
 
       outputs-builder = channels: { formatter = channels.nixpkgs.nixfmt-rfc-style; };
