@@ -334,6 +334,10 @@
           enable = !config.plugins.typescript-tools.enable;
         };
 
+        typos_lsp = {
+          enable = true;
+        };
+
         yamlls = {
           enable = true;
         };
