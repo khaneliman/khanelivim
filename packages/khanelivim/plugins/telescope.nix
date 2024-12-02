@@ -133,7 +133,8 @@
       };
 
       frecency = {
-        enable = true;
+        # FIXME: super slow loading
+        # enable = true;
         settings = {
           auto_validate = false;
         };
