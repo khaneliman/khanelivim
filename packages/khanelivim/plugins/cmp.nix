@@ -119,10 +119,11 @@ in
             name = "git";
             priority = 250;
           }
-          {
-            name = "neorg";
-            priority = 250;
-          }
+          # FIXME: lazy load
+          # {
+          #   name = "neorg";
+          #   priority = 250;
+          # }
           {
             name = "npm";
             priority = 250;
