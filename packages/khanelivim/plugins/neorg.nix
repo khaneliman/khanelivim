@@ -1,5 +1,6 @@
+{ config, lib, ... }:
 {
-  autoCmd = [
+  autoCmd = lib.optionals config.plugins.neorg.enable [
     {
       event = "FileType";
       pattern = "norg";
