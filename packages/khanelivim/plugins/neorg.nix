@@ -14,7 +14,8 @@
   ];
 
   plugins.neorg = {
-    enable = true;
+    # FIXME: lazy load
+    # enable = true;
 
     modules = {
       "core.defaults".__empty = null;
