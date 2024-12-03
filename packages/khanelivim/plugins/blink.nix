@@ -11,7 +11,6 @@
     {
       blink-cmp = {
         # enable = true;
-        package = pkgs.khanelivim.blink-cmp;
         luaConfig.pre = # lua
           ''
             require('blink.compat').setup({debug = true, impersonate_nvim_cmp = true})
