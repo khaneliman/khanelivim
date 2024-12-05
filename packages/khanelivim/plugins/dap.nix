@@ -144,6 +144,8 @@ in
   plugins = {
     dap = {
       enable = true;
+      # TODO: # TODO: upgrade to mkNeovimPlugin
+      # lazyLoad.enable = true;
 
       adapters = {
         executables = {
