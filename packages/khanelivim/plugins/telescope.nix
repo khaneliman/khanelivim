@@ -124,7 +124,7 @@
   plugins.telescope = {
     enable = true;
 
-    lazyLoad.enable = true;
+    # lazyLoad.enable = true;
 
     extensions = {
       file-browser = {

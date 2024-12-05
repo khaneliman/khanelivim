@@ -3,7 +3,6 @@
     enable = true;
 
     lazyLoad = {
-      enable = true;
       settings = {
         ft = "typescript";
       };

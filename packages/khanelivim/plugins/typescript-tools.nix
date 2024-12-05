@@ -3,12 +3,12 @@
     typescript-tools = {
       enable = true;
 
-      lazyLoad = {
-        enable = true;
-        settings = {
-          ft = "typescript";
-        };
-      };
+      # TODO: doesn't work due to how upstream passes config
+      # lazyLoad = {
+      #   settings = {
+      #     ft = "typescript";
+      #   };
+      # };
 
       settings = {
         settings = {
