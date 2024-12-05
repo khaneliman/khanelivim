@@ -6,8 +6,6 @@
       enableTelescope = true;
 
       lazyLoad = {
-        enable = true;
-
         settings = {
           keys = [
             {

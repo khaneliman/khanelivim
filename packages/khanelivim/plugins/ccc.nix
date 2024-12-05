@@ -5,8 +5,6 @@
       enable = true;
 
       lazyLoad = {
-        enable = true;
-
         settings = {
           keys = [
             {
