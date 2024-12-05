@@ -6,7 +6,12 @@
       # TODO: doesn't work due to how upstream passes config
       # lazyLoad = {
       #   settings = {
-      #     ft = "typescript";
+      #     ft = [
+      #       "javascript"
+      #       "typescript"
+      #       "javascriptreact"
+      #       "typescriptreact"
+      #     ];
       #   };
       # };
 
