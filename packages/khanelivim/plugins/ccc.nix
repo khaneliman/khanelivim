@@ -4,6 +4,20 @@
     ccc = {
       enable = true;
 
+      lazyLoad = {
+        enable = true;
+
+        settings = {
+          keys = [
+            {
+              __unkeyed-1 = "<leader>up";
+              __unkeyed-2 = "<cmd>CccPick<CR>";
+              desc = "Color Picker toggle";
+            }
+          ];
+        };
+      };
+
       settings = {
         highlighter = {
           auto_enable = true;
@@ -66,7 +80,7 @@
     };
   };
 
-  keymaps = lib.mkIf config.plugins.ccc.enable [
+  keymaps = lib.mkIf (config.plugins.ccc.enable && !config.plugins.ccc.lazyLoad.enable) [
     {
       mode = "n";
       key = "<leader>up";
