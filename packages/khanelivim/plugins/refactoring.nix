@@ -4,6 +4,53 @@
     refactoring = {
       enable = true;
       enableTelescope = true;
+
+      lazyLoad = {
+        enable = true;
+
+        settings = {
+          keys = [
+            {
+              mode = "x";
+              __unkeyed-1 = "<leader>re";
+              __unkeyed-2 = "<cmd>Refactor extract<cr>";
+              desc = "Extract";
+            }
+            {
+              mode = "x";
+              __unkeyed-1 = "<leader>rE";
+              __unkeyed-2 = "<cmd>Refactor extract_to_file<cr>";
+              desc = "Extract to file";
+            }
+            {
+              mode = "x";
+              __unkeyed-1 = "<leader>rv";
+              __unkeyed-2 = "cmd>Refactor extract_var<cr>";
+              desc = "Extract var";
+            }
+            {
+              __unkeyed-1 = "<leader>ri";
+              __unkeyed-2 = "<cmd>Refactor inline_var<CR>";
+              desc = "Inline var";
+            }
+            {
+              __unkeyed-1 = "<leader>rI";
+              __unkeyed-2 = "<cmd>Refactor inline_func<CR>";
+              desc = "Inline Func";
+            }
+            {
+              __unkeyed-1 = "<leader>rb";
+              __unkeyed-2 = "<cmd>Refactor extract_block<CR>";
+              desc = "Extract block";
+            }
+            {
+              __unkeyed-1 = "<leader>rB";
+              __unkeyed-2 = "<cmd>Refactor extract_block_to_file<CR>";
+              desc = "Extract block to file";
+            }
+          ];
+        };
+      };
     };
 
     which-key.settings.spec = lib.optionals config.plugins.refactoring.enable [
@@ -17,7 +64,7 @@
   };
 
   keymaps =
-    lib.optionals config.plugins.refactoring.enable [
+    lib.optionals (config.plugins.refactoring.enable && !config.plugins.refactoring.lazyLoad.enable) [
       {
         mode = "x";
         key = "<leader>re";
