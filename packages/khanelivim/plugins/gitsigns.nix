@@ -6,6 +6,9 @@ in
   plugins = {
     gitsigns = {
       enable = true;
+      lazyLoad = {
+        enable = true;
+      };
 
       settings = {
         current_line_blame = true;
