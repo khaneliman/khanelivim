@@ -62,6 +62,9 @@
   };
 
   colorschemes.catppuccin = {
+    # FIXME: breaks custom overrides by being lazy loaded
+    # lazyLoad.enable = true;
+
     settings = {
       default_integrations = true;
       dim_inactive = {
