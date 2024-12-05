@@ -4,7 +4,12 @@
 
     lazyLoad = {
       settings = {
-        ft = "typescript";
+        ft = [
+          "javascript"
+          "typescript"
+          "javascriptreact"
+          "typescriptreact"
+        ];
       };
     };
 
