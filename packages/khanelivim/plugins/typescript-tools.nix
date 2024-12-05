@@ -2,6 +2,14 @@
   plugins = {
     typescript-tools = {
       enable = true;
+
+      lazyLoad = {
+        enable = true;
+        settings = {
+          ft = "typescript";
+        };
+      };
+
       settings = {
         settings = {
           separate_diagnostic_server = true;
