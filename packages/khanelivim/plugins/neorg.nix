@@ -14,8 +14,10 @@
   ];
 
   plugins.neorg = {
-    # FIXME: lazy load
+    # FIXME: super slow loading
     # enable = true;
+    # TODO: # TODO: upgrade to mkNeoVimPlugin
+    # lazyLoad.enable = true;
 
     modules = {
       "core.defaults".__empty = null;
