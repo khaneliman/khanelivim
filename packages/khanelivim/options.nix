@@ -33,6 +33,12 @@
   };
 
   opts = {
+    completeopt = [
+      "menu"
+      "menuone"
+      "noselect"
+    ];
+
     updatetime = 100; # Faster completion
 
     # Line numbers

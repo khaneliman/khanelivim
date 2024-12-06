@@ -15,12 +15,6 @@ let
   '';
 in
 {
-  opts.completeopt = [
-    "menu"
-    "menuone"
-    "noselect"
-  ];
-
   plugins = {
     cmp = {
       enable = !config.plugins.blink-cmp.enable;
