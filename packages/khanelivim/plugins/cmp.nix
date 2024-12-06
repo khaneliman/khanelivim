@@ -147,13 +147,5 @@ in
         };
       };
     };
-
-    # NOTE:
-    # Split lines in a file
-    # can use when evaluating list of failed builds
-    # :s/\s\+/\r/g
-
-    # TODO: add other snippets
-    friendly-snippets.enable = true;
   };
 }
