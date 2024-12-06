@@ -6,16 +6,12 @@
 }:
 {
   plugins = {
-    lz-n = {
+    codesnap = {
       enable = true;
-      plugins = [
-        (lib.mkIf config.plugins.codesnap.enable {
-          __unkeyed-1 = "codesnap.nvim";
-          after.__raw = ''
-            function()
-              ${config.plugins.codesnap.luaConfig.content}
-            end
-          '';
+      package = pkgs.vimPlugins.codesnap-nvim;
+
+      lazyLoad = {
+        settings = {
           cmd = [
             "CodeSnap"
             "CodeSnapSave"
@@ -48,13 +44,8 @@
               mode = "v";
             }
           ];
-        })
-      ];
-    };
-    codesnap = {
-      enable = true;
-      # lazyLoad.enable = true;
-      package = pkgs.vimPlugins.codesnap-nvim;
+        };
+      };
 
       settings = {
         code_font_family = "MonaspiceNe Nerd Font";
