@@ -17,23 +17,32 @@
           '';
 
         settings = {
-          accept.auto_brackets.enabled = true;
-          nerd_font_variant = "mono";
-          kind_icons = {
-            buffer = "";
-            calc = "";
-            copilot = "";
-            emoji = "󰞅";
-            git = "";
-            #neorg = "";
-            lsp = "";
-            nvim_lua = "";
-            path = "";
-            spell = "";
-            #treesitter = "󰔱";
-            #nixpkgs_maintainers = "";
+          completion = {
+            accept.auto_brackets.enabled = true;
+            ghost_text.enabled = true;
+            documentation = {
+              auto_show = true;
+              window.border = "rounded";
+            };
+            menu = {
+              border = "rounded";
+              draw = {
+                columns = [
+                  {
+                    __unkeyed-1 = "label";
+                    __unkeyed-2 = "label_description";
+                    gap = 1;
+                  }
+                  {
+                    __unkeyed-1 = "kind_icon";
+                    __unkeyed-2 = "kind";
+                    gap = 1;
+                  }
+                ];
+              };
+            };
           };
-          highlight = {
+          appearance = {
             use_nvim_cmp_as_default = true;
           };
           keymap = {
@@ -55,6 +64,10 @@
               "fallback"
             ];
           };
+          signature = {
+            enabled = true;
+            window.border = "rounded";
+          };
           sources = {
             completion = {
               enabled_providers = [
@@ -65,6 +78,7 @@
                 "emoji"
                 "git"
                 "lsp"
+                "luasnip"
                 #"npm"
                 "path"
                 "snippets"
@@ -85,6 +99,7 @@
               copilot = {
                 name = "copilot";
                 module = "blink.compat.source";
+                score_offset = 100;
                 transform_items.__raw = ''
                   function(ctx, items)
                       -- TODO: check https://github.com/Saghen/blink.cmp/pull/253#issuecomment-2454984622
@@ -105,10 +120,10 @@
                 name = "git";
                 module = "blink.compat.source";
               };
-              #npm = {
-              #    name = "npm";
-              #    module = "blink.compat.source";
-              #  };
+              npm = {
+                name = "npm";
+                module = "blink.compat.source";
+              };
               spell = {
                 name = "spell";
                 module = "blink.compat.source";
@@ -121,40 +136,6 @@
                 name = "zsh";
                 module = "blink.compat.source";
               };
-            };
-          };
-          trigger = {
-            signature_help = {
-              enabled = true;
-            };
-          };
-          windows = {
-            autocomplete = {
-              border = "rounded";
-              draw = {
-                columns = [
-                  {
-                    __unkeyed-1 = "label";
-                    __unkeyed-2 = "label_description";
-                    gap = 1;
-                  }
-                  {
-                    __unkeyed-1 = "kind_icon";
-                    __unkeyed-2 = "kind";
-                    gap = 1;
-                  }
-                ];
-              };
-            };
-            documentation = {
-              auto_show = true;
-              border = "rounded";
-            };
-            #ghost_text = {
-            #  enabled = true;
-            #};
-            signature_help = {
-              border = "rounded";
             };
           };
         };
