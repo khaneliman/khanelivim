@@ -6,10 +6,6 @@
 }:
 {
   plugins = {
-    lz-n = {
-      enable = true;
-    };
-
     neotest = {
       enable = true;
       lazyLoad = {
