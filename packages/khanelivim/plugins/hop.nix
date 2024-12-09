@@ -2,7 +2,7 @@
 {
   plugins = {
     hop = {
-      enable = true;
+      enable = false;
     };
   };
 
