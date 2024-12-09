@@ -140,6 +140,10 @@
         };
       };
 
+      fzy-native = {
+        enable = true;
+      };
+
       live-grep-args.enable = true;
 
       manix.enable = true;
