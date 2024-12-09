@@ -6,27 +6,11 @@
 
       lazyLoad = {
         settings = {
-          keys = [
-            {
-              __unkeyed-1 = "<leader>Ro";
-              __unkeyed-2 = "<cmd>CompilerOpen<CR>";
-              desc = "Compiler Open";
-            }
-            {
-              __unkeyed-1 = "<leader>Rr";
-              __unkeyed-2 = "<cmd>CompilerRedo<CR>";
-              desc = "Compiler Redo";
-            }
-            {
-              __unkeyed-1 = "<leader>Rs";
-              __unkeyed-2 = "<cmd>CompilerStop<CR>";
-              desc = "Compiler Stop";
-            }
-            {
-              __unkeyed-1 = "<leader>Rt";
-              __unkeyed-2 = "<cmd>CompilerToggleResults<CR>";
-              desc = "Compiler Toggle Results";
-            }
+          cmd = [
+            "CompilerOpen"
+            "CompilerRedo"
+            "CompilerStop"
+            "CompilerToggleResults"
           ];
         };
       };
@@ -41,7 +25,7 @@
     ];
   };
 
-  keymaps = lib.mkIf (config.plugins.compiler.enable && !config.plugins.compiler.lazyLoad.enable) [
+  keymaps = lib.mkIf config.plugins.compiler.enable [
     {
       mode = "n";
       key = "<leader>Ro";
