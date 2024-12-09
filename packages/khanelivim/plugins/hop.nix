@@ -2,7 +2,7 @@
 {
   plugins = {
     hop = {
-      enable = false;
+      enable = !config.plugins.flash.enable;
     };
   };
 
