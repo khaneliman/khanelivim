@@ -18,32 +18,6 @@
             "CodeSnapHighlight"
             "CodeSnapSaveHighlight"
           ];
-          keys = [
-            {
-              __unkeyed-1 = "<leader>cc";
-              __unkeyed-3 = "<cmd>CodeSnap<CR>";
-              desc = "Copy";
-              mode = "v";
-            }
-            {
-              __unkeyed-1 = "<leader>cs";
-              __unkeyed-3 = "<cmd>CodeSnapSave<CR>";
-              desc = "Save";
-              mode = "v";
-            }
-            {
-              __unkeyed-1 = "<leader>ch";
-              __unkeyed-3 = "<cmd>CodeSnapHighlight<CR>";
-              desc = "Highlight";
-              mode = "v";
-            }
-            {
-              __unkeyed-1 = "<leader>cH";
-              __unkeyed-3 = "<cmd>CodeSnapSaveHighlight<CR>";
-              desc = "Save Highlight";
-              mode = "v";
-            }
-          ];
         };
       };
 
@@ -69,7 +43,7 @@
     ];
   };
 
-  keymaps = lib.mkIf (config.plugins.codesnap.enable && !config.plugins.lz-n.enable) [
+  keymaps = lib.mkIf config.plugins.codesnap.enable [
     {
       mode = "v";
       key = "<leader>cc";
