@@ -6,13 +6,7 @@
 
       lazyLoad = {
         settings = {
-          keys = [
-            {
-              __unkeyed-1 = "<leader>up";
-              __unkeyed-2 = "<cmd>CccPick<CR>";
-              desc = "Color Picker toggle";
-            }
-          ];
+          cmd = "CccPick";
         };
       };
 
@@ -78,7 +72,7 @@
     };
   };
 
-  keymaps = lib.mkIf (config.plugins.ccc.enable && !config.plugins.ccc.lazyLoad.enable) [
+  keymaps = lib.mkIf config.plugins.ccc.enable [
     {
       mode = "n";
       key = "<leader>up";
