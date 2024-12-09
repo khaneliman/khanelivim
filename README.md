@@ -118,7 +118,7 @@ when you cd into the directory.)
   - dap: A debugger adapter protocol
   - illuminate: A plugin that highlights occurrences of the word under the
     cursor
-  - leap: A motion plugin to jump to any word in the visible text
+  - hop.nvim: A plugin to quickly jump to any location on the screen
   - lightbulb: A plugin that shows a lightbulb when code actions are available
   - lsp: Language server protocol integration
   - navic: A navigation plugin that uses lsp symbols to provide a breadcrumb
@@ -140,11 +140,8 @@ when you cd into the directory.)
     javascript files
   - debugprint: A plugin that makes it easier to debug print statements
   - diffview: A plugin to view diffs
-  - dirtytalk: A plugin that provides some funny messages
-  - efm: A file manager
   - glow.nvim: A markdown previewer
   - harpoon: A plugin to mark and quickly navigate between files
-  - hop.nvim: A plugin to quickly jump to any location on the screen
   - indent-blankline.nvim: A plugin that shows indent lines
   - smartcolumn: A plugin to automatically adjust column widths
   - spectre: A search and replace tool
