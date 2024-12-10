@@ -2,17 +2,6 @@
   plugins.ts-comments = {
     enable = true;
 
-    lazyLoad = {
-      settings = {
-        ft = [
-          "javascript"
-          "typescript"
-          "javascriptreact"
-          "typescriptreact"
-        ];
-      };
-    };
-
     settings = {
       lang = {
         astro = "<!-- %s -->";
