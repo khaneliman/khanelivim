@@ -5,19 +5,13 @@
       enable = true;
       lazyLoad = {
         settings = {
-          keys = [
-            {
-              __unkeyed-1 = "<leader>rs";
-              __unkeyed-2 = "<cmd>Spectre<CR>";
-              desc = "Spectre toggle";
-            }
-          ];
+          cmd = "Spectre";
         };
       };
     };
   };
 
-  keymaps = lib.mkIf (config.plugins.spectre.enable && !config.plugins.lz-n.enable) [
+  keymaps = lib.mkIf config.plugins.spectre.enable [
     {
       mode = "n";
       key = "<leader>rs";
