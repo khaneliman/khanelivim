@@ -9,6 +9,7 @@
     with pkgs.khanelivim;
     [
       blink-compat
+      blink-cmp-copilot
     ]
   );
 
@@ -103,19 +104,8 @@
               };
               copilot = {
                 name = "copilot";
-                module = "blink.compat.source";
-                score_offset = 100;
-                transform_items.__raw = ''
-                  function(ctx, items)
-                      -- TODO: check https://github.com/Saghen/blink.cmp/pull/253#issuecomment-2454984622
-                      local kind = require("blink.cmp.types").CompletionItemKind.Text
-
-                      for i = 1, #items do
-                          items[i].kind = kind
-                      end
-
-                      return items
-                  end'';
+                module = "blink-cmp-copilot";
+                score_offset = 5;
               };
               emoji = {
                 name = "emoji";
@@ -156,7 +146,6 @@
       cmp-spell.enable = true;
       cmp-treesitter.enable = true;
       cmp-zsh.enable = true;
-      copilot-cmp.enable = true;
 
       lsp.capabilities = # Lua
         ''
