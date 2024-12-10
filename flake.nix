@@ -30,7 +30,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    "blink.compat" = {
+    blink-compat = {
       url = "github:saghen/blink.compat";
       flake = false;
     };

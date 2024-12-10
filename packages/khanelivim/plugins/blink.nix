@@ -5,7 +5,12 @@
   ...
 }:
 {
-  extraPlugins = lib.mkIf config.plugins.blink-cmp.enable [ pkgs.khanelivim.blink-compat ];
+  extraPlugins = lib.mkIf config.plugins.blink-cmp.enable (
+    with pkgs.khanelivim;
+    [
+      blink-compat
+    ]
+  );
 
   plugins = lib.mkMerge [
     {

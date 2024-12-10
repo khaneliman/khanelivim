@@ -1,6 +1,6 @@
 {
   "nodes": {
-    "blink.compat": {
+    "blink-compat": {
       "flake": false,
       "locked": {
         "lastModified": 1733256820,
@@ -505,7 +505,7 @@
     },
     "root": {
       "inputs": {
-        "blink.compat": "blink.compat",
+        "blink-compat": "blink-compat",
         "nixpkgs": "nixpkgs",
         "nixvim": "nixvim",
         "pre-commit-hooks-nix": "pre-commit-hooks-nix",
