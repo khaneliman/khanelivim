@@ -4,6 +4,7 @@
     settings = {
       colorcolumn = "80";
       disabled_filetypes = [
+        "ministarter"
         "checkhealth"
         "help"
         "lspinfo"
