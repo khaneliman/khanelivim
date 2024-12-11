@@ -79,7 +79,7 @@
         ];
       };
 
-      adapters = {
+      adapters = lib.mkIf config.plugins.treesitter.enable {
         bash.enable = config.plugins.neotest.enable;
         deno.enable = config.plugins.neotest.enable;
         dotnet = {
