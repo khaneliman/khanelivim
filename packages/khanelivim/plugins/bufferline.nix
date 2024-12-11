@@ -16,6 +16,8 @@
     {
       enable = true;
 
+      lazyLoad.settings.event = "BufEnter";
+
       settings = {
         options = {
           mode = "buffers";
