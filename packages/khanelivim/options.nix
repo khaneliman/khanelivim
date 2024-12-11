@@ -27,7 +27,7 @@
     disable_diagnostics = false;
     disable_autoformat = false;
     spell_enabled = true;
-    colorizing_enabled = 1;
+    colorizing_enabled = false;
     first_buffer_opened = false;
 
   };
