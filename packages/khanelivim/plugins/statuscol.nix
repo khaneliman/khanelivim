@@ -1,9 +1,15 @@
-{ config, ... }:
+{ config, lib, ... }:
 {
   plugins.statuscol = {
     enable =
       (!config.plugins.snacks.enable)
-      || config.plugins.snacks.enable && (!config.plugins.snacks.settings.statuscolumn.enabled);
+      ||
+        config.plugins.snacks.enable
+        && (
+          lib.hasAttr "statuscolumn" config.plugins.snacks.settings ? statuscolumn
+          && lib.hasAttr "enabled" config.plugins.snacks.settings.statuscolumn
+          && !config.plugins.snacks.settings.statuscolumn.enabled
+        );
 
     settings = {
       relculright = true;
