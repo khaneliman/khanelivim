@@ -70,6 +70,7 @@
         indent.enabled = true;
         lazygit.enabled = true;
         profiler.enabled = true;
+        scroll.enabled = true;
         statuscolumn = {
           enabled = true;
 
