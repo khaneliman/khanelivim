@@ -1,7 +1,8 @@
+{ config, ... }:
 {
   plugins = {
     clangd-extensions = {
-      enable = true;
+      inherit (config.plugins.treesitter) enable;
       enableOffsetEncodingWorkaround = true;
 
       ast = {
