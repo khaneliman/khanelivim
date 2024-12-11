@@ -8,7 +8,7 @@
     };
 
     copilot-chat = {
-      enable = true;
+      inherit (config.plugins.copilot-lua) enable;
 
       settings = {
         # NOTE: if you want float
