@@ -59,7 +59,7 @@
     };
 
     treesitter-refactor = {
-      enable = true;
+      inherit (config.plugins.treesitter) enable;
 
       highlightDefinitions = {
         enable = true;
