@@ -65,12 +65,8 @@
             end
           '';
         };
-        bufdelete = {
-          enabled = true;
-        };
-        gitbrowse = {
-          enabled = true;
-        };
+        bufdelete.enabled = true;
+        gitbrowse.enabled = true;
         indent.enabled = true;
         lazygit.enabled = true;
         profiler.enabled = true;
