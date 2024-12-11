@@ -71,6 +71,7 @@
         gitbrowse = {
           enabled = true;
         };
+        indent.enabled = true;
         lazygit.enabled = true;
         profiler.enabled = true;
         statuscolumn = {
