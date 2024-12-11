@@ -1,6 +1,9 @@
 {
   plugins.smartcolumn = {
     enable = true;
+
+    lazyLoad.settings.event = "BufEnter";
+
     settings = {
       colorcolumn = "80";
       disabled_filetypes = [
