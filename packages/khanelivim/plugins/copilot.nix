@@ -10,6 +10,8 @@
     copilot-chat = {
       inherit (config.plugins.copilot-lua) enable;
 
+      lazyLoad.settings.cmd = "CopilotChat";
+
       settings = {
         # NOTE: if you want float
         # window = {
