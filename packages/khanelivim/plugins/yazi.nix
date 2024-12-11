@@ -7,8 +7,6 @@
       settings = {
         cmd = [
           "Yazi"
-          "Yazi cwd"
-          "Yazi toggle"
         ];
       };
     };
