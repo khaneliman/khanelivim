@@ -1,5 +1,6 @@
+{ config, ... }:
 {
-  plugins.rest.enable = true;
+  plugins.rest.enable = config.plugins.treesitter.enable;
 
   # NOTE: Works with files with .http file extension / http filetype
   # More example: https://github.com/rest-nvim/rest.nvim/tree/main/spec/examples
