@@ -3,6 +3,8 @@
   plugins.package-info = {
     enable = true;
     enableTelescope = true;
+
+    lazyLoad.settings.cmd = "Telescope package_info";
   };
 
   keymaps = lib.mkIf (config.plugins.telescope.enable && config.plugins.package-info.enable) [
