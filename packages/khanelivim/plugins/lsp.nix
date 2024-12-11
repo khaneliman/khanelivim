@@ -44,9 +44,13 @@
 
   plugins = {
     helm.enable = true;
-    lsp-lines.enable = true;
-    lsp-format.enable = lib.mkIf (!config.plugins.conform-nvim.enable) true;
-    lsp-signature.enable = true;
+    lsp-format.enable = !config.plugins.conform-nvim.enable && config.plugins.lsp.enable;
+    lsp-lines = {
+      inherit (config.plugins.lsp) enable;
+    };
+    lsp-signature = {
+      inherit (config.plugins.lsp) enable;
+    };
 
     lsp = {
       enable = true;
