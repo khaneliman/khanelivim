@@ -79,6 +79,7 @@
             git_hl = config.plugins.gitsigns.enable;
           };
         };
+        zen.enabled = true;
       };
     };
   };
@@ -107,6 +108,14 @@
         action = "<cmd>lua Snacks.lazygit()<CR>";
         options = {
           desc = "Open lazygit";
+        };
+      })
+      (lib.mkIf (config.plugins.snacks.enable && config.plugins.snacks.settings.zen.enabled) {
+        mode = "n";
+        key = "<leader>uZ";
+        action = "<cmd>lua Snacks.zen()<CR>";
+        options = {
+          desc = "Zen Toggle";
         };
       })
     ]
