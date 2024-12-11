@@ -1,7 +1,7 @@
 { config, lib, ... }:
 {
   plugins.lspkind = {
-    enable = true;
+    inherit (config.plugins.lsp) enable;
 
     cmp = lib.mkIf config.plugins.cmp.enable {
       enable = true;
