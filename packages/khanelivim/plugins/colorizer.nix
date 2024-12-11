@@ -3,6 +3,8 @@
   plugins = {
     colorizer = {
       enable = false;
+
+      lazyLoad.settings.cmd = "ColorizerToggle";
     };
   };
 
