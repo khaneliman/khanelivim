@@ -1,7 +1,8 @@
+{ config, ... }:
 {
   plugins = {
     otter = {
-      enable = true;
+      inherit (config.plugins.treesitter) enable;
       autoActivate = false;
 
       settings = {
