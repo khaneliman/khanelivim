@@ -17,6 +17,8 @@ in
     glow = {
       enable = true;
 
+      lazyLoad.settings.ft = "markdown";
+
       settings = {
         border = "single";
         style = "${stylePkg.outPath}/themes/catppuccin-macchiato.json";
