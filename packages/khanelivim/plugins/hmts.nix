@@ -1,7 +1,8 @@
+{ config, ... }:
 {
   plugins = {
     hmts = {
-      enable = true;
+      inherit (config.plugins.treesitter) enable;
     };
   };
 }
