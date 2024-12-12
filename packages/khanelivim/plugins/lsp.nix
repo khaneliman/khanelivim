@@ -220,9 +220,7 @@
         };
 
         nil_ls = {
-          # FIXME: when nixd works again
-          # enable = !config.plugins.lsp.servers.nixd.enable;
-          enable = true;
+          enable = !config.plugins.lsp.servers.nixd.enable;
           settings = {
             formatting = {
               command = [ "${lib.getExe pkgs.nixfmt-rfc-style}" ];
@@ -236,23 +234,23 @@
         };
 
         nixd = {
-          enable = !config.plugins.lsp.servers.nil_ls.enable;
+          enable = true;
           settings =
             let
               flake = ''(builtins.getFlake "${self}")'';
+              system = ''''${builtins.currentSystem}'';
             in
             {
-              nixpkgs = {
-                expr = "import ${flake}.inputs.nixpkgs { }";
-              };
+              nixpkgs.expr = "import ${flake}.inputs.nixpkgs { }";
               formatting = {
                 command = [ "${lib.getExe pkgs.nixfmt-rfc-style}" ];
               };
               options = {
-                nix-darwin.expr = ''${flake}.darwinConfigurations.khanelimac.options'';
-                nixos.expr = ''${flake}.nixosConfigurations.khanelinix.options'';
-                nixvim.expr = ''${flake}.packages.${pkgs.system}.nvim.options'';
-                home-manager.expr = ''${flake}.homeConfigurations."khaneliman@khanelinix".options'';
+                nixvim.expr = ''${flake}.packages.${system}.nvim.options'';
+                # NOTE: These will be passed in from outside using `.extend` from the flake installing this package
+                # nix-darwin.expr = ''${flake}.darwinConfigurations.khanelimac.options'';
+                # nixos.expr = ''${flake}.nixosConfigurations.khanelinix.options'';
+                # home-manager.expr = ''${nixos.expr}.home-manager.users.type.getSubOptions [ ]'';
               };
             };
         };
