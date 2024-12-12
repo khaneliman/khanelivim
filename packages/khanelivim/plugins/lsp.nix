@@ -320,9 +320,9 @@
           enable = true;
         };
 
-        # tailwindcss = {
-        #   enable = true;
-        # };
+        tailwindcss = {
+          enable = true;
+        };
 
         taplo = {
           enable = true;
