@@ -17,9 +17,14 @@
     enable = true;
     telescopeIntegration.enable = true;
 
-    lazyLoad.settings.ft = "norg";
+    lazyLoad.settings = {
+      cmd = "Neorg";
+      ft = "norg";
+    };
 
     settings = {
+      lazy_loading = true;
+
       load = {
         "core.defaults".__empty = null;
 
