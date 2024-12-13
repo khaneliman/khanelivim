@@ -12,6 +12,7 @@
     };
   };
 
+  colorscheme = "catppuccin";
   colorschemes.catppuccin.enable = true;
   highlight.ExtraWhitespace.bg = "red"; # Highlight extra white spaces
   luaLoader.enable = true;
