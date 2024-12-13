@@ -14,35 +14,35 @@
   ];
 
   plugins.neorg = {
-    # FIXME: super slow loading
-    # enable = true;
-    # TODO: # TODO: upgrade to mkNeoVimPlugin
-    # lazyLoad.enable = true;
+    enable = true;
+    lazyLoad.settings.ft = "norg";
 
-    modules = {
-      "core.defaults".__empty = null;
+    settings = {
+      load = {
+        "core.defaults".__empty = null;
 
-      "core.keybinds".config.hook.__raw = ''
-        function(keybinds)
-          keybinds.unmap('norg', 'n', '<C-s>')
+        "core.keybinds".config.hook.__raw = ''
+          function(keybinds)
+            keybinds.unmap('norg', 'n', '<C-s>')
 
-          keybinds.map(
-            'norg',
-            'n',
-            '<leader>c',
-            ':Neorg toggle-concealer<CR>',
-            {silent=true}
-          )
-        end
-      '';
+            keybinds.map(
+              'norg',
+              'n',
+              '<leader>c',
+              ':Neorg toggle-concealer<CR>',
+              {silent=true}
+            )
+          end
+        '';
 
-      "core.dirman".config.workspaces = {
-        notes = "~/notes";
-        nix = "~/perso/nix/notes";
+        "core.dirman".config.workspaces = {
+          notes = "~/notes";
+          nix = "~/perso/nix/notes";
+        };
+
+        "core.concealer".__empty = null;
+        "core.completion".config.engine = "nvim-cmp";
       };
-
-      "core.concealer".__empty = null;
-      "core.completion".config.engine = "nvim-cmp";
     };
   };
 }
