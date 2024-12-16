@@ -63,7 +63,6 @@
           # Navigate in diagnostics
           "<leader>l[" = "goto_prev";
           "<leader>l]" = "goto_next";
-          # TODO: fix theme of float
           "<leader>lH" = "open_float";
         };
 
@@ -131,7 +130,6 @@
           initOptions.compilationDatabaseDirectory = "build";
         };
 
-        # TODO: see what further configuration might be needed
         cmake = {
           enable = true;
         };
