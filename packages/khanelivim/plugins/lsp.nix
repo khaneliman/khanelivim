@@ -156,10 +156,9 @@
           enable = true;
         };
 
-        # TODO: package fish-lsp
-        # fish_lsp = {
-        #   enable = true;
-        # };
+        fish_lsp = {
+          enable = true;
+        };
 
         fsautocomplete = {
           enable = true;
