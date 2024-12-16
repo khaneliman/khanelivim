@@ -3,11 +3,11 @@
     "blink-cmp-copilot": {
       "flake": false,
       "locked": {
-        "lastModified": 1734336165,
-        "narHash": "sha256-BCTLiL1QHzXvybZc93AlC++/F1VWt8CpkKB0xFVF+KM=",
+        "lastModified": 1734373516,
+        "narHash": "sha256-CbOI0MTEMl96MAcExuwsM4y0LN9hQTSeHdPUcJn67eY=",
         "owner": "giuxtaposition",
         "repo": "blink-cmp-copilot",
-        "rev": "506843eeeb1162c45caba22a1d0439bcc00a3ad5",
+        "rev": "f8e12f3ec152ca7dfbdbd6f50797aac0171a46a9",
         "type": "github"
       },
       "original": {
@@ -462,11 +462,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1734358544,
-        "narHash": "sha256-z0SXf7Qlg7GcdtTcCw+RygV3RgIiVHJiMYCXAEQLGRM=",
+        "lastModified": 1734368549,
+        "narHash": "sha256-D8LYUU+IWbpmyjOAKEnKVOhd7Qfe7q+DvUNZTYoitKY=",
         "owner": "nix-community",
         "repo": "nixvim",
-        "rev": "ad87ec831b5d8df6fa5a8846a7b126e378570f6a",
+        "rev": "6c30476a4d5f761149945a65e74179f4492b1ea6",
         "type": "github"
       },
       "original": {
