@@ -3,11 +3,11 @@
     "blink-cmp-copilot": {
       "flake": false,
       "locked": {
-        "lastModified": 1734373516,
-        "narHash": "sha256-CbOI0MTEMl96MAcExuwsM4y0LN9hQTSeHdPUcJn67eY=",
+        "lastModified": 1734436260,
+        "narHash": "sha256-d4j59RKSATgpqZ6oISFC47sDaQwFmg/J+2iw5ALIJds=",
         "owner": "giuxtaposition",
         "repo": "blink-cmp-copilot",
-        "rev": "f8e12f3ec152ca7dfbdbd6f50797aac0171a46a9",
+        "rev": "c38d3e4201b135ab290c7ad126a9720cf76c788c",
         "type": "github"
       },
       "original": {
@@ -280,11 +280,11 @@
         "nixpkgs-stable": "nixpkgs-stable"
       },
       "locked": {
-        "lastModified": 1734379367,
-        "narHash": "sha256-Keu8z5VgT5gnCF4pmB+g7XZFftHpfl4qOn7nqBcywdE=",
+        "lastModified": 1734425854,
+        "narHash": "sha256-nzE5UbJ41aPEKf8R2ZFYtLkqPmF7EIUbNEdHMBLg0Ig=",
         "owner": "cachix",
         "repo": "git-hooks.nix",
-        "rev": "0bb4be58f21ff38fc3cdbd6c778eb67db97f0b99",
+        "rev": "0ddd26d0925f618c3a5d85a4fa5eb1e23a09491d",
         "type": "github"
       },
       "original": {
@@ -483,11 +483,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1734368549,
-        "narHash": "sha256-D8LYUU+IWbpmyjOAKEnKVOhd7Qfe7q+DvUNZTYoitKY=",
+        "lastModified": 1734446876,
+        "narHash": "sha256-cGZBeTh+9pChvz0phepOzM+NK7QVl0Cp5EPBlh1l5xc=",
         "owner": "nix-community",
         "repo": "nixvim",
-        "rev": "6c30476a4d5f761149945a65e74179f4492b1ea6",
+        "rev": "f4b7fd46f6caf984fdfc41281792eac7b7ab8f24",
         "type": "github"
       },
       "original": {
