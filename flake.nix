@@ -17,7 +17,7 @@
       # inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    pre-commit-hooks-nix.url = "github:cachix/pre-commit-hooks.nix";
+    git-hooks-nix.url = "github:cachix/git-hooks.nix";
 
     # Snowfall Lib
     snowfall-lib = {
