@@ -9,7 +9,7 @@
     with pkgs.khanelivim;
     [
       blink-compat
-      blink-cmp-copilot
+      pkgs.vimPlugins.blink-cmp-copilot
     ]
   );
 
