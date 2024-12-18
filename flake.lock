@@ -1,21 +1,5 @@
 {
   "nodes": {
-    "blink-cmp-copilot": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1734436260,
-        "narHash": "sha256-d4j59RKSATgpqZ6oISFC47sDaQwFmg/J+2iw5ALIJds=",
-        "owner": "giuxtaposition",
-        "repo": "blink-cmp-copilot",
-        "rev": "c38d3e4201b135ab290c7ad126a9720cf76c788c",
-        "type": "github"
-      },
-      "original": {
-        "owner": "giuxtaposition",
-        "repo": "blink-cmp-copilot",
-        "type": "github"
-      }
-    },
     "blink-compat": {
       "flake": false,
       "locked": {
@@ -521,7 +505,6 @@
     },
     "root": {
       "inputs": {
-        "blink-cmp-copilot": "blink-cmp-copilot",
         "blink-compat": "blink-compat",
         "git-hooks-nix": "git-hooks-nix",
         "nixpkgs": "nixpkgs_2",

@@ -35,11 +35,6 @@
       url = "github:saghen/blink.compat";
       flake = false;
     };
-
-    blink-cmp-copilot = {
-      url = "github:giuxtaposition/blink-cmp-copilot";
-      flake = false;
-    };
   };
 
   outputs =
