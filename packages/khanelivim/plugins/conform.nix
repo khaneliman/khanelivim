@@ -48,13 +48,13 @@
     };
   };
 
-  extraConfigLuaPre = ''
-    local slow_format_filetypes = {}
-  '';
-
   plugins = {
     conform-nvim = {
       enable = true;
+
+      luaConfig.pre = ''
+        local slow_format_filetypes = {}
+      '';
 
       settings = {
         format_on_save = # Lua
