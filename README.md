@@ -32,7 +32,7 @@ machines.
 **Option 1: Using `nix run` (Easiest):**
 
 ```bash
-nix run github:khaneliman/khanelivim
+nix run --extra-experimental-features 'nix-command flakes' github:khaneliman/khanelivim
 ```
 
 **Option 2: Adding as a Flake Input:**
