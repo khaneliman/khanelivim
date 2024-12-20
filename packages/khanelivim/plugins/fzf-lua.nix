@@ -5,7 +5,8 @@
       enable = true;
       profile = "telescope";
 
-      lazyLoad.settings.cmd = "FzfLua";
+      # TODO: Figure out why it's not using profile
+      # lazyLoad.settings.cmd = "FzfLua";
 
       settings = {
         winopts = {
