@@ -109,22 +109,6 @@
     }
     {
       mode = "n";
-      key = "<leader>gB";
-      action = ''<cmd>FzfLua git_branches<CR>'';
-      options = {
-        desc = "Find git branches";
-      };
-    }
-    {
-      mode = "n";
-      key = "<leader>gC";
-      action = ''<cmd>FzfLua git_commits<CR>'';
-      options = {
-        desc = "Find git commits";
-      };
-    }
-    {
-      mode = "n";
       key = "<leader>fh";
       action = ''<cmd>FzfLua helptags<CR>'';
       options = {
@@ -189,25 +173,42 @@
     }
     {
       mode = "n";
-      key = "<leader>fW";
-      action.__raw = ''
-        function()
-          require("telescope.builtin").live_grep {
-            additional_args = function(args) return vim.list_extend(args, { "--hidden", "--no-ignore" }) end,
-          }
-        end
-      '';
-      options = {
-        desc = "Find words in all files";
-        silent = true;
-      };
-    }
-    {
-      mode = "n";
       key = "<leader>fw";
       action = "<cmd>FzfLua live_grep<CR>";
       options = {
         desc = "Live grep";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>gB";
+      action = ''<cmd>FzfLua git_branches<CR>'';
+      options = {
+        desc = "Find git branches";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>gC";
+      action = ''<cmd>FzfLua git_commits<CR>'';
+      options = {
+        desc = "Find git commits";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>gs";
+      action = ''<cmd>FzfLua git_status<CR>'';
+      options = {
+        desc = "Find git status";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>gS";
+      action = ''<cmd>FzfLua git_stash<CR>'';
+      options = {
+        desc = "Find git stashes";
       };
     }
   ];
