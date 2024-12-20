@@ -10,7 +10,7 @@
   keymaps = lib.mkIf config.plugins.telescope.enable [
     {
       mode = "n";
-      key = "<leader>fc";
+      key = "<leader>fC";
       action.__raw = ''
         function()
           require("telescope.builtin").find_files {
@@ -193,7 +193,7 @@
         action = "autocommands";
         options.desc = "View autocommands";
       };
-      "<leader>fC" = {
+      "<leader>fc" = {
         action = "commands";
         options.desc = "View commands";
       };
@@ -201,10 +201,10 @@
         action = "buffers";
         options.desc = "View buffers";
       };
-      "<leader>fc" = {
-        action = "grep_string";
-        options.desc = "Grep string";
-      };
+      # "<leader>fc" = {
+      #   action = "grep_string";
+      #   options.desc = "Grep string";
+      # };
       "<leader>fd" = {
         action = "diagnostics";
         options.desc = "View diagnostics";
