@@ -176,7 +176,7 @@
 
     highlightTheme = "Catppuccin Macchiato";
 
-    keymaps = {
+    keymaps = lib.mkIf (!config.plugins.fzf-lua.enable) {
       "<leader>f'" = {
         action = "marks";
         options.desc = "View marks";
