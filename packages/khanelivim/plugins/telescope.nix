@@ -8,7 +8,7 @@
   extraPackages = with pkgs; [ ripgrep ];
 
   keymaps = lib.mkIf config.plugins.telescope.enable [
-    {
+    (lib.mkIf (!config.plugins.fzf-lua.enable) {
       mode = "n";
       key = "<leader>fC";
       action.__raw = ''
@@ -24,7 +24,7 @@
         desc = "Find config files";
         silent = true;
       };
-    }
+    })
     {
       mode = "n";
       key = "<leader>fF";
@@ -38,7 +38,7 @@
         silent = true;
       };
     }
-    {
+    (lib.mkIf (!config.plugins.fzf-lua.enable) {
       mode = "n";
       key = "<leader>fT";
       action.__raw = ''
@@ -50,7 +50,7 @@
         desc = "Find theme";
         silent = true;
       };
-    }
+    })
     {
       mode = "n";
       key = "<leader>fW";
@@ -111,14 +111,17 @@
         desc = "Search manix";
       };
     })
-    (lib.mkIf config.plugins.telescope.extensions.live-grep-args.enable {
-      mode = "n";
-      key = "<leader>fw";
-      action = "<cmd>Telescope live_grep_args<CR>";
-      options = {
-        desc = "Live grep (args)";
-      };
-    })
+    (lib.mkIf
+      (config.plugins.telescope.extensions.live-grep-args.enable && !config.plugins.fzf-lua.enable)
+      {
+        mode = "n";
+        key = "<leader>fw";
+        action = "<cmd>Telescope live_grep_args<CR>";
+        options = {
+          desc = "Live grep (args)";
+        };
+      }
+    )
   ];
 
   plugins.telescope = {
