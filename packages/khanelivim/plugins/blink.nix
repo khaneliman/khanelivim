@@ -80,7 +80,6 @@
             default = [
               "buffer"
               "calc"
-              "cmdline"
               "copilot"
               "emoji"
               "git"
