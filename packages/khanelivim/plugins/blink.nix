@@ -96,6 +96,7 @@
               calc = {
                 name = "calc";
                 module = "blink.compat.source";
+                score_offset = 2;
               };
               copilot = {
                 name = "copilot";
@@ -105,18 +106,23 @@
               emoji = {
                 name = "emoji";
                 module = "blink.compat.source";
+                score_offset = 1;
               };
               git = {
                 name = "git";
                 module = "blink.compat.source";
+                score_offset = 0;
               };
+              lsp.score_offset = 4;
               npm = {
                 name = "npm";
                 module = "blink.compat.source";
+                score_offset = -3;
               };
               spell = {
                 name = "spell";
                 module = "blink.compat.source";
+                score_offset = -1;
               };
               #treesitter = {
               #    name = "treesitter";
@@ -125,6 +131,7 @@
               zsh = {
                 name = "zsh";
                 module = "blink.compat.source";
+                score_offset = -3;
               };
             };
           };
