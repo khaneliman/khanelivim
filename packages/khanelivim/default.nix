@@ -10,9 +10,10 @@ let
 in
 nixvim.legacyPackages.${system}.makeNixvimWithModule {
   inherit pkgs;
+
   extraSpecialArgs = {
-    inherit (inputs) self blink-cmp;
-    inherit system;
+    inherit inputs system;
+    inherit (inputs) self;
   };
 
   module = {

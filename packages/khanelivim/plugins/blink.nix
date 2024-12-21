@@ -1,6 +1,6 @@
 {
-  blink-cmp,
   config,
+  inputs,
   lib,
   pkgs,
   system,
@@ -19,7 +19,7 @@
     {
       blink-cmp = {
         # enable = true;
-        package = blink-cmp.packages.${system}.default;
+        package = inputs.blink-cmp.packages.${system}.default;
         luaConfig.pre = # lua
           ''
             require('blink.compat').setup({debug = true, impersonate_nvim_cmp = true})
