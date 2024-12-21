@@ -4,7 +4,8 @@
   inputs = {
     # NixPkgs (nixos-unstable)
     nixpkgs = {
-      url = "github:nixos/nixpkgs/nixpkgs-unstable";
+      # url = "github:nixos/nixpkgs/nixpkgs-unstable";
+      url = "github:nixos/nixpkgs/master";
       # url = "github:khaneliman/nixpkgs/vim";
       # url = "git+file:///home/khaneliman/Documents/github/NixOS/nixpkgs";
     };
