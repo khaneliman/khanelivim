@@ -32,6 +32,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    blink-cmp = {
+      url = "github:saghen/blink.cmp";
+    };
     blink-compat = {
       url = "github:saghen/blink.compat";
       flake = false;
