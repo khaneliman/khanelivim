@@ -3,11 +3,11 @@
     "blink-compat": {
       "flake": false,
       "locked": {
-        "lastModified": 1733256820,
-        "narHash": "sha256-QW5QG7nqdHdyOodac06Cnq8/WKfbg3YyX/yPh87ENJQ=",
+        "lastModified": 1734721307,
+        "narHash": "sha256-Wabxi2m+bjU3DUXD37d0IuxP4MKibnqqRNsRXz4QmLI=",
         "owner": "saghen",
         "repo": "blink.compat",
-        "rev": "73249d35c8737b614bed64c2f33277387035f8ec",
+        "rev": "19fce76ff3d81c49f05a5ee59cadfe8de0ed8660",
         "type": "github"
       },
       "original": {
@@ -467,11 +467,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1734688442,
-        "narHash": "sha256-MjaMAeZH9t09LEQMK559/PMouXxuWcMHXb/Em2Vb9dw=",
+        "lastModified": 1734737053,
+        "narHash": "sha256-F0MURlUdht/xHNpRrVPmvhcPZYCY2N9mvs/iY3YE56g=",
         "owner": "nix-community",
         "repo": "nixvim",
-        "rev": "f3ef2721abf6e7f4f9ab8346cb1efebb0ecb9769",
+        "rev": "354fc0f288e045594e2e30da7ff95189d3545a9a",
         "type": "github"
       },
       "original": {
