@@ -39,14 +39,13 @@
                 columns = [
                   {
                     __unkeyed-1 = "label";
-                    __unkeyed-2 = "label_description";
-                    gap = 1;
                   }
                   {
                     __unkeyed-1 = "kind_icon";
                     __unkeyed-2 = "kind";
                     gap = 1;
                   }
+                  { __unkeyed-1 = "source_name"; }
                 ];
               };
             };
