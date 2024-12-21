@@ -11,7 +11,8 @@ in
 nixvim.legacyPackages.${system}.makeNixvimWithModule {
   inherit pkgs;
   extraSpecialArgs = {
-    inherit (inputs) self;
+    inherit (inputs) self blink-cmp;
+    inherit system;
   };
 
   module = {

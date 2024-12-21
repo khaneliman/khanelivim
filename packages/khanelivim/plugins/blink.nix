@@ -1,7 +1,9 @@
 {
+  blink-cmp,
   config,
   lib,
   pkgs,
+  system,
   ...
 }:
 {
@@ -17,6 +19,7 @@
     {
       blink-cmp = {
         # enable = true;
+        package = blink-cmp.packages.${system}.default;
         luaConfig.pre = # lua
           ''
             require('blink.compat').setup({debug = true, impersonate_nvim_cmp = true})
@@ -75,31 +78,25 @@
             window.border = "rounded";
           };
           sources = {
-            completion = {
-              enabled_providers = [
-                "buffer"
-                "calc"
-                "cmdline"
-                "copilot"
-                "emoji"
-                "git"
-                "lsp"
-                "luasnip"
-                #"npm"
-                "path"
-                "snippets"
-                "spell"
-                #"treesitter"
-                "zsh"
-              ];
-            };
+            default = [
+              "buffer"
+              "calc"
+              "cmdline"
+              "copilot"
+              "emoji"
+              "git"
+              "lsp"
+              "luasnip"
+              #"npm"
+              "path"
+              "snippets"
+              "spell"
+              #"treesitter"
+              "zsh"
+            ];
             providers = {
               calc = {
                 name = "calc";
-                module = "blink.compat.source";
-              };
-              cmdline = {
-                name = "cmdline";
                 module = "blink.compat.source";
               };
               copilot = {
@@ -138,7 +135,6 @@
     }
     (lib.mkIf config.plugins.blink-cmp.enable {
       cmp-calc.enable = true;
-      cmp-cmdline.enable = true;
       cmp-emoji.enable = true;
       cmp-git.enable = true;
       #cmp-nixpkgs_maintainers.enable = true;
