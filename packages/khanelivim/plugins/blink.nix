@@ -8,10 +8,10 @@
 }:
 {
   extraPlugins = lib.mkIf config.plugins.blink-cmp.enable (
-    with pkgs.khanelivim;
+    with pkgs;
     [
-      blink-compat
-      pkgs.vimPlugins.blink-cmp-copilot
+      khanelivim.blink-compat
+      vimPlugins.blink-cmp-copilot
     ]
   );
 
