@@ -150,7 +150,7 @@
 
       lsp.capabilities = # Lua
         ''
-          capabilities = require('blink.cmp').get_lsp_capabilities(capabilities)
+          capabilities = vim.tbl_deep_extend('force', capabilities, require('blink.cmp').get_lsp_capabilities())
         '';
     })
   ];
