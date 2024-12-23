@@ -18,7 +18,7 @@
   plugins = lib.mkMerge [
     {
       blink-cmp = {
-        # enable = true;
+        enable = true;
         package = inputs.blink-cmp.packages.${system}.default;
         luaConfig.pre = # lua
           ''
