@@ -11,6 +11,7 @@
     with pkgs;
     [
       khanelivim.blink-compat
+      khanelivim.blink-emoji
       vimPlugins.blink-cmp-copilot
     ]
   );
@@ -104,8 +105,8 @@
                 score_offset = 5;
               };
               emoji = {
-                name = "emoji";
-                module = "blink.compat.source";
+                name = "Emoji";
+                module = "blink-emoji";
                 score_offset = 1;
               };
               git = {
@@ -140,7 +141,6 @@
     }
     (lib.mkIf config.plugins.blink-cmp.enable {
       cmp-calc.enable = true;
-      cmp-emoji.enable = true;
       cmp-git.enable = true;
       #cmp-nixpkgs_maintainers.enable = true;
       cmp-npm.enable = true;
