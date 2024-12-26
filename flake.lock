@@ -36,6 +36,22 @@
         "type": "github"
       }
     },
+    "blink-emoji": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1735121796,
+        "narHash": "sha256-WHFifYQ7kBSVxjE9/y65/+UKbRnhmev3h2Ux1E5emBU=",
+        "owner": "moyiz",
+        "repo": "blink-emoji.nvim",
+        "rev": "699493775b61b94ead76841c981a51d3df350ea0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "moyiz",
+        "repo": "blink-emoji.nvim",
+        "type": "github"
+      }
+    },
     "devshell": {
       "inputs": {
         "nixpkgs": [
@@ -555,11 +571,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1735169833,
-        "narHash": "sha256-Wu201kM5vgOUhhwkKuYSZmmTMflgBybqeEIzIH4MRY4=",
+        "lastModified": 1735240573,
+        "narHash": "sha256-1hH5rNnUXf7BZUlTyEEqUby5gIzTthcsi69p4TyjajQ=",
         "owner": "nix-community",
         "repo": "nixvim",
-        "rev": "25c13524642cb7fe98583a5dd5f90992c76198b9",
+        "rev": "87b2679d6fb61bac08b2a17501e14da7be534fcb",
         "type": "github"
       },
       "original": {
@@ -595,6 +611,7 @@
       "inputs": {
         "blink-cmp": "blink-cmp",
         "blink-compat": "blink-compat",
+        "blink-emoji": "blink-emoji",
         "git-hooks-nix": "git-hooks-nix",
         "nixpkgs": "nixpkgs_3",
         "nixvim": "nixvim",

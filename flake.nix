@@ -40,6 +40,10 @@
       url = "github:saghen/blink.compat";
       flake = false;
     };
+    blink-emoji = {
+      url = "github:moyiz/blink-emoji.nvim";
+      flake = false;
+    };
   };
 
   outputs =
