@@ -79,26 +79,26 @@
           };
           sources = {
             default = [
+              # BUILT-IN SOURCES
               "buffer"
-              "calc"
-              "copilot"
-              "emoji"
-              "git"
               "lsp"
               "luasnip"
-              #"npm"
               "path"
               "snippets"
+              # Community
+              "copilot"
+              "emoji"
+              # Cmp sources
+              # TODO: migrate when available
+              "calc"
+              "git"
               "spell"
-              #"treesitter"
               "zsh"
             ];
             providers = {
-              calc = {
-                name = "calc";
-                module = "blink.compat.source";
-                score_offset = 2;
-              };
+              # BUILT-IN SOURCES
+              lsp.score_offset = 4;
+              # Community sources
               copilot = {
                 name = "copilot";
                 module = "blink-cmp-copilot";
@@ -109,12 +109,17 @@
                 module = "blink-emoji";
                 score_offset = 1;
               };
+              # Cmp sources
+              calc = {
+                name = "calc";
+                module = "blink.compat.source";
+                score_offset = 2;
+              };
               git = {
                 name = "git";
                 module = "blink.compat.source";
                 score_offset = 0;
               };
-              lsp.score_offset = 4;
               npm = {
                 name = "npm";
                 module = "blink.compat.source";
@@ -125,10 +130,6 @@
                 module = "blink.compat.source";
                 score_offset = -1;
               };
-              #treesitter = {
-              #    name = "treesitter";
-              #    module = "blink.compat.source";
-              #  };
               zsh = {
                 name = "zsh";
                 module = "blink.compat.source";
@@ -143,9 +144,9 @@
       cmp-calc.enable = true;
       cmp-git.enable = true;
       #cmp-nixpkgs_maintainers.enable = true;
-      cmp-npm.enable = true;
+      # cmp-npm.enable = true;
       cmp-spell.enable = true;
-      cmp-treesitter.enable = true;
+      # cmp-treesitter.enable = true;
       cmp-zsh.enable = true;
 
       lsp.capabilities = # Lua
