@@ -6,29 +6,8 @@
   ...
 }:
 {
+  # TODO: migrate to mkneovimplugin
   extraConfigLuaPre = ''
-    local function preview_location_callback(_, result)
-      if result == nil or vim.tbl_isempty(result) then
-        vim.notify('No location found to preview')
-        return nil
-      end
-    local buf, _ = vim.lsp.util.preview_location(result[1])
-      if buf then
-        local cur_buf = vim.api.nvim_get_current_buf()
-        vim.bo[buf].filetype = vim.bo[cur_buf].filetype
-      end
-    end
-
-    function peek_definition()
-      local params = vim.lsp.util.make_position_params()
-      return vim.lsp.buf_request(0, 'textDocument/definition', params, preview_location_callback)
-    end
-
-    local function peek_type_definition()
-      local params = vim.lsp.util.make_position_params()
-      return vim.lsp.buf_request(0, 'textDocument/typeDefinition', params, preview_location_callback)
-    end
-
     require('lspconfig.ui.windows').default_options = {
       border = "rounded"
     }
@@ -79,7 +58,7 @@
             };
           }
           {
-            action.__raw = "peek_definition";
+            action = "<CMD>PeekDefinition textDocument/definition<CR>";
             mode = "n";
             key = "<leader>lp";
             options = {
@@ -87,7 +66,7 @@
             };
           }
           {
-            action.__raw = "peek_type_definition";
+            action = "<CMD>PeekDefinition textDocument/typeDefinition<CR>";
             mode = "n";
             key = "<leader>lP";
             options = {
