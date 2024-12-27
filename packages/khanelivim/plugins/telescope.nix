@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 {
@@ -171,8 +170,6 @@
       };
     };
   };
-
-  extraPackages = with pkgs; [ ripgrep ];
 
   keymaps = lib.mkIf config.plugins.telescope.enable [
     (lib.mkIf (!config.plugins.fzf-lua.enable) {
