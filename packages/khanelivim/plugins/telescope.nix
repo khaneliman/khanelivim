@@ -128,7 +128,7 @@
     enable = true;
 
     # TODO: figure out proper lazy loading
-    # lazyLoad.enable = true;
+    lazyLoad.settings.cmd = "Telescope";
 
     extensions = {
       file-browser = {
