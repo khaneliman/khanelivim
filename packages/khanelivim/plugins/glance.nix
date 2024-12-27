@@ -1,10 +1,22 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  ...
+}:
 {
   # TODO: upstream module
   extraPlugins = [ pkgs.vimPlugins.glance-nvim ];
   extraConfigLua = ''
     require('glance').setup()
   '';
+  plugins = {
+    which-key.settings.spec = [
+      {
+        __unkeyed = "<leader>lg";
+        group = "Glance";
+        icon = "󰍉";
+      }
+    ];
+  };
 
   keymaps = [
     {
