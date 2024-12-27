@@ -26,7 +26,7 @@
       lazy_loading = true;
 
       load = {
-        "core.defaults".__empty = null;
+        "core.defaults" = lib.mkIf config.plugins.treesitter.enable { __empty = null; };
 
         "core.keybinds".config.hook.__raw = ''
           function(keybinds)
