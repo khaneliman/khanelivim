@@ -1,15 +1,15 @@
 {
-  pkgs,
+  config,
+  lib,
   ...
 }:
 {
-  # TODO: upstream module
-  extraPlugins = [ pkgs.vimPlugins.glance-nvim ];
-  extraConfigLua = ''
-    require('glance').setup()
-  '';
   plugins = {
-    which-key.settings.spec = [
+    glance = {
+      enable = true;
+    };
+
+    which-key.settings.spec = lib.optionals config.plugins.glance.enable [
       {
         __unkeyed = "<leader>lg";
         group = "Glance";

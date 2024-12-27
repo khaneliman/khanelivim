@@ -12,8 +12,8 @@
 
     # Neovim nix configuration
     nixvim = {
-      url = "github:nix-community/nixvim";
-      # url = "github:khaneliman/nixvim/lazy-complex";
+      # url = "github:nix-community/nixvim";
+      url = "github:khaneliman/nixvim/glance";
       # url = "git+file:///Users/khaneliman/github/nixvim";
       # url = "git+file:///home/khaneliman/Documents/github/nixvim";
       # inputs.nixpkgs.follows = "nixpkgs";
