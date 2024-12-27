@@ -46,37 +46,36 @@
           "<leader>lH" = "open_float";
         };
 
-        extra =
-          [
-            {
-              action.__raw = ''vim.lsp.buf.format'';
-              mode = "v";
-              key = "<leader>lf";
-              options = {
-                silent = true;
-                buffer = false;
-                desc = "Format selection";
-              };
-            }
-          ]
-          ++ lib.optionals (!config.plugins.glance.enable) [
-            {
-              action = "<CMD>PeekDefinition textDocument/definition<CR>";
-              mode = "n";
-              key = "<leader>lp";
-              options = {
-                desc = "Preview definition";
-              };
-            }
-            {
-              action = "<CMD>PeekDefinition textDocument/typeDefinition<CR>";
-              mode = "n";
-              key = "<leader>lP";
-              options = {
-                desc = "Preview type definition";
-              };
-            }
-          ];
+        extra = [
+          {
+            action.__raw = ''vim.lsp.buf.format'';
+            mode = "v";
+            key = "<leader>lf";
+            options = {
+              silent = true;
+              buffer = false;
+              desc = "Format selection";
+            };
+          }
+          # ]
+          # ++ lib.optionals (!config.plugins.glance.enable) [
+          {
+            action = "<CMD>PeekDefinition textDocument/definition<CR>";
+            mode = "n";
+            key = "<leader>lp";
+            options = {
+              desc = "Preview definition";
+            };
+          }
+          {
+            action = "<CMD>PeekDefinition textDocument/typeDefinition<CR>";
+            mode = "n";
+            key = "<leader>lP";
+            options = {
+              desc = "Preview type definition";
+            };
+          }
+        ];
 
         lspBuf = {
           "<leader>la" = "code_action";
