@@ -56,6 +56,10 @@
               vim.notify('No location found to preview')
               return nil
             end
+            if not result[1] then
+              vim.notify('Cant peek location')
+              return nil
+            end
           local buf, _ = vim.lsp.util.preview_location(result[1])
             if buf then
               local cur_buf = vim.api.nvim_get_current_buf()
