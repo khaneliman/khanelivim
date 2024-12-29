@@ -512,16 +512,16 @@
     },
     "nixpkgs-tree-sitter": {
       "locked": {
-        "lastModified": 1735428915,
-        "narHash": "sha256-sBLVwxp/HLFmWEBka2jRbR3tVX5zlzqr1uPYuju4sz4=",
+        "lastModified": 1735514485,
+        "narHash": "sha256-Zww5ANfNtI0O1sj7ZbePNYC1xi5TJYnKHAz9F97DobI=",
         "owner": "khaneliman",
         "repo": "nixpkgs",
-        "rev": "0acf252c365795b3c7f3ae381a368e4c3be8dfc8",
+        "rev": "01ab8a5a632ed4eeed0ea6e9b307d67675f48af6",
         "type": "github"
       },
       "original": {
         "owner": "khaneliman",
-        "ref": "ts",
+        "ref": "treesitter",
         "repo": "nixpkgs",
         "type": "github"
       }

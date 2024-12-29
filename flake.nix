@@ -12,7 +12,7 @@
 
     # Tree-sitter bump
     nixpkgs-tree-sitter = {
-      url = "github:khaneliman/nixpkgs/ts";
+      url = "github:khaneliman/nixpkgs/treesitter";
     };
 
     # Neovim nix configuration
