@@ -4,10 +4,15 @@
   inputs = {
     # NixPkgs (nixos-unstable)
     nixpkgs = {
-      # url = "github:nixos/nixpkgs/nixpkgs-unstable";
-      # url = "github:nixos/nixpkgs/master";
-      url = "github:khaneliman/nixpkgs/ts";
+      url = "github:nixos/nixpkgs/nixpkgs-unstable";
+      # url = "github:khaneliman/nixpkgs/ts";
+      # url = "git+file:///Users/khaneliman/github/nixpkgs";
       # url = "git+file:///home/khaneliman/Documents/github/NixOS/nixpkgs";
+    };
+
+    # Tree-sitter bump
+    nixpkgs-tree-sitter = {
+      url = "github:khaneliman/nixpkgs/ts";
     };
 
     # Neovim nix configuration
