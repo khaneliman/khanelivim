@@ -4,7 +4,8 @@
     enable = true;
     enableTelescope = true;
 
-    lazyLoad.settings.cmd = "Telescope projects";
+    # TODO: fix lazy loading
+    # lazyLoad.settings.cmd = "Telescope projects";
   };
 
   keymaps = lib.mkIf (config.plugins.telescope.enable && config.plugins.project-nvim.enable) [
