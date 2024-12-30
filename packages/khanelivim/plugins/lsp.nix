@@ -79,7 +79,6 @@
           ];
 
         lspBuf = {
-          "<leader>la" = "code_action";
           "<leader>ld" = "definition";
           "<leader>lD" = "references";
           "<leader>lf" = "format";
@@ -87,7 +86,7 @@
           "<leader>li" = "implementation";
           "<leader>lr" = "rename";
           "<leader>lt" = "type_definition";
-        };
+        } // lib.optionalAttrs (!config.plugins.fzf-lua.enable) { "<leader>la" = "code_action"; };
       };
 
       servers = {
