@@ -252,5 +252,13 @@
         desc = "Find git stashes";
       };
     }
+    {
+      mode = "n";
+      key = "<leader>la";
+      action = ''<cmd>FzfLua lsp_code_actions<CR>'';
+      options = {
+        desc = "Code Action";
+      };
+    }
   ];
 }
