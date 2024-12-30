@@ -4,10 +4,11 @@
     enable = true;
     enableTelescope = true;
 
-    lazyLoad.settings = {
-      ft = "json";
-      cmd = "Telescope package_info";
-    };
+    # TODO: fix lazy loading
+    # lazyLoad.settings = {
+    #   ft = "json";
+    #   cmd = "Telescope package_info";
+    # };
   };
 
   keymaps = lib.mkIf (config.plugins.telescope.enable && config.plugins.package-info.enable) [
