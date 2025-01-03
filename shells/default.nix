@@ -6,12 +6,8 @@
   namespace,
   ...
 }:
-let
-  inherit (inputs) snowfall-flake;
-in
 mkShell {
   packages = with pkgs; [
-    snowfall-flake.packages.${system}.flake
     nix-inspect
 
     # Adds all the packages required for the pre-commit checks

@@ -4,16 +4,19 @@
   lib,
   pkgs,
   system,
+  self,
   ...
 }:
 {
   extraPlugins = lib.mkIf config.plugins.blink-cmp.enable (
     with pkgs;
     [
-      khanelivim.blink-compat
-      khanelivim.blink-emoji
       vimPlugins.blink-cmp-copilot
     ]
+    ++ (with self.packages.${system}; [
+      blink-compat
+      blink-emoji
+    ])
   );
 
   plugins = lib.mkMerge [
