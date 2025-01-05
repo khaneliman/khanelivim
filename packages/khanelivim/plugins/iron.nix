@@ -1,4 +1,9 @@
-{ lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   extraPlugins = with pkgs.vimPlugins; [
     iron-nvim
@@ -54,4 +59,19 @@
           ignore_blank_lines = true, -- ignore blank lines when sending visual select lines
       }
     '';
+
+  plugins.which-key.settings.spec =
+    lib.optionals (builtins.elem pkgs.vimPlugins.iron-nvim config.extraPlugins)
+      [
+        {
+          __unkeyed = "<leader>s";
+          group = "REPL Send";
+          icon = "󱠥";
+        }
+        {
+          __unkeyed = "<leader>m";
+          group = "REPL Mark";
+          icon = "󱠥";
+        }
+      ];
 }
