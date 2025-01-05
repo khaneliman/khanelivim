@@ -34,6 +34,7 @@
               auto_show = true;
               window.border = "rounded";
             };
+            list.selection = "auto_insert";
             menu = {
               border = "rounded";
               draw = {
