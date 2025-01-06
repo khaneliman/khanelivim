@@ -7,6 +7,10 @@
   plugins = {
     glance = {
       enable = true;
+
+      settings = {
+        border.enable = true;
+      };
     };
 
     which-key.settings.spec = lib.optionals config.plugins.glance.enable [
