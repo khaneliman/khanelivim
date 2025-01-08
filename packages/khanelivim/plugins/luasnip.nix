@@ -1,7 +1,9 @@
 { config, lib, ... }:
 {
   plugins.luasnip = {
-    enable = true;
+    enable =
+      !config.plugins.mini.enable
+      || (config.plugins.mini.enable && (!lib.hasAttr "snippets" config.plugins.mini.modules));
     settings = lib.mkIf config.plugins.blink-cmp.enable {
       snippets = {
         expand.__raw = "function(snippet) require('luasnip').lsp_expand(snippet) end";
