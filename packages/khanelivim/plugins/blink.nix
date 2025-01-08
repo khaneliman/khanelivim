@@ -99,7 +99,7 @@
             enabled = true;
             window.border = "rounded";
           };
-          snippets.preset = "luasnip";
+          snippets.preset = "mini_snippets";
           sources = {
             default = [
               # BUILT-IN SOURCES
