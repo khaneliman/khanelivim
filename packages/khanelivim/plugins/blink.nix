@@ -32,7 +32,8 @@
               auto_show = true;
               window.border = "rounded";
             };
-            list.selection = "auto_insert";
+            # FIXME: upstream option not compatible with latest blink
+            # list.selection.__raw = "{auto_insert}";
             menu = {
               border = "rounded";
               draw = {
