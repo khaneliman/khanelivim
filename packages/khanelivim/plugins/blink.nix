@@ -99,12 +99,12 @@
             enabled = true;
             window.border = "rounded";
           };
+          snippets.preset = "luasnip";
           sources = {
             default = [
               # BUILT-IN SOURCES
               "buffer"
               "lsp"
-              "luasnip"
               "path"
               "snippets"
               # Community
