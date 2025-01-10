@@ -3,6 +3,17 @@
     debugprint = {
       enable = true;
 
+      lazyLoad.settings = {
+        keys = [
+          "g?"
+        ];
+        cmd = [
+          "DeleteDebugPrints"
+          "ResetDebugPrintsCounter"
+          "ToggleCommentDebugPrints"
+        ];
+      };
+
       settings = {
         commands = {
           toggle_comment_debug_prints = "ToggleCommentDebugPrints";
