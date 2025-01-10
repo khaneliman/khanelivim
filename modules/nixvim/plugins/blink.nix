@@ -14,7 +14,6 @@
       vimPlugins.blink-cmp-copilot
     ]
     ++ (with self.packages.${system}; [
-      blink-compat
       blink-emoji
     ])
   );
@@ -24,9 +23,6 @@
       blink-cmp = {
         enable = true;
         package = inputs.blink-cmp.packages.${system}.default;
-        luaConfig.pre = ''
-          require('blink.compat').setup({debug = true, impersonate_nvim_cmp = true})
-        '';
 
         settings = {
           completion = {
@@ -164,6 +160,16 @@
               };
             };
           };
+        };
+      };
+
+      blink-compat = {
+        enable = true;
+        package = self.packages.${system}.blink-compat;
+
+        settings = {
+          debug = true;
+          impersonate_nvim_cmp = true;
         };
       };
     }
