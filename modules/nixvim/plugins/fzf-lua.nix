@@ -72,6 +72,14 @@
     }
     {
       mode = "n";
+      key = "<leader>f?";
+      action = ''<cmd>FzfLua lines<CR>'';
+      options = {
+        desc = "Fuzzy find in open buffers";
+      };
+    }
+    {
+      mode = "n";
       key = "<leader>f<CR>";
       action = ''<cmd>FzfLua resume<CR>'';
       options = {
