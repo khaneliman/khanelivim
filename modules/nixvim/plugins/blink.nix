@@ -2,17 +2,16 @@
   config,
   inputs,
   lib,
-  system,
+  pkgs,
   self,
+  system,
   ...
 }:
 {
-  extraPlugins = lib.mkIf config.plugins.blink-cmp.enable (
-    with self.packages.${system};
-    [
-      blink-emoji
-    ]
-  );
+  extraPlugins = lib.mkIf config.plugins.blink-cmp.enable [
+    self.packages.${system}.blink-emoji
+    pkgs.vimPlugins.blink-ripgrep-nvim
+  ];
 
   plugins = lib.mkMerge [
     {
@@ -107,6 +106,7 @@
               # Community
               "copilot"
               "emoji"
+              "ripgrep"
               # Cmp sources
               # TODO: migrate when available
               "calc"
@@ -127,6 +127,11 @@
               emoji = {
                 name = "Emoji";
                 module = "blink-emoji";
+                score_offset = 1;
+              };
+              ripgrep = {
+                name = "Ripgrep";
+                module = "blink-ripgrep";
                 score_offset = 1;
               };
               # Cmp sources
