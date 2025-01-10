@@ -9,6 +9,9 @@ in
     hardtime = {
       enable = true;
 
+      # FIXME: runtime error on requiring module
+      # lazyLoad.settings.cmd = "Hardtime";
+
       settings = {
         # NOTE: Default to off now.
         enabled = false;
