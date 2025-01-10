@@ -4,6 +4,15 @@
     flash = {
       enable = true;
 
+      # FIXME: can't find module on require
+      # lazyLoad.settings.keys = [
+      #   "s"
+      #   "S"
+      #   "r"
+      #   "R"
+      #   "gl"
+      # ];
+
       settings = {
         modes = {
           char = {
