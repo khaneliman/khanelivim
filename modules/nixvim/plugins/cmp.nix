@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, lib, ... }:
 let
   get_bufnrs.__raw = ''
     function()
@@ -148,4 +148,19 @@ in
       };
     };
   };
+
+  keymaps = lib.mkIf config.plugins.cmp.enable [
+    {
+      key = "<leader>uc";
+      mode = "n";
+      action.__raw = ''
+        function ()
+          vim.g.cmp_enabled = not vim.g.cmp_enabled
+          vim.notify(string.format("Completions %s", bool2str(vim.g.cmp_enabled), "info"))
+        end'';
+      options = {
+        desc = "Completions toggle";
+      };
+    }
+  ];
 }

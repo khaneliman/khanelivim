@@ -281,17 +281,6 @@
                   desc = "Fold Column toggle";
                 };
               };
-
-              "<leader>uc" = {
-                action.__raw = ''
-                  function ()
-                    vim.g.cmp_enabled = not vim.g.cmp_enabled
-                    vim.notify(string.format("Completions %s", bool2str(vim.g.cmp_enabled), "info"))
-                  end'';
-                options = {
-                  desc = "Completions toggle";
-                };
-              };
             }
             // (lib.optionalAttrs
               (
