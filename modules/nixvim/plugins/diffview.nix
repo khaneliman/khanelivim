@@ -3,6 +3,14 @@
   plugins = {
     diffview = {
       enable = true;
+
+      # TODO: migrate to mkNeovimPlugin
+      # lazyLoad = {
+      #   settings = {
+      #     ft = "diff";
+      #     cmd = "DiffviewOpen";
+      #   };
+      # };
     };
   };
 
