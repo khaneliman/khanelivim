@@ -1,6 +1,9 @@
 {
   plugins.helpview = {
     enable = true;
+
+    lazyLoad.settings.ft = "help";
+
     settings = {
 
       buf_ignore = [ ];
