@@ -6,6 +6,10 @@ in
   plugins = {
     gitignore = {
       enable = true;
+
+      # TODO: migrate to mkNeovimPlugin
+      # lazyLoad.settings.keys = [ "<leader>gi" ];
+      # lazyLoad.settings.cmd = [ "Gitignore" ];
     };
   };
 
