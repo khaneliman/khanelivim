@@ -230,7 +230,7 @@
         silent = true;
       };
     }
-    {
+    (lib.mkIf (!config.plugins.fzf-lua.enable) {
       mode = "n";
       key = "<leader>f?";
       action.__raw = ''
@@ -242,7 +242,7 @@
         desc = "Find words in all open buffers";
         silent = true;
       };
-    }
+    })
     (lib.mkIf config.plugins.telescope.extensions.file-browser.enable {
       mode = "n";
       key = "<leader>fe";
