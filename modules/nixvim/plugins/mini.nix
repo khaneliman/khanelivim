@@ -12,7 +12,6 @@
         bracketed = { };
         git = { };
         icons = { };
-        pairs = { };
         snippets = {
           snippets = {
             __unkeyed-1.__raw =
