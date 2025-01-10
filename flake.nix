@@ -18,9 +18,13 @@
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     nix-index-database.url = "github:nix-community/nix-index-database";
     nixpkgs-tree-sitter.url = "github:khaneliman/nixpkgs/treesitter";
-    nixvim.inputs.flake-parts.follows = "flake-parts";
-    nixvim.inputs.nixpkgs.follows = "nixpkgs";
-    nixvim.url = "github:nix-community/nixvim";
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs = {
+        flake-parts.follows = "flake-parts";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
 
     blink-cmp.url = "github:saghen/blink.cmp";
     blink-compat = {
