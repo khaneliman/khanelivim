@@ -4,6 +4,21 @@
     git-conflict = {
       enable = true;
 
+      # TODO: Figure out a proper way to load without command
+      # lazyLoad.settings = {
+      #   cmd = [
+      #     "GitConflictNextConflict"
+      #     "GitConflictPrevConflict"
+      #     "GitConflictRefresh"
+      #     "GitConflictChooseBase"
+      #     "GitConflictChooseBoth"
+      #     "GitConflictChooseTheirs"
+      #     "GitConflictChooseOurs"
+      #     "GitConflictChooseNone"
+      #     "GitConflictListQf"
+      #   ];
+      # };
+
       settings = {
         disable_diagnostics = true;
         default_mappings = {
