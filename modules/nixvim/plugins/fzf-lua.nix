@@ -9,6 +9,9 @@
       # lazyLoad.settings.cmd = "FzfLua";
 
       settings = {
+        oldfiles = {
+          cwd_only = true;
+        };
         winopts = {
           preview = {
             default = "bat";
