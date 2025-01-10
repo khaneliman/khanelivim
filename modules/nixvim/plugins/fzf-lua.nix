@@ -5,8 +5,7 @@
       enable = true;
       profile = "telescope";
 
-      # TODO: Figure out why it's not using profile
-      # lazyLoad.settings.cmd = "FzfLua";
+      lazyLoad.settings.cmd = "FzfLua";
 
       settings = {
         oldfiles = {
