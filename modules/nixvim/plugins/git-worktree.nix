@@ -7,6 +7,14 @@ in
     git-worktree = {
       enable = true;
       enableTelescope = true;
+
+      # TODO: migrate plugin to mkNeovimPlugin
+      # lazyLoad.settings.keys = [
+      #   "<leader>gw"
+      #   "<leader>fg"
+      #   "<leader>gWc"
+      #   "<leader>gWs"
+      # ];
     };
 
     which-key.settings.spec = lib.optionals (cfg.enableTelescope && cfg.enable) [
