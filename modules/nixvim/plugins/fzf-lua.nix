@@ -65,7 +65,7 @@
     {
       mode = "n";
       key = "<leader>f/";
-      action = ''<cmd>FzfLua lines<CR>'';
+      action = ''<cmd>FzfLua blines<CR>'';
       options = {
         desc = "Fuzzy find in current buffer";
       };
