@@ -2,20 +2,16 @@
   config,
   inputs,
   lib,
-  pkgs,
   system,
   self,
   ...
 }:
 {
   extraPlugins = lib.mkIf config.plugins.blink-cmp.enable (
-    with pkgs;
+    with self.packages.${system};
     [
-      vimPlugins.blink-cmp-copilot
-    ]
-    ++ (with self.packages.${system}; [
       blink-emoji
-    ])
+    ]
   );
 
   plugins = lib.mkMerge [
@@ -125,7 +121,8 @@
               copilot = {
                 name = "copilot";
                 module = "blink-cmp-copilot";
-                score_offset = 5;
+                async = true;
+                score_offset = 100;
               };
               emoji = {
                 name = "Emoji";
@@ -162,6 +159,8 @@
           };
         };
       };
+
+      blink-cmp-copilot.enable = true;
 
       blink-compat = {
         enable = true;
