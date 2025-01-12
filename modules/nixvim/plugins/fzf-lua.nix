@@ -13,7 +13,8 @@
         };
         winopts = {
           preview = {
-            default = "bat";
+            # FIXME: broken
+            # default = "bat";
           };
         };
       };
