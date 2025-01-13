@@ -35,7 +35,7 @@
 
     which-key.settings.spec = lib.optionals config.plugins.codesnap.enable [
       {
-        __unkeyed = "<leader>c";
+        __unkeyed-1 = "<leader>c";
         mode = "v";
         group = "Codesnap";
         icon = "󰄄 ";

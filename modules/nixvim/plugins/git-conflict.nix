@@ -34,7 +34,7 @@
 
     which-key.settings.spec = lib.optionals config.plugins.git-conflict.enable [
       {
-        __unkeyed = "<leader>gc";
+        __unkeyed-1 = "<leader>gc";
         group = "Conflicts";
         icon = "";
       }

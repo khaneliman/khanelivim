@@ -41,7 +41,7 @@
       ui-select = {
         enable = true;
         settings = {
-          __unkeyed.__raw = ''require("telescope.themes").get_dropdown{}'';
+          __unkeyed-1.__raw = ''require("telescope.themes").get_dropdown{}'';
         };
       };
 

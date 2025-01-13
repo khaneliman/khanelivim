@@ -48,7 +48,7 @@ in
 
           # Show active language server
           {
-            __unkeyed.__raw = ''
+            __unkeyed-1.__raw = ''
               function()
                   local msg = ""
                   local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
@@ -75,7 +75,7 @@ in
 
         lualine_y = [
           {
-            __unkeyed = "aerial";
+            __unkeyed-1 = "aerial";
             inherit cond;
 
             # -- The separator to be used to separate symbols in status line.
@@ -101,7 +101,7 @@ in
 
         lualine_z = [
           {
-            __unkeyed = "location";
+            __unkeyed-1 = "location";
             inherit cond;
           }
         ];
@@ -111,7 +111,7 @@ in
         lualine_a = [
           # NOTE: not high priority since i use bufferline now, but should fix left separator color
           {
-            __unkeyed = "buffers";
+            __unkeyed-1 = "buffers";
             symbols = {
               alternate_file = "";
             };
@@ -123,7 +123,7 @@ in
       winbar = {
         lualine_c = [
           {
-            __unkeyed = "navic";
+            __unkeyed-1 = "navic";
             inherit cond;
           }
         ];
@@ -131,7 +131,7 @@ in
         # TODO: Need to dynamically hide/show component so navic takes precedence on smaller width
         lualine_x = [
           {
-            __unkeyed = "filename";
+            __unkeyed-1 = "filename";
             newfile_status = true;
             path = 3;
             # Shorten path names to fit navic component

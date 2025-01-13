@@ -29,7 +29,7 @@
 
     which-key.settings.spec = lib.optionals config.plugins.copilot-chat.enable [
       {
-        __unkeyed = "<leader>a";
+        __unkeyed-1 = "<leader>a";
         group = "Copilot";
         icon = "";
       }

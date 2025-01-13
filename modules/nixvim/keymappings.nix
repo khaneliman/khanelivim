@@ -379,15 +379,15 @@
 
   plugins.which-key.settings.spec = [
     {
-      __unkeyed = "<leader>w";
+      __unkeyed-1 = "<leader>w";
       icon = "";
     }
     {
-      __unkeyed = "<leader>W";
+      __unkeyed-1 = "<leader>W";
       icon = "󰽃";
     }
     {
-      __unkeyed = "<leader>/";
+      __unkeyed-1 = "<leader>/";
       icon = "";
     }
   ];

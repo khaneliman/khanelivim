@@ -64,12 +64,12 @@
     lib.optionals (builtins.elem pkgs.vimPlugins.iron-nvim config.extraPlugins)
       [
         {
-          __unkeyed = "<leader>s";
+          __unkeyed-1 = "<leader>s";
           group = "REPL Send";
           icon = "󱠥";
         }
         {
-          __unkeyed = "<leader>m";
+          __unkeyed-1 = "<leader>m";
           group = "REPL Mark";
           icon = "󱠥";
         }

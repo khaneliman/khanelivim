@@ -262,7 +262,7 @@ in
 
     which-key.settings.spec = lib.optionals config.plugins.dap.extensions.dap-ui.enable [
       {
-        __unkeyed = "<leader>d";
+        __unkeyed-1 = "<leader>d";
         mode = "n";
         desc = "Debug";
         # icon = " ";

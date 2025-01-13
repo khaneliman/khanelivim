@@ -7,7 +7,7 @@
 
     which-key.settings.spec = lib.optionals config.plugins.persistence.enable [
       {
-        __unkeyed = "<leader>P";
+        __unkeyed-1 = "<leader>P";
         group = "Persistence";
         icon = "󰘛";
       }

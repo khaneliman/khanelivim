@@ -18,7 +18,7 @@
 
     which-key.settings.spec = lib.optionals config.plugins.compiler.enable [
       {
-        __unkeyed = "<leader>R";
+        __unkeyed-1 = "<leader>R";
         group = "Compiler";
         icon = "";
       }

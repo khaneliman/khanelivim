@@ -14,7 +14,7 @@
 
     which-key.settings.spec = lib.optionals config.plugins.refactoring.enable [
       {
-        __unkeyed = "<leader>r";
+        __unkeyed-1 = "<leader>r";
         mode = "x";
         group = "Refactor";
         icon = " ";

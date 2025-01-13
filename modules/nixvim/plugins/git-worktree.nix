@@ -19,7 +19,7 @@ in
 
     which-key.settings.spec = lib.optionals (cfg.enableTelescope && cfg.enable) [
       {
-        __unkeyed = "<leader>gW";
+        __unkeyed-1 = "<leader>gW";
         group = "Worktree";
         icon = "󰙅 ";
       }

@@ -133,52 +133,52 @@ in
 
     which-key.settings.spec = [
       {
-        __unkeyed = "<leader>l";
+        __unkeyed-1 = "<leader>l";
         group = "LSP";
         icon = " ";
       }
       {
-        __unkeyed = "<leader>la";
+        __unkeyed-1 = "<leader>la";
         desc = "Code Action";
       }
       {
-        __unkeyed = "<leader>ld";
+        __unkeyed-1 = "<leader>ld";
         desc = "Definition";
       }
       {
-        __unkeyed = "<leader>lD";
+        __unkeyed-1 = "<leader>lD";
         desc = "References";
       }
       {
-        __unkeyed = "<leader>lf";
+        __unkeyed-1 = "<leader>lf";
         desc = "Format";
       }
       {
-        __unkeyed = "<leader>l[";
+        __unkeyed-1 = "<leader>l[";
         desc = "Prev";
       }
       {
-        __unkeyed = "<leader>l]";
+        __unkeyed-1 = "<leader>l]";
         desc = "Next";
       }
       {
-        __unkeyed = "<leader>lt";
+        __unkeyed-1 = "<leader>lt";
         desc = "Type Definition";
       }
       {
-        __unkeyed = "<leader>li";
+        __unkeyed-1 = "<leader>li";
         desc = "Implementation";
       }
       {
-        __unkeyed = "<leader>lh";
+        __unkeyed-1 = "<leader>lh";
         desc = "Lsp Hover";
       }
       {
-        __unkeyed = "<leader>lH";
+        __unkeyed-1 = "<leader>lH";
         desc = "Diagnostic Hover";
       }
       {
-        __unkeyed = "<leader>lr";
+        __unkeyed-1 = "<leader>lr";
         desc = "Rename";
       }
     ];

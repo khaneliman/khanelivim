@@ -7,33 +7,33 @@
     settings = {
       spec = [
         {
-          __unkeyed = "<leader>b";
+          __unkeyed-1 = "<leader>b";
           group = "Buffers";
         }
         {
-          __unkeyed = "<leader>bs";
+          __unkeyed-1 = "<leader>bs";
           group = "󰒺 Sort";
           icon = "";
         }
         {
-          __unkeyed = "<leader>g";
+          __unkeyed-1 = "<leader>g";
           group = "Git";
         }
         {
-          __unkeyed = "<leader>f";
+          __unkeyed-1 = "<leader>f";
           group = "Find";
         }
         {
-          __unkeyed = "<leader>r";
+          __unkeyed-1 = "<leader>r";
           group = "Refactor";
           icon = " ";
         }
         {
-          __unkeyed = "<leader>t";
+          __unkeyed-1 = "<leader>t";
           group = "Terminal";
         }
         {
-          __unkeyed = "<leader>u";
+          __unkeyed-1 = "<leader>u";
           group = "UI/UX";
         }
       ];

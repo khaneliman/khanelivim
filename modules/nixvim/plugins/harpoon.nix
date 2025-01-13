@@ -20,32 +20,32 @@
 
     which-key.settings.spec = lib.optionals config.plugins.harpoon.enable [
       {
-        __unkeyed = "<leader>h";
+        __unkeyed-1 = "<leader>h";
         group = "Harpoon";
         icon = "󱡀 ";
       }
       {
-        __unkeyed = "<leader>ha";
+        __unkeyed-1 = "<leader>ha";
         desc = "Add";
       }
       {
-        __unkeyed = "<leader>he";
+        __unkeyed-1 = "<leader>he";
         desc = "QuickMenu";
       }
       {
-        __unkeyed = "<leader>hj";
+        __unkeyed-1 = "<leader>hj";
         desc = "1";
       }
       {
-        __unkeyed = "<leader>hk";
+        __unkeyed-1 = "<leader>hk";
         desc = "2";
       }
       {
-        __unkeyed = "<leader>hl";
+        __unkeyed-1 = "<leader>hl";
         desc = "3";
       }
       {
-        __unkeyed = "<leader>hm";
+        __unkeyed-1 = "<leader>hm";
         desc = "4";
       }
     ];

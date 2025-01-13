@@ -27,7 +27,7 @@ in
 
     which-key.settings.spec = [
       {
-        __unkeyed = "<leader>p";
+        __unkeyed-1 = "<leader>p";
         mode = "n";
         group = "Preview";
         icon = " ";
