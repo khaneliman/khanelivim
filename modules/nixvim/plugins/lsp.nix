@@ -94,13 +94,6 @@ in
       servers = {
         bashls.enable = true;
         biome.enable = true;
-
-        ccls = {
-          enable = true;
-
-          initOptions.compilationDatabaseDirectory = "build";
-        };
-
         cmake.enable = true;
         csharp_ls.enable = true;
         cssls.enable = true;
