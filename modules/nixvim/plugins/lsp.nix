@@ -130,16 +130,6 @@ in
         pyright.enable = true;
         ruff.enable = true;
         sqls.enable = true;
-
-        statix = {
-          enable = true;
-          cmd = [
-            "statix"
-            "check"
-            "-s"
-          ];
-        };
-
         stylelint_lsp.enable = true;
         tailwindcss.enable = true;
         taplo.enable = true;
