@@ -43,12 +43,8 @@ in
       inherit (config.plugins.lsp) enable;
     };
     lsp-format.enable = !config.plugins.conform-nvim.enable && config.plugins.lsp.enable;
-    lsp-lines = {
-      inherit (config.plugins.lsp) enable;
-    };
-    lsp-signature = {
-      inherit (config.plugins.lsp) enable;
-    };
+    lsp-lines.enable = config.plugins.lsp.enable;
+    lsp-signature.enable = config.plugins.lsp.enable;
 
     lsp = {
       enable = true;
@@ -107,13 +103,8 @@ in
       };
 
       servers = {
-        bashls = {
-          enable = true;
-        };
-
-        biome = {
-          enable = true;
-        };
+        bashls.enable = true;
+        biome.enable = true;
 
         ccls = {
           enable = true;
@@ -121,33 +112,13 @@ in
           initOptions.compilationDatabaseDirectory = "build";
         };
 
-        cmake = {
-          enable = true;
-        };
-
-        csharp_ls = {
-          enable = true;
-        };
-
-        cssls = {
-          enable = true;
-        };
-
-        dockerls = {
-          enable = true;
-        };
-
-        eslint = {
-          enable = true;
-        };
-
-        fish_lsp = {
-          enable = true;
-        };
-
-        fsautocomplete = {
-          enable = true;
-        };
+        cmake.enable = true;
+        csharp_ls.enable = true;
+        cssls.enable = true;
+        dockerls.enable = true;
+        eslint.enable = true;
+        fish_lsp.enable = true;
+        fsautocomplete.enable = true;
 
         fsharp_language_server = {
           enable = false;
@@ -160,49 +131,17 @@ in
           package = pkgs.gdtoolkit_4;
         };
 
-        helm_ls = {
-          enable = true;
-        };
-
-        html = {
-          enable = true;
-        };
-
-        java_language_server = {
-          enable = !config.plugins.nvim-jdtls.enable;
-        };
-
-        jdtls = {
-          enable = !config.plugins.nvim-jdtls.enable;
-        };
-
-        jsonls = {
-          enable = true;
-        };
-
-        lua_ls = {
-          enable = true;
-        };
-
-        marksman = {
-          enable = true;
-        };
-
-        nushell = {
-          enable = true;
-        };
-
-        pyright = {
-          enable = true;
-        };
-
-        ruff = {
-          enable = true;
-        };
-
-        sqls = {
-          enable = true;
-        };
+        helm_ls.enable = true;
+        html.enable = true;
+        java_language_server.enable = !config.plugins.nvim-jdtls.enable;
+        jdtls.enable = !config.plugins.nvim-jdtls.enable;
+        jsonls.enable = true;
+        lua_ls.enable = true;
+        marksman.enable = true;
+        nushell.enable = true;
+        pyright.enable = true;
+        ruff.enable = true;
+        sqls.enable = true;
 
         statix = {
           enable = true;
@@ -213,25 +152,11 @@ in
           ];
         };
 
-        stylelint_lsp = {
-          enable = true;
-        };
-
-        tailwindcss = {
-          enable = true;
-        };
-
-        taplo = {
-          enable = true;
-        };
-
-        ts_ls = {
-          enable = !config.plugins.typescript-tools.enable;
-        };
-
-        yamlls = {
-          enable = true;
-        };
+        stylelint_lsp.enable = true;
+        tailwindcss.enable = true;
+        taplo.enable = true;
+        ts_ls.enable = !config.plugins.typescript-tools.enable;
+        yamlls.enable = true;
       };
     };
 
