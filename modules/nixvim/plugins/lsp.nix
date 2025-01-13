@@ -30,18 +30,7 @@ in
     }
   '';
 
-  autoCmd = [
-    (lib.mkIf config.plugins.lsp.servers.helm_ls.enable {
-      event = "FileType";
-      pattern = "helm";
-      command = "LspRestart";
-    })
-  ];
-
   plugins = {
-    helm = {
-      inherit (config.plugins.lsp) enable;
-    };
     lsp-format.enable = !config.plugins.conform-nvim.enable && config.plugins.lsp.enable;
     lsp-lines.enable = config.plugins.lsp.enable;
     lsp-signature.enable = config.plugins.lsp.enable;
@@ -131,7 +120,6 @@ in
           package = pkgs.gdtoolkit_4;
         };
 
-        helm_ls.enable = true;
         html.enable = true;
         java_language_server.enable = !config.plugins.nvim-jdtls.enable;
         jdtls.enable = !config.plugins.nvim-jdtls.enable;
