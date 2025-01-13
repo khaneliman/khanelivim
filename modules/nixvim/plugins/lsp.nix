@@ -229,15 +229,6 @@ in
           enable = !config.plugins.typescript-tools.enable;
         };
 
-        typos_lsp = {
-          enable = true;
-          extraOptions = {
-            init_options = {
-              diagnosticSeverity = "Hint";
-            };
-          };
-        };
-
         yamlls = {
           enable = true;
         };
