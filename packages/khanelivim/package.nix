@@ -14,5 +14,7 @@ inputs.nixvim.legacyPackages.${system}.makeNixvimWithModule {
 
   module = {
     imports = [ ../../modules/nixvim ];
+
+    nixpkgs.pkgs = pkgs;
   };
 }
