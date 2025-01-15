@@ -6,7 +6,7 @@ in
   plugins = {
     git-worktree = {
       enable = true;
-      enableTelescope = true;
+      enableTelescope = config.plugins.telescope.enable;
 
       # TODO: migrate plugin to mkNeovimPlugin
       # lazyLoad.settings.keys = [
