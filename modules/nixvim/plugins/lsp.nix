@@ -72,12 +72,21 @@
             "<leader>lr" = "rename";
           }
           // lib.optionalAttrs (!config.plugins.fzf-lua.enable) { "<leader>la" = "code_action"; }
-          // lib.optionalAttrs (!config.plugins.fzf-lua.enable) {
-            "<leader>ld" = "definition";
-            "<leader>li" = "implementation";
-            "<leader>lD" = "references";
-            "<leader>lt" = "type_definition";
-          };
+          //
+            lib.optionalAttrs
+              (
+                (
+                  !config.plugins.snacks.enable
+                  || (config.plugins.snacks.enable && !lib.hasAttr "picker" config.plugins.snacks.settings)
+                )
+                && !config.plugins.fzf-lua.enable
+              )
+              {
+                "<leader>ld" = "definition";
+                "<leader>li" = "implementation";
+                "<leader>lD" = "references";
+                "<leader>lt" = "type_definition";
+              };
       };
 
       servers = {
