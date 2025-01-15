@@ -2,7 +2,7 @@
 {
   plugins.package-info = {
     enable = true;
-    enableTelescope = true;
+    enableTelescope = config.plugins.telescope.enable;
 
     # TODO: fix lazy loading
     # lazyLoad.settings = {
