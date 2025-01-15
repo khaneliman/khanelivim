@@ -3,7 +3,7 @@
   plugins = {
     refactoring = {
       enable = true;
-      enableTelescope = true;
+      enableTelescope = config.plugins.telescope.enable;
 
       lazyLoad = {
         settings = {
