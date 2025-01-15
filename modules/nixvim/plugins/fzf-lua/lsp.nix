@@ -1,6 +1,6 @@
 { lib, config, ... }:
 {
-  keymaps = lib.mkIf config.plugins.fzf-lua.enable [
+  keymaps = lib.mkIf (config.plugins.fzf-lua.enable && config.plugins.lsp.enable) [
     {
       mode = "n";
       key = "<leader>fd";
