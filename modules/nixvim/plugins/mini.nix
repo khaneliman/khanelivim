@@ -1,5 +1,12 @@
-{ config, lib, ... }:
 {
+  config,
+  lib,
+  self,
+  ...
+}:
+{
+  imports = self.lib.khanelivim.readAllFiles ./mini;
+
   plugins = {
     mini = {
       enable = true;
