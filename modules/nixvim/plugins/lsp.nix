@@ -65,15 +65,19 @@
             }
           ];
 
-        lspBuf = {
-          "<leader>ld" = "definition";
-          "<leader>lD" = "references";
-          "<leader>lf" = "format";
-          "<leader>lh" = "hover";
-          "<leader>li" = "implementation";
-          "<leader>lr" = "rename";
-          "<leader>lt" = "type_definition";
-        } // lib.optionalAttrs (!config.plugins.fzf-lua.enable) { "<leader>la" = "code_action"; };
+        lspBuf =
+          {
+            "<leader>lf" = "format";
+            "<leader>lh" = "hover";
+            "<leader>lr" = "rename";
+          }
+          // lib.optionalAttrs (!config.plugins.fzf-lua.enable) { "<leader>la" = "code_action"; }
+          // lib.optionalAttrs (!config.plugins.fzf-lua.enable) {
+            "<leader>ld" = "definition";
+            "<leader>li" = "implementation";
+            "<leader>lD" = "references";
+            "<leader>lt" = "type_definition";
+          };
       };
 
       servers = {
