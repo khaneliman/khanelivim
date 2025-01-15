@@ -15,7 +15,7 @@
 
   plugins.neorg = {
     enable = true;
-    telescopeIntegration.enable = true;
+    telescopeIntegration.enable = config.plugins.telescope.enable;
 
     lazyLoad.settings = {
       cmd = "Neorg";
