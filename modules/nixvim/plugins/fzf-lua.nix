@@ -1,5 +1,12 @@
-{ lib, config, ... }:
 {
+  lib,
+  config,
+  self,
+  ...
+}:
+{
+  imports = self.lib.khanelivim.readAllFiles ./fzf-lua;
+
   plugins = {
     fzf-lua = {
       enable = true;
@@ -21,38 +28,6 @@
   };
 
   keymaps = lib.mkIf config.plugins.fzf-lua.enable [
-    {
-      mode = "n";
-      key = "<leader>dB";
-      action = ''<cmd>FzfLua dap_breakpoints<CR>'';
-      options = {
-        desc = "Find dap breakpoints";
-      };
-    }
-    {
-      mode = "n";
-      key = "<leader>dC";
-      action = ''<cmd>FzfLua dap_commands<CR>'';
-      options = {
-        desc = "Find dap commands";
-      };
-    }
-    {
-      mode = "n";
-      key = "<leader>df";
-      action = ''<cmd>FzfLua dap_frames<CR>'';
-      options = {
-        desc = "Find dap frames";
-      };
-    }
-    {
-      mode = "n";
-      key = "<leader>dv";
-      action = ''<cmd>FzfLua dap_variables<CR>'';
-      options = {
-        desc = "Find dap variables";
-      };
-    }
     {
       mode = "n";
       key = "<leader>f'";
@@ -200,14 +175,6 @@
     }
     {
       mode = "n";
-      key = "<leader>fs";
-      action = ''<cmd>FzfLua lsp_document_symbols<CR>'';
-      options = {
-        desc = "Find lsp document symbols";
-      };
-    }
-    {
-      mode = "n";
       key = "<leader>fS";
       action = ''<cmd>FzfLua spell_suggest<CR>'';
       options = {
@@ -228,78 +195,6 @@
       action = "<cmd>FzfLua live_grep<CR>";
       options = {
         desc = "Live grep";
-      };
-    }
-    {
-      mode = "n";
-      key = "<leader>gB";
-      action = ''<cmd>FzfLua git_branches<CR>'';
-      options = {
-        desc = "Find git branches";
-      };
-    }
-    {
-      mode = "n";
-      key = "<leader>gC";
-      action = ''<cmd>FzfLua git_commits<CR>'';
-      options = {
-        desc = "Find git commits";
-      };
-    }
-    {
-      mode = "n";
-      key = "<leader>gs";
-      action = ''<cmd>FzfLua git_status<CR>'';
-      options = {
-        desc = "Find git status";
-      };
-    }
-    {
-      mode = "n";
-      key = "<leader>gS";
-      action = ''<cmd>FzfLua git_stash<CR>'';
-      options = {
-        desc = "Find git stashes";
-      };
-    }
-    {
-      mode = "n";
-      key = "<leader>ld";
-      action = ''<cmd>FzfLua lsp_definitions<CR>'';
-      options = {
-        desc = "Goto definition";
-      };
-    }
-    {
-      mode = "n";
-      key = "<leader>lD";
-      action = ''<cmd>FzfLua lsp_references<CR>'';
-      options = {
-        desc = "Find References";
-      };
-    }
-    {
-      mode = "n";
-      key = "<leader>li";
-      action = ''<cmd>FzfLua lsp_implementations<CR>'';
-      options = {
-        desc = "Find Implementations";
-      };
-    }
-    {
-      mode = "n";
-      key = "<leader>lt";
-      action = ''<cmd>FzfLua lsp_typedefs<CR>'';
-      options = {
-        desc = "Goto Type Definition";
-      };
-    }
-    {
-      mode = "n";
-      key = "<leader>la";
-      action = ''<cmd>FzfLua lsp_code_actions<CR>'';
-      options = {
-        desc = "Code Action";
       };
     }
   ];
