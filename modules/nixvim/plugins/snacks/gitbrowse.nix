@@ -15,7 +15,12 @@
   };
 
   keymaps =
-    lib.mkIf (config.plugins.snacks.enable && config.plugins.snacks.settings.gitbrowse.enabled)
+    lib.mkIf
+      (
+        config.plugins.snacks.enable
+        && lib.hasAttr "gitbrowse" config.plugins.snacks.settings
+        && config.plugins.snacks.settings.gitbrowse.enabled
+      )
       [
         {
           mode = "n";
