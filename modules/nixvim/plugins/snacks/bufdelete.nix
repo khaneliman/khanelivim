@@ -15,7 +15,12 @@
   };
 
   keymaps =
-    lib.mkIf (config.plugins.snacks.enable && config.plugins.snacks.settings.bufdelete.enabled)
+    lib.mkIf
+      (
+        config.plugins.snacks.enable
+        && lib.hasAttr "bufdelete" config.plugins.snacks.settings
+        && config.plugins.snacks.settings.bufdelete.enabled
+      )
       [
         {
           mode = "n";
