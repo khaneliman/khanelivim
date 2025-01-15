@@ -1,7 +1,6 @@
 {
   inputs,
   lib,
-  root,
   ...
 }:
 {
@@ -15,6 +14,6 @@
       ...
     }:
     lib.optionalAttrs (inputs.pkgs-by-name-for-flake-parts ? flakeModule) {
-      pkgsDirectory = root + /packages;
+      pkgsDirectory = ../packages;
     };
 }

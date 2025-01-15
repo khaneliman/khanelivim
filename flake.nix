@@ -9,7 +9,6 @@
     home-manager.url = "github:nix-community/home-manager";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     nix-darwin.url = "github:LnL7/nix-darwin";
-    nixos-unified.url = "github:srid/nixos-unified";
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixvim.url = "github:nix-community/nixvim";
     pkgs-by-name-for-flake-parts.url = "github:drupol/pkgs-by-name-for-flake-parts";
@@ -28,11 +27,19 @@
     nixpkgs-tree-sitter.url = "github:khaneliman/nixpkgs/treesitter";
   };
 
-  # Wired using https://nixos-unified.org/autowiring.html
   outputs =
-    inputs:
-    inputs.nixos-unified.lib.mkFlake {
-      inherit inputs;
-      root = ./.;
+    {
+      flake-parts,
+      ...
+    }@inputs:
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = [
+        "aarch64-linux"
+        "x86_64-linux"
+        "aarch64-darwin"
+        "x86_64-darwin"
+      ];
+
+      imports = [ ./flake-modules ];
     };
 }

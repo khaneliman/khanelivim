@@ -8,7 +8,7 @@
 
   # Create internal lib
   flake.lib = {
-    khanelivim = lib.makeOverridable (import ../../lib) {
+    khanelivim = lib.makeOverridable (import ../lib) {
       inherit lib;
     };
   };
