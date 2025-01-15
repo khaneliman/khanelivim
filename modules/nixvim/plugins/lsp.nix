@@ -123,6 +123,7 @@ in
         pyright.enable = true;
         ruff.enable = true;
         sqls.enable = true;
+        statix.enable = true;
         stylelint_lsp.enable = true;
         tailwindcss.enable = true;
         taplo.enable = true;
