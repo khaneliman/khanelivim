@@ -1,61 +1,17 @@
 {
   config,
   lib,
+  self,
   ...
 }:
 {
+  imports = self.lib.khanelivim.readAllFiles ./telescope;
+
   plugins.telescope = {
     enable = true;
 
     # TODO: figure out proper lazy loading
     lazyLoad.settings.cmd = "Telescope";
-
-    extensions = {
-      file-browser = {
-        enable = true;
-        settings = {
-          hidden = true;
-        };
-      };
-
-      frecency = {
-        # FIXME: super slow loading
-        # enable = true;
-        settings = {
-          auto_validate = false;
-        };
-      };
-
-      # fzy-native = {
-      #   enable = true;
-      # };
-
-      fzf-native = {
-        enable = true;
-      };
-
-      live-grep-args.enable = true;
-
-      manix.enable = true;
-
-      ui-select = {
-        enable = true;
-        settings = {
-          __unkeyed-1.__raw = ''require("telescope.themes").get_dropdown{}'';
-        };
-      };
-
-      undo = {
-        enable = true;
-        settings = {
-          side_by_side = true;
-          layout_strategy = "vertical";
-          layout_config = {
-            preview_height = 0.8;
-          };
-        };
-      };
-    };
 
     highlightTheme = "Catppuccin Macchiato";
 
@@ -123,10 +79,6 @@
       "<leader>fq" = {
         action = "quickfix";
         options.desc = "Search quickfix";
-      };
-      "<leader>fw" = lib.mkIf (!config.plugins.telescope.extensions.live-grep-args.enable) {
-        action = "live_grep";
-        options.desc = "Live grep";
       };
       # "<leader>gC" = {
       #   action = "git_bcommits";
@@ -243,48 +195,5 @@
         silent = true;
       };
     })
-    (lib.mkIf config.plugins.telescope.extensions.file-browser.enable {
-      mode = "n";
-      key = "<leader>fe";
-      action = "<cmd>Telescope file_browser<CR>";
-      options = {
-        desc = "File Explorer";
-      };
-    })
-    (lib.mkIf config.plugins.telescope.extensions.frecency.enable {
-      mode = "n";
-      key = "<leader>fO";
-      action = "<cmd>Telescope frecency<CR>";
-      options = {
-        desc = "Find Frequent Files";
-      };
-    })
-    (lib.mkIf config.plugins.telescope.extensions.undo.enable {
-      mode = "n";
-      key = "<leader>fu";
-      action = "<cmd>Telescope undo<CR>";
-      options = {
-        desc = "List undo history";
-      };
-    })
-    (lib.mkIf config.plugins.telescope.extensions.manix.enable {
-      mode = "n";
-      key = "<leader>fM";
-      action = "<cmd>Telescope manix<CR>";
-      options = {
-        desc = "Search manix";
-      };
-    })
-    (lib.mkIf
-      (config.plugins.telescope.extensions.live-grep-args.enable && !config.plugins.fzf-lua.enable)
-      {
-        mode = "n";
-        key = "<leader>fw";
-        action = "<cmd>Telescope live_grep_args<CR>";
-        options = {
-          desc = "Live grep (args)";
-        };
-      }
-    )
   ];
 }
