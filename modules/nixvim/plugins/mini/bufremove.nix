@@ -5,9 +5,16 @@
       enable = true;
 
       modules = {
+        # Only enable if we arent using snacks bufdelete
         bufremove = lib.mkIf (
           !config.plugins.snacks.enable
-          || (config.plugins.snacks.enable && (!config.plugins.snacks.settings.bufdelete.enabled))
+          || (
+            config.plugins.snacks.enable
+            && (
+              !lib.hasAttr "bufdelete" config.plugins.snacks.settings
+              || !config.plugins.snacks.settings.bufdelete.enabled
+            )
+          )
         ) { };
       };
     };
