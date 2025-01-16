@@ -3,13 +3,24 @@
   plugins.todo-comments = {
     enable = true;
 
-    lazyLoad.settings.cmd = [
-      "TodoFzfLua"
-      "TodoLocList"
-      "TodoQuickFix"
-      "TodoTelescope"
-      "TodoTrouble"
-    ];
+    lazyLoad.settings = {
+      keys =
+        lib.mkIf (config.plugins.snacks.enable && lib.hasAttr "picker" config.plugins.snacks.settings)
+          [
+            {
+              __unkeyed-1 = "<leader>ft";
+              __unkeyed-2 = ''<CMD>lua Snacks.picker.todo_comments({ keywords = { "TODO", "FIX", "FIXME" }})<CR>'';
+              desc = "Find TODOs";
+            }
+          ];
+      cmd = [
+        "TodoFzfLua"
+        "TodoLocList"
+        "TodoQuickFix"
+        "TodoTelescope"
+        "TodoTrouble"
+      ];
+    };
 
     keymaps = {
       todoTrouble.key = lib.mkIf config.plugins.trouble.enable "<leader>xq";

@@ -101,14 +101,15 @@
               desc = "Find lsp document symbols";
             };
           }
-          {
-            mode = "n";
-            key = "<leader>ft";
-            action = ''<cmd>lua Snacks.picker.todo_comments({ keywords = { "TODO", "FIX", "FIXME" }})<cr>'';
-            options = {
-              desc = "Find TODOs";
-            };
-          }
+          # Moved to todo-comments module since lazy loading wasn't working
+          # {
+          #   mode = "n";
+          #   key = "<leader>ft";
+          #   action = ''<cmd>lua Snacks.picker.todo_comments({ keywords = { "TODO", "FIX", "FIXME" }})<cr>'';
+          #   options = {
+          #     desc = "Find TODOs";
+          #   };
+          # }
           {
             mode = "n";
             key = "<leader>fT";
