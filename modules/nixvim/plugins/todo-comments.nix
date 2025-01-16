@@ -3,8 +3,12 @@
   plugins.todo-comments = {
     enable = true;
 
-    lazyLoad.settings.event = [
-      "BufEnter"
+    lazyLoad.settings.cmd = [
+      "TodoFzfLua"
+      "TodoLocList"
+      "TodoQuickFix"
+      "TodoTelescope"
+      "TodoTrouble"
     ];
 
     keymaps = {
