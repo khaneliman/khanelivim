@@ -103,6 +103,14 @@
           }
           {
             mode = "n";
+            key = "<leader>ft";
+            action = ''<cmd>lua Snacks.picker.todo_comments({ keywords = { "TODO", "FIX", "FIXME" }})<cr>'';
+            options = {
+              desc = "Find theme";
+            };
+          }
+          {
+            mode = "n";
             key = "<leader>fT";
             action = ''<cmd>lua Snacks.picker.colorschemes()<cr>'';
             options = {
