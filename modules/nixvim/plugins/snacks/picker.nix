@@ -106,7 +106,7 @@
             key = "<leader>ft";
             action = ''<cmd>lua Snacks.picker.todo_comments({ keywords = { "TODO", "FIX", "FIXME" }})<cr>'';
             options = {
-              desc = "Find theme";
+              desc = "Find TODOs";
             };
           }
           {
