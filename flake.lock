@@ -439,6 +439,22 @@
         "url": "https://github.com/NixOS/nixpkgs/archive/e9b51731911566bbf7e4895475a87fe06961de0b.tar.gz"
       }
     },
+    "nixpkgs-lldb": {
+      "locked": {
+        "lastModified": 1736919452,
+        "narHash": "sha256-zgyVzttrKkf9hdbK6DGt0zqFVxOJEL7glC3a4JvrrwE=",
+        "owner": "paparodeo",
+        "repo": "nixpkgs",
+        "rev": "57febece67be9cc2b195caf13c645277104f8537",
+        "type": "github"
+      },
+      "original": {
+        "owner": "paparodeo",
+        "ref": "lldb-fixes",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-tree-sitter": {
       "locked": {
         "lastModified": 1735514485,
@@ -593,6 +609,7 @@
         "home-manager": "home-manager",
         "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs_3",
+        "nixpkgs-lldb": "nixpkgs-lldb",
         "nixpkgs-tree-sitter": "nixpkgs-tree-sitter",
         "nixvim": "nixvim",
         "pkgs-by-name-for-flake-parts": "pkgs-by-name-for-flake-parts",

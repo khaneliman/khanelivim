@@ -25,6 +25,7 @@
       flake = false;
     };
     nixpkgs-tree-sitter.url = "github:khaneliman/nixpkgs/treesitter";
+    nixpkgs-lldb.url = "github:paparodeo/nixpkgs/lldb-fixes";
   };
 
   outputs =
