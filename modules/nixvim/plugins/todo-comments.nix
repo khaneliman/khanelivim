@@ -13,7 +13,7 @@
 
     keymaps = {
       todoTrouble.key = lib.mkIf config.plugins.trouble.enable "<leader>xq";
-      # Fallback is snacks picker not enabled
+      # Fallback if snacks picker not enabled
       todoFzfLua =
         lib.mkIf
           (
