@@ -5,8 +5,8 @@ _: _final: prev: {
       src = prev.fetchFromGitHub {
         owner = "folke";
         repo = "snacks.nvim";
-        rev = "33e1e1689f08a4ffde924e97093c46387b349560";
-        sha256 = "sha256-uDjDPSs4bDNBhrX7yVLuk6GoqmCK7E5q0X7B2NAReH8=";
+        rev = "d82c5bcff5c04452ed682f71e418a2e7a2c0f9c9";
+        sha256 = "1a12awf71r278r2mpgrsdliyv0h9hdkv8zha9vbal47hyyxy6pyi";
       };
       nvimSkipModule = oldAttrs.nvimSkipModule ++ [
         "snacks.picker.config.highlights"
