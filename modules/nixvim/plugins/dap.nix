@@ -183,7 +183,7 @@ in
         };
 
         servers = {
-          codelldb = lib.mkIf pkgs.stdenv.isLinux {
+          codelldb = {
             port = 13000;
             executable = {
               command = "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb";
@@ -200,10 +200,12 @@ in
         c = [ lldb-config ] ++ lib.optionals pkgs.stdenv.isLinux [ gdb-config ];
 
         cpp =
-          [ lldb-config ]
+          [
+            codelldb-config
+            lldb-config
+          ]
           ++ lib.optionals pkgs.stdenv.isLinux [
             gdb-config
-            codelldb-config
           ];
 
         cs = [
@@ -217,10 +219,12 @@ in
         ];
 
         rust =
-          [ lldb-config ]
+          [
+            codelldb-config
+            lldb-config
+          ]
           ++ lib.optionals pkgs.stdenv.isLinux [
             gdb-config
-            codelldb-config
           ];
 
         sh = lib.optionals pkgs.stdenv.isLinux [ sh-config ];
