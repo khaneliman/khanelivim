@@ -5,12 +5,13 @@ _: _final: prev: {
       src = prev.fetchFromGitHub {
         owner = "folke";
         repo = "snacks.nvim";
-        rev = "d82c5bcff5c04452ed682f71e418a2e7a2c0f9c9";
-        sha256 = "1a12awf71r278r2mpgrsdliyv0h9hdkv8zha9vbal47hyyxy6pyi";
+        rev = "71f69e5e57f355f40251e274d45560af7d8dd365";
+        sha256 = "sha256-F1BCQ3UJoVeCeUY747yN75Wadtj2kSlyq/2hb2sx/pY=";
       };
       nvimSkipModule = oldAttrs.nvimSkipModule ++ [
         "snacks.picker.config.highlights"
         "snacks.picker.actions"
+        "snacks.picker.util.db"
       ];
     });
   };
