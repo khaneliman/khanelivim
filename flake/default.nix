@@ -6,9 +6,9 @@
 }:
 {
   imports = [
-    ./checks.nix
     ./devshell.nix
     ./git-hooks.nix
+    ./nixvim.nix
     ./overlays.nix
     ./pkgs-by-name.nix
     ./treefmt.nix
@@ -16,7 +16,7 @@
 
   perSystem =
     {
-      self',
+      config,
       system,
       ...
     }:
@@ -27,6 +27,6 @@
         config.allowUnfree = true;
       };
 
-      packages.default = self'.packages.khanelivim;
+      packages.default = config.packages.khanelivim;
     };
 }
