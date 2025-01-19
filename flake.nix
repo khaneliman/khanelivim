@@ -24,7 +24,7 @@
       url = "github:moyiz/blink-emoji.nvim";
       flake = false;
     };
-    nixpkgs-tree-sitter.url = "github:khaneliman/nixpkgs/treesitter";
+    nixpkgs-master.url = "github:nixos/nixpkgs";
     nixpkgs-lldb.url = "github:paparodeo/nixpkgs/lldb-fixes";
   };
 

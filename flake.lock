@@ -455,18 +455,17 @@
         "type": "github"
       }
     },
-    "nixpkgs-tree-sitter": {
+    "nixpkgs-master": {
       "locked": {
-        "lastModified": 1735514485,
-        "narHash": "sha256-Zww5ANfNtI0O1sj7ZbePNYC1xi5TJYnKHAz9F97DobI=",
-        "owner": "khaneliman",
+        "lastModified": 1737308077,
+        "narHash": "sha256-UI5XTF964LPgrWp4ltgrdX2PEd87APH1cBahhtKC/d4=",
+        "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "01ab8a5a632ed4eeed0ea6e9b307d67675f48af6",
+        "rev": "ca168be0de7d98b7673e3b54843b7bfa626aae6c",
         "type": "github"
       },
       "original": {
-        "owner": "khaneliman",
-        "ref": "treesitter",
+        "owner": "nixos",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -610,7 +609,7 @@
         "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs_3",
         "nixpkgs-lldb": "nixpkgs-lldb",
-        "nixpkgs-tree-sitter": "nixpkgs-tree-sitter",
+        "nixpkgs-master": "nixpkgs-master",
         "nixvim": "nixvim",
         "pkgs-by-name-for-flake-parts": "pkgs-by-name-for-flake-parts",
         "treefmt-nix": "treefmt-nix_2"
