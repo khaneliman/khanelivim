@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, self, ... }:
 let
   inherit (builtins) readDir;
   inherit (lib.attrsets) foldlAttrs;
@@ -22,4 +22,9 @@ in
       ./performance.nix
       ./usercommands.nix
     ];
+
+  nixpkgs = {
+    overlays = lib.attrValues self.overlays;
+    config.allowUnfree = true;
+  };
 }
