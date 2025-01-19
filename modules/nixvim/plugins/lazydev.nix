@@ -4,8 +4,8 @@
     lazydev = {
       enable = true;
 
-      lazyLoad.settings.cmd = [
-        "LazyDev"
+      lazyLoad.settings.ft = [
+        "lua"
       ];
     };
 
