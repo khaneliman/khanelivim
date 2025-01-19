@@ -470,6 +470,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-vim": {
+      "locked": {
+        "lastModified": 1737323503,
+        "narHash": "sha256-IWL74kR6f1Z6FD0+GXPHRsQFHeFFvJnpviXhmprjM1A=",
+        "owner": "khaneliman",
+        "repo": "nixpkgs",
+        "rev": "5d467dda2524985a5e05739ef28891c2596ed72b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "khaneliman",
+        "ref": "vim",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1730768919,
@@ -610,6 +626,7 @@
         "nixpkgs": "nixpkgs_3",
         "nixpkgs-lldb": "nixpkgs-lldb",
         "nixpkgs-master": "nixpkgs-master",
+        "nixpkgs-vim": "nixpkgs-vim",
         "nixvim": "nixvim",
         "pkgs-by-name-for-flake-parts": "pkgs-by-name-for-flake-parts",
         "treefmt-nix": "treefmt-nix_2"
