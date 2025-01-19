@@ -4,15 +4,15 @@
     enable = true;
 
     lazyLoad.settings = {
-      keys =
-        lib.mkIf (config.plugins.snacks.enable && lib.hasAttr "picker" config.plugins.snacks.settings)
-          [
-            {
-              __unkeyed-1 = "<leader>ft";
-              __unkeyed-2 = ''<CMD>lua Snacks.picker.todo_comments({ keywords = { "TODO", "FIX", "FIXME" }})<CR>'';
-              desc = "Find TODOs";
-            }
-          ];
+      # keys =
+      #   lib.mkIf (config.plugins.snacks.enable && lib.hasAttr "picker" config.plugins.snacks.settings)
+      #     [
+      #       {
+      #         __unkeyed-1 = "<leader>ft";
+      #         __unkeyed-2 = ''<CMD>lua Snacks.picker.todo_comments({ keywords = { "TODO", "FIX", "FIXME" }})<CR>'';
+      #         desc = "Find TODOs";
+      #       }
+      #     ];
       cmd = [
         "TodoFzfLua"
         "TodoLocList"
@@ -27,12 +27,11 @@
       # Fallback if snacks picker not enabled
       todoFzfLua =
         lib.mkIf
-          (
-            config.plugins.fzf-lua.enable
-            && (
-              !config.plugins.snacks.enable
-              || (config.plugins.snacks.enable && !lib.hasAttr "picker" config.plugins.snacks.settings)
-            )
+          (config.plugins.fzf-lua.enable
+            # && (
+            #   !config.plugins.snacks.enable
+            #   || (config.plugins.snacks.enable && !lib.hasAttr "picker" config.plugins.snacks.settings)
+            # )
           )
           {
             key = "<leader>ft";
