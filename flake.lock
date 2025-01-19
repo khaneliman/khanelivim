@@ -439,29 +439,13 @@
         "url": "https://github.com/NixOS/nixpkgs/archive/e9b51731911566bbf7e4895475a87fe06961de0b.tar.gz"
       }
     },
-    "nixpkgs-lldb": {
-      "locked": {
-        "lastModified": 1736919452,
-        "narHash": "sha256-zgyVzttrKkf9hdbK6DGt0zqFVxOJEL7glC3a4JvrrwE=",
-        "owner": "paparodeo",
-        "repo": "nixpkgs",
-        "rev": "57febece67be9cc2b195caf13c645277104f8537",
-        "type": "github"
-      },
-      "original": {
-        "owner": "paparodeo",
-        "ref": "lldb-fixes",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs-master": {
       "locked": {
-        "lastModified": 1737314483,
-        "narHash": "sha256-GJ7DywGtGn4bI/6yTKYJk8wnlsy4ZUbpM/lchvv/Asg=",
+        "lastModified": 1737322741,
+        "narHash": "sha256-fX5uJhKARCaSxoC1bdj+cQ0P0JVpzdk2bqEkXSnMLm8=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "ad2c670306003df8bb5950a0d96cc4c5f69d821f",
+        "rev": "4b42fba7b9968df4292eeac29b739aa8089c9f49",
         "type": "github"
       },
       "original": {
@@ -624,7 +608,6 @@
         "home-manager": "home-manager",
         "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs_3",
-        "nixpkgs-lldb": "nixpkgs-lldb",
         "nixpkgs-master": "nixpkgs-master",
         "nixpkgs-vim": "nixpkgs-vim",
         "nixvim": "nixvim",

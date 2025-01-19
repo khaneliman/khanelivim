@@ -28,7 +28,6 @@
     # Nixpkgs overlays
     nixpkgs-master.url = "github:nixos/nixpkgs";
     nixpkgs-vim.url = "github:khaneliman/nixpkgs/vim";
-    nixpkgs-lldb.url = "github:paparodeo/nixpkgs/lldb-fixes";
   };
 
   outputs =
