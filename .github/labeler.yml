@@ -1,0 +1,18 @@
+Flake-Modules:
+  - changed-files:
+      - any-glob-to-any-file: flake-modules/**/*
+Modules:
+  - changed-files:
+      - any-glob-to-any-file: modules/**/*
+Library:
+  - changed-files:
+      - any-glob-to-any-file: lib/**/*
+Overlays:
+  - changed-files:
+      - any-glob-to-any-file: overlays/**/*
+Packages:
+  - changed-files:
+      - any-glob-to-any-file: packages/**/*
+GitHub-Action:
+  - changed-files:
+      - any-glob-to-any-file: .github/workflows/*
