@@ -6,8 +6,6 @@ _self: super: {
     llvmPackages_15
     llvmPackages_16
     llvmPackages_17
-    # Fixes hard freeze
-    tree-sitter
     # Latest bump
     vimPlugins
     ;
