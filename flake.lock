@@ -441,31 +441,15 @@
     },
     "nixpkgs-master": {
       "locked": {
-        "lastModified": 1737322741,
-        "narHash": "sha256-fX5uJhKARCaSxoC1bdj+cQ0P0JVpzdk2bqEkXSnMLm8=",
+        "lastModified": 1737334172,
+        "narHash": "sha256-C0uRwBKtAnSc0m+9Mv9m8Alm3iZuu/zMVTjWcay7gJI=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "4b42fba7b9968df4292eeac29b739aa8089c9f49",
+        "rev": "e65e23b593f38f57b7076e1e025f904c07d7b848",
         "type": "github"
       },
       "original": {
         "owner": "nixos",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs-vim": {
-      "locked": {
-        "lastModified": 1737323503,
-        "narHash": "sha256-IWL74kR6f1Z6FD0+GXPHRsQFHeFFvJnpviXhmprjM1A=",
-        "owner": "khaneliman",
-        "repo": "nixpkgs",
-        "rev": "5d467dda2524985a5e05739ef28891c2596ed72b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "khaneliman",
-        "ref": "vim",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -609,7 +593,6 @@
         "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs_3",
         "nixpkgs-master": "nixpkgs-master",
-        "nixpkgs-vim": "nixpkgs-vim",
         "nixvim": "nixvim",
         "pkgs-by-name-for-flake-parts": "pkgs-by-name-for-flake-parts",
         "treefmt-nix": "treefmt-nix_2"

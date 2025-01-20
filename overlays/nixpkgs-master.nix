@@ -7,5 +7,6 @@ _self: super: {
     llvmPackages_17
     ruff
     tree-sitter
+    vimPlugins
     ;
 }
