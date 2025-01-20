@@ -1,6 +1,6 @@
-{ self, system, ... }:
+{ pkgs, ... }:
 {
   extraPlugins = [
-    self.packages.${system}.monaspace-nvim
+    pkgs.vimPlugins.monaspace-nvim
   ];
 }
