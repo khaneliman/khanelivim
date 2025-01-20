@@ -46,6 +46,6 @@
         "x86_64-darwin"
       ];
 
-      imports = [ ./flake-modules ];
+      imports = [ ./flake ];
     };
 }
