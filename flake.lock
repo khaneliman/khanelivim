@@ -23,11 +23,11 @@
     "blink-compat": {
       "flake": false,
       "locked": {
-        "lastModified": 1735162247,
-        "narHash": "sha256-tFQeKyqdo3mvptYnWxKhTpI4ROFNQ6u3P8cLqtlsozw=",
+        "lastModified": 1737344026,
+        "narHash": "sha256-tFdkIkj8Lq+zBhF7mlh7emfpp0qs8GrinJbFWBJn+uE=",
         "owner": "saghen",
         "repo": "blink.compat",
-        "rev": "5ca8848c8cc32abdc980e5db4f0eb7bb8fbf84dc",
+        "rev": "d375d838042dbef34114139839fdda16b2485d63",
         "type": "github"
       },
       "original": {
