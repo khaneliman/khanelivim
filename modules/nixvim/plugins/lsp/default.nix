@@ -2,11 +2,19 @@
   config,
   lib,
   pkgs,
-  self,
   ...
 }:
 {
-  imports = self.lib.khanelivim.readAllFiles ./lsp;
+  imports = [
+    ./ccls.nix
+    ./clangd.nix
+    ./harper-ls.nix
+    ./helm-ls.nix
+    ./nil-ls.nix
+    ./nixd.nix
+    ./rust-analyzer.nix
+    ./typos-lsp.nix
+  ];
 
   # TODO: migrate to mkneovimplugin
   extraConfigLuaPre = ''

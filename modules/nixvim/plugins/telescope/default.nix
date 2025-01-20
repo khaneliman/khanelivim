@@ -1,11 +1,18 @@
 {
   config,
   lib,
-  self,
   ...
 }:
 {
-  imports = self.lib.khanelivim.readAllFiles ./telescope;
+  imports = [
+    ./file-browser.nix
+    ./frecency.nix
+    ./fzf-native.nix
+    ./live_grep.nix
+    ./manix.nix
+    ./ui-select.nix
+    ./undo.nix
+  ];
 
   plugins.telescope = {
     enable = true;

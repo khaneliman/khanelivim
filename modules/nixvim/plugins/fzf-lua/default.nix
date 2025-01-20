@@ -1,11 +1,14 @@
 {
   lib,
   config,
-  self,
   ...
 }:
 {
-  imports = self.lib.khanelivim.readAllFiles ./fzf-lua;
+  imports = [
+    ./dap.nix
+    ./git.nix
+    ./lsp.nix
+  ];
 
   plugins = {
     fzf-lua = {

@@ -1,10 +1,17 @@
 {
   config,
-  self,
   ...
 }:
 {
-  imports = self.lib.khanelivim.readAllFiles ./snacks;
+  imports = [
+    ./bigfile.nix
+    ./bufdelete.nix
+    ./gitbrowse.nix
+    ./lazygit.nix
+    ./picker.nix
+    ./profiler.nix
+    ./zen.nix
+  ];
 
   plugins = {
     snacks = {

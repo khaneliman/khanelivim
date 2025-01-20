@@ -1,11 +1,22 @@
 {
   config,
   lib,
-  self,
   ...
 }:
 {
-  imports = self.lib.khanelivim.readAllFiles ./mini;
+  imports = [
+    ./bufremove.nix
+    ./comment.nix
+    ./diff.nix
+    ./files.nix
+    ./fuzzy.nix
+    ./hipatterns.nix
+    ./indentscope.nix
+    ./map.nix
+    ./pairs.nix
+    ./starter.nix
+    ./surround.nix
+  ];
 
   plugins = {
     mini = {
