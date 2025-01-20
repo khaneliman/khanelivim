@@ -1,13 +1,13 @@
 { pkgs }:
-pkgs.tree-sitter.buildGrammar {
+pkgs.tree-sitter.buildGrammar rec {
   language = "nu";
-  version = "e3b4c967937cad628dca09bd098cd780d8288750";
+  version = "9822fc63a62ff87939c88ead9f381f951f092dee";
 
   src = pkgs.fetchFromGitHub {
     owner = "nushell";
     repo = "tree-sitter-nu";
-    rev = "e3b4c967937cad628dca09bd098cd780d8288750";
-    hash = "sha256-DlvBRKDXOJCqyJE0BJn8omqF50pQmnceiYsihJa/opg=";
+    rev = version;
+    hash = "sha256-fcwWrM1KpK1V+TeGqe/iMICOIv7/lA1WZW/8jJXL7WA=";
   };
 
   meta.homepage = "https://github.com/nushell/tree-sitter-nu";
