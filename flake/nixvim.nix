@@ -1,6 +1,5 @@
 {
   inputs,
-  lib,
   self,
   ...
 }:
@@ -10,14 +9,8 @@
   ];
 
   nixvim = {
-    packages = {
-      enable = true;
-      nameFunction = lib.id;
-    };
-    checks = {
-      enable = true;
-      nameFunction = lib.id;
-    };
+    packages.enable = true;
+    checks.enable = true;
   };
 
   flake.nixvimModules = {
