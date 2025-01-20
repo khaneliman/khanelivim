@@ -9,7 +9,6 @@
     ./checks.nix
     ./devshell.nix
     ./git-hooks.nix
-    ./lib.nix
     ./overlays.nix
     ./pkgs-by-name.nix
     ./treefmt.nix
