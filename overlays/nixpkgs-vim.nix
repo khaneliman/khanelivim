@@ -1,5 +1,6 @@
-specialArgs: _self: super: {
-  inherit (specialArgs.flake.inputs.nixpkgs-vim.legacyPackages.${super.stdenv.system})
+{ flake }:
+_self: super: {
+  inherit (flake.inputs.nixpkgs-vim.legacyPackages.${super.stdenv.system})
     vimPlugins
     ;
 }

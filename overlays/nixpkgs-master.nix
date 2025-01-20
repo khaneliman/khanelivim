@@ -1,5 +1,6 @@
-specialArgs: _self: super: {
-  inherit (specialArgs.flake.inputs.nixpkgs-master.legacyPackages.${super.stdenv.system})
+{ flake }:
+_self: super: {
+  inherit (flake.inputs.nixpkgs-master.legacyPackages.${super.stdenv.system})
     llvmPackages_14
     llvmPackages_15
     llvmPackages_16
