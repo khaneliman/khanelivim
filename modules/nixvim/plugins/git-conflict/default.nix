@@ -1,8 +1,15 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  self,
+  system,
+  ...
+}:
 {
   plugins = {
     git-conflict = {
       enable = true;
+      package = self.packages.${system}.git-conflict;
 
       # TODO: Figure out a proper way to load without command
       # lazyLoad.settings = {
