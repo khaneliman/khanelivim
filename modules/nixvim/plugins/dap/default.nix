@@ -105,9 +105,9 @@ in
       pkgs.bashdb
     ];
 
-  extraPlugins = [
-    nvim-dap-view
-  ];
+  # extraPlugins = [
+  #   nvim-dap-view
+  # ];
 
   #   extraPlugins = with pkgs.vimPlugins; [ nvim-gdb ];
 
@@ -249,8 +249,7 @@ in
 
       extensions = {
         dap-ui = {
-          # Trying out dap-view
-          # enable = true;
+          enable = true;
         };
 
         dap-virtual-text = {
@@ -424,21 +423,24 @@ in
         };
       }
     ]
-    ++ lib.optionals (builtins.elem nvim-dap-view config.extraPlugins) [
-      {
-        mode = "n";
-        key = "<leader>du";
-        action.__raw = ''
-          function()
-            require('dap.ext.vscode').load_launchjs(nil, {})
-            require("dap-view").toggle()
-          end
-        '';
-        options = {
-          desc = "Toggle Debugger UI";
-          silent = true;
-        };
-      }
-    ];
+    ++
+      lib.optionals
+        ((builtins.elem nvim-dap-view config.extraPlugins) && !config.plugins.dap.extensions.dap-ui.enable)
+        [
+          {
+            mode = "n";
+            key = "<leader>du";
+            action.__raw = ''
+              function()
+                require('dap.ext.vscode').load_launchjs(nil, {})
+                require("dap-view").toggle()
+              end
+            '';
+            options = {
+              desc = "Toggle Debugger UI";
+              silent = true;
+            };
+          }
+        ];
 
 }
