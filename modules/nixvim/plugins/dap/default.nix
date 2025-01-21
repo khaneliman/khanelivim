@@ -185,7 +185,7 @@ in
           };
 
           lldb = {
-            command = lib.getExe' pkgs.lldb (if pkgs.stdenv.isLinux then "lldb-dap" else "lldb-vscode");
+            command = lib.getExe' pkgs.lldb "lldb-dap";
           };
 
           coreclr = {
