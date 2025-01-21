@@ -8,5 +8,6 @@ _self: super: {
     llvmPackages_17
     # Latest bump
     vimPlugins
+    tree-sitter
     ;
 }
