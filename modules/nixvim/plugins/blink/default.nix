@@ -198,7 +198,8 @@
         package = self.packages.${system}.blink-compat;
 
         settings = {
-          debug = true;
+          # When wanted
+          # debug = true;
           # NOTE: apparently just doesn't work without using lazy...
           # impersonate_nvim_cmp = true;
         };
