@@ -5,76 +5,6 @@
   ...
 }:
 let
-  program.__raw = ''
-    function()
-        return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. '/', "file")
-    end
-  '';
-
-  codelldb-config = {
-    inherit program;
-    name = "Launch (CodeLLDB)";
-    type = "codelldb";
-    request = "launch";
-    cwd = ''''${workspaceFolder}'';
-    stopOnEntry = false;
-  };
-
-  coreclr-config = {
-    type = "coreclr";
-    name = "launch - netcoredbg";
-    request = "launch";
-    program.__raw = ''
-      function()
-        if vim.fn.confirm('Should I recompile first?', '&yes\n&no', 2) == 1 then
-          vim.g.dotnet_build_project()
-        end
-
-        return vim.g.dotnet_get_dll_path()
-      end'';
-    cwd = ''''${workspaceFolder}'';
-  };
-
-  netcoredb-config = coreclr-config;
-
-  gdb-config = {
-    inherit program;
-    name = "Launch (GDB)";
-    type = "gdb";
-    request = "launch";
-    cwd = ''''${workspaceFolder}'';
-    stopOnEntry = false;
-  };
-
-  lldb-config = {
-    inherit program;
-    name = "Launch (LLDB)";
-    type = "lldb";
-    request = "launch";
-    cwd = ''''${workspaceFolder}'';
-    stopOnEntry = false;
-  };
-
-  sh-config = lib.mkIf pkgs.stdenv.isLinux {
-    type = "bashdb";
-    request = "launch";
-    name = "Launch (BashDB)";
-    showDebugOutput = true;
-    pathBashdb = "${lib.getExe pkgs.bashdb}";
-    pathBashdbLib = "${pkgs.bashdb}/share/basdhb/lib/";
-    trace = true;
-    file = ''''${file}'';
-    program = ''''${file}'';
-    cwd = ''''${workspaceFolder}'';
-    pathCat = "cat";
-    pathBash = "${lib.getExe pkgs.bash}";
-    pathMkfifo = "mkfifo";
-    pathPkill = "pkill";
-    args = { };
-    env = { };
-    terminalKind = "integrated";
-  };
-
   nvim-dap-view = pkgs.vimUtils.buildVimPlugin {
     pname = "nvim-dap-view";
     version = "2025-01-19";
@@ -97,8 +27,8 @@ in
       netcoredbg
     ]
     ++ lib.optionals pkgs.stdenv.isLinux [
-      pkgs.gdb
-      pkgs.bashdb
+      gdb
+      bashdb
     ];
 
   # extraPlugins = [
@@ -209,39 +139,118 @@ in
         };
       };
 
-      configurations = {
-        c = [ lldb-config ] ++ lib.optionals pkgs.stdenv.isLinux [ gdb-config ];
+      configurations =
+        let
+          program.__raw = ''
+            function()
+                return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. '/', "file")
+            end
+          '';
 
-        cpp =
-          [
-            codelldb-config
-            lldb-config
-          ]
-          ++ lib.optionals pkgs.stdenv.isLinux [
-            gdb-config
+          codelldb-config = {
+            inherit program;
+            name = "Launch (CodeLLDB)";
+            type = "codelldb";
+            request = "launch";
+            cwd = ''''${workspaceFolder}'';
+            stopOnEntry = false;
+          };
+
+          coreclr-config = {
+            type = "coreclr";
+            name = "launch - netcoredbg";
+            request = "launch";
+            program.__raw = ''
+              function()
+                if vim.fn.confirm('Should I recompile first?', '&yes\n&no', 2) == 1 then
+                  vim.g.dotnet_build_project()
+                end
+
+                return vim.g.dotnet_get_dll_path()
+              end
+            '';
+            cwd = ''''${workspaceFolder}'';
+          };
+
+          gdb-config = {
+            inherit program;
+            name = "Launch (GDB)";
+            type = "gdb";
+            request = "launch";
+            cwd = ''''${workspaceFolder}'';
+            stopOnEntry = false;
+          };
+
+          lldb-config = {
+            inherit program;
+            name = "Launch (LLDB)";
+            type = "lldb";
+            request = "launch";
+            cwd = ''''${workspaceFolder}'';
+            stopOnEntry = false;
+          };
+
+          netcoredb-config = coreclr-config;
+        in
+        {
+          c =
+            [
+              lldb-config
+            ]
+            ++ lib.optionals pkgs.stdenv.isLinux [
+              gdb-config
+            ];
+
+          cpp =
+            [
+              codelldb-config
+              lldb-config
+            ]
+            ++ lib.optionals pkgs.stdenv.isLinux [
+              gdb-config
+            ];
+
+          cs = [
+            coreclr-config
+            netcoredb-config
           ];
 
-        cs = [
-          coreclr-config
-          netcoredb-config
-        ];
-
-        fsharp = [
-          coreclr-config
-          netcoredb-config
-        ];
-
-        rust =
-          [
-            codelldb-config
-            lldb-config
-          ]
-          ++ lib.optionals pkgs.stdenv.isLinux [
-            gdb-config
+          fsharp = [
+            coreclr-config
+            netcoredb-config
           ];
 
-        sh = lib.optionals pkgs.stdenv.isLinux [ sh-config ];
-      };
+          rust =
+            [
+              codelldb-config
+              lldb-config
+            ]
+            ++ lib.optionals pkgs.stdenv.isLinux [
+              gdb-config
+            ];
+
+          sh = lib.optionals pkgs.stdenv.isLinux [
+            {
+              type = "bashdb";
+              request = "launch";
+              name = "Launch (BashDB)";
+              showDebugOutput = true;
+              pathBashdb = "${lib.getExe pkgs.bashdb}";
+              pathBashdbLib = "${pkgs.bashdb}/share/basdhb/lib/";
+              trace = true;
+              file = ''''${file}'';
+              program = ''''${file}'';
+              cwd = ''''${workspaceFolder}'';
+              pathCat = "cat";
+              pathBash = "${lib.getExe pkgs.bash}";
+              pathMkfifo = "mkfifo";
+              pathPkill = "pkill";
+              args = { };
+              env = { };
+              terminalKind = "integrated";
+            }
+          ];
+        };
 
       extensions = {
         dap-ui = {
