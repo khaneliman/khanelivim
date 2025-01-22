@@ -28,6 +28,10 @@
       url = "github:moyiz/blink-emoji.nvim";
       flake = false;
     };
+    snacks-nvim = {
+      url = "github:folke/snacks.nvim";
+      flake = false;
+    };
   };
 
   outputs =

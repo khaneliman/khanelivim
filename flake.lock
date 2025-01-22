@@ -579,6 +579,7 @@
         "nixpkgs": "nixpkgs_3",
         "nixvim": "nixvim",
         "pkgs-by-name-for-flake-parts": "pkgs-by-name-for-flake-parts",
+        "snacks-nvim": "snacks-nvim",
         "treefmt-nix": "treefmt-nix_2"
       }
     },
@@ -596,6 +597,22 @@
         "owner": "rust-lang",
         "ref": "nightly",
         "repo": "rust-analyzer",
+        "type": "github"
+      }
+    },
+    "snacks-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1737480879,
+        "narHash": "sha256-eamzryTq7uOpNgLoFd9bpswXJH3VdycsEH2r8VSAurU=",
+        "owner": "folke",
+        "repo": "snacks.nvim",
+        "rev": "f7d07bcbc2b79e00088e8b71729b74dd39037280",
+        "type": "github"
+      },
+      "original": {
+        "owner": "folke",
+        "repo": "snacks.nvim",
         "type": "github"
       }
     },
