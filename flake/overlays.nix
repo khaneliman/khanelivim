@@ -1,19 +1,18 @@
 { inputs, lib, ... }:
 let
-  children =
-    dir:
+  overlayFiles =
     with builtins;
-    lib.pipe dir [
+    lib.pipe ../overlays [
       readDir
+      (lib.filterAttrs (name: type: type == "regular" && lib.hasSuffix ".nix" name))
       attrNames
-      (map (name: dir + "/${name}"))
     ];
 in
 {
   flake.overlays = lib.listToAttrs (
-    map (file: {
-      name = "${lib.removeSuffix ".nix" (builtins.hashString "sha256" (builtins.readFile file))}-overlay";
-      value = import file { flake = inputs.self; };
-    }) (children ../overlays)
+    map (filename: {
+      name = lib.removeSuffix ".nix" filename;
+      value = import (../overlays + "/${filename}") { flake = inputs.self; };
+    }) overlayFiles
   );
 }
