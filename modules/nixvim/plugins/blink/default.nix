@@ -97,70 +97,96 @@
           };
           snippets.preset = "mini_snippets";
           sources = {
-            default = [
-              # BUILT-IN SOURCES
-              "buffer"
-              "lsp"
-              "path"
-              "snippets"
-              # Community
-              "copilot"
-              "emoji"
-              "ripgrep"
-              # Cmp sources
-              # TODO: migrate when available
-              "calc"
-              "git"
-              "spell"
-              "zsh"
-            ];
-            providers = {
-              # BUILT-IN SOURCES
-              lsp.score_offset = 4;
-              # Community sources
-              copilot = {
-                name = "copilot";
-                module = "blink-cmp-copilot";
-                async = true;
-                score_offset = 100;
+            default =
+              [
+                # BUILT-IN SOURCES
+                "buffer"
+                "lsp"
+                "path"
+                "snippets"
+                # Community
+                "copilot"
+                "emoji"
+                "ripgrep"
+                # Cmp sources
+                # TODO: migrate when available
+                "calc"
+                "git"
+                "spell"
+                "zsh"
+              ]
+              ++ lib.optionals config.plugins.avante.enable [
+                "avante_commands"
+                "avante_files"
+                "avante_mentions"
+              ];
+            providers =
+              {
+                # BUILT-IN SOURCES
+                lsp.score_offset = 4;
+                # Community sources
+                copilot = {
+                  name = "copilot";
+                  module = "blink-cmp-copilot";
+                  async = true;
+                  score_offset = 100;
+                };
+                emoji = {
+                  name = "Emoji";
+                  module = "blink-emoji";
+                  score_offset = 1;
+                };
+                ripgrep = {
+                  name = "Ripgrep";
+                  module = "blink-ripgrep";
+                  score_offset = 1;
+                };
+              }
+              // lib.optionalAttrs config.plugins.blink-compat.enable {
+                # Cmp sources
+                calc = {
+                  name = "calc";
+                  module = "blink.compat.source";
+                  score_offset = 2;
+                };
+                git = {
+                  name = "git";
+                  module = "blink.compat.source";
+                  score_offset = 0;
+                };
+                npm = {
+                  name = "npm";
+                  module = "blink.compat.source";
+                  score_offset = -3;
+                };
+                spell = {
+                  name = "spell";
+                  module = "blink.compat.source";
+                  score_offset = -1;
+                };
+                zsh = {
+                  name = "zsh";
+                  module = "blink.compat.source";
+                  score_offset = -3;
+                };
+              }
+              // lib.optionalAttrs (config.plugins.avante.enable && config.plugins.blink-compat.enable) {
+                avante_commands = {
+                  name = "avante_commands";
+                  module = "blink.compat.source";
+                  score_offset = 90;
+                };
+                avante_files = {
+                  name = "avante_files";
+                  module = "blink.compat.source";
+                  score_offset = 100;
+                };
+                avante_mentions = {
+                  name = "avante_mentions";
+                  module = "blink.compat.source";
+                  score_offset = 1000;
+                };
               };
-              emoji = {
-                name = "Emoji";
-                module = "blink-emoji";
-                score_offset = 1;
-              };
-              ripgrep = {
-                name = "Ripgrep";
-                module = "blink-ripgrep";
-                score_offset = 1;
-              };
-              # Cmp sources
-              calc = {
-                name = "calc";
-                module = "blink.compat.source";
-                score_offset = 2;
-              };
-              git = {
-                name = "git";
-                module = "blink.compat.source";
-                score_offset = 0;
-              };
-              npm = {
-                name = "npm";
-                module = "blink.compat.source";
-                score_offset = -3;
-              };
-              spell = {
-                name = "spell";
-                module = "blink.compat.source";
-                score_offset = -1;
-              };
-              zsh = {
-                name = "zsh";
-                module = "blink.compat.source";
-                score_offset = -3;
-              };
-            };
           };
         };
       };
@@ -173,7 +199,8 @@
 
         settings = {
           debug = true;
-          impersonate_nvim_cmp = true;
+          # NOTE: apparently just doesn't work without using lazy...
+          # impersonate_nvim_cmp = true;
         };
       };
     }
