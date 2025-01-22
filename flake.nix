@@ -28,9 +28,6 @@
       url = "github:moyiz/blink-emoji.nvim";
       flake = false;
     };
-
-    # Nixpkgs overlays
-    nixpkgs-master.url = "github:nixos/nixpkgs";
   };
 
   outputs =
