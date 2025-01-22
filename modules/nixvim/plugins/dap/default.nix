@@ -22,7 +22,7 @@ let
     type = "coreclr";
     name = "launch - netcoredbg";
     request = "launch";
-    progra.__raw = ''
+    program.__raw = ''
       function()
         if vim.fn.confirm('Should I recompile first?', '&yes\n&no', 2) == 1 then
           vim.g.dotnet_build_project()
