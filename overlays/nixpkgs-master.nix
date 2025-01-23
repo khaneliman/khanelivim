@@ -1,6 +1,7 @@
 { flake }:
 _final: super: {
   inherit (flake.inputs.nixpkgs-master.legacyPackages.${super.stdenv.system})
+    vimPlugins
     # TODO: remove after https://nixpk.gs/pr-tracker.html?pr=375948 reaches nixpkgs-unstable
     luaPackages
 
