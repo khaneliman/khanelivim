@@ -32,6 +32,8 @@
       url = "github:folke/snacks.nvim";
       flake = false;
     };
+
+    nixpkgs-master.url = "github:nixos/nixpkgs";
   };
 
   outputs =
