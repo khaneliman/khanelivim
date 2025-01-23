@@ -4,14 +4,7 @@
     flash = {
       enable = true;
 
-      # FIXME: can't find module on require
-      # lazyLoad.settings.keys = [
-      #   "s"
-      #   "S"
-      #   "r"
-      #   "R"
-      #   "gl"
-      # ];
+      lazyLoad.settings.event = "DeferredUIEnter";
 
       settings = {
         modes = {
