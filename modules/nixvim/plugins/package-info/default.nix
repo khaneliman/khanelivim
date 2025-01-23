@@ -9,6 +9,10 @@
     #   ft = "json";
     #   cmd = "Telescope package_info";
     # };
+
+    settings = {
+      hide_up_to_date = true;
+    };
   };
 
   keymaps = lib.mkIf (config.plugins.telescope.enable && config.plugins.package-info.enable) [
