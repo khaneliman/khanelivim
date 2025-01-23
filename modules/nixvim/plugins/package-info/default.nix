@@ -4,11 +4,9 @@
     enable = true;
     enableTelescope = config.plugins.telescope.enable;
 
-    # TODO: fix lazy loading
-    # lazyLoad.settings = {
-    #   ft = "json";
-    #   cmd = "Telescope package_info";
-    # };
+    lazyLoad.settings = {
+      event = [ "BufRead package.json" ];
+    };
 
     settings = {
       hide_up_to_date = true;
