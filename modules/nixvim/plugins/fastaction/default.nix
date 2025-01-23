@@ -3,6 +3,13 @@
   plugins = {
     fastaction = {
       enable = true;
+
+      lazyLoad.settings.event = "DeferredUIEnter";
+
+      # FIXME: why doesn't this work?
+      # lazyLoad.settings.keys = [
+      #   "<leader>lc"
+      # ];
     };
   };
 
