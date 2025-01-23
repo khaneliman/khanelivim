@@ -11,20 +11,7 @@
       enable = true;
       package = self.packages.${system}.git-conflict;
 
-      # TODO: Figure out a proper way to load without command
-      # lazyLoad.settings = {
-      #   cmd = [
-      #     "GitConflictNextConflict"
-      #     "GitConflictPrevConflict"
-      #     "GitConflictRefresh"
-      #     "GitConflictChooseBase"
-      #     "GitConflictChooseBoth"
-      #     "GitConflictChooseTheirs"
-      #     "GitConflictChooseOurs"
-      #     "GitConflictChooseNone"
-      #     "GitConflictListQf"
-      #   ];
-      # };
+      lazyLoad.settings.event = "DeferredUIEnter";
 
       settings = {
         disable_diagnostics = true;
