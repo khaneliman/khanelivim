@@ -3,6 +3,9 @@
   plugins.markdown-preview = {
     enable = true;
 
+    # TODO: migrate to mkNeovimPlugin
+    # lazyLoad.settings.cmd = "MarkdownPreview";
+
     settings = {
       auto_close = 0;
       theme = "dark";
