@@ -18,6 +18,8 @@
         ];
       };
 
+      lazyLoad.settings.event = [ "BufEnter" ];
+
       settings = {
         mappings = {
           files = {
