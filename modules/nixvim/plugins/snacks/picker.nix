@@ -87,6 +87,14 @@
           }
           {
             mode = "n";
+            key = "<leader>fp";
+            action = ''<cmd>lua Snacks.picker.projects()<cr>'';
+            options = {
+              desc = "Find projects";
+            };
+          }
+          {
+            mode = "n";
             key = "<leader>fr";
             action = ''<cmd>lua Snacks.picker.registers()<cr>'';
             options = {
