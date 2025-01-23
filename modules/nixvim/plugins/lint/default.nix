@@ -8,6 +8,9 @@
   plugins = {
     lint = {
       enable = true;
+
+      lazyLoad.settings.event = "DeferredUIEnter";
+
       lintersByFt = {
         bash = [ "shellcheck" ];
         c = [ "clangtidy" ];
