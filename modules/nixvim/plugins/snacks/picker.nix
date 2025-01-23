@@ -232,14 +232,14 @@
               desc = "Goto Type Definition";
             };
           }
-          # {
-          #   mode = "n";
-          #   key = "<leader>fS";
-          #   action = ''<cmd>lua Snacks.picker.spell_suggest()<cr>'';
-          #   options = {
-          #     desc = "Find spelling suggestions";
-          #   };
-          # }
+          {
+            mode = "n";
+            key = "<leader>fS";
+            action = ''<cmd>lua Snacks.picker.spelling()<cr>'';
+            options = {
+              desc = "Find spelling suggestions";
+            };
+          }
           {
             mode = "n";
             key = "<leader>fw";
