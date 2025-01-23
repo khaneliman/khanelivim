@@ -11,7 +11,7 @@
           && !config.plugins.snacks.settings.statuscolumn.enabled
         );
 
-    lazyLoad.settings.event = [ "BufEnter" ];
+    lazyLoad.settings.event = [ "DeferredUIEnter" ];
 
     settings = {
       relculright = true;

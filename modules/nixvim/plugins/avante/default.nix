@@ -18,7 +18,7 @@
         ];
       };
 
-      lazyLoad.settings.event = [ "BufEnter" ];
+      lazyLoad.settings.event = [ "DeferredUIEnter" ];
 
       settings = {
         mappings = {
