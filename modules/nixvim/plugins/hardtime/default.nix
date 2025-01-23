@@ -9,8 +9,7 @@ in
     hardtime = {
       enable = true;
 
-      # FIXME: runtime error on requiring module
-      # lazyLoad.settings.cmd = "Hardtime";
+      lazyLoad.settings.cmd = "Hardtime";
 
       settings = {
         # NOTE: Default to off now.
@@ -37,9 +36,9 @@ in
         function ()
           vim.g.disable_hardtime = not vim.g.disable_hardtime
           if vim.g.disable_hardtime then
-            require("hardtime").disable()
+            vim.cmd("Hardtime disable")
           else
-            require("hardtime").enable()
+            vim.cmd("Hardtime enable")
           end
           vim.notify(string.format("Hardtime %s", bool2str(not vim.g.disable_hardtime), "info"))
         end
