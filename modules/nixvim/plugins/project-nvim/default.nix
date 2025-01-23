@@ -6,6 +6,7 @@
 
     # TODO: fix lazy loading
     # lazyLoad.settings.cmd = "Telescope projects";
+    lazyLoad.settings.event = "DeferredUIEnter";
   };
 
   keymaps =
