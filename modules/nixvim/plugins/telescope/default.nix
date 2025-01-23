@@ -138,7 +138,7 @@
         key = "<leader>fF";
         action.__raw = ''
           function()
-            require("telescope.builtin").find_files({ hidden = true, no_ignore = true})
+            vim.cmd('Telescope find_files hidden=true no_ignore=true')
           end
         '';
         options = {
@@ -151,9 +151,7 @@
         key = "<leader>fW";
         action.__raw = ''
           function()
-            require("telescope.builtin").live_grep {
-              additional_args = function(args) return vim.list_extend(args, { "--hidden", "--no-ignore" }) end,
-            }
+            vim.cmd('Telescope live_grep additional_args={"--hidden","--no-ignore"}')
           end
         '';
         options = {
@@ -169,11 +167,7 @@
         key = "<leader>fC";
         action.__raw = ''
           function()
-            require("telescope.builtin").find_files {
-              prompt_title = "Config Files",
-              cwd = vim.fn.stdpath "config",
-              follow = true,
-            }
+            vim.cmd(string.format('Telescope find_files prompt_title="Config Files" cwd="%s" follow=true', vim.fn.stdpath("config")))
           end
         '';
         options = {
@@ -186,7 +180,7 @@
         key = "<leader>fT";
         action.__raw = ''
           function()
-            require("telescope.builtin").colorscheme({ enable_preview = true })
+            vim.cmd('Telescope colorscheme enable_preview=true')
           end
         '';
         options = {
@@ -199,7 +193,7 @@
         key = "<leader>f?";
         action.__raw = ''
           function()
-            require("telescope.builtin").live_grep { grep_open_files=true }
+            vim.cmd('Telescope live_grep grep_open_files=true')
           end
         '';
         options = {
