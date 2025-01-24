@@ -18,7 +18,7 @@
             }
             {
               __unkeyed-1 = "<leader>dn";
-              __unkeyed-3 = ''
+              __unkeyed-3.__raw = ''
                 function()
                   require("neotest").run.run({strategy = "dap"})
                 end
@@ -32,7 +32,7 @@
             }
             {
               __unkeyed-1 = "<leader>nd";
-              __unkeyed-3 = ''
+              __unkeyed-3.__raw = ''
                 function()
                   require("neotest").run.run({strategy = "dap"})
                 end
@@ -56,7 +56,7 @@
             }
             {
               __unkeyed-1 = "<leader>nR";
-              __unkeyed-3 = ''
+              __unkeyed-3.__raw = ''
                 function()
                   require("neotest").run.run(vim.fn.expand("%"))
                 end
