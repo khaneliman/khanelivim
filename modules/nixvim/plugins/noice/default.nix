@@ -4,6 +4,8 @@
     noice = {
       enable = true;
 
+      lazyLoad.settings.event = "DeferredUIEnter";
+
       settings = {
         # Hides the title above noice boxes
         cmdline = {
