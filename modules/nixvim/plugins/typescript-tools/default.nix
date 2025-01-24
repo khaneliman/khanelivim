@@ -3,18 +3,6 @@
     typescript-tools = {
       enable = true;
 
-      # TODO: doesn't work due to how upstream passes config
-      # lazyLoad = {
-      #   settings = {
-      #     ft = [
-      #       "javascript"
-      #       "typescript"
-      #       "javascriptreact"
-      #       "typescriptreact"
-      #     ];
-      #   };
-      # };
-
       settings = {
         settings = {
           separate_diagnostic_server = true;
