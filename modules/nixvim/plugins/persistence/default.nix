@@ -3,6 +3,8 @@
   plugins = {
     persistence = {
       enable = true;
+
+      lazyLoad.settings.event = "BufReadPre";
     };
 
     which-key.settings.spec = lib.optionals config.plugins.persistence.enable [
