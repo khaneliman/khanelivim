@@ -5,6 +5,8 @@
       inherit (config.plugins.treesitter) enable;
       autoActivate = false;
 
+      lazyLoad.settings.event = "DeferredUIEnter";
+
       settings = {
         handle_leading_whitespace = true;
         lsp = {
