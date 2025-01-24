@@ -2,6 +2,9 @@
 {
   plugins.precognition = {
     enable = true;
+
+    lazyLoad.settings.cmd = "Precognition";
+
     settings = {
       startVisible = false;
     };
@@ -13,7 +16,8 @@
       key = "<leader>vp";
       action.__raw = ''
         function()
-          if require("precognition").toggle() then
+          local toggled = vim.cmd("Precognition toggle")
+          if toggled then
               vim.notify("Precognition on")
           else
               vim.notify("Precognition off")
