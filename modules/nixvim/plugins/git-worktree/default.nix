@@ -8,12 +8,9 @@ in
       enable = true;
       enableTelescope = config.plugins.telescope.enable;
 
-      # TODO: migrate plugin to mkNeovimPlugin
-      # lazyLoad.settings.keys = [
-      #   "<leader>gw"
-      #   "<leader>fg"
-      #   "<leader>gWc"
-      #   "<leader>gWs"
+      # FIXME: telescope extension loading issue
+      # lazyLoad.settings.cmd = [
+      #   "Telescope git_worktree"
       # ];
     };
 
@@ -38,11 +35,7 @@ in
     {
       mode = "n";
       key = "<leader>gWc";
-      action.__raw = ''
-        function()
-          require('telescope').extensions.git_worktree.create_git_worktree()
-        end
-      '';
+      action = "<cmd>Telescope git_worktree create_git_worktree<CR>";
       options = {
         desc = "Create worktree";
         silent = true;
@@ -51,11 +44,7 @@ in
     {
       mode = "n";
       key = "<leader>gWs";
-      action.__raw = ''
-        function()
-          require('telescope').extensions.git_worktree.git_worktrees()
-        end
-      '';
+      action = "<cmd>Telescope git_worktree git_worktrees<CR>";
       options = {
         desc = "Switch / Delete worktree";
         silent = true;
