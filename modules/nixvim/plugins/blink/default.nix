@@ -3,15 +3,17 @@
   inputs,
   lib,
   pkgs,
-  self,
   system,
   ...
 }:
 {
-  extraPlugins = lib.mkIf config.plugins.blink-cmp.enable [
-    self.packages.${system}.blink-emoji
-    pkgs.vimPlugins.blink-ripgrep-nvim
-  ];
+  extraPlugins = lib.mkIf config.plugins.blink-cmp.enable (
+    with pkgs.vimPlugins;
+    [
+      blink-emoji-nvim
+      blink-ripgrep-nvim
+    ]
+  );
 
   plugins = lib.mkMerge [
     {
@@ -195,7 +197,6 @@
 
       blink-compat = {
         enable = true;
-        package = self.packages.${system}.blink-compat;
 
         settings = {
           # When wanted
