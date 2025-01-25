@@ -20,14 +20,6 @@
 
     # Software inputs
     blink-cmp.url = "github:saghen/blink.cmp";
-    blink-compat = {
-      url = "github:saghen/blink.compat";
-      flake = false;
-    };
-    blink-emoji = {
-      url = "github:moyiz/blink-emoji.nvim";
-      flake = false;
-    };
     snacks-nvim = {
       url = "github:folke/snacks.nvim";
       flake = false;
