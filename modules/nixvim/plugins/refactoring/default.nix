@@ -7,7 +7,21 @@
 
       lazyLoad = {
         settings = {
+          before.__raw = lib.mkIf config.plugins.telescope.enable ''
+            require('lz.n').trigger_load('telescope')
+          '';
           cmd = "Refactor";
+          keys = lib.mkIf config.plugins.telescope.enable [
+            {
+              __unkeyed-1 = "<leader>fR";
+              __unkeyed-2.__raw = ''
+                function()
+                  require('telescope').extensions.refactoring.refactors()
+                end
+              '';
+              desc = "Refactoring";
+            }
+          ];
         };
       };
     };
@@ -81,19 +95,23 @@
         };
       }
     ]
-    ++ lib.optionals (config.plugins.telescope.enable && config.plugins.refactoring.enable) [
-      {
-        mode = "n";
-        key = "<leader>fR";
-        action.__raw = ''
-          function()
-            require('telescope').extensions.refactoring.refactors()
-          end
-        '';
-        options = {
-          desc = "Refactoring";
-          silent = true;
-        };
-      }
-    ];
+    ++ lib.optionals
+      (
+        config.plugins.telescope.enable && config.plugins.refactoring.enable && !config.plugins.lz-n.enable
+      )
+      [
+        {
+          mode = "n";
+          key = "<leader>fR";
+          action.__raw = ''
+            function()
+              require('telescope').extensions.refactoring.refactors()
+            end
+          '';
+          options = {
+            desc = "Refactoring";
+            silent = true;
+          };
+        }
+      ];
 }
