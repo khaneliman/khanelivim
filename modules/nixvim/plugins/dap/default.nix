@@ -85,10 +85,56 @@ in
   };
 
   plugins = {
+    dap-ui = {
+      enable = true;
+
+      lazyLoad.settings = {
+        before.__raw = ''
+          function()
+            require('lz.n').trigger_load('nvim-dap')
+          end
+        '';
+        keys = [
+          {
+            __unkeyed-1 = "<leader>du";
+            __unkeyed-2.__raw = ''
+              function()
+                require('dap.ext.vscode').load_launchjs(nil, {})
+                require("dapui").toggle()
+              end
+            '';
+            desc = "Toggle Debugger UI";
+            # options = {
+            #   silent = true;
+            # };
+          }
+        ];
+      };
+    };
+    dap-virtual-text = {
+      enable = true;
+
+      lazyLoad.settings = {
+        before.__raw = ''
+          function()
+            require('lz.n').trigger_load('nvim-dap')
+          end
+        '';
+        cmd = [
+          "DapVirtualTextToggle"
+          "DapVirtualTextEnable"
+        ];
+      };
+    };
     dap = {
       enable = true;
-      # TODO: # TODO: upgrade to mkNeovimPlugin
-      # lazyLoad.enable = true;
+
+      lazyLoad.settings = {
+        cmd = [
+          "DapContinue"
+          "DapNew"
+        ];
+      };
 
       adapters = {
         executables = {
@@ -252,15 +298,15 @@ in
           ];
         };
 
-      extensions = {
-        dap-ui = {
-          enable = true;
-        };
+      # extensions = {
+      # dap-ui = {
+      #   enable = true;
+      # };
 
-        dap-virtual-text = {
-          enable = true;
-        };
-      };
+      # dap-virtual-text = {
+      #   enable = true;
+      # };
+      # };
 
       signs = {
         dapBreakpoint = {
@@ -301,11 +347,7 @@ in
       {
         mode = "n";
         key = "<leader>db";
-        action.__raw = ''
-          function()
-            require("dap").toggle_breakpoint()
-          end
-        '';
+        action = "<CMD>DapToggleBreakpoint<CR>";
         options = {
           desc = "Breakpoint toggle";
           silent = true;
@@ -314,11 +356,7 @@ in
       {
         mode = "n";
         key = "<leader>dc";
-        action.__raw = ''
-          function()
-            require("dap").continue()
-          end
-        '';
+        action = "<CMD>DapContinue<CR>";
         options = {
           desc = "Continue Debugging (Start)";
           silent = true;
@@ -338,11 +376,7 @@ in
       {
         mode = "n";
         key = "<leader>do";
-        action.__raw = ''
-          function()
-            require("dap").step_out()
-          end
-        '';
+        action = "<CMD>DapStepOut<CR>";
         options = {
           desc = "Step Out";
           silent = true;
@@ -351,11 +385,7 @@ in
       {
         mode = "n";
         key = "<leader>ds";
-        action.__raw = ''
-          function()
-            require("dap").step_over()
-          end
-        '';
+        action = "<CMD>DapStepOver<CR>";
         options = {
           desc = "Step Over";
           silent = true;
@@ -364,11 +394,7 @@ in
       {
         mode = "n";
         key = "<leader>dS";
-        action.__raw = ''
-          function()
-            require("dap").step_into()
-          end
-        '';
+        action = "<CMD>DapStepInto<CR>";
         options = {
           desc = "Step Into";
           silent = true;
@@ -377,16 +403,14 @@ in
       {
         mode = "n";
         key = "<leader>dt";
-        action.__raw = ''
-          function() require("dap").terminate() end
-        '';
+        action = "<CMD>DapTerminate<CR>";
         options = {
           desc = "Terminate Debugging";
           silent = true;
         };
       }
     ]
-    ++ lib.optionals config.plugins.dap.extensions.dap-ui.enable [
+    ++ lib.optionals config.plugins.dap-ui.enable [
       {
         mode = "v";
         key = "<leader>de";
@@ -413,7 +437,7 @@ in
           silent = true;
         };
       }
-      {
+      (lib.mkIf (!config.plugins.lz-n.enable) {
         mode = "n";
         key = "<leader>du";
         action.__raw = ''
@@ -426,11 +450,15 @@ in
           desc = "Toggle Debugger UI";
           silent = true;
         };
-      }
+      })
     ]
     ++
       lib.optionals
-        ((builtins.elem nvim-dap-view config.extraPlugins) && !config.plugins.dap.extensions.dap-ui.enable)
+        (
+          (builtins.elem nvim-dap-view config.extraPlugins)
+          && !config.plugins.dap.extensions.dap-ui.enable
+          && !config.plugins.lz-n.enable
+        )
         [
           {
             mode = "n";
