@@ -17,7 +17,7 @@
 
       lazyLoad.settings.cmd = [
         "FzfLua"
-      ] ++ lib.optionals config.plugins.todo-comments.enable [ "TodoFzfLua" ];
+      ];
 
       settings = {
         oldfiles = {

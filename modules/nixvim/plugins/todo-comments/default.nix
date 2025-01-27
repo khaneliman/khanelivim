@@ -4,6 +4,11 @@
     enable = true;
 
     lazyLoad.settings = {
+      before.__raw = ''
+        function()
+          require('lz.n').trigger_load('fzf-lua')
+        end
+      '';
       keys =
         lib.mkIf (config.plugins.snacks.enable && lib.hasAttr "picker" config.plugins.snacks.settings)
           [
