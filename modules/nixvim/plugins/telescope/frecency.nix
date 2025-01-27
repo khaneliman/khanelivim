@@ -7,8 +7,25 @@
   plugins.telescope = {
     extensions = {
       frecency = {
-        # FIXME: super slow loading
-        # enable = true;
+        enable = true;
+
+        # TODO: migrate to mkNeovimPlugin
+        # lazyLoad = {
+        #   settings = {
+        #     before.__raw = lib.mkIf config.plugins.telescope.enable ''
+        #       require('lz.n').trigger_load('telescope')
+        #     '';
+        #     cmd = "Telescope frecency";
+        #     keys = lib.mkIf config.plugins.telescope.enable [
+        #       {
+        #         __unkeyed-1 = "<leader>fO";
+        #         __unkeyed-2 = "<cmd>Telescope frecency<CR>";
+        #         desc = "Find frequent files";
+        #       }
+        #     ];
+        #   };
+        # };
+
         settings = {
           auto_validate = false;
         };
