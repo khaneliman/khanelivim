@@ -85,47 +85,6 @@ in
   };
 
   plugins = {
-    dap-ui = {
-      enable = true;
-
-      lazyLoad.settings = {
-        before.__raw = ''
-          function()
-            require('lz.n').trigger_load('nvim-dap')
-          end
-        '';
-        keys = [
-          {
-            __unkeyed-1 = "<leader>du";
-            __unkeyed-2.__raw = ''
-              function()
-                require('dap.ext.vscode').load_launchjs(nil, {})
-                require("dapui").toggle()
-              end
-            '';
-            desc = "Toggle Debugger UI";
-            # options = {
-            #   silent = true;
-            # };
-          }
-        ];
-      };
-    };
-    dap-virtual-text = {
-      enable = true;
-
-      lazyLoad.settings = {
-        before.__raw = ''
-          function()
-            require('lz.n').trigger_load('nvim-dap')
-          end
-        '';
-        cmd = [
-          "DapVirtualTextToggle"
-          "DapVirtualTextEnable"
-        ];
-      };
-    };
     dap = {
       enable = true;
 
@@ -298,16 +257,6 @@ in
           ];
         };
 
-      # extensions = {
-      # dap-ui = {
-      #   enable = true;
-      # };
-
-      # dap-virtual-text = {
-      #   enable = true;
-      # };
-      # };
-
       signs = {
         dapBreakpoint = {
           text = "";
@@ -329,6 +278,46 @@ in
           text = "";
           texthl = "DapStopped";
         };
+      };
+    };
+
+    dap-ui = {
+      enable = true;
+
+      lazyLoad.settings = {
+        before.__raw = ''
+          function()
+            require('lz.n').trigger_load('nvim-dap')
+          end
+        '';
+        keys = [
+          {
+            __unkeyed-1 = "<leader>du";
+            __unkeyed-2.__raw = ''
+              function()
+                require('dap.ext.vscode').load_launchjs(nil, {})
+                require("dapui").toggle()
+              end
+            '';
+            desc = "Toggle Debugger UI";
+          }
+        ];
+      };
+    };
+
+    dap-virtual-text = {
+      enable = true;
+
+      lazyLoad.settings = {
+        before.__raw = ''
+          function()
+            require('lz.n').trigger_load('nvim-dap')
+          end
+        '';
+        cmd = [
+          "DapVirtualTextToggle"
+          "DapVirtualTextEnable"
+        ];
       };
     };
 
