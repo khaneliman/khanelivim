@@ -4,11 +4,29 @@
     enable = true;
 
     lazyLoad.settings = {
-      before.__raw = ''
-        function()
+      # TODO: see if we can split this up somehow
+      before.__raw =
+        ''
+          function()
+        ''
+        + lib.optionalString config.plugins.fzf-lua.enable ''
           require('lz.n').trigger_load('fzf-lua')
-        end
-      '';
+        ''
+        + lib.optionalString config.plugins.trouble.enable ''
+          require('lz.n').trigger_load('trouble.nvim')
+        ''
+        + lib.optionalString config.plugins.telescope.enable ''
+          require('lz.n').trigger_load('telescope')
+        ''
+        +
+          lib.optionalString
+            (config.plugins.snacks.enable && lib.hasAttr "picker" config.plugins.snacks.settings)
+            ''
+              require('lz.n').trigger_load('snacks.nvim')
+            ''
+        + ''
+          end
+        '';
       keys =
         lib.mkIf (config.plugins.snacks.enable && lib.hasAttr "picker" config.plugins.snacks.settings)
           [
@@ -18,13 +36,14 @@
               desc = "Find TODOs";
             }
           ];
-      cmd = [
-        "TodoFzfLua"
-        "TodoLocList"
-        "TodoQuickFix"
-        "TodoTelescope"
-        "TodoTrouble"
-      ];
+      cmd =
+        [
+          "TodoLocList"
+          "TodoQuickFix"
+        ]
+        ++ lib.optional config.plugins.fzf-lua.enable "TodoFzfLua"
+        ++ lib.optional config.plugins.telescope.enable "TodoTelescope"
+        ++ lib.optional config.plugins.trouble.enable "TodoTrouble";
     };
 
     keymaps = {

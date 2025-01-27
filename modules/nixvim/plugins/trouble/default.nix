@@ -4,11 +4,7 @@
     trouble = {
       enable = true;
 
-      lazyLoad.settings.cmd =
-        [ "Trouble" ]
-        ++ lib.optionals config.plugins.todo-comments.enable [
-          "TodoTrouble"
-        ];
+      lazyLoad.settings.cmd = [ "Trouble" ];
 
       settings = {
         auto_close = true;
