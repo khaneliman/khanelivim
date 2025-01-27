@@ -3,6 +3,7 @@
   inputs,
   lib,
   pkgs,
+  self,
   system,
   ...
 }:
@@ -10,6 +11,7 @@
   extraPlugins = lib.mkIf config.plugins.blink-cmp.enable (
     with pkgs.vimPlugins;
     [
+      self.packages.${system}.blink-copilot
       blink-emoji-nvim
       blink-ripgrep-nvim
     ]
@@ -129,7 +131,7 @@
                 # Community sources
                 copilot = {
                   name = "copilot";
-                  module = "blink-cmp-copilot";
+                  module = "blink-copilot";
                   async = true;
                   score_offset = 100;
                 };
@@ -193,7 +195,10 @@
         };
       };
 
-      blink-cmp-copilot.enable = true;
+      # TODO: replace with blink-copilot module
+      # blink-cmp-copilot = {
+      #   enable = true;
+      # };
 
       blink-compat = {
         enable = true;
