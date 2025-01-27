@@ -17,7 +17,6 @@
   plugins.telescope = {
     enable = true;
 
-    # TODO: figure out proper lazy loading
     lazyLoad.settings.cmd = "Telescope";
 
     highlightTheme = "Catppuccin Macchiato";
