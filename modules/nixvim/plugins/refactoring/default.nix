@@ -7,9 +7,11 @@
 
       lazyLoad = {
         settings = {
-          before.__raw = lib.mkIf config.plugins.telescope.enable ''
-            require('lz.n').trigger_load('telescope')
-          '';
+          before = lib.mkIf config.plugins.telescope.enable {
+            __raw = ''
+              require('lz.n').trigger_load('telescope')
+            '';
+          };
           cmd = "Refactor";
           keys = lib.mkIf config.plugins.telescope.enable [
             {
