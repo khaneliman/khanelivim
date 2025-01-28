@@ -11,8 +11,7 @@
 
   extraConfigLua = # Lua
     ''
-      local iron = require ("iron.core")
-      iron.setup {
+      require ("iron.core").setup({
         config = {
             -- Whether a repl should be discarded or not
             scratch_repl = true,
@@ -57,7 +56,7 @@
             italic = true
           },
           ignore_blank_lines = true, -- ignore blank lines when sending visual select lines
-      }
+      })
     '';
 
   plugins.which-key.settings.spec =
