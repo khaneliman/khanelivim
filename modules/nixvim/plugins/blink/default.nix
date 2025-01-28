@@ -54,6 +54,11 @@
                     text.__raw = ''
                       function(ctx)
                         local kind_icon, _, _ = require('mini.icons').get('lsp', ctx.kind)
+                        -- Check for both nil and the default fallback icon
+                        if not kind_icon or kind_icon == '󰞋' then
+                          -- Use our configured kind_icons
+                          return require('blink.cmp.config').appearance.kind_icons[ctx.kind] or ""
+                        end
                         return kind_icon
                       end,
                       -- Optionally, you may also use the highlights from mini.icons
