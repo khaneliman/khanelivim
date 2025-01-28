@@ -75,6 +75,9 @@
           };
           appearance = {
             use_nvim_cmp_as_default = true;
+            kind_icons = {
+              Copilot = "";
+            };
           };
           keymap = {
             preset = "enter";
