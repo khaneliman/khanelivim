@@ -19,6 +19,10 @@
     treefmt-nix.url = "github:numtide/treefmt-nix";
 
     # Software inputs
+    avante-nvim = {
+      url = "github:yetone/avante.nvim";
+      flake = false;
+    };
     blink-copilot = {
       url = "github:fang2hou/blink-copilot";
       flake = false;

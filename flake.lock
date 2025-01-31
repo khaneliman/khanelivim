@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "avante-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1738232743,
+        "narHash": "sha256-8flnMxHUPksslvpwVH7HIgJ8+rQWLyMoIj04dgbVguI=",
+        "owner": "yetone",
+        "repo": "avante.nvim",
+        "rev": "5d1bc6e8b49c8e5b997040354b748c886fa80b7e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "yetone",
+        "repo": "avante.nvim",
+        "type": "github"
+      }
+    },
     "blink-cmp": {
       "inputs": {
         "fenix": "fenix",
@@ -568,6 +584,7 @@
     },
     "root": {
       "inputs": {
+        "avante-nvim": "avante-nvim",
         "blink-cmp": "blink-cmp",
         "blink-copilot": "blink-copilot",
         "flake-parts": "flake-parts_2",
