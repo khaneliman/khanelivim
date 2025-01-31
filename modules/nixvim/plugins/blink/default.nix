@@ -119,7 +119,8 @@
                 # Community
                 "copilot"
                 "emoji"
-                "ripgrep"
+                # FIXME: locking up nvim
+                # "ripgrep"
                 # Cmp sources
                 # TODO: migrate when available
                 "calc"
@@ -223,10 +224,7 @@
     (lib.mkIf config.plugins.blink-cmp.enable {
       cmp-calc.enable = true;
       cmp-git.enable = true;
-      #cmp-nixpkgs_maintainers.enable = true;
-      # cmp-npm.enable = true;
       cmp-spell.enable = true;
-      # cmp-treesitter.enable = true;
       cmp-zsh.enable = true;
 
       lsp.capabilities = # Lua
