@@ -64,7 +64,7 @@
     }
     {
       mode = "n";
-      key = "<leader>ah";
+      key = "<leader>aH";
       action.__raw = ''
         function()
           local actions = require("CopilotChat.actions")
