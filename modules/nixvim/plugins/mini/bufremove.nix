@@ -25,7 +25,7 @@
       [
         {
           mode = "n";
-          key = "<leader>c";
+          key = "<C-w>";
           action.__raw = ''require("mini.bufremove").delete'';
           options = {
             desc = "Close buffer";
