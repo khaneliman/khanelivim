@@ -134,6 +134,15 @@
               desc = "Fuzzy find in open buffers";
             };
           }
+          # Profiler
+          {
+            mode = "n";
+            key = "<leader>D";
+            action = ''<cmd>lua Snacks.profiler.toggle()<cr>'';
+            options = {
+              desc = "Toggle Neovim profiler";
+            };
+          }
         ]
         ++ lib.optionals (!config.plugins.fzf-lua.enable) [
           {
