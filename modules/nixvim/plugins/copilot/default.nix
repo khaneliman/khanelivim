@@ -1,5 +1,7 @@
 { config, lib, ... }:
 {
+  imports = [ ./migrateNixvimPlugin.nix ];
+
   plugins = {
     copilot-lua = {
       enable = true;
