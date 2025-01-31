@@ -59,7 +59,7 @@
         end
       '';
       options = {
-        desc = "Quick Chat";
+        desc = "copilot: Quick Chat";
       };
     }
     {
@@ -72,7 +72,7 @@
         end
       '';
       options = {
-        desc = "Help Actions";
+        desc = "copilot: Help Actions";
       };
     }
     {
@@ -85,7 +85,7 @@
         end
       '';
       options = {
-        desc = "Prompt Actions";
+        desc = "copilot: Prompt Actions";
       };
     }
   ];
