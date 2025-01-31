@@ -41,7 +41,7 @@
   keymaps = lib.mkIf config.plugins.copilot-chat.enable [
     {
       mode = "n";
-      key = "<leader>ac";
+      key = "<leader>aC";
       action = "<cmd>CopilotChat<CR>";
       options = {
         desc = "Copilot Chat";
