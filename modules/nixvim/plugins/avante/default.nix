@@ -37,4 +37,13 @@
       }
     ];
   };
+
+  keymaps = lib.optionals config.plugins.avante.enable [
+    {
+      mode = "n";
+      key = "<leader>ac";
+      action = "<CMD>AvanteClear<CR>";
+      options.desc = "avante: clear";
+    }
+  ];
 }
