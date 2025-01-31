@@ -24,7 +24,7 @@
       [
         {
           mode = "n";
-          key = "<leader>c";
+          key = "<C-w>";
           action = ''<cmd>lua Snacks.bufdelete.delete()<cr>'';
           options = {
             desc = "Close buffer";
