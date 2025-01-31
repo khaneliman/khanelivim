@@ -54,6 +54,7 @@ in
         ];
 
         lualine_x = [
+          { __raw = ''Snacks.profiler.status()''; }
           "diagnostics"
 
           # Show active language server
