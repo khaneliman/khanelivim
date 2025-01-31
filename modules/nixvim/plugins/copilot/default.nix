@@ -15,7 +15,14 @@
     copilot-chat = {
       inherit (config.plugins.copilot-lua) enable;
 
-      lazyLoad.settings.cmd = "CopilotChat";
+      lazyLoad.settings.cmd = [
+        "CopilotChat"
+        "CopilotChatAgents"
+        "CopilotChatLoad"
+        "CopilotChatModels"
+        "CopilotChatOpen"
+        "CopilotChatToggle"
+      ];
 
       settings = {
         # NOTE: if you want float
