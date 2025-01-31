@@ -151,6 +151,7 @@
                 ripgrep = {
                   name = "Ripgrep";
                   module = "blink-ripgrep";
+                  async = true;
                   score_offset = 1;
                 };
               }
