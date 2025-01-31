@@ -23,7 +23,7 @@
       settings = {
         mappings = {
           files = {
-            add_current = "<leader>aC";
+            add_current = "<leader>a.";
           };
         };
       };
