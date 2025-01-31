@@ -34,7 +34,7 @@
     which-key.settings.spec = lib.optionals config.plugins.avante.enable [
       {
         __unkeyed-1 = "<leader>a";
-        group = "AI";
+        group = "Avante";
         icon = "";
       }
     ];
