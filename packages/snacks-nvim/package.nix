@@ -27,5 +27,6 @@ vimUtils.buildVimPlugin {
     "snacks.scratch"
     "snacks.scroll"
     "snacks.words"
+    "snacks.picker.core.list"
   ];
 }
