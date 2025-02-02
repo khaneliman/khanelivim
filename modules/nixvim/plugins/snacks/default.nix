@@ -8,6 +8,7 @@
   imports = [
     ./bigfile.nix
     ./bufdelete.nix
+    ./dashboard.nix
     ./gitbrowse.nix
     ./lazygit.nix
     ./picker.nix
