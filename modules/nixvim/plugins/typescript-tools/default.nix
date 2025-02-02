@@ -3,6 +3,13 @@
     typescript-tools = {
       enable = true;
 
+      lazyLoad.settings.ft = [
+        "typescript"
+        "javascript"
+        "typescriptreact"
+        "javascriptreact"
+      ];
+
       settings = {
         settings = {
           separate_diagnostic_server = true;
