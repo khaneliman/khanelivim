@@ -17,6 +17,7 @@
             "notify"
             "toggleterm"
             "lazyterm"
+            "snacks_dashboard"
           ];
           callback.__raw = ''
             function()
