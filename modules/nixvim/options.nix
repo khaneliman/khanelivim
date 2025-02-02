@@ -15,10 +15,6 @@
   colorscheme = "catppuccin";
   colorschemes.catppuccin.enable = true;
   luaLoader.enable = true;
-  # Extra White space
-  highlight.ExtraWhitespace.bg = "red"; # Highlight extra white spaces
-  # FIXME: ignore dashboard
-  # match.ExtraWhitespace = "\\s\\+$"; # Remove extra white spaces
 
   globals = {
     # Disable useless providers
