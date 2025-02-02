@@ -32,6 +32,8 @@ in
           __unkeyed-10 = "dapui_stacks";
           __unkeyed-11 = "dapui_watches";
           __unkeyed-12 = "dapui_console";
+          __unkeyed-13 = "dashboard";
+          __unkeyed-14 = "snacks_dashboard";
           winbar = [
             "aerial"
             "dap-repl"
