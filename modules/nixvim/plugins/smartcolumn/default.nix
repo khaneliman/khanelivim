@@ -7,6 +7,8 @@
     settings = {
       colorcolumn = "80";
       disabled_filetypes = [
+        "dashboard"
+        "snacks_dashboard"
         "ministarter"
         "checkhealth"
         "help"
