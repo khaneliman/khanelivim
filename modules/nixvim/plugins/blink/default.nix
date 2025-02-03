@@ -7,10 +7,12 @@
   ...
 }:
 {
+  extraPackages = [ pkgs.gh ];
   extraPlugins = lib.mkIf config.plugins.blink-cmp.enable (
     with pkgs.vimPlugins;
     [
       blink-cmp-spell
+      blink-cmp-git
       blink-copilot
       blink-emoji-nvim
       blink-ripgrep-nvim
@@ -119,13 +121,13 @@
                 # Community
                 "copilot"
                 "emoji"
+                "git"
                 "spell"
                 # FIXME: locking up nvim
                 # "ripgrep"
                 # Cmp sources
                 # TODO: migrate when available
                 "calc"
-                "git"
                 "zsh"
               ]
               ++ lib.optionals config.plugins.avante.enable [
@@ -149,6 +151,17 @@
                   module = "blink-emoji";
                   score_offset = 1;
                 };
+                git = {
+                  name = "Git";
+                  module = "blink-cmp-git";
+                  enabled = true;
+                  score_offset = 100;
+                  should_show_items.__raw = ''
+                    function()
+                      return vim.o.filetype == 'gitcommit' or vim.o.filetype == 'markdown'
+                    end
+                  '';
+                };
                 ripgrep = {
                   name = "Ripgrep";
                   module = "blink-ripgrep";
@@ -167,11 +180,6 @@
                   name = "calc";
                   module = "blink.compat.source";
                   score_offset = 2;
-                };
-                git = {
-                  name = "git";
-                  module = "blink.compat.source";
-                  score_offset = 0;
                 };
                 npm = {
                   name = "npm";
@@ -223,7 +231,6 @@
     }
     (lib.mkIf config.plugins.blink-cmp.enable {
       cmp-calc.enable = true;
-      cmp-git.enable = true;
       cmp-zsh.enable = true;
 
       lsp.capabilities = # Lua
