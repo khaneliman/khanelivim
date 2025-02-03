@@ -29,7 +29,7 @@
             {
               icon = " ";
               title = "Recent Files";
-              section = "recent_files";
+              __unkeyed-1.__raw = "require('snacks').dashboard.sections.recent_files({cwd = true})";
               gap = 1;
               padding = 1;
             }
@@ -114,6 +114,7 @@
                 end
               '';
             }
+            # NOTE: requires lazy.nvim
             # { section = "startup"; }
           ];
         };
