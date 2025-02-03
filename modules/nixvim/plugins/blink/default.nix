@@ -3,7 +3,6 @@
   inputs,
   lib,
   pkgs,
-  self,
   system,
   ...
 }:
@@ -11,7 +10,7 @@
   extraPlugins = lib.mkIf config.plugins.blink-cmp.enable (
     with pkgs.vimPlugins;
     [
-      self.packages.${system}.blink-copilot
+      blink-copilot
       blink-emoji-nvim
       blink-ripgrep-nvim
     ]
