@@ -8,7 +8,8 @@
   imports = [
     ./bigfile.nix
     ./bufdelete.nix
-    ./dashboard.nix
+    # FIXME: inf recursion trying to logic gate
+    # ./dashboard.nix
     ./gitbrowse.nix
     ./lazygit.nix
     ./picker.nix
