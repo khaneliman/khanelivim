@@ -36,22 +36,6 @@
         "type": "github"
       }
     },
-    "blink-copilot": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1738153756,
-        "narHash": "sha256-UOEHfOvdfkSgzdajfICYhyyHdYxt7nq8os9nnCblvB8=",
-        "owner": "fang2hou",
-        "repo": "blink-copilot",
-        "rev": "02daaf13654e78a6ec63401446d07f8c624f513b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "fang2hou",
-        "repo": "blink-copilot",
-        "type": "github"
-      }
-    },
     "devshell": {
       "inputs": {
         "nixpkgs": [
@@ -586,7 +570,6 @@
       "inputs": {
         "avante-nvim": "avante-nvim",
         "blink-cmp": "blink-cmp",
-        "blink-copilot": "blink-copilot",
         "flake-parts": "flake-parts_2",
         "git-hooks-nix": "git-hooks-nix",
         "home-manager": "home-manager",

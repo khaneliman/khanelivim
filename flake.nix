@@ -23,10 +23,6 @@
       url = "github:yetone/avante.nvim";
       flake = false;
     };
-    blink-copilot = {
-      url = "github:fang2hou/blink-copilot";
-      flake = false;
-    };
     blink-cmp.url = "github:saghen/blink.cmp";
     snacks-nvim = {
       url = "github:folke/snacks.nvim";
