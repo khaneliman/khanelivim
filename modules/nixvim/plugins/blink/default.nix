@@ -10,6 +10,7 @@
   extraPlugins = lib.mkIf config.plugins.blink-cmp.enable (
     with pkgs.vimPlugins;
     [
+      blink-cmp-spell
       blink-copilot
       blink-emoji-nvim
       blink-ripgrep-nvim
@@ -118,13 +119,13 @@
                 # Community
                 "copilot"
                 "emoji"
+                "spell"
                 # FIXME: locking up nvim
                 # "ripgrep"
                 # Cmp sources
                 # TODO: migrate when available
                 "calc"
                 "git"
-                "spell"
                 "zsh"
               ]
               ++ lib.optionals config.plugins.avante.enable [
@@ -154,6 +155,11 @@
                   async = true;
                   score_offset = 1;
                 };
+                spell = {
+                  name = "Spell";
+                  module = "blink-cmp-spell";
+                  score_offset = 1;
+                };
               }
               // lib.optionalAttrs config.plugins.blink-compat.enable {
                 # Cmp sources
@@ -171,11 +177,6 @@
                   name = "npm";
                   module = "blink.compat.source";
                   score_offset = -3;
-                };
-                spell = {
-                  name = "spell";
-                  module = "blink.compat.source";
-                  score_offset = -1;
                 };
                 zsh = {
                   name = "zsh";
@@ -223,7 +224,6 @@
     (lib.mkIf config.plugins.blink-cmp.enable {
       cmp-calc.enable = true;
       cmp-git.enable = true;
-      cmp-spell.enable = true;
       cmp-zsh.enable = true;
 
       lsp.capabilities = # Lua
