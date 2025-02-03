@@ -1,13 +1,11 @@
+{ config, lib, ... }:
 {
   plugins = {
-    # lazy.enable = true;
     snacks = {
       enable = true;
 
       settings = {
         dashboard = {
-          enabled = true;
-
           sections = [
             {
               header = ''
@@ -114,8 +112,7 @@
                 end
               '';
             }
-            # NOTE: requires lazy.nvim
-            # { section = "startup"; }
+            (lib.mkIf config.plugins.lazy.enable { section = "startup"; })
           ];
         };
       };
