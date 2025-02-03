@@ -24,19 +24,21 @@ in
   # TODO: upstream module
   extraConfigLua = ''
     require('whitespace-nvim').setup({
-        -- `highlight` configures which highlight is used to display
-        -- trailing whitespace
         highlight = 'DiffDelete',
 
-        -- `ignored_filetypes` configures which filetypes to ignore when
-        -- displaying trailing whitespace
         ignored_filetypes = {
+          'Avante',
+          'AvanteInput',
           'TelescopePrompt',
           'Trouble',
-          'help',
+          'blink-cmp-documentation',
+          'blink-cmp-menu',
+          'blink-cmp-signature',
+          'copilot-chat',
           'dashboard',
-          'snacks_dashboard',
-          'ministarter'
+          'help',
+          'ministarter',
+          'snacks_dashboard'
         },
 
         ignore_terminal = true,
