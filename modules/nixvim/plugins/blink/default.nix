@@ -7,12 +7,18 @@
   ...
 }:
 {
-  extraPackages = [ pkgs.gh ];
+  extraPackages = with pkgs; [
+    # blink-cmp-git
+    gh
+    # blink-cmp-dictionary
+    wordnet
+  ];
   extraPlugins = lib.mkIf config.plugins.blink-cmp.enable (
     with pkgs.vimPlugins;
     [
-      blink-cmp-spell
+      blink-cmp-dictionary
       blink-cmp-git
+      blink-cmp-spell
       blink-copilot
       blink-emoji-nvim
       blink-ripgrep-nvim
@@ -120,6 +126,7 @@
                 "snippets"
                 # Community
                 "copilot"
+                "dictionary"
                 "emoji"
                 "git"
                 "spell"
@@ -145,6 +152,11 @@
                   module = "blink-copilot";
                   async = true;
                   score_offset = 100;
+                };
+                dictionary = {
+                  name = "Dict";
+                  module = "blink-cmp-dictionary";
+                  min_keyword_length = 3;
                 };
                 emoji = {
                   name = "Emoji";
