@@ -7,21 +7,13 @@
   ...
 }:
 {
-  extraPackages = with pkgs; [
-    # blink-cmp-git
-    gh
-    # blink-cmp-dictionary
-    wordnet
-  ];
-  extraPlugins = lib.mkIf config.plugins.blink-cmp.enable (
-    with pkgs.vimPlugins;
+  extraPackages = lib.mkIf config.plugins.blink-cmp.enable (
+    with pkgs;
     [
-      blink-cmp-dictionary
-      blink-cmp-git
-      blink-cmp-spell
-      blink-copilot
-      blink-emoji-nvim
-      blink-ripgrep-nvim
+      # blink-cmp-git
+      gh
+      # blink-cmp-dictionary
+      wordnet
     ]
   );
 
@@ -225,10 +217,13 @@
         };
       };
 
-      # TODO: replace with blink-copilot module
-      # blink-cmp-copilot = {
-      #   enable = true;
-      # };
+      blink-cmp-copilot.enable = !config.plugins.blink-copilot.enable;
+      blink-cmp-dictionary.enable = true;
+      blink-cmp-git.enable = true;
+      blink-cmp-spell.enable = true;
+      blink-copilot.enable = true;
+      blink-emoji.enable = true;
+      blink-ripgrep.enable = true;
 
       blink-compat = {
         enable = true;
