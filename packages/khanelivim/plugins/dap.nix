@@ -145,6 +145,13 @@ in
     dap = {
       enable = true;
 
+      # lazyLoad.settings = {
+      #   cmd = [
+      #     "DapContinue"
+      #     "DapNew"
+      #   ];
+      # };
+
       adapters = {
         executables = {
           bashdb = lib.mkIf pkgs.stdenv.isLinux { command = lib.getExe pkgs.bashdb; };
