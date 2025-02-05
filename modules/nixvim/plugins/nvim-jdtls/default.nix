@@ -1,11 +1,16 @@
-{ pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   extraConfigLuaPre =
     let
       java-debug = "${pkgs.vscode-extensions.vscjava.vscode-java-debug}/share/vscode/extensions/vscjava.vscode-java-debug/server";
       java-test = "${pkgs.vscode-extensions.vscjava.vscode-java-test}/share/vscode/extensions/vscjava.vscode-java-test/server";
     in
-    ''
+    lib.mkIf config.plugins.nvim-jdtls.enable ''
       local jdtls = require("jdtls")
       local jdtls_dap = require("jdtls.dap")
       local jdtls_setup = require("jdtls.setup")
