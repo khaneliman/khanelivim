@@ -12,8 +12,8 @@
       lazyLoad.settings.event = [ "DeferredUIEnter" ];
 
       settings = {
-        panel.enabled = false;
-        suggestion.enabled = false;
+        panel.enabled = !config.plugins.blink-cmp-copilot.enable;
+        suggestion.enabled = !config.plugins.blink-cmp-copilot.enable;
       };
     };
 
