@@ -167,6 +167,15 @@
                       return vim.o.filetype == 'gitcommit' or vim.o.filetype == 'markdown'
                     end
                   '';
+                  opts = {
+                    git_centers = {
+                      github = {
+                        issue = {
+                          on_error.__raw = "function(_,_) return true end";
+                        };
+                      };
+                    };
+                  };
                 };
                 ripgrep = {
                   name = "Ripgrep";
