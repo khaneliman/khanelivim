@@ -260,7 +260,29 @@
           {
             mode = "n";
             key = "<leader>fS";
-            action = ''<cmd>lua Snacks.picker.spelling()<cr>'';
+            action.__raw = ''
+              function()
+                Snacks.picker.spelling({
+                  layout = {
+                    preview =false,
+                    layout = {
+                        relative = 'cursor',
+                        width = 70,
+                        min_width = 0,
+                        min_height = 0,
+                        row = 1,
+                        backdrop = false,
+                        width = 0.4,
+                        height = 0.4,
+                        box = "vertical",
+                        { win = "input", height = 1, border = "rounded", title = "{title} {live} {flags}", title_pos = "center" },
+                        { win = "list", border = "rounded" },
+                        { win = "preview", title = "{preview}", border = "rounded" }
+                      }
+                    }
+                  })
+                end
+            '';
             options = {
               desc = "Find spelling suggestions";
             };
