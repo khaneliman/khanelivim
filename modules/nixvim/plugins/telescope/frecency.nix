@@ -7,7 +7,9 @@
   plugins.telescope = {
     extensions = {
       frecency = {
-        enable = true;
+        enable =
+          !config.plugins.snacks.enable
+          || (config.plugins.snacks.enable && !lib.hasAttr "picker" config.plugins.snacks.settings);
 
         # TODO: migrate to mkNeovimPlugin
         # lazyLoad = {

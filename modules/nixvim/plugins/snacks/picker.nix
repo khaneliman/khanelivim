@@ -106,6 +106,14 @@
           }
           {
             mode = "n";
+            key = "<leader>fO";
+            action = ''<cmd>lua Snacks.picker.smart()<cr>'';
+            options = {
+              desc = "Find Smart (Frecency)";
+            };
+          }
+          {
+            mode = "n";
             key = "<leader>fp";
             action = ''<cmd>lua Snacks.picker.projects()<cr>'';
             options = {
