@@ -23,6 +23,8 @@
         enable = true;
         package = inputs.blink-cmp.packages.${system}.default;
 
+        lazyLoad.settings.event = "InsertEnter";
+
         settings = {
           completion = {
             ghost_text.enabled = true;
