@@ -14,6 +14,8 @@
       doCheck = false;
     };
 
+    lazyLoad.settings.ft = "markdown";
+
     settings = {
       buf_ignore = [ ];
 
