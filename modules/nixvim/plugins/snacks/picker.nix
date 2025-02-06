@@ -134,6 +134,14 @@
               desc = "Fuzzy find in open buffers";
             };
           }
+          {
+            mode = "n";
+            key = "<leader>fu";
+            action = "<cmd>lua Snacks.picker.undo()<cr>";
+            options = {
+              desc = "Undo History";
+            };
+          }
           # Profiler
           {
             mode = "n";
