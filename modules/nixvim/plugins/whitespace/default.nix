@@ -36,6 +36,7 @@ in
           'blink-cmp-signature',
           'copilot-chat',
           'dashboard',
+          'fzf',
           'help',
           'ministarter',
           'snacks_dashboard'
