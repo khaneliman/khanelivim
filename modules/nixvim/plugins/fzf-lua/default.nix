@@ -108,14 +108,6 @@
       }
       {
         mode = "n";
-        key = "<leader>fS";
-        action = ''<cmd>FzfLua spell_suggest<CR>'';
-        options = {
-          desc = "Find spelling suggestions";
-        };
-      }
-      {
-        mode = "n";
         key = "<leader>fw";
         action = "<cmd>FzfLua live_grep<CR>";
         options = {
@@ -201,6 +193,14 @@
             action = ''<cmd>FzfLua registers<CR>'';
             options = {
               desc = "Find registers";
+            };
+          }
+          {
+            mode = "n";
+            key = "<leader>fS";
+            action = ''<cmd>FzfLua spell_suggest<CR>'';
+            options = {
+              desc = "Find spelling suggestions";
             };
           }
           {
