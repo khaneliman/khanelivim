@@ -70,6 +70,14 @@
           }
           {
             mode = "n";
+            key = "<leader>fe";
+            action = ''<cmd>lua Snacks.explorer()<cr>'';
+            options = {
+              desc = "File Explorer";
+            };
+          }
+          {
+            mode = "n";
             key = "<leader>fh";
             action = ''<cmd>lua Snacks.picker.help()<cr>'';
             options = {
