@@ -132,7 +132,6 @@
                 # Cmp sources
                 # TODO: migrate when available
                 "calc"
-                "zsh"
               ]
               ++ lib.optionals config.plugins.avante.enable [
                 "avante_commands"
@@ -204,11 +203,6 @@
                   module = "blink.compat.source";
                   score_offset = -3;
                 };
-                zsh = {
-                  name = "zsh";
-                  module = "blink.compat.source";
-                  score_offset = -3;
-                };
               }
               // lib.optionalAttrs (config.plugins.avante.enable && config.plugins.blink-compat.enable) {
                 avante_commands = {
@@ -252,7 +246,6 @@
     }
     (lib.mkIf config.plugins.blink-cmp.enable {
       cmp-calc.enable = true;
-      cmp-zsh.enable = true;
 
       lsp.capabilities = # Lua
         ''
