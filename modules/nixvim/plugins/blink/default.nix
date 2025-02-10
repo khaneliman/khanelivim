@@ -241,11 +241,6 @@
     }
     (lib.mkIf config.plugins.blink-cmp.enable {
       cmp-calc.enable = true;
-
-      lsp.capabilities = # Lua
-        ''
-          capabilities = require('blink.cmp').get_lsp_capabilities(capabilities)
-        '';
     })
   ];
 }
