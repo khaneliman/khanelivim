@@ -198,11 +198,6 @@
                   module = "blink.compat.source";
                   score_offset = 2;
                 };
-                npm = {
-                  name = "npm";
-                  module = "blink.compat.source";
-                  score_offset = -3;
-                };
               }
               // lib.optionalAttrs (config.plugins.avante.enable && config.plugins.blink-compat.enable) {
                 avante_commands = {
