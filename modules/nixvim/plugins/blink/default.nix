@@ -23,7 +23,10 @@
         enable = true;
         package = inputs.blink-cmp.packages.${system}.default;
 
-        lazyLoad.settings.event = "InsertEnter";
+        lazyLoad.settings.event = [
+          "InsertEnter"
+          "CmdlineEnter"
+        ];
 
         settings = {
           completion = {
