@@ -6,14 +6,6 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     flake-parts.url = "github:hercules-ci/flake-parts";
     git-hooks-nix.url = "github:cachix/git-hooks.nix";
-    home-manager = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:nix-community/home-manager";
-    };
-    nix-darwin = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:LnL7/nix-darwin";
-    };
     nixvim.url = "github:nix-community/nixvim";
     pkgs-by-name-for-flake-parts.url = "github:drupol/pkgs-by-name-for-flake-parts";
     treefmt-nix.url = "github:numtide/treefmt-nix";
