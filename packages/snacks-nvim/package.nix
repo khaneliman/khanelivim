@@ -28,5 +28,6 @@ vimUtils.buildVimPlugin {
     "snacks.scroll"
     "snacks.words"
     "snacks.picker.core.list"
+    "snacks.image"
   ];
 }
