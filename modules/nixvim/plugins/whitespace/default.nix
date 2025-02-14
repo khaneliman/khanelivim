@@ -34,6 +34,7 @@ in
           'blink-cmp-documentation',
           'blink-cmp-menu',
           'blink-cmp-signature',
+          "checkhealth",
           'copilot-chat',
           'dashboard',
           'fzf',
