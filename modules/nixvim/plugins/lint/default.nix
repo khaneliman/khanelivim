@@ -90,6 +90,9 @@
         markdownlint = {
           cmd = lib.getExe pkgs.markdownlint-cli;
         };
+        nix = {
+          cmd = lib.getExe' pkgs.nix "nix-instantiate";
+        };
         pylint = {
           cmd = lib.getExe pkgs.pylint;
         };
