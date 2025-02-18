@@ -131,90 +131,34 @@
         };
 
         formatters = {
-          biome = {
-            command = lib.getExe pkgs.biome;
-          };
-          black = {
-            command = lib.getExe pkgs.black;
-          };
-          bicep = {
-            command = lib.getExe pkgs.bicep;
-          };
-          cmake-format = {
-            command = lib.getExe pkgs.cmake-format;
-          };
-          csharpier = {
-            command = lib.getExe pkgs.csharpier;
-          };
-          deno_fmt = {
-            command = lib.getExe pkgs.deno;
-          };
-          isort = {
-            command = lib.getExe pkgs.isort;
-          };
-          fantomas = {
-            command = lib.getExe pkgs.fantomas;
-          };
-          gdformat = {
-            command = lib.getExe' pkgs.gdtoolkit_4 "gdformat";
-          };
-          google-java-format = {
-            command = lib.getExe pkgs.google-java-format;
-          };
-          jq = {
-            command = lib.getExe pkgs.jq;
-          };
-          nixfmt = {
-            command = lib.getExe pkgs.nixfmt-rfc-style;
-          };
-          prettierd = {
-            command = lib.getExe pkgs.prettierd;
-          };
-          ruff = {
-            command = lib.getExe pkgs.ruff;
-          };
-          rustfmt = {
-            command = lib.getExe pkgs.rustfmt;
-          };
-          shellcheck = {
-            command = lib.getExe pkgs.shellcheck;
-          };
-          shfmt = {
-            command = lib.getExe pkgs.shfmt;
-          };
-          shellharden = {
-            command = lib.getExe pkgs.shellharden;
-          };
-          sqlfluff = {
-            command = lib.getExe pkgs.sqlfluff;
-          };
-          squeeze_blanks = {
-            command = lib.getExe' pkgs.coreutils "cat";
-          };
-          stylelint = {
-            command = lib.getExe pkgs.stylelint;
-          };
-          stylua = {
-            command = lib.getExe pkgs.stylua;
-          };
-          swift_format = {
-            command = lib.getExe pkgs.swift-format;
-          };
-          taplo = {
-            command = lib.getExe pkgs.taplo;
-          };
-          terraform_fmt = {
-            command = lib.getExe pkgs.terraform;
-          };
-          xmlformat = {
-            command = lib.getExe pkgs.xmlformat;
-          };
-          yamlfmt = {
-            command = lib.getExe pkgs.yamlfmt;
-          };
-          zigfmt = {
-            command = lib.getExe pkgs.zig;
-          };
+          bicep.command = lib.getExe pkgs.bicep;
+          biome.command = lib.getExe pkgs.biome;
+          black.command = lib.getExe pkgs.black;
+          cmake-format.command = lib.getExe pkgs.cmake-format;
+          csharpier.command = lib.getExe pkgs.csharpier;
+          deno_fmt.command = lib.getExe pkgs.deno;
+          fantomas.command = lib.getExe pkgs.fantomas;
+          gdformat.command = lib.getExe' pkgs.gdtoolkit_4 "gdformat";
+          google-java-format.command = lib.getExe pkgs.google-java-format;
+          isort.command = lib.getExe pkgs.isort;
+          jq.command = lib.getExe pkgs.jq;
+          nixfmt.command = lib.getExe pkgs.nixfmt-rfc-style;
+          prettierd.command = lib.getExe pkgs.prettierd;
+          ruff.command = lib.getExe pkgs.ruff;
+          rustfmt.command = lib.getExe pkgs.rustfmt;
+          shellcheck.command = lib.getExe pkgs.shellcheck;
+          shellharden.command = lib.getExe pkgs.shellharden;
+          shfmt.command = lib.getExe pkgs.shfmt;
+          sqlfluff.command = lib.getExe pkgs.sqlfluff;
+          squeeze_blanks.command = lib.getExe' pkgs.coreutils "cat";
+          stylelint.command = lib.getExe pkgs.stylelint;
+          stylua.command = lib.getExe pkgs.stylua;
+          swift_format.command = lib.getExe pkgs.swift-format;
+          taplo.command = lib.getExe pkgs.taplo;
+          terraform_fmt.command = lib.getExe pkgs.terraform;
+          xmlformat.command = lib.getExe pkgs.xmlformat;
+          yamlfmt.command = lib.getExe pkgs.yamlfmt;
+          zigfmt.command = lib.getExe pkgs.zig;
         };
       };
     };
