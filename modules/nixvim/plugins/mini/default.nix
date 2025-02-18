@@ -10,6 +10,7 @@
     ./diff.nix
     ./files.nix
     ./fuzzy.nix
+    ./git.nix
     ./hipatterns.nix
     ./indentscope.nix
     ./map.nix
@@ -28,7 +29,6 @@
         align = { };
         basics = { };
         bracketed = { };
-        git = { };
         icons = { };
         snippets = {
           snippets = {
