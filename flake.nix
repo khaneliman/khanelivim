@@ -40,7 +40,13 @@
     };
 
     # Software inputs
-    blink-cmp.url = "github:saghen/blink.cmp";
+    blink-cmp = {
+      url = "github:saghen/blink.cmp";
+      inputs = {
+        flake-parts.follows = "flake-parts";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
     snacks-nvim = {
       url = "github:folke/snacks.nvim";
       flake = false;
