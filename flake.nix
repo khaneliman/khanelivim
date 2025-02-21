@@ -4,8 +4,19 @@
   inputs = {
     # Principle inputs
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    flake-parts.url = "github:hercules-ci/flake-parts";
-    git-hooks-nix.url = "github:cachix/git-hooks.nix";
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      # inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
+    git-hooks-nix = {
+      url = "github:cachix/git-hooks.nix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        # Optional inputs removed
+        gitignore.follows = "";
+        flake-compat.follows = "";
+      };
+    };
     nixvim = {
       url = "github:nix-community/nixvim";
       inputs = {
