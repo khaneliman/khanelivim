@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   plugins = {
     typescript-tools = {
@@ -14,6 +15,7 @@
         settings = {
           separate_diagnostic_server = true;
           publish_diagnostic_on = "insert_leave";
+          tsserver_path = "${pkgs.typescript}/lib/node_modules/typescript/lib/tsserver.js";
           tsserver_max_memory = "auto";
           tsserver_locale = "en";
           complete_function_calls = false;
