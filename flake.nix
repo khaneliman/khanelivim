@@ -21,13 +21,7 @@
       url = "github:nix-community/nixvim";
       inputs = {
         # Optional inputs removed
-        # devshell.follows = "";
-        home-manager.follows = "";
-        nix-darwin.follows = "";
         nuschtosSearch.follows = "";
-        # TODO: fix dependency upstream
-        git-hooks.follows = "git-hooks-nix";
-        treefmt-nix.follows = "treefmt-nix";
         # Required inputs
         flake-parts.follows = "flake-parts";
         nixpkgs.follows = "nixpkgs";
