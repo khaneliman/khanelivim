@@ -23,10 +23,12 @@
         enable = true;
         package = inputs.blink-cmp.packages.${system}.default;
 
-        lazyLoad.settings.event = [
-          "InsertEnter"
-          "CmdlineEnter"
-        ];
+        # TODO: fix fuzzy library check with lazy loading
+        # plugin searches `start` instead of `opt` in pack
+        # lazyLoad.settings.event = [
+        #   "InsertEnter"
+        #   "CmdlineEnter"
+        # ];
 
         settings = {
           completion = {
@@ -78,10 +80,9 @@
             };
           };
           fuzzy = {
-            implementation = "prefer_rust";
+            implementation = "rust";
             prebuilt_binaries = {
               download = false;
-              ignore_version_mismatch = true;
             };
           };
           appearance = {
