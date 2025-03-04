@@ -28,6 +28,7 @@
     spell_enabled = true;
     colorizing_enabled = false;
     first_buffer_opened = false;
+    whitespace_character_enabled = false;
 
   };
 
