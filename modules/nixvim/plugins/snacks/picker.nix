@@ -180,7 +180,7 @@
           # Profiler
           {
             mode = "n";
-            key = "<leader>D";
+            key = "<leader>X";
             action = ''<cmd>lua Snacks.profiler.toggle()<cr>'';
             options = {
               desc = "Toggle Neovim profiler";
