@@ -132,7 +132,15 @@
 
         formatters = {
           bicep.command = lib.getExe pkgs.bicep;
-          biome.command = lib.getExe pkgs.biome;
+          biome = {
+            command = lib.getExe pkgs.biome;
+            env = {
+              BIOME_CONFIG_PATH = pkgs.writeTextFile {
+                name = "biome.json";
+                text = lib.generators.toJSON { } { formatter.useEditorconfig = true; };
+              };
+            };
+          };
           black.command = lib.getExe pkgs.black;
           cmake-format.command = lib.getExe pkgs.cmake-format;
           csharpier.command = lib.getExe pkgs.csharpier;
