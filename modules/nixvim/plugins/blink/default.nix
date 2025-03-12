@@ -20,6 +20,7 @@
 
   extraPlugins = [
     self.packages.${system}.blink-cmp-avante
+    self.packages.${system}.blink-cmp-conventional-commits
     self.packages.${system}.blink-nerdfont-nvim
   ];
 
@@ -131,6 +132,7 @@
                 "snippets"
                 # Community
                 "copilot"
+                "conventional_commits"
                 "dictionary"
                 "emoji"
                 "git"
@@ -155,6 +157,15 @@
                   module = "blink-copilot";
                   async = true;
                   score_offset = 100;
+                };
+                conventional_commits = {
+                  name = "Conventional Commits";
+                  module = "blink-cmp-conventional-commits";
+                  enabled.__raw = ''
+                    function()
+                      return vim.bo.filetype == 'gitcommit'
+                    end
+                  '';
                 };
                 dictionary = {
                   name = "Dict";
