@@ -2,6 +2,8 @@
   config,
   lib,
   pkgs,
+  self,
+  system,
   ...
 }:
 {
@@ -12,7 +14,8 @@
   plugins = {
     avante = {
       enable = true;
-      package = pkgs.vimPlugins.avante-nvim.overrideAttrs {
+      package = self.packages.${system}.avante.overrideAttrs {
+        # package = pkgs.vimPlugins.avante-nvim.overrideAttrs {
         patches = [
           # Patch blink support
           (pkgs.fetchpatch {
