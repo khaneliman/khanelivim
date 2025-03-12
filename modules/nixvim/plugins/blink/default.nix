@@ -20,6 +20,7 @@
 
   extraPlugins = [
     self.packages.${system}.blink-cmp-avante
+    self.packages.${system}.blink-nerdfont-nvim
   ];
 
   plugins = lib.mkMerge [
@@ -133,6 +134,7 @@
                 "dictionary"
                 "emoji"
                 "git"
+                "nerdfont"
                 "spell"
                 # FIXME: locking up nvim
                 # "ripgrep"
@@ -194,6 +196,14 @@
                   name = "Spell";
                   module = "blink-cmp-spell";
                   score_offset = 1;
+                };
+                nerdfont = {
+                  module = "blink-nerdfont";
+                  name = "Nerd Fonts";
+                  score_offset = 15;
+                  opts = {
+                    insert = true;
+                  };
                 };
               }
               // lib.optionalAttrs config.plugins.blink-compat.enable {
