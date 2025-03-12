@@ -14,16 +14,8 @@
   plugins = {
     avante = {
       enable = true;
-      package = self.packages.${system}.avante.overrideAttrs {
-        # package = pkgs.vimPlugins.avante-nvim.overrideAttrs {
-        patches = [
-          # Patch blink support
-          (pkgs.fetchpatch {
-            url = "https://github.com/doodleEsc/avante.nvim/commit/a5438d0f16208b7ae9e97ae354bed5ec16b4f9ed.patch";
-            hash = "sha256-KyfO9dE27yMXOQhpit7jmzkvnfM7b5kr2Acoh011lXA=";
-          })
-        ];
-      };
+      package = self.packages.${system}.avante;
+      # package = pkgs.vimPlugins.avante-nvim;
 
       lazyLoad.settings.event = [ "DeferredUIEnter" ];
 
