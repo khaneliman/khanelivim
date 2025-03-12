@@ -13,7 +13,7 @@
         cmd = [
           "ConformInfo"
         ];
-        event = [ "BufWrite" ];
+        event = [ "BufWritePre" ];
       };
 
       luaConfig.pre = ''
