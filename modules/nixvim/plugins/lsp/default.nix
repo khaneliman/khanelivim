@@ -43,7 +43,7 @@
 
         extra =
           [
-            {
+            (lib.mkIf (!config.plugins.conform-nvim.enable) {
               action.__raw = ''vim.lsp.buf.format'';
               mode = "v";
               key = "<leader>lf";
@@ -52,7 +52,7 @@
                 buffer = false;
                 desc = "Format selection";
               };
-            }
+            })
           ]
           ++ lib.optionals (!config.plugins.glance.enable) [
             {
@@ -75,10 +75,10 @@
 
         lspBuf =
           {
-            "<leader>lf" = "format";
             "<leader>lh" = "hover";
             "<leader>lr" = "rename";
           }
+          // lib.optionalAttrs (!config.plugins.conform-nvim.enable) { "<leader>lf" = "format"; }
           // lib.optionalAttrs (!config.plugins.fzf-lua.enable) { "<leader>la" = "code_action"; }
           //
             lib.optionalAttrs
