@@ -3,7 +3,6 @@
   inputs,
   lib,
   pkgs,
-  self,
   system,
   ...
 }:
@@ -18,10 +17,10 @@
     ]
   );
 
-  extraPlugins = [
-    self.packages.${system}.blink-cmp-avante
-    self.packages.${system}.blink-cmp-conventional-commits
-    self.packages.${system}.blink-nerdfont-nvim
+  extraPlugins = with pkgs.vimPlugins; [
+    blink-cmp-avante
+    blink-cmp-conventional-commits
+    blink-nerdfont-nvim
   ];
 
   plugins = lib.mkMerge [
