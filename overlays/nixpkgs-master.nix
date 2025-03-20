@@ -13,6 +13,8 @@ in
     # Specific package overlays need to go in here to not get ignored
     #
 
+    blink-nvim = flake.inputs.blink-cmp.packages.${super.stdenv.system}.default;
+
     git-worktree-nvim = super.vimUtils.buildVimPlugin rec {
       pname = "git-worktree.nvim";
       version = "2.1.0";
