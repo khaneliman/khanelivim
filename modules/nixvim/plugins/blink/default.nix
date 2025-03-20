@@ -1,9 +1,7 @@
 {
   config,
-  inputs,
   lib,
   pkgs,
-  system,
   ...
 }:
 {
@@ -27,7 +25,6 @@
     {
       blink-cmp = {
         enable = true;
-        package = inputs.blink-cmp.packages.${system}.default;
 
         # TODO: fix fuzzy library check with lazy loading
         # plugin searches `start` instead of `opt` in pack
