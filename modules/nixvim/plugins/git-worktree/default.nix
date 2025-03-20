@@ -73,7 +73,7 @@ in
     {
       mode = "n";
       key = "<leader>gWs";
-      action = "<cmd>Telescope git_worktree git_worktrees<CR>";
+      action = "<cmd>Telescope git_worktree git_worktree<CR>";
       options = {
         desc = "Switch / Delete worktree";
         silent = true;
