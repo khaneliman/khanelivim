@@ -1,26 +1,24 @@
 {
-  pkgs,
+  config,
+  lib,
   ...
 }:
 {
-  plugins.which-key.settings.spec = [
-    {
-      __unkeyed = "<leader>D";
-      group = "DevDocs";
-      icon = " ";
-    }
-  ];
+  plugins = {
+    devdocs = {
+      enable = true;
+    };
 
-  extraPlugins = [
-    pkgs.vimPlugins.devdocs-nvim
-  ];
+    which-key.settings.spec = lib.mkIf config.plugins.devdocs.enable [
+      {
+        __unkeyed = "<leader>D";
+        group = "DevDocs";
+        icon = " ";
+      }
+    ];
+  };
 
-  # TODO: upstream module
-  extraConfigLua = ''
-    require('devdocs').setup({})
-  '';
-
-  keymaps = [
+  keymaps = lib.mkIf config.plugins.devdocs.enable [
     {
       mode = "n";
       key = "<leader>Dd";
