@@ -3,11 +3,11 @@
     "avante-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1742583531,
-        "narHash": "sha256-6juWFG16ydfGPOx+FrskLoKNOB0ra70bAJXB2YQ1Fck=",
+        "lastModified": 1742591467,
+        "narHash": "sha256-uGSl6NnzkEV+pbP9+TWd4NytLpL+bZyVngAsJCTn7Gk=",
         "owner": "yetone",
         "repo": "avante.nvim",
-        "rev": "4dde29f9869ef998cb308b179aa8bd28778c1106",
+        "rev": "b837274e0fa0fdf13885f533883edeeeb929daee",
         "type": "github"
       },
       "original": {
@@ -140,11 +140,11 @@
     },
     "nixpkgs-master": {
       "locked": {
-        "lastModified": 1742591417,
-        "narHash": "sha256-8QbwBIa6VhJIG6rd3VYHOYhCEHns93fvATevuXKkOQw=",
+        "lastModified": 1742602768,
+        "narHash": "sha256-sAu4aRzPeZnEigtlNEtGXpFu4kRPfXhNZT5EBDliZFU=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "d3787a62c365f7328b8c8bdeac340780eb597c61",
+        "rev": "98fe0d47934da5c73d190c8735ef8f5ffaa6cac3",
         "type": "github"
       },
       "original": {
