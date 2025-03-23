@@ -1,3 +1,4 @@
+{ config, lib, ... }:
 {
   plugins.markview = {
     enable = true;
@@ -22,4 +23,15 @@
       };
     };
   };
+
+  keymaps = lib.mkIf config.plugins.markview.enable [
+    {
+      mode = "n";
+      key = "<leader>uM";
+      action = "<cmd>Markview toggle<CR>";
+      options = {
+        desc = "Toggle Markdown Preview";
+      };
+    }
+  ];
 }
