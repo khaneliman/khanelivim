@@ -99,6 +99,7 @@
             stop_after_first = true;
           };
           json = [ "jq" ];
+          kdl = [ "kdlfmt" ];
           lua = [ "stylua" ];
           markdown = [ "deno_fmt" ];
           nix = [ "nixfmt" ];
@@ -155,6 +156,7 @@
           google-java-format.command = lib.getExe pkgs.google-java-format;
           isort.command = lib.getExe pkgs.isort;
           jq.command = lib.getExe pkgs.jq;
+          kdlfmt.command = lib.getExe pkgs.kdlfmt;
           nixfmt.command = lib.getExe pkgs.nixfmt-rfc-style;
           prettierd.command = lib.getExe pkgs.prettierd;
           ruff.command = lib.getExe pkgs.ruff;
