@@ -1,11 +1,12 @@
 {
-  pkgs,
+  config,
   ...
 }:
 {
-  extraPlugins = [
-    pkgs.vimPlugins.nerdy-nvim
-  ];
+  plugins.nerdy = {
+    enable = true;
+    enableTelescope = config.plugins.telescope.enable;
+  };
 
   keymaps = [
     {
