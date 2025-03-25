@@ -1,7 +1,7 @@
 { flake }:
-_final: super:
+_final: prev:
 let
-  nixpkgs-master-packages = flake.inputs.nixpkgs-master.legacyPackages.${super.stdenv.system};
+  nixpkgs-master-packages = flake.inputs.nixpkgs-master.legacyPackages.${prev.stdenv.system};
   inherit (nixpkgs-master-packages) vimPlugins;
 in
 {
@@ -13,6 +13,6 @@ in
     # Specific package overlays need to go in here to not get ignored
     #
 
-    blink-nvim = flake.inputs.blink-cmp.packages.${super.stdenv.system}.default;
+    blink-nvim = flake.inputs.blink-cmp.packages.${prev.stdenv.system}.default;
   };
 }

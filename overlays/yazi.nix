@@ -1,4 +1,4 @@
 { flake }:
-_final: super: {
-  yazi = flake.inputs.yazi.packages.${super.stdenv.system}.default;
+_final: prev: {
+  yazi = flake.inputs.yazi.packages.${prev.stdenv.system}.default;
 }

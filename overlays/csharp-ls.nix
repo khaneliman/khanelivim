@@ -1,5 +1,5 @@
-_: _self: super: {
-  csharp-ls = super.csharp-ls.overrideAttrs {
+_: _final: prev: {
+  csharp-ls = prev.csharp-ls.overrideAttrs {
     meta.badPlatforms = [ ];
   };
 }
