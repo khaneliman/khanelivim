@@ -7,6 +7,7 @@ in
 {
   inherit (nixpkgs-master-packages)
     luaPackages
+    neovim-unwrapped
     ;
   vimPlugins = vimPlugins // {
     #
