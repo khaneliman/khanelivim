@@ -12,7 +12,5 @@ in
     #
     # Specific package overlays need to go in here to not get ignored
     #
-
-    blink-nvim = flake.inputs.blink-cmp.packages.${prev.stdenv.system}.default;
   };
 }
