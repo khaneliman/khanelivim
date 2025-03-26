@@ -34,13 +34,6 @@
     };
 
     # Software inputs
-    blink-cmp = {
-      url = "github:saghen/blink.cmp";
-      inputs = {
-        flake-parts.follows = "flake-parts";
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
     avante-nvim = {
       url = "github:yetone/avante.nvim";
       flake = false;
