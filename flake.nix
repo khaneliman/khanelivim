@@ -42,12 +42,6 @@
       url = "github:folke/snacks.nvim";
       flake = false;
     };
-    yazi = {
-      url = "github:sxyazi/yazi";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
 
     nixpkgs-master.url = "github:nixos/nixpkgs";
   };
