@@ -143,7 +143,10 @@
             env = {
               BIOME_CONFIG_PATH = pkgs.writeTextFile {
                 name = "biome.json";
-                text = lib.generators.toJSON { } { formatter.useEditorconfig = true; };
+                text = lib.generators.toJSON { } {
+                  "$schema" = "${pkgs.biome}/node_modules/@biomejs/biome/configuration_schema.json";
+                  formatter.useEditorconfig = true;
+                };
               };
             };
           };
