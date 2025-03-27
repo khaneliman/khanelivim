@@ -77,7 +77,7 @@
         silent = true;
       };
     }
-    (lib.mkIf (!config.plugins.lz-n.enable) {
+    (lib.mkIf (!config.plugins.dap-ui.lazyLoad.enable) {
       mode = "n";
       key = "<leader>du";
       action.__raw = ''
