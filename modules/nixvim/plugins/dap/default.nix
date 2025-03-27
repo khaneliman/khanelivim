@@ -74,6 +74,7 @@
         cmd = [
           "DapContinue"
           "DapNew"
+          "DapToggleBreakpoint"
         ];
       };
 
