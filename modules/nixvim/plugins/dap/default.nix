@@ -21,7 +21,10 @@
       gdb
     ];
 
-  #   extraPlugins = with pkgs.vimPlugins; [ nvim-gdb ];
+  extraPlugins = with pkgs.vimPlugins; [
+    # nvim-gdb
+    nvim-dap-vscode-js
+  ];
 
   plugins = {
     dap = {
@@ -55,6 +58,14 @@
         require("dap").listeners.before.event_exited.dapui_config = function()
           require("dapui").close()
         end
+      '';
+
+      luaConfig.content = ''
+        require("dap-vscode-js").setup({
+          adapters = { 'pwa-node', 'pwa-chrome', 'pwa-msedge', 'node-terminal', 'pwa-extensionHost' },
+          debugger_path = '${pkgs.vscode-js-debug}/lib/node_modules/js-debug',
+          -- debugger_cmd = { '${lib.getExe pkgs.vscode-js-debug}/lib/node_modules/js-debug/src/dapDebugServer.ts' }
+        })
       '';
 
       adapters = {
