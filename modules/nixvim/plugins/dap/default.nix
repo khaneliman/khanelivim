@@ -294,6 +294,11 @@
         };
       };
     };
+    dap-go = {
+      enable = true;
+      settings.delve.path = "${lib.getExe pkgs.delve}";
+    };
+    dap-python.enable = true;
 
     which-key.settings.spec = lib.optionals config.plugins.dap.enable [
       {
