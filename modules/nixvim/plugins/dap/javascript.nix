@@ -4,16 +4,20 @@
   ...
 }:
 {
-
   plugins = {
     dap = {
       adapters = {
         servers = {
-          "pwa-node" = {
+          pwa-node = {
             host = "localhost";
-            port = 8123;
+            port = "\${port}";
+            # port = 8123;
             executable = {
-              command = "${pkgs.vscode-js-debug}/bin/js-debug";
+              command = lib.getExe pkgs.vscode-js-debug;
+              args = [
+                "\${port}"
+                # "8123"
+              ];
             };
           };
         };
@@ -37,19 +41,108 @@
               cwd = "\${workspaceFolder}";
             }
             {
-              type = "pwa-chrome";
-              request = "launch";
-              name = "Start Chrome with \"localhost\"";
-              url = "http://localhost:3000";
-              webRoot = "\${workspaceFolder}";
-              userDataDir = "\${workspaceFolder}/.vscode/vscode-chrome-debug-userdatadir";
-            }
-            {
               type = "pwa-node";
               request = "attach";
               name = "Auto Attach";
               cwd.__raw = "vim.fn.getcwd()";
               protocol = "inspector";
+              sourceMaps = true;
+              resolveSourceMapLocations = [
+                "\${workspaceFolder}/**"
+                "!**/node_modules/**"
+              ];
+              restart = true;
+            }
+
+            {
+              type = "pwa-node";
+              request = "launch";
+              name = "Debug Server (Production Build)";
+              skipFiles = [
+                "<node_internals>/**"
+              ];
+              program.__raw = "vim.fn.getcwd() .. '/build/server/index.js'";
+              outFiles = [
+                "\${workspaceFolder}/build/**/*.js"
+              ];
+              console = "integratedTerminal";
+            }
+            {
+              type = "pwa-node";
+              request = "launch";
+              name = "Debug with Node Inspect";
+              skipFiles = [
+                "<node_internals>/**"
+              ];
+              runtimeExecutable = lib.getExe pkgs.nodejs;
+              runtimeArgs = [
+                "--inspect"
+                "./build/server/index.js"
+              ];
+              console = "integratedTerminal";
+              cwd = "\${workspaceFolder}";
+              sourceMaps = true;
+              resolveSourceMapLocations = [
+                "\${workspaceFolder}/**"
+                "!**/node_modules/**"
+              ];
+            }
+            {
+              type = "pwa-node";
+              request = "launch";
+              name = "Debug with Node Inspect (Break)";
+              skipFiles = [
+                "<node_internals>/**"
+              ];
+              runtimeExecutable = lib.getExe pkgs.nodejs;
+              runtimeArgs = [
+                "--inspect-brk"
+                "./build/server/index.js"
+              ];
+              console = "integratedTerminal";
+              cwd = "\${workspaceFolder}";
+              sourceMaps = true;
+              resolveSourceMapLocations = [
+                "\${workspaceFolder}/**"
+                "!**/node_modules/**"
+              ];
+            }
+            {
+              type = "pwa-node";
+              request = "launch";
+              name = "Debug Vite Dev Server";
+              skipFiles = [
+                "<node_internals>/**"
+              ];
+              runtimeExecutable = lib.getExe pkgs.nodejs;
+              runtimeArgs = [
+                "--inspect"
+                "node_modules/vite/bin/vite.js"
+                "--host"
+              ];
+              console = "integratedTerminal";
+              cwd = "\${workspaceFolder}";
+              sourceMaps = true;
+              resolveSourceMapLocations = [
+                "\${workspaceFolder}/**"
+                "!**/node_modules/**"
+              ];
+            }
+            {
+              type = "pwa-node";
+              request = "attach";
+              name = "Attach to Process";
+              port = 9229;
+              restart = true;
+              skipFiles = [
+                "<node_internals>/**"
+              ];
+              sourceMaps = true;
+              resolveSourceMapLocations = [
+                "\${workspaceFolder}/**"
+                "!**/node_modules/**"
+              ];
+              cwd = "\${workspaceFolder}";
             }
           ];
         in

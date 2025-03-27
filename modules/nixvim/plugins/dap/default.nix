@@ -21,8 +21,6 @@
       gdb
     ];
 
-  #   extraPlugins = with pkgs.vimPlugins; [ nvim-gdb ];
-
   plugins = {
     dap = {
       enable = true;
