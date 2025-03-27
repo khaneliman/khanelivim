@@ -235,14 +235,15 @@
           javascript = javascript-config;
           javascriptreact = javascript-config;
 
-          rust =
+          rust = lib.mkIf (!config.plugins.rustaceanvim.enable) (
             [
               codelldb-config
               lldb-config
             ]
             ++ lib.optionals pkgs.stdenv.isLinux [
               gdb-config
-            ];
+            ]
+          );
 
           sh = lib.optionals pkgs.stdenv.isLinux [
             {
