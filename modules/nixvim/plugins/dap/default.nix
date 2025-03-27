@@ -218,13 +218,50 @@
     }
     {
       mode = "n";
-      key = "<leader>dh";
-      action.__raw = ''
-        function() require("dap.ui.widgets").hover() end
-      '';
+      key = "<leader>dC";
+      action = "<cmd>lua require('dap').run_to_cursor()<cr>";
       options = {
-        desc = "Debugger Hover";
-        silent = true;
+        desc = "Run to cursor";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>dg";
+      action = "<cmd>lua require('dap').goto_()<cr>";
+      options = {
+        desc = "Go to line (no execute)";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>di";
+      action = "<CMD>DapStepInto<CR>";
+      options = {
+        desc = "Step Into";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>dj";
+      action = "<cmd>lua require('dap').down()<cr>";
+      options = {
+        desc = "Down";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>dk";
+      action = "<cmd>lua require('dap').up()<cr>";
+      options = {
+        desc = "Up";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>dl";
+      action = "<cmd>lua require('dap').run_last()<cr>";
+      options = {
+        desc = "Run Last";
       };
     }
     {
@@ -238,20 +275,34 @@
     }
     {
       mode = "n";
-      key = "<leader>ds";
+      key = "<leader>dO";
       action = "<CMD>DapStepOver<CR>";
       options = {
         desc = "Step Over";
-        silent = true;
       };
     }
     {
       mode = "n";
-      key = "<leader>dS";
-      action = "<CMD>DapStepInto<CR>";
+      key = "<leader>dp";
+      action = "<cmd>lua require('dap').pause()<cr>";
       options = {
-        desc = "Step Into";
-        silent = true;
+        desc = "Pause";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>dr";
+      action = ":DapToggleRepl<cr>";
+      options = {
+        desc = "Toggle REPL";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>ds";
+      action = "<cmd>lua require('dap').session()<cr>";
+      options = {
+        desc = "Session";
       };
     }
     {

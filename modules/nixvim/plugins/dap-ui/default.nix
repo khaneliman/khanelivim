@@ -66,6 +66,17 @@
         silent = true;
       };
     }
+    {
+      mode = "n";
+      key = "<leader>dh";
+      action.__raw = ''
+        function() require("dap.ui.widgets").hover() end
+      '';
+      options = {
+        desc = "Hover";
+        silent = true;
+      };
+    }
     (lib.mkIf (!config.plugins.lz-n.enable) {
       mode = "n";
       key = "<leader>du";
