@@ -7,6 +7,7 @@
 {
   imports = [
     ./dotnet.nix
+    ./javascript.nix
   ];
 
   extraPackages =
@@ -92,13 +93,6 @@
               ];
             };
           };
-          "pwa-node" = {
-            host = "localhost";
-            port = 8123;
-            executable = {
-              command = "${pkgs.vscode-js-debug}/bin/js-debug";
-            };
-          };
         };
       };
 
@@ -128,23 +122,6 @@
             stopOnEntry = false;
           };
 
-          javascript-config = [
-            {
-              type = "pwa-node";
-              request = "launch";
-              name = "Launch file";
-              program = "\${file}";
-              cwd = "\${workspaceFolder}";
-            }
-            {
-              type = "pwa-node";
-              request = "attach";
-              name = "Attach";
-              processId.__raw = ''require ("dap.utils").pick_process'';
-              cwd = "\${workspaceFolder}";
-            }
-          ];
-
           lldb-config = {
             inherit program;
             name = "Launch (LLDB)";
@@ -172,8 +149,6 @@
               gdb-config
             ];
 
-          javascript = javascript-config;
-          javascriptreact = javascript-config;
           rust = lib.mkIf (!config.plugins.rustaceanvim.enable) (
             [
               codelldb-config
@@ -205,8 +180,6 @@
               terminalKind = "integrated";
             }
           ];
-          typescript = javascript-config;
-          typescriptreact = javascript-config;
         };
 
       signs = {
