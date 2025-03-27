@@ -6,6 +6,7 @@
 }:
 {
   imports = [
+    ./bash.nix
     ./dotnet.nix
     ./javascript.nix
   ];
@@ -18,7 +19,6 @@
     ]
     ++ lib.optionals pkgs.stdenv.isLinux [
       gdb
-      bashdb
     ];
 
   #   extraPlugins = with pkgs.vimPlugins; [ nvim-gdb ];
@@ -59,8 +59,6 @@
 
       adapters = {
         executables = {
-          bashdb = lib.mkIf pkgs.stdenv.isLinux { command = lib.getExe pkgs.bashdb; };
-
           cppdbg = {
             command = "gdb";
             args = [
@@ -158,28 +156,6 @@
               gdb-config
             ]
           );
-
-          sh = lib.optionals pkgs.stdenv.isLinux [
-            {
-              type = "bashdb";
-              request = "launch";
-              name = "Launch (BashDB)";
-              showDebugOutput = true;
-              pathBashdb = "${lib.getExe pkgs.bashdb}";
-              pathBashdbLib = "${pkgs.bashdb}/share/basdhb/lib/";
-              trace = true;
-              file = ''''${file}'';
-              program = ''''${file}'';
-              cwd = ''''${workspaceFolder}'';
-              pathCat = "cat";
-              pathBash = "${lib.getExe pkgs.bash}";
-              pathMkfifo = "mkfifo";
-              pathPkill = "pkill";
-              args = { };
-              env = { };
-              terminalKind = "integrated";
-            }
-          ];
         };
 
       signs = {
