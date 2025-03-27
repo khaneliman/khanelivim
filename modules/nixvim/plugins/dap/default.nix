@@ -77,6 +77,23 @@
           "DapToggleBreakpoint"
         ];
       };
+      luaConfig.post = ''
+        -- DEBUG LISTENERS
+        require("dap").listeners.before.attach.dapui_config = function()
+          require('lz.n').trigger_load('nvim-dap-ui')
+          require("dapui").open()
+        end
+        require("dap").listeners.before.launch.dapui_config = function()
+          require('lz.n').trigger_load('nvim-dap-ui')
+          require("dapui").open()
+        end
+        require("dap").listeners.before.event_terminated.dapui_config = function()
+          require("dapui").close()
+        end
+        require("dap").listeners.before.event_exited.dapui_config = function()
+          require("dapui").close()
+        end
+      '';
 
       adapters = {
         executables = {
