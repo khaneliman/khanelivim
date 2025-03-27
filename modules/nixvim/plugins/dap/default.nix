@@ -17,7 +17,7 @@
       coreutils
       lldb
     ]
-    ++ lib.optionals pkgs.stdenv.isLinux [
+    ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
       gdb
     ];
 
@@ -134,7 +134,7 @@
             [
               lldb-config
             ]
-            ++ lib.optionals pkgs.stdenv.isLinux [
+            ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
               gdb-config
             ];
 
@@ -143,7 +143,7 @@
               codelldb-config
               lldb-config
             ]
-            ++ lib.optionals pkgs.stdenv.isLinux [
+            ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
               gdb-config
             ];
 
@@ -152,7 +152,7 @@
               codelldb-config
               lldb-config
             ]
-            ++ lib.optionals pkgs.stdenv.isLinux [
+            ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
               gdb-config
             ]
           );

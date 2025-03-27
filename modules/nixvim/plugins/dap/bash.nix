@@ -6,7 +6,7 @@
 {
   extraPackages =
     with pkgs;
-    lib.optionals pkgs.stdenv.isLinux [
+    lib.optionals pkgs.stdenv.hostPlatform.isLinux [
       bashdb
     ];
 
@@ -14,12 +14,12 @@
     dap = {
       adapters = {
         executables = {
-          bashdb = lib.mkIf pkgs.stdenv.isLinux { command = lib.getExe pkgs.bashdb; };
+          bashdb = lib.mkIf pkgs.stdenv.hostPlatform.isLinux { command = lib.getExe pkgs.bashdb; };
         };
       };
 
       configurations = {
-        sh = lib.optionals pkgs.stdenv.isLinux [
+        sh = lib.optionals pkgs.stdenv.hostPlatform.isLinux [
           {
             type = "bashdb";
             request = "launch";
