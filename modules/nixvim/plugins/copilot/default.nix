@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   imports = [
     ./migrateNixvimPlugin.nix
@@ -14,6 +19,7 @@
       settings = {
         panel.enabled = !config.plugins.blink-cmp-copilot.enable;
         suggestion.enabled = !config.plugins.blink-cmp-copilot.enable;
+        lsp_binary = lib.getExe pkgs.copilot-language-server;
       };
     };
 
