@@ -2,6 +2,7 @@
 _final: prev:
 let
   nixpkgs-master-packages = flake.inputs.nixpkgs-master.legacyPackages.${prev.stdenv.system};
+  my-packages = flake.packages.${prev.stdenv.system};
   inherit (nixpkgs-master-packages) vimPlugins;
 in
 {
@@ -13,5 +14,6 @@ in
     #
     # Specific package overlays need to go in here to not get ignored
     #
+    inherit (my-packages) nvim-dap-view;
   };
 }
