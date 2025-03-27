@@ -139,6 +139,9 @@
               ]
               ++ lib.optionals config.plugins.avante.enable [
                 "avante"
+              ]
+              ++ lib.optionals config.plugins.easy-dotnet.enable [
+                "easy-dotnet"
               ];
             providers =
               {
@@ -208,6 +211,14 @@
                   opts = {
                     insert = true;
                   };
+                };
+              }
+              // lib.optionalAttrs config.plugins.avante.enable {
+                easy-dotnet = {
+                  module = "easy-dotnet.completion.blink";
+                  name = "easy-dotnet";
+                  async = true;
+                  score_offset = 1000;
                 };
               }
               // lib.optionalAttrs config.plugins.avante.enable {
