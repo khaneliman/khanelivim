@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 {
   # Needed for RustPlay
   extraPlugins = with pkgs.vimPlugins; [ webapi-vim ];
@@ -7,8 +7,11 @@
     rustaceanvim = {
       enable = true;
       settings = {
-
         dap = {
+          adapter = {
+            command = lib.getExe' pkgs.lldb "lldb-dap";
+            type = "executable";
+          };
           autoloadConfigurations = true;
         };
 
@@ -60,6 +63,7 @@
             };
           };
         };
+        tools.enable_clippy = true;
       };
     };
   };
