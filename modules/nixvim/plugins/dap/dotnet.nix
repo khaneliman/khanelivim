@@ -1,4 +1,5 @@
 {
+  config,
   lib,
   pkgs,
   ...
@@ -8,7 +9,7 @@
     netcoredbg
   ];
 
-  globals = {
+  globals = lib.mkIf (!config.plugins.easy-dotnet.enable) {
     dotnet_build_project.__raw = ''
       function()
         local default_path = vim.fn.getcwd() .. '/'
@@ -92,7 +93,7 @@
 
           netcoredb-config = coreclr-config;
         in
-        {
+        lib.mkIf (!config.plugins.easy-dotnet.enable) {
           cs = [
             coreclr-config
             netcoredb-config
