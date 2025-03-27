@@ -119,6 +119,7 @@
           package = pkgs.gdtoolkit_4;
         };
 
+        gopls.enable = true;
         html.enable = true;
         java_language_server.enable = !config.plugins.nvim-jdtls.enable;
         jdtls.enable = !config.plugins.nvim-jdtls.enable;
