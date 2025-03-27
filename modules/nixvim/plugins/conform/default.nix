@@ -91,6 +91,7 @@
           fish = [ "fish_indent" ];
           fsharp = [ "fantomas" ];
           gdscript = [ "gdformat" ];
+          go = [ "golines" ];
           java = [ "google-java-format" ];
           javascript = {
             __unkeyed-1 = "biome";
@@ -156,6 +157,7 @@
           deno_fmt.command = lib.getExe pkgs.deno;
           fantomas.command = lib.getExe pkgs.fantomas;
           gdformat.command = lib.getExe' pkgs.gdtoolkit_4 "gdformat";
+          golines.command = lib.getExe pkgs.golines;
           google-java-format.command = lib.getExe pkgs.google-java-format;
           isort.command = lib.getExe pkgs.isort;
           jq.command = lib.getExe pkgs.jq;
