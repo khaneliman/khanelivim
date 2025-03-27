@@ -9,11 +9,11 @@
     dap = {
       adapters = {
         servers = {
-          "pwa-node" = {
+          pwa-node = {
             host = "localhost";
             port = 8123;
             executable = {
-              command = "${pkgs.vscode-js-debug}/bin/js-debug";
+              command = lib.getExe pkgs.vscode-js-debug;
             };
           };
         };
