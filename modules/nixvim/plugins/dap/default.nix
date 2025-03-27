@@ -70,21 +70,26 @@
     dap = {
       enable = true;
 
-      lazyLoad.settings = {
-        cmd = [
-          "DapContinue"
-          "DapNew"
-          "DapToggleBreakpoint"
-        ];
-      };
-      luaConfig.post = ''
+      # lazyLoad.settings = {
+      #   before.__raw = ''
+      #     function()
+      #       require('lz.n').trigger_load('nvim-dap-ui')
+      #       require('lz.n').trigger_load('nvim-dap-virtual-text')
+      #     end
+      #   '';
+      #   cmd = [
+      #     "DapContinue"
+      #     "DapNew"
+      #     "DapToggleBreakpoint"
+      #   ];
+      # };
+
+      luaConfig.pre = ''
         -- DEBUG LISTENERS
         require("dap").listeners.before.attach.dapui_config = function()
-          require('lz.n').trigger_load('nvim-dap-ui')
           require("dapui").open()
         end
         require("dap").listeners.before.launch.dapui_config = function()
-          require('lz.n').trigger_load('nvim-dap-ui')
           require("dapui").open()
         end
         require("dap").listeners.before.event_terminated.dapui_config = function()
