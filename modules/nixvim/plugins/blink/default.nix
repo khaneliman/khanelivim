@@ -130,116 +130,113 @@
                 elseif vim.bo.filetype == 'gitcommit' then
                   return { 'buffer', 'git', 'spell', 'dictionary', 'conventional_commits' }
                 ${lib.optionalString config.plugins.avante.enable # Lua
-                  ''
-                    elseif vim.bo.filetype == 'AvanteInput' then
-                      return { 'buffer', 'avante' }
-                  ''
-                }
+              ''
+            elseif vim.bo.filetype == 'AvanteInput' then
+              return { 'buffer', 'avante' }
+              ''
+            }
                 ${lib.optionalString config.plugins.easy-dotnet.enable # Lua
-                  ''
-                    elseif vim.bo.filetype == "xml" then
-                      return { 'buffer', 'path', 'copilot', 'easy-dotnet'}
-                  ''
-                }
+              ''
+                elseif vim.bo.filetype == "xml" then
+                  return { 'buffer', 'path', 'copilot', 'easy-dotnet'}
+              ''
+            }
                 else
                   return common_sources
                 end
               end
             '';
-            providers =
-              {
-                # BUILT-IN SOURCES
-                lsp.score_offset = 4;
-                # Community sources
-                copilot = {
-                  name = "copilot";
-                  module = "blink-copilot";
-                  async = true;
-                  score_offset = 100;
-                };
-                conventional_commits = {
-                  name = "Conventional Commits";
-                  module = "blink-cmp-conventional-commits";
-                  enabled.__raw = ''
-                    function()
-                      return vim.bo.filetype == 'gitcommit'
-                    end
-                  '';
-                };
-                dictionary = {
-                  name = "Dict";
-                  module = "blink-cmp-dictionary";
-                  min_keyword_length = 3;
-                };
-                emoji = {
-                  name = "Emoji";
-                  module = "blink-emoji";
-                  score_offset = 1;
-                };
-                git = {
-                  name = "Git";
-                  module = "blink-cmp-git";
-                  enabled = true;
-                  score_offset = 100;
-                  should_show_items.__raw = ''
-                    function()
-                      return vim.o.filetype == 'gitcommit' or vim.o.filetype == 'markdown'
-                    end
-                  '';
-                  opts = {
-                    git_centers = {
-                      github = {
-                        issue = {
-                          on_error.__raw = "function(_,_) return true end";
-                        };
+            providers = {
+              # BUILT-IN SOURCES
+              lsp.score_offset = 4;
+              # Community sources
+              copilot = lib.mkIf config.plugins.copilot-lua.enable {
+                name = "copilot";
+                module = "blink-copilot";
+                async = true;
+                score_offset = 100;
+              };
+              conventional_commits =
+                lib.mkIf (lib.elem pkgs.vimPlugins.blink-cmp-conventional-commits config.extraPlugins)
+                  {
+                    name = "Conventional Commits";
+                    module = "blink-cmp-conventional-commits";
+                    enabled.__raw = ''
+                      function()
+                        return vim.bo.filetype == 'gitcommit'
+                      end
+                    '';
+                  };
+              dictionary = lib.mkIf config.plugins.blink-cmp-dictionary.enable {
+                name = "Dict";
+                module = "blink-cmp-dictionary";
+                min_keyword_length = 3;
+              };
+              emoji = lib.mkIf config.plugins.blink-emoji.enable {
+                name = "Emoji";
+                module = "blink-emoji";
+                score_offset = 1;
+              };
+              git = lib.mkIf config.plugins.blink-cmp-git.enable {
+                name = "Git";
+                module = "blink-cmp-git";
+                enabled = true;
+                score_offset = 100;
+                should_show_items.__raw = ''
+                  function()
+                    return vim.o.filetype == 'gitcommit' or vim.o.filetype == 'markdown'
+                  end
+                '';
+                opts = {
+                  git_centers = {
+                    github = {
+                      issue = {
+                        on_error.__raw = "function(_,_) return true end";
                       };
                     };
                   };
                 };
-                ripgrep = {
-                  name = "Ripgrep";
-                  module = "blink-ripgrep";
-                  async = true;
-                  score_offset = 1;
-                };
-                spell = {
-                  name = "Spell";
-                  module = "blink-cmp-spell";
-                  score_offset = 1;
-                };
-                nerdfont = {
-                  module = "blink-nerdfont";
-                  name = "Nerd Fonts";
-                  score_offset = 15;
-                  opts = {
-                    insert = true;
-                  };
-                };
-              }
-              // lib.optionalAttrs config.plugins.easy-dotnet.enable {
-                easy-dotnet = {
-                  module = "easy-dotnet.completion.blink";
-                  name = "easy-dotnet";
-                  async = true;
-                  score_offset = 1000;
-                  enabled.__raw = ''
-                    function()
-                      return vim.bo.filetype == "xml"
-                    end
-                  '';
-                };
-              }
-              // lib.optionalAttrs config.plugins.avante.enable {
-                avante = {
-                  module = "blink-cmp-avante";
-                  name = "Avante";
-                  enabled.__raw = ''
-                    function()
-                      return vim.bo.filetype == 'AvanteInput'
-                    end
-                  '';
+              };
+              ripgrep = lib.mkIf config.plugins.blink-ripgrep.enable {
+                name = "Ripgrep";
+                module = "blink-ripgrep";
+                async = true;
+                score_offset = 1;
+              };
+              spell = lib.mkIf config.plugins.blink-cmp-spell.enable {
+                name = "Spell";
+                module = "blink-cmp-spell";
+                score_offset = 1;
+              };
+              nerdfont = lib.mkIf (lib.elem pkgs.vimPlugins.blink-nerdfont-nvim config.extraPlugins) {
+                module = "blink-nerdfont";
+                name = "Nerd Fonts";
+                score_offset = 15;
+                opts = {
+                  insert = true;
                 };
               };
+              easy-dotnet = lib.mkIf config.plugins.easy-dotnet.enable {
+                module = "easy-dotnet.completion.blink";
+                name = "easy-dotnet";
+                async = true;
+                score_offset = 1000;
+                enabled.__raw = ''
+                  function()
+                    return vim.bo.filetype == "xml"
+                  end
+                '';
+              };
+              avante = lib.mkIf config.plugins.avante.enable {
+                module = "blink-cmp-avante";
+                name = "Avante";
+                enabled.__raw = ''
+                  function()
+                    return vim.bo.filetype == 'AvanteInput'
+                  end
+                '';
+              };
+            };
           };
         };
       };
