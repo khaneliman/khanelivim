@@ -4,7 +4,10 @@
     severity_sort = true;
 
     # NOTE: Opt-in with 0.11
-    virtual_text = true;
+    virtual_text = {
+      severity.min = "warn";
+      source = "if_many";
+    };
     virtual_lines = {
       current_line = true;
     };
