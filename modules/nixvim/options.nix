@@ -1,4 +1,9 @@
-{ lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   clipboard = {
     # Use system clipboard
@@ -33,10 +38,11 @@
   };
 
   opts = {
-    completeopt = [
-      "menu"
+    completeopt = lib.mkIf (!config.plugins.blink-cmp.enable) [
+      "fuzzy"
       "menuone"
       "noselect"
+      "popup"
     ];
 
     updatetime = 100; # Faster completion
@@ -130,5 +136,8 @@
     matchtime = 1; # duration of that flashing n deci-seconds
     startofline = true; # motions like "G" also move to the first char
     report = 9001; # disable "x more/fewer lines" messages
+
+    # FIXME: double floating windows?
+    # winborder = "rounded"; # Border style for floating windows
   };
 }
