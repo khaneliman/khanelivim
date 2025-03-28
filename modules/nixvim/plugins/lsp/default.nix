@@ -70,11 +70,7 @@
           ];
 
         lspBuf =
-          {
-            "<leader>lh" = "hover";
-            "<leader>lr" = "rename";
-          }
-          // lib.optionalAttrs (!config.plugins.conform-nvim.enable) { "<leader>lf" = "format"; }
+          lib.optionalAttrs (!config.plugins.conform-nvim.enable) { "<leader>lf" = "format"; }
           // lib.optionalAttrs (!config.plugins.fzf-lua.enable) { "<leader>la" = "code_action"; }
           //
             lib.optionalAttrs
@@ -87,8 +83,6 @@
               )
               {
                 "<leader>ld" = "definition";
-                "<leader>li" = "implementation";
-                "<leader>lD" = "references";
                 "<leader>lt" = "type_definition";
               };
       };
