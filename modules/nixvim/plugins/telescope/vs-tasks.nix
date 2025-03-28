@@ -31,7 +31,7 @@
     '';
   };
 
-  keymaps = lib.mkIf config.plugins.telescope.enable [
+  keymaps = lib.mkIf (config.plugins.telescope.enable && (!config.plugins.overseer.enable)) [
     {
       mode = "n";
       key = "<leader>RT";

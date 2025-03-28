@@ -1,3 +1,4 @@
+{ config, lib, ... }:
 {
   plugins = {
     overseer = {
@@ -20,4 +21,15 @@
       ];
     };
   };
+
+  keymaps = lib.mkIf config.plugins.overseer.enable [
+    {
+      mode = "n";
+      key = "<leader>RT";
+      action = "<cmd>OverseerRun<CR>";
+      options = {
+        desc = "Run Tasks";
+      };
+    }
+  ];
 }
