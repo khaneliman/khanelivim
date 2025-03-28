@@ -69,6 +69,11 @@
       };
       smartRename = {
         enable = true;
+        keymaps = {
+          # NOTE: default is "grr"
+          # Conflicts with vim.lsp.buf.references()
+          smartRename = "grR";
+        };
       };
       navigation = {
         enable = true;
