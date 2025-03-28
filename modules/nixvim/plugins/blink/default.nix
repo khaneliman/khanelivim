@@ -121,26 +121,44 @@
           sources = {
             default.__raw = ''
               function(ctx)
-                -- Common sources used in most contexts
-                local common_sources = { 'buffer', 'lsp', 'path', 'snippets', 'copilot', 'dictionary', "emoji", "nerdfont", 'spell' }
+                -- Base sources that are always available
+                local base_sources = { 'buffer', 'lsp', 'path', 'snippets' }
 
+                -- Build common sources list dynamically based on enabled plugins
+                local common_sources = vim.deepcopy(base_sources)
+
+                -- Add optional sources based on plugin availability
+                ${lib.optionalString config.plugins.copilot-lua.enable "table.insert(common_sources, 'copilot')"}
+                ${lib.optionalString config.plugins.blink-cmp-dictionary.enable "table.insert(common_sources, 'dictionary')"}
+                ${lib.optionalString config.plugins.blink-emoji.enable "table.insert(common_sources, 'emoji')"}
+                ${lib.optionalString (lib.elem pkgs.vimPlugins.blink-nerdfont-nvim config.extraPlugins) "table.insert(common_sources, 'nerdfont')"}
+                ${lib.optionalString config.plugins.blink-cmp-spell.enable "table.insert(common_sources, 'spell')"}
+                ${lib.optionalString config.plugins.blink-ripgrep.enable "table.insert(common_sources, 'ripgrep')"}
+
+                -- Special context handling
                 local success, node = pcall(vim.treesitter.get_node)
                 if success and node and vim.tbl_contains({ 'comment', 'line_comment', 'block_comment' }, node:type()) then
                   return { 'buffer', 'spell', 'dictionary' }
                 elseif vim.bo.filetype == 'gitcommit' then
-                  return { 'buffer', 'git', 'spell', 'dictionary', 'conventional_commits' }
+                  local git_sources = { 'buffer', 'spell', 'dictionary' }
+                  ${lib.optionalString config.plugins.blink-cmp-git.enable "table.insert(git_sources, 'git')"}
+                  ${lib.optionalString (lib.elem pkgs.vimPlugins.blink-cmp-conventional-commits config.extraPlugins) "table.insert(git_sources, 'conventional_commits')"}
+                  return git_sources
                 ${lib.optionalString config.plugins.avante.enable # Lua
-              ''
-            elseif vim.bo.filetype == 'AvanteInput' then
-              return { 'buffer', 'avante' }
-              ''
-            }
+                  ''
+                    elseif vim.bo.filetype == 'AvanteInput' then
+                      return { 'buffer', 'avante' }
+                  ''
+                }
                 ${lib.optionalString config.plugins.easy-dotnet.enable # Lua
-              ''
-                elseif vim.bo.filetype == "xml" then
-                  return { 'buffer', 'path', 'copilot', 'easy-dotnet'}
-              ''
-            }
+                  ''
+                    elseif vim.bo.filetype == "cs" or vim.bo.filetype == "fsharp" or vim.bo.filetype == "vb" or vim.bo.filetype == "razor" or vim.bo.filetype == "xml" then
+                      -- For .NET filetypes, add easy-dotnet to the sources
+                      local dotnet_sources = vim.deepcopy(common_sources)
+                      table.insert(dotnet_sources, 'easy-dotnet')
+                      return dotnet_sources
+                  ''
+                }
                 else
                   return common_sources
                 end
