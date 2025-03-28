@@ -2,12 +2,12 @@
   diagnostics = {
     update_in_insert = true;
     severity_sort = true;
+
     # NOTE: Opt-in with 0.11
-    # Prefer virtual_lines anyways
-    virtual_text = {
+    virtual_text = true;
+    virtual_lines = {
       current_line = true;
     };
-    virtual_lines = true;
 
     float = {
       border = "rounded";
