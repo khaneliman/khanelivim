@@ -34,9 +34,6 @@
       keymaps = {
         silent = true;
         diagnostic = {
-          # Navigate in diagnostics
-          "<leader>l[" = "goto_prev";
-          "<leader>l]" = "goto_next";
           "<leader>lH" = "open_float";
         };
 
