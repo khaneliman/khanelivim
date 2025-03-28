@@ -25,7 +25,6 @@
 
   plugins = {
     lsp-format.enable = !config.plugins.conform-nvim.enable && config.plugins.lsp.enable;
-    lsp-lines.enable = config.plugins.lsp.enable;
     lsp-signature.enable = config.plugins.lsp.enable;
 
     lsp = {
