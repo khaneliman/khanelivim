@@ -119,30 +119,33 @@
           };
           snippets.preset = "mini_snippets";
           sources = {
-            default =
-              [
-                # BUILT-IN SOURCES
-                "buffer"
-                "lsp"
-                "path"
-                "snippets"
-                # Community
-                "copilot"
-                "conventional_commits"
-                "dictionary"
-                "emoji"
-                "git"
-                "nerdfont"
-                "spell"
-                # FIXME: locking up nvim
-                # "ripgrep"
-              ]
-              ++ lib.optionals config.plugins.avante.enable [
-                "avante"
-              ]
-              ++ lib.optionals config.plugins.easy-dotnet.enable [
-                "easy-dotnet"
-              ];
+            default.__raw = ''
+              function(ctx)
+                -- Common sources used in most contexts
+                local common_sources = { 'buffer', 'lsp', 'path', 'snippets', 'copilot', 'dictionary', "emoji", "nerdfont", 'spell' }
+
+                local success, node = pcall(vim.treesitter.get_node)
+                if success and node and vim.tbl_contains({ 'comment', 'line_comment', 'block_comment' }, node:type()) then
+                  return { 'buffer', 'spell', 'dictionary' }
+                elseif vim.bo.filetype == 'gitcommit' then
+                  return { 'buffer', 'git', 'spell', 'dictionary', 'conventional_commits' }
+                ${lib.optionalString config.plugins.avante.enable # Lua
+                  ''
+                    elseif vim.bo.filetype == 'AvanteInput' then
+                      return { 'buffer', 'avante' }
+                  ''
+                }
+                ${lib.optionalString config.plugins.easy-dotnet.enable # Lua
+                  ''
+                    elseif vim.bo.filetype == "xml" then
+                      return { 'buffer', 'path', 'copilot', 'easy-dotnet'}
+                  ''
+                }
+                else
+                  return common_sources
+                end
+              end
+            '';
             providers =
               {
                 # BUILT-IN SOURCES
@@ -213,18 +216,28 @@
                   };
                 };
               }
-              // lib.optionalAttrs config.plugins.avante.enable {
+              // lib.optionalAttrs config.plugins.easy-dotnet.enable {
                 easy-dotnet = {
                   module = "easy-dotnet.completion.blink";
                   name = "easy-dotnet";
                   async = true;
                   score_offset = 1000;
+                  enabled.__raw = ''
+                    function()
+                      return vim.bo.filetype == "xml"
+                    end
+                  '';
                 };
               }
               // lib.optionalAttrs config.plugins.avante.enable {
                 avante = {
                   module = "blink-cmp-avante";
                   name = "Avante";
+                  enabled.__raw = ''
+                    function()
+                      return vim.bo.filetype == 'AvanteInput'
+                    end
+                  '';
                 };
               };
           };
