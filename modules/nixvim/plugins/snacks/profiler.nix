@@ -13,6 +13,8 @@
         && config.plugins.snacks.settings.profiler.enabled
       )
       (
+        # NOTE: Allows profiling
+        # `PROF=1 nvim`
         lib.mkOrder 1 # Lua
           ''
             if vim.env.PROF then
