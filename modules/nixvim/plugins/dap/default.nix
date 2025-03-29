@@ -147,7 +147,7 @@
         };
         dapBreakpointCondition = {
           text = "";
-          texthl = "dapBreakpointCondition";
+          texthl = "DapBreakpointCondition";
         };
         dapBreakpointRejected = {
           text = "";
