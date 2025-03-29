@@ -7,6 +7,10 @@
   plugins = {
     devdocs = {
       enable = true;
+
+      lazyLoad.settings.cmd = [
+        "DevDocs"
+      ];
     };
 
     which-key.settings.spec = lib.mkIf config.plugins.devdocs.enable [
