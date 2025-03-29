@@ -186,7 +186,6 @@
       action = "<CMD>DapToggleBreakpoint<CR>";
       options = {
         desc = "Breakpoint toggle";
-        silent = true;
       };
     }
     {
@@ -195,13 +194,12 @@
       action = "<CMD>DapContinue<CR>";
       options = {
         desc = "Continue Debugging (Start)";
-        silent = true;
       };
     }
     {
       mode = "n";
       key = "<leader>dC";
-      action = "<cmd>lua require('dap').run_to_cursor()<cr>";
+      action = "<CMD>lua require('dap').run_to_cursor()<CR>";
       options = {
         desc = "Run to cursor";
       };
@@ -209,7 +207,7 @@
     {
       mode = "n";
       key = "<leader>dg";
-      action = "<cmd>lua require('dap').goto_()<cr>";
+      action = "<CMD>lua require('dap').goto_()<CR>";
       options = {
         desc = "Go to line (no execute)";
       };
@@ -225,7 +223,7 @@
     {
       mode = "n";
       key = "<leader>dj";
-      action = "<cmd>lua require('dap').down()<cr>";
+      action = "<CMD>lua require('dap').down()<CR>";
       options = {
         desc = "Down";
       };
@@ -233,7 +231,7 @@
     {
       mode = "n";
       key = "<leader>dk";
-      action = "<cmd>lua require('dap').up()<cr>";
+      action = "<CMD>lua require('dap').up()<CR>";
       options = {
         desc = "Up";
       };
@@ -241,7 +239,7 @@
     {
       mode = "n";
       key = "<leader>dl";
-      action = "<cmd>lua require('dap').run_last()<cr>";
+      action = "<CMD>lua require('dap').run_last()<CR>";
       options = {
         desc = "Run Last";
       };
@@ -252,7 +250,6 @@
       action = "<CMD>DapStepOut<CR>";
       options = {
         desc = "Step Out";
-        silent = true;
       };
     }
     {
@@ -266,7 +263,7 @@
     {
       mode = "n";
       key = "<leader>dp";
-      action = "<cmd>lua require('dap').pause()<cr>";
+      action = "<CMD>lua require('dap').pause()<CR>";
       options = {
         desc = "Pause";
       };
@@ -274,7 +271,7 @@
     {
       mode = "n";
       key = "<leader>dr";
-      action = ":DapToggleRepl<cr>";
+      action = "<CMD>DapToggleRepl<CR>";
       options = {
         desc = "Toggle REPL";
       };
@@ -282,7 +279,7 @@
     {
       mode = "n";
       key = "<leader>ds";
-      action = "<cmd>lua require('dap').session()<cr>";
+      action = "<CMD>lua require('dap').session()<CR>";
       options = {
         desc = "Session";
       };
@@ -293,7 +290,6 @@
       action = "<CMD>DapTerminate<CR>";
       options = {
         desc = "Terminate Debugging";
-        silent = true;
       };
     }
   ];
