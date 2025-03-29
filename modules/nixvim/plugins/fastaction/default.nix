@@ -4,12 +4,8 @@
     fastaction = {
       enable = true;
 
-      lazyLoad.settings.event = "DeferredUIEnter";
-
-      # FIXME: why doesn't this work?
-      # lazyLoad.settings.keys = [
-      #   "<leader>lc"
-      # ];
+      # Rely on lzn-auto-require or just setup keymaps in here?
+      lazyLoad.settings.lazy = true;
     };
   };
 
