@@ -9,6 +9,7 @@
     ./bash.nix
     ./dotnet.nix
     ./javascript.nix
+    ./lua.nix
   ];
 
   extraPackages =
