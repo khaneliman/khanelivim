@@ -26,12 +26,10 @@
       blink-cmp = {
         enable = true;
 
-        # TODO: fix fuzzy library check with lazy loading
-        # plugin searches `start` instead of `opt` in pack
-        # lazyLoad.settings.event = [
-        #   "InsertEnter"
-        #   "CmdlineEnter"
-        # ];
+        lazyLoad.settings.event = [
+          "InsertEnter"
+          "CmdlineEnter"
+        ];
 
         settings = {
           completion = {
