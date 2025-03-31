@@ -14,7 +14,7 @@
     copilot-lua = {
       enable = true;
 
-      lazyLoad.settings.event = [ "DeferredUIEnter" ];
+      lazyLoad.settings.event = [ "InsertEnter" ];
 
       settings = {
         panel.enabled = !config.plugins.blink-cmp-copilot.enable;
