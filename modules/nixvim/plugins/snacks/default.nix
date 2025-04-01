@@ -2,6 +2,7 @@
   config,
   self,
   system,
+  pkgs,
   ...
 }:
 {
@@ -15,6 +16,15 @@
     ./picker.nix
     ./profiler.nix
     ./zen.nix
+  ];
+
+  extraPackages = with pkgs; [
+    # PDF rendering
+    ghostscript
+    # Mermaid diagrams
+    mermaid-cli
+    # LaTeX
+    tectonic
   ];
 
   plugins = {
