@@ -33,6 +33,7 @@
       package = self.packages.${system}.snacks-nvim;
 
       settings = {
+        image.enabled = true;
         indent.enabled = true;
         scroll.enabled = true;
         statuscolumn = {
