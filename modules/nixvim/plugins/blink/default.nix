@@ -12,6 +12,8 @@
       gh
       # blink-cmp-dictionary
       wordnet
+      # blink use for gitlab ?
+      glab
     ]
   );
 
