@@ -96,22 +96,24 @@
           };
           keymap = {
             preset = "enter";
-            "<A-Tab>" = [
-              "snippet_forward"
-              "fallback"
-            ];
-            "<A-S-Tab>" = [
-              "snippet_backward"
-              "fallback"
-            ];
-            "<Tab>" = [
-              "select_next"
-              "fallback"
-            ];
-            "<S-Tab>" = [
-              "select_prev"
-              "fallback"
-            ];
+            # NOTE: If you prefer Tab/S-Tab selection
+            # But, find myself accidentally interrupting tabbing for movement
+            # "<A-Tab>" = [
+            #   "snippet_forward"
+            #   "fallback"
+            # ];
+            # "<A-S-Tab>" = [
+            #   "snippet_backward"
+            #   "fallback"
+            # ];
+            # "<Tab>" = [
+            #   "select_next"
+            #   "fallback"
+            # ];
+            # "<S-Tab>" = [
+            #   "select_prev"
+            #   "fallback"
+            # ];
           };
           signature = {
             enabled = true;
