@@ -158,7 +158,7 @@ in
 
       winbar = {
         lualine_c = [
-          {
+          (lib.mkIf config.plugins.navic.enable {
             __unkeyed-1 = "navic";
             inherit cond;
             color_correction = "static";
@@ -167,7 +167,7 @@ in
               depth_limit = 5;
               depth_limit_indicator = "...";
             };
-          }
+          })
         ];
 
         # TODO: Need to dynamically hide/show component so navic takes precedence on smaller width
