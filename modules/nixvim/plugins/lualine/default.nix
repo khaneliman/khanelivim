@@ -60,6 +60,7 @@ in
           "diagnostics"
 
           # Show active language server
+          (lib.optionalString config.plugins.copilot-lua.enable "copilot")
           {
             __unkeyed-1.__raw = ''
               function()
