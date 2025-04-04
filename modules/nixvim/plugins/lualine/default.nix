@@ -110,29 +110,21 @@ in
         ];
 
         lualine_y = [
-          {
+          (lib.mkIf config.plugins.aerial.enable {
             __unkeyed-1 = "aerial";
-            inherit cond;
+            colored = true;
 
-            # -- The separator to be used to separate symbols in status line.
-            sep = " ) ";
-
-            # -- The number of symbols to render top-down. In order to render only 'N' last
-            # -- symbols, negative numbers may be supplied. For instance, 'depth = -1' can
-            # -- be used in order to render only current symbol.
-            depth.__raw = "nil";
-
-            # -- When 'dense' mode is on, icons are not rendered near their symbols. Only
-            # -- a single icon that represents the kind of current symbol is rendered at
-            # -- the beginning of status line.
-            dense = false;
-
-            # -- The separator to be used to separate symbols in dense mode.
+            depth = 3; # Limit depth for better performance
+            dense = true; # Better for performance
             dense_sep = ".";
 
-            # -- Color the symbol icons.
-            colored = true;
-          }
+            cond.__raw = ''
+              function()
+                local aerial_avail, aerial = pcall(require, "aerial")
+                return aerial_avail and aerial.has_symbols()
+              end
+            '';
+          })
         ];
 
         lualine_z = [
