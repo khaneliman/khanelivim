@@ -273,7 +273,7 @@
                 action.__raw = ''
                   function ()
                     if (not vim.g.whitespace_character_enabled) then
-                      vim.cmd('set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣')
+                      vim.cmd('set listchars=eol:¬,tab:>→,trail:~,extends:>,precedes:<,space:·')
                       vim.cmd('set list')
                     else
                       vim.cmd('set nolist')
