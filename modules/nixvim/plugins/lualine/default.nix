@@ -23,7 +23,11 @@ in
   plugins.lualine = {
     enable = true;
 
-    lazyLoad.settings.event = "DeferredUIEnter";
+    lazyLoad.settings.event = [
+      "VimEnter"
+      "BufReadPost"
+      "BufNewFile"
+    ];
 
     settings = {
       options = {
