@@ -139,6 +139,12 @@ in
           {
             __unkeyed-1 = "navic";
             inherit cond;
+            color_correction = "static";
+            navic_opts = {
+              highlight = true;
+              depth_limit = 5;
+              depth_limit_indicator = "...";
+            };
           }
         ];
 
