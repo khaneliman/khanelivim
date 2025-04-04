@@ -178,6 +178,11 @@ in
             path = 3;
             # Shorten path names to fit navic component
             shorting_target = 150;
+            symbols = {
+              modified = "";
+              readonly = "";
+              newfile = "";
+            };
           }
         ];
       };
