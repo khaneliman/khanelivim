@@ -3,19 +3,6 @@
   plugins = {
     harpoon = {
       enable = true;
-
-      keymapsSilent = true;
-
-      keymaps = {
-        addFile = "<leader>ha";
-        toggleQuickMenu = "<leader>he";
-        navFile = {
-          "1" = "<leader>hj";
-          "2" = "<leader>hk";
-          "3" = "<leader>hl";
-          "4" = "<leader>hm";
-        };
-      };
     };
 
     which-key.settings.spec = lib.optionals config.plugins.harpoon.enable [
@@ -24,30 +11,45 @@
         group = "Harpoon";
         icon = "󱡀 ";
       }
-      {
-        __unkeyed-1 = "<leader>ha";
-        desc = "Add";
-      }
-      {
-        __unkeyed-1 = "<leader>he";
-        desc = "QuickMenu";
-      }
-      {
-        __unkeyed-1 = "<leader>hj";
-        desc = "1";
-      }
-      {
-        __unkeyed-1 = "<leader>hk";
-        desc = "2";
-      }
-      {
-        __unkeyed-1 = "<leader>hl";
-        desc = "3";
-      }
-      {
-        __unkeyed-1 = "<leader>hm";
-        desc = "4";
-      }
     ];
   };
+
+  keymaps = lib.mkIf config.plugins.harpoon.enable [
+    {
+      mode = "n";
+      key = "<leader>ha";
+      options.desc = "Add file";
+      action.__raw = "function() require'harpoon':list():add() end";
+    }
+    {
+      mode = "n";
+      key = "<leader>he";
+      options.desc = "Quick Menu";
+      action.__raw = "function() require'harpoon'.ui:toggle_quick_menu(require'harpoon':list()) end";
+    }
+    {
+      mode = "n";
+      key = "<leader>hj";
+      options.desc = "1";
+      action.__raw = "function() require'harpoon':list():select(1) end";
+    }
+    {
+      mode = "n";
+      key = "<leader>hk";
+      options.desc = "2";
+      action.__raw = "function() require'harpoon':list():select(2) end";
+    }
+    {
+      mode = "n";
+      key = "<leader>hl";
+      options.desc = "3";
+      action.__raw = "function() require'harpoon':list():select(3) end";
+    }
+    {
+      mode = "n";
+      key = "<leader>hm";
+      options.desc = "4";
+      action.__raw = "function() require'harpoon':list():select(4) end";
+    }
+  ];
 }
