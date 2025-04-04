@@ -57,7 +57,29 @@ in
 
         lualine_x = [
           { __raw = ''Snacks.profiler.status()''; }
-          "diagnostics"
+          {
+            __unkeyed-1 = "diagnostics";
+            sources = [
+              "nvim_lsp"
+              "nvim_diagnostic"
+              "nvim_workspace_diagnostic"
+            ];
+            diagnostics_color = {
+              error = {
+                fg = "#ed8796";
+              };
+              warn = {
+                fg = "#eed49f";
+              };
+              info = {
+                fg = "#8aadf4";
+              };
+              hint = {
+                fg = "#a6da95";
+              };
+            };
+            colored = true;
+          }
 
           # Show active language server
           (lib.optionalString config.plugins.copilot-lua.enable "copilot")
