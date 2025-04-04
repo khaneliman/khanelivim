@@ -10,6 +10,13 @@
     ./migrateNixvimTests.nix
   ];
 
+  extraPlugins = lib.optionals (config.plugins.copilot-lua.enable && config.plugins.lualine.enable) (
+    with pkgs.vimPlugins;
+    [
+      copilot-lualine
+    ]
+  );
+
   plugins = {
     copilot-lua = {
       enable = true;
