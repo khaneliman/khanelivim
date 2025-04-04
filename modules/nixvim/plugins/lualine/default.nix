@@ -2,12 +2,20 @@
 let
   cond.__raw = ''
     function()
-      local buf_size_limit = 1024 * 1024 -- 1MB size limit
-      if vim.api.nvim_buf_get_offset(0, vim.api.nvim_buf_line_count(0)) > buf_size_limit then
-        return false
+      local cache = {}
+      return function()
+        local bufnr = vim.api.nvim_get_current_buf()
+        if cache[bufnr] == nil then
+          local buf_size = vim.api.nvim_buf_get_offset(bufnr, vim.api.nvim_buf_line_count(bufnr))
+          cache[bufnr] = buf_size < 1024 * 1024 -- 1MB limit
+          -- Clear cache on buffer unload
+          vim.api.nvim_create_autocmd("BufUnload", {
+            buffer = bufnr,
+            callback = function() cache[bufnr] = nil end,
+          })
+        end
+        return cache[bufnr]
       end
-
-      return true
     end
   '';
 in
