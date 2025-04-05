@@ -2,6 +2,7 @@
   config,
   helpers,
   lib,
+  pkgs,
   ...
 }:
 {
@@ -269,6 +270,20 @@
                 };
               };
 
+              "<leader>uh" = {
+                action.__raw = ''
+                  function ()
+                    local curr_foldcolumn = vim.wo.foldcolumn
+                    if curr_foldcolumn ~= "0" then vim.g.last_active_foldcolumn = curr_foldcolumn end
+                    vim.wo.foldcolumn = curr_foldcolumn == "0" and (vim.g.last_active_foldcolumn or "1") or "0"
+                    vim.notify(string.format("Fold Column %s", bool2str(vim.wo.foldcolumn), "info"))
+                  end'';
+                options = {
+                  desc = "Fold Column toggle";
+                };
+              };
+            }
+            // (lib.optionalAttrs (!builtins.elem pkgs.vimPlugins.visual-whitespace-nvim config.extraPlugins) {
               "<leader>uW" = {
                 action.__raw = ''
                   function ()
@@ -285,20 +300,7 @@
                   desc = "White space character toggle";
                 };
               };
-
-              "<leader>uh" = {
-                action.__raw = ''
-                  function ()
-                    local curr_foldcolumn = vim.wo.foldcolumn
-                    if curr_foldcolumn ~= "0" then vim.g.last_active_foldcolumn = curr_foldcolumn end
-                    vim.wo.foldcolumn = curr_foldcolumn == "0" and (vim.g.last_active_foldcolumn or "1") or "0"
-                    vim.notify(string.format("Fold Column %s", bool2str(vim.wo.foldcolumn), "info"))
-                  end'';
-                options = {
-                  desc = "Fold Column toggle";
-                };
-              };
-            }
+            })
             // (lib.optionalAttrs
               (
                 !config.plugins.snacks.enable
