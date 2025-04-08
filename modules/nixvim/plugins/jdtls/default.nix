@@ -10,7 +10,7 @@
       java-debug = "${pkgs.vscode-extensions.vscjava.vscode-java-debug}/share/vscode/extensions/vscjava.vscode-java-debug/server";
       java-test = "${pkgs.vscode-extensions.vscjava.vscode-java-test}/share/vscode/extensions/vscjava.vscode-java-test/server";
     in
-    lib.mkIf config.plugins.nvim-jdtls.enable ''
+    lib.mkIf config.plugins.jdtls.enable ''
       local jdtls = require("jdtls")
       local jdtls_dap = require("jdtls.dap")
       local jdtls_setup = require("jdtls.setup")
@@ -32,10 +32,9 @@
     '';
 
   plugins = {
-    nvim-jdtls = {
+    jdtls = {
       enable = true;
 
-      # TODO: upgrade to mkNeoVimPlugin
       # lazyLoad = {
       #   enable = true;
       #   settings = {
@@ -43,18 +42,27 @@
       #   };
       # };
 
-      configuration.__raw = ''vim.fn.stdpath 'cache' .. "/jdtls/config"'';
-      data.__raw = "vim.fn.stdpath 'cache' .. '/jdtls/' .. vim.fn.fnamemodify(vim.fn.getcwd(), ':t')";
-      initOptions = {
-        bundles.__raw = "_M.jdtls.bundles";
-        # FIXME: not working
-        # bundles = {
-        #   __unkeyed-1.__raw = ''vim.fn.glob("${pkgs.vscode-extensions.vscjava.vscode-java-debug}/share/vscode/extensions/vscjava.vscode-java-debug/server/com.microsoft.java.debug.plugin-*.jar", 1)'';
-        #   __unkeyed-2.__raw = ''vim.split(vim.fn.glob("${pkgs.vscode-extensions.vscjava.vscode-java-test}/share/vscode/extensions/vscjava.vscode-java-test/server/*.jar", 1), "\n")'';
-        # };
-      };
       settings = {
+        cmd = [
+          "${lib.getExe pkgs.jdt-language-server}"
+          "-data"
+          ''vim.fn.stdpath 'cache' .. '/jdtls/' .. vim.fn.fnamemodify(vim.fn.getcwd(), ':t')''
+          "-configuration"
+          ''vim.fn.stdpath 'cache' .. "/jdtls/config"''
+        ];
+
+        init_options = {
+          bundles.__raw = "_M.jdtls.bundles";
+          # FIXME: not working
+          # bundles = {
+          #   __unkeyed-1.__raw = ''vim.fn.glob("${pkgs.vscode-extensions.vscjava.vscode-java-debug}/share/vscode/extensions/vscjava.vscode-java-debug/server/com.microsoft.java.debug.plugin-*.jar", 1)'';
+          #   __unkeyed-2.__raw = ''vim.split(vim.fn.glob("${pkgs.vscode-extensions.vscjava.vscode-java-test}/share/vscode/extensions/vscjava.vscode-java-test/server/*.jar", 1), "\n")'';
+          # };
+        };
+
         java = {
+          root_dir.__raw = "require('jdtls.setup').find_root({'.git', 'mvnw', 'gradlew'})";
+
           configuration = {
             updateBuildConfiguration = "interactive";
             runtimes = [
@@ -151,5 +159,4 @@
       };
     };
   };
-
 }
