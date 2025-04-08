@@ -55,9 +55,9 @@
           # };
         };
 
-        java = {
-          root_dir.__raw = "require('jdtls.setup').find_root({'.git', 'mvnw', 'gradlew'})";
+        root_dir.__raw = "require('jdtls.setup').find_root({'.git', 'mvnw', 'gradlew'})";
 
+        java = {
           configuration = {
             updateBuildConfiguration = "interactive";
             runtimes = [
