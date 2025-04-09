@@ -94,8 +94,8 @@
           go = [ "golines" ];
           java = [ "google-java-format" ];
           javascript = {
-            __unkeyed-1 = "biome";
-            __unkeyed-2 = "prettierd";
+            __unkeyed-1 = "prettierd";
+            __unkeyed-2 = "biome";
             timeout_ms = 2000;
             stop_after_first = true;
           };
@@ -119,8 +119,8 @@
           terraform = [ "terraform_fmt" ];
           toml = [ "taplo" ];
           typescript = {
-            __unkeyed-1 = "biome";
-            __unkeyed-2 = "prettierd";
+            __unkeyed-1 = "prettierd";
+            __unkeyed-2 = "biome";
             timeout_ms = 2000;
             stop_after_first = true;
           };
