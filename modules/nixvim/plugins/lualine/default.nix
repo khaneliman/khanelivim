@@ -46,6 +46,7 @@ in
           __unkeyed-12 = "dapui_console";
           __unkeyed-13 = "dashboard";
           __unkeyed-14 = "snacks_dashboard";
+          __unkeyed-15 = "AvanteSelectedFiles";
           winbar = [
             "aerial"
             "dap-repl"
