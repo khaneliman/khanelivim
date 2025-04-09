@@ -100,6 +100,7 @@
             stop_after_first = true;
           };
           json = [ "jq" ];
+          html = [ "prettierd" ];
           kdl = [ "kdlfmt" ];
           lua = [ "stylua" ];
           markdown = [ "deno_fmt" ];
