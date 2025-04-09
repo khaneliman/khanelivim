@@ -34,6 +34,9 @@
         ];
 
         settings = {
+          cmdline = {
+            completion.menu.auto_show = true;
+          };
           completion = {
             ghost_text.enabled = true;
             documentation = {
