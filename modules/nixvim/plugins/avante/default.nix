@@ -1,16 +1,11 @@
 {
   config,
   lib,
-  pkgs,
   self,
   system,
   ...
 }:
 {
-  extraPlugins = lib.mkIf config.plugins.avante.enable [
-    pkgs.vimPlugins.img-clip-nvim
-  ];
-
   plugins = {
     avante = {
       enable = true;
