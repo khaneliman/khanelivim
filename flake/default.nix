@@ -6,13 +6,25 @@
 }:
 {
   imports = [
-    ./devshell.nix
-    ./git-hooks.nix
     ./nixvim.nix
     ./overlays.nix
     ./pkgs-by-name.nix
-    ./treefmt.nix
+    inputs.flake-parts.flakeModules.partitions
   ];
+
+  partitions = {
+    dev = {
+      module = ./dev;
+      extraInputsFlake = ./dev;
+    };
+  };
+
+  # Specify which outputs are defined by which partitions
+  partitionedAttrs = {
+    checks = "dev";
+    devShells = "dev";
+    formatter = "dev";
+  };
 
   perSystem =
     {
