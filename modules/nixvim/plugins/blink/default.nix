@@ -35,7 +35,12 @@
 
         settings = {
           cmdline = {
-            completion.menu.auto_show = true;
+            completion = {
+              list.selection = {
+                preselect = false;
+              };
+              menu.auto_show = true;
+            };
             keymap = {
               preset = "enter";
               "<CR>" = [
