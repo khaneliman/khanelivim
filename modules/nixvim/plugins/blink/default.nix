@@ -37,7 +37,11 @@
           cmdline = {
             completion.menu.auto_show = true;
             keymap = {
-              preset = "inherit";
+              preset = "enter";
+              "<CR>" = [
+                "accept_and_enter"
+                "fallback"
+              ];
             };
           };
           completion = {
