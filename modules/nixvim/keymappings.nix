@@ -2,7 +2,6 @@
   config,
   helpers,
   lib,
-  pkgs,
   ...
 }:
 {
