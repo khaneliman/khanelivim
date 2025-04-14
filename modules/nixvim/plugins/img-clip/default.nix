@@ -4,7 +4,10 @@
 }:
 {
   extraPlugins = [
-    pkgs.vimPlugins.img-clip-nvim
+    {
+      plugin = pkgs.vimPlugins.img-clip-nvim;
+      optional = true;
+    }
   ];
 
   plugins = {
