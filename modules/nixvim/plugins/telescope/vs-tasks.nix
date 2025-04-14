@@ -6,22 +6,7 @@
 }:
 {
   extraPlugins = [
-    (pkgs.vimUtils.buildVimPlugin {
-      pname = "vs-tasks.nvim";
-      version = "2025-03-17";
-      src = pkgs.fetchFromGitHub {
-        owner = "EthanJWright";
-        repo = "vs-tasks.nvim";
-        rev = "f0a10214ca3856fb4387db4f11acbaafa9ed3515";
-        sha256 = "0k00n8p9cy2g98a8g5dg9c67sa0hx1shjj0hhpw8yac4rj5dbgdl";
-      };
-      meta.homepage = "https://github.com/EthanJWright/vs-tasks.nvim/";
-      meta.hydraPlatforms = [ ];
-      dependencies = with pkgs.vimPlugins; [
-        plenary-nvim
-        telescope-nvim
-      ];
-    })
+    pkgs.vimPlugins.vs-tasks-nvim
   ];
 
   plugins.telescope = {
