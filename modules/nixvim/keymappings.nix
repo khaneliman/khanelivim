@@ -2,7 +2,6 @@
   config,
   helpers,
   lib,
-  pkgs,
   ...
 }:
 {
@@ -283,7 +282,7 @@
                 };
               };
             }
-            // (lib.optionalAttrs (!builtins.elem pkgs.vimPlugins.visual-whitespace-nvim config.extraPlugins) {
+            // (lib.optionalAttrs (!config.plugins.visual-whitespace-nvim.enable) {
               "<leader>uW" = {
                 action.__raw = ''
                   function ()
