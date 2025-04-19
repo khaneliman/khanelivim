@@ -72,11 +72,13 @@ in
           { __raw = ''Snacks.profiler.status()''; }
           {
             __unkeyed-1 = "diagnostics";
-            sources = [
-              "nvim_lsp"
-              "nvim_diagnostic"
-              "nvim_workspace_diagnostic"
-            ];
+            # TODO: figure out how this works
+            # It's triplicating number count
+            # sources = [
+            #   "nvim_lsp"
+            #   "nvim_diagnostic"
+            #   "nvim_workspace_diagnostic"
+            # ];
             diagnostics_color = {
               error = {
                 fg = "#ed8796";
