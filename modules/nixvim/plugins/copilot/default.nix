@@ -56,7 +56,7 @@
 
     which-key.settings.spec = lib.optionals config.plugins.copilot-chat.enable [
       {
-        __unkeyed-1 = "<leader>c";
+        __unkeyed-1 = "<leader>aC";
         group = "Copilot";
         icon = "";
       }
@@ -66,7 +66,7 @@
   keymaps = lib.mkIf config.plugins.copilot-chat.enable [
     {
       mode = "n";
-      key = "<leader>cc";
+      key = "<leader>aCc";
       action = "<cmd>CopilotChat<CR>";
       options = {
         desc = "Open Chat";
@@ -74,7 +74,7 @@
     }
     {
       mode = "n";
-      key = "<leader>cq";
+      key = "<leader>aCq";
       action.__raw = ''
         function()
           local input = vim.fn.input("Quick Chat: ")
@@ -89,7 +89,7 @@
     }
     {
       mode = "n";
-      key = "<leader>ch";
+      key = "<leader>aCh";
       action.__raw = ''
         function()
           local actions = require("CopilotChat.actions")
@@ -102,7 +102,7 @@
     }
     {
       mode = "n";
-      key = "<leader>cp";
+      key = "<leader>aCp";
       action.__raw = ''
         function()
           local actions = require("CopilotChat.actions")
@@ -115,7 +115,7 @@
     }
     {
       mode = "n";
-      key = "<leader>ca";
+      key = "<leader>aCa";
       action = "<cmd>CopilotChatAgents<CR>";
       options = {
         desc = "List Available Agents";
@@ -123,7 +123,7 @@
     }
     {
       mode = "n";
-      key = "<leader>cl";
+      key = "<leader>aCl";
       action = "<cmd>CopilotChatLoad<CR>";
       options = {
         desc = "Load Chat History";
@@ -131,7 +131,7 @@
     }
     {
       mode = "n";
-      key = "<leader>cm";
+      key = "<leader>aCm";
       action = "<cmd>CopilotChatModels<CR>";
       options = {
         desc = "List Available Models";
@@ -139,7 +139,7 @@
     }
     {
       mode = "n";
-      key = "<leader>co";
+      key = "<leader>aCo";
       action = "<cmd>CopilotChatOpen<CR>";
       options = {
         desc = "Open Chat Window";
@@ -147,7 +147,7 @@
     }
     {
       mode = "n";
-      key = "<leader>ct";
+      key = "<leader>aCt";
       action = "<cmd>CopilotChatToggle<CR>";
       options = {
         desc = "Toggle Chat Window";

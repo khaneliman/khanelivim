@@ -408,5 +408,11 @@
       __unkeyed-1 = "<leader>/";
       icon = "";
     }
+    {
+      __unkeyed-1 = "<leader>a";
+      group = "AI Assistant";
+      icon = "";
+    }
   ];
 }
+

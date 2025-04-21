@@ -50,7 +50,7 @@
   keymaps = [
     {
       mode = "n";
-      key = "<leader>uc";
+      key = "<leader>ac";
       action = "<cmd>ClaudeCode<CR>";
       options = {
         desc = "Claude Code";

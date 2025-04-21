@@ -25,7 +25,7 @@
   keymaps = lib.mkIf config.plugins.windsurf-nvim.enable [
     {
       mode = "n";
-      key = "<leader>uc";
+      key = "<leader>aC";
       action = "<cmd>Codeium Chat<CR>";
       options = {
         desc = "Codeium Chat";
