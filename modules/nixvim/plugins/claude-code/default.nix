@@ -10,19 +10,7 @@
   # TODO: upstream module
   extraPlugins = [
     {
-      # TODO: use upstreamed package
-      plugin = pkgs.vimUtils.buildVimPlugin {
-        pname = "claude-code.nvim";
-        version = "2025-03-29";
-        src = pkgs.fetchFromGitHub {
-          owner = "greggh";
-          repo = "claude-code.nvim";
-          rev = "b5c64c42832e5c6c7a02e8e8aa44cfa38a4ae0b2";
-          sha256 = "10s4bn1vcmvkgfxdcilqw85zzlfm2qipw25aqw7jjarys5y3jfik";
-        };
-        meta.homepage = "https://github.com/greggh/claude-code.nvim/";
-        meta.hydraPlatforms = [ ];
-      };
+      plugin = pkgs.vimPlugins.claude-code-nvim;
       optional = true;
     }
   ];
