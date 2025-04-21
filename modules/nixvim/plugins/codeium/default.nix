@@ -6,7 +6,7 @@
 }:
 {
   plugins = {
-    codeium-nvim = {
+    windsurf-nvim = {
       # TODO: properly disable only with copilot enabled
       enable = false;
 
@@ -23,7 +23,7 @@
     };
   };
 
-  keymaps = lib.mkIf config.plugins.codeium-nvim.enable [
+  keymaps = lib.mkIf config.plugins.windsurf-nvim.enable [
     {
       mode = "n";
       key = "<leader>uc";
