@@ -7,8 +7,7 @@
 {
   plugins = {
     windsurf-nvim = {
-      # TODO: properly disable only with copilot enabled
-      enable = false;
+      enable = !config.plugins.copilot-lua.enable;
 
       settings = {
         enable_chat = true;
