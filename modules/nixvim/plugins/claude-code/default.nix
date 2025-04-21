@@ -37,7 +37,9 @@
           after = # Lua
             ''
               function()
-                require ("claude-code").setup({})
+                require ("claude-code").setup({
+                  window = { position = "vertical"}
+                })
               end
             '';
         }
