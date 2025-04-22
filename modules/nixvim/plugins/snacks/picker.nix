@@ -4,13 +4,16 @@
   ...
 }:
 {
+  imports = [
+    ./picker/git.nix
+    ./picker/lsp.nix
+  ];
+
   plugins = {
     snacks = {
       enable = true;
 
       settings = {
-        # Need to pass raw to get around being stripped by nixvim
-        # Currently, fzf-lua feels better in every way
         picker = {
           layouts = {
             select = {
@@ -32,10 +35,43 @@
       [
         {
           mode = "n";
+          key = "<leader><space>";
+          action = ''<cmd>lua Snacks.picker.smart()<cr>'';
+          options = {
+            desc = "Smart Find Files";
+          };
+        }
+        {
+          mode = "n";
+          key = "<leader>/";
+          action = ''<cmd>lua Snacks.picker.grep()<cr>'';
+          options = {
+            desc = "Grep";
+          };
+        }
+        {
+          mode = "n";
+          key = "<leader>:";
+          action = ''<cmd>lua Snacks.picker.command_history()<cr>'';
+          options = {
+            desc = "Command History";
+          };
+        }
+
+        {
+          mode = "n";
           key = "<leader>fa";
           action = ''<cmd>lua Snacks.picker.autocmds()<cr>'';
           options = {
             desc = "Find autocmds";
+          };
+        }
+        {
+          mode = "n";
+          key = "<leader>fb";
+          action = ''<cmd>lua Snacks.picker.buffers()<cr>'';
+          options = {
+            desc = "Find buffers";
           };
         }
         {
@@ -64,26 +100,18 @@
         }
         {
           mode = "n";
-          key = "<leader>fd";
-          action = ''<cmd>lua Snacks.picker.diagnostics_buffer()<cr>'';
-          options = {
-            desc = "Find buffer diagnostics";
-          };
-        }
-        {
-          mode = "n";
-          key = "<leader>fD";
-          action = ''<cmd>lua Snacks.picker.diagnostics()<cr>'';
-          options = {
-            desc = "Find workspace diagnostics";
-          };
-        }
-        {
-          mode = "n";
           key = "<leader>fe";
           action = ''<cmd>lua Snacks.explorer()<cr>'';
           options = {
             desc = "File Explorer";
+          };
+        }
+        {
+          mode = "n";
+          key = "<leader>ff";
+          action = ''<cmd>lua Snacks.picker.files()<cr>'';
+          options = {
+            desc = "Find files";
           };
         }
         {
@@ -94,13 +122,36 @@
             desc = "Find help tags";
           };
         }
-        # NOTE: prefer the UI but is lot slower
         {
           mode = "n";
           key = "<leader>fk";
           action = ''<cmd>lua Snacks.picker.keymaps()<cr>'';
           options = {
             desc = "Find keymaps";
+          };
+        }
+        {
+          mode = "n";
+          key = "<leader>fm";
+          action = ''<cmd>lua Snacks.picker.man()<cr>'';
+          options = {
+            desc = "Find man pages";
+          };
+        }
+        {
+          mode = "n";
+          key = "<leader>fN";
+          action = ''<cmd>lua Snacks.picker.icons({layout = { preset = "select" }})<cr>'';
+          options = {
+            desc = "Find icons";
+          };
+        }
+        {
+          mode = "n";
+          key = "<leader>fo";
+          action = ''<cmd>lua Snacks.picker.recent()<cr>'';
+          options = {
+            desc = "Find old files";
           };
         }
         {
@@ -121,18 +172,18 @@
         }
         {
           mode = "n";
-          key = "<leader>fr";
-          action = ''<cmd>lua Snacks.picker.registers()<cr>'';
+          key = "<leader>fq";
+          action = ''<cmd>lua Snacks.picker.qflist()<cr>'';
           options = {
-            desc = "Find registers";
+            desc = "Find quickfix";
           };
         }
         {
           mode = "n";
-          key = "<leader>fs";
-          action = ''<cmd>lua Snacks.picker.lsp_symbols()<cr>'';
+          key = "<leader>fr";
+          action = ''<cmd>lua Snacks.picker.registers()<cr>'';
           options = {
-            desc = "Find lsp document symbols";
+            desc = "Find registers";
           };
         }
         {
@@ -162,27 +213,18 @@
         }
         {
           mode = "n";
-          key = "<leader>f?";
-          action = ''<cmd>lua Snacks.picker.grep_buffers()<cr>'';
-          options = {
-            desc = "Fuzzy find in open buffers";
-          };
-        }
-        {
-          mode = "n";
           key = "<leader>fu";
           action = "<cmd>lua Snacks.picker.undo()<cr>";
           options = {
             desc = "Undo History";
           };
         }
-        # Profiler
         {
           mode = "n";
-          key = "<leader>X";
-          action = ''<cmd>lua Snacks.profiler.toggle()<cr>'';
+          key = "<leader>fw";
+          action = "<cmd>lua Snacks.picker.grep()<cr>";
           options = {
-            desc = "Toggle Neovim profiler";
+            desc = "Live grep";
           };
         }
         {
@@ -203,131 +245,48 @@
         }
         {
           mode = "n";
+          key = "<leader>f?";
+          action = ''<cmd>lua Snacks.picker.grep_buffers()<cr>'';
+          options = {
+            desc = "Fuzzy find in open buffers";
+          };
+        }
+        {
+          mode = "n";
           key = "<leader>f<CR>";
           action = ''<cmd>lua Snacks.picker.resume()<cr>'';
           options = {
             desc = "Resume find";
           };
         }
+
+        {
+          mode = [
+            "n"
+            "x"
+          ];
+          key = "<leader>sw";
+          action = ''<cmd>lua Snacks.picker.grep_word()<cr>'';
+          options = {
+            desc = "Search Word (visual or cursor)";
+          };
+        }
+
         {
           mode = "n";
-          key = "<leader>fb";
-          action = ''<cmd>lua Snacks.picker.buffers()<cr>'';
+          key = "<leader>uC";
+          action = ''<cmd>lua Snacks.picker.colorschemes()<cr>'';
           options = {
-            desc = "Find buffers";
+            desc = "Colorschemes";
           };
         }
         {
           mode = "n";
-          key = "<leader>ff";
-          action = ''<cmd>lua Snacks.picker.files()<cr>'';
+          key = "<leader>X";
+          action = ''<cmd>lua Snacks.profiler.toggle()<cr>'';
           options = {
-            desc = "Find files";
+            desc = "Toggle Neovim profiler";
           };
         }
-        {
-          mode = "n";
-          key = "<leader>fm";
-          action = ''<cmd>lua Snacks.picker.man()<cr>'';
-          options = {
-            desc = "Find man pages";
-          };
-        }
-        {
-          mode = "n";
-          key = "<leader>fo";
-          action = ''<cmd>lua Snacks.picker.recent()<cr>'';
-          options = {
-            desc = "Find old files";
-          };
-        }
-        {
-          mode = "n";
-          key = "<leader>fq";
-          action = ''<cmd>lua Snacks.picker.qflist()<cr>'';
-          options = {
-            desc = "Find quickfix";
-          };
-        }
-        {
-          mode = "n";
-          key = "<leader>ld";
-          action = ''<cmd>lua Snacks.picker.lsp_definitions()<cr>'';
-          options = {
-            desc = "Goto Definition";
-          };
-        }
-        {
-          mode = "n";
-          key = "<leader>li";
-          action = ''<cmd>lua Snacks.picker.lsp_implementation()<cr>'';
-          options = {
-            desc = "Goto Implementation";
-          };
-        }
-        {
-          mode = "n";
-          key = "<leader>lD";
-          action = ''<cmd>lua Snacks.picker.lsp_references()<cr>'';
-          options = {
-            desc = "Find references";
-          };
-        }
-        {
-          mode = "n";
-          key = "<leader>lt";
-          action = ''<cmd>lua Snacks.picker.lsp_type_definitions()<cr>'';
-          options = {
-            desc = "Goto Type Definition";
-          };
-        }
-        {
-          mode = "n";
-          key = "<leader>fw";
-          action = "<cmd>lua Snacks.picker.grep()<cr>";
-          options = {
-            desc = "Live grep";
-          };
-        }
-        # {
-        #   mode = "n";
-        #   key = "<leader>gB";
-        #   action = ''<cmd>lua Snacks.picker.git_branches()<cr>'';
-        #   options = {
-        #     desc = "Find git branches";
-        #   };
-        # }
-        # {
-        #   mode = "n";
-        #   key = "<leader>gC";
-        #   action = ''<cmd>lua Snacks.picker.git_commits()<cr>'';
-        #   options = {
-        #     desc = "Find git commits";
-        #   };
-        # }
-        {
-          mode = "n";
-          key = "<leader>gs";
-          action = ''<cmd>lua Snacks.picker.git_status()<cr>'';
-          options = {
-            desc = "Find git status";
-          };
-        }
-        # {
-        #   mode = "n";
-        #   key = "<leader>gS";
-        #   action = ''<cmd>lua Snacks.picker.git_stash()<cr>'';
-        #   options = {
-        #     desc = "Find git stashes";
-        #   };
-        # }
-        # {
-        #   mode = "n";
-        #   key = "<leader>la";
-        #   action = ''<cmd>lua Snacks.picker.lsp_code_actions()<cr>'';
-        #   options = {
-        #     desc = "Code Action";
-        #   };
-        # }
       ];
 }
