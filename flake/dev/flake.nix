@@ -2,8 +2,8 @@
   description = "Private inputs for development purposes. These are used by the top level flake in the `dev` partition, but do not appear in consumers' lock files.";
 
   inputs = {
-    # root.url = "path:../../";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    root.url = "path:../../";
+    nixpkgs.follows = "root/nixpkgs";
 
     git-hooks-nix = {
       url = "github:cachix/git-hooks.nix";
