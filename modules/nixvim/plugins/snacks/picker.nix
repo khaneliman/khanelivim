@@ -140,14 +140,6 @@
         }
         {
           mode = "n";
-          key = "<leader>fN";
-          action = ''<cmd>lua Snacks.picker.icons({layout = { preset = "select" }})<cr>'';
-          options = {
-            desc = "Find icons";
-          };
-        }
-        {
-          mode = "n";
           key = "<leader>fo";
           action = ''<cmd>lua Snacks.picker.recent()<cr>'';
           options = {
@@ -225,6 +217,14 @@
           action = "<cmd>lua Snacks.picker.grep()<cr>";
           options = {
             desc = "Live grep";
+          };
+        }
+        {
+          mode = "n";
+          key = "<leader>f,";
+          action = ''<cmd>lua Snacks.picker.icons({layout = { preset = "select" }})<cr>'';
+          options = {
+            desc = "Find icons";
           };
         }
         {
