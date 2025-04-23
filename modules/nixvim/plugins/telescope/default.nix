@@ -145,10 +145,10 @@
   };
 
   keymaps = lib.mkIf config.plugins.telescope.enable (
-    # Only use as the last fallback after snacks and fzf-lua
+    # Fzf-lua missing keymaps
     lib.optionals
       (
-        !config.plugins.fzf-lua.enable
+        config.plugins.fzf-lua.enable
         && (
           !config.plugins.snacks.enable
           || (config.plugins.snacks.enable && !lib.hasAttr "picker" config.plugins.snacks.settings)
@@ -170,32 +170,6 @@
         }
         {
           mode = "n";
-          key = "<leader>fC";
-          action.__raw = ''
-            function()
-              vim.cmd(string.format('Telescope find_files prompt_title="Config Files" cwd="%s" follow=true', vim.fn.stdpath("config")))
-            end
-          '';
-          options = {
-            desc = "Find config files";
-            silent = true;
-          };
-        }
-        {
-          mode = "n";
-          key = "<leader>fT";
-          action.__raw = ''
-            function()
-              vim.cmd('Telescope colorscheme enable_preview=true')
-            end
-          '';
-          options = {
-            desc = "Find theme";
-            silent = true;
-          };
-        }
-        {
-          mode = "n";
           key = "<leader>fW";
           action.__raw = ''
             function()
@@ -207,19 +181,57 @@
             silent = true;
           };
         }
-        {
-          mode = "n";
-          key = "<leader>f?";
-          action.__raw = ''
-            function()
-              vim.cmd('Telescope live_grep grep_open_files=true')
-            end
-          '';
-          options = {
-            desc = "Find words in all open buffers";
-            silent = true;
-          };
-        }
       ]
+    # Only use as the last fallback after snacks and fzf-lua
+    ++
+      lib.optionals
+        (
+          !config.plugins.fzf-lua.enable
+          && (
+            !config.plugins.snacks.enable
+            || (config.plugins.snacks.enable && !lib.hasAttr "picker" config.plugins.snacks.settings)
+          )
+        )
+        [
+          {
+            mode = "n";
+            key = "<leader>fC";
+            action.__raw = ''
+              function()
+                vim.cmd(string.format('Telescope find_files prompt_title="Config Files" cwd="%s" follow=true', vim.fn.stdpath("config")))
+              end
+            '';
+            options = {
+              desc = "Find config files";
+              silent = true;
+            };
+          }
+          {
+            mode = "n";
+            key = "<leader>fT";
+            action.__raw = ''
+              function()
+                vim.cmd('Telescope colorscheme enable_preview=true')
+              end
+            '';
+            options = {
+              desc = "Find theme";
+              silent = true;
+            };
+          }
+          {
+            mode = "n";
+            key = "<leader>f?";
+            action.__raw = ''
+              function()
+                vim.cmd('Telescope live_grep grep_open_files=true')
+              end
+            '';
+            options = {
+              desc = "Find words in all open buffers";
+              silent = true;
+            };
+          }
+        ]
   );
 }
