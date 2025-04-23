@@ -148,19 +148,6 @@
     [
       {
         mode = "n";
-        key = "<leader>fF";
-        action.__raw = ''
-          function()
-            vim.cmd('Telescope find_files hidden=true no_ignore=true')
-          end
-        '';
-        options = {
-          desc = "Find all files";
-          silent = true;
-        };
-      }
-      {
-        mode = "n";
         key = "<leader>fW";
         action.__raw = ''
           function()
@@ -184,6 +171,19 @@
           )
         )
         [
+          {
+            mode = "n";
+            key = "<leader>fF";
+            action.__raw = ''
+              function()
+                vim.cmd('Telescope find_files hidden=true no_ignore=true')
+              end
+            '';
+            options = {
+              desc = "Find all files";
+              silent = true;
+            };
+          }
           {
             mode = "n";
             key = "<leader>fC";

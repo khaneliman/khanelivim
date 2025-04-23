@@ -108,6 +108,14 @@
         }
         {
           mode = "n";
+          key = "<leader>fF";
+          action = ''<cmd>lua Snacks.picker.files({hidden = true, ignored = true})<cr>'';
+          options = {
+            desc = "Find files (All files)";
+          };
+        }
+        {
+          mode = "n";
           key = "<leader>fh";
           action = ''<cmd>lua Snacks.picker.help()<cr>'';
           options = {
