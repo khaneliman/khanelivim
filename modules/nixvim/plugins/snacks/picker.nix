@@ -221,6 +221,14 @@
         }
         {
           mode = "n";
+          key = "<leader>fW";
+          action = "<cmd>lua Snacks.picker.grep({hidden = true, ignored = true})<cr>";
+          options = {
+            desc = "Live grep (All files)";
+          };
+        }
+        {
+          mode = "n";
           key = "<leader>f,";
           action = ''<cmd>lua Snacks.picker.icons({layout = { preset = "select" }})<cr>'';
           options = {

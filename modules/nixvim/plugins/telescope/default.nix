@@ -145,84 +145,81 @@
   };
 
   keymaps = lib.mkIf config.plugins.telescope.enable (
-    [
-      {
-        mode = "n";
-        key = "<leader>fW";
-        action.__raw = ''
-          function()
-            vim.cmd('Telescope live_grep additional_args={"--hidden","--no-ignore"}')
-          end
-        '';
-        options = {
-          desc = "Find words in all files";
-          silent = true;
-        };
-      }
-    ]
     # Only use as the last fallback after snacks and fzf-lua
-    ++
-      lib.optionals
-        (
-          !config.plugins.fzf-lua.enable
-          && (
-            !config.plugins.snacks.enable
-            || (config.plugins.snacks.enable && !lib.hasAttr "picker" config.plugins.snacks.settings)
-          )
+    lib.optionals
+      (
+        !config.plugins.fzf-lua.enable
+        && (
+          !config.plugins.snacks.enable
+          || (config.plugins.snacks.enable && !lib.hasAttr "picker" config.plugins.snacks.settings)
         )
-        [
-          {
-            mode = "n";
-            key = "<leader>fF";
-            action.__raw = ''
-              function()
-                vim.cmd('Telescope find_files hidden=true no_ignore=true')
-              end
-            '';
-            options = {
-              desc = "Find all files";
-              silent = true;
-            };
-          }
-          {
-            mode = "n";
-            key = "<leader>fC";
-            action.__raw = ''
-              function()
-                vim.cmd(string.format('Telescope find_files prompt_title="Config Files" cwd="%s" follow=true', vim.fn.stdpath("config")))
-              end
-            '';
-            options = {
-              desc = "Find config files";
-              silent = true;
-            };
-          }
-          {
-            mode = "n";
-            key = "<leader>fT";
-            action.__raw = ''
-              function()
-                vim.cmd('Telescope colorscheme enable_preview=true')
-              end
-            '';
-            options = {
-              desc = "Find theme";
-              silent = true;
-            };
-          }
-          {
-            mode = "n";
-            key = "<leader>f?";
-            action.__raw = ''
-              function()
-                vim.cmd('Telescope live_grep grep_open_files=true')
-              end
-            '';
-            options = {
-              desc = "Find words in all open buffers";
-              silent = true;
-            };
-          }
-        ]
+      )
+      [
+        {
+          mode = "n";
+          key = "<leader>fF";
+          action.__raw = ''
+            function()
+              vim.cmd('Telescope find_files hidden=true no_ignore=true')
+            end
+          '';
+          options = {
+            desc = "Find all files";
+            silent = true;
+          };
+        }
+        {
+          mode = "n";
+          key = "<leader>fC";
+          action.__raw = ''
+            function()
+              vim.cmd(string.format('Telescope find_files prompt_title="Config Files" cwd="%s" follow=true', vim.fn.stdpath("config")))
+            end
+          '';
+          options = {
+            desc = "Find config files";
+            silent = true;
+          };
+        }
+        {
+          mode = "n";
+          key = "<leader>fT";
+          action.__raw = ''
+            function()
+              vim.cmd('Telescope colorscheme enable_preview=true')
+            end
+          '';
+          options = {
+            desc = "Find theme";
+            silent = true;
+          };
+        }
+        {
+          mode = "n";
+          key = "<leader>fW";
+          action.__raw = ''
+            function()
+              vim.cmd('Telescope live_grep additional_args={"--hidden","--no-ignore"}')
+            end
+          '';
+          options = {
+            desc = "Find words in all files";
+            silent = true;
+          };
+        }
+        {
+          mode = "n";
+          key = "<leader>f?";
+          action.__raw = ''
+            function()
+              vim.cmd('Telescope live_grep grep_open_files=true')
+            end
+          '';
+          options = {
+            desc = "Find words in all open buffers";
+            silent = true;
+          };
+        }
+      ]
   );
 }
