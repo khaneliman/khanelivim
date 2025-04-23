@@ -43,14 +43,6 @@
         }
         {
           mode = "n";
-          key = "<leader>/";
-          action = ''<cmd>lua Snacks.picker.grep()<cr>'';
-          options = {
-            desc = "Grep";
-          };
-        }
-        {
-          mode = "n";
           key = "<leader>:";
           action = ''<cmd>lua Snacks.picker.command_history()<cr>'';
           options = {
