@@ -15,6 +15,11 @@
 
       settings = {
         picker = {
+          formatters = {
+            file = {
+              truncate = 100;
+            };
+          };
           layouts = {
             select = {
               layout = {
