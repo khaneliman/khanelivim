@@ -145,7 +145,7 @@
                 local common_sources = vim.deepcopy(base_sources)
 
                 -- Add optional sources based on plugin availability
-                ${lib.optionalString config.plugins.copilot-lua.enable "table.insert(common_sources, 'copilot')"}
+                ${lib.optionalString config.plugins.blink-copilot.enable "table.insert(common_sources, 'copilot')"}
                 ${lib.optionalString config.plugins.blink-cmp-dictionary.enable "table.insert(common_sources, 'dictionary')"}
                 ${lib.optionalString config.plugins.blink-emoji.enable "table.insert(common_sources, 'emoji')"}
                 ${lib.optionalString (lib.elem pkgs.vimPlugins.blink-nerdfont-nvim config.extraPlugins) "table.insert(common_sources, 'nerdfont')"}
@@ -185,7 +185,7 @@
               # BUILT-IN SOURCES
               lsp.score_offset = 4;
               # Community sources
-              copilot = lib.mkIf config.plugins.copilot-lua.enable {
+              copilot = lib.mkIf config.plugins.blink-copilot.enable {
                 name = "copilot";
                 module = "blink-copilot";
                 async = true;
@@ -276,7 +276,6 @@
         };
       };
 
-      blink-cmp-copilot.enable = !config.plugins.blink-copilot.enable;
       blink-cmp-dictionary.enable = true;
       blink-cmp-git.enable = true;
       blink-cmp-spell.enable = true;
