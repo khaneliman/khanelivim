@@ -81,6 +81,8 @@ vimUtils.buildVimPlugin {
     "avante.providers.copilot"
     "avante.providers.ollama"
     "avante.providers.vertex_claude"
+    "avante.providers.vertex"
+    "avante.providers.gemini"
   ];
 
   meta = {
