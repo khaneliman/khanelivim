@@ -18,6 +18,7 @@ in
       ./ft.nix
       ./keymappings.nix
       ./lua.nix
+      ./lsp.nix
       ./options.nix
       ./performance.nix
       ./usercommands.nix
