@@ -1,4 +1,4 @@
-{ config, ... }:
+{ ... }:
 {
   plugins = {
     clangd-extensions = {
