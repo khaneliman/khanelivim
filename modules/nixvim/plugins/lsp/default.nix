@@ -27,29 +27,6 @@
     lsp = {
       enable = true;
 
-      keymaps = {
-        silent = true;
-        diagnostic = {
-          "<leader>lH" = "open_float";
-        };
-
-        lspBuf =
-          lib.optionalAttrs (!config.plugins.conform-nvim.enable) { "<leader>lf" = "format"; }
-          // lib.optionalAttrs (!config.plugins.fzf-lua.enable) { "<leader>la" = "code_action"; }
-          //
-            lib.optionalAttrs
-              (
-                (
-                  !config.plugins.snacks.enable
-                  || (config.plugins.snacks.enable && !lib.hasAttr "picker" config.plugins.snacks.settings)
-                )
-                && !config.plugins.fzf-lua.enable
-              )
-              {
-                "<leader>ld" = "definition";
-                "<leader>lt" = "type_definition";
-              };
-      };
     };
   };
 }
