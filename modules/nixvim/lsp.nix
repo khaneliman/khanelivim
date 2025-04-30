@@ -67,7 +67,7 @@
     };
   };
 
-  keymaps =
+  keymapsOnEvents.LspAttach =
     [
       (lib.mkIf (!config.plugins.conform-nvim.enable) {
         action.__raw = ''vim.lsp.buf.format'';
@@ -79,6 +79,16 @@
           desc = "Format selection";
         };
       })
+      # Diagnostic keymaps
+      {
+        key = "<leader>lH";
+        mode = "n";
+        action = lib.nixvim.mkRaw "vim.diagnostic.open_float";
+        options = {
+          silent = true;
+          desc = "Lsp diagnostic open_float";
+        };
+      }
     ]
     ++ lib.optionals (!config.plugins.glance.enable) [
       {
@@ -95,20 +105,6 @@
         key = "<leader>lP";
         options = {
           desc = "Preview type definition";
-        };
-      }
-    ];
-
-  keymapsOnEvents.LspAttach =
-    [
-      # Diagnostic keymaps
-      {
-        key = "<leader>lH";
-        mode = "n";
-        action = lib.nixvim.mkRaw "vim.diagnostic.open_float";
-        options = {
-          silent = true;
-          desc = "Lsp diagnostic open_float";
         };
       }
     ]
