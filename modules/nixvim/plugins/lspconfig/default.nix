@@ -6,11 +6,6 @@
 {
   imports = [
     ./ccls.nix
-    ./helm-ls.nix
-    ./nil-ls.nix
-    ./nixd.nix
-    ./rust-analyzer.nix
-    ./typos-lsp.nix
   ];
 
   extraConfigLuaPre =
