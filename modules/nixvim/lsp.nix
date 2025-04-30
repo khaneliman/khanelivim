@@ -8,6 +8,11 @@
   imports = [
     ./lsp/clangd.nix
     ./lsp/harper-ls.nix
+    ./lsp/helm-ls.nix
+    ./lsp/nil-ls.nix
+    ./lsp/nixd.nix
+    ./lsp/rust-analyzer.nix
+    ./lsp/typos-lsp.nix
   ];
 
   lsp = {
