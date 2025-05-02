@@ -1,7 +1,17 @@
 {
+  config,
+  lib,
   pkgs,
   ...
 }:
+let
+  luaConfig = # Lua
+    ''
+      require ("claude-code").setup({
+        window = { position = "vertical"}
+      })
+    '';
+in
 {
   extraPackages = [
     pkgs.claude-code
@@ -11,25 +21,23 @@
   extraPlugins = [
     {
       plugin = pkgs.vimPlugins.claude-code-nvim;
-      optional = true;
+      optional = config.plugins.lz-n.enable;
     }
   ];
 
+  extraConfigLua = lib.mkIf (!config.plugins.lz-n.enable) luaConfig;
+
   plugins = {
     lz-n = {
-      enable = true;
       plugins = [
         {
           __unkeyed-1 = "claude-code.nvim";
           cmd = [ "ClaudeCode" ];
-          after = # Lua
-            ''
-              function()
-                require ("claude-code").setup({
-                  window = { position = "vertical"}
-                })
-              end
-            '';
+          after = ''
+            function()
+              ${luaConfig}
+            end
+          '';
         }
       ];
     };
