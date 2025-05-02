@@ -1,3 +1,4 @@
+{ config, ... }:
 {
   plugins = {
     bufferline.settings = {
@@ -62,7 +63,7 @@
   };
 
   colorschemes.catppuccin = {
-    lazyLoad.enable = true;
+    lazyLoad.enable = config.plugins.lz-n.enable;
 
     settings = {
       default_integrations = true;
