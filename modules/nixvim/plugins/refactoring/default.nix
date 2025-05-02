@@ -59,7 +59,7 @@
       {
         mode = "x";
         key = "<leader>rv";
-        action = "cmd>Refactor extract_var<cr>";
+        action = "<cmd>Refactor extract_var<cr>";
         options = {
           desc = "Extract var";
         };
