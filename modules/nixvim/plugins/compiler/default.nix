@@ -6,7 +6,7 @@
 
       lazyLoad = {
         settings = {
-          before.__raw = ''
+          before.__raw = lib.mkIf config.plugins.lz-n.enable ''
             function()
               require('lz.n').trigger_load('overseer.nvim')
             end

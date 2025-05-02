@@ -7,7 +7,7 @@
 
       lazyLoad = {
         settings = {
-          before = lib.mkIf config.plugins.telescope.enable {
+          before = lib.mkIf (config.plugins.telescope.enable && config.plugins.lz-n.enable) {
             __raw = ''
               require('lz.n').trigger_load('telescope')
             '';

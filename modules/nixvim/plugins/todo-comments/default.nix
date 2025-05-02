@@ -9,7 +9,7 @@
       enable = false;
       settings = {
         # TODO: see if we can split this up somehow
-        before.__raw =
+        before.__raw = lib.mkIf config.plugins.lz-n.enable (
           ''
             function()
           ''
@@ -30,7 +30,8 @@
               ''
           + ''
             end
-          '';
+          ''
+        );
         keys =
           lib.mkIf (config.plugins.snacks.enable && lib.hasAttr "picker" config.plugins.snacks.settings)
             [
