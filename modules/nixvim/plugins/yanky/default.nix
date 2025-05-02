@@ -1,4 +1,141 @@
 { config, lib, ... }:
+let
+  yankyKeymaps =
+    [
+      {
+        mode = [
+          "n"
+          "x"
+        ];
+        key = "y";
+        action = "<Plug>(YankyYank)";
+        options.desc = "Yank text";
+      }
+      {
+        mode = [
+          "n"
+          "x"
+        ];
+        key = "p";
+        action = "<Plug>(YankyPutAfter)";
+        options.desc = "Put yanked text after cursor";
+      }
+      {
+        mode = [
+          "n"
+          "x"
+        ];
+        key = "P";
+        action = "<Plug>(YankyPutBefore)";
+        options.desc = "Put yanked text before cursor";
+      }
+      {
+        mode = [
+          "n"
+          "x"
+        ];
+        key = "gp";
+        action = "<Plug>(YankyGPutAfter)";
+        options.desc = "Put yanked text after selection";
+      }
+      {
+        mode = [
+          "n"
+          "x"
+        ];
+        key = "gP";
+        action = "<Plug>(YankyGPutBefore)";
+        options.desc = "Put yanked text before selection";
+      }
+      {
+        mode = "n";
+        key = "<c-p>";
+        action = "<Plug>(YankyPreviousEntry)";
+        options.desc = "Select previous entry through yank history";
+      }
+      {
+        mode = "n";
+        key = "<c-n>";
+        action = "<Plug>(YankyNextEntry)";
+        options.desc = "Select next entry through yank history";
+      }
+      {
+        mode = "n";
+        key = "]p";
+        action = "<Plug>(YankyPutIndentAfterLinewise)";
+        options.desc = "Put indented after cursor (linewise)";
+      }
+      {
+        mode = "n";
+        key = "[p";
+        action = "<Plug>(YankyPutIndentBeforeLinewise)";
+        options.desc = "Put indented before cursor (linewise)";
+      }
+      {
+        mode = "n";
+        key = "]P";
+        action = "<Plug>(YankyPutIndentAfterLinewise)";
+        options.desc = "Put indented after cursor (linewise)";
+      }
+      {
+        mode = "n";
+        key = "[P";
+        action = "<Plug>(YankyPutIndentBeforeLinewise)";
+        options.desc = "Put indented before cursor (linewise)";
+      }
+      {
+        mode = "n";
+        key = ">p";
+        action = "<Plug>(YankyPutIndentAfterShiftRight)";
+        options.desc = "Put and indent right";
+      }
+      {
+        mode = "n";
+        key = "<p";
+        action = "<Plug>(YankyPutIndentAfterShiftLeft)";
+        options.desc = "Put and indent left";
+      }
+      {
+        mode = "n";
+        key = ">P";
+        action = "<Plug>(YankyPutIndentBeforeShiftRight)";
+        options.desc = "Put before and indent right";
+      }
+      {
+        mode = "n";
+        key = "<P";
+        action = "<Plug>(YankyPutIndentBeforeShiftLeft)";
+        options.desc = "Put before and indent left";
+      }
+      {
+        mode = "n";
+        key = "=p";
+        action = "<Plug>(YankyPutAfterFilter)";
+        options.desc = "Put after applying a filter";
+      }
+      {
+        mode = "n";
+        key = "=P";
+        action = "<Plug>(YankyPutBeforeFilter)";
+        options.desc = "Put before applying a filter";
+      }
+    ]
+    ++ lib.optionals config.plugins.telescope.enable [
+      {
+        mode = "n";
+        key = "<leader>fy";
+        action = "<cmd>Telescope yank_history<cr>";
+        options.desc = "Paste from yanky";
+      }
+    ];
+
+  yankyLazyKeys = map (keymap: {
+    __unkeyed-1 = keymap.key;
+    __unkeyed-2 = keymap.action;
+    mode = keymap.mode or "n";
+    inherit (keymap.options) desc;
+  }) yankyKeymaps;
+in
 {
   plugins = {
     yanky = {
@@ -6,118 +143,7 @@
 
       lazyLoad = {
         settings = {
-          keys = lib.mkIf config.plugins.lz-n.enable [
-            {
-              __unkeyed-1 = "<leader>fy";
-              __unkeyed-2 = "<cmd>Telescope yank_history<cr>";
-              desc = "Paste from yanky";
-            }
-            {
-              __unkeyed-1 = "y";
-              __unkeyed-2 = "<Plug>(YankyYank)";
-              mode = [
-                "n"
-                "x"
-              ];
-              desc = "Yank text";
-            }
-            {
-              __unkeyed-1 = "p";
-              __unkeyed-2 = "<Plug>(YankyPutAfter)";
-              mode = [
-                "n"
-                "x"
-              ];
-              desc = "Put yanked text after cursor";
-            }
-            {
-              __unkeyed-1 = "P";
-              __unkeyed-2 = "<Plug>(YankyPutBefore)";
-              mode = [
-                "n"
-                "x"
-              ];
-              desc = "Put yanked text before cursor";
-            }
-            {
-              __unkeyed-1 = "gp";
-              __unkeyed-2 = "<Plug>(YankyGPutAfter)";
-              mode = [
-                "n"
-                "x"
-              ];
-              desc = "Put yanked text after selection";
-            }
-            {
-              __unkeyed-1 = "gP";
-              __unkeyed-2 = "<Plug>(YankyGPutBefore)";
-              mode = [
-                "n"
-                "x"
-              ];
-              desc = "Put yanked text before selection";
-            }
-            {
-              __unkeyed-1 = "<c-p>";
-              __unkeyed-2 = "<Plug>(YankyPreviousEntry)";
-              desc = "Select previous entry through yank history";
-            }
-            {
-              __unkeyed-1 = "<c-n>";
-              __unkeyed-2 = "<Plug>(YankyNextEntry)";
-              desc = "Select next entry through yank history";
-            }
-            {
-              __unkeyed-1 = "]p";
-              __unkeyed-2 = "<Plug>(YankyPutIndentAfterLinewise)";
-              desc = "Put indented after cursor (linewise)";
-            }
-            {
-              __unkeyed-1 = "[p";
-              __unkeyed-2 = "<Plug>(YankyPutIndentBeforeLinewise)";
-              desc = "Put indented before cursor (linewise)";
-            }
-            {
-              __unkeyed-1 = "]P";
-              __unkeyed-2 = "<Plug>(YankyPutIndentAfterLinewise)";
-              desc = "Put indented after cursor (linewise)";
-            }
-            {
-              __unkeyed-1 = "[P";
-              __unkeyed-2 = "<Plug>(YankyPutIndentBeforeLinewise)";
-              desc = "Put indented before cursor (linewise)";
-            }
-            {
-              __unkeyed-1 = ">p";
-              __unkeyed-2 = "<Plug>(YankyPutIndentAfterShiftRight)";
-              desc = "Put and indent right";
-            }
-            {
-              __unkeyed-1 = "<p";
-              __unkeyed-2 = "<Plug>(YankyPutIndentAfterShiftLeft)";
-              desc = "Put and indent left";
-            }
-            {
-              __unkeyed-1 = ">P";
-              __unkeyed-2 = "<Plug>(YankyPutIndentBeforeShiftRight)";
-              desc = "Put before and indent right";
-            }
-            {
-              __unkeyed-1 = "<P";
-              __unkeyed-2 = "<Plug>(YankyPutIndentBeforeShiftLeft)";
-              desc = "Put before and indent left";
-            }
-            {
-              __unkeyed-1 = "=p";
-              __unkeyed-2 = "<Plug>(YankyPutAfterFilter)";
-              desc = "Put after applying a filter";
-            }
-            {
-              __unkeyed-1 = "=P";
-              __unkeyed-2 = "<Plug>(YankyPutBeforeFilter)";
-              desc = "Put before applying a filter";
-            }
-          ];
+          keys = lib.mkIf config.plugins.lz-n.enable yankyLazyKeys;
         };
       };
 
@@ -134,4 +160,6 @@
       };
     };
   };
+
+  keymaps = lib.mkIf (!config.plugins.lz-n.enable && config.plugins.yanky.enable) yankyKeymaps;
 }
