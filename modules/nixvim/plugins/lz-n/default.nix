@@ -1,10 +1,17 @@
-{ lib, pkgs, ... }:
 {
-  extraPlugins = [ pkgs.vimPlugins.lzn-auto-require ];
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
+  extraPlugins = lib.mkIf config.plugins.lz-n.enable [ pkgs.vimPlugins.lzn-auto-require ];
 
-  extraConfigLuaPost = lib.mkOrder 5000 ''
-    require('lzn-auto-require').enable()
-  '';
+  extraConfigLuaPost = lib.mkIf config.plugins.lz-n.enable (
+    lib.mkOrder 5000 ''
+      require('lzn-auto-require').enable()
+    ''
+  );
 
   plugins.lz-n.enable = true;
 }
