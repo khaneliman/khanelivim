@@ -3,7 +3,7 @@
   lsp.servers.clangd = {
     enable = true;
 
-    config = {
+    settings = {
       settings.init_options = {
         usePlaceholders = true;
         completeUnimported = true;

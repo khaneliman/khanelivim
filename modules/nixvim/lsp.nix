@@ -20,7 +20,7 @@
 
     servers = {
       "*" = {
-        config = {
+        settings = {
           capabilities = {
             textDocument = {
               semanticTokens = {

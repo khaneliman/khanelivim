@@ -8,7 +8,7 @@
   lsp.servers.nixd = {
     enable = true;
 
-    config.settings =
+    settings.settings =
       let
         flake = ''(builtins.getFlake "${self}")'';
         system = ''''${builtins.currentSystem}'';
