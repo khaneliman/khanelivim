@@ -6,9 +6,11 @@
 }:
 {
   imports = [
+    ./lsp/ccls.nix
     ./lsp/clangd.nix
     ./lsp/harper-ls.nix
     ./lsp/helm-ls.nix
+    ./lsp/lspconfig.nix
     ./lsp/nil-ls.nix
     ./lsp/nixd.nix
     ./lsp/rust-analyzer.nix
@@ -168,55 +170,60 @@
           }
         ];
 
-  plugins.which-key.settings.spec = [
-    {
-      __unkeyed-1 = "<leader>l";
-      group = "LSP";
-      icon = " ";
-    }
-    {
-      __unkeyed-1 = "<leader>la";
-      desc = "Code Action";
-    }
-    {
-      __unkeyed-1 = "<leader>ld";
-      desc = "Definition";
-    }
-    {
-      __unkeyed-1 = "<leader>lD";
-      desc = "References";
-    }
-    {
-      __unkeyed-1 = "<leader>lf";
-      desc = "Format";
-    }
-    {
-      __unkeyed-1 = "<leader>l[";
-      desc = "Prev";
-    }
-    {
-      __unkeyed-1 = "<leader>l]";
-      desc = "Next";
-    }
-    {
-      __unkeyed-1 = "<leader>lt";
-      desc = "Type Definition";
-    }
-    {
-      __unkeyed-1 = "<leader>li";
-      desc = "Implementation";
-    }
-    {
-      __unkeyed-1 = "<leader>lh";
-      desc = "Lsp Hover";
-    }
-    {
-      __unkeyed-1 = "<leader>lH";
-      desc = "Diagnostic Hover";
-    }
-    {
-      __unkeyed-1 = "<leader>lr";
-      desc = "Rename";
-    }
-  ];
+  plugins = {
+    lsp-format.enable = !config.plugins.conform-nvim.enable && config.plugins.lsp.enable;
+    lsp-signature.enable = config.plugins.lsp.enable;
+
+    which-key.settings.spec = [
+      {
+        __unkeyed-1 = "<leader>l";
+        group = "LSP";
+        icon = " ";
+      }
+      {
+        __unkeyed-1 = "<leader>la";
+        desc = "Code Action";
+      }
+      {
+        __unkeyed-1 = "<leader>ld";
+        desc = "Definition";
+      }
+      {
+        __unkeyed-1 = "<leader>lD";
+        desc = "References";
+      }
+      {
+        __unkeyed-1 = "<leader>lf";
+        desc = "Format";
+      }
+      {
+        __unkeyed-1 = "<leader>l[";
+        desc = "Prev";
+      }
+      {
+        __unkeyed-1 = "<leader>l]";
+        desc = "Next";
+      }
+      {
+        __unkeyed-1 = "<leader>lt";
+        desc = "Type Definition";
+      }
+      {
+        __unkeyed-1 = "<leader>li";
+        desc = "Implementation";
+      }
+      {
+        __unkeyed-1 = "<leader>lh";
+        desc = "Lsp Hover";
+      }
+      {
+        __unkeyed-1 = "<leader>lH";
+        desc = "Diagnostic Hover";
+      }
+      {
+        __unkeyed-1 = "<leader>lr";
+        desc = "Rename";
+      }
+    ];
+  };
 }
