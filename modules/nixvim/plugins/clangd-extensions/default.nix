@@ -10,7 +10,7 @@
         "ClangdSwitchSourceHeader"
       ];
 
-      # inherit (config.plugins.treesitter) enable;
+      inherit (config.plugins.treesitter) enable;
       enableOffsetEncodingWorkaround = true;
 
       settings = {
