@@ -282,7 +282,7 @@
                 };
               };
             }
-            // (lib.optionalAttrs (!config.plugins.visual-whitespace-nvim.enable) {
+            // (lib.optionalAttrs (!config.plugins.visual-whitespace.enable) {
               "<leader>uW" = {
                 action.__raw = ''
                   function ()
