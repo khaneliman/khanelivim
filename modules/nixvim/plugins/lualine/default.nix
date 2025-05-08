@@ -50,6 +50,8 @@ in
           winbar = [
             "aerial"
             "dap-repl"
+            "dap-view"
+            "dap-view-term"
             "neotest-summary"
           ];
         };
