@@ -30,15 +30,6 @@
       };
     };
 
-    which-key.settings.spec = lib.optionals config.plugins.dap.enable [
-      {
-        __unkeyed-1 = "<leader>d";
-        mode = "n";
-        desc = "Debug";
-        # icon = " ";
-      }
-    ];
-
     dap.luaConfig.pre =
       lib.mkIf config.plugins.dap-ui.enable
         # Lua
