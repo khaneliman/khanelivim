@@ -2,7 +2,7 @@
 {
   plugins = {
     spectre = {
-      enable = true;
+      enable = !config.plugins.grug-far.enable;
       lazyLoad = {
         settings = {
           cmd = "Spectre";
