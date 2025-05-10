@@ -1,16 +1,12 @@
 {
   config,
   lib,
-  self,
-  system,
   ...
 }:
 {
   plugins = {
     avante = {
       enable = true;
-      package = self.packages.${system}.avante;
-      # package = pkgs.vimPlugins.avante-nvim;
 
       lazyLoad.settings.event = [ "DeferredUIEnter" ];
 
