@@ -14,6 +14,7 @@
         # Define our own mappings under correct prefix
         mappings = {
           ask = "<leader>aaa";
+          new_ask = "<leader>aan";
           edit = "<leader>aae";
           refresh = "<leader>aar";
           focus = "<leader>aaf";
