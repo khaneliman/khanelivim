@@ -1,7 +1,5 @@
 {
   config,
-  self,
-  system,
   pkgs,
   ...
 }:
@@ -30,7 +28,6 @@
   plugins = {
     snacks = {
       enable = true;
-      package = self.packages.${system}.snacks-nvim;
 
       settings = {
         image.enabled = true;
