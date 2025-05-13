@@ -3,11 +3,11 @@
     "avante-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1746860907,
-        "narHash": "sha256-v99yu5LvwdmHBcH61L6JIqjQkZR8Lm2fR/uzQZNPo38=",
+        "lastModified": 1747052382,
+        "narHash": "sha256-ixJcD8V2rCLCrqE7hHtHfEtQuHeVyIDgyZ1VOY1jmD0=",
         "owner": "yetone",
         "repo": "avante.nvim",
-        "rev": "adae032f5fbc611d59545792d3c5bb1c9ddc3fdb",
+        "rev": "aae4cc4014149e544fb00e78687bcdef8335dd10",
         "type": "github"
       },
       "original": {
@@ -54,11 +54,11 @@
     },
     "nixpkgs-master": {
       "locked": {
-        "lastModified": 1746989691,
-        "narHash": "sha256-y2eBsGoE0ihJAeCz9Ettbp2s2pM3nlygL5Y9MVPuIqY=",
+        "lastModified": 1747101553,
+        "narHash": "sha256-uv5cN3sbVhUBYbc5A16+nGdfHqoK+3ebRTeqSYWSg8k=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "b872109bd3fb3bd4d822ba12392d6812294250fa",
+        "rev": "c8bd2cad50b315054d94b9c9c8905dd4ac745735",
         "type": "github"
       },
       "original": {
@@ -75,14 +75,15 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "nuschtosSearch": []
+        "nuschtosSearch": [],
+        "systems": "systems"
       },
       "locked": {
-        "lastModified": 1746965641,
-        "narHash": "sha256-6+Cn5aMDSWvsk4nOXmea3whAI4v+PjYaEpcDkTEAlXc=",
+        "lastModified": 1747083534,
+        "narHash": "sha256-r88FEbKX1HLTovPFt1QHxzZDV7D4TGHhYlJcHmK7hYk=",
         "owner": "nix-community",
         "repo": "nixvim",
-        "rev": "02a85bd29333ce9fbde0d2c57a2378f47205bb21",
+        "rev": "ff0ccdf572ad6700a2a29a82cc5d17db29708988",
         "type": "github"
       },
       "original": {
@@ -130,6 +131,21 @@
       "original": {
         "owner": "folke",
         "repo": "snacks.nvim",
+        "type": "github"
+      }
+    },
+    "systems": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
         "type": "github"
       }
     }
