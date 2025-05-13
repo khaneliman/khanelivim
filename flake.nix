@@ -21,10 +21,6 @@
     pkgs-by-name-for-flake-parts.url = "github:drupol/pkgs-by-name-for-flake-parts";
 
     # Software inputs
-    avante-nvim = {
-      url = "github:yetone/avante.nvim";
-      flake = false;
-    };
     snacks-nvim = {
       url = "github:folke/snacks.nvim";
       flake = false;
