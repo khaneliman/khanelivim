@@ -21,11 +21,6 @@
     pkgs-by-name-for-flake-parts.url = "github:drupol/pkgs-by-name-for-flake-parts";
 
     # Software inputs
-    snacks-nvim = {
-      url = "github:folke/snacks.nvim";
-      flake = false;
-    };
-
     nixpkgs-master.url = "github:nixos/nixpkgs";
   };
 
