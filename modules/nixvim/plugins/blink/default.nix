@@ -20,6 +20,7 @@
   extraPlugins = with pkgs.vimPlugins; [
     blink-cmp-avante
     blink-cmp-conventional-commits
+    blink-cmp-npm-nvim
     blink-nerdfont-nvim
   ];
 
@@ -151,6 +152,7 @@
                 ${lib.optionalString (lib.elem pkgs.vimPlugins.blink-nerdfont-nvim config.extraPlugins) "table.insert(common_sources, 'nerdfont')"}
                 ${lib.optionalString config.plugins.blink-cmp-spell.enable "table.insert(common_sources, 'spell')"}
                 ${lib.optionalString config.plugins.blink-ripgrep.enable "table.insert(common_sources, 'ripgrep')"}
+                ${lib.optionalString (lib.elem pkgs.vimPlugins.blink-cmp-npm-nvim config.extraPlugins) "if vim.fn.expand('%:t') == 'package.json' then table.insert(common_sources, 'npm') end"}
 
                 -- Special context handling
                 local success, node = pcall(vim.treesitter.get_node)
@@ -249,6 +251,21 @@
                 score_offset = 15;
                 opts = {
                   insert = true;
+                };
+              };
+              npm = lib.mkIf (lib.elem pkgs.vimPlugins.blink-cmp-npm-nvim config.extraPlugins) {
+                name = "npm";
+                module = "blink-cmp-npm";
+                async = true;
+                enabled.__raw = ''
+                  function()
+                    return vim.fn.expand('%:t') == 'package.json'
+                  end
+                '';
+                opts = {
+                  ignore = { };
+                  only_semantic_versions = true;
+                  only_latest_version = false;
                 };
               };
               easy-dotnet = lib.mkIf config.plugins.easy-dotnet.enable {
