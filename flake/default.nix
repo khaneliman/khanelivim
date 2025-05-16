@@ -36,7 +36,10 @@
       _module.args.pkgs = import inputs.nixpkgs {
         inherit system;
         overlays = lib.attrValues self.overlays;
-        config.allowUnfree = true;
+        config = {
+          allowUnfree = true;
+          allowAliases = false;
+        };
       };
 
       packages.default = config.packages.khanelivim;
