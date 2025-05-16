@@ -58,18 +58,20 @@
 
         settings = {
           global.excludes = [
+            # keep-sorted start
             "*.editorconfig"
             "*.envrc"
-            "*.gitconfig"
             "*.git-blame-ignore-revs"
-            "*.gitignore"
             "*.gitattributes"
+            "*.gitconfig"
+            "*.gitignore"
             "*.luacheckrc"
             "*CODEOWNERS"
             "*LICENSE"
             "*flake.lock"
-            "justfile"
             "assets/*"
+            "justfile"
+            #keep-sorted end
           ];
 
           formatter.ruff-format.options = [ "--isolated" ];

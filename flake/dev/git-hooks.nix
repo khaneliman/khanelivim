@@ -13,6 +13,7 @@
         check.enable = false;
 
         settings.hooks = {
+          # keep-sorted start block=yes newline_separated=no
           actionlint.enable = true;
           clang-tidy.enable = true;
           deadnix = {
@@ -34,6 +35,7 @@
             enable = true;
             excludes = [ "generated/*" ];
           };
+          # keep-sorted end
         };
       };
     };

@@ -6,10 +6,10 @@
         name = "Khanelivim development shell";
         meta.description = "Shell environment for modifying this Nix configuration";
         packages = with pkgs; [
-          nixd
           deadnix
-          statix
+          nixd
           nixfmt-rfc-style
+          statix
         ];
       };
     };

@@ -6,6 +6,7 @@
 }:
 {
   imports = [
+    # keep-sorted start
     ./lsp/ccls.nix
     ./lsp/clangd.nix
     ./lsp/harper-ls.nix
@@ -15,6 +16,7 @@
     ./lsp/nixd.nix
     ./lsp/rust-analyzer.nix
     ./lsp/typos-lsp.nix
+    # keep-sorted end
   ];
 
   lsp = {

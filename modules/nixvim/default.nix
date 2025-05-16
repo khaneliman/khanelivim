@@ -13,15 +13,17 @@ in
       prev ++ optional (type == "directory") (by-name + "/${name}")
     ) [ ] (readDir by-name))
     ++ [
+      # keep-sorted start
       ./autocommands.nix
       ./diagnostics.nix
       ./ft.nix
       ./keymappings.nix
-      ./lua.nix
       ./lsp.nix
+      ./lua.nix
       ./options.nix
       ./performance.nix
       ./usercommands.nix
+      # keep-sorted end
     ];
 
   nixpkgs = {
