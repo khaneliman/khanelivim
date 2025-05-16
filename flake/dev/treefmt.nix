@@ -15,6 +15,7 @@
         projectRootFile = "flake.nix";
 
         programs = {
+          # keep-sorted start block=yes newline_separated=no
           actionlint.enable = true;
           biome = {
             enable = true;
@@ -38,6 +39,7 @@
           fish_indent.enable = true;
           gofmt.enable = true;
           isort.enable = true;
+          keep-sorted.enable = true;
           nixfmt.enable = true;
           nufmt.enable = true;
           ruff-check.enable = true;
@@ -51,6 +53,7 @@
           stylua.enable = true;
           taplo.enable = true;
           yamlfmt.enable = true;
+          # keep-sorted end
         };
 
         settings = {
