@@ -129,18 +129,24 @@
         };
       }
     ]
-    ++ lib.optionals (!config.plugins.fzf-lua.enable) [
-      # Code action keymap (if fzf-lua is not enabled)
-      {
-        key = "<leader>la";
-        mode = "n";
-        action = lib.nixvim.mkRaw "vim.lsp.buf.code_action";
-        options = {
-          silent = true;
-          desc = "Lsp buf code_action";
-        };
-      }
-    ]
+    ++
+      lib.optionals
+        (
+          !config.plugins.fzf-lua.enable
+          || (config.plugins.snacks.enable && lib.hasAttr "picker" config.plugins.snacks.settings)
+        )
+        [
+          # Code action keymap (if fzf-lua is not enabled)
+          {
+            key = "<leader>la";
+            mode = "n";
+            action = lib.nixvim.mkRaw "vim.lsp.buf.code_action";
+            options = {
+              silent = true;
+              desc = "Lsp buf code_action";
+            };
+          }
+        ]
     ++
       lib.optionals
         (
