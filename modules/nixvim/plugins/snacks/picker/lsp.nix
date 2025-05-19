@@ -31,15 +31,6 @@
             desc = "Find lsp document symbols";
           };
         }
-
-        {
-          mode = "n";
-          key = "<leader>la";
-          action = ''<cmd>lua Snacks.picker.lsp_code_actions()<cr>'';
-          options = {
-            desc = "Code Action";
-          };
-        }
         {
           mode = "n";
           key = "<leader>ld";
