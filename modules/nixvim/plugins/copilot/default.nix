@@ -26,6 +26,7 @@
       settings = {
         panel.enabled = !config.plugins.blink-cmp-copilot.enable;
         suggestion.enabled = !config.plugins.blink-cmp-copilot.enable;
+        copilot_node_command = lib.getExe pkgs.nodejs;
         lsp_binary = lib.getExe pkgs.copilot-language-server;
       };
     };
