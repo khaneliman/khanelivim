@@ -10,6 +10,10 @@
     ./migrateNixvimTests.nix
   ];
 
+  extraLuaPackages = ps: [
+    ps.tiktoken_core
+  ];
+
   extraPlugins = lib.optionals (config.plugins.copilot-lua.enable && config.plugins.lualine.enable) (
     with pkgs.vimPlugins;
     [
