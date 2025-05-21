@@ -43,7 +43,8 @@
       csharp_ls.enable = true;
       cssls.enable = true;
       dockerls.enable = true;
-      eslint.enable = true;
+      # FIXME: [lspconfig] Unable to find ESLint library.
+      # eslint.enable = true;
       fish_lsp.enable = true;
       fsautocomplete.enable = true;
       fsharp_language_server = {
