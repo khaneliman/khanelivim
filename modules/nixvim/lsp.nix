@@ -189,6 +189,14 @@
         icon = " ";
       }
       {
+        __unkeyed-1 = "<leader>l[";
+        desc = "Prev";
+      }
+      {
+        __unkeyed-1 = "<leader>l]";
+        desc = "Next";
+      }
+      {
         __unkeyed-1 = "<leader>la";
         desc = "Code Action";
       }
@@ -205,22 +213,6 @@
         desc = "Format";
       }
       {
-        __unkeyed-1 = "<leader>l[";
-        desc = "Prev";
-      }
-      {
-        __unkeyed-1 = "<leader>l]";
-        desc = "Next";
-      }
-      {
-        __unkeyed-1 = "<leader>lt";
-        desc = "Type Definition";
-      }
-      {
-        __unkeyed-1 = "<leader>li";
-        desc = "Implementation";
-      }
-      {
         __unkeyed-1 = "<leader>lh";
         desc = "Lsp Hover";
       }
@@ -229,8 +221,16 @@
         desc = "Diagnostic Hover";
       }
       {
+        __unkeyed-1 = "<leader>li";
+        desc = "Implementation";
+      }
+      {
         __unkeyed-1 = "<leader>lr";
         desc = "Rename";
+      }
+      {
+        __unkeyed-1 = "<leader>lt";
+        desc = "Type Definition";
       }
     ];
   };
