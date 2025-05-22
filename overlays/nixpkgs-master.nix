@@ -13,6 +13,8 @@ let
 in
 {
   inherit (nixpkgs-master-packages)
+    # TODO: remove after it hits pkgs-unstable
+    claude-code
     luaPackages
     ;
   vimPlugins = vimPlugins // {
