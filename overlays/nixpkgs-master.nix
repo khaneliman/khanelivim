@@ -1,7 +1,13 @@
 { flake }:
 _final: prev:
 let
-  nixpkgs-master-packages = flake.inputs.nixpkgs-master.legacyPackages.${prev.stdenv.system};
+  nixpkgs-master-packages = import flake.inputs.nixpkgs-master {
+    inherit (prev.stdenv) system;
+    config = {
+      allowUnfree = true;
+      allowAliases = false;
+    };
+  };
   # my-packages = flake.packages.${prev.stdenv.system};
   inherit (nixpkgs-master-packages) vimPlugins;
 in
