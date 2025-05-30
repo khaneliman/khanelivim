@@ -1,8 +1,22 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   plugins.project-nvim = {
     enable = true;
     enableTelescope = config.plugins.telescope.enable;
+    package = pkgs.vimPlugins.project-nvim.overrideAttrs (_old: {
+      patches = [
+        (pkgs.fetchpatch {
+          name = "get_clients";
+          url = "https://github.com/ahmedkhalf/project.nvim/pull/183.patch";
+          hash = "sha256-li14JdbMySzqPLdbENpJ0JJGD6c2qjjmzi2Y1giksoA=";
+        })
+      ];
+    });
 
     # NOTE: Annoying bug where you need to trigger it twice to see your projects when lazy loading.
     lazyLoad.settings = lib.mkIf config.plugins.telescope.enable {
