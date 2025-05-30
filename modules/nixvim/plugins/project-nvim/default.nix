@@ -6,7 +6,9 @@
 }:
 {
   plugins.project-nvim = {
-    enable = true;
+    enable =
+      !config.plugins.snacks.enable
+      || (config.plugins.snacks.enable && !lib.hasAttr "picker" config.plugins.snacks.settings);
     enableTelescope = config.plugins.telescope.enable;
     package = pkgs.vimPlugins.project-nvim.overrideAttrs (_old: {
       patches = [
