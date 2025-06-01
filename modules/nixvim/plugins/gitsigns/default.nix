@@ -45,7 +45,15 @@ in
       key = "<leader>ugb";
       action = "<cmd>Gitsigns toggle_current_line_blame<CR>";
       options = {
-        desc = "Git Blame toggle";
+        desc = "Git Blame line toggle";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>ugB";
+      action = "<cmd>Gitsigns blame<CR>";
+      options = {
+        desc = "Git Blame sidebar";
       };
     }
     {
