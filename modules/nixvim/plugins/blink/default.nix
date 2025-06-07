@@ -295,7 +295,17 @@
 
       blink-cmp-dictionary.enable = true;
       blink-cmp-git.enable = true;
-      blink-cmp-spell.enable = true;
+      blink-cmp-spell = {
+        enable = true;
+        package = pkgs.vimPlugins.blink-cmp-spell.overrideAttrs {
+            patches = [
+              (pkgs.fetchpatch {
+                url = "https://github.com/khaneliman/blink-cmp-spell/commit/a184cbcc898dfc569bdf1dfed63b4dd2b2e6a8f0.patch";
+                hash = "sha256-476XyImS20+ftBK3kym7y3RbirEiO9bbwJNSP8qlPIY=";
+              })
+            ];
+          };
+      };
       blink-copilot.enable = true;
       blink-emoji.enable = true;
       blink-ripgrep.enable = true;
