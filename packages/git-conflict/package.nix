@@ -24,5 +24,10 @@ vimUtils.buildVimPlugin {
       url = "https://patch-diff.githubusercontent.com/raw/akinsho/git-conflict.nvim/pull/108.patch";
       hash = "sha256-1jCdRiRrO3eXNhxr7SSxl+rMEK5kG7/kHfWlgF2eO4M=";
     })
+    (pkgs.fetchpatch {
+      name = "validate";
+      url = "https://github.com/khaneliman/git-conflict.nvim/commit/f7906dbd2d1321a9ee46a9ec4ed9cc3a526b68ef.patch";
+      hash = "sha256-qTW15tWD8VFPfq7rcWmPLvF4DfS7Xn6ASo38PpAw7WI=";
+    })
   ];
 }
