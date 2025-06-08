@@ -36,6 +36,11 @@
       path = ../templates/custom-plugin;
       description = "Template for adding a custom plugin module without upstream nixvim support";
     };
+
+    custom-plugin-lazy = {
+      path = ../templates/custom-plugin-lazy;
+      description = "Modern template with let variable for luaConfig and lz-n lazy loading support";
+    };
   };
 
   perSystem =
