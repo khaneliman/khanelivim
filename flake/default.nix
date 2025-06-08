@@ -32,6 +32,10 @@
       description = "Template for adding a nixvim upstream plugin module";
     };
 
+    custom-plugin = {
+      path = ../templates/custom-plugin;
+      description = "Template for adding a custom plugin module without upstream nixvim support";
+    };
   };
 
   perSystem =
