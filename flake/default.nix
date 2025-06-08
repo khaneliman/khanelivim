@@ -26,6 +26,14 @@
     formatter = "dev";
   };
 
+  flake.templates = {
+    nixvim-upstream-plugin = {
+      path = ../templates/nixvim-upstream-plugin;
+      description = "Template for adding a nixvim upstream plugin module";
+    };
+
+  };
+
   perSystem =
     {
       config,
