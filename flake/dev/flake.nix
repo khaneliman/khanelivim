@@ -6,10 +6,6 @@
     nixpkgs.follows = "root/nixpkgs";
 
     # keep-sorted start block=yes newline_separated=no
-    git-hooks = {
-      url = "github:cachix/git-hooks.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     git-hooks-nix = {
       url = "github:cachix/git-hooks.nix";
       inputs = {
