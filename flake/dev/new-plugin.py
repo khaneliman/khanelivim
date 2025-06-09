@@ -1,5 +1,4 @@
-#!/usr/bin/env nix-shell
-#!nix-shell -i python3 -p python3 argparse
+#!/usr/bin/env python3
 """
 Script to generate new plugin templates for nixvim configuration.
 Usage: python3 new-plugin.py <plugin-name> <template-type>
