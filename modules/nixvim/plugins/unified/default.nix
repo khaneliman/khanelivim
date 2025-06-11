@@ -32,6 +32,9 @@
       require('unified').setup(${lib.generators.toLua { } config.plugins.unified.settings})
     '';
 
+    # TODO: implement after next plugin update
+    # vim.keymap.set('n', ']h', function() require('unified.navigation').next_hunk() end)
+    # vim.keymap.set('n', '[h', function() require('unified.navigation').previous_hunk() end)
     keymaps = [
       {
         mode = "n";
