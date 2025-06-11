@@ -4,7 +4,7 @@
     mini = {
       enable = true;
 
-      modules = {
+      modules = lib.mkIf (!config.plugins.unified.enable) {
         diff = {
           view = {
             style = "sign";

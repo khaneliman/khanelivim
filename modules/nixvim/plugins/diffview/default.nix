@@ -2,7 +2,7 @@
 {
   plugins = {
     diffview = {
-      enable = true;
+      enable = !config.plugins.unified.enable;
 
       # TODO: migrate to mkNeovimPlugin
       # lazyLoad = {
