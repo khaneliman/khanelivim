@@ -27,7 +27,6 @@ CUSTOM_TEMPLATE = """{
       default = "PLUGIN_NAME-nvim";
     };
 
-    # Add plugin-specific options here
     settings = lib.mkOption {
       type = lib.types.attrsOf lib.types.anything;
       default = { };
@@ -40,12 +39,11 @@ CUSTOM_TEMPLATE = """{
       config.plugins.PLUGIN_NAME.package
     ];
 
-    # Plugin configuration
     extraConfigLua = ''
       require('PLUGIN_NAME').setup(${lib.generators.toLua { } config.plugins.PLUGIN_NAME.settings})
     '';
 
-    # Optional: Add keymaps for the plugin
+    # TODO: Optional: Add keymaps for the plugin
     keymaps = [
       {
         mode = "n";
@@ -77,7 +75,6 @@ CUSTOM_LAZY_TEMPLATE = """{
       default = "PLUGIN_NAME-nvim";
     };
 
-    # Add plugin-specific options here
     settings = lib.mkOption {
       type = lib.types.attrsOf lib.types.anything;
       default = { };
@@ -90,8 +87,6 @@ CUSTOM_LAZY_TEMPLATE = """{
       luaConfig = # Lua
         ''
           require('PLUGIN_NAME').setup(${lib.generators.toLua { } config.plugins.PLUGIN_NAME.settings})
-
-          -- Additional Lua configuration here
         '';
     in
     lib.mkIf config.plugins.PLUGIN_NAME.enable {
@@ -105,7 +100,7 @@ CUSTOM_LAZY_TEMPLATE = """{
         }
       ];
 
-      # Optional: Extra packages needed by the plugin
+      # TODO: Extra packages needed by the plugin
       # extraPackages = with pkgs; [
       #   # package-name
       # ];
@@ -117,7 +112,7 @@ CUSTOM_LAZY_TEMPLATE = """{
             {
               __unkeyed-1 = "PLUGIN_NAME.nvim";
               event = [ "DeferredUIEnter" ];
-              # Optional: Other lazy loading triggers
+              # TODO: Other lazy loading triggers
               # cmd = [ "PluginCommand" ];
               # ft = [ "filetype" ];
               # keys = [
@@ -133,7 +128,7 @@ CUSTOM_LAZY_TEMPLATE = """{
         };
       };
 
-      # Optional: Add keymaps for the plugin
+      # TODO: Add keymaps for the plugin
       keymaps = [
         {
           mode = "n";
@@ -162,13 +157,13 @@ NIXVIM_TEMPLATE = """{ config, lib, ... }:
       ];
     };
 
-    # Plugin settings
+    # TODO: Plugin settings
     settings = {
       # Add plugin-specific configuration here
     };
   };
 
-  # Optional: Add keymaps for the plugin
+  # TODO: Add keymaps for the plugin
   keymaps = lib.optional config.plugins.PLUGIN_NAME.enable [
     {
       mode = "n";
