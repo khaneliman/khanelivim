@@ -42,7 +42,7 @@ CUSTOM_TEMPLATE = """{
 
     # Plugin configuration
     extraConfigLua = ''
-      require('PLUGIN_NAME').setup($${lib.generators.toLua { } config.plugins.PLUGIN_NAME.settings})
+      require('PLUGIN_NAME').setup(${lib.generators.toLua { } config.plugins.PLUGIN_NAME.settings})
     '';
 
     # Optional: Add keymaps for the plugin
@@ -89,7 +89,7 @@ CUSTOM_LAZY_TEMPLATE = """{
     let
       luaConfig = # Lua
         ''
-          require('PLUGIN_NAME').setup($${lib.generators.toLua { } config.plugins.PLUGIN_NAME.settings})
+          require('PLUGIN_NAME').setup(${lib.generators.toLua { } config.plugins.PLUGIN_NAME.settings})
 
           -- Additional Lua configuration here
         '';
