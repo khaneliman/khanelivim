@@ -40,7 +40,6 @@
       bashls.enable = true;
       biome.enable = true;
       cmake.enable = true;
-      csharp_ls.enable = true;
       cssls.enable = true;
       dockerls.enable = true;
       # FIXME: [lspconfig] Unable to find ESLint library.
@@ -67,6 +66,7 @@
       nushell.enable = true;
       pyright.enable = true;
       ruff.enable = true;
+      roslyn_ls.enable = true;
       sqls.enable = true;
       statix.enable = true;
       stylelint_lsp.enable = true;
