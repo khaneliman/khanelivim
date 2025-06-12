@@ -1,9 +1,11 @@
 {
   filetype = {
     extension = {
-      "avsc" = "json";
-      "rasi" = "scss";
-      "ignore" = "gitignore";
+      avsc = "json";
+      rasi = "scss";
+      ignore = "gitignore";
+      razor = "razor";
+      cshtml = "razor";
     };
 
     pattern = {
