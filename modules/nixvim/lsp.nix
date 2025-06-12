@@ -14,6 +14,7 @@
     ./lsp/lspconfig.nix
     ./lsp/nil-ls.nix
     ./lsp/nixd.nix
+    ./lsp/roslyn.nix
     ./lsp/rust-analyzer.nix
     ./lsp/typos-lsp.nix
     # keep-sorted end
@@ -66,7 +67,6 @@
       nushell.enable = true;
       pyright.enable = true;
       ruff.enable = true;
-      roslyn_ls.enable = true;
       sqls.enable = true;
       statix.enable = true;
       stylelint_lsp.enable = true;
