@@ -82,16 +82,16 @@
         }
         {
           mode = "n";
-          key = "gr";
+          key = "grr";
           action = ''<cmd>lua Snacks.picker.lsp_references()<cr>'';
           options = {
-            desc = "References";
+            desc = "Goto References";
             nowait = true;
           };
         }
         {
           mode = "n";
-          key = "gI";
+          key = "gri";
           action = ''<cmd>lua Snacks.picker.lsp_implementations()<cr>'';
           options = {
             desc = "Goto Implementation";
