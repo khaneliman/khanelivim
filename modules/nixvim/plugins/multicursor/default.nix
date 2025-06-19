@@ -55,6 +55,14 @@
         pkgs.vimPlugins.multicursor-nvim
       ];
 
+      plugins.which-key.settings.spec = [
+        {
+          __unkeyed-1 = "<leader>m";
+          group = "Multicursor";
+          icon = "󰗧";
+        }
+      ];
+
       keymaps = [
         # Add or skip cursor above/below the main cursor
         {
@@ -62,7 +70,7 @@
             "n"
             "x"
           ];
-          key = "<up>";
+          key = "<leader>ma";
           action.__raw = "function() require('multicursor-nvim').lineAddCursor(-1) end";
           options.desc = "Add cursor above";
         }
@@ -71,7 +79,7 @@
             "n"
             "x"
           ];
-          key = "<down>";
+          key = "<leader>mb";
           action.__raw = "function() require('multicursor-nvim').lineAddCursor(1) end";
           options.desc = "Add cursor below";
         }
@@ -80,7 +88,7 @@
             "n"
             "x"
           ];
-          key = "<leader><up>";
+          key = "<leader>mA";
           action.__raw = "function() require('multicursor-nvim').lineSkipCursor(-1) end";
           options.desc = "Skip cursor above";
         }
@@ -89,7 +97,7 @@
             "n"
             "x"
           ];
-          key = "<leader><down>";
+          key = "<leader>mB";
           action.__raw = "function() require('multicursor-nvim').lineSkipCursor(1) end";
           options.desc = "Skip cursor below";
         }
@@ -100,7 +108,7 @@
             "n"
             "x"
           ];
-          key = "<leader>n";
+          key = "<leader>mn";
           action.__raw = "function() require('multicursor-nvim').matchAddCursor(1) end";
           options.desc = "Add cursor by match (next)";
         }
@@ -109,16 +117,16 @@
             "n"
             "x"
           ];
-          key = "<leader>s";
+          key = "<leader>ms";
           action.__raw = "function() require('multicursor-nvim').matchSkipCursor(1) end";
-          options.desc = "Skip cursor by match";
+          options.desc = "Skip cursor by match (next)";
         }
         {
           mode = [
             "n"
             "x"
           ];
-          key = "<leader>N";
+          key = "<leader>mp";
           action.__raw = "function() require('multicursor-nvim').matchAddCursor(-1) end";
           options.desc = "Add cursor by match (prev)";
         }
@@ -127,7 +135,7 @@
             "n"
             "x"
           ];
-          key = "<leader>S";
+          key = "<leader>mS";
           action.__raw = "function() require('multicursor-nvim').matchSkipCursor(-1) end";
           options.desc = "Skip cursor by match (prev)";
         }
@@ -158,7 +166,7 @@
             "n"
             "x"
           ];
-          key = "<c-q>";
+          key = "<leader>mt";
           action.__raw = "require('multicursor-nvim').toggleCursor";
           options.desc = "Toggle cursor";
         }
