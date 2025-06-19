@@ -16,22 +16,35 @@
     let
       luaConfig = # Lua
         ''
-          -- TODO: configure keymaps to avoid conflicts
-          --IFRPRE86IGNvbmZpZ3VyZSBrZXltYXBzIHRvIGF2b2lkIGNvbmZsaWN0cw==
-          -- Default Key Mappings
-          --
-          -- The mappings below work for both visual and normal modes (mapping should be followed by a motion in normal mode).
-          -- Mapping 	Description
-          -- gb 	Decode Base64 in a popup
-          -- gyb 	Decode Base64 in-place
-          -- gB 	Encode Base64 in-place
-          -- gs 	Decode Base64URL in a popup
-          -- gys 	Decode Base64URL in-place
-          -- gS 	Encode Base64URL in-place
-          -- gl 	Decode URL in a popup
-          -- gyl 	Decode URL in-place
-          -- gL 	Encode URL in-place
-          require('endec').setup({})
+          -- Custom keymaps configured to avoid conflicts with mini.surround and flash
+          -- Using 'ge' prefix instead of conflicting 'gy', 'gs', 'gl' mappings
+          require('endec').setup({
+            keymaps = {
+              -- Base64
+              decode_base64_inplace = "gei",
+              vdecode_base64_inplace = "gei",
+              decode_base64_popup = "geI",
+              vdecode_base64_popup = "geI",
+              encode_base64_inplace = "geB",
+              vencode_base64_inplace = "geB",
+
+              -- Base64 URL
+              decode_base64url_inplace = "ges",
+              vdecode_base64url_inplace = "ges",
+              decode_base64url_popup = "geS",
+              vdecode_base64url_popup = "geS",
+              encode_base64url_inplace = "geb",
+              vencode_base64url_inplace = "geb",
+
+              -- URL
+              decode_url_inplace = "gel",
+              vdecode_url_inplace = "gel",
+              decode_url_popup = "geL",
+              vdecode_url_popup = "geL",
+              encode_url_inplace = "geu",
+              vencode_url_inplace = "geu",
+            }
+          })
         '';
     in
     lib.mkIf config.plugins.endec.enable {
