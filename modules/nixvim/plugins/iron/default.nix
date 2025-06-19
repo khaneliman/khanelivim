@@ -1,9 +1,29 @@
 {
+  config,
   lib,
   pkgs,
   ...
 }:
 {
+  keymaps = lib.optionals config.plugins.iron.enable [
+    {
+      key = "<leader>ir";
+      action = "<cmd>IronRepl<cr>";
+      mode = "n";
+      options = {
+        desc = "Open REPL";
+      };
+    }
+    {
+      key = "<leader>iR";
+      action = "<cmd>IronReplHere<cr>";
+      mode = "n";
+      options = {
+        desc = "Open REPL here";
+      };
+    }
+  ];
+
   plugins = {
     iron = {
       enable = true;
@@ -30,20 +50,20 @@
           };
         };
         keymaps = {
-          send_motion = "<space>sm";
-          visual_send = "<space>sv";
-          send_file = "<space>sf";
-          send_line = "<space>sl";
-          send_paragraph = "<space>sp";
-          send_until_cursor = "<space>su";
-          send_mark = "<space>ms";
-          mark_motion = "<space>mc";
-          mark_visual = "<space>mc";
-          remove_mark = "<space>md";
-          cr = "<space>s<cr>";
-          interrupt = "<space>s<space>";
-          exit = "<space>sq";
-          clear = "<space>sc";
+          send_motion = "<leader>im";
+          visual_send = "<leader>iv";
+          send_file = "<leader>if";
+          send_line = "<leader>il";
+          send_paragraph = "<leader>ip";
+          send_until_cursor = "<leader>iu";
+          send_mark = "<leader>is";
+          mark_motion = "<leader>ic";
+          mark_visual = "<leader>ic";
+          remove_mark = "<leader>id";
+          cr = "<leader>i<cr>";
+          interrupt = "<leader>i<space>";
+          exit = "<leader>iq";
+          clear = "<leader>iC";
         };
         highlight = {
           italic = true;
@@ -54,13 +74,8 @@
 
     which-key.settings.spec = [
       {
-        __unkeyed-1 = "<leader>s";
-        group = "REPL Send";
-        icon = "󱠥";
-      }
-      {
-        __unkeyed-1 = "<leader>m";
-        group = "REPL Mark";
+        __unkeyed-1 = "<leader>i";
+        group = "REPL (Iron)";
         icon = "󱠥";
       }
     ];
