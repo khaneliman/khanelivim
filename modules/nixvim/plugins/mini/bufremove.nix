@@ -1,5 +1,13 @@
 { lib, config, ... }:
 {
+  extraConfigLuaPre =
+    lib.mkIf (config.plugins.mini.enable && lib.hasAttr "bufdelete" config.plugins.mini.modules) # Lua
+      ''
+        -- Disable built-in diagnostic keymaps that conflict with <C-W> closing a buffer
+        vim.keymap.del('n', '<C-W>d')
+        vim.keymap.del('n', '<C-W><C-D>')
+      '';
+
   plugins = {
     mini = {
       enable = true;
