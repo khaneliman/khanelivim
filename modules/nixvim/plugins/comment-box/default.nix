@@ -37,8 +37,8 @@
 
     which-key.settings.spec = lib.optionals config.plugins.comment-box.enable [
       {
-        __unkeyed-1 = "<leader>C";
-        group = "Comment-box";
+        __unkeyed-1 = "<leader>c";
+        group = "Comment Box";
         icon = " ";
       }
     ];
@@ -47,7 +47,7 @@
   keymaps = lib.mkIf config.plugins.comment-box.enable [
     {
       mode = "n";
-      key = "<leader>Cd";
+      key = "<leader>cd";
       action = "<cmd>CBd<cr>";
       options = {
         desc = "Delete a box";
@@ -55,7 +55,7 @@
     }
     {
       mode = "n";
-      key = "<leader>Cb";
+      key = "<leader>cb";
       action = "<cmd>CBccbox<cr>";
       options = {
         desc = "Box Title";
@@ -63,7 +63,7 @@
     }
     {
       mode = "n";
-      key = "<leader>Ct";
+      key = "<leader>ct";
       action = "<cmd>CBllline<cr>";
       options = {
         desc = "Titled Line";
@@ -71,7 +71,7 @@
     }
     {
       mode = "n";
-      key = "<leader>Cl";
+      key = "<leader>cl";
       action = "<cmd>CBline<cr>";
       options = {
         desc = "Simple Line";
