@@ -7,7 +7,6 @@
       settings = {
         cmd = "ToggleTerm";
         keys = [
-          "<leader>tg"
           "<leader>gg"
         ];
       };
@@ -21,7 +20,7 @@
   keymaps = lib.mkIf config.plugins.toggleterm.enable [
     {
       mode = "n";
-      key = "<leader>tt";
+      key = "<leader>uT";
       action = "<cmd>ToggleTerm<CR>";
       options = {
         desc = "Open Terminal";
@@ -34,7 +33,7 @@
       )
       {
         mode = "n";
-        key = "<leader>tg";
+        key = "<leader>gg";
         action.__raw = ''
           function()
             local toggleterm = require('toggleterm.terminal')
