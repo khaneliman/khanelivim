@@ -24,14 +24,6 @@
       [
         {
           mode = "n";
-          key = "<leader>tg";
-          action = "<cmd>lua Snacks.lazygit()<CR>";
-          options = {
-            desc = "Open lazygit";
-          };
-        }
-        {
-          mode = "n";
           key = "<leader>gg";
           action = "<cmd>lua Snacks.lazygit()<CR>";
           options = {
