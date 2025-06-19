@@ -12,7 +12,7 @@
         settings = {
           keys = [
             {
-              __unkeyed-1 = "<leader>nt";
+              __unkeyed-1 = "<leader>tt";
               __unkeyed-3 = "<CMD>Neotest summary<CR>";
               desc = "Summary toggle";
             }
@@ -26,12 +26,12 @@
               desc = "Neotest Debug";
             }
             {
-              __unkeyed-1 = "<leader>na";
+              __unkeyed-1 = "<leader>ta";
               __unkeyed-3 = "<CMD>Neotest attach<CR>";
               desc = "Attach";
             }
             {
-              __unkeyed-1 = "<leader>nd";
+              __unkeyed-1 = "<leader>td";
               __unkeyed-3.__raw = ''
                 function()
                   require("neotest").run.run({strategy = "dap"})
@@ -40,22 +40,22 @@
               desc = "Debug";
             }
             {
-              __unkeyed-1 = "<leader>nh";
+              __unkeyed-1 = "<leader>th";
               __unkeyed-3 = "<CMD>Neotest output<CR>";
               desc = "Output";
             }
             {
-              __unkeyed-1 = "<leader>no";
+              __unkeyed-1 = "<leader>to";
               __unkeyed-3 = "<CMD>Neotest output-panel<CR>";
               desc = "Output Panel toggle";
             }
             {
-              __unkeyed-1 = "<leader>nr";
+              __unkeyed-1 = "<leader>tr";
               __unkeyed-3 = "<CMD>Neotest run<CR>";
               desc = "Run (Nearest Test)";
             }
             {
-              __unkeyed-1 = "<leader>nR";
+              __unkeyed-1 = "<leader>tR";
               __unkeyed-3.__raw = ''
                 function()
                   require("neotest").run.run(vim.fn.expand("%"))
@@ -64,7 +64,7 @@
               desc = "Run (File)";
             }
             {
-              __unkeyed-1 = "<leader>ns";
+              __unkeyed-1 = "<leader>ts";
               __unkeyed-3 = "<CMD>Neotest stop<CR>";
               desc = "Stop";
             }
@@ -118,8 +118,8 @@
 
     which-key.settings.spec = lib.optionals config.plugins.neotest.enable [
       {
-        __unkeyed = "<leader>n";
-        group = "Neotest";
+        __unkeyed = "<leader>t";
+        group = "Test";
         icon = "󰙨";
       }
     ];
@@ -140,7 +140,7 @@
     }
     {
       mode = "n";
-      key = "<leader>na";
+      key = "<leader>ta";
       action = "<CMD>Neotest attach<CR>";
       options = {
         desc = "Attach";
@@ -148,7 +148,7 @@
     }
     {
       mode = "n";
-      key = "<leader>nd";
+      key = "<leader>td";
       action.__raw = ''
         function()
           require("neotest").run.run({strategy = "dap"})
@@ -160,7 +160,7 @@
     }
     {
       mode = "n";
-      key = "<leader>nh";
+      key = "<leader>th";
       action = "<CMD>Neotest output<CR>";
       options = {
         desc = "Output";
@@ -168,7 +168,7 @@
     }
     {
       mode = "n";
-      key = "<leader>no";
+      key = "<leader>to";
       action = "<CMD>Neotest output-panel<CR>";
       options = {
         desc = "Output Panel toggle";
@@ -176,7 +176,7 @@
     }
     {
       mode = "n";
-      key = "<leader>nr";
+      key = "<leader>tr";
       action = "<CMD>Neotest run<CR>";
       options = {
         desc = "Run (Nearest Test)";
@@ -184,7 +184,7 @@
     }
     {
       mode = "n";
-      key = "<leader>nR";
+      key = "<leader>tR";
       action.__raw = ''
         function()
           require("neotest").run.run(vim.fn.expand("%"))
@@ -196,7 +196,7 @@
     }
     {
       mode = "n";
-      key = "<leader>ns";
+      key = "<leader>ts";
       action = "<CMD>Neotest stop<CR>";
       options = {
         desc = "Stop";
@@ -204,7 +204,7 @@
     }
     {
       mode = "n";
-      key = "<leader>nt";
+      key = "<leader>tt";
       action = "<CMD>Neotest summary<CR>";
       options = {
         desc = "Summary toggle";
