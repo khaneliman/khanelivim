@@ -71,8 +71,8 @@
         enable = true;
         keymaps = {
           # NOTE: default is "grr"
-          # Conflicts with vim.lsp.buf.references()
-          smartRename = "grR";
+          # Changed from grR to gR to avoid conflict with gr (References)
+          smartRename = "gR";
         };
       };
       navigation = {
