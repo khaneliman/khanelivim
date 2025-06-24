@@ -14,8 +14,7 @@
       plugins = true;
     };
     combinePlugins = {
-      # FIXME: broken nixos
-      # enable = true;
+      enable = true;
       standalonePlugins = with pkgs.vimPlugins; [
         "firenvim"
         "neotest"
