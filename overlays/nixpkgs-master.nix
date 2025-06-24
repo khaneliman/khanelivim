@@ -13,6 +13,7 @@ let
 in
 {
   inherit (nixpkgs-master-packages)
+    claude-code
     luaPackages
     ;
   vimPlugins = vimPlugins // {
