@@ -20,7 +20,8 @@
     # PDF rendering
     ghostscript
     # Mermaid diagrams
-    mermaid-cli
+    # FIXME: pulls in chromium??
+    # mermaid-cli
     # LaTeX
     tectonic
   ];
