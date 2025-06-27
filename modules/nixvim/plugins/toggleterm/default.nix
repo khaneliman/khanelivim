@@ -18,14 +18,15 @@
   };
 
   keymaps = lib.mkIf config.plugins.toggleterm.enable [
-    {
-      mode = "n";
-      key = "<leader>uT";
-      action = "<cmd>ToggleTerm<CR>";
-      options = {
-        desc = "Open Terminal";
-      };
-    }
+    # TODO: remap
+    # {
+    #   mode = "n";
+    #   key = "<leader>uT";
+    #   action = "<cmd>ToggleTerm<CR>";
+    #   options = {
+    #     desc = "Open Terminal";
+    #   };
+    # }
     (lib.mkIf
       (
         !config.plugins.snacks.enable
