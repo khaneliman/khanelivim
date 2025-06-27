@@ -281,6 +281,13 @@
                   desc = "Fold Column toggle";
                 };
               };
+
+              "<leader>uT" = {
+                action = "<cmd>TabsToggle<CR>";
+                options = {
+                  desc = "Toggle tabs/spaces";
+                };
+              };
             }
             // (lib.optionalAttrs (!config.plugins.visual-whitespace.enable) {
               "<leader>uW" = {
