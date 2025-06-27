@@ -46,6 +46,37 @@
       desc = "Toggle automatic formatting on save";
     };
 
+    TabsEnable = {
+      command.__raw = ''
+        function()
+          vim.bo.expandtab = false
+          vim.notify("Tabs enabled (noexpandtab)", "info")
+        end
+      '';
+      desc = "Enable tabs instead of spaces";
+    };
+
+    SpacesEnable = {
+      command.__raw = ''
+        function()
+          vim.bo.expandtab = true
+          vim.notify("Spaces enabled (expandtab)", "info")
+        end
+      '';
+      desc = "Enable spaces instead of tabs";
+    };
+
+    TabsToggle = {
+      command.__raw = ''
+        function()
+          vim.bo.expandtab = not vim.bo.expandtab
+          local mode = vim.bo.expandtab and "spaces" or "tabs"
+          vim.notify("Switched to " .. mode, "info")
+        end
+      '';
+      desc = "Toggle between tabs and spaces";
+    };
+
     # Takes an argument that determines what method to use for buf_request
     PeekDefinition = {
       nargs = 1;
