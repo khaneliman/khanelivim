@@ -31,9 +31,9 @@
         lua = [ "luacheck" ];
         make = [ "checkmake" ];
         markdown = [ "markdownlint" ];
-        # nix = [
-        #   "deadnix"
-        # ] ++ lib.optionals (!config.plugins.lsp.servers.statix.enable) [ "statix" ];
+        nix = [
+          "deadnix"
+        ] ++ lib.optionals (!config.plugins.lsp.servers.statix.enable) [ "statix" ];
         # FIXME: causes ruff errors
         # python = [ "pylint" ];
         rust = [ "clippy" ];
