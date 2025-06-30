@@ -77,6 +77,10 @@
       desc = "Toggle between tabs and spaces";
     };
 
+    RemoveTrailingNewline = {
+      command = ''execute '%s/\\n\\+$/\\/e' '';
+    };
+
     # Takes an argument that determines what method to use for buf_request
     PeekDefinition = {
       nargs = 1;
