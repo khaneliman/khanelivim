@@ -7,11 +7,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1749398372,
-        "narHash": "sha256-tYBdgS56eXYaWVW3fsnPQ/nFlgWi/Z2Ymhyu21zVM98=",
+        "lastModified": 1751413152,
+        "narHash": "sha256-Tyw1RjYEsp5scoigs1384gIg6e0GoBVjms4aXFfRssQ=",
         "owner": "hercules-ci",
         "repo": "flake-parts",
-        "rev": "9305fe4e5c2a6fcf5ba6a3ff155720fbe4076569",
+        "rev": "77826244401ea9de6e3bac47c2db46005e1f30b5",
         "type": "github"
       },
       "original": {
@@ -22,11 +22,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1751180975,
-        "narHash": "sha256-BKk4yDiXr4LdF80OTVqYJ53Q74rOcA/82EClXug8xsY=",
+        "lastModified": 1751498133,
+        "narHash": "sha256-QWJ+NQbMU+NcU2xiyo7SNox1fAuwksGlQhpzBl76g1I=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "a48741b083d4f36dd79abd9f760c84da6b4dc0e5",
+        "rev": "d55716bb59b91ae9d1ced4b1ccdea7a442ecbfdb",
         "type": "github"
       },
       "original": {
@@ -38,11 +38,11 @@
     },
     "nixpkgs-master": {
       "locked": {
-        "lastModified": 1751234483,
-        "narHash": "sha256-cHui9/MFrDDPrtC6WzWLcpzzZrvl9TzqnMRL7ebWRU4=",
+        "lastModified": 1751549796,
+        "narHash": "sha256-3ZWp7fUSzjL6FBii2Kd4lwCWCttHPmzLYYKm0CQOg6U=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "0bdf45e5b148b266911db65b3631ca79e1c3bb95",
+        "rev": "bcd95afdf7e86d12f7e0635aa53970ab00fb2da1",
         "type": "github"
       },
       "original": {
@@ -63,11 +63,11 @@
         "systems": "systems"
       },
       "locked": {
-        "lastModified": 1751144320,
-        "narHash": "sha256-KJsKiGfkfXFB23V26NQ1p+UPsexI6NKtivnrwSlWWdQ=",
+        "lastModified": 1751492444,
+        "narHash": "sha256-26NgRXwhNM2x4hrok0C3CqSf2v0vi9byONNON5PzbHQ=",
         "owner": "nix-community",
         "repo": "nixvim",
-        "rev": "ceb52aece5d571b37096945c2815604195a04eb4",
+        "rev": "239d331bb48673dfd00d7187654892471cd60d44",
         "type": "github"
       },
       "original": {
