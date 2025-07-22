@@ -10,7 +10,8 @@ code in this repository.
 - `nix develop` - Enter development shell
 - `nix run` - Activate the configuration
 - `nix build` - Build the configuration
-- `new-plugin <plugin-name> <template-type>` - Generate new plugin templates (available in dev shell, template-type: custom, custom-lazy, nixvim)
+- `new-plugin <plugin-name> <template-type>` - Generate new plugin templates
+  (available in dev shell, template-type: custom, custom-lazy, nixvim)
 
 ## Code Style Guidelines
 

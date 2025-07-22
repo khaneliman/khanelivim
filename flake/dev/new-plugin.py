@@ -177,18 +177,20 @@ NIXVIM_TEMPLATE = """{ config, lib, ... }:
 }
 """
 
+
 def create_plugin_directory(plugin_name, base_path):
     """Create the plugin directory structure."""
     plugin_dir = base_path / "modules" / "nixvim" / "plugins" / plugin_name
     plugin_dir.mkdir(parents=True, exist_ok=True)
     return plugin_dir
 
+
 def get_template_content(template_type):
     """Get the template content based on type."""
     templates = {
         "custom": CUSTOM_TEMPLATE,
         "custom-lazy": CUSTOM_LAZY_TEMPLATE,
-        "nixvim": NIXVIM_TEMPLATE
+        "nixvim": NIXVIM_TEMPLATE,
     }
 
     if template_type not in templates:
@@ -196,9 +198,11 @@ def get_template_content(template_type):
 
     return templates[template_type]
 
+
 def substitute_plugin_name(template_content, plugin_name):
     """Replace PLUGIN_NAME placeholder with actual plugin name."""
     return template_content.replace("PLUGIN_NAME", plugin_name)
+
 
 def main():
     parser = argparse.ArgumentParser(
@@ -208,13 +212,13 @@ def main():
     parser.add_argument(
         "template_type",
         choices=["custom", "custom-lazy", "nixvim"],
-        help="Type of template to generate"
+        help="Type of template to generate",
     )
     parser.add_argument(
         "--base-path",
         type=Path,
         default=Path.cwd(),
-        help="Base path of the project (default: current directory)"
+        help="Base path of the project (default: current directory)",
     )
 
     args = parser.parse_args()
@@ -252,6 +256,7 @@ def main():
     except Exception as e:
         print(f"Error: {e}")
         sys.exit(1)
+
 
 if __name__ == "__main__":
     main()
