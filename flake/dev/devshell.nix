@@ -8,7 +8,7 @@
         packages = with pkgs; [
           deadnix
           nixd
-          nixfmt-rfc-style
+          nixfmt
           statix
           python3
           (pkgs.writeShellScriptBin "new-plugin" ''

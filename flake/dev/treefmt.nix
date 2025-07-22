@@ -5,6 +5,7 @@
   perSystem =
     {
       lib,
+      pkgs,
       ...
     }:
     lib.optionalAttrs (inputs.treefmt-nix ? flakeModule) {
@@ -40,8 +41,12 @@
           gofmt.enable = true;
           isort.enable = true;
           keep-sorted.enable = true;
-          nixfmt.enable = true;
-          nufmt.enable = true;
+          nixfmt = {
+            enable = true;
+            package = pkgs.nixfmt;
+          };
+          # FIXME: removed???
+          # nufmt.enable = true;
           ruff-check.enable = true;
           ruff-format.enable = true;
           rustfmt.enable = true;
