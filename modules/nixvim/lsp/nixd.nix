@@ -16,7 +16,7 @@
       {
         nixpkgs.expr = "import ${flake}.inputs.nixpkgs { }";
         formatting = {
-          command = [ "${lib.getExe pkgs.nixfmt-rfc-style}" ];
+          command = [ "${lib.getExe pkgs.nixfmt}" ];
         };
         options = {
           nixvim.expr = ''${flake}.packages.${system}.nvim.options'';
