@@ -163,7 +163,7 @@
           isort.command = lib.getExe pkgs.isort;
           jq.command = lib.getExe pkgs.jq;
           kdlfmt.command = lib.getExe pkgs.kdlfmt;
-          nixfmt.command = lib.getExe pkgs.nixfmt-rfc-style;
+          nixfmt.command = lib.getExe pkgs.nixfmt;
           prettierd.command = lib.getExe pkgs.prettierd;
           ruff.command = lib.getExe pkgs.ruff;
           rustfmt.command = lib.getExe pkgs.rustfmt;
