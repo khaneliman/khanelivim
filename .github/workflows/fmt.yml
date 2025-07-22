@@ -13,4 +13,4 @@ jobs:
             auto-optimise-store = true
             access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
             experimental-features = nix-command flakes
-      - run: nix run nixpkgs#nixfmt-rfc-style -- --check .
+      - run: nix build .#checks.x86_64-linux.treefmt
