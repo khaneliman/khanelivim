@@ -33,7 +33,8 @@
         markdown = [ "markdownlint" ];
         nix = [
           "deadnix"
-        ] ++ lib.optionals (!config.plugins.lsp.servers.statix.enable) [ "statix" ];
+        ]
+        ++ lib.optionals (!config.plugins.lsp.servers.statix.enable) [ "statix" ];
         # FIXME: causes ruff errors
         # python = [ "pylint" ];
         rust = [ "clippy" ];

@@ -17,7 +17,8 @@
 
       lazyLoad.settings.cmd = [
         "FzfLua"
-      ] ++ lib.optionals config.plugins.noice.enable [ "Noice fzf" ];
+      ]
+      ++ lib.optionals config.plugins.noice.enable [ "Noice fzf" ];
 
       settings = {
         oldfiles = {

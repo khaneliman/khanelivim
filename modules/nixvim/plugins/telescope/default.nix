@@ -18,11 +18,12 @@
   plugins.telescope = {
     enable = true;
 
-    lazyLoad.settings.cmd =
-      [ "Telescope" ]
-      ++ lib.optionals config.plugins.noice.enable [
-        "Noice telescope"
-      ];
+    lazyLoad.settings.cmd = [
+      "Telescope"
+    ]
+    ++ lib.optionals config.plugins.noice.enable [
+      "Noice telescope"
+    ];
 
     highlightTheme = "Catppuccin Macchiato";
 

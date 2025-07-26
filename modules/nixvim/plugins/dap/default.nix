@@ -204,22 +204,20 @@
           };
         in
         {
-          c =
-            [
-              lldb-config
-            ]
-            ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
-              gdb-config
-            ];
+          c = [
+            lldb-config
+          ]
+          ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
+            gdb-config
+          ];
 
-          cpp =
-            [
-              codelldb-config
-              lldb-config
-            ]
-            ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
-              gdb-config
-            ];
+          cpp = [
+            codelldb-config
+            lldb-config
+          ]
+          ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
+            gdb-config
+          ];
 
           rust = lib.mkIf (!config.plugins.rustaceanvim.enable) (
             [

@@ -41,14 +41,13 @@
                 desc = "Find TODOs";
               }
             ];
-        cmd =
-          [
-            "TodoLocList"
-            "TodoQuickFix"
-          ]
-          ++ lib.optional config.plugins.fzf-lua.enable "TodoFzfLua"
-          ++ lib.optional config.plugins.telescope.enable "TodoTelescope"
-          ++ lib.optional config.plugins.trouble.enable "TodoTrouble";
+        cmd = [
+          "TodoLocList"
+          "TodoQuickFix"
+        ]
+        ++ lib.optional config.plugins.fzf-lua.enable "TodoFzfLua"
+        ++ lib.optional config.plugins.telescope.enable "TodoTelescope"
+        ++ lib.optional config.plugins.trouble.enable "TodoTrouble";
       };
     };
 
