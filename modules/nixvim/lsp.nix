@@ -67,6 +67,7 @@
       marksman.enable = true;
       nushell.enable = true;
       pyright.enable = true;
+      qmlls.enable = true;
       ruff.enable = true;
       sqls.enable = true;
       statix.enable = true;
