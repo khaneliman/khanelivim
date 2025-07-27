@@ -14,7 +14,9 @@
       plugins = true;
     };
     combinePlugins = {
-      enable = true;
+      # FIXME: every plugin clashing on `doc/tags`
+      # enable = true;
+
       standalonePlugins = with pkgs.vimPlugins; [
         "firenvim"
         "neotest"
