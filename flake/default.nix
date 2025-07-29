@@ -38,7 +38,8 @@
         overlays = lib.attrValues self.overlays;
         config = {
           allowUnfree = true;
-          allowAliases = false;
+          # FIXME: breaks git-hooks-nix installation
+          # allowAliases = false;
         };
       };
 
