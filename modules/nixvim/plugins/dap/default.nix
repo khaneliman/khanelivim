@@ -6,7 +6,8 @@
 }:
 {
   imports = [
-    ./bash.nix
+    # FIXME: bashdb broken
+    # ./bash.nix
     ./dotnet.nix
     ./javascript.nix
     ./lua.nix
