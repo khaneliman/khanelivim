@@ -1,6 +1,6 @@
 {
   perSystem =
-    { pkgs, ... }:
+    { config, pkgs, ... }:
     {
       devShells.default = pkgs.mkShell {
         name = "Khanelivim development shell";
@@ -22,6 +22,8 @@
         ];
 
         shellHook = ''
+          ${config.pre-commit.installationScript}
+
           echo "Khanelivim development shell"
           echo "Available commands:"
           echo "  new-plugin <name> <type> - Generate new plugin template"
