@@ -38,6 +38,7 @@
           ];
         };
       };
+      angularls.enable = true;
       # FIXME: broken nixpkgs
       # bashls.enable = true;
       biome.enable = true;
