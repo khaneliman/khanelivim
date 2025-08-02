@@ -254,7 +254,6 @@ features like:
 ### Key LSP Plugins:
 
 - **lspconfig** - Core LSP client configurations
-- **lspkind** - Informative icons for LSP completions
 - **glance** - Preview definitions/references in floating windows
 - **lightbulb** - Visual indicators for available code actions
 - **navic** - LSP-based breadcrumb navigation
