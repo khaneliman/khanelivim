@@ -21,6 +21,106 @@
           c = true;
           java = true;
         };
+
+        # Custom printf statements for debugging (function entry/exit)
+        printf_statements = {
+          cpp = [
+            "std::cout << \"[DEBUG] %s\" << std::endl;"
+            "fmt::print(\"[DEBUG] {}\\n\", \"%s\");"
+            "spdlog::debug(\"%s\");"
+          ];
+          c = [
+            "printf(\"[DEBUG] %s\\n\", \"%s\");"
+            "fprintf(stderr, \"[DEBUG] %s\\n\", \"%s\");"
+          ];
+          go = [
+            "fmt.Printf(\"[DEBUG] %s\\n\", \"%s\")"
+            "log.Printf(\"[DEBUG] %s\", \"%s\")"
+            "slog.Debug(\"%s\")"
+          ];
+          rust = [
+            "println!(\"[DEBUG] {}\", \"%s\");"
+            "eprintln!(\"[DEBUG] {}\", \"%s\");"
+            "log::debug!(\"%s\");"
+            "tracing::debug!(\"%s\");"
+          ];
+          python = [
+            "print(f\"[DEBUG] %s\")"
+            "logging.debug(\"%s\")"
+            "logger.debug(\"%s\")"
+          ];
+          javascript = [
+            "console.log('[DEBUG] %s');"
+            "console.debug('[DEBUG] %s');"
+            "logger.debug('%s');"
+          ];
+          typescript = [
+            "console.log('[DEBUG] %s');"
+            "console.debug('[DEBUG] %s');"
+            "logger.debug('%s');"
+          ];
+          java = [
+            "System.out.println(\"[DEBUG] %s\");"
+            "logger.debug(\"%s\");"
+            "log.debug(\"%s\");"
+          ];
+          cs = [
+            "Console.WriteLine($\"[DEBUG] %s\");"
+            "Debug.WriteLine($\"[DEBUG] %s\");"
+            "_logger.LogDebug(\"%s\");"
+          ];
+        };
+
+        # Custom print var statements (variable name and value)
+        print_var_statements = {
+          cpp = [
+            "std::cout << \"%s: \" << %s << std::endl;"
+            "fmt::print(\"{}: {}\\n\", \"%s\", %s);"
+            "spdlog::debug(\"%s: {}\", %s);"
+          ];
+          c = [
+            "printf(\"%s: %%d\\n\", %s);"
+            "printf(\"%s: %%s\\n\", %s);"
+            "fprintf(stderr, \"%s: %%p\\n\", %s);"
+          ];
+          go = [
+            "fmt.Printf(\"%s: %%+v\\n\", %s)"
+            "fmt.Printf(\"%s: %%#v\\n\", %s)"
+            "log.Printf(\"%s: %%v\", %s)"
+          ];
+          rust = [
+            "println!(\"%s: {:?}\", %s);"
+            "println!(\"%s: {:#?}\", %s);"
+            "dbg!(%s);"
+            "eprintln!(\"%s: {:?}\", %s);"
+          ];
+          python = [
+            "print(f\"%s: {%s}\")"
+            "print(f\"%s: {%s!r}\")"
+            "logging.debug(f\"%s: {%s}\")"
+            "pprint.pprint({\"%s\": %s})"
+          ];
+          javascript = [
+            "console.log('%s:', %s);"
+            "console.debug('%s:', %s);"
+            "console.log('%s:', JSON.stringify(%s, null, 2));"
+          ];
+          typescript = [
+            "console.log('%s:', %s);"
+            "console.debug('%s:', %s);"
+            "console.log('%s:', JSON.stringify(%s, null, 2));"
+          ];
+          java = [
+            "System.out.println(\"%s: \" + %s);"
+            "logger.debug(\"%s: {}\", %s);"
+            "System.out.printf(\"%s: %%s%%n\", %s);"
+          ];
+          cs = [
+            "Console.WriteLine($\"%s: {%s}\");"
+            "Debug.WriteLine($\"%s: {%s}\");"
+            "_logger.LogDebug(\"%s: {Variable}\", %s);"
+          ];
+        };
       };
 
       lazyLoad = {
