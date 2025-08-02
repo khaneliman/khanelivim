@@ -31,7 +31,10 @@
     which-key.settings.spec = lib.optionals config.plugins.refactoring.enable [
       {
         __unkeyed-1 = "<leader>r";
-        mode = "x";
+        mode = [
+          "n"
+          "x"
+        ];
         group = "Refactor";
         icon = " ";
       }
@@ -94,6 +97,50 @@
         action = "<cmd>Refactor extract_block_to_file<CR>";
         options = {
           desc = "Extract block to file";
+        };
+      }
+
+      # Debug operations (based on documentation)
+      {
+        mode = [
+          "n"
+          "x"
+        ];
+        key = "<leader>rp";
+        action.__raw = ''
+          function()
+            require('refactoring').debug.printf({below = false})
+          end
+        '';
+        options = {
+          desc = "Debug Printf";
+        };
+      }
+      {
+        mode = [
+          "n"
+          "x"
+        ];
+        key = "<leader>rP";
+        action.__raw = ''
+          function()
+            require('refactoring').debug.print_var()
+          end
+        '';
+        options = {
+          desc = "Debug Print Variable";
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>rc";
+        action.__raw = ''
+          function()
+            require('refactoring').debug.cleanup({})
+          end
+        '';
+        options = {
+          desc = "Debug Cleanup";
         };
       }
     ]
