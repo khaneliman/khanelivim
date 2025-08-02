@@ -2,9 +2,15 @@
   config,
   lib,
   pkgs,
+  self,
+  system,
   ...
 }:
 {
+  extraPlugins = [
+    self.packages.${system}.neotest-catch2
+  ];
+
   plugins = {
     neotest = {
       enable = true;
@@ -73,10 +79,15 @@
       };
 
       settings = {
-        adapters = lib.optionals config.plugins.rustaceanvim.enable [
-          # Lua
-          ''require('rustaceanvim.neotest')''
-        ];
+        adapters =
+          lib.optionals config.plugins.rustaceanvim.enable [
+            # Lua
+            ''require('rustaceanvim.neotest')''
+          ]
+          ++ [
+            # Catch2 adapter for C++ testing
+            ''require('neotest-catch2')''
+          ];
       };
 
       adapters = lib.mkIf config.plugins.treesitter.enable {
