@@ -5,6 +5,24 @@
       enable = true;
       enableTelescope = config.plugins.telescope.enable;
 
+      settings = {
+        # Prompt for return types in languages that support it
+        prompt_func_return_type = {
+          go = true;
+          cpp = true;
+          c = true;
+          java = true;
+        };
+
+        # Prompt for function parameter types
+        prompt_func_param_type = {
+          go = true;
+          cpp = true;
+          c = true;
+          java = true;
+        };
+      };
+
       lazyLoad = {
         settings = {
           before = lib.mkIf (config.plugins.telescope.enable && config.plugins.lz-n.enable) {
