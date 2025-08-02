@@ -1,5 +1,4 @@
 {
-  config,
   lib,
   pkgs,
   ...
@@ -38,12 +37,6 @@
   };
 
   opts = {
-    completeopt = lib.mkIf (!config.plugins.blink-cmp.enable) [
-      "fuzzy"
-      "menuone"
-      "noselect"
-      "popup"
-    ];
 
     updatetime = 100; # Faster completion
 
