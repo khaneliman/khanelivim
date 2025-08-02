@@ -23,6 +23,7 @@
         mini-nvim
         overseer-nvim
         self.packages.${system}.tree-sitter-norg-meta
+        self.packages.${system}.tree-sitter-kulala-http
         vs-tasks-nvim
       ];
     };
