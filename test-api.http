@@ -1,0 +1,77 @@
+### Environment Variables
+@baseUrl = https://jsonplaceholder.typicode.com
+@userId = 1
+
+### Get all posts
+# @name getAllPosts
+GET {{baseUrl}}/posts HTTP/1.1
+Accept: application/json
+
+###
+
+### Get specific post
+# @name getPost
+GET {{baseUrl}}/posts/{{userId}} HTTP/1.1
+Accept: application/json
+
+###
+
+### Create new post
+# @name createPost
+POST {{baseUrl}}/posts HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+
+{
+  "title": "My New Post",
+  "body": "This is the body of my new post",
+  "userId": {{userId}}
+}
+
+###
+
+### Update post
+# @name updatePost
+PUT {{baseUrl}}/posts/1 HTTP/1.1
+Content-Type: application/json
+Accept: application/json
+
+{
+  "id": 1,
+  "title": "Updated Post Title",
+  "body": "This post has been updated",
+  "userId": {{userId}}
+}
+
+###
+
+### Delete post
+# @name deletePost
+DELETE {{baseUrl}}/posts/1 HTTP/1.1
+
+###
+
+### Test with headers and auth
+# @name authTest
+GET https://httpbin.org/bearer HTTP/1.1
+Authorization: Bearer my-secret-token
+User-Agent: Kulala/1.0
+Accept: application/json
+
+###
+
+### Test POST with form data
+# @name formTest
+POST https://httpbin.org/post HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+name=John+Doe&email=john%40example.com&age=30
+
+###
+
+### Test with query parameters
+# @name queryTest
+GET https://httpbin.org/get?param1=value1&param2=value2&debug=true HTTP/1.1
+Accept: application/json
+
+###
