@@ -43,12 +43,13 @@
 
   keymaps =
     lib.optionals config.plugins.refactoring.enable [
+      # Extract operations (visual mode)
       {
         mode = "x";
         key = "<leader>re";
         action = "<cmd>Refactor extract<cr>";
         options = {
-          desc = "Extract";
+          desc = "Extract Function";
         };
       }
       {
@@ -56,7 +57,7 @@
         key = "<leader>rE";
         action = "<cmd>Refactor extract_to_file<cr>";
         options = {
-          desc = "Extract to file";
+          desc = "Extract Function to File";
         };
       }
       {
@@ -64,15 +65,17 @@
         key = "<leader>rv";
         action = "<cmd>Refactor extract_var<cr>";
         options = {
-          desc = "Extract var";
+          desc = "Extract Variable";
         };
       }
+
+      # Inline operations (normal mode)
       {
         mode = "n";
         key = "<leader>ri";
         action = "<cmd>Refactor inline_var<CR>";
         options = {
-          desc = "Inline var";
+          desc = "Inline Variable";
         };
       }
       {
@@ -80,15 +83,17 @@
         key = "<leader>rI";
         action = "<cmd>Refactor inline_func<CR>";
         options = {
-          desc = "Inline Func";
+          desc = "Inline Function";
         };
       }
+
+      # Block operations (normal mode)
       {
         mode = "n";
         key = "<leader>rb";
         action = "<cmd>Refactor extract_block<CR>";
         options = {
-          desc = "Extract block";
+          desc = "Extract Block";
         };
       }
       {
@@ -96,7 +101,7 @@
         key = "<leader>rB";
         action = "<cmd>Refactor extract_block_to_file<CR>";
         options = {
-          desc = "Extract block to file";
+          desc = "Extract Block to File";
         };
       }
 
