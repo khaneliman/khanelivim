@@ -101,6 +101,7 @@
           };
           json = [ "jq" ];
           html = [ "prettierd" ];
+          http = [ "kulala-fmt" ];
           kdl = [ "kdlfmt" ];
           lua = [ "stylua" ];
           markdown = [ "deno_fmt" ];
@@ -109,6 +110,7 @@
             "isort"
             "ruff"
           ];
+          rest = [ "kulala-fmt" ];
           rust = [ "rustfmt" ];
           sh = [
             "shellcheck"
@@ -163,6 +165,7 @@
           isort.command = lib.getExe pkgs.isort;
           jq.command = lib.getExe pkgs.jq;
           kdlfmt.command = lib.getExe pkgs.kdlfmt;
+          kulala-fmt.command = lib.getExe pkgs.kulala-fmt;
           nixfmt.command = lib.getExe pkgs.nixfmt;
           prettierd.command = lib.getExe pkgs.prettierd;
           ruff.command = lib.getExe pkgs.ruff;
