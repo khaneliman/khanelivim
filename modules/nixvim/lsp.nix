@@ -64,6 +64,7 @@
       java_language_server.enable = !config.plugins.jdtls.enable;
       jdtls.enable = !config.plugins.jdtls.enable;
       jsonls.enable = true;
+      kulala_ls.enable = true;
       lua_ls.enable = true;
       marksman.enable = true;
       nushell.enable = true;
