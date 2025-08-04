@@ -148,7 +148,7 @@ in
 
       settings = {
         ring = {
-          history_length = 100;
+          history_length = 10;
           storage = "sqlite";
           storage_path.__raw = "vim.fn.stdpath('data') .. '/databases/yanky.db'";
           sync_with_numbered_registers = true;
