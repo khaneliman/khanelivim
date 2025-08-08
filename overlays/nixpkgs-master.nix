@@ -20,11 +20,5 @@ in
     #
     # Specific package overlays need to go in here to not get ignored
     #
-    nvim-notify = vimPlugins.nvim-notify.overrideAttrs {
-      nvimSkipModules = prev.lib.optionals prev.stdenv.hostPlatform.isDarwin [
-        # FIXME: Fzf-lua address in use error we disabled in `luaPackages` check is also here
-        "notify.integrations.fzf"
-      ];
-    };
   };
 }
