@@ -77,8 +77,7 @@
       sqls.enable = true;
       statix.enable = true;
       stylelint_lsp.enable = true;
-      # FIXME: nodejs broken on darwin
-      tailwindcss.enable = pkgs.stdenv.hostPlatform.isLinux;
+      tailwindcss.enable = true;
       taplo.enable = true;
       ts_ls.enable = !config.plugins.typescript-tools.enable;
       yamlls.enable = true;
