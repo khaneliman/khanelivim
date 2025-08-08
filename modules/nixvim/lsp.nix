@@ -47,6 +47,10 @@
       dockerls.enable = true;
       # FIXME: [lspconfig] Unable to find ESLint library.
       # eslint.enable = true;
+      emmylua_ls = {
+        enable = true;
+        package = pkgs.emmylua-ls;
+      };
       fish_lsp.enable = true;
       fsautocomplete.enable = true;
       fsharp_language_server = {
@@ -65,7 +69,6 @@
       jdtls.enable = !config.plugins.jdtls.enable;
       jsonls.enable = true;
       kulala_ls.enable = true;
-      lua_ls.enable = true;
       marksman.enable = true;
       nushell.enable = true;
       pyright.enable = true;
