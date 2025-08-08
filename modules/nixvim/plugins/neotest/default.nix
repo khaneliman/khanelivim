@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   self,
   system,
   ...
@@ -122,8 +121,7 @@
         plenary.enable = config.plugins.neotest.enable;
         python.enable = config.plugins.neotest.enable;
         # rust.enable = config.plugins.neotest.enable;
-        # FIXME: broken nixpkgs
-        zig.enable = config.plugins.neotest.enable && pkgs.stdenv.hostPlatform.isLinux;
+        zig.enable = config.plugins.neotest.enable;
       };
     };
 
