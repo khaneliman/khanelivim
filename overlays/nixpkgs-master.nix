@@ -15,6 +15,9 @@ in
   inherit (nixpkgs-master-packages)
     claude-code
     luaPackages
+
+    # TODO: remove when it hits channel
+    emmylua-ls
     ;
   vimPlugins = vimPlugins // {
     #
