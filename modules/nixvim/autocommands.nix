@@ -10,8 +10,11 @@
     # Handle performance on large files
     (lib.mkIf
       (
-        (!config.plugins.snacks.enable)
-        || (config.plugins.snacks.enable && (!config.plugins.snacks.settings.bigfile.enabled))
+        (!config.plugins.faster.enable)
+        && (
+          (!config.plugins.snacks.enable)
+          || (config.plugins.snacks.enable && (!config.plugins.snacks.settings.bigfile.enabled))
+        )
       )
       {
         event = "BufEnter";
