@@ -164,7 +164,7 @@ NIXVIM_TEMPLATE = """{ config, lib, ... }:
   };
 
   # TODO: Add keymaps for the plugin
-  keymaps = lib.optional config.plugins.PLUGIN_NAME.enable [
+  keymaps = lib.optionals config.plugins.PLUGIN_NAME.enable [
     {
       mode = "n";
       key = "<leader>XX";
