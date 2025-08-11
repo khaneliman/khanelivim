@@ -10,7 +10,8 @@
 
       settings = {
         bigfile = {
-          enabled = true;
+          enabled = !config.plugins.faster.enable;
+
           size = 1024 * 1024; # 1MB
           setup.__raw = ''
             function(ctx)
