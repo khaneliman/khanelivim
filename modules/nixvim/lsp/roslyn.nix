@@ -1,7 +1,9 @@
 { lib, pkgs, ... }:
 {
   lsp.servers.roslyn_ls = {
-    enable = true;
+    # FIXME: broken nixpkgs
+    # enable = true;
+    enable = pkgs.stdenv.hostPlatform.isLinux;
 
     settings = {
       cmd = [
