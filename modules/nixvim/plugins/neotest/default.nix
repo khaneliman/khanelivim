@@ -6,7 +6,7 @@
   ...
 }:
 {
-  extraPlugins = [
+  extraPlugins = lib.mkIf config.plugins.neotest.enable [
     self.packages.${system}.neotest-catch2
   ];
 
