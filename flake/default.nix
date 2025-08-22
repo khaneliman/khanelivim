@@ -6,6 +6,7 @@
 }:
 {
   imports = [
+    ./apps.nix
     ./nixvim.nix
     ./overlays.nix
     ./pkgs-by-name.nix
