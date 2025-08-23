@@ -3,7 +3,10 @@
   plugins = {
 
     faster = {
-      enable = true;
+      enable = lib.elem config.khanelivim.performance.optimizer [
+        "faster"
+        "both"
+      ];
 
       lazyLoad.settings = {
         event = [

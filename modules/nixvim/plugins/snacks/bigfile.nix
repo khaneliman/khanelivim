@@ -10,7 +10,10 @@
 
       settings = {
         bigfile = {
-          enabled = !config.plugins.faster.enable;
+          enabled = lib.elem config.khanelivim.performance.optimizer [
+            "snacks"
+            "both"
+          ];
 
           size = 1024 * 1024; # 1MB
           setup.__raw = ''
