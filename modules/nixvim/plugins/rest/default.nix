@@ -1,6 +1,6 @@
 { config, lib, ... }:
 {
-  plugins.rest.enable = config.plugins.treesitter.enable && !config.plugins.kulala.enable;
+  plugins.rest.enable = config.khanelivim.editor.httpClient == "rest";
 
   # NOTE: Works with files with .http file extension / http filetype
   # More example: https://github.com/rest-nvim/rest.nvim/tree/main/spec/examples

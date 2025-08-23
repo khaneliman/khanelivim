@@ -19,7 +19,7 @@
 
   plugins = {
     kulala = {
-      enable = true;
+      enable = config.khanelivim.editor.httpClient == "kulala";
 
       settings = {
         display_mode = "float";
