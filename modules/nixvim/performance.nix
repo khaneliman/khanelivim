@@ -1,11 +1,13 @@
 {
+  config,
+  lib,
   pkgs,
   self,
   system,
   ...
 }:
 {
-  performance = {
+  performance = lib.mkIf config.khanelivim.performance.optimizeEnable {
     byteCompileLua = {
       enable = true;
       configs = true;

@@ -14,6 +14,7 @@ in
     ) [ ] (readDir by-name))
     ++ [
       # keep-sorted start
+      ../khanelivim/options.nix
       ./autocommands.nix
       ./diagnostics.nix
       ./ft.nix
