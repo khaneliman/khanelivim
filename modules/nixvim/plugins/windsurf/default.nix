@@ -7,7 +7,7 @@
 {
   plugins = {
     windsurf-nvim = {
-      enable = !config.plugins.copilot-lua.enable;
+      enable = config.khanelivim.ai.provider == "windsurf";
 
       settings = {
         enable_chat = true;
@@ -22,7 +22,7 @@
     };
   };
 
-  keymaps = lib.mkIf config.plugins.windsurf-nvim.enable [
+  keymaps = lib.mkIf (config.khanelivim.ai.provider == "windsurf") [
     {
       mode = "n";
       key = "<leader>aC";
