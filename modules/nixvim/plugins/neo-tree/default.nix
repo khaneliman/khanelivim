@@ -1,6 +1,6 @@
 { config, lib, ... }:
 {
-  keymaps = lib.mkIf config.plugins.neo-tree.enable [
+  keymaps = lib.mkIf (config.khanelivim.editor.fileManager == "neo-tree") [
     {
       mode = "n";
       key = "<leader>E";
@@ -13,7 +13,7 @@
 
   # TODO:https://github.com/GustavEikaas/easy-dotnet.nvim?tab=readme-ov-file#integrating-with-neo-tree
   plugins.neo-tree = {
-    enable = !config.plugins.yazi.enable;
+    enable = config.khanelivim.editor.fileManager == "neo-tree";
 
     closeIfLastWindow = true;
 
