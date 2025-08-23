@@ -2,7 +2,7 @@
 {
   plugins = {
     overseer = {
-      enable = true;
+      enable = config.khanelivim.tasks.runner == "overseer";
 
       lazyLoad.settings.cmd = [
         "OverseerOpen"
@@ -22,7 +22,7 @@
     };
   };
 
-  keymaps = lib.mkIf config.plugins.overseer.enable [
+  keymaps = lib.mkIf (config.khanelivim.tasks.runner == "overseer") [
     {
       mode = "n";
       key = "<leader>RT";

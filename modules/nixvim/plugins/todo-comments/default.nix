@@ -22,25 +22,20 @@
           + lib.optionalString config.plugins.telescope.enable ''
             require('lz.n').trigger_load('telescope')
           ''
-          +
-            lib.optionalString
-              (config.plugins.snacks.enable && lib.hasAttr "picker" config.plugins.snacks.settings)
-              ''
-                require('lz.n').trigger_load('snacks.nvim')
-              ''
+          + lib.optionalString (config.khanelivim.picker.engine == "snacks") ''
+            require('lz.n').trigger_load('snacks.nvim')
+          ''
           + ''
             end
           ''
         );
-        keys =
-          lib.mkIf (config.plugins.snacks.enable && lib.hasAttr "picker" config.plugins.snacks.settings)
-            [
-              {
-                __unkeyed-1 = "<leader>ft";
-                __unkeyed-2 = ''<CMD>lua Snacks.picker.todo_comments({ keywords = { "TODO", "FIX", "FIXME" }})<CR>'';
-                desc = "Find TODOs";
-              }
-            ];
+        keys = lib.mkIf (config.khanelivim.picker.engine == "snacks") [
+          {
+            __unkeyed-1 = "<leader>ft";
+            __unkeyed-2 = ''<CMD>lua Snacks.picker.todo_comments({ keywords = { "TODO", "FIX", "FIXME" }})<CR>'';
+            desc = "Find TODOs";
+          }
+        ];
         cmd = [
           "TodoLocList"
           "TodoQuickFix"
@@ -54,42 +49,23 @@
     keymaps = {
       todoTrouble.key = lib.mkIf config.plugins.trouble.enable "<leader>xq";
       # Fallback if snacks picker not enabled
-      todoFzfLua =
-        lib.mkIf
-          (
-            config.plugins.fzf-lua.enable
-            && (
-              !config.plugins.snacks.enable
-              || (config.plugins.snacks.enable && !lib.hasAttr "picker" config.plugins.snacks.settings)
-            )
-          )
-          {
-            key = "<leader>ft";
-            keywords = [
-              "TODO"
-              "FIX"
-              "FIXME"
-            ];
-          };
+      todoFzfLua = lib.mkIf (config.khanelivim.picker.engine == "fzf") {
+        key = "<leader>ft";
+        keywords = [
+          "TODO"
+          "FIX"
+          "FIXME"
+        ];
+      };
       # Fallback if no others enabled
-      todoTelescope =
-        lib.mkIf
-          (
-            config.plugins.telescope.enable
-            && !config.plugins.fzf-lua.enable
-            && (
-              !config.plugins.snacks.enable
-              || (config.plugins.snacks.enable && !lib.hasAttr "picker" config.plugins.snacks.settings)
-            )
-          )
-          {
-            key = "<leader>ft";
-            keywords = [
-              "TODO"
-              "FIX"
-              "FIXME"
-            ];
-          };
+      todoTelescope = lib.mkIf (config.khanelivim.picker.engine == "telescope") {
+        key = "<leader>ft";
+        keywords = [
+          "TODO"
+          "FIX"
+          "FIXME"
+        ];
+      };
     };
   };
 }

@@ -78,22 +78,21 @@
       };
 
       settings = {
-        adapters =
-          lib.optionals config.plugins.rustaceanvim.enable [
-            # Lua
-            ''require('rustaceanvim.neotest')''
-          ]
-          ++ [
-            # Catch2 adapter for C++ testing
-            ''require('neotest-catch2')''
-          ];
+        adapters = [
+          # Catch2 adapter for C++ testing
+          ''require('neotest-catch2')''
+        ]
+        ++ lib.optionals config.plugins.rustaceanvim.enable [
+          # Lua
+          ''require('rustaceanvim.neotest')''
+        ];
       };
 
       adapters = lib.mkIf config.plugins.treesitter.enable {
-        bash.enable = config.plugins.neotest.enable;
-        deno.enable = config.plugins.neotest.enable;
+        bash.enable = true;
+        deno.enable = true;
         dotnet = {
-          inherit (config.plugins.neotest) enable;
+          enable = true;
 
           settings = {
             dap = {
@@ -103,8 +102,8 @@
             };
           };
         };
-        go.enable = config.plugins.neotest.enable;
-        java.enable = config.plugins.neotest.enable;
+        go.enable = true;
+        java.enable = true;
         # NOTE: just run NeotestJava setup
         # java.settings = {
         # Not sure why this wasn't working
@@ -116,12 +115,12 @@
         #     }
         #     .outPath;
         # };
-        jest.enable = config.plugins.neotest.enable;
-        playwright.enable = config.plugins.neotest.enable;
-        plenary.enable = config.plugins.neotest.enable;
-        python.enable = config.plugins.neotest.enable;
-        # rust.enable = config.plugins.neotest.enable;
-        zig.enable = config.plugins.neotest.enable;
+        jest.enable = true;
+        playwright.enable = true;
+        plenary.enable = true;
+        python.enable = true;
+        # rust.enable = true;
+        zig.enable = true;
       };
     };
 
