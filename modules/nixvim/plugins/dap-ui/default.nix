@@ -6,7 +6,7 @@
 {
   plugins = {
     dap-ui = {
-      enable = true;
+      enable = config.khanelivim.editor.debugUI == "dap-ui";
 
       lazyLoad.settings = {
         before.__raw = lib.mkIf config.plugins.lz-n.enable ''
