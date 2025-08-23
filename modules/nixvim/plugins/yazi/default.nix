@@ -1,7 +1,7 @@
 { config, lib, ... }:
 {
   plugins.yazi = {
-    enable = true;
+    enable = config.khanelivim.editor.fileManager == "yazi";
 
     lazyLoad = {
       settings = {
@@ -12,7 +12,7 @@
     };
   };
 
-  keymaps = lib.optionals config.plugins.yazi.enable [
+  keymaps = lib.optionals (config.khanelivim.editor.fileManager == "yazi") [
     {
       mode = "n";
       key = "<leader>e";
