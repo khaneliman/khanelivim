@@ -2,7 +2,7 @@
 {
   plugins = {
     spectre = {
-      enable = !config.plugins.grug-far.enable;
+      enable = config.khanelivim.editor.searchPlugin == "spectre";
       lazyLoad = {
         settings = {
           cmd = "Spectre";
@@ -11,7 +11,7 @@
     };
   };
 
-  keymaps = lib.mkIf config.plugins.spectre.enable [
+  keymaps = lib.mkIf (config.khanelivim.editor.searchPlugin == "spectre") [
     {
       mode = "n";
       key = "<leader>rs";
