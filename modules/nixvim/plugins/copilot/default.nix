@@ -23,20 +23,20 @@
 
   plugins = {
     copilot-lua = {
-      enable = true;
+      enable = config.khanelivim.ai.provider == "copilot";
 
       lazyLoad.settings.event = [ "InsertEnter" ];
 
       settings = {
-        panel.enabled = !config.plugins.blink-cmp-copilot.enable;
-        suggestion.enabled = !config.plugins.blink-cmp-copilot.enable;
+        panel.enabled = config.khanelivim.completion.engine != "blink";
+        suggestion.enabled = config.khanelivim.completion.engine != "blink";
         copilot_node_command = lib.getExe pkgs.nodejs;
         lsp_binary = lib.getExe pkgs.copilot-language-server;
       };
     };
 
     copilot-chat = {
-      inherit (config.plugins.copilot-lua) enable;
+      enable = config.khanelivim.ai.provider == "copilot" && config.khanelivim.ai.chatEnable;
 
       lazyLoad.settings.cmd = [
         "CopilotChat"
