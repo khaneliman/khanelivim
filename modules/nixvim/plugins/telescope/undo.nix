@@ -7,9 +7,7 @@
   plugins.telescope = {
     extensions = {
       undo = {
-        enable =
-          !config.plugins.snacks.enable
-          || (config.plugins.snacks.enable && !lib.hasAttr "picker" config.plugins.snacks.settings);
+        enable = config.khanelivim.picker.engine == "telescope";
         settings = {
           side_by_side = true;
           layout_strategy = "vertical";

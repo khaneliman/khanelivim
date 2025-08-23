@@ -16,14 +16,17 @@
     '';
   };
 
-  keymaps = lib.mkIf (config.plugins.telescope.enable && (!config.plugins.overseer.enable)) [
-    {
-      mode = "n";
-      key = "<leader>RT";
-      action = "<cmd>Telescope vstask tasks<CR>";
-      options = {
-        desc = "Find tasks";
-      };
-    }
-  ];
+  keymaps =
+    lib.mkIf
+      (config.khanelivim.picker.engine == "telescope" && config.khanelivim.tasks.runner == "vs-tasks")
+      [
+        {
+          mode = "n";
+          key = "<leader>RT";
+          action = "<cmd>Telescope vstask tasks<CR>";
+          options = {
+            desc = "Find tasks";
+          };
+        }
+      ];
 }

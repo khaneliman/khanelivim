@@ -7,9 +7,7 @@
   plugins.telescope = {
     extensions = {
       file-browser = {
-        enable =
-          !config.plugins.snacks.enable
-          || (config.plugins.snacks.enable && !lib.hasAttr "picker" config.plugins.snacks.settings);
+        enable = config.khanelivim.picker.engine == "telescope";
         settings = {
           hidden = true;
         };
