@@ -2,8 +2,6 @@
   config,
   lib,
   pkgs,
-  self,
-  system,
   ...
 }:
 {
@@ -24,7 +22,6 @@
         "nvim-treesitter"
         mini-nvim
         overseer-nvim
-        self.packages.${system}.tree-sitter-norg-meta
         vs-tasks-nvim
       ];
     };

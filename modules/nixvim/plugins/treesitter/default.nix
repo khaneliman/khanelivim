@@ -6,10 +6,6 @@
   ...
 }:
 {
-  extraPlugins = [
-    self.packages.${system}.tree-sitter-norg-meta
-  ];
-
   plugins = {
     treesitter = {
       enable = true;
