@@ -6,10 +6,6 @@
   ...
 }:
 {
-  extraPlugins = [
-    self.packages.${system}.tree-sitter-kulala-http
-  ];
-
   filetype = {
     extension = {
       http = "http";
