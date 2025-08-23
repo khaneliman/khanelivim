@@ -15,7 +15,9 @@
         description = "AI completion provider to use";
       };
 
-      chatEnable = lib.mkEnableOption "AI chat functionality" // { default = true; };
+      chatEnable = lib.mkEnableOption "AI chat functionality" // {
+        default = true;
+      };
     };
 
     completion = {
@@ -55,7 +57,11 @@
         description = "Performance optimization strategy for large files";
       };
 
-      optimizeEnable = lib.mkEnableOption "nixvim performance optimizations (byte compilation, plugin combining)" // { default = true; };
+      optimizeEnable =
+        lib.mkEnableOption "nixvim performance optimizations (byte compilation, plugin combining)"
+        // {
+          default = true;
+        };
     };
 
     loading = {
