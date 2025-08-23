@@ -1,6 +1,5 @@
 {
   config,
-  lib,
   pkgs,
   ...
 }:
@@ -9,7 +8,7 @@
 
   plugins = {
     wilder = {
-      enable = lib.mkIf (!config.plugins.noice.enable) true;
+      enable = config.khanelivim.editor.commandlineUI == "wilder";
 
       modes = [
         "/"

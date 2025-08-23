@@ -2,7 +2,7 @@
 {
   plugins = {
     noice = {
-      enable = true;
+      enable = config.khanelivim.editor.commandlineUI == "noice";
 
       lazyLoad.settings.event = "DeferredUIEnter";
 
