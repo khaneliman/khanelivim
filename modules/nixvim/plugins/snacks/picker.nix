@@ -13,7 +13,7 @@
     snacks = {
       enable = true;
 
-      settings = {
+      settings = lib.mkIf (config.khanelivim.picker.engine == "snacks") {
         picker = {
           actions = {
             calculate_file_truncate_width.__raw = ''
