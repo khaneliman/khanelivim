@@ -2,7 +2,7 @@
 {
   plugins = {
     diffview = {
-      enable = !config.plugins.unified.enable;
+      enable = config.khanelivim.editor.diffViewer == "diffview";
 
       # TODO: migrate to mkNeovimPlugin
       # lazyLoad = {

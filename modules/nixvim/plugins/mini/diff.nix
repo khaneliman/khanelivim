@@ -4,7 +4,7 @@
     mini = {
       enable = true;
 
-      modules = lib.mkIf (!config.plugins.unified.enable) {
+      modules = lib.mkIf (config.khanelivim.editor.diffViewer == "mini-diff") {
         diff = {
           view = {
             style = "sign";

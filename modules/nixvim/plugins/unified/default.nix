@@ -8,7 +8,7 @@
   # TODO: Consider upstreaming this module to nixvim
   options.plugins.unified = {
     enable = lib.mkEnableOption "unified" // {
-      default = true;
+      default = config.khanelivim.editor.diffViewer == "unified";
     };
 
     package = lib.mkPackageOption pkgs.vimPlugins "unified" {
