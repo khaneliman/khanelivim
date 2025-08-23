@@ -2,11 +2,11 @@
 {
   plugins = {
     hop = {
-      enable = !config.plugins.flash.enable;
+      enable = config.khanelivim.editor.motionPlugin == "hop";
     };
   };
 
-  keymaps = lib.optionals config.plugins.hop.enable [
+  keymaps = lib.optionals (config.khanelivim.editor.motionPlugin == "hop") [
     {
       key = "f";
       action.__raw = ''
