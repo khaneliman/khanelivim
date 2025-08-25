@@ -41,7 +41,8 @@
       angularls.enable = true;
       bashls.enable = true;
       biome.enable = true;
-      cmake.enable = true;
+      # FIXME: broken upstream
+      # cmake.enable = true;
       cssls.enable = true;
       dockerls.enable = true;
       # FIXME: [lspconfig] Unable to find ESLint library.
@@ -57,10 +58,11 @@
         # TODO: package FSharpLanguageServer
         # cmd = [ "${pkgs.fsharp-language-server}/FSharpLanguageServer.dll" ];
       };
-      gdscript = {
-        enable = true;
-        package = pkgs.gdtoolkit_4;
-      };
+      # FIXME: broken upstream
+      # gdscript = {
+      #   enable = true;
+      #   package = pkgs.gdtoolkit_4;
+      # };
 
       gopls.enable = true;
       html.enable = true;

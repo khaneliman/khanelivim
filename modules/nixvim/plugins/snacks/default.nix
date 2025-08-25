@@ -23,7 +23,8 @@
     # FIXME: pulls in chromium??
     # mermaid-cli
     # LaTeX
-    tectonic
+    # FIXME: broken
+    # tectonic
   ];
 
   plugins = {
