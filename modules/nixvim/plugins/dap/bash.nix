@@ -4,11 +4,7 @@
   ...
 }:
 {
-  extraPackages =
-    with pkgs;
-    lib.optionals pkgs.stdenv.hostPlatform.isLinux [
-      bashdb
-    ];
+  extraPackages = lib.optionals pkgs.stdenv.hostPlatform.isLinux [ pkgs.bashdb ];
 
   plugins = {
     dap = {

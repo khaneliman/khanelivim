@@ -20,9 +20,7 @@
         end
       '';
 
-  extraPlugins = with pkgs.vimPlugins; [
-    one-small-step-for-vimkind
-  ];
+  extraPlugins = [ pkgs.vimPlugins.one-small-step-for-vimkind ];
 
   plugins = {
     dap = {

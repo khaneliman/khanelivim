@@ -19,7 +19,7 @@
       coreutils
       lldb
     ]
-    ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
+    ++ lib.optionals stdenv.hostPlatform.isLinux [
       gdb
     ];
 
