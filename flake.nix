@@ -2,12 +2,15 @@
   description = "A home-manager template providing useful tools & settings for Nix-based development";
 
   inputs = {
-    # Principle inputs
+    # Core Nix ecosystem
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs-master.url = "github:nixos/nixpkgs";
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
+
+    # Applications & packages
     nixvim = {
       url = "github:nix-community/nixvim";
       inputs = {
@@ -19,9 +22,6 @@
       };
     };
     pkgs-by-name-for-flake-parts.url = "github:drupol/pkgs-by-name-for-flake-parts";
-
-    # Software inputs
-    nixpkgs-master.url = "github:nixos/nixpkgs";
   };
 
   nixConfig = {
@@ -45,7 +45,8 @@
         "aarch64-darwin"
         "x86_64-darwin"
       ];
-
-      imports = [ ./flake ];
+      imports = [
+        ./flake
+      ];
     };
 }
