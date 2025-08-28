@@ -4,7 +4,7 @@
   ...
 }:
 {
-  extraPlugins = with pkgs.vimPlugins; [ cpsm ];
+  extraPlugins = [ pkgs.vimPlugins.cpsm ];
 
   plugins = {
     wilder = {

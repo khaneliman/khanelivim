@@ -11,7 +11,7 @@
           nixfmt
           statix
           python3
-          (pkgs.writeShellScriptBin "new-plugin" ''
+          (writeShellScriptBin "new-plugin" ''
             if [ $# -ne 2 ]; then
               echo "Usage: new-plugin <plugin-name> <template-type>"
               echo "Template types: custom, custom-lazy, nixvim"
