@@ -14,6 +14,7 @@ in
 {
   inherit (nixpkgs-master-packages)
     claude-code
+    neovim-unwrapped
     ;
 
   luaPackages = luaPackages // {
