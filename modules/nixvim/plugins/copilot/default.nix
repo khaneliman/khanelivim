@@ -28,8 +28,44 @@
       lazyLoad.settings.event = [ "InsertEnter" ];
 
       settings = {
-        panel.enabled = config.khanelivim.completion.engine != "blink";
-        suggestion.enabled = config.khanelivim.completion.engine != "blink";
+        suggestion = {
+          enabled = true;
+          auto_trigger = true;
+          keymap = {
+            accept = "<M-l>";
+            accept_word = false;
+            accept_line = false;
+            next = "<M-j>";
+            prev = "<M-k>";
+            dismiss = "<M-h>";
+          };
+        };
+
+        panel = {
+          enabled = config.khanelivim.completion.engine != "blink";
+          auto_refresh = true;
+          keymap = {
+            jump_prev = "[[";
+            jump_next = "]]";
+            accept = "<cr>";
+            refresh = "gr";
+            open = "<M-CR>";
+          };
+          layout = {
+            position = "bottom";
+            ratio = 0.4;
+          };
+        };
+
+        filetypes = {
+          yaml = false;
+          markdown = false;
+          json = false;
+          help = false;
+          gitcommit = false;
+          gitrebase = false;
+        };
+
         server = {
           type = "binary";
           custom_server_filepath = lib.getExe pkgs.copilot-language-server;
@@ -170,4 +206,27 @@
       };
     }
   ];
+
+  autoCmd =
+    lib.mkIf (config.plugins.copilot-lua.enable && config.khanelivim.completion.engine == "blink")
+      [
+        {
+          event = "User";
+          pattern = "BlinkCmpMenuOpen";
+          callback.__raw = ''
+            function()
+              vim.b.copilot_suggestion_hidden = true
+            end
+          '';
+        }
+        {
+          event = "User";
+          pattern = "BlinkCmpMenuClose";
+          callback.__raw = ''
+            function()
+              vim.b.copilot_suggestion_hidden = false
+            end
+          '';
+        }
+      ];
 }
