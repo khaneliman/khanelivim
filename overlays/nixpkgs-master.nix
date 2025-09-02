@@ -14,7 +14,10 @@ in
 {
   inherit (nixpkgs-master-packages)
     claude-code
+
+    # TODO: remove after reaching channel
     neovim-unwrapped
+    roslyn-ls
     ;
 
   luaPackages = luaPackages // {
