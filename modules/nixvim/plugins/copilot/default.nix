@@ -30,8 +30,10 @@
       settings = {
         panel.enabled = config.khanelivim.completion.engine != "blink";
         suggestion.enabled = config.khanelivim.completion.engine != "blink";
-        copilot_node_command = lib.getExe pkgs.nodejs;
-        lsp_binary = lib.getExe pkgs.copilot-language-server;
+        server = {
+          type = "binary";
+          custom_server_filepath = lib.getExe pkgs.copilot-language-server;
+        };
       };
     };
 
