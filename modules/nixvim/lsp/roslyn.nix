@@ -9,7 +9,11 @@
         "--logLevel"
         "Information"
         "--extensionLogDirectory"
-        "fs.joinpath(uv.os_tmpdir() \"roslyn_ls/logs\")"
+      ]
+      ++ [
+        (lib.nixvim.mkRaw ''vim.fn.stdpath("cache") .. "/roslyn_ls/logs"'')
+      ]
+      ++ [
         "--stdio"
       ];
     };
