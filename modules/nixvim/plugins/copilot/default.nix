@@ -32,12 +32,12 @@
           enabled = true;
           auto_trigger = true;
           keymap = {
-            accept = "<M-l>";
-            accept_word = false;
-            accept_line = false;
-            next = "<M-j>";
-            prev = "<M-k>";
-            dismiss = "<M-h>";
+            accept = "<C-y>";
+            accept_word = "<M-w>";
+            accept_line = "<M-e>";
+            next = "<M-]>";
+            prev = "<M-[>";
+            dismiss = "<C-n>";
           };
         };
 
