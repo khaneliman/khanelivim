@@ -17,6 +17,10 @@
     kulala = {
       enable = config.khanelivim.editor.httpClient == "kulala";
 
+      lazyLoad.settings = {
+        ft = [ "http" ];
+      };
+
       settings = {
         display_mode = "float";
         split_direction = "vertical";
