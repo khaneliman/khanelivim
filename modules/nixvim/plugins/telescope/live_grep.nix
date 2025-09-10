@@ -4,12 +4,12 @@
   ...
 }:
 {
-  plugins.telescope = {
+  plugins.telescope = lib.mkIf (config.khanelivim.picker.engine == "telescope") {
     extensions = {
       live-grep-args.enable = true;
     };
 
-    keymaps = lib.mkIf (config.khanelivim.picker.engine == "telescope") {
+    keymaps = {
       "<leader>fw" = lib.mkIf (!config.plugins.telescope.extensions.live-grep-args.enable) {
         action = "live_grep";
         options.desc = "Live grep";

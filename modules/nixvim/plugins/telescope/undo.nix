@@ -4,10 +4,10 @@
   ...
 }:
 {
-  plugins.telescope = {
+  plugins.telescope = lib.mkIf (config.khanelivim.picker.engine == "telescope") {
     extensions = {
       undo = {
-        enable = config.khanelivim.picker.engine == "telescope";
+        enable = true;
         settings = {
           side_by_side = true;
           layout_strategy = "vertical";
@@ -19,14 +19,14 @@
     };
   };
 
-  keymaps = lib.mkIf config.plugins.telescope.enable [
-    (lib.mkIf config.plugins.telescope.extensions.undo.enable {
+  keymaps = lib.mkIf (config.khanelivim.picker.engine == "telescope") [
+    {
       mode = "n";
       key = "<leader>fu";
       action = "<cmd>Telescope undo<CR>";
       options = {
         desc = "List undo history";
       };
-    })
+    }
   ];
 }

@@ -4,19 +4,19 @@
   ...
 }:
 {
-  plugins.telescope = {
+  plugins.telescope = lib.mkIf (config.khanelivim.picker.engine == "telescope") {
     extensions = {
       frecency = {
-        enable = config.khanelivim.picker.engine == "telescope";
+        enable = true;
 
         # TODO: migrate to mkNeovimPlugin
         # lazyLoad = {
         #   settings = {
-        #     before.__raw = lib.mkIf config.plugins.telescope.enable ''
+        #     before.__raw = ''
         #       require('lz.n').trigger_load('telescope')
         #     '';
         #     cmd = "Telescope frecency";
-        #     keys = lib.mkIf config.plugins.telescope.enable [
+        #     keys = [
         #       {
         #         __unkeyed-1 = "<leader>fO";
         #         __unkeyed-2 = "<cmd>Telescope frecency<CR>";
@@ -33,14 +33,14 @@
     };
   };
 
-  keymaps = lib.mkIf config.plugins.telescope.enable [
-    (lib.mkIf config.plugins.telescope.extensions.frecency.enable {
+  keymaps = lib.mkIf (config.khanelivim.picker.engine == "telescope") [
+    {
       mode = "n";
       key = "<leader>fO";
       action = "<cmd>Telescope frecency<CR>";
       options = {
         desc = "Find Frequent Files";
       };
-    })
+    }
   ];
 }
