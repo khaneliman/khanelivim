@@ -1,10 +1,13 @@
 {
   config,
+  lib,
   pkgs,
   ...
 }:
 {
-  extraPlugins = [ pkgs.vimPlugins.cpsm ];
+  extraPlugins = lib.optionals (config.khanelivim.editor.commandlineUI == "wilder") [
+    pkgs.vimPlugins.cpsm
+  ];
 
   plugins = {
     wilder = {
