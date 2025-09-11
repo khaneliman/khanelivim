@@ -116,8 +116,7 @@
         #     .outPath;
         # };
         jest.enable = true;
-        # NOTE: neotest-playwright has telescope-nvim as a hard dependency in nixpkgs
-        playwright.enable = config.khanelivim.picker.engine == "telescope";
+        playwright.enable = true;
         plenary.enable = true;
         python.enable = true;
         # rust.enable = true;
