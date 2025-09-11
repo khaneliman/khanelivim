@@ -1,11 +1,8 @@
 { config, lib, ... }:
 {
   plugins = {
-    # NOTE: easy-dotnet-nvim has telescope-nvim as a hard dependency in nixpkgs
-    # This means telescope will be installed even if not using telescope picker
-    # Only enable when telescope is the picker to avoid combinePlugins conflicts
     easy-dotnet = {
-      enable = config.khanelivim.picker.engine == "telescope";
+      enable = true;
 
       lazyLoad.settings.ft = [
         "cs"
