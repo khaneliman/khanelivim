@@ -12,7 +12,6 @@
     ./manix.nix
     ./ui-select.nix
     ./undo.nix
-    ./vs-tasks.nix
   ];
 
   plugins.telescope = {
