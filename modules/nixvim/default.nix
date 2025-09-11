@@ -29,6 +29,9 @@ in
 
   nixpkgs = {
     overlays = lib.attrValues self.overlays;
-    config.allowUnfree = true;
+    config = {
+      allowAliases = false;
+      allowUnfree = true;
+    };
   };
 }
