@@ -44,7 +44,11 @@
       # FIXME: broken upstream
       # cmake.enable = true;
       cssls.enable = true;
-      dockerls.enable = true;
+      dockerls = {
+        enable = true;
+        # FIXME: nixvim alias
+        package = pkgs.dockerfile-language-server;
+      };
       # FIXME: [lspconfig] Unable to find ESLint library.
       # eslint.enable = true;
       emmylua_ls = {
