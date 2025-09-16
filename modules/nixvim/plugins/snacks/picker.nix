@@ -15,6 +15,14 @@
 
       settings = lib.mkIf (config.khanelivim.picker.engine == "snacks") {
         picker = {
+          sources = {
+            noice = lib.mkIf config.plugins.noice.enable {
+              confirm = [
+                "yank"
+                "close"
+              ];
+            };
+          };
           actions = {
             calculate_file_truncate_width.__raw = ''
               function(self)
