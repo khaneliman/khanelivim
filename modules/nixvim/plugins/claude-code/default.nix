@@ -1,12 +1,18 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 {
   plugins = {
     claude-code = {
       enable = true;
+      package = pkgs.vimPlugins.claude-code-nvim.overrideAttrs {
+        patches = [
+          ./unlist-buffer.patch
+        ];
+      };
       lazyLoad.settings.cmd = [
         "ClaudeCode"
         "ClaudeCodeContinue"
