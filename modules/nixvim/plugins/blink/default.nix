@@ -137,6 +137,11 @@
             };
             keymap = {
               preset = "enter";
+              "<C-.>" = [
+                "show"
+                "show_documentation"
+                "hide_documentation"
+              ];
               # NOTE: If you prefer Tab/S-Tab selection
               # But, find myself accidentally interrupting tabbing for movement
               # "<A-Tab>" = [
