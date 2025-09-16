@@ -7,7 +7,7 @@
 {
   plugins = {
     claude-code = {
-      enable = true;
+      # enable = true;
       package = pkgs.vimPlugins.claude-code-nvim.overrideAttrs {
         patches = [
           ./unlist-buffer.patch
