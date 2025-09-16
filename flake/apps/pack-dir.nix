@@ -53,6 +53,7 @@ _: {
                 main()
           ''
         );
+        meta.description = "Extract and print the Neovim package directory path";
       };
     };
 }

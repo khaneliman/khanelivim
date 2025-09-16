@@ -43,6 +43,7 @@ _: {
               '';
             }
           );
+          meta.description = "Update ${description} inputs";
         };
 
       groupApps = lib.mapAttrs mkUpdateApp inputGroups;
@@ -71,6 +72,7 @@ _: {
               '';
             }
           );
+          meta.description = "Update all flake inputs including development dependencies";
         };
       };
     };

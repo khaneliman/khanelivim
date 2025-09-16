@@ -119,6 +119,7 @@ _: {
                 main()
           ''
         );
+        meta.description = "Check and analyze tree-sitter grammar package sizes";
       };
     };
 }
