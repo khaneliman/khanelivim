@@ -92,5 +92,17 @@
       ];
       command = "setlocal spell spelllang=en_us";
     }
+
+    # Auto-reload files changed externally
+    {
+      event = [
+        "FocusGained"
+        "BufEnter"
+        "CursorHold"
+        "CursorHoldI"
+      ];
+      pattern = "*";
+      command = "if mode() != 'c' | checktime | endif";
+    }
   ];
 }
