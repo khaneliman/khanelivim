@@ -45,7 +45,8 @@
             enable = true;
             package = pkgs.nixfmt;
           };
-          # FIXME: removed???
+          # TODO: removed package because it wasn't safe enough
+          # Should re-visit sometime
           # nufmt.enable = true;
           ruff-check.enable = true;
           ruff-format.enable = true;
