@@ -56,8 +56,7 @@
         cmakelint.cmd = lib.getExe' pkgs.cmake-format "cmake-lint";
         deadnix.cmd = lib.getExe pkgs.deadnix;
         fish.cmd = lib.getExe pkgs.fish;
-        # FIXME: broken upstream
-        # gdlint.cmd = lib.getExe' pkgs.gdtoolkit_4 "gdlint";
+        gdlint.cmd = lib.getExe' pkgs.gdtoolkit_4 "gdlint";
         golangcilint.cmd = lib.getExe pkgs.golangci-lint;
         htmlhint.cmd = lib.getExe pkgs.htmlhint;
         jsonlint.cmd = lib.getExe pkgs.nodePackages.jsonlint;
