@@ -129,9 +129,7 @@
     matchtime = 1; # duration of that flashing n deci-seconds
     startofline = true; # motions like "G" also move to the first char
     report = 9001; # disable "x more/fewer lines" messages
-
-    # FIXME: double floating windows?
-    # winborder = "rounded"; # Border style for floating windows
+    winborder = "rounded"; # Border style for floating windows
 
     # Auto-reload files changed externally
     autoread = true;
