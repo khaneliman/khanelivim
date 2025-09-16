@@ -42,9 +42,6 @@
       ];
     };
 
-    # Enable autoread for auto_reload functionality
-    opts.autoread = true;
-
     extraPlugins = [
       config.plugins.opencode.package
     ];

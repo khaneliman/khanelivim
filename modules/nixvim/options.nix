@@ -132,5 +132,8 @@
 
     # FIXME: double floating windows?
     # winborder = "rounded"; # Border style for floating windows
+
+    # Auto-reload files changed externally
+    autoread = true;
   };
 }
