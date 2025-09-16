@@ -67,7 +67,28 @@
               };
             };
             completion = {
+              keyword = {
+                range = "full";
+              };
+              trigger = {
+                # show_on_x_blocked_trigger_characters = [
+                #   " "
+                #   ";"
+                # ];
+              };
               ghost_text.enabled = true;
+              accept.auto_brackets = {
+                override_brackets_for_filetypes = {
+                  lua = [
+                    "{"
+                    "}"
+                  ];
+                  nix = [
+                    "{"
+                    "}"
+                  ];
+                };
+              };
               documentation = {
                 auto_show = true;
                 window.border = "rounded";
@@ -79,6 +100,7 @@
               menu = {
                 border = "rounded";
                 draw = {
+                  snippet_indicator = "◦";
                   columns = [
                     {
                       __unkeyed-1 = "label";
