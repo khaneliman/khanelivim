@@ -41,8 +41,7 @@
       angularls.enable = true;
       bashls.enable = true;
       biome.enable = true;
-      # FIXME: broken upstream
-      # cmake.enable = true;
+      cmake.enable = true;
       cssls.enable = true;
       dockerls = {
         enable = true;
@@ -62,12 +61,10 @@
         # TODO: package FSharpLanguageServer
         # cmd = [ "${pkgs.fsharp-language-server}/FSharpLanguageServer.dll" ];
       };
-      # FIXME: broken upstream
-      # gdscript = {
-      #   enable = true;
-      #   package = pkgs.gdtoolkit_4;
-      # };
-
+      gdscript = {
+        enable = true;
+        package = pkgs.gdtoolkit_4;
+      };
       gopls.enable = true;
       html.enable = true;
       java_language_server.enable = !config.plugins.jdtls.enable;
