@@ -159,8 +159,7 @@
           csharpier.command = lib.getExe pkgs.csharpier;
           deno_fmt.command = lib.getExe pkgs.deno;
           fantomas.command = lib.getExe pkgs.fantomas;
-          # FIXME: broken upstream
-          # gdformat.command = lib.getExe' pkgs.gdtoolkit_4 "gdformat";
+          gdformat.command = lib.getExe' pkgs.gdtoolkit_4 "gdformat";
           golines.command = lib.getExe pkgs.golines;
           google-java-format.command = lib.getExe pkgs.google-java-format;
           isort.command = lib.getExe pkgs.isort;
