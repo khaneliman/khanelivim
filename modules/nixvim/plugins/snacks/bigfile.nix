@@ -6,8 +6,6 @@
 {
   plugins = {
     snacks = {
-      enable = true;
-
       settings = {
         bigfile = {
           enabled = lib.elem config.khanelivim.performance.optimizer [

@@ -6,8 +6,6 @@
 {
   plugins = {
     snacks = {
-      enable = true;
-
       settings = {
         gitbrowse.enabled = true;
       };

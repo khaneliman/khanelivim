@@ -6,8 +6,6 @@
 {
   plugins = {
     snacks = {
-      enable = true;
-
       settings = {
         zen.enabled = true;
       };

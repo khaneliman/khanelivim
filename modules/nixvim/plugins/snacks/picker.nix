@@ -11,8 +11,6 @@
 
   plugins = {
     snacks = {
-      enable = true;
-
       settings = lib.mkIf (config.khanelivim.picker.engine == "snacks") {
         picker = {
           sources = {
