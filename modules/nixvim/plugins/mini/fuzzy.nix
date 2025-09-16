@@ -1,22 +1,14 @@
 { config, lib, ... }:
 {
   plugins = {
-    mini = {
-      enable = true;
-
-      modules = {
-        fuzzy = { };
-      };
-    };
+    mini-fuzzy.enable = true;
 
     telescope = {
       settings = {
-        defaults =
-          lib.mkIf (config.plugins.mini.enable && lib.hasAttr "fuzzy" config.plugins.mini.modules)
-            {
-              file_sorter.__raw = ''require('mini.fuzzy').get_telescope_sorter'';
-              generic_sorter.__raw = ''require('mini.fuzzy').get_telescope_sorter'';
-            };
+        defaults = lib.mkIf config.plugins.mini-fuzzy.enable {
+          file_sorter.__raw = ''require('mini.fuzzy').get_telescope_sorter'';
+          generic_sorter.__raw = ''require('mini.fuzzy').get_telescope_sorter'';
+        };
       };
     };
   };

@@ -1,16 +1,10 @@
 { lib, config, ... }:
 {
   plugins = {
-    mini = {
-      enable = true;
-
-      modules = {
-        git = { };
-      };
-    };
+    mini-git.enable = true;
   };
 
-  keymaps = lib.mkIf (config.plugins.mini.enable && lib.hasAttr "git" config.plugins.mini.modules) [
+  keymaps = lib.mkIf config.plugins.mini-git.enable [
     # TODO: relocate
     # {
     #   mode = "n";

@@ -1,16 +1,10 @@
 { config, lib, ... }:
 {
   plugins = {
-    mini = {
-      enable = true;
-
-      modules = {
-        pairs = { };
-      };
-    };
+    mini-pairs.enable = true;
   };
 
-  keymaps = lib.mkIf (config.plugins.mini.enable && lib.hasAttr "pairs" config.plugins.mini.modules) [
+  keymaps = lib.mkIf config.plugins.mini-pairs.enable [
     {
       key = "<leader>up";
       mode = "n";

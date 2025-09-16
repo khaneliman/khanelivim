@@ -22,14 +22,10 @@
   plugins = {
     mini = {
       enable = true;
-      mockDevIcons = true;
 
       modules = {
-        ai = { };
-        align = { };
         basics = { };
         bracketed = { };
-        icons = { };
         snippets = lib.mkIf (config.khanelivim.editor.snippetEngine == "mini-snippets") {
           snippets = {
             __unkeyed-1.__raw =
@@ -39,6 +35,13 @@
           };
         };
       };
+    };
+
+    mini-ai.enable = true;
+    mini-align.enable = true;
+    mini-icons = {
+      enable = true;
+      mockDevIcons = true;
     };
   };
 }
