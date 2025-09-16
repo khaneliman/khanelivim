@@ -29,7 +29,7 @@
 
       settings = {
         suggestion = {
-          enabled = true;
+          enabled = config.khanelivim.completion.engine != "blink";
           auto_trigger = true;
           keymap = {
             accept = "<C-y>";
