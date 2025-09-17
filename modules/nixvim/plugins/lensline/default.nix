@@ -9,26 +9,31 @@
       enable = true;
 
       settings = {
-        providers = [
+        profiles = [
           {
-            name = "references";
-            enabled = true;
-            quiet_lsp = true;
-          }
-          {
-            name = "last_author";
-            enabled = true;
-            cache_max_files = 100;
-          }
-          {
-            name = "diagnostics";
-            enabled = true;
-            min_level = "HINT";
-          }
-          {
-            name = "complexity";
-            enabled = true;
-            min_level = "M";
+            name = "default";
+            providers = [
+              {
+                name = "references";
+                enabled = true;
+                quiet_lsp = true;
+              }
+              {
+                name = "last_author";
+                enabled = true;
+                cache_max_files = 100;
+              }
+              {
+                name = "diagnostics";
+                enabled = true;
+                min_level = "HINT";
+              }
+              {
+                name = "complexity";
+                enabled = true;
+                min_level = "M";
+              }
+            ];
           }
         ];
         limits = {
