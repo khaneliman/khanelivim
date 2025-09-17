@@ -32,6 +32,7 @@
           };
           select_model = "<leader>aa?";
           select_history = "<leader>aah";
+          zen_mode = "<leader>aaz";
         };
       };
     };
