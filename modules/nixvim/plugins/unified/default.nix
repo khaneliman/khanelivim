@@ -9,10 +9,23 @@
       enable = config.khanelivim.editor.diffViewer == "unified";
     };
 
-    # TODO: implement after next plugin update
-    # vim.keymap.set('n', ']h', function() require('unified.navigation').next_hunk() end)
-    # vim.keymap.set('n', '[h', function() require('unified.navigation').previous_hunk() end)
     keymaps = lib.mkIf config.plugins.unified.enable [
+      {
+        mode = "n";
+        key = "]h";
+        action = "<cmd>lua require('unified.navigation').next_hunk()<CR>";
+        options = {
+          desc = "Next hunk (unified)";
+        };
+      }
+      {
+        mode = "n";
+        key = "[h";
+        action = "<cmd>lua require('unified.navigation').previous_hunk()<CR>";
+        options = {
+          desc = "Previous hunk (unified)";
+        };
+      }
       {
         mode = "n";
         key = "<leader>gd";
