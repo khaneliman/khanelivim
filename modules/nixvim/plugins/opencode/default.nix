@@ -17,7 +17,14 @@
 
     settings = lib.mkOption {
       type = lib.types.attrsOf lib.types.anything;
-      default = { };
+      default = {
+        auto_reload = true;
+        terminal = {
+          win = {
+            enter = true;
+          };
+        };
+      };
       description = "Configuration for opencode";
     };
 
