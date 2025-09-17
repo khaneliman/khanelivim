@@ -1,41 +1,18 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 {
-  # TODO: Consider upstreaming this module to nixvim
-  options.plugins.unified = {
-    enable = lib.mkEnableOption "unified" // {
-      default = config.khanelivim.editor.diffViewer == "unified";
+  config = {
+    plugins.unified = {
+      enable = config.khanelivim.editor.diffViewer == "unified";
     };
-
-    package = lib.mkPackageOption pkgs.vimPlugins "unified" {
-      default = "unified-nvim";
-    };
-
-    # Add plugin-specific options here
-    settings = lib.mkOption {
-      type = lib.types.attrsOf lib.types.anything;
-      default = { };
-      description = "Configuration for unified";
-    };
-  };
-
-  config = lib.mkIf config.plugins.unified.enable {
-    extraPlugins = [
-      config.plugins.unified.package
-    ];
-
-    extraConfigLua = ''
-      require('unified').setup(${lib.generators.toLua { } config.plugins.unified.settings})
-    '';
 
     # TODO: implement after next plugin update
     # vim.keymap.set('n', ']h', function() require('unified.navigation').next_hunk() end)
     # vim.keymap.set('n', '[h', function() require('unified.navigation').previous_hunk() end)
-    keymaps = [
+    keymaps = lib.mkIf config.plugins.unified.enable [
       {
         mode = "n";
         key = "<leader>gd";
