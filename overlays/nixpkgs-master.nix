@@ -14,8 +14,6 @@ in
 {
   inherit (nixpkgs-master-packages)
     claude-code
-    # TODO: remove after reaching channel
-    roslyn-ls
     ;
 
   luaPackages = luaPackages // {
