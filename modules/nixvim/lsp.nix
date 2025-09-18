@@ -43,11 +43,7 @@
       biome.enable = true;
       cmake.enable = true;
       cssls.enable = true;
-      dockerls = {
-        enable = true;
-        # FIXME: nixvim alias
-        package = pkgs.dockerfile-language-server;
-      };
+      dockerls.enable = true;
       # FIXME: [lspconfig] Unable to find ESLint library.
       # eslint.enable = true;
       emmylua_ls = {
