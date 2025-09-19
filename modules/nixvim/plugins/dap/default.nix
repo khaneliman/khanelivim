@@ -13,7 +13,7 @@
     ./lua.nix
   ];
 
-  extraPackages =
+  extraPackages = lib.mkIf config.plugins.dap.enable (
     with pkgs;
     [
       coreutils
@@ -21,7 +21,8 @@
     ]
     ++ lib.optionals stdenv.hostPlatform.isLinux [
       gdb
-    ];
+    ]
+  );
 
   plugins = {
     dap = {
