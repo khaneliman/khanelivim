@@ -34,6 +34,10 @@
                 min_level = "M";
               }
             ];
+            style = {
+              placement = "inline";
+              prefix = "";
+            };
           }
         ];
         limits = {
