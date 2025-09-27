@@ -288,6 +288,19 @@
                   desc = "Toggle tabs/spaces";
                 };
               };
+
+              "<leader>pd" = {
+                action = "<cmd>diffthis<CR>";
+                options = {
+                  desc = "Add file to diff";
+                };
+              };
+              "<leader>po" = {
+                action = "<cmd>diffoff<CR>";
+                options = {
+                  desc = "Turn off diff mode";
+                };
+              };
             }
             // (lib.optionalAttrs (!config.plugins.visual-whitespace.enable) {
               "<leader>uW" = {
