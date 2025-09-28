@@ -1,9 +1,10 @@
+{ config, ... }:
 {
   plugins = {
     lsp = {
       servers = {
         ccls = {
-          enable = true;
+          enable = config.khanelivim.lsp.cpp == "ccls";
 
           initOptions.compilationDatabaseDirectory = "build";
         };

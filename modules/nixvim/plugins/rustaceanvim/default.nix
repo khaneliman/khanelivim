@@ -15,7 +15,7 @@
 
   plugins = {
     rustaceanvim = {
-      enable = true;
+      enable = config.khanelivim.lsp.rust == "rustaceanvim";
       settings = {
         dap = {
           adapter = {

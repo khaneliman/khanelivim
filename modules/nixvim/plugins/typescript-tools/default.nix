@@ -1,8 +1,8 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 {
   plugins = {
     typescript-tools = {
-      enable = true;
+      enable = config.khanelivim.lsp.typescript == "typescript-tools";
 
       lazyLoad.settings.ft = [
         "typescript"

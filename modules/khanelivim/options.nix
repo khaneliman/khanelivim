@@ -170,5 +170,44 @@
         description = "HTTP client plugin to use";
       };
     };
+
+    lsp = {
+      cpp = lib.mkOption {
+        type = lib.types.enum [
+          "clangd"
+          "ccls"
+          "none"
+        ];
+        default = "clangd";
+        description = "Which C/C++ LSP to enable (mutually exclusive).";
+      };
+      java = lib.mkOption {
+        type = lib.types.enum [
+          "nvim-jdtls"
+          "java-language-server"
+          "none"
+        ];
+        default = "nvim-jdtls";
+        description = "Which Java LSP implementation to use.";
+      };
+      typescript = lib.mkOption {
+        type = lib.types.enum [
+          "typescript-tools"
+          "ts_ls"
+          "none"
+        ];
+        default = "typescript-tools";
+        description = "Which TypeScript/JavaScript LSP integration to use.";
+      };
+      rust = lib.mkOption {
+        type = lib.types.enum [
+          "rust-analyzer"
+          "rustaceanvim"
+          "none"
+        ];
+        default = "rust-analyzer";
+        description = "Which Rust LSP integration to use (direct rust-analyzer or rustaceanvim).";
+      };
+    };
   };
 }

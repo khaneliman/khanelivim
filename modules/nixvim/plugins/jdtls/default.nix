@@ -1,4 +1,5 @@
 {
+  config,
   lib,
   pkgs,
   ...
@@ -6,7 +7,7 @@
 {
   plugins = {
     jdtls = {
-      enable = true;
+      enable = config.khanelivim.lsp.java == "nvim-jdtls";
 
       lazyLoad.settings.ft = "java";
 

@@ -4,7 +4,7 @@
 }:
 {
   lsp.servers.rust_analyzer = {
-    enable = !config.plugins.rustaceanvim.enable;
+    enable = config.khanelivim.lsp.rust == "rust-analyzer";
     # TODO: handle ourselves
     # installCargo = true;
     # installRustc = true;

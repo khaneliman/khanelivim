@@ -63,8 +63,7 @@
       };
       gopls.enable = true;
       html.enable = true;
-      java_language_server.enable = !config.plugins.jdtls.enable;
-      jdtls.enable = !config.plugins.jdtls.enable;
+      java_language_server.enable = config.khanelivim.lsp.java == "java-language-server";
       jsonls.enable = true;
       kulala_ls.enable = true;
       marksman.enable = true;
@@ -77,7 +76,7 @@
       stylelint_lsp.enable = true;
       tailwindcss.enable = true;
       taplo.enable = true;
-      ts_ls.enable = !config.plugins.typescript-tools.enable;
+      ts_ls.enable = config.khanelivim.lsp.typescript == "ts_ls";
       yamlls.enable = true;
     };
   };

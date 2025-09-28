@@ -1,7 +1,12 @@
-{ lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   lsp.servers.clangd = {
-    enable = true;
+    enable = config.khanelivim.lsp.cpp == "clangd";
 
     settings = {
       settings.init_options = {
