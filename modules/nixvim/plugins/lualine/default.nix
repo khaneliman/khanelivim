@@ -99,6 +99,27 @@ in
             colored = true;
           }
 
+          (lib.mkIf config.plugins.sidekick.enable {
+            __unkeyed-1.__raw = ''
+              function()
+                  return " "
+              end
+            '';
+            color.__raw = ''
+              function()
+                  local status = require("sidekick.status").get()
+                  if status then
+                      return status.kind == "Error" and "DiagnosticError" or status.busy and "DiagnosticWarn" or "Special"
+                  end
+              end
+            '';
+            cond.__raw = ''
+              function()
+                  local status = require("sidekick.status")
+                  return status.get() ~= nil
+              end
+            '';
+          })
           # Show active language server
           (lib.optionalString config.plugins.copilot-lua.enable "copilot")
           {
