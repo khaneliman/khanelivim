@@ -44,59 +44,99 @@
     '';
 
     # TODO: Optional: Add keymaps for the plugin
-    keymaps = [
-      {
-        mode = "n";
-        key = "<leader>ast";
-        action.__raw = "function() require('sidekick.cli').toggle({ focus = true }) end";
-        options.desc = "Sidekick Toggle";
-      }
-      {
-        mode = [
-          "n"
-          "v"
-        ];
-        key = "<leader>asp";
-        action.__raw = "function() require('sidekick.cli').select_prompt() end";
-        options.desc = "Ask Prompt";
-      }
-      {
-        mode = [
-          "n"
-          "v"
-        ];
-        key = "<leader>asc";
-        action.__raw = "function() require('sidekick.cli').toggle({ name = 'claude', focus = true }) end";
-        options.desc = "Claude Toggle";
-      }
-      # TODO: get copilot-cli packaged
-      # {
-      #   mode = [
-      #     "n"
-      #     "v"
-      #   ];
-      #   key = "<leader>asC";
-      #   action.__raw = "function() require('sidekick.cli').toggle({ name = 'copilot', focus = true }) end";
-      #   options.desc = "Copilot Toggle";
-      # }
-      {
-        mode = [
-          "n"
-          "v"
-        ];
-        key = "<leader>asg";
-        action.__raw = "function() require('sidekick.cli').toggle({ name = 'gemini', focus = true }) end";
-        options.desc = "Gemini Toggle";
-      }
-      {
-        mode = [
-          "n"
-          "v"
-        ];
-        key = "<leader>aso";
-        action.__raw = "function() require('sidekick.cli').toggle({ name = 'opencode', focus = true }) end";
-        options.desc = "Opencode Toggle";
-      }
-    ];
+    keymaps =
+      (lib.optionals (!config.plugins.blink-cmp.enable) [
+        {
+          mode = [
+            "n"
+            "i"
+          ];
+          key = "<Tab>";
+          action.__raw = ''
+            function()
+              -- if there is a next edit, jump to it, otherwise apply it if any
+              if not require("sidekick").nes_jump_or_apply() then
+                return "<Tab>" -- fallback to normal tab
+              end
+            end
+          '';
+          options = {
+            expr = true;
+            desc = "Goto/Apply Next Edit Suggestion";
+          };
+        }
+      ])
+      ++ (lib.optionals config.plugins.blink-cmp.enable [
+        {
+          mode = "n";
+          key = "<Tab>";
+          action.__raw = ''
+            function()
+              -- if there is a next edit, jump to it, otherwise apply it if any
+              if not require("sidekick").nes_jump_or_apply() then
+                return "<Tab>" -- fallback to normal tab
+              end
+            end
+          '';
+          options = {
+            expr = true;
+            desc = "Goto/Apply Next Edit Suggestion";
+          };
+        }
+      ])
+      ++ [
+        {
+          mode = "n";
+          key = "<leader>ast";
+          action.__raw = "function() require('sidekick.cli').toggle({ focus = true }) end";
+          options.desc = "Sidekick Toggle";
+        }
+        {
+          mode = [
+            "n"
+            "v"
+          ];
+          key = "<leader>asp";
+          action.__raw = "function() require('sidekick.cli').select_prompt() end";
+          options.desc = "Ask Prompt";
+        }
+        {
+          mode = [
+            "n"
+            "v"
+          ];
+          key = "<leader>asc";
+          action.__raw = "function() require('sidekick.cli').toggle({ name = 'claude', focus = true }) end";
+          options.desc = "Claude Toggle";
+        }
+        # TODO: get copilot-cli packaged
+        # {
+        #   mode = [
+        #     "n"
+        #     "v"
+        #   ];
+        #   key = "<leader>asC";
+        #   action.__raw = "function() require('sidekick.cli').toggle({ name = 'copilot', focus = true }) end";
+        #   options.desc = "Copilot Toggle";
+        # }
+        {
+          mode = [
+            "n"
+            "v"
+          ];
+          key = "<leader>asg";
+          action.__raw = "function() require('sidekick.cli').toggle({ name = 'gemini', focus = true }) end";
+          options.desc = "Gemini Toggle";
+        }
+        {
+          mode = [
+            "n"
+            "v"
+          ];
+          key = "<leader>aso";
+          action.__raw = "function() require('sidekick.cli').toggle({ name = 'opencode', focus = true }) end";
+          options.desc = "Opencode Toggle";
+        }
+      ];
   };
 }
