@@ -54,6 +54,7 @@ in
             "dap-view-term"
             "neotest-summary"
             "opencode_terminal"
+            "sidekick_terminal"
           ];
         };
 
