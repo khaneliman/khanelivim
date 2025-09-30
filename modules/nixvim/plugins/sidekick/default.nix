@@ -17,7 +17,11 @@
 
     settings = lib.mkOption {
       type = lib.types.attrsOf lib.types.anything;
-      default = { };
+      default = {
+        mux = {
+          enabled = true;
+        };
+      };
       description = "Configuration for sidekick";
     };
   };
