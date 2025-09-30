@@ -55,6 +55,7 @@ in
             "neotest-summary"
             "opencode_terminal"
             "sidekick_terminal"
+            "snacks_terminal"
           ];
         };
 
