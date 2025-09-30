@@ -42,6 +42,18 @@
       bashls.enable = true;
       biome.enable = true;
       cmake.enable = true;
+      copilot = {
+        enable = true;
+
+        settings.settings = {
+          "copilot" = {
+            cmd = [
+              "${lib.getExe pkgs.copilot-language-server}"
+              "--stdio"
+            ];
+          };
+        };
+      };
       cssls.enable = true;
       dockerls.enable = true;
       # FIXME: [lspconfig] Unable to find ESLint library.
