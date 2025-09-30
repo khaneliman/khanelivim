@@ -41,8 +41,8 @@ in
       src = prev.fetchFromGitHub {
         owner = "folke";
         repo = "sidekick.nvim";
-        rev = "d11ee7f7209d3417d1bc007f387b665db43117bc";
-        sha256 = "0kkmyfsfwd2xa7gfzp58439mnf01v48z79bislzw2j81i8jk78zv";
+        rev = "7b3d28bbb883e898f6a8b4f2d7a9ab6ad5cef9f8";
+        sha256 = "1m2af27xvagdq6q8kyahcsrbraaw4x2yvrg35xxcpgp0vi0m9h6a";
       };
     };
   };
