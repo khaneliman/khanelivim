@@ -36,5 +36,14 @@ in
     #
     # Specific package overlays need to go in here to not get ignored
     #
+    sidekick-nvim = vimPlugins.sidekick-nvim.overrideAttrs {
+      version = "2025-09-30";
+      src = prev.fetchFromGitHub {
+        owner = "folke";
+        repo = "sidekick.nvim";
+        rev = "d11ee7f7209d3417d1bc007f387b665db43117bc";
+        sha256 = "0kkmyfsfwd2xa7gfzp58439mnf01v48z79bislzw2j81i8jk78zv";
+      };
+    };
   };
 }
