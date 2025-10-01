@@ -27,6 +27,16 @@
   };
 
   config = lib.mkIf config.plugins.sidekick.enable {
+    plugins.sidekick.package = pkgs.vimPlugins.sidekick-nvim.overrideAttrs {
+      version = "2025-10-01";
+      src = pkgs.fetchFromGitHub {
+        owner = "folke";
+        repo = "sidekick.nvim";
+        rev = "7608be2a532fe663e471bf23483e6537e73a0d51";
+        sha256 = "15sdszqkdbd2y5ymr1wj44g7krwx6flj8vy9i3gd98ffhvwpknms";
+      };
+    };
+
     plugins.which-key.settings.spec = lib.optionals config.plugins.sidekick.enable [
       {
         __unkeyed-1 = "<leader>as";
