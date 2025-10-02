@@ -32,8 +32,8 @@
       src = pkgs.fetchFromGitHub {
         owner = "folke";
         repo = "sidekick.nvim";
-        rev = "7608be2a532fe663e471bf23483e6537e73a0d51";
-        sha256 = "15sdszqkdbd2y5ymr1wj44g7krwx6flj8vy9i3gd98ffhvwpknms";
+        rev = "52a6ed40d312726a45ffc191fdc81791c4d928f5";
+        sha256 = "0n41crpkj1di5md55mh831hxgh9yzz2qaq3kjdmiiawqlc2a3q7s";
       };
     };
 
