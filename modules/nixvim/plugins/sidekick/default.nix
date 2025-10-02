@@ -45,6 +45,10 @@
       }
     ];
 
+    extraPackages = [
+      pkgs.github-copilot-cli
+    ];
+
     extraPlugins = [
       config.plugins.sidekick.package
     ];
