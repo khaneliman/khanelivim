@@ -14,9 +14,12 @@
     ps.tiktoken_core
   ];
 
-  extraPlugins = lib.optionals (config.plugins.copilot-lua.enable && config.plugins.lualine.enable) (
+  extraPlugins = lib.optionals config.plugins.copilot-lua.enable (
     with pkgs.vimPlugins;
     [
+      copilot-lsp
+    ]
+    ++ lib.optionals config.plugins.lualine.enable [
       copilot-lualine
     ]
   );
@@ -28,8 +31,17 @@
       lazyLoad.settings.event = [ "InsertEnter" ];
 
       settings = {
-        suggestion = {
-          enabled = config.khanelivim.completion.engine != "blink";
+        nes = lib.mkIf (!config.plugins.sidekick.enable) {
+          enabled = true;
+          keymap = {
+            accept_and_goto = "<C-y>";
+            accept = false;
+            dismiss = "<Esc>";
+          };
+        };
+
+        suggestion = lib.mkIf (config.khanelivim.completion.engine != "blink") {
+          enabled = true;
           auto_trigger = true;
           keymap = {
             accept = "<C-y>";
@@ -41,8 +53,8 @@
           };
         };
 
-        panel = {
-          enabled = config.khanelivim.completion.engine != "blink";
+        panel = lib.mkIf (config.khanelivim.picker.engine != "blink") {
+          enabled = true;
           auto_refresh = true;
           keymap = {
             jump_prev = "[[";
