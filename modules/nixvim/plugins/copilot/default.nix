@@ -43,7 +43,7 @@
         nes = lib.mkIf (!config.plugins.sidekick.enable) {
           enabled = true;
           keymap = {
-            accept_and_goto = "<C-y>";
+            accept_and_goto = "<TAB>";
             accept = false;
             dismiss = "<Esc>";
           };
