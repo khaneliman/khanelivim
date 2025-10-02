@@ -42,7 +42,7 @@
       bashls.enable = true;
       biome.enable = true;
       cmake.enable = true;
-      copilot = {
+      copilot = lib.mkIf (!config.plugins.copilot-lua.enable) {
         enable = true;
 
         settings = {
