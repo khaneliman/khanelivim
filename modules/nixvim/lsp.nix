@@ -45,13 +45,11 @@
       copilot = {
         enable = true;
 
-        settings.settings = {
-          "copilot" = {
-            cmd = [
-              "${lib.getExe pkgs.copilot-language-server}"
-              "--stdio"
-            ];
-          };
+        settings = {
+          cmd = [
+            "${lib.getExe pkgs.copilot-language-server}"
+            "--stdio"
+          ];
         };
       };
       cssls.enable = true;
