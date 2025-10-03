@@ -28,12 +28,12 @@
 
   config = lib.mkIf config.plugins.sidekick.enable {
     plugins.sidekick.package = pkgs.vimPlugins.sidekick-nvim.overrideAttrs {
-      version = "2025-10-01";
+      version = "2025-10-03";
       src = pkgs.fetchFromGitHub {
         owner = "folke";
         repo = "sidekick.nvim";
-        rev = "52a6ed40d312726a45ffc191fdc81791c4d928f5";
-        sha256 = "0n41crpkj1di5md55mh831hxgh9yzz2qaq3kjdmiiawqlc2a3q7s";
+        rev = "c307316f77d80fbe92bd571c59ce1868703fe411";
+        sha256 = "sha256-wVEEyiifTzGlAKlmFEQx0MAM+7Rsm0DAiXXPcnihMp8=";
       };
     };
 
