@@ -3,7 +3,7 @@
   plugins = {
     snacks = {
       settings = {
-        dashboard = {
+        dashboard = lib.mkIf (config.khanelivim.dashboard.plugin == "snacks") {
           sections = [
             {
               header = ''
