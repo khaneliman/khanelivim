@@ -5,59 +5,29 @@
   ...
 }:
 {
-  # TODO: Consider upstreaming this module to nixvim
-  options.plugins.sidekick = {
-    enable = lib.mkEnableOption "sidekick" // {
-      default = true;
-    };
+  config = {
+    plugins = {
+      sidekick = {
+        enable = true;
 
-    package = lib.mkPackageOption pkgs.vimPlugins "sidekick" {
-      default = "sidekick-nvim";
-    };
+        package = pkgs.vimPlugins.sidekick-nvim.overrideAttrs {
+          version = "2025-10-03";
+          src = pkgs.fetchFromGitHub {
+            owner = "folke";
+            repo = "sidekick.nvim";
+            rev = "0ab6a23b779e208c3733c48a380bf35e3ec1d49d";
+            sha256 = "0spx8q16cvrp9pydpq4p0vbfkvm5mpi7y3byi3aizy67acvgjw3k";
+          };
+        };
 
-    settings = lib.mkOption {
-      type = lib.types.attrsOf lib.types.anything;
-      default = {
-        mux = {
-          enabled = true;
+        settings = {
+          mux = {
+            enabled = true;
+          };
         };
       };
-      description = "Configuration for sidekick";
-    };
-  };
-
-  config = lib.mkIf config.plugins.sidekick.enable {
-    plugins.sidekick.package = pkgs.vimPlugins.sidekick-nvim.overrideAttrs {
-      version = "2025-10-03";
-      src = pkgs.fetchFromGitHub {
-        owner = "folke";
-        repo = "sidekick.nvim";
-        rev = "c307316f77d80fbe92bd571c59ce1868703fe411";
-        sha256 = "sha256-wVEEyiifTzGlAKlmFEQx0MAM+7Rsm0DAiXXPcnihMp8=";
-      };
     };
 
-    plugins.which-key.settings.spec = lib.optionals config.plugins.sidekick.enable [
-      {
-        __unkeyed-1 = "<leader>as";
-        group = "Sidekick";
-        icon = "🤖";
-      }
-    ];
-
-    extraPackages = [
-      pkgs.github-copilot-cli
-    ];
-
-    extraPlugins = [
-      config.plugins.sidekick.package
-    ];
-
-    extraConfigLua = ''
-      require('sidekick').setup(${lib.generators.toLua { } config.plugins.sidekick.settings})
-    '';
-
-    # TODO: Optional: Add keymaps for the plugin
     keymaps =
       (lib.optionals (!config.plugins.blink-cmp.enable) [
         {
@@ -86,10 +56,20 @@
           key = "<Tab>";
           action.__raw = ''
             function()
-              -- if there is a next edit, jump to it, otherwise apply it if any
-              if not require("sidekick").nes_jump_or_apply() then
-                return "<Tab>" -- fallback to normal tab
+              -- Try sidekick NES first
+              if require("sidekick").nes_jump_or_apply() then
+                return
               end
+              -- Try copilot-lsp NES if available
+              ${lib.optionalString config.plugins.copilot-lua.enable ''
+                if vim.b[vim.api.nvim_get_current_buf()].nes_state then
+                  require("copilot-lsp.nes").apply_pending_nes()
+                  require("copilot-lsp.nes").walk_cursor_end_edit()
+                  return
+                end
+              ''}
+              -- fallback to normal tab
+              return "<Tab>"
             end
           '';
           options = {
@@ -123,16 +103,15 @@
           action.__raw = "function() require('sidekick.cli').toggle({ name = 'claude', focus = true }) end";
           options.desc = "Claude Toggle";
         }
-        # TODO: get copilot-cli packaged
-        # {
-        #   mode = [
-        #     "n"
-        #     "v"
-        #   ];
-        #   key = "<leader>asC";
-        #   action.__raw = "function() require('sidekick.cli').toggle({ name = 'copilot', focus = true }) end";
-        #   options.desc = "Copilot Toggle";
-        # }
+        {
+          mode = [
+            "n"
+            "v"
+          ];
+          key = "<leader>asC";
+          action.__raw = "function() require('sidekick.cli').toggle({ name = 'copilot', focus = true }) end";
+          options.desc = "Copilot Toggle";
+        }
         {
           mode = [
             "n"
