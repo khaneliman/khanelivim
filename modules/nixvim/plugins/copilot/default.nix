@@ -83,11 +83,6 @@
           gitcommit = false;
           gitrebase = false;
         };
-
-        server = {
-          type = "binary";
-          custom_server_filepath = lib.getExe pkgs.copilot-language-server;
-        };
       };
     };
 
