@@ -16,10 +16,7 @@
 
   extraPlugins = lib.optionals config.plugins.copilot-lua.enable (
     with pkgs.vimPlugins;
-    [
-      copilot-lsp
-    ]
-    ++ lib.optionals config.plugins.lualine.enable [
+    lib.optionals config.plugins.lualine.enable [
       copilot-lualine
     ]
   );
