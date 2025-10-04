@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   plugins = {
     easy-dotnet = {
@@ -13,6 +18,7 @@
       # TODO: https://github.com/GustavEikaas/easy-dotnet.nvim?tab=readme-ov-file#nvim-dap-configuration
       settings = {
         picker = lib.mkIf config.plugins.fzf-lua.enable "fzf";
+        debugger.bin_path = lib.getExe pkgs.netcoredbg;
       };
     };
 
