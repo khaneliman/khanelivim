@@ -27,15 +27,6 @@
 
       lazyLoad.settings.event = [ "InsertEnter" ];
 
-      # TODO: Create module for upstream
-      luaConfig.post = ''
-        require('copilot-lsp').setup({
-          nes = {
-            move_count_threshold = 3,
-          }
-        })
-      '';
-
       settings = {
         nes = lib.mkIf (!config.plugins.sidekick.enable) {
           enabled = true;
