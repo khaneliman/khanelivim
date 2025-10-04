@@ -29,7 +29,7 @@
     };
 
     keymaps =
-      (lib.optionals (!config.plugins.blink-cmp.enable) [
+      (lib.optionals (!config.plugins.blink-cmp.enable && config.plugins.sidekick.enable) [
         {
           mode = [
             "n"
@@ -50,7 +50,7 @@
           };
         }
       ])
-      ++ (lib.optionals config.plugins.blink-cmp.enable [
+      ++ (lib.optionals (config.plugins.blink-cmp.enable && config.plugins.sidekick.enable) [
         {
           mode = "n";
           key = "<Tab>";
