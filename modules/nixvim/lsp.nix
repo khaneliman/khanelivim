@@ -14,7 +14,6 @@
     ./lsp/lspconfig.nix
     ./lsp/nil-ls.nix
     ./lsp/nixd.nix
-    ./lsp/roslyn.nix
     ./lsp/rust-analyzer.nix
     ./lsp/typos-lsp.nix
     # keep-sorted end
@@ -42,24 +41,12 @@
       bashls.enable = true;
       biome.enable = true;
       cmake.enable = true;
-      copilot = lib.mkIf (!config.plugins.copilot-lua.enable) {
-        enable = true;
-
-        settings = {
-          cmd = [
-            "${lib.getExe pkgs.copilot-language-server}"
-            "--stdio"
-          ];
-        };
-      };
+      copilot.enable = !config.plugins.copilot-lua.enable;
       cssls.enable = true;
       dockerls.enable = true;
       # FIXME: [lspconfig] Unable to find ESLint library.
       # eslint.enable = true;
-      emmylua_ls = {
-        enable = true;
-        package = pkgs.emmylua-ls;
-      };
+      emmylua_ls.enable = true;
       fish_lsp.enable = true;
       fsautocomplete.enable = true;
       fsharp_language_server = {
@@ -81,6 +68,7 @@
       pyright.enable = true;
       qmlls.enable = true;
       ruff.enable = true;
+      roslyn_ls.enable = true;
       sqls.enable = true;
       statix.enable = true;
       stylelint_lsp.enable = true;
