@@ -44,6 +44,7 @@
       copilot.enable = !config.plugins.copilot-lua.enable;
       cssls.enable = true;
       dockerls.enable = true;
+      docker_language_server.enable = true;
       # FIXME: [lspconfig] Unable to find ESLint library.
       # eslint.enable = true;
       emmylua_ls.enable = true;
@@ -75,6 +76,7 @@
       tailwindcss.enable = true;
       taplo.enable = true;
       ts_ls.enable = config.khanelivim.lsp.typescript == "ts_ls";
+      tsgo.enable = config.khanelivim.lsp.typescript == "tsgo";
       yamlls.enable = true;
     };
   };
