@@ -22,9 +22,11 @@
       };
     };
 
-    dap = {
+    dap = lib.mkIf config.plugins.easy-dotnet.enable {
       luaConfig.pre = ''
         local debug_dll = nil
+
+        require("easy-dotnet.netcoredbg").register_dap_variables_viewer()
 
         require("dap").listeners.before['event_terminated']['easy-dotnet'] = function()
           debug_dll = nil
