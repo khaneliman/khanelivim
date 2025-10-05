@@ -69,7 +69,7 @@
       pyright.enable = true;
       qmlls.enable = true;
       ruff.enable = true;
-      roslyn_ls.enable = true;
+      roslyn_ls.enable = config.khanelivim.lsp.csharp == "roslyn_ls";
       sqls.enable = true;
       statix.enable = true;
       stylelint_lsp.enable = true;
