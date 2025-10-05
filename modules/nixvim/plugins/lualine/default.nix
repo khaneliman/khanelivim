@@ -122,6 +122,9 @@ in
               end
             '';
           })
+          (lib.mkIf config.plugins.easy-dotnet.enable {
+            __raw = ''require("easy-dotnet.ui-modules.jobs").lualine'';
+          })
           # Show active language server
           (lib.optionalString config.plugins.copilot-lua.enable "copilot")
           {
