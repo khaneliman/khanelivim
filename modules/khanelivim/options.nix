@@ -184,6 +184,15 @@
     };
 
     lsp = {
+      csharp = lib.mkOption {
+        type = lib.types.enum [
+          "roslyn"
+          "roslyn_ls"
+          "none"
+        ];
+        default = "roslyn";
+        description = "Which C# LSP to enable (mutually exclusive).";
+      };
       cpp = lib.mkOption {
         type = lib.types.enum [
           "clangd"
