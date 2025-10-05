@@ -3,8 +3,7 @@
     illuminate = {
       enable = true;
 
-      # TODO: migrate to mkNeovimPlugin
-      # lazyLoad.settings.event = "DeferredUIEnter";
+      lazyLoad.settings.event = "DeferredUIEnter";
 
       settings = {
         filetypes_denylist = [
