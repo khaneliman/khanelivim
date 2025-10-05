@@ -6,13 +6,15 @@
       # TODO: migrate to mkNeovimPlugin
       # lazyLoad.settings.event = "DeferredUIEnter";
 
-      filetypesDenylist = [
-        "dirvish"
-        "fugitive"
-        "neo-tree"
-        "TelescopePrompt"
-      ];
-      largeFileCutoff = 3000;
+      settings = {
+        filetypes_denylist = [
+          "dirvish"
+          "fugitive"
+          "neo-tree"
+          "TelescopePrompt"
+        ];
+        large_file_cutoff = 3000;
+      };
     };
   };
 }
