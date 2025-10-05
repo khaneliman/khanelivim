@@ -17,7 +17,13 @@
 
       # TODO: https://github.com/GustavEikaas/easy-dotnet.nvim?tab=readme-ov-file#nvim-dap-configuration
       settings = {
-        picker = lib.mkIf config.plugins.fzf-lua.enable "fzf";
+        picker =
+          if config.plugins.snacks.enable then
+            "snacks"
+          else if config.plugins.fzf-lua.enable then
+            "fzf"
+          else
+            null;
         debugger.bin_path = lib.getExe pkgs.netcoredbg;
       };
     };
