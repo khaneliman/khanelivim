@@ -11,6 +11,12 @@
       lazyLoad.settings.event = [ "DeferredUIEnter" ];
 
       settings = {
+        provider = "claude";
+        providers = {
+          claude = {
+            model = "claude-sonnet-4-5";
+          };
+        };
         # Define our own mappings under correct prefix
         mappings = {
           ask = "<leader>aaa";
