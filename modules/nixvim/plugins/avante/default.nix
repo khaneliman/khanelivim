@@ -11,10 +11,24 @@
       lazyLoad.settings.event = [ "DeferredUIEnter" ];
 
       settings = {
-        provider = "claude";
+        provider = "claude-code";
         providers = {
           claude = {
             model = "claude-sonnet-4-5";
+          };
+        };
+        acp_proivders = {
+          claude-code = {
+            model = "claude-sonnet-4-5";
+            env = {
+              ANTHROPIC_API_KEY.__raw = ''os.getenv("ANTHROPIC_API_KEY")'';
+            };
+          };
+          gemini-cli = {
+            model = "gemini-2.5-pro";
+            env = {
+              GEMINI_API_KEY.__raw = ''os.getenv("GEMINI_API_KEY")'';
+            };
           };
         };
         # Define our own mappings under correct prefix
