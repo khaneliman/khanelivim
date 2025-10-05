@@ -26,6 +26,14 @@
           };
         };
       };
+
+      which-key.settings.spec = lib.optionals config.plugins.sidekick.enable [
+        {
+          __unkeyed-1 = "<leader>as";
+          group = "Sidekick";
+          icon = "🤖";
+        }
+      ];
     };
 
     keymaps =
