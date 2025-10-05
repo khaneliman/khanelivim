@@ -4,8 +4,6 @@
       avsc = "json";
       rasi = "scss";
       ignore = "gitignore";
-      razor = "razor";
-      cshtml = "razor";
     };
 
     pattern = {
