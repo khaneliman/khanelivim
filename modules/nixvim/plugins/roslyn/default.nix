@@ -60,7 +60,10 @@
   autoCmd = lib.mkIf (config.khanelivim.lsp.csharp == "roslyn") [
     {
       event = [ "FileType" ];
-      pattern = [ "cs" ];
+      pattern = [
+        "cs"
+        "cshtml"
+      ];
       callback = {
         __raw = ''
           function()
