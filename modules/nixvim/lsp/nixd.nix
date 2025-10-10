@@ -8,7 +8,7 @@
   lsp.servers.nixd = {
     enable = true;
 
-    settings.settings.nixd =
+    config.settings.nixd =
       let
         # Yoinked from https://github.com/MattSturgeon/nix-config/commit/b8aa42d6c01465949ef5cd9d4dc086d4eaa36793
         # The wrapper curries `_nixd-expr.nix` with the `self` and `system` args

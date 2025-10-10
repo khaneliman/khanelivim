@@ -8,7 +8,7 @@
   lsp.servers.clangd = {
     enable = config.khanelivim.lsp.cpp == "clangd";
 
-    settings = {
+    config = {
       settings.init_options = {
         usePlaceholders = true;
         completeUnimported = true;

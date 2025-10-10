@@ -8,7 +8,7 @@
   lsp.servers.nil_ls = {
     enable = !config.lsp.servers.nixd.enable;
 
-    settings.settings = {
+    config.settings = {
       formatting = {
         command = [ "${lib.getExe pkgs.nixfmt}" ];
       };
