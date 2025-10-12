@@ -160,7 +160,8 @@
           codelldb = {
             port = 13000;
             executable = {
-              command = "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb";
+              # FIXME: brkoken in nixpkgs on darwin
+              command = lib.mkIf pkgs.stdenv.hostPlatform.isLinux "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb";
               args = [
                 "--port"
                 "13000"

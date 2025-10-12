@@ -14,7 +14,8 @@
 
         settings.hooks = {
           # keep-sorted start block=yes newline_separated=no
-          actionlint.enable = true;
+          # FIXME: broken dependency on darwin
+          actionlint.enable = pkgs.stdenv.hostPlatform.isLinux;
           clang-tidy.enable = true;
           deadnix = {
             enable = true;

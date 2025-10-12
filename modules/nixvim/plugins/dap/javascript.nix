@@ -13,7 +13,8 @@
             port = "\${port}";
             # port = 8123;
             executable = {
-              command = lib.getExe pkgs.vscode-js-debug;
+              # FIXME: brkoken in nixpkgs on darwin
+              command = lib.mkIf pkgs.stdenv.hostPlatform.isLinux (lib.getExe pkgs.vscode-js-debug);
               args = [
                 "\${port}"
                 # "8123"
