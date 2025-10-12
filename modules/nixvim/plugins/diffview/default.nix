@@ -4,13 +4,15 @@
     diffview = {
       enable = config.khanelivim.editor.diffViewer == "diffview";
 
-      # TODO: migrate to mkNeovimPlugin
-      # lazyLoad = {
-      #   settings = {
-      #     ft = "diff";
-      #     cmd = "DiffviewOpen";
-      #   };
-      # };
+      lazyLoad = {
+        settings = {
+          ft = "diff";
+          cmd = "DiffviewOpen";
+        };
+      };
+
+      settings = {
+      };
     };
   };
 
