@@ -156,6 +156,11 @@ in
           ignore_registers = [ "_" ];
           update_register_on_cycle = false;
         };
+
+        # Add this block to disable system clipboard sync and prevent freezing
+        system_clipboard = {
+          sync_with_ring = false;
+        };
       };
     };
   };
