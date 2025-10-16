@@ -15,6 +15,7 @@ in
   inherit (nixpkgs-master-packages)
     claude-code
     github-copilot-cli
+    opencode
     ;
 
   luaPackages = luaPackages // {
