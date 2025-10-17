@@ -11,12 +11,12 @@
         enable = true;
 
         package = pkgs.vimPlugins.sidekick-nvim.overrideAttrs {
-          version = "2025-10-03";
+          version = "2025-10-16";
           src = pkgs.fetchFromGitHub {
             owner = "folke";
             repo = "sidekick.nvim";
-            rev = "0ab6a23b779e208c3733c48a380bf35e3ec1d49d";
-            sha256 = "0spx8q16cvrp9pydpq4p0vbfkvm5mpi7y3byi3aizy67acvgjw3k";
+            rev = "80d1604f7081cb6f72f6985af133dced8db5c5a8";
+            sha256 = "sha256-2VoqKQtg7tNZwiqoaSg5p/fFTJoEPkYG5yudjrPDso0=";
           };
         };
 
