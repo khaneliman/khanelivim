@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 {
@@ -9,16 +8,6 @@
     plugins = {
       sidekick = {
         enable = true;
-
-        package = pkgs.vimPlugins.sidekick-nvim.overrideAttrs {
-          version = "2025-10-18";
-          src = pkgs.fetchFromGitHub {
-            owner = "folke";
-            repo = "sidekick.nvim";
-            rev = "c791d8f8738d4a30301f10ba522fec7154f19534";
-            sha256 = "sha256-zaaA3kabyJua5ei780FxWKap99gGxjcaI4H+9hXOa4Q=";
-          };
-        };
 
         settings = {
           mux = {
