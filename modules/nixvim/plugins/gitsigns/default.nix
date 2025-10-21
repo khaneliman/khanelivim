@@ -1,7 +1,4 @@
 { config, lib, ... }:
-let
-  inherit (builtins) toJSON;
-in
 {
   plugins = {
     gitsigns = {
@@ -27,6 +24,10 @@ in
 
     which-key.settings.spec = lib.optionals config.plugins.gitsigns.enable [
       {
+        __unkeyed = "<leader>g";
+        group = "Git";
+      }
+      {
         __unkeyed = "<leader>gh";
         group = "Hunks";
         icon = " ";
@@ -35,183 +36,256 @@ in
         __unkeyed = "<leader>ug";
         group = "Git";
       }
+      {
+        __unkeyed = "<leader>gd";
+        group = "Diff";
+        icon = " ";
+      }
     ];
   };
 
-  keymaps = lib.mkIf config.plugins.gitsigns.enable [
-    # UI binds
-    {
-      mode = "n";
-      key = "<leader>ugb";
-      action = "<cmd>Gitsigns toggle_current_line_blame<CR>";
-      options = {
-        desc = "Git Blame line toggle";
-      };
-    }
-    {
-      mode = "n";
-      key = "<leader>ugB";
-      action = "<cmd>Gitsigns blame<CR>";
-      options = {
-        desc = "Git Blame sidebar";
-      };
-    }
-    {
-      mode = "n";
-      key = "<leader>ugd";
-      action = "<cmd>Gitsigns toggle_deleted<CR>";
-      options = {
-        desc = "Deleted toggle";
-      };
-    }
-    {
-      mode = "n";
-      key = "<leader>ugl";
-      action = "<cmd>Gitsigns toggle_linehl<CR>";
-      options = {
-        desc = "Line Highlight toggle";
-      };
-    }
-    {
-      mode = "n";
-      key = "<leader>ugh";
-      action = "<cmd>Gitsigns toggle_numhl<CR>";
-      options = {
-        desc = "Number Highlight toggle";
-      };
-    }
-    {
-      mode = "n";
-      key = "<leader>ugw";
-      action = "<cmd>Gitsigns toggle_word_diff<CR>";
-      options = {
-        desc = "Word Diff toggle";
-      };
-    }
-    {
-      mode = "n";
-      key = "<leader>ugs";
-      action = "<cmd>Gitsigns toggle_signs<CR>";
-      options = {
-        desc = "Signs toggle";
-      };
-    }
-    {
-      mode = "n";
-      key = "<leader>gb";
-      action.__raw = ''
-        function() require("gitsigns").blame_line{full=true} end
-      '';
-      options = {
-        desc = "Git Blame toggle";
-        silent = true;
-      };
-    }
-    {
-      mode = "n";
-      key = "<leader>gB";
-      action = "<cmd>Gitsigns blame<CR>";
-      options = {
-        desc = "Git Blame sidebar";
-      };
-    }
-    # Hunk binds
-    {
-      mode = "n";
-      key = "<leader>ghp";
-      action.__raw = ''
-        function()
-          if vim.wo.diff then return ${toJSON "<leader>gp"} end
-
-          vim.schedule(function() require("gitsigns").prev_hunk() end)
-
-          return '<Ignore>'
-        end
-      '';
-      options = {
-        desc = "Previous hunk";
-        silent = true;
-      };
-    }
-    {
-      mode = "n";
-      key = "<leader>ghn";
-      action.__raw = ''
-        function()
-          if vim.wo.diff then return ${toJSON "<leader>gn"} end
-
-          vim.schedule(function() require("gitsigns").next_hunk() end)
-
-          return '<Ignore>'
-        end
-      '';
-      options = {
-        desc = "Next hunk";
-        silent = true;
-      };
-    }
-    {
-      mode = [
-        "n"
-        "v"
-      ];
-      key = "<leader>ghs";
-      action = "<cmd>Gitsigns stage_hunk<CR>";
-      options = {
-        desc = "Stage hunk";
-      };
-    }
-    {
-      mode = "n";
-      key = "<leader>ghu";
-      action = "<cmd>Gitsigns undo_stage_hunk<CR>";
-      options = {
-        desc = "Undo stage hunk";
-      };
-    }
-    {
-      mode = [
-        "n"
-        "v"
-      ];
-      key = "<leader>ghr";
-      action = "<cmd>Gitsigns reset_hunk<CR>";
-      options = {
-        desc = "Reset hunk";
-      };
-    }
-    {
-      mode = "n";
-      key = "<leader>ghP";
-      action = "<cmd>Gitsigns preview_hunk<CR>";
-      options = {
-        desc = "Preview hunk";
-      };
-    }
-    {
-      mode = "n";
-      key = "<leader>gh<C-p>";
-      action = "<cmd>Gitsigns preview_hunk_inline<CR>";
-      options = {
-        desc = "Preview hunk inline";
-      };
-    }
-    # Buffer binds
-    {
-      mode = "n";
-      key = "<leader>gS";
-      action = "<cmd>Gitsigns stage_buffer<CR>";
-      options = {
-        desc = "Stage buffer";
-      };
-    }
-    {
-      mode = "n";
-      key = "<leader>gR";
-      action = "<cmd>Gitsigns reset_buffer<CR>";
-      options = {
-        desc = "Reset buffer";
-      };
-    }
-  ];
+  keymaps = lib.mkIf config.plugins.gitsigns.enable (
+    [
+      # Navigation
+      {
+        mode = "n";
+        key = "]c";
+        action.__raw = ''
+          function()
+            if vim.wo.diff then
+              return ']c'
+            end
+            vim.schedule(function()
+              require('gitsigns').nav_hunk('next')
+            end)
+            return '<Ignore>'
+          end
+        '';
+        options = {
+          expr = true;
+          desc = "Next Hunk";
+        };
+      }
+      {
+        mode = "n";
+        key = "[c";
+        action.__raw = ''
+          function()
+            if vim.wo.diff then
+              return '[c'
+            end
+            vim.schedule(function()
+              require('gitsigns').nav_hunk('prev')
+            end)
+            return '<Ignore>'
+          end
+        '';
+        options = {
+          expr = true;
+          desc = "Previous Hunk";
+        };
+      }
+      # Git Actions
+      {
+        mode = "n";
+        key = "<leader>gS";
+        action.__raw = ''
+          function()
+            require('gitsigns').stage_buffer()
+            local file = vim.fn.expand('%')
+            vim.notify('Staged ' .. file, vim.log.levels.INFO, { title = 'Gitsigns' })
+          end
+        '';
+        options = {
+          desc = "Stage Buffer";
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>gR";
+        action = "<cmd>Gitsigns reset_buffer<CR>";
+        options = {
+          desc = "Reset Buffer";
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>gU";
+        action.__raw = ''
+          function()
+            local file = vim.fn.expand('%')
+            vim.fn.system('git restore --staged ' .. file)
+            require('gitsigns').refresh()
+            vim.notify('Unstaged ' .. file, vim.log.levels.INFO, { title = 'Gitsigns' })
+          end
+        '';
+        options = {
+          desc = "Unstage Buffer";
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>gb";
+        action.__raw = "function() require('gitsigns').blame_line{full=true} end";
+        options = {
+          desc = "Blame Line";
+        };
+      }
+      # Hunk Actions
+      {
+        mode = "n";
+        key = "<leader>ghs";
+        action.__raw = ''
+          function()
+            require('gitsigns').stage_hunk()
+            vim.notify('Hunk staged', vim.log.levels.INFO, { title = 'Gitsigns' })
+          end
+        '';
+        options = {
+          desc = "Stage Hunk";
+        };
+      }
+      {
+        mode = "v";
+        key = "<leader>ghs";
+        action.__raw = ''
+          function()
+            require('gitsigns').stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
+            vim.notify('Selected lines staged', vim.log.levels.INFO, { title = 'Gitsigns' })
+          end
+        '';
+        options = {
+          desc = "Stage Hunk";
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>ghr";
+        action = "<cmd>Gitsigns reset_hunk<CR>";
+        options = {
+          desc = "Reset Hunk";
+        };
+      }
+      {
+        mode = "v";
+        key = "<leader>ghr";
+        action = ":Gitsigns reset_hunk<CR>";
+        options = {
+          desc = "Reset Hunk";
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>ghu";
+        action.__raw = ''
+          function()
+            require('gitsigns').undo_stage_hunk()
+            vim.notify('Hunk unstaged', vim.log.levels.INFO, { title = 'Gitsigns' })
+          end
+        '';
+        options = {
+          desc = "Undo Stage Hunk";
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>ghp";
+        action = "<cmd>Gitsigns preview_hunk<CR>";
+        options = {
+          desc = "Preview Hunk";
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>ghi";
+        action = "<cmd>Gitsigns preview_hunk_inline<CR>";
+        options = {
+          desc = "Preview Hunk Inline";
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>ghQ";
+        action = "<cmd>Gitsigns setqflist all<CR>";
+        options = {
+          desc = "Set Quickfix List All";
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>ghq";
+        action = "<cmd>Gitsigns setqflist<CR>";
+        options = {
+          desc = "Set Quickfix List";
+        };
+      }
+      # Toggles
+      {
+        mode = "n";
+        key = "<leader>ugb";
+        action = "<cmd>Gitsigns toggle_current_line_blame<CR>";
+        options = {
+          desc = "Toggle Blame";
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>ugw";
+        action = "<cmd>Gitsigns toggle_word_diff<CR>";
+        options = {
+          desc = "Toggle Word Diff";
+        };
+      }
+      # Text object
+      {
+        mode = [
+          "o"
+          "x"
+        ];
+        key = "ih";
+        action = "<cmd>Gitsigns select_hunk<CR>";
+        options = {
+          desc = "Select Hunk";
+        };
+      }
+    ]
+    ++ [
+      # Gitsigns diff commands (always available when gitsigns is enabled)
+      {
+        mode = "n";
+        key = "<leader>gdg";
+        action = "<cmd>Gitsigns diffthis<CR>";
+        options = {
+          desc = "Gitsigns Diff This";
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>gdG";
+        action = "<cmd>Gitsigns diffthis ~<CR>";
+        options = {
+          desc = "Gitsigns Diff This ~";
+        };
+      }
+    ]
+    ++ lib.optionals (config.khanelivim.editor.diffViewer == "gitsigns") [
+      # Primary diff shortcut when gitsigns is the chosen diff viewer
+      {
+        mode = "n";
+        key = "<leader>gD";
+        action.__raw = ''
+          function()
+            if vim.wo.diff then
+              vim.cmd('diffoff')
+            else
+              require('gitsigns').diffthis()
+            end
+          end
+        '';
+        options = {
+          desc = "Toggle Diff (Primary)";
+        };
+      }
+    ]
+  );
 }
