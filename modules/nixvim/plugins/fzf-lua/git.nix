@@ -10,7 +10,7 @@
       key = "<leader>gfb";
       action = ''<cmd>FzfLua git_branches<CR>'';
       options = {
-        desc = "Find git branches";
+        desc = "Git Branches";
       };
     }
     {
@@ -18,7 +18,7 @@
       key = "<leader>gfc";
       action = ''<cmd>FzfLua git_commits<CR>'';
       options = {
-        desc = "Find git commits";
+        desc = "Git Commits";
       };
     }
     {
@@ -26,7 +26,7 @@
       key = "<leader>gfs";
       action = ''<cmd>FzfLua git_status<CR>'';
       options = {
-        desc = "Find git status";
+        desc = "Git Status";
       };
     }
     {
@@ -34,7 +34,7 @@
       key = "<leader>gfh";
       action = ''<cmd>FzfLua git_stash<CR>'';
       options = {
-        desc = "Find git stashes";
+        desc = "Git Stashes";
       };
     }
   ];

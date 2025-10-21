@@ -12,7 +12,7 @@
           key = "<leader>gff";
           action = ''<cmd>lua Snacks.picker.git_files()<cr>'';
           options = {
-            desc = "Find Git Files";
+            desc = "Git Files";
           };
         }
         {
@@ -20,7 +20,7 @@
           key = "<leader>gfb";
           action = ''<cmd>lua Snacks.picker.git_branches()<cr>'';
           options = {
-            desc = "Find git branches";
+            desc = "Git Branches";
           };
         }
         {
@@ -28,7 +28,7 @@
           key = "<leader>gfc";
           action = ''<cmd>lua Snacks.picker.git_log()<cr>'';
           options = {
-            desc = "Find git commits";
+            desc = "Git Commits";
           };
         }
         {
@@ -36,7 +36,7 @@
           key = "<leader>gfs";
           action = ''<cmd>lua Snacks.picker.git_status()<cr>'';
           options = {
-            desc = "Find git status";
+            desc = "Git Status";
           };
         }
         {
@@ -44,15 +44,7 @@
           key = "<leader>gfh";
           action = ''<cmd>lua Snacks.picker.git_stash()<cr>'';
           options = {
-            desc = "Find git stashes";
-          };
-        }
-        {
-          mode = "n";
-          key = "<leader>gfl";
-          action = ''<cmd>lua Snacks.picker.git_log()<cr>'';
-          options = {
-            desc = "Git Log";
+            desc = "Git Stashes";
           };
         }
         {

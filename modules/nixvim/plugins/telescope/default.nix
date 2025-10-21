@@ -97,19 +97,19 @@
       # };
       "<leader>gfb" = {
         action = "git_branches";
-        options.desc = "View git branches";
+        options.desc = "Git Branches";
       };
       "<leader>gfc" = {
         action = "git_commits";
-        options.desc = "View git commits";
+        options.desc = "Git Commits";
       };
       "<leader>gfs" = {
         action = "git_status";
-        options.desc = "View git status";
+        options.desc = "Git Status";
       };
-      "<leader>gfS" = {
+      "<leader>gfh" = {
         action = "git_stash";
-        options.desc = "View git stashes";
+        options.desc = "Git Stashes";
       };
     };
 
