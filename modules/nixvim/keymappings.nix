@@ -437,29 +437,4 @@
           };
     in
     helpers.keymaps.mkKeymaps { options.silent = true; } (normal ++ visual ++ insert);
-
-  plugins.which-key.settings.spec = [
-    {
-      __unkeyed-1 = "<leader>w";
-      icon = "";
-    }
-    {
-      __unkeyed-1 = "<leader>W";
-      icon = "󰽃";
-    }
-    {
-      __unkeyed-1 = "<leader>/";
-      icon = "";
-    }
-    {
-      __unkeyed-1 = "<leader>a";
-      group = "AI Assistant";
-      icon = "";
-    }
-    {
-      __unkeyed-1 = "<leader>gd";
-      group = "Diff";
-      icon = " ";
-    }
-  ];
 }

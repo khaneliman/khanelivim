@@ -7,6 +7,20 @@
     settings = {
       spec = [
         {
+          __unkeyed-1 = "<leader>/";
+          icon = "";
+        }
+        {
+          __unkeyed-1 = "<leader>a";
+          group = "AI Assistant";
+          icon = "";
+        }
+        {
+          __unkeyed-1 = "<leader>gd";
+          group = "Diff";
+          icon = " ";
+        }
+        {
           __unkeyed-1 = "<leader>b";
           group = "Buffers";
         }
@@ -35,6 +49,14 @@
         {
           __unkeyed-1 = "<leader>u";
           group = "UI/UX";
+        }
+        {
+          __unkeyed-1 = "<leader>w";
+          icon = "";
+        }
+        {
+          __unkeyed-1 = "<leader>W";
+          icon = "󰽃";
         }
       ];
 
