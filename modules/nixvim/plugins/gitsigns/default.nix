@@ -107,6 +107,14 @@ in
         silent = true;
       };
     }
+    {
+      mode = "n";
+      key = "<leader>gB";
+      action = "<cmd>Gitsigns blame<CR>";
+      options = {
+        desc = "Git Blame sidebar";
+      };
+    }
     # Hunk binds
     {
       mode = "n";
