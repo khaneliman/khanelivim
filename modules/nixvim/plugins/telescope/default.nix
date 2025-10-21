@@ -95,19 +95,19 @@
       #   action = "git_bcommits";
       #   options.desc = "View git bcommits";
       # };
-      "<leader>gB" = {
+      "<leader>gfb" = {
         action = "git_branches";
         options.desc = "View git branches";
       };
-      "<leader>gC" = {
+      "<leader>gfc" = {
         action = "git_commits";
         options.desc = "View git commits";
       };
-      "<leader>gs" = {
+      "<leader>gfs" = {
         action = "git_status";
         options.desc = "View git status";
       };
-      "<leader>gS" = {
+      "<leader>gfS" = {
         action = "git_stash";
         options.desc = "View git stashes";
       };

@@ -20,6 +20,10 @@
           group = "Git";
         }
         {
+          __unkeyed-1 = "<leader>gf";
+          group = "Git Find";
+        }
+        {
           __unkeyed-1 = "<leader>f";
           group = "Find";
         }
