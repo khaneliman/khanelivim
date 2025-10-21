@@ -289,19 +289,42 @@
                 };
               };
 
-              "<leader>pd" = {
+              # Base diff keybinds - always available
+              "<leader>gdd" = {
                 action = "<cmd>diffthis<CR>";
                 options = {
                   desc = "Add file to diff";
                 };
               };
-              "<leader>po" = {
+              "<leader>gdc" = {
                 action = "<cmd>diffoff<CR>";
                 options = {
-                  desc = "Turn off diff mode";
+                  desc = "Close diff mode";
+                };
+              };
+              "<leader>gdC" = {
+                action = "<cmd>diffoff!<CR>";
+                options = {
+                  desc = "Close diff mode (all windows)";
                 };
               };
             }
+            // (lib.optionalAttrs (config.khanelivim.editor.diffViewer == "none") {
+              "<leader>gD" = {
+                action.__raw = ''
+                  function()
+                    if vim.wo.diff then
+                      vim.cmd('diffoff')
+                    else
+                      vim.cmd('diffthis')
+                    end
+                  end
+                '';
+                options = {
+                  desc = "Toggle Diff (Primary)";
+                };
+              };
+            })
             // (lib.optionalAttrs (!config.plugins.visual-whitespace.enable) {
               "<leader>uW" = {
                 action.__raw = ''
@@ -432,6 +455,11 @@
       __unkeyed-1 = "<leader>a";
       group = "AI Assistant";
       icon = "";
+    }
+    {
+      __unkeyed-1 = "<leader>gd";
+      group = "Diff";
+      icon = " ";
     }
   ];
 }
