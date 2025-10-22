@@ -43,8 +43,8 @@
       cmake.enable = true;
       copilot.enable = !config.plugins.copilot-lua.enable;
       cssls.enable = true;
-      dockerls.enable = true;
-      docker_language_server.enable = true;
+      dockerls.enable = lib.elem "dockerls" config.khanelivim.lsp.docker;
+      docker_language_server.enable = lib.elem "docker-language-server" config.khanelivim.lsp.docker;
       # FIXME: [lspconfig] Unable to find ESLint library.
       # eslint.enable = true;
       emmylua_ls.enable = true;

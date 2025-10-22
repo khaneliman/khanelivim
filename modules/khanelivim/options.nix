@@ -202,6 +202,19 @@
         default = "clangd";
         description = "Which C/C++ LSP to enable (mutually exclusive).";
       };
+      docker = lib.mkOption {
+        type = lib.types.listOf (
+          lib.types.enum [
+            "dockerls"
+            "docker-language-server"
+          ]
+        );
+        default = [
+          "dockerls"
+          "docker-language-server"
+        ];
+        description = "Which Docker LSPs to enable.";
+      };
       java = lib.mkOption {
         type = lib.types.enum [
           "nvim-jdtls"
