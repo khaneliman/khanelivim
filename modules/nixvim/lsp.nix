@@ -47,7 +47,8 @@
       docker_language_server.enable = lib.elem "docker-language-server" config.khanelivim.lsp.docker;
       # FIXME: [lspconfig] Unable to find ESLint library.
       # eslint.enable = true;
-      emmylua_ls.enable = true;
+      emmylua_ls.enable = config.khanelivim.lsp.lua == "emmylua-ls";
+      lua_ls.enable = config.khanelivim.lsp.lua == "lua-ls";
       fish_lsp.enable = true;
       fsautocomplete.enable = true;
       fsharp_language_server = {

@@ -224,6 +224,15 @@
         default = "nvim-jdtls";
         description = "Which Java LSP implementation to use.";
       };
+      lua = lib.mkOption {
+        type = lib.types.enum [
+          "lua-ls"
+          "emmylua-ls"
+          "none"
+        ];
+        default = "emmylua-ls";
+        description = "Which Lua LSP to enable (mutually exclusive).";
+      };
       nix = lib.mkOption {
         type = lib.types.enum [
           "nixd"
