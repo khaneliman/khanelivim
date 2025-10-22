@@ -5,11 +5,6 @@
   ...
 }:
 {
-  imports = [
-    ./migrateNixvimPlugin.nix
-    ./migrateNixvimTests.nix
-  ];
-
   extraLuaPackages = ps: [
     ps.tiktoken_core
   ];
