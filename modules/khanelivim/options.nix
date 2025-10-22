@@ -211,6 +211,15 @@
         default = "nvim-jdtls";
         description = "Which Java LSP implementation to use.";
       };
+      nix = lib.mkOption {
+        type = lib.types.enum [
+          "nixd"
+          "nil-ls"
+          "none"
+        ];
+        default = "nixd";
+        description = "Which Nix LSP to enable (mutually exclusive).";
+      };
       typescript = lib.mkOption {
         type = lib.types.enum [
           "typescript-tools"

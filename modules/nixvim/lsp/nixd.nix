@@ -1,4 +1,5 @@
 {
+  config,
   lib,
   pkgs,
   self,
@@ -6,7 +7,7 @@
 }:
 {
   lsp.servers.nixd = {
-    enable = true;
+    enable = config.khanelivim.lsp.nix == "nixd";
 
     config.settings.nixd =
       let

@@ -6,7 +6,7 @@
 }:
 {
   lsp.servers.nil_ls = {
-    enable = !config.lsp.servers.nixd.enable;
+    enable = config.khanelivim.lsp.nix == "nil-ls";
 
     config.settings = {
       formatting = {
