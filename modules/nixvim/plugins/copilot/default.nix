@@ -5,10 +5,6 @@
   ...
 }:
 {
-  extraLuaPackages = ps: [
-    ps.tiktoken_core
-  ];
-
   extraPlugins = lib.optionals config.plugins.copilot-lua.enable (
     with pkgs.vimPlugins;
     lib.optionals config.plugins.lualine.enable [

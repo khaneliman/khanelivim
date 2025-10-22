@@ -16,6 +16,7 @@ in
       # keep-sorted start
       ../khanelivim/options.nix
       ./autocommands.nix
+      ./dependencies.nix
       ./diagnostics.nix
       ./ft.nix
       ./keymappings.nix
