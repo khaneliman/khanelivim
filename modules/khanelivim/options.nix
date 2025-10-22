@@ -242,6 +242,21 @@
         default = "nixd";
         description = "Which Nix LSP to enable (mutually exclusive).";
       };
+      python = lib.mkOption {
+        type = lib.types.listOf (
+          lib.types.enum [
+            "pyright"
+            "pylsp"
+            "basedpyright"
+            "ruff"
+          ]
+        );
+        default = [
+          "pyright"
+          "ruff"
+        ];
+        description = "Which Python LSPs to enable. Note: pylsp and basedpyright are mutually exclusive with pyright.";
+      };
       typescript = lib.mkOption {
         type = lib.types.enum [
           "typescript-tools"

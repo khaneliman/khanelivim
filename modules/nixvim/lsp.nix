@@ -67,9 +67,11 @@
       kulala_ls.enable = true;
       marksman.enable = true;
       nushell.enable = true;
-      pyright.enable = true;
+      pyright.enable = lib.elem "pyright" config.khanelivim.lsp.python;
+      pylsp.enable = lib.elem "pylsp" config.khanelivim.lsp.python;
+      basedpyright.enable = lib.elem "basedpyright" config.khanelivim.lsp.python;
       qmlls.enable = true;
-      ruff.enable = true;
+      ruff.enable = lib.elem "ruff" config.khanelivim.lsp.python;
       roslyn_ls.enable = config.khanelivim.lsp.csharp == "roslyn_ls";
       sqls.enable = true;
       statix.enable = true;
