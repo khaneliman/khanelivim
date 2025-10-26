@@ -19,7 +19,7 @@
     }
     {
       mode = "n";
-      key = "<leader>fs";
+      key = "<leader>fl";
       action = ''<cmd>FzfLua lsp_document_symbols<CR>'';
       options = {
         desc = "Find lsp document symbols";

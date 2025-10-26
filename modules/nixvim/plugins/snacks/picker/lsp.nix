@@ -25,7 +25,7 @@
         }
         {
           mode = "n";
-          key = "<leader>fs";
+          key = "<leader>fl";
           action = ''<cmd>lua Snacks.picker.lsp_symbols()<cr>'';
           options = {
             desc = "Find lsp document symbols";

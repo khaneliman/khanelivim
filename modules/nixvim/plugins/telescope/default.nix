@@ -83,7 +83,7 @@
         action = "registers";
         options.desc = "View registers";
       };
-      "<leader>fs" = {
+      "<leader>fl" = {
         action = "lsp_document_symbols";
         options.desc = "Search symbols";
       };
@@ -147,7 +147,7 @@
       [
         {
           mode = "n";
-          key = "<leader>fF";
+          key = "<leader>fFA";
           action.__raw = ''
             function()
               vim.cmd('Telescope find_files hidden=true no_ignore=true')
