@@ -277,7 +277,24 @@
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-master": "nixpkgs-master",
         "nixvim": "nixvim",
-        "pkgs-by-name-for-flake-parts": "pkgs-by-name-for-flake-parts"
+        "pkgs-by-name-for-flake-parts": "pkgs-by-name-for-flake-parts",
+        "snacks-nvim": "snacks-nvim"
+      }
+    },
+    "snacks-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1761509117,
+        "narHash": "sha256-5KKO7KjX2xb+AddJeqXqBYTsLJxCGIKInUl3Yirfq/U=",
+        "owner": "folke",
+        "repo": "snacks.nvim",
+        "rev": "ecde81fc0ce7c4834def0ce710dd5dc62b0822fc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "folke",
+        "repo": "snacks.nvim",
+        "type": "github"
       }
     },
     "systems": {

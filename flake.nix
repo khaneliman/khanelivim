@@ -23,6 +23,10 @@
     };
     pkgs-by-name-for-flake-parts.url = "github:drupol/pkgs-by-name-for-flake-parts";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    snacks-nvim = {
+      url = "github:folke/snacks.nvim";
+      flake = false;
+    };
   };
 
   nixConfig = {
