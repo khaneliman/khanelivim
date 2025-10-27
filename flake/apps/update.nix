@@ -17,6 +17,7 @@ _: {
           inputs = [
             "nixvim"
             "pkgs-by-name-for-flake-parts"
+            "snacks-nvim"
           ];
         };
       };
