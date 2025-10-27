@@ -59,14 +59,16 @@
 
     performance = {
       optimizer = lib.mkOption {
-        type = lib.types.enum [
-          "faster"
-          "snacks"
-          "both"
-          "none"
-        ];
-        default = "faster";
-        description = "Performance optimization strategy for large files";
+        type = lib.types.nullOr (
+          lib.types.listOf (
+            lib.types.enum [
+              "faster"
+              "snacks"
+            ]
+          )
+        );
+        default = [ "faster" ];
+        description = "Performance optimization strategies for large files (can use multiple)";
       };
 
       optimizeEnable =
