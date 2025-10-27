@@ -39,11 +39,8 @@ in
     # Specific package overlays need to go in here to not get ignored
     #
     snacks-nvim = vimPlugins.snacks-nvim.overrideAttrs (oldAttrs: {
-      src = prev.fetchFromGitHub {
-        inherit (oldAttrs.src) owner repo;
-        rev = "d293b21fe1a603dfb4757feb82ab3e67b78589f2";
-        hash = "sha256-CSiwn1xZNj5Gu03ddhOmCZKjnxEjwzkjpmeV0kJn0uE=";
-      };
+      src = flake.inputs.snacks-nvim;
+      nvimSkipModules = oldAttrs.nvimSkipModules ++ [ "snacks.explorer.init" ];
     });
     noice-nvim = vimPlugins.noice-nvim.overrideAttrs (oldAttrs: {
       src = prev.fetchFromGitHub {
