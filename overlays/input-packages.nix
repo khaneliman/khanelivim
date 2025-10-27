@@ -45,8 +45,8 @@ in
     noice-nvim = vimPlugins.noice-nvim.overrideAttrs (oldAttrs: {
       src = prev.fetchFromGitHub {
         inherit (oldAttrs.src) owner repo;
-        rev = "c86aea584d98be7ee1167ce4d4ef946fbd7f3ae0";
-        hash = "sha256-1BW1yQ8yd/HF127CAqIC7ZayJJ2T+j6YCXQWm3vHrhQ=";
+        rev = "469cbf0e4876c4d2072939047b2f25ac17d1d41f";
+        hash = "sha256-akmcsJmRcc8PKtZf1dQJRC3kiM1DP30DZRi3UsUD/Pg=";
       };
     });
   };
