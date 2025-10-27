@@ -25,15 +25,6 @@
   ];
 
   keymaps = lib.optionals config.plugins.fff.enable [
-    # Core fff functions
-    {
-      mode = "n";
-      key = "<leader>ff";
-      action = "<cmd>lua require('fff').find_files()<CR>";
-      options = {
-        desc = "Find files in current directory";
-      };
-    }
     {
       mode = "n";
       key = "<leader>fg";
