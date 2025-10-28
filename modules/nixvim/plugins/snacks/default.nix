@@ -33,7 +33,7 @@
 
       settings = {
         image.enabled = true;
-        indent.enabled = true;
+        indent.enabled = config.khanelivim.ui.indentGuides == "snacks";
         scroll.enabled = true;
         statuscolumn = {
           enabled = true;

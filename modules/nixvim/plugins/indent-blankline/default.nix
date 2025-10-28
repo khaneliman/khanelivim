@@ -2,9 +2,7 @@
 {
   plugins = {
     indent-blankline = {
-      enable =
-        (!lib.hasAttr "indent" config.plugins.snacks.settings)
-        || !config.plugins.snacks.settings.indent.enabled;
+      enable = config.khanelivim.ui.indentGuides == "indent-blankline";
 
       lazyLoad.settings.event = "DeferredUIEnter";
 
