@@ -1,6 +1,7 @@
+{ config, lib, ... }:
 {
   plugins.helpview = {
-    enable = true;
+    enable = lib.elem "helpview" config.khanelivim.documentation.viewers;
 
     lazyLoad.settings.ft = "help";
 

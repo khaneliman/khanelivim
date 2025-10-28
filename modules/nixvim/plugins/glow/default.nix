@@ -15,7 +15,7 @@ in
 {
   plugins = {
     glow = {
-      enable = true;
+      enable = lib.elem "glow" config.khanelivim.documentation.viewers;
 
       lazyLoad.settings.ft = "markdown";
 

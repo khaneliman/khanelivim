@@ -4,6 +4,7 @@
     ./options/completion.nix
     ./options/dashboard.nix
     ./options/debugging.nix
+    ./options/documentation.nix
     ./options/editor.nix
     ./options/git.nix
     ./options/loading.nix
