@@ -1,17 +1,6 @@
 { lib, ... }:
 {
   options.khanelivim.editor = {
-    debugUI = lib.mkOption {
-      type = lib.types.nullOr (
-        lib.types.enum [
-          "dap-ui"
-          "dap-view"
-        ]
-      );
-      default = "dap-ui";
-      description = "Debug UI plugin (mutually exclusive)";
-    };
-
     motionPlugin = lib.mkOption {
       type = lib.types.enum [
         "flash"

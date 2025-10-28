@@ -16,5 +16,16 @@
       ];
       description = "Debug adapter plugins (work together)";
     };
+
+    ui = lib.mkOption {
+      type = lib.types.nullOr (
+        lib.types.enum [
+          "dap-ui"
+          "dap-view"
+        ]
+      );
+      default = "dap-ui";
+      description = "Debug UI plugin (mutually exclusive)";
+    };
   };
 }
