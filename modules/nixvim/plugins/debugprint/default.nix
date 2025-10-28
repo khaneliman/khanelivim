@@ -1,7 +1,8 @@
+{ config, lib, ... }:
 {
   plugins = {
     debugprint = {
-      enable = true;
+      enable = lib.elem "debugprint" config.khanelivim.debugging.adapters;
 
       lazyLoad.settings = {
         keys = [

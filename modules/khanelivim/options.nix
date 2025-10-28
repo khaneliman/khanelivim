@@ -3,6 +3,7 @@
     ./options/ai.nix
     ./options/completion.nix
     ./options/dashboard.nix
+    ./options/debugging.nix
     ./options/editor.nix
     ./options/loading.nix
     ./options/lsp.nix
