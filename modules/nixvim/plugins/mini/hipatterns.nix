@@ -2,7 +2,11 @@
 {
   extraConfigLuaPre =
     lib.optionalString
-      (config.plugins.mini.enable && lib.hasAttr "hipatterns" config.plugins.mini.modules) # Lua
+      (
+        lib.elem "mini-hipatterns" config.khanelivim.text.patterns
+        && config.plugins.mini.enable
+        && lib.hasAttr "hipatterns" config.plugins.mini.modules
+      ) # Lua
       ''
         local function in_comment(pattern)
           return function(buf_id)
@@ -23,7 +27,7 @@
         end
       '';
 
-  plugins = {
+  plugins = lib.mkIf (lib.elem "mini-hipatterns" config.khanelivim.text.patterns) {
     mini = {
       enable = true;
 

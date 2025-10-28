@@ -1,7 +1,7 @@
 { config, lib, ... }:
 {
   plugins.todo-comments = {
-    enable = true;
+    enable = lib.elem "todo-comments" config.khanelivim.text.patterns;
 
     lazyLoad = {
       # NOTE: Plugin highlighting feature not used until loaded.
@@ -13,13 +13,13 @@
           ''
             function()
           ''
-          + lib.optionalString config.plugins.fzf-lua.enable ''
+          + lib.optionalString (config.khanelivim.picker.engine == "fzf") ''
             require('lz.n').trigger_load('fzf-lua')
           ''
           + lib.optionalString config.plugins.trouble.enable ''
             require('lz.n').trigger_load('trouble.nvim')
           ''
-          + lib.optionalString config.plugins.telescope.enable ''
+          + lib.optionalString (config.khanelivim.picker.engine == "telescope") ''
             require('lz.n').trigger_load('telescope')
           ''
           + lib.optionalString (config.khanelivim.picker.engine == "snacks") ''
@@ -40,8 +40,8 @@
           "TodoLocList"
           "TodoQuickFix"
         ]
-        ++ lib.optional config.plugins.fzf-lua.enable "TodoFzfLua"
-        ++ lib.optional config.plugins.telescope.enable "TodoTelescope"
+        ++ lib.optional (config.khanelivim.picker.engine == "fzf") "TodoFzfLua"
+        ++ lib.optional (config.khanelivim.picker.engine == "telescope") "TodoTelescope"
         ++ lib.optional config.plugins.trouble.enable "TodoTrouble";
       };
     };

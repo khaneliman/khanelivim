@@ -16,5 +16,19 @@
       ];
       description = "Text commenting plugins to use (can complement each other)";
     };
+
+    patterns = lib.mkOption {
+      type = lib.types.listOf (
+        lib.types.enum [
+          "todo-comments"
+          "mini-hipatterns"
+        ]
+      );
+      default = [
+        "todo-comments"
+        "mini-hipatterns"
+      ];
+      description = "Text pattern highlighting plugins (can work together)";
+    };
   };
 }
