@@ -5,8 +5,10 @@
 }:
 {
   plugins.project-nvim = {
-    enable = config.khanelivim.picker.engine == "telescope";
-    enableTelescope = config.khanelivim.picker.engine == "telescope";
+    enable =
+      lib.elem "project-nvim" config.khanelivim.utilities.sessions && config.plugins.telescope.enable;
+    enableTelescope =
+      lib.elem "project-nvim" config.khanelivim.utilities.sessions && config.plugins.telescope.enable;
     # package = pkgs.vimPlugins.project-nvim.overrideAttrs (_old: {
     #   patches = [
     #     (pkgs.fetchpatch {
@@ -18,30 +20,49 @@
     # });
 
     # NOTE: Annoying bug where you need to trigger it twice to see your projects when lazy loading.
-    lazyLoad.settings = lib.mkIf (config.khanelivim.picker.engine == "telescope") {
-      before.__raw =
-        lib.mkIf config.plugins.lz-n.enable # Lua
-          ''
-            require('lz.n').trigger_load('telescope')
-          '';
-      keys = lib.mkIf (config.khanelivim.picker.engine == "telescope") [
+    lazyLoad.settings =
+      lib.mkIf
+        (
+          lib.elem "project-nvim" config.khanelivim.utilities.sessions
+          && config.khanelivim.picker.engine == "telescope"
+        )
         {
-          __unkeyed-1 = "<leader>fp";
-          __unkeyed-2 = "<cmd>Telescope projects<CR>";
-          desc = "Find projects";
-        }
-      ];
-    };
+          before.__raw =
+            lib.mkIf config.plugins.lz-n.enable # Lua
+              ''
+                require('lz.n').trigger_load('telescope')
+              '';
+          keys =
+            lib.mkIf
+              (
+                lib.elem "project-nvim" config.khanelivim.utilities.sessions
+                && config.khanelivim.picker.engine == "telescope"
+              )
+              [
+                {
+                  __unkeyed-1 = "<leader>fp";
+                  __unkeyed-2 = "<cmd>Telescope projects<CR>";
+                  desc = "Find projects";
+                }
+              ];
+        };
   };
 
-  keymaps = lib.mkIf (config.khanelivim.picker.engine == "telescope" && !config.plugins.lz-n.enable) [
-    {
-      mode = "n";
-      key = "<leader>fp";
-      action = "<cmd>Telescope projects<CR>";
-      options = {
-        desc = "Find projects";
-      };
-    }
-  ];
+  keymaps =
+    lib.mkIf
+      (
+        lib.elem "project-nvim" config.khanelivim.utilities.sessions
+        && config.khanelivim.picker.engine == "telescope"
+        && !config.plugins.lz-n.enable
+      )
+      [
+        {
+          mode = "n";
+          key = "<leader>fp";
+          action = "<cmd>Telescope projects<CR>";
+          options = {
+            desc = "Find projects";
+          };
+        }
+      ];
 }

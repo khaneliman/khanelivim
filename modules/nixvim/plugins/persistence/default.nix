@@ -2,7 +2,7 @@
 {
   plugins = {
     persistence = {
-      enable = true;
+      enable = lib.elem "persistence" config.khanelivim.utilities.sessions;
 
       lazyLoad.settings.event = "BufReadPre";
     };

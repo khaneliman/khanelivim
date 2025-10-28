@@ -12,5 +12,6 @@
     ./options/performance.nix
     ./options/picker.nix
     ./options/tasks.nix
+    ./options/utilities.nix
   ];
 }
