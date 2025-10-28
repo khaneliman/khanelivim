@@ -2,7 +2,7 @@
 {
   plugins = {
     comment-box = {
-      enable = true;
+      enable = lib.elem "comment-box" config.khanelivim.text.commenting;
 
       lazyLoad = {
         settings = {

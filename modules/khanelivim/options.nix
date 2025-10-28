@@ -12,6 +12,7 @@
     ./options/performance.nix
     ./options/picker.nix
     ./options/tasks.nix
+    ./options/text.nix
     ./options/ui.nix
     ./options/utilities.nix
   ];
