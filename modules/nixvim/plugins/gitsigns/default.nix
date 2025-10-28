@@ -2,7 +2,7 @@
 {
   plugins = {
     gitsigns = {
-      enable = true;
+      enable = lib.elem "gitsigns" config.khanelivim.git.integrations;
 
       lazyLoad.settings.event = "DeferredUIEnter";
 

@@ -5,6 +5,7 @@
     ./options/dashboard.nix
     ./options/debugging.nix
     ./options/editor.nix
+    ./options/git.nix
     ./options/loading.nix
     ./options/lsp.nix
     ./options/performance.nix

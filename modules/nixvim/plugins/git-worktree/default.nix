@@ -7,11 +7,11 @@
 let
   # cfg = config.plugins.git-worktree;
 
-  worktreeEnabled = builtins.elem pkgs.vimPlugins.git-worktree-nvim config.extraPlugins;
+  worktreeEnabled = lib.elem "git-worktree" config.khanelivim.git.integrations;
   worktreeTelescopeEnabled = worktreeEnabled && config.plugins.telescope.enable;
 in
 {
-  extraConfigLua = ''
+  extraConfigLua = lib.mkIf (lib.elem "git-worktree" config.khanelivim.git.integrations) ''
     local Hooks = require("git-worktree.hooks")
     local config = require('git-worktree.config')
     local update_on_switch = Hooks.builtins.update_current_buffer_on_switch
@@ -26,7 +26,9 @@ in
     end)
   '';
 
-  extraPlugins = with pkgs.vimPlugins; [ git-worktree-nvim ];
+  extraPlugins = lib.mkIf (lib.elem "git-worktree" config.khanelivim.git.integrations) (
+    with pkgs.vimPlugins; [ git-worktree-nvim ]
+  );
 
   plugins = {
     # TODO: upstream nixpkg package change to use new fork

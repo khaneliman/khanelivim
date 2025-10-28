@@ -1,5 +1,6 @@
 {
   config,
+  lib,
   pkgs,
   ...
 }:
@@ -39,7 +40,7 @@
 
           folds = {
             open = true;
-            git_hl = config.plugins.gitsigns.enable;
+            git_hl = lib.elem "gitsigns" config.khanelivim.git.integrations;
           };
         };
       };
