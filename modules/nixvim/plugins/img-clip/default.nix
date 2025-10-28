@@ -1,8 +1,9 @@
+{ config, lib, ... }:
 {
   config = {
     plugins = {
       img-clip = {
-        enable = true;
+        enable = lib.elem "img-clip" config.khanelivim.utilities.screenshots;
         lazyLoad.settings.event = [ "DeferredUIEnter" ];
 
         settings = {

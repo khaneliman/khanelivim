@@ -7,7 +7,7 @@
 {
   plugins = {
     codesnap = {
-      enable = true;
+      enable = lib.elem "codesnap" config.khanelivim.utilities.screenshots;
       package = pkgs.vimPlugins.codesnap-nvim;
 
       lazyLoad = {

@@ -11,5 +11,16 @@
       default = [ "persistence" ];
       description = "Session management plugins (can complement each other)";
     };
+
+    screenshots = lib.mkOption {
+      type = lib.types.listOf (
+        lib.types.enum [
+          "codesnap"
+          "img-clip"
+        ]
+      );
+      default = [ "codesnap" ];
+      description = "Screenshot/image plugins (different use cases)";
+    };
   };
 }
