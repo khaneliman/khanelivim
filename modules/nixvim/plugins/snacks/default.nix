@@ -36,7 +36,7 @@
         indent.enabled = config.khanelivim.ui.indentGuides == "snacks";
         scroll.enabled = true;
         statuscolumn = {
-          enabled = true;
+          enabled = config.khanelivim.ui.statusColumn == "snacks";
 
           folds = {
             open = true;
