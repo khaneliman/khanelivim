@@ -46,5 +46,17 @@
       default = [ "toggleterm" ];
       description = "Terminal emulator plugins to use (can have multiple)";
     };
+
+    bufferDelete = lib.mkOption {
+      type = lib.types.nullOr (
+        lib.types.enum [
+          "bufferline"
+          "mini-bufremove"
+          "snacks"
+        ]
+      );
+      default = "snacks";
+      description = "Buffer deletion strategy (mutually exclusive)";
+    };
   };
 }
