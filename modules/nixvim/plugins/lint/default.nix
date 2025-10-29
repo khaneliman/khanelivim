@@ -35,8 +35,7 @@
           "deadnix"
         ]
         ++ lib.optionals (!config.plugins.lsp.servers.statix.enable) [ "statix" ];
-        # FIXME: causes ruff errors
-        # python = [ "pylint" ];
+        python = [ "pylint" ];
         rust = [ "clippy" ];
         sh = [ "shellcheck" ];
         sql = [ "sqlfluff" ];
