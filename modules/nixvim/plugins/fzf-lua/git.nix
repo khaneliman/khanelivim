@@ -4,7 +4,7 @@
   ...
 }:
 {
-  keymaps = lib.mkIf (config.khanelivim.picker.engine == "fzf") [
+  keymaps = lib.mkIf (config.khanelivim.picker.tool == "fzf") [
     {
       mode = "n";
       key = "<leader>gfb";

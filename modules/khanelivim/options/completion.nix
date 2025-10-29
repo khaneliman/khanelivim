@@ -1,7 +1,7 @@
 { lib, ... }:
 {
   options.khanelivim.completion = {
-    engine = lib.mkOption {
+    tool = lib.mkOption {
       type = lib.types.nullOr (
         lib.types.enum [
           "blink"
@@ -9,7 +9,7 @@
         ]
       );
       default = "blink";
-      description = "Completion engine to use";
+      description = "Completion tool to use";
     };
   };
 }

@@ -154,11 +154,11 @@
       mode = "n";
       key = "<leader>fn";
       action =
-        if config.khanelivim.picker.engine == "snacks" then
+        if config.khanelivim.picker.tool == "snacks" then
           "<cmd>Noice snacks<CR>"
-        else if config.khanelivim.picker.engine == "fzf" then
+        else if config.khanelivim.picker.tool == "fzf" then
           "<cmd>Noice fzf<CR>"
-        else if config.khanelivim.picker.engine == "telescope" then
+        else if config.khanelivim.picker.tool == "telescope" then
           "<cmd>Telescope noice<CR>"
         else
           "<cmd>Noice<CR>"; # Fallback to basic Noice command

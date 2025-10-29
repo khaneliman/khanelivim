@@ -28,7 +28,7 @@
           };
         };
 
-        suggestion = lib.mkIf (config.khanelivim.completion.engine != "blink") {
+        suggestion = lib.mkIf (config.khanelivim.completion.tool != "blink") {
           enabled = true;
           auto_trigger = true;
           keymap = {
@@ -41,7 +41,7 @@
           };
         };
 
-        panel = lib.mkIf (config.khanelivim.picker.engine != "blink") {
+        panel = lib.mkIf (config.khanelivim.picker.tool != "blink") {
           enabled = true;
           auto_refresh = true;
           keymap = {
@@ -203,7 +203,7 @@
   ];
 
   autoCmd =
-    lib.mkIf (config.plugins.copilot-lua.enable && config.khanelivim.completion.engine == "blink")
+    lib.mkIf (config.plugins.copilot-lua.enable && config.khanelivim.completion.tool == "blink")
       [
         {
           event = "User";

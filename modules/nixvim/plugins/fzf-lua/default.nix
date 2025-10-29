@@ -12,7 +12,7 @@
 
   plugins = {
     fzf-lua = {
-      enable = config.khanelivim.picker.engine == "fzf";
+      enable = config.khanelivim.picker.tool == "fzf";
       profile = "telescope";
 
       lazyLoad.settings.cmd = [
@@ -33,7 +33,7 @@
     };
   };
 
-  keymaps = lib.mkIf (config.khanelivim.picker.engine == "fzf") [
+  keymaps = lib.mkIf (config.khanelivim.picker.tool == "fzf") [
     {
       mode = "n";
       key = "<leader>f'";

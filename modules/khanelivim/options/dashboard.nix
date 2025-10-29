@@ -1,7 +1,7 @@
 { lib, ... }:
 {
   options.khanelivim.dashboard = {
-    plugin = lib.mkOption {
+    tool = lib.mkOption {
       type = lib.types.nullOr (
         lib.types.enum [
           "snacks"
@@ -9,7 +9,7 @@
         ]
       );
       default = "mini-starter";
-      description = "Dashboard plugin to use";
+      description = "Dashboard tool to use";
     };
   };
 }

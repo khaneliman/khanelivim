@@ -2,7 +2,7 @@
 {
   plugins = {
     grug-far = {
-      enable = config.khanelivim.editor.searchPlugin == "grug-far";
+      enable = config.khanelivim.editor.search == "grug-far";
       lazyLoad = {
         settings = {
           cmd = "GrugFar";

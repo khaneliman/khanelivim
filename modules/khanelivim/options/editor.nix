@@ -1,7 +1,7 @@
 { lib, ... }:
 {
   options.khanelivim.editor = {
-    motionPlugin = lib.mkOption {
+    motion = lib.mkOption {
       type = lib.types.nullOr (
         lib.types.enum [
           "flash"
@@ -12,7 +12,7 @@
       description = "Motion/jump plugin to use";
     };
 
-    searchPlugin = lib.mkOption {
+    search = lib.mkOption {
       type = lib.types.nullOr (
         lib.types.enum [
           "spectre"
@@ -47,7 +47,7 @@
       description = "Diff viewer plugin to use";
     };
 
-    snippetEngine = lib.mkOption {
+    snippet = lib.mkOption {
       type = lib.types.nullOr (
         lib.types.enum [
           "luasnip"

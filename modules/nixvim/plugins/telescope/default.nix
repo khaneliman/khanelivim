@@ -15,7 +15,7 @@
   ];
 
   plugins.telescope = {
-    enable = config.khanelivim.picker.engine == "telescope";
+    enable = config.khanelivim.picker.tool == "telescope";
 
     lazyLoad.settings.cmd = [
       "Telescope"
@@ -26,7 +26,7 @@
 
     highlightTheme = "Catppuccin Macchiato";
 
-    keymaps = lib.mkIf (config.khanelivim.picker.engine == "telescope") {
+    keymaps = lib.mkIf (config.khanelivim.picker.tool == "telescope") {
       "<leader>f'" = {
         action = "marks";
         options.desc = "View marks";

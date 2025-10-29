@@ -1,7 +1,7 @@
 { lib, ... }:
 {
   options.khanelivim.picker = {
-    engine = lib.mkOption {
+    tool = lib.mkOption {
       type = lib.types.nullOr (
         lib.types.enum [
           "snacks"
@@ -10,7 +10,7 @@
         ]
       );
       default = "snacks";
-      description = "Fuzzy finder/picker engine to use";
+      description = "Fuzzy finder/picker tool to use";
     };
   };
 }

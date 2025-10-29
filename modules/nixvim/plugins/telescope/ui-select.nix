@@ -4,7 +4,7 @@
   ...
 }:
 {
-  plugins.telescope = lib.mkIf (config.khanelivim.picker.engine == "telescope") {
+  plugins.telescope = lib.mkIf (config.khanelivim.picker.tool == "telescope") {
     extensions = {
       ui-select = {
         enable = true;

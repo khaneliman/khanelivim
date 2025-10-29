@@ -27,7 +27,7 @@
       modules = {
         basics = { };
         bracketed = { };
-        snippets = lib.mkIf (config.khanelivim.editor.snippetEngine == "mini-snippets") {
+        snippets = lib.mkIf (config.khanelivim.editor.snippet == "mini-snippets") {
           snippets = {
             __unkeyed-1.__raw =
               lib.mkIf config.plugins.friendly-snippets.enable # Lua

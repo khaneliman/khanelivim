@@ -1,7 +1,7 @@
 { lib, ... }:
 {
   options.khanelivim.tasks = {
-    runner = lib.mkOption {
+    tool = lib.mkOption {
       type = lib.types.nullOr (
         lib.types.enum [
           "overseer"
@@ -9,7 +9,7 @@
         ]
       );
       default = "overseer";
-      description = "Task runner plugin to use";
+      description = "Task runner tool to use";
     };
   };
 }

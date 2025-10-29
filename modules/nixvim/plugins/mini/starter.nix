@@ -2,7 +2,7 @@
 {
   plugins = {
     mini-starter = {
-      enable = config.khanelivim.dashboard.plugin == "mini-starter";
+      enable = config.khanelivim.dashboard.tool == "mini-starter";
       settings = {
         # TODO: compare against persistence
         # sessions = { };

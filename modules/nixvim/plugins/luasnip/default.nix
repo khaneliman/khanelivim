@@ -1,7 +1,7 @@
 { config, lib, ... }:
 {
   plugins.luasnip = {
-    enable = config.khanelivim.editor.snippetEngine == "luasnip";
+    enable = config.khanelivim.editor.snippet == "luasnip";
     settings = lib.mkIf config.plugins.blink-cmp.enable {
       snippets = {
         expand.__raw = "function(snippet) require('luasnip').lsp_expand(snippet) end";

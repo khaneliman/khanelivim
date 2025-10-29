@@ -4,7 +4,7 @@
   ...
 }:
 {
-  plugins.telescope = lib.mkIf (config.khanelivim.picker.engine == "telescope") {
+  plugins.telescope = lib.mkIf (config.khanelivim.picker.tool == "telescope") {
     extensions = {
       live-grep-args.enable = true;
     };
@@ -17,7 +17,7 @@
     };
   };
 
-  keymaps = lib.mkIf (config.khanelivim.picker.engine == "telescope") [
+  keymaps = lib.mkIf (config.khanelivim.picker.tool == "telescope") [
     (lib.mkIf config.plugins.telescope.extensions.live-grep-args.enable {
       mode = "n";
       key = "<leader>fw";

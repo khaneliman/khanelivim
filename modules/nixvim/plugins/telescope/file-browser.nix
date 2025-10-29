@@ -4,7 +4,7 @@
   ...
 }:
 {
-  plugins.telescope = lib.mkIf (config.khanelivim.picker.engine == "telescope") {
+  plugins.telescope = lib.mkIf (config.khanelivim.picker.tool == "telescope") {
     extensions = {
       file-browser = {
         enable = true;
@@ -15,7 +15,7 @@
     };
   };
 
-  keymaps = lib.mkIf (config.khanelivim.picker.engine == "telescope") [
+  keymaps = lib.mkIf (config.khanelivim.picker.tool == "telescope") [
     {
       mode = "n";
       key = "<leader>fe";

@@ -24,7 +24,7 @@
       lib.mkIf
         (
           lib.elem "project-nvim" config.khanelivim.utilities.sessions
-          && config.khanelivim.picker.engine == "telescope"
+          && config.khanelivim.picker.tool == "telescope"
         )
         {
           before.__raw =
@@ -36,7 +36,7 @@
             lib.mkIf
               (
                 lib.elem "project-nvim" config.khanelivim.utilities.sessions
-                && config.khanelivim.picker.engine == "telescope"
+                && config.khanelivim.picker.tool == "telescope"
               )
               [
                 {
@@ -52,7 +52,7 @@
     lib.mkIf
       (
         lib.elem "project-nvim" config.khanelivim.utilities.sessions
-        && config.khanelivim.picker.engine == "telescope"
+        && config.khanelivim.picker.tool == "telescope"
         && !config.plugins.lz-n.enable
       )
       [
