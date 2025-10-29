@@ -1,0 +1,8 @@
+[default.extend-words]
+# Neovim plugin names
+noice = "noice"
+Noice = "Noice"
+# Keymaps
+fo = "fo"
+# Vim commands
+enew = "enew"
