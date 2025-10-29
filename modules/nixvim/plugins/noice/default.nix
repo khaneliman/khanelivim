@@ -2,7 +2,9 @@
 {
   plugins = {
     noice = {
-      enable = config.khanelivim.editor.commandlineUI == "noice";
+      enable =
+        config.khanelivim.editor.commandlineUI == "noice"
+        || lib.elem "noice" config.khanelivim.ui.notifications;
 
       lazyLoad.settings.event = "DeferredUIEnter";
 
@@ -152,18 +154,11 @@
       mode = "n";
       key = "<leader>fn";
       action =
-        let
-          # Determine the action based on priority
-          hasSnacksPicker =
-            config.plugins.snacks.enable && lib.hasAttr "picker" config.plugins.snacks.settings;
-          hasFzfLua = config.plugins.fzf-lua.enable;
-          hasTelescope = config.plugins.telescope.enable;
-        in
-        if hasSnacksPicker then
+        if config.khanelivim.picker.engine == "snacks" then
           "<cmd>Noice snacks<CR>"
-        else if hasFzfLua then
+        else if config.khanelivim.picker.engine == "fzf" then
           "<cmd>Noice fzf<CR>"
-        else if hasTelescope then
+        else if config.khanelivim.picker.engine == "telescope" then
           "<cmd>Telescope noice<CR>"
         else
           "<cmd>Noice<CR>"; # Fallback to basic Noice command

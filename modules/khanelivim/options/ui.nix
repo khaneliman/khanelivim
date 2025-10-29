@@ -23,5 +23,15 @@
       default = "snacks";
       description = "Status column plugin to use (mutually exclusive)";
     };
+
+    notifications = lib.mkOption {
+      type = lib.types.listOf (
+        lib.types.enum [
+          "noice"
+        ]
+      );
+      default = [ "noice" ];
+      description = "Notification systems to use (can complement each other)";
+    };
   };
 }
