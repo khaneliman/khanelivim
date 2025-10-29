@@ -1,7 +1,7 @@
 { lib, ... }:
 {
   options.khanelivim.text = {
-    commenting = lib.mkOption {
+    comments = lib.mkOption {
       type = lib.types.listOf (
         lib.types.enum [
           "comment-box"

@@ -1,6 +1,6 @@
 { config, lib, ... }:
 {
-  plugins = lib.mkIf (lib.elem "mini-comment" config.khanelivim.text.commenting) {
+  plugins = lib.mkIf (lib.elem "mini-comment" config.khanelivim.text.comments) {
     mini = {
       enable = true;
 
