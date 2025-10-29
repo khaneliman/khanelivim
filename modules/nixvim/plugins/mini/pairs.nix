@@ -1,7 +1,7 @@
 { config, lib, ... }:
 {
   plugins = {
-    mini-pairs.enable = true;
+    mini-pairs.enable = config.khanelivim.editor.autopairs == "mini-pairs";
   };
 
   keymaps = lib.mkIf config.plugins.mini-pairs.enable [

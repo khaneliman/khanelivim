@@ -56,5 +56,11 @@
       default = "kulala";
       description = "HTTP client plugin to use";
     };
+
+    autopairs = lib.mkOption {
+      type = lib.types.nullOr (lib.types.enum [ "mini-pairs" ]);
+      default = "mini-pairs";
+      description = "Auto-pairing plugin to use";
+    };
   };
 }
