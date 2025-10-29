@@ -17,6 +17,20 @@
       description = "Text commenting plugins to use (can complement each other)";
     };
 
+    markdownRendering = lib.mkOption {
+      type = lib.types.listOf (
+        lib.types.enum [
+          "markview"
+          "markdown-preview"
+        ]
+      );
+      default = [
+        "markview"
+        "markdown-preview"
+      ];
+      description = "Markdown rendering and preview plugins (can coexist)";
+    };
+
     patterns = lib.mkOption {
       type = lib.types.listOf (
         lib.types.enum [

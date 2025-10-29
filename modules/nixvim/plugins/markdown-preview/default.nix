@@ -1,7 +1,7 @@
 { config, lib, ... }:
 {
   plugins.markdown-preview = {
-    enable = lib.elem "markdown-preview" config.khanelivim.documentation.viewers;
+    enable = lib.elem "markdown-preview" config.khanelivim.text.markdownRendering;
 
     settings = {
       auto_close = 0;
