@@ -67,12 +67,12 @@
       kulala_ls.enable = true;
       marksman.enable = true;
       nushell.enable = true;
-      pyright.enable = lib.elem "pyright" config.khanelivim.lsp.python;
-      pylsp.enable = lib.elem "pylsp" config.khanelivim.lsp.python;
-      basedpyright.enable = lib.elem "basedpyright" config.khanelivim.lsp.python;
+      pyright.enable = config.khanelivim.lsp.python.typeChecker == "pyright";
+      pylsp.enable = config.khanelivim.lsp.python.typeChecker == "pylsp";
+      basedpyright.enable = config.khanelivim.lsp.python.typeChecker == "basedpyright";
       # FIXME: wayland dependency broken darwin again
       qmlls.enable = pkgs.stdenv.hostPlatform.isLinux;
-      ruff.enable = lib.elem "ruff" config.khanelivim.lsp.python;
+      ruff.enable = lib.elem "ruff" config.khanelivim.lsp.python.linters;
       roslyn_ls.enable = config.khanelivim.lsp.csharp == "roslyn_ls";
       sqls.enable = true;
       statix.enable = true;

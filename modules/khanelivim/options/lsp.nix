@@ -64,20 +64,28 @@
       default = "nixd";
       description = "Which Nix LSP to enable (mutually exclusive).";
     };
-    python = lib.mkOption {
-      type = lib.types.listOf (
-        lib.types.enum [
-          "pyright"
-          "pylsp"
-          "basedpyright"
-          "ruff"
-        ]
-      );
-      default = [
-        "pyright"
-        "ruff"
-      ];
-      description = "Which Python LSPs to enable. Note: pylsp and basedpyright are mutually exclusive with pyright.";
+    python = {
+      typeChecker = lib.mkOption {
+        type = lib.types.nullOr (
+          lib.types.enum [
+            "pyright"
+            "pylsp"
+            "basedpyright"
+          ]
+        );
+        default = "pyright";
+        description = "Which Python type checker to use (mutually exclusive).";
+      };
+
+      linters = lib.mkOption {
+        type = lib.types.listOf (
+          lib.types.enum [
+            "ruff"
+          ]
+        );
+        default = [ "ruff" ];
+        description = "Python linters and formatters to enable alongside the type checker.";
+      };
     };
     typescript = lib.mkOption {
       type = lib.types.nullOr (
