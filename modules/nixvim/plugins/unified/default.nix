@@ -6,7 +6,7 @@
 {
   config = {
     plugins.unified = {
-      enable = config.khanelivim.editor.diffViewer == "unified";
+      enable = config.khanelivim.git.diffViewer == "unified";
     };
 
     plugins.which-key.settings.spec = lib.mkIf config.plugins.unified.enable [
@@ -61,7 +61,7 @@
           };
         }
       ]
-      ++ lib.optionals (config.khanelivim.editor.diffViewer == "unified") [
+      ++ lib.optionals (config.khanelivim.git.diffViewer == "unified") [
         # Primary diff shortcut when unified is the chosen diff viewer
         {
           mode = "n";

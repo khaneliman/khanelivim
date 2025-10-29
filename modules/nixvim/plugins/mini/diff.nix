@@ -4,7 +4,7 @@
     mini = {
       enable = true;
 
-      modules = lib.mkIf (config.khanelivim.editor.diffViewer == "mini-diff") {
+      modules = lib.mkIf (config.khanelivim.git.diffViewer == "mini-diff") {
         diff = {
           view = {
             style = "sign";
@@ -37,7 +37,7 @@
         };
       }
     ]
-    ++ lib.optionals (config.khanelivim.editor.diffViewer == "mini-diff") [
+    ++ lib.optionals (config.khanelivim.git.diffViewer == "mini-diff") [
       # Primary diff shortcut when mini-diff is the chosen diff viewer
       {
         mode = "n";

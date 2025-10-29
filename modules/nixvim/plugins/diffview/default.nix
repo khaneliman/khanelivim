@@ -2,7 +2,7 @@
 {
   plugins = {
     diffview = {
-      enable = config.khanelivim.editor.diffViewer == "diffview";
+      enable = config.khanelivim.git.diffViewer == "diffview";
 
       lazyLoad = {
         settings = {
@@ -63,7 +63,7 @@
         };
       }
     ]
-    ++ lib.optionals (config.khanelivim.editor.diffViewer == "diffview") [
+    ++ lib.optionals (config.khanelivim.git.diffViewer == "diffview") [
       # Primary diff shortcut when diffview is the chosen diff viewer
       {
         mode = "n";

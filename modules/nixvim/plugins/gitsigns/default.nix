@@ -268,7 +268,7 @@
         };
       }
     ]
-    ++ lib.optionals (config.khanelivim.editor.diffViewer == "gitsigns") [
+    ++ lib.optionals (config.khanelivim.git.diffViewer == "gitsigns") [
       # Primary diff shortcut when gitsigns is the chosen diff viewer
       {
         mode = "n";
