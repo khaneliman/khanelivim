@@ -1,7 +1,7 @@
 { config, lib, ... }:
 {
   plugins.toggleterm = {
-    enable = true;
+    enable = lib.elem "toggleterm" config.khanelivim.ui.terminal;
 
     lazyLoad = {
       settings = {

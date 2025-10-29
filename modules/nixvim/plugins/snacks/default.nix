@@ -14,6 +14,7 @@
     ./notifier.nix
     ./picker.nix
     ./profiler.nix
+    ./terminal.nix
     ./zen.nix
   ];
 

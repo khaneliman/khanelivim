@@ -35,5 +35,16 @@
       default = [ "noice" ];
       description = "Notification systems to use (can complement each other)";
     };
+
+    terminal = lib.mkOption {
+      type = lib.types.listOf (
+        lib.types.enum [
+          "toggleterm"
+          "snacks"
+        ]
+      );
+      default = [ "toggleterm" ];
+      description = "Terminal emulator plugins to use (can have multiple)";
+    };
   };
 }
