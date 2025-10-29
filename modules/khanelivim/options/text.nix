@@ -1,6 +1,7 @@
 { lib, ... }:
 {
   options.khanelivim.text = {
+    # keep-sorted start block=yes newline_separated=yes
     comments = lib.mkOption {
       type = lib.types.listOf (
         lib.types.enum [
@@ -44,5 +45,6 @@
       ];
       description = "Text pattern highlighting plugins (can work together)";
     };
+    # keep-sorted end
   };
 }
