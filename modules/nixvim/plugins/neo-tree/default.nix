@@ -4,6 +4,8 @@
   plugins.neo-tree = {
     enable = config.khanelivim.editor.fileManager == "neo-tree";
 
+    lazyLoad.settings.cmd = [ "Neotree" ];
+
     settings = {
       close_if_last_window = true;
 
@@ -35,7 +37,7 @@
     };
   };
 
-  keymaps = lib.mkIf (config.khanelivim.editor.fileManager == "neo-tree") [
+  keymaps = lib.mkIf config.plugins.neo-tree.enable [
     {
       mode = "n";
       key = "<leader>E";
