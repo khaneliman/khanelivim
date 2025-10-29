@@ -28,6 +28,7 @@
       type = lib.types.listOf (
         lib.types.enum [
           "noice"
+          "snacks"
         ]
       );
       default = [ "noice" ];

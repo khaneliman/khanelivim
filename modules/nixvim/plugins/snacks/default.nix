@@ -11,6 +11,7 @@
     ./dashboard.nix
     ./gitbrowse.nix
     ./lazygit.nix
+    ./notifier.nix
     ./picker.nix
     ./profiler.nix
     ./zen.nix
