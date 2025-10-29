@@ -27,6 +27,7 @@
     notifications = lib.mkOption {
       type = lib.types.listOf (
         lib.types.enum [
+          "mini-notify"
           "noice"
           "snacks"
         ]

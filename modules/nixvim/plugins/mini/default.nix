@@ -14,6 +14,7 @@
     ./hipatterns.nix
     ./indentscope.nix
     ./map.nix
+    ./notify.nix
     ./pairs.nix
     ./starter.nix
     ./surround.nix
