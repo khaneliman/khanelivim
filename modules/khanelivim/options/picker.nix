@@ -2,12 +2,13 @@
 {
   options.khanelivim.picker = {
     engine = lib.mkOption {
-      type = lib.types.enum [
-        "snacks"
-        "telescope"
-        "fzf"
-        "none"
-      ];
+      type = lib.types.nullOr (
+        lib.types.enum [
+          "snacks"
+          "telescope"
+          "fzf"
+        ]
+      );
       default = "snacks";
       description = "Fuzzy finder/picker engine to use";
     };

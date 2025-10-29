@@ -2,73 +2,80 @@
 {
   options.khanelivim.editor = {
     motionPlugin = lib.mkOption {
-      type = lib.types.enum [
-        "flash"
-        "hop"
-        "none"
-      ];
+      type = lib.types.nullOr (
+        lib.types.enum [
+          "flash"
+          "hop"
+        ]
+      );
       default = "flash";
       description = "Motion/jump plugin to use";
     };
 
     searchPlugin = lib.mkOption {
-      type = lib.types.enum [
-        "spectre"
-        "grug-far"
-        "none"
-      ];
+      type = lib.types.nullOr (
+        lib.types.enum [
+          "spectre"
+          "grug-far"
+        ]
+      );
       default = "grug-far";
       description = "Search and replace plugin to use";
     };
 
     fileManager = lib.mkOption {
-      type = lib.types.enum [
-        "neo-tree"
-        "yazi"
-        "mini-files"
-        "none"
-      ];
+      type = lib.types.nullOr (
+        lib.types.enum [
+          "neo-tree"
+          "yazi"
+          "mini-files"
+        ]
+      );
       default = "yazi";
       description = "File manager plugin to use";
     };
 
     diffViewer = lib.mkOption {
-      type = lib.types.enum [
-        "diffview"
-        "unified"
-        "mini-diff"
-        "none"
-      ];
+      type = lib.types.nullOr (
+        lib.types.enum [
+          "diffview"
+          "unified"
+          "mini-diff"
+        ]
+      );
       default = "unified";
       description = "Diff viewer plugin to use";
     };
 
     snippetEngine = lib.mkOption {
-      type = lib.types.enum [
-        "luasnip"
-        "mini-snippets"
-        "none"
-      ];
+      type = lib.types.nullOr (
+        lib.types.enum [
+          "luasnip"
+          "mini-snippets"
+        ]
+      );
       default = "mini-snippets";
       description = "Snippet engine to use";
     };
 
     commandlineUI = lib.mkOption {
-      type = lib.types.enum [
-        "noice"
-        "wilder"
-        "none"
-      ];
+      type = lib.types.nullOr (
+        lib.types.enum [
+          "noice"
+          "wilder"
+        ]
+      );
       default = "noice";
       description = "Command line UI enhancement to use";
     };
 
     httpClient = lib.mkOption {
-      type = lib.types.enum [
-        "rest"
-        "kulala"
-        "none"
-      ];
+      type = lib.types.nullOr (
+        lib.types.enum [
+          "rest"
+          "kulala"
+        ]
+      );
       default = "kulala";
       description = "HTTP client plugin to use";
     };
