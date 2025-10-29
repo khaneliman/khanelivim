@@ -22,6 +22,7 @@
         TreeReturnShape = "\\";
         TreeSplitShape = "/";
         TreeVertShape = "|";
+        WindowLayout = 2;
       };
     };
   };
