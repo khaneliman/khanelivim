@@ -27,7 +27,7 @@
       };
     in
     {
-      enable = config.khanelivim.ui.bufferDelete == "bufferline";
+      enable = config.khanelivim.ui.bufferline == "bufferline";
 
       lazyLoad.settings.event = "DeferredUIEnter";
 

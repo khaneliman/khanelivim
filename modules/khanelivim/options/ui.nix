@@ -50,7 +50,6 @@
     bufferDelete = lib.mkOption {
       type = lib.types.nullOr (
         lib.types.enum [
-          "bufferline"
           "mini-bufremove"
           "snacks"
         ]
@@ -68,6 +67,18 @@
       );
       default = "noice";
       description = "Command line UI enhancement to use";
+    };
+
+    statusline = lib.mkOption {
+      type = lib.types.nullOr (lib.types.enum [ "lualine" ]);
+      default = "lualine";
+      description = "Statusline plugin to use";
+    };
+
+    bufferline = lib.mkOption {
+      type = lib.types.nullOr (lib.types.enum [ "bufferline" ]);
+      default = "bufferline";
+      description = "Bufferline/tabline plugin to use";
     };
   };
 }
