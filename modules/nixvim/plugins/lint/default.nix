@@ -35,7 +35,7 @@
           "deadnix"
         ]
         ++ lib.optionals (!config.plugins.lsp.servers.statix.enable) [ "statix" ];
-        python = [ "pylint" ];
+        python = [ "ruff" ];
         rust = [ "clippy" ];
         sh = [ "shellcheck" ];
         sql = [ "sqlfluff" ];
