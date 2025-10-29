@@ -58,5 +58,16 @@
       default = "snacks";
       description = "Buffer deletion strategy (mutually exclusive)";
     };
+
+    commandline = lib.mkOption {
+      type = lib.types.nullOr (
+        lib.types.enum [
+          "noice"
+          "wilder"
+        ]
+      );
+      default = "noice";
+      description = "Command line UI enhancement to use";
+    };
   };
 }

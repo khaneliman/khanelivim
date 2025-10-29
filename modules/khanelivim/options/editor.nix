@@ -58,17 +58,6 @@
       description = "Snippet engine to use";
     };
 
-    commandlineUI = lib.mkOption {
-      type = lib.types.nullOr (
-        lib.types.enum [
-          "noice"
-          "wilder"
-        ]
-      );
-      default = "noice";
-      description = "Command line UI enhancement to use";
-    };
-
     httpClient = lib.mkOption {
       type = lib.types.nullOr (
         lib.types.enum [

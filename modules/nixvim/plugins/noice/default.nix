@@ -3,8 +3,7 @@
   plugins = {
     noice = {
       enable =
-        config.khanelivim.editor.commandlineUI == "noice"
-        || lib.elem "noice" config.khanelivim.ui.notifications;
+        config.khanelivim.ui.commandline == "noice" || lib.elem "noice" config.khanelivim.ui.notifications;
 
       lazyLoad.settings.event = "DeferredUIEnter";
 

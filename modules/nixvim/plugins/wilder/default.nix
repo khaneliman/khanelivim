@@ -5,13 +5,13 @@
   ...
 }:
 {
-  extraPlugins = lib.optionals (config.khanelivim.editor.commandlineUI == "wilder") [
+  extraPlugins = lib.optionals (config.khanelivim.ui.commandline == "wilder") [
     pkgs.vimPlugins.cpsm
   ];
 
   plugins = {
     wilder = {
-      enable = config.khanelivim.editor.commandlineUI == "wilder";
+      enable = config.khanelivim.ui.commandline == "wilder";
 
       settings = {
         modes = [
