@@ -11,8 +11,8 @@
         deadnix
         nixd
         nixfmt
-        statix
         python3
+        statix
         (writeShellScriptBin "new-plugin" ''
           if [ $# -ne 2 ]; then
             echo "Usage: new-plugin <plugin-name> <template-type>"
