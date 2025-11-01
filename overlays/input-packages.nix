@@ -40,7 +40,13 @@ in
     #
     snacks-nvim = vimPlugins.snacks-nvim.overrideAttrs (oldAttrs: {
       src = flake.inputs.snacks-nvim;
-      nvimSkipModules = oldAttrs.nvimSkipModules ++ [ "snacks.explorer.init" ];
+      nvimSkipModules = oldAttrs.nvimSkipModules ++ [
+        "snacks.gh.init"
+        "snacks.gh.actions"
+        "snacks.gh.buf"
+        "snacks.gh.render"
+        "snacks.picker.source.gh"
+      ];
     });
     noice-nvim = vimPlugins.noice-nvim.overrideAttrs (oldAttrs: {
       src = prev.fetchFromGitHub {
