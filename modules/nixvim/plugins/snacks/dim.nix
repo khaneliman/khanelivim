@@ -18,6 +18,9 @@
         config.plugins.snacks.enable
         && lib.hasAttr "dim" config.plugins.snacks.settings
         && config.plugins.snacks.settings.dim.enabled
+        && !(
+          lib.hasAttr "toggle" config.plugins.snacks.settings && config.plugins.snacks.settings.toggle.enabled
+        )
       )
       [
         {

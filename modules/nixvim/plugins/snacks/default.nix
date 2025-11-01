@@ -19,6 +19,7 @@
     ./scope.nix
     ./scratch.nix
     ./terminal.nix
+    ./toggle.nix
     ./zen.nix
   ];
 

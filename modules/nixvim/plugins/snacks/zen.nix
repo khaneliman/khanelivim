@@ -18,6 +18,9 @@
         config.plugins.snacks.enable
         && lib.hasAttr "zen" config.plugins.snacks.settings
         && config.plugins.snacks.settings.zen.enabled
+        && !(
+          lib.hasAttr "toggle" config.plugins.snacks.settings && config.plugins.snacks.settings.toggle.enabled
+        )
       )
       [
         {
