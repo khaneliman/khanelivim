@@ -38,6 +38,7 @@
       settings = {
         image.enabled = true;
         indent.enabled = config.khanelivim.ui.indentGuides == "snacks";
+        input.enabled = true;
         scroll.enabled = true;
         statuscolumn = {
           enabled = config.khanelivim.ui.statusColumn == "snacks";
@@ -47,6 +48,7 @@
             git_hl = lib.elem "gitsigns" config.khanelivim.git.integrations;
           };
         };
+        quickfile.enabled = true;
       };
     };
   };
