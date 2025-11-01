@@ -9,6 +9,7 @@
     ./bigfile.nix
     ./bufdelete.nix
     ./dashboard.nix
+    ./dim.nix
     ./gitbrowse.nix
     ./lazygit.nix
     ./notifier.nix
