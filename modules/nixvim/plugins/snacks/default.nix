@@ -17,6 +17,7 @@
     ./picker.nix
     ./profiler.nix
     ./scope.nix
+    ./scratch.nix
     ./terminal.nix
     ./zen.nix
   ];
