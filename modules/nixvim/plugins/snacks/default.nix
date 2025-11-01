@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 {
@@ -13,6 +12,7 @@
     ./dim.nix
     ./gh.nix
     ./gitbrowse.nix
+    ./image.nix
     ./lazygit.nix
     ./notifier.nix
     ./picker.nix
@@ -26,23 +26,11 @@
     ./zen.nix
   ];
 
-  extraPackages = with pkgs; [
-    # PDF rendering
-    ghostscript
-    # Mermaid diagrams
-    # FIXME: pulls in chromium??
-    # mermaid-cli
-    # LaTeX
-    # FIXME: broken
-    # tectonic
-  ];
-
   plugins = {
     snacks = {
       enable = true;
 
       settings = {
-        image.enabled = true;
         indent.enabled = config.khanelivim.ui.indentGuides == "snacks";
         input.enabled = true;
         scroll.enabled = true;
