@@ -1,7 +1,11 @@
 {
+  config,
+  ...
+}:
+{
   plugins = {
     illuminate = {
-      enable = true;
+      enable = config.khanelivim.ui.referenceHighlighting == "illuminate";
 
       lazyLoad.settings.event = "DeferredUIEnter";
 

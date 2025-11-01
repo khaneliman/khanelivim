@@ -57,6 +57,17 @@
       description = "Notification systems to use (can complement each other)";
     };
 
+    referenceHighlighting = lib.mkOption {
+      type = lib.types.nullOr (
+        lib.types.enum [
+          "illuminate"
+          "snacks-words"
+        ]
+      );
+      default = "snacks-words";
+      description = "LSP reference highlighting plugin to use (mutually exclusive)";
+    };
+
     statusColumn = lib.mkOption {
       type = lib.types.nullOr (
         lib.types.enum [

@@ -20,6 +20,7 @@
     ./scratch.nix
     ./terminal.nix
     ./toggle.nix
+    ./words.nix
     ./zen.nix
   ];
 
