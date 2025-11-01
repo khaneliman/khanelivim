@@ -11,6 +11,7 @@
     ./dashboard.nix
     ./debug.nix
     ./dim.nix
+    ./gh.nix
     ./gitbrowse.nix
     ./lazygit.nix
     ./notifier.nix

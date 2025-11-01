@@ -18,6 +18,7 @@
       type = lib.types.listOf (
         lib.types.enum [
           "gitsigns"
+          "snacks-gh"
           "snacks-gitbrowse"
           "snacks-lazygit"
           "git-worktree"
@@ -26,6 +27,7 @@
       );
       default = [
         "gitsigns"
+        "snacks-gh"
         "snacks-gitbrowse"
         "snacks-lazygit"
         "git-worktree"
