@@ -60,7 +60,7 @@
           };
         };
 
-        messages = {
+        messages = lib.mkIf (!lib.elem "snacks" config.khanelivim.ui.notifications) {
           view = "mini";
           view_error = "mini";
           view_warn = "mini";
