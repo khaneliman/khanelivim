@@ -1,11 +1,16 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
+  # Set Chromium path for mermaid-cli on Darwin (chromium not available in nixpkgs for aarch64-darwin)
+  env = lib.optionalAttrs pkgs.stdenv.isDarwin {
+    PUPPETEER_EXECUTABLE_PATH = "/Applications/Chromium.app/Contents/MacOS/Chromium";
+  };
+
   extraPackages = with pkgs; [
     # Image conversion (required for image module)
     imagemagick
     # PDF rendering
     ghostscript
-    # Mermaid diagrams (pulls in chromium)
+    # Mermaid diagrams (requires Chromium from Homebrew on Darwin)
     mermaid-cli
     # Math expression rendering
     typst
