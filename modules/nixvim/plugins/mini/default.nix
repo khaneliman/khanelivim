@@ -38,7 +38,7 @@
       };
     };
 
-    mini-ai.enable = true;
+    mini-ai.enable = lib.elem "mini-ai" config.khanelivim.editor.textObjects;
     mini-align.enable = true;
     mini-icons = {
       enable = true;

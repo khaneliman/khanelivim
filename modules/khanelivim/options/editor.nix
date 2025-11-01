@@ -63,6 +63,20 @@
       default = "mini-snippets";
       description = "Snippet engine to use";
     };
+
+    textObjects = lib.mkOption {
+      type = lib.types.listOf (
+        lib.types.enum [
+          "mini-ai"
+          "snacks-scope"
+        ]
+      );
+      default = [
+        "mini-ai"
+        "snacks-scope"
+      ];
+      description = "Text objects plugins to use (complementary)";
+    };
     # keep-sorted end
   };
 }
