@@ -50,7 +50,10 @@
           "snacks"
         ]
       );
-      default = [ "noice" ];
+      default = [
+        "noice"
+        "snacks"
+      ];
       description = "Notification systems to use (can complement each other)";
     };
 

@@ -3,7 +3,11 @@
   plugins = {
     snacks = {
       settings = {
-        notifier.enabled = lib.elem "snacks" config.khanelivim.ui.notifications;
+        notifier = {
+          enabled = lib.elem "snacks" config.khanelivim.ui.notifications;
+
+          style = "fancy"; # "compact" | "fancy" | "minimal"
+        };
       };
     };
   };
