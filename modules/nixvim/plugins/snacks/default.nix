@@ -16,6 +16,7 @@
     ./notifier.nix
     ./picker.nix
     ./profiler.nix
+    ./rename.nix
     ./scope.nix
     ./scratch.nix
     ./terminal.nix
