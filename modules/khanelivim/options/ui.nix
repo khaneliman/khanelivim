@@ -38,7 +38,7 @@
           "snacks"
         ]
       );
-      default = "mini-indentscope";
+      default = "snacks";
       description = "Indent guides plugin to use (mutually exclusive)";
     };
 
