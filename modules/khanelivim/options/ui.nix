@@ -42,6 +42,17 @@
       description = "Indent guides plugin to use (mutually exclusive)";
     };
 
+    keybindingHelp = lib.mkOption {
+      type = lib.types.nullOr (
+        lib.types.enum [
+          "which-key"
+          "mini-clue"
+        ]
+      );
+      default = "which-key";
+      description = "Keybinding help/hints plugin to use (mutually exclusive)";
+    };
+
     notifications = lib.mkOption {
       type = lib.types.listOf (
         lib.types.enum [

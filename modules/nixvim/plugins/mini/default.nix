@@ -6,6 +6,7 @@
 {
   imports = [
     ./bufremove.nix
+    ./clue.nix
     ./comment.nix
     ./diff.nix
     ./files.nix

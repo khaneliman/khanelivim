@@ -1,5 +1,10 @@
 {
-  plugins.which-key = {
+  config,
+  lib,
+  ...
+}:
+{
+  plugins.which-key = lib.mkIf (config.khanelivim.ui.keybindingHelp == "which-key") {
     enable = true;
 
     lazyLoad.settings.event = "DeferredUIEnter";
