@@ -32,6 +32,12 @@
       description = "Markdown rendering and preview plugins (can coexist)";
     };
 
+    operators = lib.mkOption {
+      type = lib.types.listOf (lib.types.enum [ "mini-operators" ]);
+      default = [ "mini-operators" ];
+      description = "Text edit operators (exchange, replace, multiply, etc.)";
+    };
+
     patterns = lib.mkOption {
       type = lib.types.listOf (
         lib.types.enum [

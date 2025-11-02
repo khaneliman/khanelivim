@@ -16,6 +16,7 @@
     ./map.nix
     ./move.nix
     ./notify.nix
+    ./operators.nix
     ./pairs.nix
     ./starter.nix
     ./surround.nix
