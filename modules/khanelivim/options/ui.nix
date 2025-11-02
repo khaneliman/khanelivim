@@ -84,10 +84,11 @@
         lib.types.enum [
           "illuminate"
           "snacks-words"
+          "mini-cursorword"
         ]
       );
       default = "snacks-words";
-      description = "LSP reference highlighting plugin to use (mutually exclusive)";
+      description = "LSP reference/word highlighting plugin to use (mutually exclusive)";
     };
 
     statusColumn = lib.mkOption {

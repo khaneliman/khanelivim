@@ -9,6 +9,7 @@
     ./bufremove.nix
     ./clue.nix
     ./comment.nix
+    ./cursorword.nix
     ./diff.nix
     ./files.nix
     ./fuzzy.nix
