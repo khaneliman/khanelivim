@@ -2,6 +2,17 @@
 {
   options.khanelivim.ui = {
     # keep-sorted start block=yes newline_separated=yes
+    animations = lib.mkOption {
+      type = lib.types.nullOr (
+        lib.types.enum [
+          "snacks"
+          "mini-animate"
+        ]
+      );
+      default = "snacks";
+      description = "Animation plugin for UI transitions (mutually exclusive)";
+    };
+
     bufferDelete = lib.mkOption {
       type = lib.types.nullOr (
         lib.types.enum [
