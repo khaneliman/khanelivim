@@ -28,7 +28,7 @@
           };
         };
 
-        suggestion = lib.mkIf (config.khanelivim.completion.tool != "blink") {
+        suggestion = lib.mkIf (!config.plugins.blink-cmp.enable) {
           enabled = true;
           auto_trigger = true;
           keymap = {
@@ -41,7 +41,7 @@
           };
         };
 
-        panel = lib.mkIf (config.khanelivim.picker.tool != "blink") {
+        panel = lib.mkIf (!config.plugins.blink-cmp.enable) {
           enabled = true;
           auto_refresh = true;
           keymap = {
