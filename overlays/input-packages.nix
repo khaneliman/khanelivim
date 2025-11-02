@@ -45,6 +45,7 @@ in
         "snacks.gh.actions"
         "snacks.gh.buf"
         "snacks.gh.render"
+        "snacks.gh.render.init"
         "snacks.picker.source.gh"
       ];
     });
