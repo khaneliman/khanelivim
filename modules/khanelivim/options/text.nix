@@ -57,6 +57,17 @@
       default = "mini-splitjoin";
       description = "Plugin for splitting and joining arguments/arrays/objects";
     };
+
+    whitespace = lib.mkOption {
+      type = lib.types.nullOr (
+        lib.types.enum [
+          "whitespace-nvim"
+          "mini-trailspace"
+        ]
+      );
+      default = "whitespace-nvim";
+      description = "Trailing whitespace highlighting and removal plugin (mutually exclusive)";
+    };
     # keep-sorted end
   };
 }

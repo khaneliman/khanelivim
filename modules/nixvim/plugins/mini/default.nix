@@ -25,6 +25,7 @@
     ./splitjoin.nix
     ./starter.nix
     ./surround.nix
+    ./trailspace.nix
   ];
 
   plugins = {

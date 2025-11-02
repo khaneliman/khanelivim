@@ -4,7 +4,7 @@
   ...
 }:
 {
-  plugins.whitespace = {
+  plugins.whitespace = lib.mkIf (config.khanelivim.text.whitespace == "whitespace-nvim") {
     enable = true;
     settings = {
       highlight = "DiffDelete";
