@@ -27,7 +27,7 @@
             ]
             ++ lib.optionals config.plugins.bufferline.enable [ "bufferline" ]
             ++ lib.optionals config.plugins.gitsigns.enable [ "gitsigns" ]
-            ++ lib.optionals config.plugins.mini.enable [ "mini_indentscope" ]
+            ++ lib.optionals config.plugins.mini-indentscope.enable [ "mini_indentscope" ]
             ++ lib.optionals config.plugins.noice.enable [ "noice" ]
             ++ lib.optionals config.plugins.snacks.enable [ "snacks" ];
             filesize = 2;
@@ -59,7 +59,7 @@
               "lualine"
             ]
             ++ lib.optionals config.plugins.bufferline.enable [ "bufferline" ]
-            ++ lib.optionals config.plugins.mini.enable [ "mini_indentscope" ]
+            ++ lib.optionals config.plugins.mini-indentscope.enable [ "mini_indentscope" ]
             ++ lib.optionals config.plugins.noice.enable [ "noice" ];
           };
         };
@@ -169,7 +169,7 @@
           };
 
           mini_indentscope = {
-            on = config.plugins.mini.enable;
+            on = config.plugins.mini-indentscope.enable;
             defer = false;
             enable.__raw = ''
               function()
@@ -501,7 +501,7 @@
         };
       }
     ]
-    ++ lib.optionals config.plugins.mini.enable [
+    ++ lib.optionals config.plugins.mini-indentscope.enable [
       {
         mode = "n";
         key = "<leader>uxd";

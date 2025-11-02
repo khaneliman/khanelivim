@@ -29,7 +29,7 @@
 
       [
         # mini.files integration
-        (lib.mkIf (config.plugins.mini.enable && lib.hasAttr "files" config.plugins.mini.modules) {
+        (lib.mkIf config.plugins.mini-files.enable {
           event = "User";
           pattern = "MiniFilesActionRename";
           group = "snacks_rename_integration";

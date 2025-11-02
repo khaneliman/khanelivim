@@ -6,6 +6,13 @@
         enable = lib.elem "img-clip" config.khanelivim.utilities.clipboard;
         lazyLoad.settings = {
           event = [ "DeferredUIEnter" ];
+          keys = [
+            {
+              __unkeyed-1 = "<leader>p";
+              __unkeyed-2 = "<cmd>PasteImage<cr>";
+              desc = "Paste image from system clipboard";
+            }
+          ];
         };
 
         settings = {

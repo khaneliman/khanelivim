@@ -1,12 +1,7 @@
 { config, lib, ... }:
 {
   extraConfigLuaPre =
-    lib.optionalString
-      (
-        lib.elem "mini-hipatterns" config.khanelivim.text.patterns
-        && config.plugins.mini.enable
-        && lib.hasAttr "hipatterns" config.plugins.mini.modules
-      ) # Lua
+    lib.optionalString (lib.elem "mini-hipatterns" config.khanelivim.text.patterns) # Lua
       ''
         local function in_comment(pattern)
           return function(buf_id)
@@ -27,42 +22,37 @@
         end
       '';
 
-  plugins = lib.mkIf (lib.elem "mini-hipatterns" config.khanelivim.text.patterns) {
-    mini = {
-      enable = true;
-
-      modules = {
-        hipatterns = {
-          highlighters = {
-            # TODO: enable again if i find a good TODO Telescope replacement from todo-comments
-            # fixme = {
-            #   pattern.__raw =
-            #     ''in_comment("FIXME")'';
-            #   group = "MiniHipatternsFixme";
-            # };
-            # fix = {
-            #   pattern.__raw =
-            #     ''in_comment("FIX")'';
-            #   group = "MiniHipatternsFixme";
-            # };
-            # hack = {
-            #   pattern.__raw =
-            #     ''in_comment("HACK")'';
-            #   group = "MiniHipatternsHack";
-            # };
-            # todo = {
-            #   pattern.__raw =
-            #     ''in_comment("TODO")'';
-            #   group = "MiniHipatternsTodo";
-            # };
-            # note = {
-            #   pattern.__raw =
-            #     ''in_comment("NOTE")'';
-            #   group = "MiniHipatternsNote";
-            # };
-            hex_color.__raw = ''require("mini.hipatterns").gen_highlighter.hex_color()'';
-          };
-        };
+  plugins.mini-hipatterns = lib.mkIf (lib.elem "mini-hipatterns" config.khanelivim.text.patterns) {
+    enable = true;
+    settings = {
+      highlighters = {
+        # TODO: enable again if i find a good TODO Telescope replacement from todo-comments
+        # fixme = {
+        #   pattern.__raw =
+        #     ''in_comment("FIXME")'';
+        #   group = "MiniHipatternsFixme";
+        # };
+        # fix = {
+        #   pattern.__raw =
+        #     ''in_comment("FIX")'';
+        #   group = "MiniHipatternsFixme";
+        # };
+        # hack = {
+        #   pattern.__raw =
+        #     ''in_comment("HACK")'';
+        #   group = "MiniHipatternsHack";
+        # };
+        # todo = {
+        #   pattern.__raw =
+        #     ''in_comment("TODO")'';
+        #   group = "MiniHipatternsTodo";
+        # };
+        # note = {
+        #   pattern.__raw =
+        #     ''in_comment("NOTE")'';
+        #   group = "MiniHipatternsNote";
+        # };
+        hex_color.__raw = ''require("mini.hipatterns").gen_highlighter.hex_color()'';
       };
     };
   };

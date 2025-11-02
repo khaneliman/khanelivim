@@ -21,19 +21,16 @@
   ];
 
   plugins = {
-    mini = {
+    mini-basics.enable = true;
+    mini-bracketed.enable = true;
+    mini-snippets = lib.mkIf (config.khanelivim.editor.snippet == "mini-snippets") {
       enable = true;
-
-      modules = {
-        basics = { };
-        bracketed = { };
-        snippets = lib.mkIf (config.khanelivim.editor.snippet == "mini-snippets") {
-          snippets = {
-            __unkeyed-1.__raw =
-              lib.mkIf config.plugins.friendly-snippets.enable # Lua
-                "require('mini.snippets').gen_loader.from_file('${config.plugins.friendly-snippets.package}/snippets/global.json')";
-            __unkeyed-2.__raw = "require('mini.snippets').gen_loader.from_lang()";
-          };
+      settings = {
+        snippets = {
+          __unkeyed-1.__raw =
+            lib.mkIf config.plugins.friendly-snippets.enable # Lua
+              "require('mini.snippets').gen_loader.from_file('${config.plugins.friendly-snippets.package}/snippets/global.json')";
+          __unkeyed-2.__raw = "require('mini.snippets').gen_loader.from_lang()";
         };
       };
     };

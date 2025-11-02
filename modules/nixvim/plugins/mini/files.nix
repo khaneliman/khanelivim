@@ -11,13 +11,7 @@
     }
   ];
 
-  plugins = lib.mkIf (config.khanelivim.editor.fileManager == "mini-files") {
-    mini = {
-      enable = true;
-
-      modules = {
-        files = { };
-      };
-    };
+  plugins.mini-files = lib.mkIf (config.khanelivim.editor.fileManager == "mini-files") {
+    enable = true;
   };
 }

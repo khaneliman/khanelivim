@@ -24,7 +24,7 @@
             local buf_size_limit = 1024 * 1024 -- 1MB size limit
             if vim.api.nvim_buf_get_offset(0, vim.api.nvim_buf_line_count(0)) > buf_size_limit then
               ${lib.optionalString config.plugins.indent-blankline.enable ''require("ibl").setup_buffer(0, { enabled = false })''}
-              ${lib.optionalString (lib.hasAttr "indentscope" config.plugins.mini.modules) ''vim.b.miniindentscope_disable = true''}
+              ${lib.optionalString config.plugins.mini-indentscope.enable ''vim.b.miniindentscope_disable = true''}
               ${lib.optionalString config.plugins.illuminate.enable ''require("illuminate").pause_buf()''}
 
               -- Disable line numbers and relative line numbers
