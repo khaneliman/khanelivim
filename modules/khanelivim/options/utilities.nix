@@ -2,15 +2,28 @@
 {
   options.khanelivim.utilities = {
     # keep-sorted start block=yes newline_separated=yes
+    clipboard = lib.mkOption {
+      type = lib.types.listOf (
+        lib.types.enum [
+          "img-clip"
+          "yanky"
+        ]
+      );
+      default = [
+        "yanky"
+        "img-clip"
+      ];
+      description = "Clipboard enhancement plugins (complementary)";
+    };
+
     screenshots = lib.mkOption {
       type = lib.types.listOf (
         lib.types.enum [
           "codesnap"
-          "img-clip"
         ]
       );
       default = [ "codesnap" ];
-      description = "Screenshot/image plugins (different use cases)";
+      description = "Code screenshot plugins for sharing";
     };
 
     sessions = lib.mkOption {

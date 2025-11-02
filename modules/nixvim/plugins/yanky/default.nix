@@ -138,7 +138,7 @@ in
 {
   plugins = {
     yanky = {
-      enable = true;
+      enable = lib.elem "yanky" config.khanelivim.utilities.clipboard;
 
       lazyLoad = {
         settings = {
