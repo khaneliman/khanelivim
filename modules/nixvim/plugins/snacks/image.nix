@@ -15,7 +15,7 @@
     # Math expression rendering
     typst
     # LaTeX for math expressions
-    texliveSmall
+    tectonic
   ];
 
   plugins = {
