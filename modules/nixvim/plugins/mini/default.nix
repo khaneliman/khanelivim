@@ -18,6 +18,7 @@
     ./notify.nix
     ./operators.nix
     ./pairs.nix
+    ./splitjoin.nix
     ./starter.nix
     ./surround.nix
   ];

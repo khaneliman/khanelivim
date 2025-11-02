@@ -51,6 +51,12 @@
       ];
       description = "Text pattern highlighting plugins (can work together)";
     };
+
+    splitJoin = lib.mkOption {
+      type = lib.types.nullOr (lib.types.enum [ "mini-splitjoin" ]);
+      default = "mini-splitjoin";
+      description = "Plugin for splitting and joining arguments/arrays/objects";
+    };
     # keep-sorted end
   };
 }
