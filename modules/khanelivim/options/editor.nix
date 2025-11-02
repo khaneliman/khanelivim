@@ -42,6 +42,12 @@
       description = "Motion/jump plugin to use";
     };
 
+    movement = lib.mkOption {
+      type = lib.types.nullOr (lib.types.enum [ "mini-move" ]);
+      default = "mini-move";
+      description = "Plugin for moving text and selections in any direction";
+    };
+
     search = lib.mkOption {
       type = lib.types.nullOr (
         lib.types.enum [

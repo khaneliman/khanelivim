@@ -14,6 +14,7 @@
     ./hipatterns.nix
     ./indentscope.nix
     ./map.nix
+    ./move.nix
     ./notify.nix
     ./pairs.nix
     ./starter.nix
