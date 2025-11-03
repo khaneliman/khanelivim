@@ -50,6 +50,7 @@ in
         "snacks.gh.render"
         "snacks.gh.render.init"
         "snacks.picker.source.gh"
+        "snacks.picker.util.diff"
       ];
     });
   };
