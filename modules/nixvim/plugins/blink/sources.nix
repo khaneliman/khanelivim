@@ -57,7 +57,7 @@
       # BUILT-IN SOURCES
       # keep-sorted start block=yes newline_separated=yes
       buffer = {
-        score_offset = 40;
+        score_offset = 45;
         min_keyword_length = 2;
         max_items = 15;
       };
@@ -67,7 +67,7 @@
         fallbacks = [ ]; # Allow buffer to show independently
       };
 
-      path.score_offset = 50;
+      path.score_offset = 55;
 
       snippets.score_offset = 60;
       # keep-sorted end
@@ -77,6 +77,7 @@
       avante = lib.mkIf config.plugins.avante.enable {
         module = "blink-cmp-avante";
         name = "Avante";
+        score_offset = 68;
         enabled.__raw = ''
           function()
             return vim.bo.filetype == 'AvanteInput'
@@ -89,6 +90,7 @@
           {
             name = "Conventional Commits";
             module = "blink-cmp-conventional-commits";
+            score_offset = 68;
             enabled.__raw = ''
               function()
                 return vim.bo.filetype == 'gitcommit'
@@ -102,7 +104,7 @@
         async = true;
         timeout_ms = 1000;
         max_items = 3;
-        score_offset = 90;
+        score_offset = 100;
       };
 
       dictionary = lib.mkIf config.plugins.blink-cmp-dictionary.enable {
@@ -110,7 +112,7 @@
         module = "blink-cmp-dictionary";
         min_keyword_length = 3;
         max_items = 8;
-        score_offset = 5;
+        score_offset = 8;
       };
 
       easy-dotnet = lib.mkIf config.plugins.easy-dotnet.enable {
@@ -155,7 +157,7 @@
       nerdfont = lib.mkIf (lib.elem pkgs.vimPlugins.blink-nerdfont-nvim config.extraPlugins) {
         module = "blink-nerdfont";
         name = "Nerd Fonts";
-        score_offset = 70;
+        score_offset = 68;
         opts = {
           insert = true;
         };
@@ -166,6 +168,7 @@
         module = "blink-cmp-npm";
         async = true;
         timeout_ms = 2000;
+        score_offset = 70;
         enabled.__raw = ''
           function()
             return vim.fn.expand('%:t') == 'package.json'
@@ -192,7 +195,7 @@
         name = "Spell";
         module = "blink-cmp-spell";
         max_items = 8;
-        score_offset = 10;
+        score_offset = 15;
       };
       # keep-sorted end
     };
