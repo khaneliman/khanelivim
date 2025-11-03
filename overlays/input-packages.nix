@@ -38,6 +38,8 @@ in
     #
     # Specific package overlays need to go in here to not get ignored
     #
+    blink-cmp-yanky = prev.callPackage ../packages/blink-cmp-yanky/package.nix { };
+
     snacks-nvim = vimPlugins.snacks-nvim.overrideAttrs (oldAttrs: {
       version = flake.inputs.snacks-nvim.shortRev;
       src = flake.inputs.snacks-nvim;
