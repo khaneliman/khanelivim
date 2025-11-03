@@ -50,12 +50,5 @@ in
         "snacks.picker.source.gh"
       ];
     });
-    noice-nvim = vimPlugins.noice-nvim.overrideAttrs (oldAttrs: {
-      src = prev.fetchFromGitHub {
-        inherit (oldAttrs.src) owner repo;
-        rev = "469cbf0e4876c4d2072939047b2f25ac17d1d41f";
-        hash = "sha256-akmcsJmRcc8PKtZf1dQJRC3kiM1DP30DZRi3UsUD/Pg=";
-      };
-    });
   };
 }
