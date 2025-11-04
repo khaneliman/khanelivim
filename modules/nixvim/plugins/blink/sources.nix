@@ -198,6 +198,7 @@
         max_items = 8;
         score_offset = 15;
       };
+
       yank = lib.mkIf (lib.elem pkgs.vimPlugins.blink-cmp-yanky config.extraPlugins) {
         name = "yank";
         module = "blink-yanky";
