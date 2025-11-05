@@ -10,9 +10,12 @@
 
       settings = {
         auto_reload = true;
-        terminal = {
-          win = {
-            enter = true;
+        provider = {
+          enabled = "snacks";
+          snacks = {
+            win = {
+              enter = true;
+            };
           };
         };
       };
