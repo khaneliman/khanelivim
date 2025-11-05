@@ -1,8 +1,25 @@
 { lib, config, ... }:
 {
-  plugins = {
-    mini-git.enable = true;
-  };
+  plugins.mini-git.enable = true;
+
+  # Disable mini.git globally at startup to prevent errors with plugin buffers.
+  globals.minigit_disable = true;
+
+  # Enable mini.git only for file-based buffers.
+  autoCmd = [
+    {
+      event = "BufAdd";
+      pattern = "*";
+      callback.__raw = ''
+        function()
+          local buf = vim.api.nvim_get_current_buf()
+          if vim.bo[buf].buftype == "" then
+            vim.b[buf].minigit_disable = false
+          end
+        end
+      '';
+    }
+  ];
 
   keymaps = lib.mkIf config.plugins.mini-git.enable [
     # TODO: relocate
