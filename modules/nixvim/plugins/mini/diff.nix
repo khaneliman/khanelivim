@@ -12,9 +12,14 @@
 
     which-key.settings.spec = lib.mkIf config.plugins.mini-diff.enable [
       {
-        __unkeyed = "<leader>gd";
+        __unkeyed-1 = "<leader>gd";
         group = "Diff";
         icon = " ";
+      }
+      {
+        __unkeyed-1 = "<leader>gdm";
+        desc = "Toggle mini-diff overlay";
+        icon = "󰦓";
       }
     ];
   };

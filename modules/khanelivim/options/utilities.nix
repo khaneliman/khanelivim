@@ -34,7 +34,10 @@
           "mini-sessions"
         ]
       );
-      default = [ "persistence" ];
+      default = [
+        "persistence"
+        "mini-sessions"
+      ];
       description = "Session management plugins (can complement each other)";
     };
     #keep-sorted end
