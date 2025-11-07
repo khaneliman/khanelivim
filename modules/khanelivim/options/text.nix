@@ -66,7 +66,7 @@
           "mini-trailspace"
         ]
       );
-      default = "whitespace-nvim";
+      default = "whitespace-custom";
       description = "Trailing whitespace highlighting and removal plugin (mutually exclusive)";
     };
     # keep-sorted end
