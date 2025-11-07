@@ -21,14 +21,6 @@
               ];
             };
           };
-          actions = {
-            calculate_file_truncate_width.__raw = ''
-              function(self)
-                  local width = self.list.win:size().width
-                  self.opts.formatters.file.truncate = width - 6
-              end
-            '';
-          };
           win = {
             list = {
               on_buf.__raw = ''
