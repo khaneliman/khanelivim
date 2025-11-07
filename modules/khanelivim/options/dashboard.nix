@@ -8,7 +8,7 @@
           "mini-starter"
         ]
       );
-      default = "mini-starter";
+      default = "snacks";
       description = "Dashboard tool to use";
     };
   };
