@@ -19,6 +19,10 @@
           __unkeyed-1 = "<leader>a";
           group = "AI Assistant";
           icon = "";
+          mode = [
+            "n"
+            "v"
+          ];
         }
         {
           __unkeyed-1 = "<leader>gd";
@@ -37,6 +41,10 @@
         {
           __unkeyed-1 = "<leader>g";
           group = "Git";
+          mode = [
+            "n"
+            "v"
+          ];
         }
         {
           __unkeyed-1 = "<leader>gf";

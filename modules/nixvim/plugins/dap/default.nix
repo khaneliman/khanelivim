@@ -265,7 +265,10 @@
     which-key.settings.spec = lib.optionals config.plugins.dap.enable [
       {
         __unkeyed-1 = "<leader>d";
-        mode = "n";
+        mode = [
+          "n"
+          "v"
+        ];
         desc = "Debug";
         # icon = " ";
       }

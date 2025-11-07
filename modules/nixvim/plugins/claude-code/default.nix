@@ -32,6 +32,10 @@
         __unkeyed-1 = "<leader>ac";
         group = "Claude Code";
         icon = "";
+        mode = [
+          "n"
+          "v"
+        ];
       }
     ];
   };

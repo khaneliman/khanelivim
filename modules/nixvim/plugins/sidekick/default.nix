@@ -21,6 +21,10 @@
           __unkeyed-1 = "<leader>as";
           group = "Sidekick";
           icon = "🤖";
+          mode = [
+            "n"
+            "v"
+          ];
         }
       ];
     };

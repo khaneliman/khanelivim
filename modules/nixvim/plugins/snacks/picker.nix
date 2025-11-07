@@ -55,6 +55,17 @@
         };
       };
     };
+
+    which-key.settings.spec = lib.optionals config.plugins.snacks.enable [
+      {
+        __unkeyed-1 = "<leader>s";
+        mode = [
+          "n"
+          "x"
+        ];
+        desc = "Search";
+      }
+    ];
   };
 
   keymaps =

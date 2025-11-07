@@ -196,6 +196,10 @@
         __unkeyed-1 = "<leader>l";
         group = "LSP";
         icon = " ";
+        mode = [
+          "n"
+          "v"
+        ];
       }
       {
         __unkeyed-1 = "<leader>l[";

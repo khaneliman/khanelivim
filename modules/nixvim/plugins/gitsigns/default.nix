@@ -26,11 +26,19 @@
       {
         __unkeyed = "<leader>g";
         group = "Git";
+        mode = [
+          "n"
+          "v"
+        ];
       }
       {
         __unkeyed = "<leader>gh";
         group = "Hunks";
         icon = " ";
+        mode = [
+          "n"
+          "v"
+        ];
       }
       {
         __unkeyed = "<leader>ug";
@@ -175,7 +183,10 @@
         };
       }
       {
-        mode = "n";
+        mode = [
+          "n"
+          "v"
+        ];
         key = "<leader>ghu";
         action.__raw = ''
           function()
@@ -188,7 +199,10 @@
         };
       }
       {
-        mode = "n";
+        mode = [
+          "n"
+          "v"
+        ];
         key = "<leader>ghp";
         action = "<cmd>Gitsigns preview_hunk<CR>";
         options = {

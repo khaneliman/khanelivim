@@ -40,6 +40,10 @@
         __unkeyed-1 = "<leader>ai";
         group = "CodeCompanion";
         icon = "";
+        mode = [
+          "n"
+          "v"
+        ];
       }
     ];
   };

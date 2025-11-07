@@ -60,6 +60,10 @@
           __unkeyed-1 = "<leader>m";
           group = "Multicursor";
           icon = "󰗧";
+          mode = [
+            "n"
+            "x"
+          ];
         }
       ];
 

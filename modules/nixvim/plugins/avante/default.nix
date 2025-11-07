@@ -62,6 +62,10 @@
         __unkeyed-1 = "<leader>aa";
         group = "Avante";
         icon = "";
+        mode = [
+          "n"
+          "v"
+        ];
       }
     ];
   };

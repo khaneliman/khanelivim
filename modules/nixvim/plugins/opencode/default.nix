@@ -30,6 +30,10 @@
         __unkeyed-1 = "<leader>ao";
         group = "Opencode";
         icon = "";
+        mode = [
+          "n"
+          "v"
+        ];
       }
     ];
   };
