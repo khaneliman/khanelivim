@@ -61,6 +61,7 @@
     whitespace = lib.mkOption {
       type = lib.types.nullOr (
         lib.types.enum [
+          "whitespace-custom"
           "whitespace-nvim"
           "mini-trailspace"
         ]
