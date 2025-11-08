@@ -106,7 +106,14 @@
         };
       };
 
-      snippets.score_offset = 60;
+      snippets = {
+        score_offset = 60;
+        should_show_items.__raw = ''
+          function(ctx)
+            return ctx.trigger.initial_kind ~= 'trigger_character'
+          end
+        '';
+      };
       # keep-sorted end
 
       # Community sources
