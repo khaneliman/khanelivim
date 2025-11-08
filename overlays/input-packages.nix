@@ -41,18 +41,11 @@ in
     #
     blink-cmp-yanky = prev.callPackage ../packages/blink-cmp-yanky/package.nix { };
 
-    snacks-nvim = vimPlugins.snacks-nvim.overrideAttrs (oldAttrs: {
+    snacks-nvim = vimPlugins.snacks-nvim.overrideAttrs (_oldAttrs: {
       version = flake.inputs.snacks-nvim.shortRev;
       src = flake.inputs.snacks-nvim;
-      nvimSkipModules = oldAttrs.nvimSkipModules ++ [
-        "snacks.gh.init"
-        "snacks.gh.actions"
-        "snacks.gh.buf"
-        "snacks.gh.render"
-        "snacks.gh.render.init"
-        "snacks.picker.source.gh"
-        "snacks.picker.util.diff"
-      ];
+      # nvimSkipModules = oldAttrs.nvimSkipModules ++ [
+      # ];
     });
   };
 }
