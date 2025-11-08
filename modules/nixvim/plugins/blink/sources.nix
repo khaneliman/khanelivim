@@ -61,6 +61,15 @@
         score_offset = 45;
         min_keyword_length = 2;
         max_items = 15;
+        opts = {
+          get_bufnrs.__raw = ''
+            function()
+              return vim.tbl_filter(function(bufnr)
+                return vim.bo[bufnr].buftype == ""
+              end, vim.api.nvim_list_bufs())
+            end
+          '';
+        };
       };
 
       lsp = {
