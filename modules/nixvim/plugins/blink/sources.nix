@@ -62,11 +62,18 @@
         min_keyword_length = 2;
         max_items = 15;
         opts = {
+          # Allow searching all open buffers or just current.
           get_bufnrs.__raw = ''
             function()
-              return vim.tbl_filter(function(bufnr)
-                return vim.bo[bufnr].buftype == ""
-              end, vim.api.nvim_list_bufs())
+              if vim.g.blink_buffer_all_buffers == nil then vim.g.blink_buffer_all_buffers = true end
+
+              if vim.g.blink_buffer_all_buffers then
+                return vim.tbl_filter(function(bufnr)
+                  return vim.bo[bufnr].buftype == ""
+                end, vim.api.nvim_list_bufs())
+              else
+                return { vim.api.nvim_get_current_buf() }
+              end
             end
           '';
         };

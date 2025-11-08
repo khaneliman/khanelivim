@@ -264,5 +264,16 @@
       '';
       options.desc = "Path Completion from CWD toggle";
     }
+    {
+      mode = "n";
+      key = "<leader>ucb";
+      action.__raw = ''
+        function()
+          vim.g.blink_buffer_all_buffers = not vim.g.blink_buffer_all_buffers
+          vim.notify(string.format("Buffer Completion from All Buffers %s", bool2str(vim.g.blink_buffer_all_buffers), "info"))
+        end
+      '';
+      options.desc = "Buffer Completion from All Buffers toggle";
+    }
   ];
 }
