@@ -148,7 +148,7 @@
         async = true;
         timeout_ms = 1000;
         max_items = 3;
-        score_offset = 100;
+        score_offset = 1000;
       };
 
       dictionary = lib.mkIf config.plugins.blink-cmp-dictionary.enable {
