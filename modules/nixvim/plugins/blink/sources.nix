@@ -82,6 +82,13 @@
       lsp = {
         score_offset = 80;
         fallbacks = [ ]; # Allow buffer to show independently
+        transform_items.__raw = ''
+          function(_, items)
+            return vim.tbl_filter(function(item)
+              return item.kind ~= require('blink.cmp.types').CompletionItemKind.Keyword
+            end, items)
+          end
+        '';
       };
 
       path = {
