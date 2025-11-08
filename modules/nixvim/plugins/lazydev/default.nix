@@ -9,6 +9,12 @@
       ];
     };
 
+    blink-cmp.settings.sources.providers.lazydev = {
+      name = "LazyDev";
+      module = "lazydev.integrations.blink";
+      score_offset = 100;
+    };
+
     which-key.settings.spec = lib.optionals config.plugins.persistence.enable [
       {
         __unkeyed-1 = "<leader>ll";
