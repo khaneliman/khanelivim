@@ -77,7 +77,27 @@
         fallbacks = [ ]; # Allow buffer to show independently
       };
 
-      path.score_offset = 55;
+      path = {
+        score_offset = 55;
+        opts = {
+          # Toggle support for path completions from project root. Default normal behavior
+          get_cwd.__raw = ''
+            function(context)
+              if vim.g.blink_path_from_cwd == nil then vim.g.blink_path_from_cwd = false end
+
+              if vim.g.blink_path_from_cwd then
+                return vim.fn.getcwd()
+              else
+                local bufpath = vim.api.nvim_buf_get_name(context.bufnr)
+                if bufpath == "" then
+                  return vim.fn.getcwd()
+                end
+                return vim.fn.fnamemodify(bufpath, ":p:h")
+              end
+            end
+          '';
+        };
+      };
 
       snippets.score_offset = 60;
       # keep-sorted end

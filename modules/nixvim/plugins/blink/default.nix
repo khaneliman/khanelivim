@@ -253,5 +253,16 @@
       '';
       options.desc = "Completion Item Index toggle";
     }
+    {
+      mode = "n";
+      key = "<leader>ucp";
+      action.__raw = ''
+        function()
+          vim.g.blink_path_from_cwd = not vim.g.blink_path_from_cwd
+          vim.notify(string.format("Path Completion from CWD %s", bool2str(vim.g.blink_path_from_cwd), "info"))
+        end
+      '';
+      options.desc = "Path Completion from CWD toggle";
+    }
   ];
 }
