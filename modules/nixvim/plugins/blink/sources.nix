@@ -202,7 +202,8 @@
       yank = lib.mkIf (lib.elem pkgs.vimPlugins.blink-cmp-yanky config.extraPlugins) {
         name = "yank";
         module = "blink-yanky";
-        score_offset = 85;
+        score_offset = 69;
+        max_items = 3;
       };
       # keep-sorted end
     };
