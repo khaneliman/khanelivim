@@ -244,7 +244,7 @@
   keymaps = [
     {
       mode = "n";
-      key = "<leader>ui";
+      key = "<leader>uci";
       action.__raw = ''
         function()
           vim.g.blink_show_item_idx = not vim.g.blink_show_item_idx

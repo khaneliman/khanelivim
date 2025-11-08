@@ -64,6 +64,11 @@
           group = "UI/UX";
         }
         {
+          __unkeyed-1 = "<leader>uc";
+          group = "Completion";
+          icon = "󰘦";
+        }
+        {
           __unkeyed-1 = "<leader>w";
           icon = "";
         }
