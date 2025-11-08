@@ -84,6 +84,9 @@
             treesitter = [ "lsp" ];
             columns = [
               {
+                __unkeyed-1 = "item_idx";
+              }
+              {
                 __unkeyed-1 = "label";
               }
               {
@@ -97,6 +100,14 @@
               }
             ];
             components = {
+              item_idx = {
+                text.__raw = ''
+                  function(ctx)
+                    return ctx.idx == 10 and '0' or ctx.idx >= 10 and ' ' or tostring(ctx.idx)
+                  end
+                '';
+                highlight = "BlinkCmpItemIdx";
+              };
               kind_icon = {
                 ellipsis = false;
                 text.__raw = ''
@@ -156,6 +167,16 @@
           "show_documentation"
           "hide_documentation"
         ];
+        "<A-1>" = [ { __raw = "function(cmp) cmp.accept({ index = 1 }) end"; } ];
+        "<A-2>" = [ { __raw = "function(cmp) cmp.accept({ index = 2 }) end"; } ];
+        "<A-3>" = [ { __raw = "function(cmp) cmp.accept({ index = 3 }) end"; } ];
+        "<A-4>" = [ { __raw = "function(cmp) cmp.accept({ index = 4 }) end"; } ];
+        "<A-5>" = [ { __raw = "function(cmp) cmp.accept({ index = 5 }) end"; } ];
+        "<A-6>" = [ { __raw = "function(cmp) cmp.accept({ index = 6 }) end"; } ];
+        "<A-7>" = [ { __raw = "function(cmp) cmp.accept({ index = 7 }) end"; } ];
+        "<A-8>" = [ { __raw = "function(cmp) cmp.accept({ index = 8 }) end"; } ];
+        "<A-9>" = [ { __raw = "function(cmp) cmp.accept({ index = 9 }) end"; } ];
+        "<A-0>" = [ { __raw = "function(cmp) cmp.accept({ index = 10 }) end"; } ];
         "<C-y>" =
           lib.optionals config.plugins.sidekick.enable [
             {
