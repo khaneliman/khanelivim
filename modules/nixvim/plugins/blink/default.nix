@@ -82,23 +82,26 @@
           draw = {
             snippet_indicator = "◦";
             treesitter = [ "lsp" ];
-            columns = [
-              {
-                __unkeyed-1 = "item_idx";
-              }
-              {
-                __unkeyed-1 = "label";
-              }
-              {
-                __unkeyed-1 = "kind_icon";
-                __unkeyed-2 = "kind";
-                gap = 1;
-              }
-              {
-                __unkeyed-1 = "source_name";
-                gap = 1;
-              }
-            ];
+            columns.__raw = ''
+              function()
+                if vim.g.blink_show_item_idx == nil then vim.g.blink_show_item_idx = true end
+
+                if vim.g.blink_show_item_idx then
+                  return {
+                    { "item_idx" },
+                    { "label" },
+                    { "kind_icon", "kind", gap = 1 },
+                    { "source_name", gap = 1 }
+                  }
+                else
+                  return {
+                    { "label" },
+                    { "kind_icon", "kind", gap = 1 },
+                    { "source_name", gap = 1 }
+                  }
+                end
+              end
+            '';
             components = {
               item_idx = {
                 text.__raw = ''
@@ -237,4 +240,18 @@
       snippets.preset = "mini_snippets";
     };
   };
+
+  keymaps = [
+    {
+      mode = "n";
+      key = "<leader>ui";
+      action.__raw = ''
+        function()
+          vim.g.blink_show_item_idx = not vim.g.blink_show_item_idx
+          vim.notify(string.format("Completion Item Index %s", bool2str(vim.g.blink_show_item_idx), "info"))
+        end
+      '';
+      options.desc = "Completion Item Index toggle";
+    }
+  ];
 }
