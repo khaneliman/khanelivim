@@ -245,7 +245,7 @@
       spell = lib.mkIf config.plugins.blink-cmp-spell.enable {
         name = "Spell";
         module = "blink-cmp-spell";
-        max_items = 8;
+        max_items = 3;
         score_offset = 15;
       };
 
