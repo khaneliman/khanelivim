@@ -34,17 +34,25 @@ in
       (mkFasterToggle "Bigfile" "<leader>uxb" "Bigfile Behavior")
       (mkFasterToggle "Fastmacro" "<leader>uxm" "Fastmacro Behavior")
 
-      # Individual feature toggles
+      # Core feature toggles (always available with faster)
       (mkFasterToggle "Lsp" "<leader>uxl" "LSP")
       (mkFasterToggle "Treesitter" "<leader>uxt" "Treesitter")
-      (mkFasterToggle "Illuminate" "<leader>uxi" "Illuminate")
-      (mkFasterToggle "Indentblankline" "<leader>uxI" "Indent Blankline")
       (mkFasterToggle "Syntax" "<leader>uxs" "Syntax")
       (mkFasterToggle "Matchparen" "<leader>uxp" "Matchparen")
-      (mkFasterToggle "Noice" "<leader>uxn" "Noice")
-      (mkFasterToggle "Lualine" "<leader>uxu" "Lualine")
       (mkFasterToggle "Vimopts" "<leader>uxy" "Vimopts")
       (mkFasterToggle "Filetype" "<leader>uxv" "Filetype")
+    ]
+    ++ lib.optionals (config.plugins.faster.enable && config.plugins.illuminate.enable) [
+      (mkFasterToggle "Illuminate" "<leader>uxi" "Illuminate")
+    ]
+    ++ lib.optionals (config.plugins.faster.enable && config.plugins.indent-blankline.enable) [
+      (mkFasterToggle "Indentblankline" "<leader>uxI" "Indent Blankline")
+    ]
+    ++ lib.optionals (config.plugins.faster.enable && config.plugins.noice.enable) [
+      (mkFasterToggle "Noice" "<leader>uxn" "Noice")
+    ]
+    ++ lib.optionals (config.plugins.faster.enable && config.plugins.lualine.enable) [
+      (mkFasterToggle "Lualine" "<leader>uxu" "Lualine")
     ]
     ++ lib.optionals (config.plugins.faster.enable && config.plugins.bufferline.enable) [
       (mkFasterToggle "Bufferline" "<leader>uxo" "Bufferline")
