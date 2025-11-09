@@ -26,6 +26,9 @@
               ${lib.optionalString config.plugins.indent-blankline.enable ''require("ibl").setup_buffer(0, { enabled = false })''}
               ${lib.optionalString config.plugins.mini-indentscope.enable ''vim.b.miniindentscope_disable = true''}
               ${lib.optionalString config.plugins.blink-indent.enable ''vim.b.indent_guide = false''}
+              ${lib.optionalString (
+                config.plugins.snacks.enable && config.plugins.snacks.settings.indent.enabled
+              ) ''vim.b.snacks_indent = false''}
               ${lib.optionalString config.plugins.illuminate.enable ''require("illuminate").pause_buf()''}
 
               -- Disable line numbers and relative line numbers
