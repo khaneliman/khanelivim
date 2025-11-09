@@ -44,6 +44,7 @@
     indentGuides = lib.mkOption {
       type = lib.types.nullOr (
         lib.types.enum [
+          "blink-indent"
           "indent-blankline"
           "mini-indentscope"
           "snacks"
