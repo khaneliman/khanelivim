@@ -262,6 +262,23 @@
   keymaps = [
     {
       mode = "n";
+      key = "<leader>uca";
+      action.__raw = ''
+        function()
+          -- vim.b.completion is nil by default (enabled), false = disabled
+          if vim.b.completion == false then
+            vim.b.completion = true
+            vim.notify("Completion On", "info")
+          else
+            vim.b.completion = false
+            vim.notify("Completion Off", "info")
+          end
+        end
+      '';
+      options.desc = "Toggle Completions (Buffer)";
+    }
+    {
+      mode = "n";
       key = "<leader>uci";
       action.__raw = ''
         function()
