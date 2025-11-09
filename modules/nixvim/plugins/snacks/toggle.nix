@@ -61,13 +61,15 @@
             options.desc = "Toggle Animations";
           }
         ]
-        ++ [
+        ++ lib.optionals (config.khanelivim.ui.indentGuides == "snacks") [
           {
             mode = "n";
             key = "<leader>ui";
             action.__raw = "function() Snacks.toggle.indent():toggle() end";
             options.desc = "Toggle Indent Guides";
           }
+        ]
+        ++ [
           {
             mode = "n";
             key = "<leader>uh";
