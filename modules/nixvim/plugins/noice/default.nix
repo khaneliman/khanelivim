@@ -3,7 +3,7 @@
   plugins = {
     noice = {
       enable =
-        config.khanelivim.ui.commandline == "noice" || lib.elem "noice" config.khanelivim.ui.notifications;
+        config.khanelivim.ui.commandline == "noice" || config.khanelivim.ui.notifications == "noice";
 
       lazyLoad.settings.event = "DeferredUIEnter";
 
@@ -60,7 +60,7 @@
           };
         };
 
-        messages = lib.mkIf (!lib.elem "snacks" config.khanelivim.ui.notifications) {
+        messages = lib.mkIf (config.khanelivim.ui.notifications == "noice") {
           view = "mini";
           view_error = "mini";
           view_warn = "mini";
@@ -148,7 +148,7 @@
     };
   };
 
-  keymaps = lib.mkIf config.plugins.noice.enable [
+  keymaps = lib.mkIf (config.plugins.noice.enable && config.khanelivim.ui.notifications == "noice") [
     {
       mode = "n";
       key = "<leader>fn";

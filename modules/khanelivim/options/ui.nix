@@ -66,18 +66,13 @@
     };
 
     notifications = lib.mkOption {
-      type = lib.types.listOf (
-        lib.types.enum [
-          "mini-notify"
-          "noice"
-          "snacks"
-        ]
-      );
-      default = [
+      type = lib.types.enum [
+        "mini-notify"
         "noice"
         "snacks"
       ];
-      description = "Notification systems to use (can complement each other)";
+      default = "noice";
+      description = "Notification system to use (mutually exclusive)";
     };
 
     referenceHighlighting = lib.mkOption {

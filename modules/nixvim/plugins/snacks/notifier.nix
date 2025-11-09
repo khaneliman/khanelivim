@@ -4,7 +4,7 @@
     snacks = {
       settings = {
         notifier = {
-          enabled = lib.elem "snacks" config.khanelivim.ui.notifications;
+          enabled = config.khanelivim.ui.notifications == "snacks";
 
           style = "fancy"; # "compact" | "fancy" | "minimal"
         };
@@ -12,7 +12,7 @@
     };
   };
 
-  keymaps = lib.mkIf (lib.elem "snacks" config.khanelivim.ui.notifications) [
+  keymaps = lib.mkIf (config.khanelivim.ui.notifications == "snacks") [
     {
       mode = "n";
       key = "<leader>un";
