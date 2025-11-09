@@ -28,6 +28,7 @@
             ++ lib.optionals config.plugins.bufferline.enable [ "bufferline" ]
             ++ lib.optionals config.plugins.gitsigns.enable [ "gitsigns" ]
             ++ lib.optionals config.plugins.mini-indentscope.enable [ "mini_indentscope" ]
+            ++ lib.optionals config.plugins.blink-indent.enable [ "blink_indent" ]
             ++ lib.optionals config.plugins.noice.enable [ "noice" ]
             ++ lib.optionals config.plugins.snacks.enable [ "snacks" ];
             filesize = 2;
@@ -60,6 +61,7 @@
             ]
             ++ lib.optionals config.plugins.bufferline.enable [ "bufferline" ]
             ++ lib.optionals config.plugins.mini-indentscope.enable [ "mini_indentscope" ]
+            ++ lib.optionals config.plugins.blink-indent.enable [ "blink_indent" ]
             ++ lib.optionals config.plugins.noice.enable [ "noice" ];
           };
         };
@@ -163,6 +165,31 @@
                 end, {})
                 vim.api.nvim_create_user_command("FasterDisableBufferline", function()
                   vim.opt.showtabline = 0
+                end, {})
+              end
+            '';
+          };
+
+          blink_indent = {
+            on = config.plugins.blink-indent.enable;
+            defer = false;
+            enable.__raw = ''
+              function()
+                vim.b.indent_guide = true
+              end
+            '';
+            disable.__raw = ''
+              function()
+                vim.b.indent_guide = false
+              end
+            '';
+            commands.__raw = ''
+              function()
+                vim.api.nvim_create_user_command("FasterEnableBlinkIndent", function()
+                  vim.b.indent_guide = true
+                end, {})
+                vim.api.nvim_create_user_command("FasterDisableBlinkIndent", function()
+                  vim.b.indent_guide = false
                 end, {})
               end
             '';
@@ -498,6 +525,24 @@
         action = "<cmd>FasterEnableBufferline<CR>";
         options = {
           desc = "Faster: Enable Bufferline";
+        };
+      }
+    ]
+    ++ lib.optionals config.plugins.blink-indent.enable [
+      {
+        mode = "n";
+        key = "<leader>uxd";
+        action = "<cmd>FasterDisableBlinkIndent<CR>";
+        options = {
+          desc = "Faster: Disable Blink Indent";
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>uxD";
+        action = "<cmd>FasterEnableBlinkIndent<CR>";
+        options = {
+          desc = "Faster: Enable Blink Indent";
         };
       }
     ]
