@@ -61,9 +61,9 @@
         };
 
         messages = lib.mkIf (config.khanelivim.ui.notifications == "noice") {
-          view = "mini";
-          view_error = "mini";
-          view_warn = "mini";
+          view = "notify";
+          view_error = "notify";
+          view_warn = "notify";
         };
 
         lsp = {
@@ -136,6 +136,20 @@
               text = {
                 top = "";
               };
+            };
+          };
+
+          notify = lib.mkIf (config.khanelivim.ui.notifications == "noice") {
+            border = {
+              style = "rounded";
+            };
+            position = {
+              row = 2;
+              col = "100%";
+            };
+            size = {
+              width = "auto";
+              max_width = 60;
             };
           };
         };
