@@ -28,4 +28,18 @@
   plugins.mini-indentscope = lib.mkIf (config.khanelivim.ui.indentGuides == "mini-indentscope") {
     enable = true;
   };
+
+  keymaps = lib.mkIf (config.khanelivim.ui.indentGuides == "mini-indentscope") [
+    {
+      mode = "n";
+      key = "<leader>ui";
+      action.__raw = ''
+        function()
+          vim.g.miniindentscope_disable = not vim.g.miniindentscope_disable
+          vim.notify(string.format("Mini Indentscope %s", bool2str(not vim.g.miniindentscope_disable)), "info")
+        end
+      '';
+      options.desc = "Mini Indentscope toggle";
+    }
+  ];
 }
