@@ -207,22 +207,38 @@
     };
   };
 
-  keymaps = lib.mkIf (config.plugins.noice.enable && config.khanelivim.ui.notifications == "noice") [
-    {
-      mode = "n";
-      key = "<leader>fn";
-      action =
-        if config.khanelivim.picker.tool == "snacks" then
-          "<cmd>Noice snacks<CR>"
-        else if config.khanelivim.picker.tool == "fzf" then
-          "<cmd>Noice fzf<CR>"
-        else if config.khanelivim.picker.tool == "telescope" then
-          "<cmd>Telescope noice<CR>"
-        else
-          "<cmd>Noice<CR>"; # Fallback to basic Noice command
-      options = {
-        desc = "Find notifications";
-      };
-    }
-  ];
+  keymaps =
+    lib.optionals (config.plugins.noice.enable && config.khanelivim.ui.notifications == "noice") [
+      {
+        mode = "n";
+        key = "<leader>fn";
+        action =
+          if config.khanelivim.picker.tool == "snacks" then
+            "<cmd>Noice snacks<CR>"
+          else if config.khanelivim.picker.tool == "fzf" then
+            "<cmd>Noice fzf<CR>"
+          else if config.khanelivim.picker.tool == "telescope" then
+            "<cmd>Telescope noice<CR>"
+          else
+            "<cmd>Noice<CR>"; # Fallback to basic Noice command
+        options = {
+          desc = "Find notifications";
+        };
+      }
+    ]
+    ++ lib.optionals config.plugins.noice.enable [
+      # Command redirection with Shift-Enter
+      {
+        mode = "c";
+        key = "<S-Enter>";
+        action.__raw = ''
+          function()
+            require("noice").redirect(vim.fn.getcmdline())
+          end
+        '';
+        options = {
+          desc = "Redirect Cmdline to Popup";
+        };
+      }
+    ];
 }
