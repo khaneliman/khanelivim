@@ -16,7 +16,6 @@ in
     claude-code
     github-copilot-cli
     opencode
-    neovim-unwrapped
     ;
 
   luaPackages = luaPackages // {
