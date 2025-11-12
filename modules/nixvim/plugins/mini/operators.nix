@@ -4,6 +4,7 @@
     enable = true;
     settings = {
       # Exchange text regions
+      # - Use `<C-c>` to stop exchanging after the first step.
       exchange = {
         prefix = "gx";
       };
@@ -24,4 +25,27 @@
       };
     };
   };
+
+  plugins.which-key.settings.spec = lib.mkIf config.plugins.mini-operators.enable [
+    {
+      __unkeyed-1 = "gx";
+      group = "Exchange";
+      icon = "󰁍 ";
+    }
+    {
+      __unkeyed-1 = "gm";
+      group = "Multiply";
+      icon = "󰎂 ";
+    }
+    {
+      __unkeyed-1 = "gr";
+      group = "Replace";
+      icon = " ";
+    }
+    {
+      __unkeyed-1 = "gs";
+      group = "Sort";
+      icon = "󰒺 ";
+    }
+  ];
 }
