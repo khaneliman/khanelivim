@@ -18,7 +18,7 @@
 
   plugins.which-key.settings.spec = lib.mkIf config.plugins.diffview.enable [
     {
-      __unkeyed = "<leader>gd";
+      __unkeyed-1 = "<leader>gd";
       group = "Diff";
       icon = " ";
     }

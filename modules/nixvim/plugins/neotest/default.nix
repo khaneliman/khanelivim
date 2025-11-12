@@ -126,7 +126,7 @@
 
     which-key.settings.spec = lib.optionals config.plugins.neotest.enable [
       {
-        __unkeyed = "<leader>t";
+        __unkeyed-1 = "<leader>t";
         group = "Test";
         icon = "󰙨";
       }

@@ -24,7 +24,7 @@
 
     which-key.settings.spec = lib.optionals config.plugins.gitsigns.enable [
       {
-        __unkeyed = "<leader>g";
+        __unkeyed-1 = "<leader>g";
         group = "Git";
         mode = [
           "n"
@@ -32,7 +32,7 @@
         ];
       }
       {
-        __unkeyed = "<leader>gh";
+        __unkeyed-1 = "<leader>gh";
         group = "Hunks";
         icon = " ";
         mode = [
@@ -41,11 +41,11 @@
         ];
       }
       {
-        __unkeyed = "<leader>ug";
+        __unkeyed-1 = "<leader>ug";
         group = "Git";
       }
       {
-        __unkeyed = "<leader>gd";
+        __unkeyed-1 = "<leader>gd";
         group = "Diff";
         icon = " ";
       }

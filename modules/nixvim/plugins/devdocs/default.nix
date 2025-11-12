@@ -15,7 +15,7 @@
 
     which-key.settings.spec = lib.mkIf config.plugins.devdocs.enable [
       {
-        __unkeyed = "<leader>D";
+        __unkeyed-1 = "<leader>D";
         group = "DevDocs";
         icon = " ";
       }
