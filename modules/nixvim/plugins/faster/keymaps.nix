@@ -22,7 +22,7 @@ let
       end
     '';
     options = {
-      desc = "Faster: Toggle ${desc}";
+      desc = "Toggle ${desc}";
     };
   };
 in
@@ -69,4 +69,12 @@ in
     ++ lib.optionals (config.plugins.faster.enable && config.plugins.snacks.enable) [
       (mkFasterToggle "Snacks" "<leader>uxk" "Snacks")
     ];
+
+  plugins.which-key.settings.spec = lib.mkIf config.plugins.faster.enable [
+    {
+      __unkeyed-1 = "<leader>ux";
+      group = "Faster Toggles";
+      icon = "󰔡";
+    }
+  ];
 }
