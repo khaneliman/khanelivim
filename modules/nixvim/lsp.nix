@@ -50,7 +50,8 @@
       # eslint.enable = true;
       emmylua_ls.enable = config.khanelivim.lsp.lua == "emmylua-ls";
       lua_ls.enable = config.khanelivim.lsp.lua == "lua-ls";
-      fish_lsp.enable = true;
+      # FIXME: fish broken darwin
+      fish_lsp.enable = pkgs.stdenv.hostPlatform.isLinux;
       fsautocomplete.enable = true;
       fsharp_language_server = {
         enable = false;

@@ -27,7 +27,8 @@
         html = [ "htmlhint" ];
         java = [ "checkstyle" ];
         javascript = lib.mkIf (!config.plugins.lsp.servers.biome.enable) [ "biomejs" ];
-        json = [ "jsonlint" ];
+        # FIXME: removed from nixpkgs find altnerative
+        # json = [ "jsonlint" ];
         lua = [ "luacheck" ];
         make = [ "checkmake" ];
         markdown = [ "markdownlint" ];
@@ -54,11 +55,13 @@
         clippy.cmd = lib.getExe pkgs.rust-analyzer;
         cmakelint.cmd = lib.getExe' pkgs.cmake-format "cmake-lint";
         deadnix.cmd = lib.getExe pkgs.deadnix;
-        fish.cmd = lib.getExe pkgs.fish;
+        # FIXME: fish broken darwin
+        fish.cmd = lib.mkIf pkgs.stdenv.hostPlatform.isLinux (lib.getExe pkgs.fish);
         gdlint.cmd = lib.getExe' pkgs.gdtoolkit_4 "gdlint";
         golangcilint.cmd = lib.getExe pkgs.golangci-lint;
         htmlhint.cmd = lib.getExe pkgs.htmlhint;
-        jsonlint.cmd = lib.getExe pkgs.nodePackages.jsonlint;
+        # FIXME: removed from nixpkgs find altnerative
+        # jsonlint.cmd = lib.getExe pkgs.nodePackages.jsonlint;
         luacheck.cmd = lib.getExe pkgs.luaPackages.luacheck;
         markdownlint.cmd = lib.getExe pkgs.markdownlint-cli;
         nix.cmd = lib.getExe' pkgs.nix "nix-instantiate";
