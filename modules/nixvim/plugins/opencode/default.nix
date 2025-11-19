@@ -1,9 +1,14 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 {
+  # FIXME: marked broken on darwin upstream
+  # Maybe use the opencode source flake
+  dependencies.opencode.enable = pkgs.stdenv.hostPlatform.isLinux;
+
   plugins = {
     opencode = {
       enable = true;
