@@ -125,7 +125,8 @@
             "shfmt"
           ];
           sql = [ "sqlfluff" ];
-          swift = [ "swift_format" ];
+          # FIXME: broken nixpkgs
+          # swift = [ "swift_format" ];
           terraform = [ "terraform_fmt" ];
           toml = [ "taplo" ];
           typescript = {
