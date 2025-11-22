@@ -14,7 +14,7 @@
       plugins = true;
     };
     combinePlugins = {
-      # enable = true;
+      enable = true;
 
       standalonePlugins = with pkgs.vimPlugins; [
         "firenvim"
