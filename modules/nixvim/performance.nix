@@ -23,6 +23,7 @@
         mini-nvim
         overseer-nvim
         vs-tasks-nvim
+        "friendly-snippets" # needed for blink to access friendly-snippets
       ];
     };
   };
