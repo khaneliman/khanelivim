@@ -39,7 +39,19 @@
       };
       angularls.enable = true;
       bashls.enable = true;
-      biome.enable = true;
+      biome = {
+        enable = true;
+        config.filetypes = [
+          "javascript"
+          "javascriptreact"
+          "typescript"
+          "typescriptreact"
+          "json"
+          "jsonc"
+          "css"
+          "html"
+        ];
+      };
       cmake.enable = true;
       copilot.enable = !config.plugins.copilot-lua.enable;
       cssls.enable = true;
@@ -79,7 +91,19 @@
       sqls.enable = true;
       statix.enable = true;
       stylelint_lsp.enable = true;
-      tailwindcss.enable = true;
+      tailwindcss = {
+        enable = true;
+        config.filetypes = [
+          "css"
+          "scss"
+          "sass"
+          "html"
+          "javascriptreact"
+          "typescriptreact"
+          "vue"
+          "svelte"
+        ];
+      };
       taplo.enable = true;
       ts_ls.enable = config.khanelivim.lsp.typescript == "ts_ls";
       tsgo.enable = config.khanelivim.lsp.typescript == "tsgo";

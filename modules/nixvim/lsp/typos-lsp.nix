@@ -5,6 +5,13 @@
       init_options = {
         diagnosticSeverity = "Hint";
       };
+      filetypes = [
+        "markdown"
+        "text"
+        "gitcommit"
+        "gitrebase"
+        "mail"
+      ];
     };
   };
 }
