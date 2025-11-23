@@ -13,8 +13,10 @@
       nvimRuntime = true;
       plugins = true;
     };
+
     combinePlugins = {
-      enable = true;
+      # NOTE: constant doc/tags conflicts
+      # enable = true;
 
       standalonePlugins = with pkgs.vimPlugins; [
         "firenvim"
