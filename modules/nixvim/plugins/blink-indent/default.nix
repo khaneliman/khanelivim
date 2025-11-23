@@ -1,7 +1,7 @@
 { config, lib, ... }:
 {
   plugins.blink-indent = {
-    enable = true;
+    enable = config.khanelivim.ui.indentGuides == "blink-indent";
 
     lazyLoad.settings = {
       event = [
