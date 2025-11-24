@@ -1,5 +1,4 @@
-{ config, lib, ... }:
-{
+_: {
   plugins = {
     visual-whitespace = {
       enable = true;
@@ -19,16 +18,5 @@
         enabled = false;
       };
     };
-
-    which-key.settings.spec = lib.optionals config.plugins.visual-whitespace.enable [
-      {
-        __unkeyed-1 = "<leader>u";
-        group = "UI/UX";
-        mode = [
-          "n"
-          "v"
-        ];
-      }
-    ];
   };
 }
