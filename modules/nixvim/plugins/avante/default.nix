@@ -43,6 +43,7 @@
             default = "<leader>aat";
             debug = "<leader>aad";
             hint = "<leader>aah";
+            selection = "<leader>aaC";
             suggestion = "<leader>aas";
             repomap = "<leader>aaR";
           };
