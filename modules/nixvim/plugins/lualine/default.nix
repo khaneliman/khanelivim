@@ -123,7 +123,18 @@ in
             '';
           })
           (lib.mkIf config.plugins.easy-dotnet.enable {
-            __raw = ''require("easy-dotnet.ui-modules.jobs").lualine'';
+            __raw = ''
+              function()
+                local ft = vim.bo.filetype
+                if ft == "cs" or ft == "fsharp" or ft == "xml" then
+                  local ok, jobs = pcall(require, "easy-dotnet.ui-modules.jobs")
+                  if ok then
+                    return jobs.lualine()
+                  end
+                end
+                return ""
+              end
+            '';
           })
           # Show active language server
           (lib.optionalString config.plugins.copilot-lua.enable "copilot")
