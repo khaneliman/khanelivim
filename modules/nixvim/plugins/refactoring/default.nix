@@ -145,18 +145,6 @@
         };
       };
     };
-
-    which-key.settings.spec = lib.optionals config.plugins.refactoring.enable [
-      {
-        __unkeyed-1 = "<leader>r";
-        mode = [
-          "n"
-          "x"
-        ];
-        group = "Refactor";
-        icon = " ";
-      }
-    ];
   };
 
   keymaps =
