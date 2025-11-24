@@ -16,14 +16,6 @@
     };
   };
 
-  plugins.which-key.settings.spec = lib.mkIf config.plugins.diffview.enable [
-    {
-      __unkeyed-1 = "<leader>gd";
-      group = "Diff";
-      icon = " ";
-    }
-  ];
-
   keymaps = lib.mkIf config.plugins.diffview.enable (
     [
       {
