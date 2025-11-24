@@ -114,7 +114,7 @@
           }
           {
             mode = "n";
-            key = "<leader>ufc";
+            key = "<leader>uo";
             action.__raw = ''
               function()
                 local curr_foldcolumn = vim.wo.foldcolumn
@@ -127,7 +127,7 @@
           }
           {
             mode = "n";
-            key = "<leader>utb";
+            key = "<leader>uO";
             action = "<cmd>TabsToggle<CR>";
             options.desc = "Toggle Tabs/Spaces";
           }
