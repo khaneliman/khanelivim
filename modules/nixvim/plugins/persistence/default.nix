@@ -9,7 +9,7 @@
 
     which-key.settings.spec = lib.optionals config.plugins.persistence.enable [
       {
-        __unkeyed-1 = "<leader>P";
+        __unkeyed-1 = "<leader>S";
         group = "Persistence";
         icon = "󰘛";
       }
@@ -19,25 +19,25 @@
   keymaps = lib.optionals config.plugins.persistence.enable [
     {
       mode = "n";
-      key = "<leader>Pl";
+      key = "<leader>Sl";
       action.__raw = "function() require('persistence').load() end";
       options.desc = "Load the session for the current directory";
     }
     {
       mode = "n";
-      key = "<leader>Ps";
+      key = "<leader>Ss";
       action.__raw = "function() require('persistence').select() end";
       options.desc = "Select a session to load";
     }
     {
       mode = "n";
-      key = "<leader>PL";
+      key = "<leader>SL";
       action.__raw = "function() require('persistence').load({ last = true }) end";
       options.desc = "Load the last session";
     }
     {
       mode = "n";
-      key = "<leader>PS";
+      key = "<leader>SS";
       action.__raw = "function() require('persistence').stop() end";
       options.desc = "Stop Persistence";
     }
