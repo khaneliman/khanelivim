@@ -3,6 +3,8 @@
   plugins = {
     undotree = {
       enable = true;
+      # Put plugin in opt/ for lazy loading
+      autoLoad = false;
 
       settings = {
         CursorLine = true;
@@ -27,14 +29,23 @@
     };
   };
 
-  keymaps = lib.mkIf config.plugins.undotree.enable [
+  # Lazy load via lz-n
+  plugins.lz-n.plugins = lib.mkIf config.plugins.undotree.enable [
     {
-      mode = "n";
-      key = "<leader>uu";
-      action = "<cmd>UndotreeToggle<CR>";
-      options = {
-        desc = "Undotree toggle";
-      };
+      __unkeyed-1 = "undotree";
+      cmd = [
+        "UndotreeToggle"
+        "UndotreeShow"
+        "UndotreeHide"
+        "UndotreeFocus"
+      ];
+      keys = [
+        {
+          __unkeyed-1 = "<leader>uu";
+          __unkeyed-2 = "<cmd>UndotreeToggle<CR>";
+          desc = "Undotree toggle";
+        }
+      ];
     }
   ];
 }
