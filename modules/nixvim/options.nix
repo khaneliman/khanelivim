@@ -33,6 +33,39 @@
     first_buffer_opened = false;
     whitespace_character_enabled = false;
 
+    # Clipboard with timeout to prevent wl-copy from freezing Neovim
+    clipboard = lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
+      name = "wl-clipboard-timeout";
+      copy = {
+        "+" = [
+          "timeout"
+          "2"
+          "wl-copy"
+        ];
+        "*" = [
+          "timeout"
+          "2"
+          "wl-copy"
+          "--primary"
+        ];
+      };
+      paste = {
+        "+" = [
+          "timeout"
+          "2"
+          "wl-paste"
+          "--no-newline"
+        ];
+        "*" = [
+          "timeout"
+          "2"
+          "wl-paste"
+          "--primary"
+          "--no-newline"
+        ];
+      };
+      cache_enabled = true;
+    };
   };
 
   opts = {
