@@ -16,6 +16,7 @@
   plugins = {
     rustaceanvim = {
       enable = config.khanelivim.lsp.rust == "rustaceanvim";
+      lazyLoad.settings.ft = "rust";
       settings = {
         dap = {
           adapter = {
