@@ -49,10 +49,35 @@
         '';
     in
     lib.mkIf config.plugins.multicursor.enable {
-      extraConfigLua = luaConfig;
-
       extraPlugins = [
-        pkgs.vimPlugins.multicursor-nvim
+        {
+          plugin = pkgs.vimPlugins.multicursor-nvim;
+          optional = true;
+        }
+      ];
+
+      plugins.lz-n.plugins = [
+        {
+          __unkeyed-1 = "multicursor.nvim";
+          keys = [
+            {
+              __unkeyed-1 = "<leader>m";
+              mode = [
+                "n"
+                "x"
+              ];
+            }
+            {
+              __unkeyed-1 = "<c-leftmouse>";
+              mode = "n";
+            }
+          ];
+          after.__raw = ''
+            function()
+              ${luaConfig}
+            end
+          '';
+        }
       ];
 
       plugins.which-key.settings.spec = [
@@ -148,19 +173,19 @@
         {
           mode = "n";
           key = "<c-leftmouse>";
-          action.__raw = "require('multicursor-nvim').handleMouse";
+          action.__raw = "function() require('multicursor-nvim').handleMouse() end";
           options.desc = "Add cursor with mouse";
         }
         {
           mode = "n";
           key = "<c-leftdrag>";
-          action.__raw = "require('multicursor-nvim').handleMouseDrag";
+          action.__raw = "function() require('multicursor-nvim').handleMouseDrag() end";
           options.desc = "Drag cursor with mouse";
         }
         {
           mode = "n";
           key = "<c-leftrelease>";
-          action.__raw = "require('multicursor-nvim').handleMouseRelease";
+          action.__raw = "function() require('multicursor-nvim').handleMouseRelease() end";
           options.desc = "Release mouse cursor";
         }
 
@@ -171,7 +196,7 @@
             "x"
           ];
           key = "<leader>mt";
-          action.__raw = "require('multicursor-nvim').toggleCursor";
+          action.__raw = "function() require('multicursor-nvim').toggleCursor() end";
           options.desc = "Toggle cursor";
         }
       ];
