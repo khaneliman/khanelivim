@@ -9,6 +9,10 @@
   plugins = {
     treesitter = {
       enable = true;
+      lazyLoad.settings.event = [
+        "BufReadPost"
+        "BufNewFile"
+      ];
 
       folding = true;
       grammarPackages =
