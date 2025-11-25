@@ -1,7 +1,12 @@
 { config, lib, ... }:
+let
+  isEnabled = lib.elem "markdown-preview" config.khanelivim.text.markdownRendering;
+in
 {
   plugins.markdown-preview = {
-    enable = lib.elem "markdown-preview" config.khanelivim.text.markdownRendering;
+    enable = isEnabled;
+    # Put plugin in opt/ for lazy loading
+    autoLoad = false;
 
     settings = {
       auto_close = 0;
@@ -9,14 +14,23 @@
     };
   };
 
-  keymaps = lib.mkIf config.plugins.markdown-preview.enable [
+  # Configure lz-n to load on markdown filetype
+  plugins.lz-n.plugins = lib.mkIf isEnabled [
     {
-      mode = "n";
-      key = "<leader>pm";
-      action = "<cmd>MarkdownPreview<cr>";
-      options = {
-        desc = "Markdown Preview";
-      };
+      __unkeyed-1 = "markdown-preview.nvim";
+      ft = "markdown";
+      cmd = [
+        "MarkdownPreview"
+        "MarkdownPreviewToggle"
+        "MarkdownPreviewStop"
+      ];
+      keys = [
+        {
+          __unkeyed-1 = "<leader>pm";
+          __unkeyed-2 = "<cmd>MarkdownPreview<cr>";
+          desc = "Markdown Preview";
+        }
+      ];
     }
   ];
 }
