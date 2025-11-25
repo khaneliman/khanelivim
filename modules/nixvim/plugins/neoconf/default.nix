@@ -3,6 +3,7 @@
   plugins = {
     neoconf = {
       enable = true;
+      lazyLoad.settings.event = "DeferredUIEnter";
     };
 
     which-key.settings.spec = lib.optionals config.plugins.neoconf.enable [
