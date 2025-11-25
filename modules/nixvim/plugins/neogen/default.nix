@@ -3,6 +3,7 @@
   plugins = {
     neogen = {
       enable = true;
+      lazyLoad.settings.cmd = "Neogen";
     };
   };
 
