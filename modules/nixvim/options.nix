@@ -39,12 +39,12 @@
       copy = {
         "+" = [
           "timeout"
-          "2"
+          "1"
           "wl-copy"
         ];
         "*" = [
           "timeout"
-          "2"
+          "1"
           "wl-copy"
           "--primary"
         ];
@@ -52,13 +52,13 @@
       paste = {
         "+" = [
           "timeout"
-          "2"
+          "1"
           "wl-paste"
           "--no-newline"
         ];
         "*" = [
           "timeout"
-          "2"
+          "1"
           "wl-paste"
           "--primary"
           "--no-newline"
