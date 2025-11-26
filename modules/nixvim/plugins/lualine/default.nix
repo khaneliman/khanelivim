@@ -109,7 +109,9 @@ in
             '';
             color.__raw = ''
               function()
-                  local status = require("sidekick.status").get()
+                  local status_mod = package.loaded["sidekick.status"]
+                  if not status_mod then return nil end
+                  local status = status_mod.get()
                   if status then
                       return status.kind == "Error" and "DiagnosticError" or status.busy and "DiagnosticWarn" or "Special"
                   end
@@ -117,8 +119,8 @@ in
             '';
             cond.__raw = ''
               function()
-                  local status = require("sidekick.status")
-                  return status.get() ~= nil
+                  local status = package.loaded["sidekick.status"]
+                  return status and status.get() ~= nil
               end
             '';
           })
