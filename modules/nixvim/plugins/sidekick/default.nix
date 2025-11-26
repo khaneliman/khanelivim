@@ -9,6 +9,53 @@
       sidekick = {
         enable = true;
 
+        lazyLoad.settings.keys = [
+          {
+            __unkeyed-1 = "<leader>ast";
+            desc = "Sidekick Toggle";
+          }
+          {
+            __unkeyed-1 = "<leader>asp";
+            mode = [
+              "n"
+              "v"
+            ];
+            desc = "Ask Prompt";
+          }
+          {
+            __unkeyed-1 = "<leader>asc";
+            mode = [
+              "n"
+              "v"
+            ];
+            desc = "Claude Toggle";
+          }
+          {
+            __unkeyed-1 = "<leader>asC";
+            mode = [
+              "n"
+              "v"
+            ];
+            desc = "Copilot Toggle";
+          }
+          {
+            __unkeyed-1 = "<leader>asg";
+            mode = [
+              "n"
+              "v"
+            ];
+            desc = "Gemini Toggle";
+          }
+          {
+            __unkeyed-1 = "<leader>aso";
+            mode = [
+              "n"
+              "v"
+            ];
+            desc = "Opencode Toggle";
+          }
+        ];
+
         settings = {
           mux = {
             enabled = true;
