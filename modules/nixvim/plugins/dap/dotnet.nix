@@ -58,7 +58,6 @@
 
   plugins = {
     dap = {
-      enable = true;
       adapters = {
         executables = {
           coreclr = {
