@@ -42,16 +42,22 @@ adding new plugins, always measure the performance impact using these tools.
 # Interactive mode (recommended - accurate timing, runs in terminal)
 nix run .#profile -- -i --iterations 1
 
-# Save baseline before making changes
-nix run .#profile -- -i --iterations 1 --baseline
+# Save baseline before making changes (per-event baselines)
+nix run .#profile -- -i --iterations 1 --baseline --event ui
+nix run .#profile -- -i --iterations 1 --baseline --event deferred
 
-# Compare against baseline after changes
-nix run .#profile -- -i --iterations 1 --compare
+# Compare against baseline after changes (uses matching event baseline)
+nix run .#profile -- -i --iterations 1 --compare --event ui
+nix run .#profile -- -i --iterations 1 --compare --event deferred
 
 # Profile different events
-nix run .#profile -- -i --event ui        # UIEnter only (~260ms typical)
-nix run .#profile -- -i --event deferred  # DeferredUIEnter (~700ms typical)
+nix run .#profile -- -i --event ui        # UIEnter only (~230ms typical)
+nix run .#profile -- -i --event deferred  # DeferredUIEnter (~650ms typical)
 ```
+
+**Note**: Baselines are stored per event type. Use `--event ui` for initial
+render timing and `--event deferred` for total startup including lazy-loaded
+plugins.
 
 ### Profile Output Interpretation
 
@@ -82,9 +88,13 @@ The profiler shows time spent per plugin:
 
 **Workflow**:
 
-1. `nix run .#profile -- -i --iterations 1 --baseline` (before changes)
+1. Save baselines before making changes:
+   - `nix run .#profile -- -i --iterations 1 --baseline --event ui`
+   - `nix run .#profile -- -i --iterations 1 --baseline --event deferred`
 2. Make changes
-3. `nix run .#profile -- -i --iterations 1 --compare` (after changes)
+3. Compare against baselines:
+   - `nix run .#profile -- -i --iterations 1 --compare --event ui`
+   - `nix run .#profile -- -i --iterations 1 --compare --event deferred`
 4. If regression >5%, optimize or reconsider the change
 
 ### Manual Profiling
@@ -112,7 +122,10 @@ PROF=1 PROF_OUTPUT=/tmp/profile.json PROF_AUTO_QUIT=1 nvim
 ### Profile Data Location
 
 - Profiles stored in: `~/.cache/khanelivim/profiles/`
-- Baseline: `~/.cache/khanelivim/profiles/baseline.json`
+- Baselines (per event type):
+  - `~/.cache/khanelivim/profiles/baseline-ui.json`
+  - `~/.cache/khanelivim/profiles/baseline-deferred.json`
+  - `~/.cache/khanelivim/profiles/baseline-lazy.json`
 
 ### Environment Variables
 
