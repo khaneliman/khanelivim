@@ -8,6 +8,8 @@
     plugins.lensline = {
       enable = true;
 
+      lazyLoad.settings.event = "DeferredUIEnter";
+
       settings = {
         profiles = [
           {
