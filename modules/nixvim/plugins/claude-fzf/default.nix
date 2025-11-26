@@ -42,14 +42,44 @@
   };
 
   config = lib.mkIf config.plugins.claude-fzf.enable {
-    extraPlugins = [
-      config.plugins.claude-fzf.package
+    plugins.lz-n.plugins = [
+      {
+        __unkeyed-1 = "claude-fzf.nvim";
+        keys = [
+          {
+            __unkeyed-1 = "<leader>acF";
+            desc = "Claude Files";
+          }
+          {
+            __unkeyed-1 = "<leader>acg";
+            desc = "Claude Grep";
+          }
+          {
+            __unkeyed-1 = "<leader>acB";
+            desc = "Claude Buffers";
+          }
+          {
+            __unkeyed-1 = "<leader>acG";
+            desc = "Claude Git Files";
+          }
+          {
+            __unkeyed-1 = "<leader>acD";
+            desc = "Claude Directory Files";
+          }
+        ];
+        after.__raw = ''
+          function()
+            require('claude-fzf').setup(${lib.generators.toLua { } config.plugins.claude-fzf.settings})
+          end
+        '';
+      }
     ];
 
-    extraConfigLua = ''
-      require('claude-fzf').setup(${lib.generators.toLua { } config.plugins.claude-fzf.settings})
-    '';
-
-    keymaps = [ ];
+    extraPlugins = [
+      {
+        plugin = config.plugins.claude-fzf.package;
+        optional = true;
+      }
+    ];
   };
 }
