@@ -30,3 +30,96 @@ code in this repository.
 - Run `deadnix -e` and `statix fix .` before committing
 - Verify changes with `nix flake check`
 - Test by running `nix run` to activate the configuration
+
+## Performance Profiling
+
+**IMPORTANT**: When making changes to plugin configurations, lazy loading, or
+adding new plugins, always measure the performance impact using these tools.
+
+### Quick Commands
+
+```bash
+# Interactive mode (recommended - accurate timing, runs in terminal)
+nix run .#profile -- -i --iterations 1
+
+# Save baseline before making changes
+nix run .#profile -- -i --iterations 1 --baseline
+
+# Compare against baseline after changes
+nix run .#profile -- -i --iterations 1 --compare
+
+# Profile different events
+nix run .#profile -- -i --event ui        # UIEnter only (~260ms typical)
+nix run .#profile -- -i --event deferred  # DeferredUIEnter (~700ms typical)
+```
+
+### Profile Output Interpretation
+
+The profiler shows time spent per plugin:
+
+| Plugin     | Typical   | Notes                      |
+| ---------- | --------- | -------------------------- |
+| `core`     | 300-500ms | autocmds, vim internals    |
+| `lz.n`     | 400-500ms | lazy loading orchestration |
+| `snacks`   | 300-400ms | dashboard, utilities       |
+| `gitsigns` | 200-400ms | git integration            |
+| `lualine`  | 50-70ms   | statusline                 |
+
+**Performance thresholds**:
+
+- New plugin adding >50ms: Consider lazy loading
+- Regression >5% on compare: Investigate or revert
+- Total deferred >800ms: Review lazy load triggers
+
+### When to Profile
+
+**Always profile when**:
+
+- Adding a new plugin
+- Changing lazy loading configuration (lz.n triggers, events)
+- Modifying plugin setup options
+- Adding autocmds or keymaps that trigger plugin loads
+
+**Workflow**:
+
+1. `nix run .#profile -- -i --iterations 1 --baseline` (before changes)
+2. Make changes
+3. `nix run .#profile -- -i --iterations 1 --compare` (after changes)
+4. If regression >5%, optimize or reconsider the change
+
+### Manual Profiling
+
+```bash
+# Quick startup profile (exports to ~/nvim-profile-*.md)
+PROF=1 nvim -c ':ProfilerExport!' -c 'qa!'
+
+# Profile with DeferredUIEnter (lz.n lazy loads)
+PROF=1 PROF_EVENT=deferred nvim
+
+# Auto-export JSON for automation
+PROF=1 PROF_OUTPUT=/tmp/profile.json PROF_AUTO_QUIT=1 nvim
+```
+
+### Interactive Profiling (runtime)
+
+- `<leader>up` - Toggle profiler on/off
+- `<leader>uP` - Toggle profiler highlights (inline metrics)
+- `<leader>ps` - Open profiler scratch buffer (adjust options)
+- `:ProfilerExport` - Export to scratch buffer
+- `:ProfilerExport!` - Export to auto-named file
+- `:ProfilerExportJson!` - Export as JSON
+
+### Profile Data Location
+
+- Profiles stored in: `~/.cache/khanelivim/profiles/`
+- Baseline: `~/.cache/khanelivim/profiles/baseline.json`
+
+### Environment Variables
+
+| Variable         | Description                          |
+| ---------------- | ------------------------------------ |
+| `PROF=1`         | Enable startup profiling             |
+| `PROF_EVENT`     | Stop event: `ui`, `deferred`, `lazy` |
+| `PROF_OUTPUT`    | Auto-export path                     |
+| `PROF_FORMAT`    | Export format: `md`, `json`, `both`  |
+| `PROF_AUTO_QUIT` | Exit after export (for automation)   |
