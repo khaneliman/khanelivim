@@ -96,6 +96,12 @@
           }
           {
             mode = "n";
+            key = "<leader>ps";
+            action.__raw = "function() Snacks.profiler.scratch() end";
+            options.desc = "Profiler Scratch (adjust options)";
+          }
+          {
+            mode = "n";
             key = "<leader>us";
             action.__raw = "function() Snacks.toggle.scroll():toggle() end";
             options.desc = "Toggle Smooth Scroll";
