@@ -24,7 +24,11 @@ _: {
 
                 console = Console()
                 CACHE_DIR = Path.home() / ".cache" / "khanelivim" / "profiles"
-                BASELINE_FILE = CACHE_DIR / "baseline.json"
+
+
+                def get_baseline_file(event):
+                    """Get baseline file path for a specific event"""
+                    return CACHE_DIR / f"baseline-{event}.json"
 
 
                 def run_command(cmd, env=None):
@@ -441,16 +445,18 @@ _: {
 
                     # Handle baseline
                     if args.baseline:
-                        with open(BASELINE_FILE, "w") as f:
+                        baseline_file = get_baseline_file(args.event)
+                        with open(baseline_file, "w") as f:
                             json.dump(averaged, f, indent=2)
                         console.print(
-                            f"[green]Baseline saved:[/green] {BASELINE_FILE}"
+                            f"[green]Baseline saved:[/green] {baseline_file}"
                         )
 
                     # Handle comparison
                     if args.compare:
-                        if BASELINE_FILE.exists():
-                            baseline = load_profile(BASELINE_FILE)
+                        baseline_file = get_baseline_file(args.event)
+                        if baseline_file.exists():
+                            baseline = load_profile(baseline_file)
                             if baseline:
                                 diff = compare_profiles(baseline, averaged)
                                 if diff:
@@ -467,8 +473,8 @@ _: {
                                     )
                         else:
                             console.print(
-                                "[yellow]No baseline found. "
-                                "Run with --baseline first.[/yellow]"
+                                f"[yellow]No baseline found for event '{args.event}'. "
+                                f"Run with --baseline --event {args.event} first.[/yellow]"
                             )
 
 
