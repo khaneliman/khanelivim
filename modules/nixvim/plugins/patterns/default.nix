@@ -16,6 +16,8 @@ in
     plugins.patterns = {
       enable = true;
 
+      lazyLoad.settings.cmd = [ "Patterns" ];
+
       luaConfig.pre = ''
         -- Sample patterns for testing patterns.nvim plugin:
         -- SSN: ${samplePatterns.ssn}
