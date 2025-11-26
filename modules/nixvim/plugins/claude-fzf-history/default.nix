@@ -35,15 +35,26 @@
   };
 
   config = lib.mkIf config.plugins.claude-fzf-history.enable {
-    extraPlugins = [
-      config.plugins.claude-fzf-history.package
+    plugins.lz-n.plugins = [
+      {
+        __unkeyed-1 = "claude-fzf-history.nvim";
+        cmd = [ "ClaudeHistory" ];
+        after.__raw = ''
+          function()
+            require('claude-fzf-history').setup(${
+              lib.generators.toLua { } config.plugins.claude-fzf-history.settings
+            })
+          end
+        '';
+      }
     ];
 
-    extraConfigLua = ''
-      require('claude-fzf-history').setup(${
-        lib.generators.toLua { } config.plugins.claude-fzf-history.settings
-      })
-    '';
+    extraPlugins = [
+      {
+        plugin = config.plugins.claude-fzf-history.package;
+        optional = true;
+      }
+    ];
 
     keymaps = [
       {
