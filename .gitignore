@@ -48,3 +48,6 @@ result
 .pre-commit-config.yaml
 
 **/.claude/settings.local.json
+
+# Profile data (regenerate with nix run .#profile)
+profiles/
