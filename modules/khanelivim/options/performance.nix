@@ -19,5 +19,19 @@
       // {
         default = true;
       };
+
+    disabledPlugins = lib.mkOption {
+      type = lib.types.listOf lib.types.str;
+      default = [
+        "gzip"
+        "netrwPlugin"
+        "rplugin"
+        "tarPlugin"
+        "tohtml"
+        "tutor"
+        "zipPlugin"
+      ];
+      description = "Built-in Neovim plugins to disable for faster startup";
+    };
   };
 }

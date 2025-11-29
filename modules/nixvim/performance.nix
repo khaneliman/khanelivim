@@ -4,6 +4,15 @@
   pkgs,
   ...
 }:
+let
+  # Generate globals to disable built-in plugins
+  disabledPluginGlobals = lib.listToAttrs (
+    map (plugin: {
+      name = "loaded_${plugin}";
+      value = 1;
+    }) config.khanelivim.performance.disabledPlugins
+  );
+in
 {
   performance = lib.mkIf config.khanelivim.performance.optimizeEnable {
     byteCompileLua = {
@@ -29,4 +38,7 @@
       ];
     };
   };
+
+  # Disable built-in plugins via globals
+  globals = lib.mkIf config.khanelivim.performance.optimizeEnable disabledPluginGlobals;
 }
