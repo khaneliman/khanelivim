@@ -26,9 +26,33 @@ _: {
                 CACHE_DIR = Path.home() / ".cache" / "khanelivim" / "profiles"
 
 
-                def get_baseline_file(event):
-                    """Get baseline file path for a specific event"""
-                    return CACHE_DIR / f"baseline-{event}.json"
+                def get_baseline_file(event, profile="default"):
+                    """Get baseline file path for a specific event and profile"""
+                    baseline_path = CACHE_DIR / f"baseline-{profile}-{event}.json"
+                    # Fallback for default profile to legacy naming without profile
+                    if profile == "default" and not baseline_path.exists():
+                        legacy_path = CACHE_DIR / f"baseline-{event}.json"
+                        if legacy_path.exists():
+                            return legacy_path
+                    return baseline_path
+
+
+                def extract_profile_name(package_path):
+                    """Extract profile name from package path or flake reference"""
+                    # Handle flake references like .#minimal, .#basic, etc.
+                    if package_path.startswith(".#"):
+                        name = package_path[2:]
+                        # Map known names to profile names
+                        if name in ["minimal", "basic", "standard"]:
+                            return name
+                        return "default"
+
+                    # Handle store paths like /nix/store/...-khanelivim-minimal/...
+                    path_str = str(package_path)
+                    for profile in ["minimal", "basic", "standard"]:
+                        if f"-{profile}" in path_str or f"/{profile}/" in path_str:
+                            return profile
+                    return "default"
 
 
                 def run_command(cmd, env=None):
@@ -52,16 +76,18 @@ _: {
                         return None
 
 
-                def build_nvim():
+                def build_nvim(package=".#default"):
                     """Build nixvim and return path to nvim binary"""
-                    console.print("[blue]Building khanelivim...[/blue]")
+                    profile = extract_profile_name(package)
+                    profile_label = f" ({profile})" if profile != "default" else ""
+                    console.print(f"[blue]Building khanelivim{profile_label}...[/blue]")
                     nixvim_path = run_command(
-                        "nix build --no-link --print-out-paths .#default"
+                        f"nix build --no-link --print-out-paths {package}"
                     )
                     if not nixvim_path:
                         console.print("[red]Failed to build nixvim[/red]")
                         sys.exit(1)
-                    return Path(nixvim_path) / "bin" / "nvim"
+                    return Path(nixvim_path) / "bin" / "nvim", profile
 
 
                 def run_profile(nvim_bin, output_path, event="ui", interactive=False):
@@ -347,6 +373,12 @@ _: {
                         help="Profiling event (default: ui, uses VimEnter)",
                     )
                     parser.add_argument(
+                        "--package",
+                        default=".#default",
+                        help="Flake package to profile (default: .#default). "
+                             "Use .#minimal, .#basic, .#standard for profile variants.",
+                    )
+                    parser.add_argument(
                         "--output",
                         type=Path,
                         help="Output directory for profile data",
@@ -370,8 +402,9 @@ _: {
                     runs_dir.mkdir(exist_ok=True)
 
                     # Build nvim
-                    nvim_bin = build_nvim()
+                    nvim_bin, profile = build_nvim(args.package)
                     console.print(f"[green]Built:[/green] {nvim_bin}")
+                    console.print(f"[blue]Profile:[/blue] {profile}")
 
                     # Run profiling iterations
                     console.print(
@@ -392,10 +425,10 @@ _: {
                             )
 
                             if success and output_path.exists():
-                                profile = load_profile(output_path)
-                                if profile:
-                                    profiles.append(profile)
-                                    startup = profile.get("startup_time_ms", 0)
+                                profile_data = load_profile(output_path)
+                                if profile_data:
+                                    profiles.append(profile_data)
+                                    startup = profile_data.get("startup_time_ms", 0)
                                     console.print(f"[green]{startup:.2f}ms[/green]")
                                 else:
                                     console.print("[yellow]parse error[/yellow]")
@@ -438,14 +471,14 @@ _: {
                         output_dir = args.output
                         output_dir.mkdir(parents=True, exist_ok=True)
 
-                    profile_path = output_dir / f"profile-{timestamp}.json"
+                    profile_path = output_dir / f"profile-{profile}-{timestamp}.json"
                     with open(profile_path, "w") as f:
                         json.dump(averaged, f, indent=2)
                     console.print(f"\n[green]Profile saved:[/green] {profile_path}")
 
                     # Handle baseline
                     if args.baseline:
-                        baseline_file = get_baseline_file(args.event)
+                        baseline_file = get_baseline_file(args.event, profile)
                         with open(baseline_file, "w") as f:
                             json.dump(averaged, f, indent=2)
                         console.print(
@@ -454,7 +487,7 @@ _: {
 
                     # Handle comparison
                     if args.compare:
-                        baseline_file = get_baseline_file(args.event)
+                        baseline_file = get_baseline_file(args.event, profile)
                         if baseline_file.exists():
                             baseline = load_profile(baseline_file)
                             if baseline:
@@ -464,7 +497,7 @@ _: {
 
                                     # Save diff
                                     diff_path = (
-                                        output_dir / f"diff-{timestamp}.json"
+                                        output_dir / f"diff-{profile}-{timestamp}.json"
                                     )
                                     with open(diff_path, "w") as f:
                                         json.dump(diff, f, indent=2)
@@ -473,8 +506,10 @@ _: {
                                     )
                         else:
                             console.print(
-                                f"[yellow]No baseline found for event '{args.event}'. "
-                                f"Run with --baseline --event {args.event} first.[/yellow]"
+                                f"[yellow]No baseline found for profile "
+                                f"'{profile}' event '{args.event}'. "
+                                f"Run with --baseline --package {args.package} "
+                                f"--event {args.event} first.[/yellow]"
                             )
 
 
