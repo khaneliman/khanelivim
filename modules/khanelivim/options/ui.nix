@@ -116,6 +116,17 @@
       default = [ "toggleterm" ];
       description = "Terminal emulator plugins to use (can have multiple)";
     };
+
+    zenMode = lib.mkOption {
+      type = lib.types.nullOr (
+        lib.types.enum [
+          "no-neck-pain"
+          "snacks"
+        ]
+      );
+      default = "no-neck-pain";
+      description = "Zen/centered editing mode plugin to use (mutually exclusive)";
+    };
     #keep-sorted end
   };
 }
