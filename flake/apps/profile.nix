@@ -386,8 +386,9 @@ _: {
                     parser.add_argument(
                         "--iterations",
                         type=int,
-                        default=3,
-                        help="Number of profiling iterations (default: 3)",
+                        default=None,
+                        help="Number of profiling iterations "
+                             "(default: 10 for baseline, 5 otherwise)",
                     )
                     parser.add_argument(
                         "-i", "--interactive",
@@ -395,6 +396,10 @@ _: {
                         help="Run nvim interactively in terminal (for accurate profiling)",
                     )
                     args = parser.parse_args()
+
+                    # Set default iterations based on whether we're doing baseline
+                    if args.iterations is None:
+                        args.iterations = 10 if args.baseline else 5
 
                     # Ensure cache directory exists
                     CACHE_DIR.mkdir(parents=True, exist_ok=True)
