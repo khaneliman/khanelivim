@@ -3,11 +3,14 @@
   lib,
   ...
 }:
+let
+  zenEnabled = config.khanelivim.ui.zenMode == "snacks";
+in
 {
   plugins = {
     snacks = {
       settings = {
-        zen.enabled = true;
+        zen.enabled = zenEnabled;
       };
     };
   };
@@ -15,7 +18,8 @@
   keymaps =
     lib.mkIf
       (
-        config.plugins.snacks.enable
+        zenEnabled
+        && config.plugins.snacks.enable
         && lib.hasAttr "zen" config.plugins.snacks.settings
         && config.plugins.snacks.settings.zen.enabled
         && !(
@@ -28,7 +32,7 @@
           key = "<leader>uZ";
           action = "<cmd>lua Snacks.zen()<CR>";
           options = {
-            desc = "Zen Toggle";
+            desc = "Toggle Zen Mode";
           };
         }
       ];

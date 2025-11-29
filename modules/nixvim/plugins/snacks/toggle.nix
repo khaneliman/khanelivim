@@ -162,15 +162,17 @@
           }
           {
             mode = "n";
-            key = "<leader>uZ";
-            action.__raw = "function() Snacks.toggle.zen():toggle() end";
-            options.desc = "Toggle Zen Mode";
-          }
-          {
-            mode = "n";
             key = "<leader>um";
             action.__raw = "function() Snacks.toggle.zoom():toggle() end";
             options.desc = "Toggle Zoom (Maximize)";
+          }
+        ]
+        ++ lib.optionals (config.khanelivim.ui.zenMode == "snacks") [
+          {
+            mode = "n";
+            key = "<leader>uZ";
+            action.__raw = "function() Snacks.toggle.zen():toggle() end";
+            options.desc = "Toggle Zen Mode";
           }
         ]
       );
