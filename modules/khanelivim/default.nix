@@ -11,6 +11,7 @@
     ./options/lsp.nix
     ./options/performance.nix
     ./options/picker.nix
+    ./options/profiles.nix
     ./options/tasks.nix
     ./options/text.nix
     ./options/ui.nix

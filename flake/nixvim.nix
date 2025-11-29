@@ -3,6 +3,25 @@
   self,
   ...
 }:
+let
+  mkNixvimConfig =
+    {
+      system,
+      profile ? "full",
+    }:
+    inputs.nixvim.lib.evalNixvim {
+      inherit system;
+
+      extraSpecialArgs = {
+        inherit inputs system self;
+      };
+
+      modules = [
+        self.nixvimModules.default
+        { khanelivim.profile = profile; }
+      ];
+    };
+in
 {
   imports = [
     inputs.nixvim.flakeModules.default
@@ -21,16 +40,23 @@
     { system, ... }:
     {
       nixvimConfigurations = {
-        khanelivim = inputs.nixvim.lib.evalNixvim {
+        # Full featured (default)
+        khanelivim = mkNixvimConfig { inherit system; };
+
+        # Profile variants for performance testing
+        minimal = mkNixvimConfig {
           inherit system;
+          profile = "minimal";
+        };
 
-          extraSpecialArgs = {
-            inherit inputs system self;
-          };
+        basic = mkNixvimConfig {
+          inherit system;
+          profile = "basic";
+        };
 
-          modules = [
-            self.nixvimModules.default
-          ];
+        standard = mkNixvimConfig {
+          inherit system;
+          profile = "standard";
         };
       };
     };
