@@ -38,6 +38,17 @@ in
     #
     # Specific package overlays need to go in here to not get ignored
     #
+    fzf-lua = vimPlugins.fzf-lua.overrideAttrs {
+      doCheck = false;
+    };
+
+    grug-far-nvim = vimPlugins.grug-far-nvim.overrideAttrs {
+      doCheck = false;
+    };
+
+    neotest = vimPlugins.neotest.overrideAttrs {
+      doCheck = false;
+    };
 
     snacks-nvim = vimPlugins.snacks-nvim.overrideAttrs (_oldAttrs: {
       version = flake.inputs.snacks-nvim.shortRev;
