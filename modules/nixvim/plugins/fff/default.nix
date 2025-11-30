@@ -3,10 +3,23 @@
   plugins.fff = {
     enable = true;
 
+    lazyLoad.settings = {
+      cmd = [ "FFFFind" ];
+      keys = [
+        "<leader>fg"
+        "<leader>fs"
+        "<leader>fR"
+        "<leader>fF"
+      ];
+    };
+
     settings = {
+      # Debug mode disabled to prevent race condition crashes when quickly opening files
+      # from dashboard. Debug mode spawns ~20 background threads (rayon workers, inotify
+      # watchers) that conflict with terminal request/response system causing segfaults.
       debug = {
-        enabled = true;
-        show_scores = true;
+        enabled = false;
+        show_scores = false;
       };
       preview = {
         enabled = true;
