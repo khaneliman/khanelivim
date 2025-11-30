@@ -31,6 +31,93 @@ code in this repository.
 - Verify changes with `nix flake check`
 - Test by running `nix run` to activate the configuration
 
+## Git Commit Conventions
+
+This project uses a **scope-based commit format**, NOT conventional commits.
+
+### Format
+
+```
+scope: description
+```
+
+- **Scope**: The module, component, or file being changed
+- **Description**: Lowercase verb phrase describing the change
+- **NO type prefix** (no `feat:`, `fix:`, `perf:`, etc.)
+
+### Examples
+
+**Plugin changes:**
+
+```
+copilot-lsp: add lazy loading on InsertEnter
+fff: disable debug mode and add lazy loading to prevent crashes
+no-neck-pain: add module
+lualine: use package.loaded for sidekick status
+```
+
+**Module/options changes:**
+
+```
+nixvim/options: refactor and cleanup
+options/ui: add zenMode option
+options/profiles: init module
+```
+
+**Build/infrastructure:**
+
+```
+flake.lock: update vimplugins
+flake.lock: update
+.github: Bump DeterminateSystems/update-flake-lock from 27 to 28
+overlays/input-packages: skip checks for fzf,grug,neotest
+```
+
+**Documentation/performance:**
+
+```
+docs: add crash debugging and troubleshooting guide
+docs: update profiling docs for per-event baselines
+performance: add disabled plugins
+```
+
+**Apps/scripts:**
+
+```
+apps/profile: more runs on baseline
+apps/profile: support profile baselines and compares
+apps/profile: use event-specific baselines
+```
+
+### Common Scopes
+
+- Plugin name: `copilot-lsp`, `fff`, `telescope`, `lualine`, etc.
+- Module path: `nixvim/options`, `options/ui`, `overlays/input-packages`
+- Special scopes: `docs`, `performance`, `flake.lock`, `.github`
+
+### Action Verbs
+
+- `add` - New feature, module, or functionality
+- `update` - Update existing code or dependencies
+- `remove` - Delete code or features
+- `fix` - Bug fixes
+- `refactor` - Code restructuring without behavior change
+- `disable` - Turn off a feature
+- `enable` - Turn on a feature
+- `init` - Initialize new module or component
+
+### Multi-line Commits
+
+For complex changes, use a blank line after the subject, then add details:
+
+```
+scope: brief description
+
+- Detail about change 1
+- Detail about change 2
+- Rationale or context
+```
+
 ## Performance Profiling
 
 **IMPORTANT**: When making changes to plugin configurations, lazy loading, or
