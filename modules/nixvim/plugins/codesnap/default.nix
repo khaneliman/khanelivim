@@ -22,14 +22,22 @@
       };
 
       settings = {
-        code_font_family = "MonaspiceNe Nerd Font";
-        save_path = "$XDG_PICTURES_DIR/screenshots";
-        mac_window_bar = true;
-        title = "CodeSnap.nvim";
-        watermark = "";
-        breadcrumbs_separator = "/";
-        has_breadcrumbs = true;
-        has_line_number = false;
+        snapshot_config = {
+          code_config = {
+            font_family = "MonaspiceNe Nerd Font";
+            breadcrumbs = {
+              enable = true;
+              separator = "/";
+            };
+          };
+          show_line_number = false;
+          snapshot_config = {
+            window = {
+              mac_window_bar = true;
+            };
+          };
+          watermark.content = "";
+        };
       };
     };
 
