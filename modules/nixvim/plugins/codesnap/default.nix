@@ -45,33 +45,45 @@
 
   keymaps = lib.mkIf config.plugins.codesnap.enable [
     {
-      mode = "v";
+      mode = [
+        "x"
+        "v"
+      ];
       key = "<leader>cc";
-      action = "<cmd>CodeSnap<CR>";
+      action = "<Esc><cmd>CodeSnap<CR>";
       options = {
         desc = "Copy";
       };
     }
     {
-      mode = "v";
+      mode = [
+        "x"
+        "v"
+      ];
       key = "<leader>cs";
-      action = "<cmd>CodeSnapSave<CR>";
+      action = "<Esc><cmd>CodeSnapSave<CR>";
       options = {
         desc = "Save";
       };
     }
     {
-      mode = "v";
+      mode = [
+        "x"
+        "v"
+      ];
       key = "<leader>ch";
-      action = "<cmd>CodeSnapHighlight<CR>";
+      action = "<Esc><cmd>CodeSnapHighlight<CR>";
       options = {
         desc = "Highlight";
       };
     }
     {
-      mode = "v";
+      mode = [
+        "x"
+        "v"
+      ];
       key = "<leader>cH";
-      action = "<cmd>CodeSnapSaveHighlight<CR>";
+      action = "<Esc><cmd>CodeSnapSaveHighlight<CR>";
       options = {
         desc = "Save Highlight";
       };
