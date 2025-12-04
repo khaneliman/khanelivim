@@ -16,10 +16,13 @@
 
         -- Add optional sources based on plugin availability
         ${lib.optionalString config.plugins.blink-copilot.enable "table.insert(common_sources, 'copilot')"}
-        ${lib.optionalString config.plugins.blink-cmp-dictionary.enable "table.insert(common_sources, 'dictionary')"}
+        ${lib.optionalString (
+          config.plugins.blink-cmp-dictionary.enable || config.plugins.blink-cmp-words.enable
+        ) "table.insert(common_sources, 'dictionary')"}
         ${lib.optionalString config.plugins.blink-emoji.enable "table.insert(common_sources, 'emoji')"}
         ${lib.optionalString (lib.elem pkgs.vimPlugins.blink-nerdfont-nvim config.extraPlugins) "table.insert(common_sources, 'nerdfont')"}
         ${lib.optionalString config.plugins.blink-cmp-spell.enable "table.insert(common_sources, 'spell')"}
+        ${lib.optionalString config.plugins.blink-cmp-words.enable "table.insert(common_sources, 'thesaurus')"}
         ${lib.optionalString (lib.elem pkgs.vimPlugins.blink-cmp-yanky config.extraPlugins) "table.insert(common_sources, 'yank')"}
         ${lib.optionalString config.plugins.blink-ripgrep.enable "table.insert(common_sources, 'ripgrep')"}
         ${lib.optionalString (lib.elem pkgs.vimPlugins.blink-cmp-npm-nvim config.extraPlugins) "if vim.fn.expand('%:t') == 'package.json' then table.insert(common_sources, 'npm') end"}
@@ -27,9 +30,18 @@
         -- Special context handling
         local success, node = pcall(vim.treesitter.get_node)
         if success and node and vim.tbl_contains({ 'comment', 'line_comment', 'block_comment' }, node:type()) then
-          return { 'buffer', 'spell', 'dictionary' }
+          local comment_sources = { 'buffer', 'spell' }
+          ${lib.optionalString (
+            config.plugins.blink-cmp-dictionary.enable || config.plugins.blink-cmp-words.enable
+          ) "table.insert(comment_sources, 'dictionary')"}
+          ${lib.optionalString config.plugins.blink-cmp-words.enable "table.insert(comment_sources, 'thesaurus')"}
+          return comment_sources
         elseif vim.bo.filetype == 'gitcommit' then
-          local git_sources = { 'buffer', 'spell', 'dictionary' }
+          local git_sources = { 'buffer', 'spell' }
+          ${lib.optionalString (
+            config.plugins.blink-cmp-dictionary.enable || config.plugins.blink-cmp-words.enable
+          ) "table.insert(git_sources, 'dictionary')"}
+          ${lib.optionalString config.plugins.blink-cmp-words.enable "table.insert(git_sources, 'thesaurus')"}
           ${lib.optionalString config.plugins.blink-cmp-git.enable "table.insert(git_sources, 'git')"}
           ${lib.optionalString (lib.elem pkgs.vimPlugins.blink-cmp-conventional-commits config.extraPlugins) "table.insert(git_sources, 'conventional_commits')"}
           return git_sources
@@ -158,13 +170,27 @@
         score_offset = 1000;
       };
 
-      dictionary = lib.mkIf config.plugins.blink-cmp-dictionary.enable {
-        name = "Dict";
-        module = "blink-cmp-dictionary";
-        min_keyword_length = 3;
-        max_items = 8;
-        score_offset = 8;
-      };
+      dictionary =
+        lib.mkIf (config.plugins.blink-cmp-dictionary.enable || config.plugins.blink-cmp-words.enable)
+          {
+            name = "Dict";
+            module =
+              if config.plugins.blink-cmp-words.enable then
+                "blink-cmp-words.dictionary"
+              else
+                "blink-cmp-dictionary";
+            min_keyword_length = 3;
+            max_items = 8;
+            score_offset = 8;
+            opts = lib.mkIf config.plugins.blink-cmp-words.enable {
+              dictionary_search_threshold = 3;
+              definition_pointers = [
+                "!"
+                "&"
+                "^"
+              ];
+            };
+          };
 
       easy-dotnet = lib.mkIf config.plugins.easy-dotnet.enable {
         module = "easy-dotnet.completion.blink";
@@ -247,6 +273,26 @@
         module = "blink-cmp-spell";
         max_items = 3;
         score_offset = 15;
+      };
+
+      thesaurus = lib.mkIf config.plugins.blink-cmp-words.enable {
+        name = "Thesaurus";
+        module = "blink-cmp-words.thesaurus";
+        min_keyword_length = 3;
+        max_items = 8;
+        score_offset = 10;
+        opts = {
+          definition_pointers = [
+            "!"
+            "&"
+            "^"
+          ];
+          similarity_pointers = [
+            "&"
+            "^"
+          ];
+          similarity_depth = 2;
+        };
       };
 
       yank = lib.mkIf (lib.elem pkgs.vimPlugins.blink-cmp-yanky config.extraPlugins) {
