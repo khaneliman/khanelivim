@@ -17,9 +17,14 @@ in
 {
   plugins = {
     # keep-sorted start block=yes
-    blink-cmp-dictionary = mkBlinkPlugin { };
+    blink-cmp-dictionary = mkBlinkPlugin {
+      enable = config.khanelivim.completion.wordProvider == "dictionary";
+    };
     blink-cmp-git = mkBlinkPlugin { };
     blink-cmp-spell = mkBlinkPlugin { };
+    blink-cmp-words = mkBlinkPlugin {
+      enable = config.khanelivim.completion.wordProvider == "words";
+    };
     blink-copilot = mkBlinkPlugin {
       enable = config.khanelivim.ai.provider == "copilot" && config.khanelivim.completion.tool == "blink";
     };
