@@ -14,8 +14,6 @@
     nixvim = {
       url = "github:nix-community/nixvim";
       inputs = {
-        # Optional inputs removed
-        nuschtosSearch.follows = "";
         # Required inputs
         flake-parts.follows = "flake-parts";
         nixpkgs.follows = "nixpkgs";
