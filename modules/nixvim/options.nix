@@ -1,6 +1,5 @@
 {
   lib,
-  pkgs,
   ...
 }:
 {
@@ -8,12 +7,6 @@
   # to add timeout wrappers that prevent wl-copy from freezing Neovim
   clipboard = {
     register = "unnamedplus";
-
-    providers = {
-      wl-copy = lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
-        enable = true;
-      };
-    };
   };
 
   colorscheme = "catppuccin";
@@ -33,41 +26,6 @@
     colorizing_enabled = false;
     first_buffer_opened = false;
     whitespace_character_enabled = false;
-
-    # Override clipboard provider with timeout wrapper to prevent wl-copy freezes
-    # This takes precedence over the clipboard.providers config above
-    clipboard = lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
-      name = "wl-clipboard-timeout";
-      copy = {
-        "+" = [
-          "timeout"
-          "1"
-          "wl-copy"
-        ];
-        "*" = [
-          "timeout"
-          "1"
-          "wl-copy"
-          "--primary"
-        ];
-      };
-      paste = {
-        "+" = [
-          "timeout"
-          "1"
-          "wl-paste"
-          "--no-newline"
-        ];
-        "*" = [
-          "timeout"
-          "1"
-          "wl-paste"
-          "--primary"
-          "--no-newline"
-        ];
-      };
-      cache_enabled = true;
-    };
   };
 
   opts = {
