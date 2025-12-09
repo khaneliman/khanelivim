@@ -7,7 +7,7 @@
   config = {
     plugins = {
       sidekick = {
-        enable = true;
+        enable = builtins.elem "sidekick" config.khanelivim.ai.plugins;
 
         lazyLoad.settings.keys = [
           {

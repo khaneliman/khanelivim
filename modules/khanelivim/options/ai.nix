@@ -9,6 +9,7 @@
           "codecompanion"
           "copilot"
           "copilot-lsp"
+          "sidekick"
           "windsurf"
         ]
       );
@@ -16,6 +17,7 @@
         "claudecode"
         "copilot"
         "copilot-lsp"
+        "sidekick"
       ];
       description = ''
         List of AI plugins to enable.
@@ -28,6 +30,7 @@
         - codecompanion: Gemini-based AI assistant
         - copilot: GitHub Copilot (includes chat)
         - copilot-lsp: GitHub Copilot LSP integration
+        - sidekick: Multi-provider AI suggestion system (Claude, Copilot, Gemini, Opencode)
         - windsurf: Codeium Windsurf integration
       '';
     };
