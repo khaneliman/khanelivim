@@ -7,7 +7,7 @@
 {
   plugins = {
     windsurf-nvim = {
-      enable = config.khanelivim.ai.provider == "windsurf";
+      enable = builtins.elem "windsurf" config.khanelivim.ai.plugins;
 
       settings = {
         enable_chat = true;
@@ -22,7 +22,7 @@
     };
   };
 
-  keymaps = lib.mkIf (config.khanelivim.ai.provider == "windsurf") [
+  keymaps = lib.mkIf (builtins.elem "windsurf" config.khanelivim.ai.plugins) [
     {
       mode = "n";
       key = "<leader>aC";

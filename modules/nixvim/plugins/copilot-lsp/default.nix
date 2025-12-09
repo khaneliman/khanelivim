@@ -1,8 +1,11 @@
 {
+  config,
+  ...
+}:
+{
   plugins = {
     copilot-lsp = {
-      # enable = config.khanelivim.ai.provider == "copilot";
-      enable = true;
+      enable = builtins.elem "copilot-lsp" config.khanelivim.ai.plugins;
 
       lazyLoad.settings = {
         event = [ "InsertEnter" ];

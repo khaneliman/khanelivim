@@ -26,7 +26,9 @@ in
       enable = config.khanelivim.completion.wordProvider == "words";
     };
     blink-copilot = mkBlinkPlugin {
-      enable = config.khanelivim.ai.provider == "copilot" && config.khanelivim.completion.tool == "blink";
+      enable =
+        builtins.elem "copilot" config.khanelivim.ai.plugins
+        && config.khanelivim.completion.tool == "blink";
     };
     blink-emoji = mkBlinkPlugin { };
     blink-ripgrep = mkBlinkPlugin { };

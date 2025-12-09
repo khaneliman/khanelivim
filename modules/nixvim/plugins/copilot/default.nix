@@ -14,7 +14,7 @@
 
   plugins = {
     copilot-lua = {
-      enable = config.khanelivim.ai.provider == "copilot";
+      enable = builtins.elem "copilot" config.khanelivim.ai.plugins;
 
       lazyLoad.settings.event = [ "InsertEnter" ];
 
@@ -69,7 +69,7 @@
     };
 
     copilot-chat = {
-      enable = config.khanelivim.ai.provider == "copilot" && config.khanelivim.ai.chatEnable;
+      enable = builtins.elem "copilot" config.khanelivim.ai.plugins && config.khanelivim.ai.chatEnable;
 
       lazyLoad.settings.cmd = [
         "CopilotChat"

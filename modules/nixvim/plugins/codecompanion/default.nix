@@ -6,7 +6,7 @@
 {
   plugins = {
     codecompanion = {
-      enable = true;
+      enable = builtins.elem "codecompanion" config.khanelivim.ai.plugins;
 
       lazyLoad.settings = {
         cmd = [

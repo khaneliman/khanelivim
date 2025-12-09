@@ -6,7 +6,7 @@
 {
   plugins = {
     avante = {
-      enable = true;
+      enable = builtins.elem "avante" config.khanelivim.ai.plugins;
 
       lazyLoad.settings.event = [ "DeferredUIEnter" ];
 

@@ -26,7 +26,7 @@ in
     (lib.mkIf (cfg.profile == "minimal") {
       khanelivim = {
         ai = {
-          provider = lib.mkForce null;
+          plugins = lib.mkForce [ ];
           chatEnable = lib.mkForce false;
         };
 
@@ -99,7 +99,7 @@ in
     (lib.mkIf (cfg.profile == "basic") {
       khanelivim = {
         ai = {
-          provider = lib.mkForce null;
+          plugins = lib.mkForce [ ];
           chatEnable = lib.mkForce false;
         };
 
@@ -169,9 +169,9 @@ in
     # Standard: Full functionality but deduplicated - no duplicate AI tools
     (lib.mkIf (cfg.profile == "standard") {
       khanelivim = {
-        # Disable legacy AI provider system (we keep sidekick/claudecode)
+        # Use only claudecode for AI assistance
         ai = {
-          provider = lib.mkForce null;
+          plugins = lib.mkForce [ "claudecode" ];
           chatEnable = lib.mkForce false;
         };
 
