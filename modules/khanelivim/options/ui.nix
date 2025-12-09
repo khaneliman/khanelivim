@@ -50,7 +50,9 @@
           "snacks"
         ]
       );
-      default = "blink-indent";
+      # FIXME: broken functionality
+      # default = "blink-indent";
+      default = "snacks";
       description = "Indent guides plugin to use (mutually exclusive)";
     };
 
