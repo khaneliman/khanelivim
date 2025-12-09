@@ -6,7 +6,7 @@
 {
   plugins = {
     opencode = {
-      enable = true;
+      enable = builtins.elem "opencode" config.khanelivim.ai.plugins;
 
       settings = {
         auto_reload = true;

@@ -9,6 +9,7 @@
           "codecompanion"
           "copilot"
           "copilot-lsp"
+          "opencode"
           "sidekick"
           "windsurf"
         ]
@@ -17,6 +18,7 @@
         "claudecode"
         "copilot"
         "copilot-lsp"
+        "opencode"
         "sidekick"
       ];
       description = ''
@@ -30,6 +32,7 @@
         - codecompanion: Gemini-based AI assistant
         - copilot: GitHub Copilot (includes chat)
         - copilot-lsp: GitHub Copilot LSP integration
+        - opencode: OpenCode AI assistant with snacks integration
         - sidekick: Multi-provider AI suggestion system (Claude, Copilot, Gemini, Opencode)
         - windsurf: Codeium Windsurf integration
       '';
