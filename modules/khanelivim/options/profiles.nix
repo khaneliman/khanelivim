@@ -169,9 +169,11 @@ in
     # Standard: Full functionality but deduplicated - no duplicate AI tools
     (lib.mkIf (cfg.profile == "standard") {
       khanelivim = {
-        # Use only claudecode for AI assistance
         ai = {
-          plugins = lib.mkForce [ "claudecode" ];
+          plugins = lib.mkForce [
+            "copilot"
+            "sidekick"
+          ];
           chatEnable = lib.mkForce false;
         };
 
