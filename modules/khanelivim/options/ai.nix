@@ -13,9 +13,7 @@
         ]
       );
       default = [
-        "avante"
         "claudecode"
-        "codecompanion"
         "copilot"
         "copilot-lsp"
       ];
