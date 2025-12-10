@@ -58,6 +58,12 @@ in
           inherit system;
           profile = "standard";
         };
+
+        # Debug variant with all optimizations disabled
+        debug = mkNixvimConfig {
+          inherit system;
+          profile = "debug";
+        };
       };
     };
 }

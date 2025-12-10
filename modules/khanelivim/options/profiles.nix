@@ -9,6 +9,7 @@ in
       "basic"
       "standard"
       "full"
+      "debug"
     ];
     default = "full";
     description = ''
@@ -18,6 +19,7 @@ in
       - basic: Core editing + statusline + gitsigns + snacks picker
       - standard: Full features, deduplicated (one AI tool, one file manager, etc.)
       - full: All features enabled including duplicates (default)
+      - debug: Full features with all performance optimizations disabled and debug logging enabled
     '';
   };
 
@@ -198,6 +200,32 @@ in
       };
     })
 
-    # Full: defaults (no overrides needed)
+    # Debug: All features with performance optimizations disabled and debug logging enabled
+    (lib.mkIf (cfg.profile == "debug") {
+      khanelivim = {
+        performance = {
+          optimizeEnable = lib.mkForce false;
+          optimizer = lib.mkForce [ ]; # Empty list disables all optimizers
+        };
+      };
+
+      globals = {
+        log_level = "debug";
+      };
+
+      extraConfigVim = ''
+        set verbose=9
+        set verbosefile=~/.cache/nvim/debug.log
+      '';
+
+      extraConfigLua = ''
+        -- Enable LSP debug logging
+        vim.lsp.set_log_level("DEBUG")
+
+        -- Notify when debug profile is active
+        vim.notify("DEBUG profile active - all optimizations disabled", vim.log.levels.WARN)
+        vim.notify("Logs: ~/.cache/nvim/debug.log and ~/.local/state/nvim/lsp.log", vim.log.levels.INFO)
+      '';
+    })
   ];
 }
