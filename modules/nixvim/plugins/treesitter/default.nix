@@ -1,8 +1,6 @@
 {
   config,
   lib,
-  self,
-  system,
   ...
 }:
 {
@@ -39,10 +37,7 @@
         in
         lib.filter (
           g: !(lib.elem g.pname excludedGrammars)
-        ) config.plugins.treesitter.package.passthru.allGrammars
-        ++ [
-          self.packages.${system}.tree-sitter-norg-meta
-        ];
+        ) config.plugins.treesitter.package.passthru.allGrammars;
       nixvimInjections = true;
 
       settings = {
