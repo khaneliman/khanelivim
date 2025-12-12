@@ -18,14 +18,10 @@
           filetypes = [ "colorPickerFts" ];
         };
         pickers = [
-          # Lua
-          ''require("ccc").picker.hex''
-          # Lua
-          ''require("ccc").picker.css_rgb''
-          # Lua
-          ''require("ccc").picker.css_hsl''
-          # Lua
-          ''
+          /* Lua */ ''require("ccc").picker.hex''
+          /* Lua */ ''require("ccc").picker.css_rgb''
+          /* Lua */ ''require("ccc").picker.css_hsl''
+          /* Lua */ ''
             require("ccc").picker.ansi_escape {
                             meaning1 = "bright"
                           }''
@@ -36,31 +32,22 @@
         };
         inputs = [ "require('ccc').input.hsl" ];
         outputs = [
-          # Lua
-          "require('ccc').output.css_hsl"
-          # Lua
-          "require('ccc').output.css_rgb"
-          # Lua
-          "require('ccc').output.hex"
+          /* Lua */ "require('ccc').output.css_hsl"
+          /* Lua */ "require('ccc').output.css_rgb"
+          /* Lua */ "require('ccc').output.hex"
         ];
         convert = [
           [
-            # Lua
-            "require('ccc').picker.hex"
-            # Lua
-            "require('ccc').output.css_hsl"
+            /* Lua */ "require('ccc').picker.hex"
+            /* Lua */ "require('ccc').output.css_hsl"
           ]
           [
-            # Lua
-            "require('ccc').picker.css_rgb"
-            # Lua
-            "require('ccc').output.css_hsl"
+            /* Lua */ "require('ccc').picker.css_rgb"
+            /* Lua */ "require('ccc').output.css_hsl"
           ]
           [
-            # Lua
-            "require('ccc').picker.css_hsl"
-            # Lua
-            "require('ccc').output.hex"
+            /* Lua */ "require('ccc').picker.css_hsl"
+            /* Lua */ "require('ccc').output.hex"
           ]
         ];
         mappings = {

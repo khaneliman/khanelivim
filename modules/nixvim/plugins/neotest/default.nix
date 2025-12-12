@@ -83,8 +83,7 @@
           ''require('neotest-catch2')''
         ]
         ++ lib.optionals config.plugins.rustaceanvim.enable [
-          # Lua
-          ''require('rustaceanvim.neotest')''
+          /* Lua */ ''require('rustaceanvim.neotest')''
         ];
       };
 

@@ -6,7 +6,7 @@
 }:
 {
   plugins.blink-cmp.settings.sources = {
-    default.__raw = ''
+    default.__raw = /* Lua */ ''
       function(ctx)
         -- Base sources that are always available
         local base_sources = { 'buffer', 'lsp', 'path', 'snippets' }
@@ -45,21 +45,17 @@
           ${lib.optionalString config.plugins.blink-cmp-git.enable "table.insert(git_sources, 'git')"}
           ${lib.optionalString (lib.elem pkgs.vimPlugins.blink-cmp-conventional-commits config.extraPlugins) "table.insert(git_sources, 'conventional_commits')"}
           return git_sources
-        ${lib.optionalString config.plugins.avante.enable # Lua
-          ''
-            elseif vim.bo.filetype == 'AvanteInput' then
-              return { 'buffer', 'avante' }
-          ''
-        }
-        ${lib.optionalString config.plugins.easy-dotnet.enable # Lua
-          ''
-            elseif vim.bo.filetype == "cs" or vim.bo.filetype == "fsharp" or vim.bo.filetype == "vb" or vim.bo.filetype == "razor" or vim.bo.filetype == "xml" then
-              -- For .NET filetypes, add easy-dotnet to the sources
-              local dotnet_sources = vim.deepcopy(common_sources)
-              table.insert(dotnet_sources, 'easy-dotnet')
-              return dotnet_sources
-          ''
-        }
+        ${lib.optionalString config.plugins.avante.enable /* Lua */ ''
+          elseif vim.bo.filetype == 'AvanteInput' then
+            return { 'buffer', 'avante' }
+        ''}
+        ${lib.optionalString config.plugins.easy-dotnet.enable /* Lua */ ''
+          elseif vim.bo.filetype == "cs" or vim.bo.filetype == "fsharp" or vim.bo.filetype == "vb" or vim.bo.filetype == "razor" or vim.bo.filetype == "xml" then
+            -- For .NET filetypes, add easy-dotnet to the sources
+            local dotnet_sources = vim.deepcopy(common_sources)
+            table.insert(dotnet_sources, 'easy-dotnet')
+            return dotnet_sources
+        ''}
         else
           return common_sources
         end

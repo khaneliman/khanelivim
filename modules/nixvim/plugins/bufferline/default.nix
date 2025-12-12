@@ -3,23 +3,22 @@
   plugins.bufferline =
     let
       mouse = {
-        right = # Lua
-          "'vertical sbuffer %d'";
-        close = # Lua
+        right = "'vertical sbuffer %d'";
+        close =
           if config.khanelivim.ui.bufferDelete == "mini-bufremove" then
-            ''
+            /* Lua */ ''
               function(bufnum)
                 require("mini.bufremove").delete(bufnum)
               end
             ''
           else if config.khanelivim.ui.bufferDelete == "snacks" then
-            ''
+            /* Lua */ ''
               function(bufnum)
                 require("snacks").bufdelete.delete(bufnum)
               end
             ''
           else
-            ''
+            /* Lua */ ''
               function(bufnum)
                 vim.cmd("bdelete " .. bufnum)
               end
@@ -39,20 +38,19 @@
           close_command.__raw = mouse.close;
           close_icon = "";
           diagnostics = "nvim_lsp";
-          diagnostics_indicator = # Lua
-            ''
-              function(count, level, diagnostics_dict, context)
-                local s = ""
-                for e, n in pairs(diagnostics_dict) do
-                  local sym = e == "error" and " "
-                    or (e == "warning" and " " or "" )
-                  if(sym ~= "") then
-                    s = s .. " " .. n .. sym
-                  end
+          diagnostics_indicator = /* Lua */ ''
+            function(count, level, diagnostics_dict, context)
+              local s = ""
+              for e, n in pairs(diagnostics_dict) do
+                local sym = e == "error" and " "
+                  or (e == "warning" and " " or "" )
+                if(sym ~= "") then
+                  s = s .. " " .. n .. sym
                 end
-                return s
               end
-            '';
+              return s
+            end
+          '';
           # Will make sure all names in bufferline are unique
           enforce_regular_tabs = false;
 

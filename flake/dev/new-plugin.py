@@ -84,7 +84,7 @@ CUSTOM_LAZY_TEMPLATE = """{
 
   config =
     let
-      luaConfig = # Lua
+      luaConfig =
         ''
           require('PLUGIN_NAME').setup(${lib.generators.toLua { } config.plugins.PLUGIN_NAME.settings})
         '';

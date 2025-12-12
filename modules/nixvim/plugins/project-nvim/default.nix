@@ -27,11 +27,9 @@
           && config.khanelivim.picker.tool == "telescope"
         )
         {
-          before.__raw =
-            lib.mkIf config.plugins.lz-n.enable # Lua
-              ''
-                require('lz.n').trigger_load('telescope')
-              '';
+          before.__raw = lib.mkIf config.plugins.lz-n.enable ''
+            require('lz.n').trigger_load('telescope')
+          '';
           keys =
             lib.mkIf
               (
