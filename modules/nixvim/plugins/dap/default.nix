@@ -9,6 +9,7 @@
     # FIXME: bashdb broken
     # ./bash.nix
     ./dotnet.nix
+    ./godot.nix
     ./javascript.nix
     ./lua.nix
   ];
