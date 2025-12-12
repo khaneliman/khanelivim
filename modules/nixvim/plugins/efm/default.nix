@@ -15,7 +15,7 @@
     efmls-configs = {
       enable = false;
 
-      setup = {
+      languages = {
         all.linter = [ "codespell" ];
         bash.linter = [ "shellcheck" ];
         c.linter = [ "clang_tidy" ];
