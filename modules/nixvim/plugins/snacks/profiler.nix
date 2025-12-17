@@ -53,7 +53,7 @@
       )
       ''
         -- Track startup time for profiling
-        vim.g._profiler_start_time = vim.loop.hrtime()
+        vim.g._profiler_start_time = vim.uv.hrtime()
 
         -- Extract plugin name from trace name (handles nix store paths)
         local function get_plugin_name(trace)
@@ -137,7 +137,7 @@
           -- Calculate startup time if available
           local startup_time_ms = nil
           if vim.g._profiler_start_time then
-            startup_time_ms = (vim.loop.hrtime() - vim.g._profiler_start_time) / 1e6
+            startup_time_ms = (vim.uv.hrtime() - vim.g._profiler_start_time) / 1e6
           end
 
           return {
