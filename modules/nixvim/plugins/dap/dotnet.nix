@@ -5,9 +5,12 @@
   ...
 }:
 {
-  extraPackages = with pkgs; [
-    netcoredbg
-  ];
+  extraPackages = lib.mkIf config.plugins.dap.enable (
+    with pkgs;
+    [
+      netcoredbg
+    ]
+  );
 
   globals = lib.mkIf (!config.plugins.easy-dotnet.enable) {
     dotnet_build_project.__raw = ''

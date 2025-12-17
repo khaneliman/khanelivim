@@ -1,10 +1,13 @@
 {
+  config,
   lib,
   pkgs,
   ...
 }:
 {
-  extraPackages = lib.optionals pkgs.stdenv.hostPlatform.isLinux [ pkgs.bashdb ];
+  extraPackages = lib.optionals (config.plugins.dap.enable && pkgs.stdenv.hostPlatform.isLinux) [
+    pkgs.bashdb
+  ];
 
   plugins = {
     dap = {

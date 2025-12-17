@@ -18,7 +18,9 @@
     end
   '';
 
-  extraPlugins = [ pkgs.vimPlugins.one-small-step-for-vimkind ];
+  extraPlugins = lib.mkIf config.plugins.dap.enable [
+    pkgs.vimPlugins.one-small-step-for-vimkind
+  ];
 
   plugins = {
     dap = {

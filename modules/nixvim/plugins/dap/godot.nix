@@ -1,12 +1,16 @@
 {
+  config,
   lib,
   pkgs,
   ...
 }:
 {
-  extraPackages = with pkgs; [
-    netcoredbg
-  ];
+  extraPackages = lib.mkIf config.plugins.dap.enable (
+    with pkgs;
+    [
+      netcoredbg
+    ]
+  );
 
   globals = {
     # Yoinked from https://github.com/fm39hz/nvim-lazyvim/blob/main/lua/plugins/development/language/csharp.lua
