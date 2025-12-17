@@ -82,6 +82,11 @@
       ];
 
       settings = {
+        headers = {
+          user = "👤 You";
+          assistant = "🤖 Copilot";
+          tool = "🔧 Tool";
+        };
         # NOTE: if you want float
         # window = {
         #   layout = "float";
