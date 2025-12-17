@@ -64,7 +64,7 @@
                 "ClaudeCodeDiffAccept"
                 "ClaudeCodeDiffDeny"
               ];
-              after = ''
+              after = /* Lua */ ''
                 function()
                   ${luaConfig}
                 end

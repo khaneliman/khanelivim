@@ -8,7 +8,7 @@
     {
       mode = "n";
       key = "<leader>gfb";
-      action = ''<cmd>FzfLua git_branches<CR>'';
+      action = "<cmd>FzfLua git_branches<CR>";
       options = {
         desc = "Git Branches";
       };
@@ -16,7 +16,7 @@
     {
       mode = "n";
       key = "<leader>gfc";
-      action = ''<cmd>FzfLua git_commits<CR>'';
+      action = "<cmd>FzfLua git_commits<CR>";
       options = {
         desc = "Git Commits";
       };
@@ -24,7 +24,7 @@
     {
       mode = "n";
       key = "<leader>gfs";
-      action = ''<cmd>FzfLua git_status<CR>'';
+      action = "<cmd>FzfLua git_status<CR>";
       options = {
         desc = "Git Status";
       };
@@ -32,7 +32,7 @@
     {
       mode = "n";
       key = "<leader>gfh";
-      action = ''<cmd>FzfLua git_stash<CR>'';
+      action = "<cmd>FzfLua git_stash<CR>";
       options = {
         desc = "Git Stashes";
       };
