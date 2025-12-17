@@ -34,6 +34,10 @@
     lazyredraw = false; # Breaks noice plugin
     synmaxcol = 240; # Disable syntax highlighting for long lines
     timeoutlen = 500; # Key sequence timeout (ms)
+    smoothscroll = true; # Smooth scrolling with Ctrl-D/U
+
+    # Project-local config
+    exrc = true; # Enable .nvim.lua, .nvimrc, .exrc in project directories
 
     # UI & Appearance
     number = true;
@@ -92,6 +96,7 @@
     foldcolumn = "1";
     foldenable = true;
     foldlevelstart = -1; # -1 uses foldlevel value
+    # foldtext = ""; # Empty uses builtin foldtext
     fillchars = {
       horiz = "━";
       horizup = "┻";
@@ -114,6 +119,11 @@
     # Completion & Popup
     pumheight = 10; # Max popup menu items
     infercase = true;
+    completeopt = [
+      "menuone"
+      "noselect"
+      "popup"
+    ]; # Native completion options
 
     # Command Line & Messages
     cmdheight = 0; # Hide command line when not in use
