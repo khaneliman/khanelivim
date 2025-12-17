@@ -17,11 +17,15 @@
     ]
   );
 
-  extraPlugins = with pkgs.vimPlugins; [
-    blink-cmp-avante
-    blink-cmp-conventional-commits
-    blink-cmp-npm-nvim
-    blink-cmp-yanky
-    blink-nerdfont-nvim
-  ];
+  extraPlugins =
+    with pkgs.vimPlugins;
+    [
+      blink-cmp-conventional-commits
+      blink-cmp-npm-nvim
+      blink-cmp-yanky
+      blink-nerdfont-nvim
+    ]
+    ++ lib.optionals config.plugins.avante.enable [
+      blink-cmp-avante
+    ];
 }
