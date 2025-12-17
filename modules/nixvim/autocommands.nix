@@ -79,7 +79,7 @@
     #         function(table)
     #           if vim.api.nvim_buf_get_name(0) ~= "" and not vim.g.first_buffer_opened then
     #             vim.g.first_buffer_opened = true
-    #             vim.api.nvim_exec('Neotree show filesystem left', true)
+    #             vim.api.nvim_exec2('Neotree show filesystem left', { output = false })
     #           end
     #         end
     #       '';
