@@ -12,11 +12,13 @@
 
   # NOTE: Allows debugging personal configuration
   # `nvim --cmd "lua init_debug=true"`
-  extraConfigLuaPre = lib.mkOrder 2 ''
-    if init_debug then
-      require"osv".launch({port=8086, blocking=true})
-    end
-  '';
+  extraConfigLuaPre = lib.mkIf config.plugins.dap.enable (
+    lib.mkOrder 2 ''
+      if init_debug then
+        require"osv".launch({port=8086, blocking=true})
+      end
+    ''
+  );
 
   extraPlugins = lib.mkIf config.plugins.dap.enable [
     pkgs.vimPlugins.one-small-step-for-vimkind
