@@ -23,7 +23,8 @@
         ${lib.optionalString (lib.elem pkgs.vimPlugins.blink-nerdfont-nvim config.extraPlugins) "table.insert(common_sources, 'nerdfont')"}
         ${lib.optionalString config.plugins.blink-cmp-spell.enable "table.insert(common_sources, 'spell')"}
         ${lib.optionalString config.plugins.blink-cmp-words.enable "table.insert(common_sources, 'thesaurus')"}
-        ${lib.optionalString (lib.elem pkgs.vimPlugins.blink-cmp-yanky config.extraPlugins) "table.insert(common_sources, 'yank')"}
+        -- clipboard freezes
+        --${lib.optionalString (lib.elem pkgs.vimPlugins.blink-cmp-yanky config.extraPlugins) "table.insert(common_sources, 'yank')"}
         ${lib.optionalString config.plugins.blink-ripgrep.enable "table.insert(common_sources, 'ripgrep')"}
         ${lib.optionalString (lib.elem pkgs.vimPlugins.blink-cmp-npm-nvim config.extraPlugins) "if vim.fn.expand('%:t') == 'package.json' then table.insert(common_sources, 'npm') end"}
 
