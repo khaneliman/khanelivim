@@ -4,6 +4,12 @@
   ...
 }:
 {
+
+  # Home manager injections
+  extraFiles = lib.mkIf config.plugins.treesitter.nixvimInjections {
+    "after/queries/nix/injections.scm".source = ./injections-hm.scm;
+  };
+
   plugins = {
     treesitter = {
       enable = true;
