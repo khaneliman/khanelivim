@@ -61,11 +61,10 @@
     whitespace = lib.mkOption {
       type = lib.types.nullOr (
         lib.types.enum [
-          "whitespace-custom"
           "mini-trailspace"
         ]
       );
-      default = "whitespace-custom";
+      default = "mini-trailspace";
       description = "Trailing whitespace highlighting and removal plugin (mutually exclusive)";
     };
     # keep-sorted end
