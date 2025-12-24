@@ -19,9 +19,6 @@
           + lib.optionalString config.plugins.trouble.enable ''
             require('lz.n').trigger_load('trouble.nvim')
           ''
-          + lib.optionalString (config.khanelivim.picker.tool == "telescope") ''
-            require('lz.n').trigger_load('telescope')
-          ''
           + lib.optionalString (config.khanelivim.picker.tool == "snacks") ''
             require('lz.n').trigger_load('snacks.nvim')
           ''
@@ -41,7 +38,6 @@
           "TodoQuickFix"
         ]
         ++ lib.optional (config.khanelivim.picker.tool == "fzf") "TodoFzfLua"
-        ++ lib.optional (config.khanelivim.picker.tool == "telescope") "TodoTelescope"
         ++ lib.optional config.plugins.trouble.enable "TodoTrouble";
       };
     };
@@ -50,15 +46,6 @@
       todoTrouble.key = lib.mkIf config.plugins.trouble.enable "<leader>xq";
       # Fallback if snacks picker not enabled
       todoFzfLua = lib.mkIf (config.khanelivim.picker.tool == "fzf") {
-        key = "<leader>ft";
-        keywords = [
-          "TODO"
-          "FIX"
-          "FIXME"
-        ];
-      };
-      # Fallback if no others enabled
-      todoTelescope = lib.mkIf (config.khanelivim.picker.tool == "telescope") {
         key = "<leader>ft";
         keywords = [
           "TODO"

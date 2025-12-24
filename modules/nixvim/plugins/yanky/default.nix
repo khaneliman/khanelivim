@@ -118,14 +118,6 @@ let
       action = "<Plug>(YankyPutBeforeFilter)";
       options.desc = "Put before applying a filter";
     }
-  ]
-  ++ lib.optionals config.plugins.telescope.enable [
-    {
-      mode = "n";
-      key = "<leader>fy";
-      action = "<cmd>Telescope yank_history<cr>";
-      options.desc = "Paste from yanky";
-    }
   ];
 
   yankyLazyKeys = map (keymap: {

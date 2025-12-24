@@ -5,7 +5,6 @@
       type = lib.types.nullOr (
         lib.types.enum [
           "snacks"
-          "telescope"
           "fzf"
         ]
       );

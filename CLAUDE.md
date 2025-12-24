@@ -90,7 +90,7 @@ apps/profile: use event-specific baselines
 
 ### Common Scopes
 
-- Plugin name: `copilot-lsp`, `fff`, `telescope`, `lualine`, etc.
+- Plugin name: `copilot-lsp`, `fff`, `lualine`, etc.
 - Module path: `nixvim/options`, `options/ui`, `overlays/input-packages`
 - Special scopes: `docs`, `performance`, `flake.lock`, `.github`
 
@@ -274,13 +274,13 @@ When examining a coredump stack trace, look for these key indicators:
 | `emit_termrequest`      | Terminal request/response timing issue          |
 | `lua_*` functions       | Lua plugin crash, check loaded modules          |
 | `tree_sitter_*`         | Treesitter parser issue, check language parsers |
-| Background thread crash | Plugin with threading (fff, telescope, etc.)    |
+| Background thread crash | Plugin with threading (fff, etc.)    |
 
 **Background threads in stack trace:**
 
 Multiple worker threads (rayon, inotify, crossbeam) indicate:
 
-- Plugin with heavy parallelism (fff, telescope, etc.)
+- Plugin with heavy parallelism (fff, etc.)
 - File watching/indexing operations
 - Potential race conditions with main thread
 

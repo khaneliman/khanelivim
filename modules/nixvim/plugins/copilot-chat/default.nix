@@ -87,7 +87,11 @@
       action.__raw = ''
         function()
           local actions = require("CopilotChat.actions")
-          require("CopilotChat.integrations.telescope").pick(actions.prompt_actions())
+          if config.khanelivim.picker.tool == "snacks" then
+            require("CopilotChat.integrations.snacks").pick(actions.prompt_actions())
+          else
+            vim.notify("No supported picker for CopilotChat actions", vim.log.levels.ERROR)
+          end
         end
       '';
       options = {
