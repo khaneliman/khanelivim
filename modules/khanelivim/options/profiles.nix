@@ -185,7 +185,7 @@ in
         ];
 
         # Single terminal
-        ui.terminal = lib.mkForce [ "toggleterm" ];
+        ui.terminal = lib.mkForce [ "snacks" ];
       };
 
       # Force disable duplicate AI plugins (keep sidekick + claudecode tools)

@@ -107,11 +107,10 @@
     terminal = lib.mkOption {
       type = lib.types.listOf (
         lib.types.enum [
-          "toggleterm"
           "snacks"
         ]
       );
-      default = [ "toggleterm" ];
+      default = [ "snacks" ];
       description = "Terminal emulator plugins to use (can have multiple)";
     };
 

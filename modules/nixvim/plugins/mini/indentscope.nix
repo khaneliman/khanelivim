@@ -13,7 +13,6 @@
         "lazy"
         "mason"
         "notify"
-        "toggleterm"
         "lazyterm"
         "snacks_dashboard"
       ];

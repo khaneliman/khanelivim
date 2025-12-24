@@ -212,7 +212,6 @@ nix run
 
 - **persistence** - Session management
 - **wakatime** - Time tracking
-- **toggleterm** - Terminal integration
 - **overseer** - Task runner
 - **rest** - REST client for API testing
 - **grug-far** - Find and replace across files
