@@ -30,7 +30,6 @@
       type = lib.types.listOf (
         lib.types.enum [
           "persistence"
-          "project-nvim"
           "mini-sessions"
         ]
       );
