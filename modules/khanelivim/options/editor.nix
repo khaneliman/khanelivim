@@ -51,7 +51,6 @@
     search = lib.mkOption {
       type = lib.types.nullOr (
         lib.types.enum [
-          "spectre"
           "grug-far"
         ]
       );

@@ -216,7 +216,7 @@ nix run
 - **toggleterm** - Terminal integration
 - **overseer** - Task runner
 - **rest** - REST client for API testing
-- **grug-far** / **spectre** - Find and replace across files
+- **grug-far** - Find and replace across files
 
 ### **Documentation & Writing**
 
