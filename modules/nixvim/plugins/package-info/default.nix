@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ ... }:
 {
   plugins.package-info = {
     enable = true;
