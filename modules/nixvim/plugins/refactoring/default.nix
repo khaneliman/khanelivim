@@ -3,7 +3,6 @@
   plugins = {
     refactoring = {
       enable = true;
-      enableTelescope = config.plugins.telescope.enable;
 
       settings = {
         # Prompt for return types in languages that support it
@@ -26,7 +25,7 @@
         printf_statements = {
           cpp = [
             "std::cout << \"[DEBUG] %s\" << std::endl;"
-            "fmt::print(\"[DEBUG] {}\\n\", \"%s\");"
+            "fmt::print(\"[DEBUG] {\\n}\", \"%s\");"
             "spdlog::debug(\"%s\");"
           ];
           c = [
@@ -75,7 +74,7 @@
         print_var_statements = {
           cpp = [
             "std::cout << \"%s: \" << %s << std::endl;"
-            "fmt::print(\"{}: {}\\n\", \"%s\", %s);"
+            "fmt::print(\"{}: {\\n}\", \"%s\", %s);"
             "spdlog::debug(\"%s: {}\", %s);"
           ];
           c = [
@@ -125,154 +124,117 @@
 
       lazyLoad = {
         settings = {
-          before = lib.mkIf (config.plugins.telescope.enable && config.plugins.lz-n.enable) {
-            __raw = ''
-              require('lz.n').trigger_load('telescope')
-            '';
-          };
           cmd = "Refactor";
-          keys = lib.mkIf config.plugins.telescope.enable [
-            {
-              __unkeyed-1 = "<leader>fR";
-              __unkeyed-2.__raw = ''
-                function()
-                  require('telescope').extensions.refactoring.refactors()
-                end
-              '';
-              desc = "Refactoring";
-            }
-          ];
         };
       };
     };
   };
 
-  keymaps =
-    lib.optionals config.plugins.refactoring.enable [
-      # Extract operations (visual mode)
-      {
-        mode = "x";
-        key = "<leader>re";
-        action = "<cmd>Refactor extract<cr>";
-        options = {
-          desc = "Extract Function";
-        };
-      }
-      {
-        mode = "x";
-        key = "<leader>rE";
-        action = "<cmd>Refactor extract_to_file<cr>";
-        options = {
-          desc = "Extract Function to File";
-        };
-      }
-      {
-        mode = "x";
-        key = "<leader>rv";
-        action = "<cmd>Refactor extract_var<cr>";
-        options = {
-          desc = "Extract Variable";
-        };
-      }
+  keymaps = lib.mkIf config.plugins.refactoring.enable [
+    # Extract operations (visual mode)
+    {
+      mode = "x";
+      key = "<leader>re";
+      action = "<cmd>Refactor extract<cr>";
+      options = {
+        desc = "Extract Function";
+      };
+    }
+    {
+      mode = "x";
+      key = "<leader>rE";
+      action = "<cmd>Refactor extract_to_file<cr>";
+      options = {
+        desc = "Extract Function to File";
+      };
+    }
+    {
+      mode = "x";
+      key = "<leader>rv";
+      action = "<cmd>Refactor extract_var<cr>";
+      options = {
+        desc = "Extract Variable";
+      };
+    }
 
-      # Inline operations (normal mode)
-      {
-        mode = "n";
-        key = "<leader>ri";
-        action = "<cmd>Refactor inline_var<CR>";
-        options = {
-          desc = "Inline Variable";
-        };
-      }
-      {
-        mode = "n";
-        key = "<leader>rI";
-        action = "<cmd>Refactor inline_func<CR>";
-        options = {
-          desc = "Inline Function";
-        };
-      }
+    # Inline operations (normal mode)
+    {
+      mode = "n";
+      key = "<leader>ri";
+      action = "<cmd>Refactor inline_var<CR>";
+      options = {
+        desc = "Inline Variable";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>rI";
+      action = "<cmd>Refactor inline_func<CR>";
+      options = {
+        desc = "Inline Function";
+      };
+    }
 
-      # Block operations (normal mode)
-      {
-        mode = "n";
-        key = "<leader>rb";
-        action = "<cmd>Refactor extract_block<CR>";
-        options = {
-          desc = "Extract Block";
-        };
-      }
-      {
-        mode = "n";
-        key = "<leader>rB";
-        action = "<cmd>Refactor extract_block_to_file<CR>";
-        options = {
-          desc = "Extract Block to File";
-        };
-      }
+    # Block operations (normal mode)
+    {
+      mode = "n";
+      key = "<leader>rb";
+      action = "<cmd>Refactor extract_block<CR>";
+      options = {
+        desc = "Extract Block";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>rB";
+      action = "<cmd>Refactor extract_block_to_file<CR>";
+      options = {
+        desc = "Extract Block to File";
+      };
+    }
 
-      # Debug operations (based on documentation)
-      {
-        mode = [
-          "n"
-          "x"
-        ];
-        key = "<leader>rp";
-        action.__raw = ''
-          function()
-            require('refactoring').debug.printf({below = false})
-          end
-        '';
-        options = {
-          desc = "Debug Printf";
-        };
-      }
-      {
-        mode = [
-          "n"
-          "x"
-        ];
-        key = "<leader>rP";
-        action.__raw = ''
-          function()
-            require('refactoring').debug.print_var()
-          end
-        '';
-        options = {
-          desc = "Debug Print Variable";
-        };
-      }
-      {
-        mode = "n";
-        key = "<leader>rc";
-        action.__raw = ''
-          function()
-            require('refactoring').debug.cleanup({})
-          end
-        '';
-        options = {
-          desc = "Debug Cleanup";
-        };
-      }
-    ]
-    ++
-      lib.optionals
-        (
-          config.plugins.telescope.enable && config.plugins.refactoring.enable && !config.plugins.lz-n.enable
-        )
-        [
-          {
-            mode = "n";
-            key = "<leader>fR";
-            action.__raw = ''
-              function()
-                require('telescope').extensions.refactoring.refactors()
-              end
-            '';
-            options = {
-              desc = "Refactoring";
-              silent = true;
-            };
-          }
-        ];
+    # Debug operations (based on documentation)
+    {
+      mode = [
+        "n"
+        "x"
+      ];
+      key = "<leader>rp";
+      action.__raw = ''
+        function()
+          require('refactoring').debug.printf({below = false})
+        end
+      '';
+      options = {
+        desc = "Debug Printf";
+      };
+    }
+    {
+      mode = [
+        "n"
+        "x"
+      ];
+      key = "<leader>rP";
+      action.__raw = ''
+        function()
+          require('refactoring').debug.print_var()
+        end
+      '';
+      options = {
+        desc = "Debug Print Variable";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>rc";
+      action.__raw = ''
+        function()
+          require('refactoring').debug.cleanup({})
+        end
+      '';
+      options = {
+        desc = "Debug Cleanup";
+      };
+    }
+  ];
 }

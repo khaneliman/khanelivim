@@ -24,7 +24,7 @@
     enable = true;
     settings = {
       highlighters = {
-        # TODO: enable again if i find a good TODO Telescope replacement from todo-comments
+        # TODO: enable again if i find a good TODO replacement from todo-comments
         # fixme = {
         #   pattern.__raw =
         #     ''in_comment("FIXME")'';

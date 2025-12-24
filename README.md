@@ -15,8 +15,8 @@ machines.
   and Blink completion for intelligent coding assistance.
 - **Modern Plugin Architecture:** Modular plugin system with lazy loading and
   comprehensive language support for 20+ programming languages.
-- **Advanced Navigation:** Multiple fuzzy finders (Telescope, FZF-Lua, Snacks
-  Picker), file managers (Yazi, Neo-tree), and movement plugins (Flash, Hop).
+- **Advanced Navigation:** Multiple fuzzy finders (FZF-Lua, Snacks Picker) for
+  quick file and symbol searching.
 - **Comprehensive Git Integration:** Full Git workflow support with Gitsigns,
   Diffview, Git Conflict resolution, and worktree management.
 - **Debugging & Testing:** Complete debugging setup with DAP and comprehensive
@@ -159,9 +159,7 @@ nix run
 - **flash** - Enhanced navigation with jump labels
 - **hop** - EasyMotion-like navigation
 - **harpoon** - Quick file navigation and bookmarking
-- **telescope** - Fuzzy finder with extensions (file-browser, frecency,
-  fzf-native, etc.)
-- **fzf-lua** - Alternative fuzzy finder with git/LSP integration
+- **fzf-lua** - Fuzzy finder with git/LSP integration
 - **yazi** - Terminal file manager integration
 - **neo-tree** - File explorer sidebar (when yazi disabled)
 
@@ -440,7 +438,7 @@ The configuration follows a modular architecture:
 ```
 modules/nixvim/
 ├── plugins/          # Individual plugin configurations
-│   ├── telescope/    # Fuzzy finder setup
+│   ├── snacks/      # Snacks.nvim configuration
 │   ├── lsp/         # Lspconfig configuration
 │   ├── dap/         # Debugging setup
 │   └── ...

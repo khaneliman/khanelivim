@@ -25,7 +25,6 @@
   plugins = {
     neorg = {
       enable = true;
-      telescopeIntegration.enable = config.plugins.telescope.enable;
 
       lazyLoad.settings = {
         ft = "norg";
@@ -163,17 +162,17 @@
         options.desc = "New Note";
       }
     ]
-    ++ lib.optionals config.plugins.telescope.enable [
+    ++ lib.optionals (config.khanelivim.picker.tool == "snacks") [
       {
         mode = "n";
         key = "<leader>ns";
-        action = "<cmd>Telescope find_files cwd=~/notes<CR>";
+        action = "<cmd>lua Snacks.picker.files({ cwd = '~/notes' })<CR>";
         options.desc = "Search Notes";
       }
       {
         mode = "n";
         key = "<leader>ng";
-        action = "<cmd>Telescope live_grep cwd=~/notes<CR>";
+        action = "<cmd>lua Snacks.picker.grep({ cwd = '~/notes' })<CR>";
         options.desc = "Grep Notes";
       }
     ]

@@ -128,7 +128,7 @@ When adding plugins, place them in the appropriate category:
 
 - **Completion & Snippets**: Blink, snippets engines
 - **Language Support**: LSP, treesitter, formatters, linters
-- **Navigation**: Telescope, FZF, file managers
+- **Navigation**: FZF, snacks picker, file managers
 - **Git Integration**: Gitsigns, diffview, git workflow tools
 - **UI/UX**: Status lines, themes, notifications
 - **Debugging & Testing**: DAP, neotest

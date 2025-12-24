@@ -125,10 +125,6 @@
         sandwich = true;
         semantic_tokens = true;
         symbols_outline = true;
-        telescope = {
-          enabled = true;
-          style = "nvchad";
-        };
         treesitter = true;
         ufo = true;
         which_key = true;

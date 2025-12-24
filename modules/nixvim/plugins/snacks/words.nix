@@ -32,7 +32,6 @@
                 "fugitive",
                 "neo-tree",
                 "nvim-tree",
-                "TelescopePrompt",
               }
               for _, denied_ft in ipairs(deny_filetypes) do
                 if ft == denied_ft then
