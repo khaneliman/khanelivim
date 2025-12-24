@@ -24,6 +24,8 @@
       type = lib.types.listOf lib.types.str;
       default = [
         "gzip"
+        "matchit"
+        "matchparen"
         "netrwPlugin"
         "rplugin"
         "tarPlugin"
