@@ -52,7 +52,6 @@ scope: description
 ```
 copilot-lsp: add lazy loading on InsertEnter
 fff: disable debug mode and add lazy loading to prevent crashes
-no-neck-pain: add module
 lualine: use package.loaded for sidekick status
 ```
 

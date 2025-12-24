@@ -116,11 +116,10 @@
     zenMode = lib.mkOption {
       type = lib.types.nullOr (
         lib.types.enum [
-          "no-neck-pain"
           "snacks"
         ]
       );
-      default = "no-neck-pain";
+      default = "snacks";
       description = "Zen/centered editing mode plugin to use (mutually exclusive)";
     };
     #keep-sorted end
