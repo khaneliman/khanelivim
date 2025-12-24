@@ -34,27 +34,30 @@ in
       doCheck = false;
     };
   };
-  vimPlugins = vimPlugins // {
-    #
-    # Specific package overlays need to go in here to not get ignored
-    #
-    fzf-lua = vimPlugins.fzf-lua.overrideAttrs {
-      doCheck = false;
-    };
 
-    grug-far-nvim = vimPlugins.grug-far-nvim.overrideAttrs {
-      doCheck = false;
-    };
+  vimPlugins = vimPlugins.extend (
+    _self: super: {
+      #
+      # Specific package overlays need to go in here to not get ignored
+      #
+      fzf-lua = super.fzf-lua.overrideAttrs {
+        doCheck = false;
+      };
 
-    neotest = vimPlugins.neotest.overrideAttrs {
-      doCheck = false;
-    };
+      grug-far-nvim = super.grug-far-nvim.overrideAttrs {
+        doCheck = false;
+      };
 
-    snacks-nvim = vimPlugins.snacks-nvim.overrideAttrs (_oldAttrs: {
-      version = flake.inputs.snacks-nvim.shortRev;
-      src = flake.inputs.snacks-nvim;
-      # nvimSkipModules = oldAttrs.nvimSkipModules ++ [
-      # ];
-    });
-  };
+      neotest = super.neotest.overrideAttrs {
+        doCheck = false;
+      };
+
+      snacks-nvim = super.snacks-nvim.overrideAttrs (_oldAttrs: {
+        version = flake.inputs.snacks-nvim.shortRev;
+        src = flake.inputs.snacks-nvim;
+        # nvimSkipModules = oldAttrs.nvimSkipModules ++ [
+        # ];
+      });
+    }
+  );
 }
