@@ -26,7 +26,6 @@
             features_disabled = [
               "filetype"
               "illuminate"
-              "indent_blankline"
               "lsp"
               "matchparen"
               "syntax"
@@ -64,7 +63,6 @@
             on = true;
             features_disabled = [
               "illuminate"
-              "indent_blankline"
               "lualine"
             ]
             ++ lib.optionals config.plugins.bufferline.enable [ "bufferline" ]

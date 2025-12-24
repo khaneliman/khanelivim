@@ -45,9 +45,6 @@ in
     ++ lib.optionals (config.plugins.faster.enable && config.plugins.illuminate.enable) [
       (mkFasterToggle "Illuminate" "<leader>uxi" "Illuminate")
     ]
-    ++ lib.optionals (config.plugins.faster.enable && config.plugins.indent-blankline.enable) [
-      (mkFasterToggle "Indentblankline" "<leader>uxI" "Indent Blankline")
-    ]
     ++ lib.optionals (config.plugins.faster.enable && config.plugins.noice.enable) [
       (mkFasterToggle "Noice" "<leader>uxn" "Noice")
     ]

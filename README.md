@@ -153,7 +153,6 @@ nix run
 - **which-key** - Keybinding popup help system
 - **noice** - Enhanced UI for messages, cmdline, and popups
 - **snacks** - Dashboard, picker, and various UI utilities
-- **indent-blankline** - Indentation guides
 - **statuscol** - Enhanced status column
 
 ### **Navigation & Movement**
