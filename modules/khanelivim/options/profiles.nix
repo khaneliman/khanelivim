@@ -129,7 +129,7 @@ in
         picker.tool = lib.mkForce "snacks";
 
         text = {
-          comments = lib.mkForce [ "mini-comment" ];
+          comments = lib.mkForce [ "ts-comments" ];
           markdownRendering = lib.mkForce [ ];
           operators = lib.mkForce [ ];
           patterns = lib.mkForce [ ];
@@ -179,9 +179,8 @@ in
           chatEnable = lib.mkForce false;
         };
 
-        # Streamlined comments (no comment-box decorations)
+        # Streamlined comments
         text.comments = lib.mkForce [
-          "mini-comment"
           "ts-comments"
         ];
 

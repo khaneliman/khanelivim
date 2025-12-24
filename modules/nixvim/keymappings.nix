@@ -150,6 +150,15 @@
                   desc = "Force quit";
                 };
               };
+
+              "<leader>/" = {
+                action = "gcc";
+                options = {
+                  desc = "Toggle comment line";
+                  remap = true;
+                };
+              };
+
               "|" = {
                 action = "<Cmd>vsplit<CR>";
                 options = {
@@ -408,6 +417,14 @@
             # Backspace delete in visual
             "<BS>" = {
               action = "x";
+            };
+
+            "<leader>/" = {
+              action = "gc";
+              options = {
+                desc = "Toggle comment selection";
+                remap = true;
+              };
             };
           };
       insert =

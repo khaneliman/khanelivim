@@ -202,7 +202,7 @@ nix run
 ### **Code Editing & Manipulation**
 
 - **treesitter** - Syntax highlighting and code parsing
-- **mini** - Collection of mini modules (ai, align, comment, surround, etc.)
+- **mini** - Collection of mini modules (ai, align, surround, etc.)
 - **luasnip** - Snippet engine with friendly-snippets
 - **refactoring** - Code refactoring utilities
 - **neogen** - Documentation generation

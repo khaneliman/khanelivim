@@ -7,13 +7,11 @@
         lib.types.enum [
           "comment-box"
           "ts-comments"
-          "mini-comment"
         ]
       );
       default = [
         "comment-box"
         "ts-comments"
-        "mini-comment"
       ];
       description = "Text commenting plugins to use (can complement each other)";
     };
