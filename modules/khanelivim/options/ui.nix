@@ -89,7 +89,6 @@
     statusColumn = lib.mkOption {
       type = lib.types.nullOr (
         lib.types.enum [
-          "statuscol"
           "snacks"
         ]
       );
