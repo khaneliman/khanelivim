@@ -326,7 +326,7 @@
                 };
               };
             })
-            // (lib.optionalAttrs (!config.plugins.visual-whitespace.enable) {
+            // {
               "<leader>uW" = {
                 action.__raw = ''
                   function ()
@@ -343,7 +343,7 @@
                   desc = "White space character toggle";
                 };
               };
-            })
+            }
             // (lib.optionalAttrs
               (
                 !config.plugins.snacks.enable
