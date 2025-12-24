@@ -34,7 +34,6 @@
       type = lib.types.nullOr (
         lib.types.enum [
           "noice"
-          "wilder"
         ]
       );
       default = "noice";
