@@ -17,7 +17,7 @@
             model = "claude-sonnet-4-5";
           };
         };
-        acp_proivders = {
+        acp_providers = {
           claude-code = {
             model = "claude-sonnet-4-5";
             env = {
