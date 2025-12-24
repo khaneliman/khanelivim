@@ -225,7 +225,6 @@ nix run
 
 ### **Visual Enhancements**
 
-- **illuminate** - Highlight word under cursor
 - **colorizer** / **ccc** - Color code highlighting and picker
 - **smartcolumn** - Smart column guides
 - **trouble** - Diagnostics and quickfix list

@@ -28,7 +28,6 @@
               ${lib.optionalString (
                 config.plugins.snacks.enable && config.plugins.snacks.settings.indent.enabled
               ) ''vim.b.snacks_indent = false''}
-              ${lib.optionalString config.plugins.illuminate.enable ''require("illuminate").pause_buf()''}
 
               -- Disable line numbers and relative line numbers
               vim.cmd("setlocal nonumber norelativenumber")

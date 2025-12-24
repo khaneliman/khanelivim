@@ -25,7 +25,6 @@
             on = true;
             features_disabled = [
               "filetype"
-              "illuminate"
               "lsp"
               "matchparen"
               "syntax"
@@ -62,7 +61,6 @@
           bigfile_hugefiles = {
             on = true;
             features_disabled = [
-              "illuminate"
               "lualine"
             ]
             ++ lib.optionals config.plugins.bufferline.enable [ "bufferline" ]

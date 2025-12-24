@@ -25,7 +25,7 @@
                 return false
               end
 
-              -- Exclude filetypes (match illuminate denylist)
+              -- Exclude filetypes
               local ft = vim.bo[buf].filetype
               local deny_filetypes = {
                 "dirvish",
@@ -40,7 +40,7 @@
                 end
               end
 
-              -- Disable for large files (match illuminate's 3000 line cutoff)
+              -- Disable for large files
               local line_count = vim.api.nvim_buf_line_count(buf)
               if line_count > 3000 then
                 return false

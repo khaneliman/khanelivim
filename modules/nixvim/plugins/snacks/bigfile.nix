@@ -19,7 +19,6 @@
 
               ${lib.optionalString config.plugins.mini-indentscope.enable ''vim.b.miniindentscope_disable = true''}
               ${lib.optionalString config.plugins.blink-indent.enable ''vim.b.indent_guide = false''}
-              ${lib.optionalString config.plugins.illuminate.enable ''require("illuminate").pause_buf()''}
 
               -- Disable line numbers and relative line numbers
               vim.cmd("setlocal nonumber norelativenumber")

@@ -42,9 +42,6 @@ in
       (mkFasterToggle "Vimopts" "<leader>uxy" "Vimopts")
       (mkFasterToggle "Filetype" "<leader>uxv" "Filetype")
     ]
-    ++ lib.optionals (config.plugins.faster.enable && config.plugins.illuminate.enable) [
-      (mkFasterToggle "Illuminate" "<leader>uxi" "Illuminate")
-    ]
     ++ lib.optionals (config.plugins.faster.enable && config.plugins.noice.enable) [
       (mkFasterToggle "Noice" "<leader>uxn" "Noice")
     ]

@@ -78,7 +78,6 @@
     referenceHighlighting = lib.mkOption {
       type = lib.types.nullOr (
         lib.types.enum [
-          "illuminate"
           "snacks-words"
           "mini-cursorword"
         ]
