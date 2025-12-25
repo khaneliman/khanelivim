@@ -35,9 +35,10 @@ _: {
 
 
             def main():
-                print("Building nixvim package...")
+                profile = sys.argv[1] if len(sys.argv) > 1 else "default"
+                print(f"Building nixvim package for profile: {profile}...")
                 nixvim_path = run_command(
-                    "nix build --no-link --print-out-paths .#default"
+                    f"nix build --no-link --print-out-paths .#{profile}"
                 )
 
                 print("Extracting pack directory from nvim wrapper...")
