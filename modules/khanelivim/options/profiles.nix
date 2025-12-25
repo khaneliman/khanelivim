@@ -52,6 +52,8 @@ in
           search = lib.mkForce null;
         };
 
+        performance.treesitter.whitelistMode = lib.mkForce true;
+
         # Disable picker (use native)
         picker.tool = lib.mkForce null;
 
@@ -124,6 +126,8 @@ in
           motion = lib.mkForce null;
           search = lib.mkForce null;
         };
+
+        performance.treesitter.whitelistMode = lib.mkForce true;
 
         # Snacks picker for file navigation (<leader>ff, <leader>fe explorer)
         picker.tool = lib.mkForce "snacks";
