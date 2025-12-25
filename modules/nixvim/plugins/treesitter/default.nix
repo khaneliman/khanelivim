@@ -16,9 +16,15 @@
 
       folding.enable = true;
 
-      grammarPackages = lib.filter (
-        g: !(lib.elem g.pname config.khanelivim.performance.treesitter.excludedGrammars)
-      ) config.plugins.treesitter.package.allGrammars;
+      grammarPackages =
+        if config.khanelivim.performance.treesitter.whitelistMode then
+          lib.filter (
+            g: lib.elem g.pname config.khanelivim.performance.treesitter.includedGrammars
+          ) config.plugins.treesitter.package.allGrammars
+        else
+          lib.filter (
+            g: !(lib.elem g.pname config.khanelivim.performance.treesitter.excludedGrammars)
+          ) config.plugins.treesitter.package.allGrammars;
       nixvimInjections = true;
 
       settings = {
