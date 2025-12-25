@@ -67,7 +67,7 @@
           "nil-ls"
         ]
       );
-      default = "nixd";
+      default = "nil-ls";
       description = "Which Nix LSP to enable (mutually exclusive).";
     };
 
