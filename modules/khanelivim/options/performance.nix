@@ -35,5 +35,31 @@
       ];
       description = "Built-in Neovim plugins to disable for faster startup";
     };
+
+    treesitter = {
+      excludedGrammars = lib.mkOption {
+        type = lib.types.listOf lib.types.str;
+        default = [
+          "tree-sitter-agda"
+          "tree-sitter-cuda"
+          "tree-sitter-d"
+          "tree-sitter-fortran"
+          "tree-sitter-gnuplot"
+          "tree-sitter-haskell"
+          "tree-sitter-hlsl"
+          "tree-sitter-julia"
+          "tree-sitter-koto"
+          "tree-sitter-lean"
+          "tree-sitter-nim"
+          "tree-sitter-razor"
+          "tree-sitter-scala"
+          "tree-sitter-slang"
+          "tree-sitter-systemverilog"
+          "tree-sitter-tlaplus"
+          "tree-sitter-verilog"
+        ];
+        description = "List of treesitter grammars to exclude from the installation to save space.";
+      };
+    };
   };
 }
