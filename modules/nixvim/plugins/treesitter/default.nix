@@ -15,31 +15,10 @@
       enable = true;
 
       folding.enable = true;
-      grammarPackages =
-        let
-          # Large grammars that are not used
-          excludedGrammars = [
-            "agda-grammar"
-            "cuda-grammar"
-            "d-grammar"
-            "fortran-grammar"
-            "gnuplot-grammar"
-            "haskell-grammar"
-            "hlsl-grammar"
-            "julia-grammar"
-            "koto-grammar"
-            "lean-grammar"
-            "nim-grammar"
-            "scala-grammar"
-            "slang-grammar"
-            "systemverilog-grammar"
-            "tlaplus-grammar"
-            "verilog-grammar"
-          ];
-        in
-        lib.filter (
-          g: !(lib.elem g.pname excludedGrammars)
-        ) config.plugins.treesitter.package.passthru.allGrammars;
+
+      grammarPackages = lib.filter (
+        g: !(lib.elem g.pname config.khanelivim.performance.treesitter.excludedGrammars)
+      ) config.plugins.treesitter.package.allGrammars;
       nixvimInjections = true;
 
       settings = {
