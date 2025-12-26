@@ -11,11 +11,8 @@
         "OverseerSaveBundle"
         "OverseerLoadBundle"
         "OverseerDeleteBundle"
-        "OverseerRunCmd"
+        "OverseerShell"
         "OverseerRun"
-        "OverseerInfo"
-        "OverseerBuild"
-        "OverseerQuickAction"
         "OverseerTaskAction"
         "OverseerClearCache"
       ];
@@ -25,11 +22,51 @@
   keymaps = lib.mkIf (config.khanelivim.tasks.tool == "overseer") [
     {
       mode = "n";
-      key = "<leader>RT";
+      key = "<leader>RR";
       action = "<cmd>OverseerRun<CR>";
       options = {
-        desc = "Run Tasks";
+        desc = "Run Task";
       };
+    }
+    {
+      mode = "n";
+      key = "<leader>Ro";
+      action = "<cmd>OverseerOpen<CR>";
+      options = {
+        desc = "Open Output";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>Rt";
+      action = "<cmd>OverseerToggle<CR>";
+      options = {
+        desc = "Toggle Output";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>Rs";
+      action = "<cmd>OverseerShell<CR>";
+      options = {
+        desc = "Run Shell Command";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>RA";
+      action = "<cmd>OverseerTaskAction<CR>";
+      options = {
+        desc = "Task Action";
+      };
+    }
+  ];
+
+  plugins.which-key.settings.spec = lib.optionals (config.khanelivim.tasks.tool == "overseer") [
+    {
+      __unkeyed-1 = "<leader>R";
+      group = "Run";
+      icon = "";
     }
   ];
 }
