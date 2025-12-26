@@ -12,7 +12,7 @@ let
         "CmdlineEnter"
       ];
     }
-    // (builtins.removeAttrs args [ "enable" ]);
+    // (removeAttrs args [ "enable" ]);
 in
 {
   plugins = {
