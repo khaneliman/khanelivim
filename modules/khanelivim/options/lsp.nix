@@ -102,7 +102,7 @@
           "rustaceanvim"
         ]
       );
-      default = "rust-analyzer";
+      default = "rustaceanvim";
       description = "Which Rust LSP integration to use (direct rust-analyzer or rustaceanvim).";
     };
 
