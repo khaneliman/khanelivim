@@ -161,8 +161,7 @@
           codelldb = {
             port = 13000;
             executable = {
-              # FIXME: brkoken in nixpkgs on darwin
-              command = lib.mkIf pkgs.stdenv.hostPlatform.isLinux "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb";
+              command = "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb";
               args = [
                 "--port"
                 "13000"
@@ -205,6 +204,7 @@
             request = "launch";
             cwd = ''''${workspaceFolder}'';
             stopOnEntry = false;
+            runInTerminal = false;
           };
         in
         {
