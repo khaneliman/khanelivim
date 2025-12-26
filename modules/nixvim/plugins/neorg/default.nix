@@ -6,7 +6,10 @@
 }:
 {
   extraPlugins = lib.mkIf config.plugins.neorg.enable [
-    pkgs.vimPlugins.neorg-interim-ls
+    {
+      plugin = pkgs.vimPlugins.neorg-interim-ls;
+      optional = true;
+    }
   ];
 
   autoCmd = lib.optionals config.plugins.neorg.enable [
@@ -29,6 +32,11 @@
       lazyLoad.settings = {
         ft = "norg";
         cmd = "Neorg";
+        before.__raw = ''
+          function()
+            vim.cmd("packadd neorg-interim-ls")
+          end
+        '';
       };
 
       settings = {
