@@ -27,22 +27,32 @@ _: {
 
 
             def main():
+                # Check for --path flag
+                path_only = "--path" in sys.argv
+                if path_only:
+                    sys.argv.remove("--path")
+
                 profile = sys.argv[1] if len(sys.argv) > 1 else "default"
-                print(f"Building nixvim package for profile: {profile}...")
+
+                if not path_only:
+                    print(f"Building nixvim package for profile: {profile}...")
 
                 try:
                     nixvim_path = run_command(
                         f"nix build --no-link --print-out-paths .#{profile}"
                     )
                 except SystemExit:
-                    print("Build failed.")
+                    if not path_only:
+                        print("Build failed.")
                     return
 
-                print("Extracting pack directory from nvim wrapper...")
+                if not path_only:
+                    print("Extracting pack directory from nvim wrapper...")
                 nvim_wrapper = Path(nixvim_path) / "bin" / "nvim"
 
                 if not nvim_wrapper.exists():
-                    print(f"Error: nvim wrapper not found at {nvim_wrapper}")
+                    if not path_only:
+                        print(f"Error: nvim wrapper not found at {nvim_wrapper}")
                     sys.exit(1)
 
                 with open(nvim_wrapper, "r") as f:
@@ -50,11 +60,16 @@ _: {
 
                 match = re.search(r'packpath\^=([^"]*)', content)
                 if not match:
-                    print("ERROR: Could not find packpath in nvim wrapper")
+                    if not path_only:
+                        print("ERROR: Could not find packpath in nvim wrapper")
                     sys.exit(1)
 
                 pack_store_path = match.group(1)
                 pack_dir = Path(pack_store_path) / "pack" / "myNeovimPackages"
+
+                if path_only:
+                    print(pack_dir)
+                    return
 
                 print(f"Pack directory: {pack_dir}")
 
@@ -84,6 +99,8 @@ _: {
                     print("but are being pulled into 'start' by dependencies.")
                 else:
                     print("No duplicate plugins found! 🎉")
+                print("-" * 50)
+                print(f"Location for manual inspection:\n{pack_dir}")
                 print("=" * 50 + "\n")
 
 
