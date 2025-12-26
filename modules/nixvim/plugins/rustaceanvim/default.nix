@@ -8,15 +8,24 @@
   extraPlugins = lib.mkIf config.plugins.rustaceanvim.enable (
     with pkgs.vimPlugins;
     [
-      # Needed for RustPlay
-      webapi-vim
+      {
+        plugin = webapi-vim;
+        optional = true;
+      }
     ]
   );
 
   plugins = {
     rustaceanvim = {
       enable = config.khanelivim.lsp.rust == "rustaceanvim";
-      lazyLoad.settings.ft = "rust";
+      lazyLoad.settings = {
+        ft = "rust";
+        before.__raw = ''
+          function()
+            vim.cmd("packadd webapi-vim")
+          end
+        '';
+      };
       settings = {
         dap = {
           adapter = {
