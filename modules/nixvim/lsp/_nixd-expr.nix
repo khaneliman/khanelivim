@@ -75,11 +75,12 @@ let
       findFlake' parent;
 
   # Path to the local flake, or null
-  path = findFlake (builtins.getEnv "PWD");
+  flakePath = findFlake (builtins.getEnv "PWD");
 in
 {
-  inherit system self path;
+  inherit system self;
+  path = flakePath;
 
-  local = if path == null then null else builtins.getFlake path;
+  local = if flakePath == null then null else builtins.getFlake flakePath;
   global = builtins.getFlake self;
 }
