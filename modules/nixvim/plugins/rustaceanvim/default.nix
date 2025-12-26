@@ -20,8 +20,16 @@
       settings = {
         dap = {
           adapter = {
-            command = lib.getExe' pkgs.lldb "lldb-dap";
-            type = "executable";
+            type = "server";
+            port = "\${port}";
+            executable = {
+              command = "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb";
+              args = [
+                "--port"
+                "\${port}"
+              ];
+            };
+            name = "codelldb";
           };
           autoloadConfigurations = true;
         };
