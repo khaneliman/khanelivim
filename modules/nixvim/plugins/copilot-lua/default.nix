@@ -8,7 +8,10 @@
   extraPlugins = lib.optionals config.plugins.copilot-lua.enable (
     with pkgs.vimPlugins;
     lib.optionals config.plugins.lualine.enable [
-      copilot-lualine
+      {
+        plugin = copilot-lualine;
+        optional = config.plugins.copilot-lua.lazyLoad.enable;
+      }
     ]
   );
 
