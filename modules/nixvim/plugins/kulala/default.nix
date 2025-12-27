@@ -123,20 +123,6 @@
       grammarPackages = [
         self.packages.${system}.tree-sitter-kulala-http
       ];
-      luaConfig.post = ''
-        do
-          local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-          parser_config.kulala_http = {
-            install_info = {
-              url = "${self.packages.${system}.tree-sitter-kulala-http.src}",
-              files = { "lua/tree-sitter/src/parser.c" },
-              branch = "main",
-            },
-            filetype = "kulala_http",
-          }
-          vim.treesitter.language.register("kulala_http", "http")
-        end
-      '';
     };
 
     which-key.settings.spec = lib.optionals config.plugins.kulala.enable [
