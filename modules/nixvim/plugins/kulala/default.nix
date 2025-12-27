@@ -1,8 +1,6 @@
 {
   config,
   lib,
-  self,
-  system,
   ...
 }:
 {
@@ -117,12 +115,6 @@
           "}"
         ];
       };
-    };
-
-    treesitter = {
-      grammarPackages = [
-        self.packages.${system}.tree-sitter-kulala-http
-      ];
     };
 
     which-key.settings.spec = lib.optionals config.plugins.kulala.enable [
