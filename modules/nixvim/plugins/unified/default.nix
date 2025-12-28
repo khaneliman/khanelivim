@@ -7,6 +7,12 @@
   config = {
     plugins.unified = {
       enable = config.khanelivim.git.diffViewer == "unified";
+
+      lazyLoad = {
+        settings = {
+          cmd = "Unified";
+        };
+      };
     };
 
     keymaps = lib.mkIf config.plugins.unified.enable (
