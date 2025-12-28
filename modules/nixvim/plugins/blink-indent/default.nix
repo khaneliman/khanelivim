@@ -5,7 +5,8 @@
 
     lazyLoad.settings = {
       event = [
-        "DeferredUIEnter"
+        "BufReadPost"
+        "BufNewFile"
       ];
     };
 

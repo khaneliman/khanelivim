@@ -11,7 +11,10 @@
       enable = lib.elem "git-conflict" config.khanelivim.git.integrations;
       package = self.packages.${system}.git-conflict;
 
-      lazyLoad.settings.event = "DeferredUIEnter";
+      lazyLoad.settings.event = [
+        "BufReadPost"
+        "BufNewFile"
+      ];
 
       settings = {
         disable_diagnostics = true;

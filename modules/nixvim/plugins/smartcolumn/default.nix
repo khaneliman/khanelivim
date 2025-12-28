@@ -2,7 +2,10 @@
   plugins.smartcolumn = {
     enable = true;
 
-    lazyLoad.settings.event = "DeferredUIEnter";
+    lazyLoad.settings.event = [
+      "BufReadPost"
+      "BufNewFile"
+    ];
 
     settings = {
       colorcolumn = "80";

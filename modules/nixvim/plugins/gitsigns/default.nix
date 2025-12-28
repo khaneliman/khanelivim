@@ -4,7 +4,10 @@
     gitsigns = {
       enable = lib.elem "gitsigns" config.khanelivim.git.integrations;
 
-      lazyLoad.settings.event = "DeferredUIEnter";
+      lazyLoad.settings.event = [
+        "BufReadPost"
+        "BufNewFile"
+      ];
 
       settings = {
         current_line_blame = true;
