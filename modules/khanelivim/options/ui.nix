@@ -86,6 +86,17 @@
       description = "LSP reference/word highlighting plugin to use (mutually exclusive)";
     };
 
+    renamePopup = lib.mkOption {
+      type = lib.types.nullOr (
+        lib.types.enum [
+          "snacks"
+          "noice"
+        ]
+      );
+      default = "snacks";
+      description = "Rename popup UI provider to use";
+    };
+
     statusColumn = lib.mkOption {
       type = lib.types.nullOr (
         lib.types.enum [

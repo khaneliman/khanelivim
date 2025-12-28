@@ -17,7 +17,7 @@
       save_in_cmdline_history = true;
       # NOTE: Shows at top like a regular command
       # Enabled in noice with inline style hover
-      input_buffer_type = lib.mkIf (!config.plugins.noice.enable) { __raw = ''"snacks"''; };
+      input_buffer_type = lib.mkIf (config.khanelivim.ui.renamePopup == "snacks") { __raw = "'snacks'"; };
     };
   };
 

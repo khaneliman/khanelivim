@@ -43,6 +43,13 @@
           };
         };
         quickfile.enabled = true;
+        styles = lib.mkIf (config.khanelivim.ui.renamePopup == "snacks") {
+          input = {
+            relative = "cursor";
+            row = -4;
+            col = 0;
+          };
+        };
       };
     };
   };

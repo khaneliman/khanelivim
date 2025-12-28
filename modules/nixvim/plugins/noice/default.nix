@@ -56,6 +56,13 @@
               pattern = "^:%s*he?l?p?%s+";
               icon = "󰋖";
             };
+            inc_rename = lib.mkIf (config.khanelivim.ui.renamePopup == "snacks") {
+              pattern = "^:%s*IncRename%s+";
+              icon = "";
+              opts = {
+                skip = true;
+              };
+            };
             input = { };
           };
         };
@@ -85,7 +92,7 @@
           bottom_search = false;
           command_palette = true;
           long_message_to_split = true;
-          inc_rename = true;
+          inc_rename = config.khanelivim.ui.renamePopup == "noice";
           lsp_doc_border = true;
         };
 
@@ -155,6 +162,16 @@
               skip = true;
             };
           }
+          # Hide IncRename cmdline as it's handled by Snacks
+          (lib.mkIf (config.khanelivim.ui.renamePopup == "snacks") {
+            filter = {
+              event = "cmdline";
+              find = "^:IncRename";
+            };
+            opts = {
+              skip = true;
+            };
+          })
           # Route long messages (>20 lines) to split
           {
             filter = {
