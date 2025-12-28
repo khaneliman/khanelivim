@@ -16,11 +16,6 @@ in
     claude-code
     github-copilot-cli
     opencode
-
-    # TODO: remove after hits channel
-    nixd
-    nixf
-    nixt
     ;
 
   luaPackages = luaPackages // {
