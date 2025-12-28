@@ -48,6 +48,16 @@
       description = "Plugin for moving text and selections in any direction";
     };
 
+    rename = lib.mkOption {
+      type = lib.types.nullOr (
+        lib.types.enum [
+          "inc-rename"
+        ]
+      );
+      default = "inc-rename";
+      description = "Rename plugin to use";
+    };
+
     search = lib.mkOption {
       type = lib.types.nullOr (
         lib.types.enum [

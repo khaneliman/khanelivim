@@ -1,7 +1,7 @@
 { config, lib, ... }:
 {
   plugins.inc-rename = {
-    enable = true;
+    enable = config.khanelivim.editor.rename == "inc-rename";
 
     lazyLoad.settings = {
       event = [
