@@ -25,6 +25,7 @@
           "git-worktree"
           "git-conflict"
           "vscode-diff"
+          "unified"
         ]
       );
       default = [
@@ -34,6 +35,7 @@
         "snacks-lazygit"
         "git-worktree"
         "git-conflict"
+        "unified"
       ];
       description = "Git integration plugins to enable (complementary)";
     };
