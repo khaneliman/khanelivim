@@ -8,6 +8,7 @@
           "diffview"
           "unified"
           "mini-diff"
+          "vscode-diff"
         ]
       );
       default = "unified";
@@ -23,6 +24,7 @@
           "snacks-lazygit"
           "git-worktree"
           "git-conflict"
+          "vscode-diff"
         ]
       );
       default = [
