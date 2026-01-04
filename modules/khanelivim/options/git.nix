@@ -11,7 +11,7 @@
           "vscode-diff"
         ]
       );
-      default = "unified";
+      default = "vscode-diff";
       description = "Diff viewer plugin to use";
     };
 
