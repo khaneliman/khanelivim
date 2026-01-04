@@ -17,6 +17,9 @@ in
 {
   plugins = {
     # keep-sorted start block=yes
+    blink-cmp-avante = mkBlinkPlugin {
+      inherit (config.plugins.avante) enable;
+    };
     blink-cmp-dictionary = mkBlinkPlugin {
       enable = config.khanelivim.completion.wordProvider == "dictionary";
     };
