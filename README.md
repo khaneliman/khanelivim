@@ -406,8 +406,8 @@ The configuration defines key mappings for common LSP actions:
 | ------------ | ---------------- | ---------------------- |
 | `s`          | Flash jump       | Quick jump to location |
 | `S`          | Flash treesitter | Treesitter-aware jump  |
-| `<leader>ha` | Harpoon add      | Add file to harpoon    |
-| `<leader>he` | Harpoon menu     | Quick harpoon menu     |
+| `<leader>Ha` | Harpoon add      | Add file to harpoon    |
+| `<leader>He` | Harpoon menu     | Quick harpoon menu     |
 
 ### Toggle Options
 
