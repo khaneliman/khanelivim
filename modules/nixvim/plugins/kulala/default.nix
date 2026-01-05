@@ -1,9 +1,20 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 {
+  extraPackages = lib.mkIf config.plugins.kulala.enable (
+    with pkgs;
+    [
+      jq
+      libxml2
+      yq-go
+      prettier
+    ]
+  );
+
   filetype = {
     extension = {
       http = "http";
