@@ -41,6 +41,23 @@
         "type": "github"
       }
     },
+    "kulala-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1767528645,
+        "narHash": "sha256-E43a9A06Wx08iBTfzWgropO/pgv6rVM2douWQ+SIu9w=",
+        "owner": "mistweaverco",
+        "repo": "kulala.nvim",
+        "rev": "ce30e35ba73a5183ce88548c16d9220d042d6bae",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mistweaverco",
+        "ref": "develop",
+        "repo": "kulala.nvim",
+        "type": "github"
+      }
+    },
     "neovim-nightly-overlay": {
       "inputs": {
         "flake-parts": "flake-parts_2",
@@ -166,6 +183,7 @@
     "root": {
       "inputs": {
         "flake-parts": "flake-parts",
+        "kulala-nvim": "kulala-nvim",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-master": "nixpkgs-master",
