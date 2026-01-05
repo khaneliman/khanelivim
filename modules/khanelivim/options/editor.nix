@@ -84,11 +84,13 @@
         lib.types.enum [
           "mini-ai"
           "snacks-scope"
+          "treesitter-textobjects"
         ]
       );
       default = [
         "mini-ai"
         "snacks-scope"
+        "treesitter-textobjects"
       ];
       description = "Text objects plugins to use (complementary)";
     };
