@@ -58,7 +58,7 @@
       {
         mode = "n";
         key = "<leader>ul";
-        action = "<cmd>LenslineToggle<CR>";
+        action = "<cmd>LenslineToggleView<CR>";
         options = {
           desc = "Lensline toggle";
         };
