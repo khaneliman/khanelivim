@@ -20,26 +20,63 @@
       };
 
       settings = {
-        display_mode = "float";
-        split_direction = "vertical";
-        default_view = "headers_body";
+        # Environment options
         default_env = "dev";
         environment_scope = "b";
-        show_icons = "above_request";
-        icons = {
-          inlay = {
-            loading = "⏳";
-            done = "✅";
-            error = "❌";
+        vscode_rest_client_environmentvars = true;
+
+        # Request options
+        request_timeout = 5000;
+        urlencode = "always";
+        format_json_on_redirect = true;
+
+        # UI Options
+        ui = {
+          display_mode = "float";
+          split_direction = "vertical";
+          default_view = "headers_body";
+          show_icons = "above_request";
+          icons = {
+            inlay = {
+              loading = "⏳";
+              done = "✅";
+              error = "❌";
+            };
+            lualine = "🌐";
           };
-          lualine = "🌐";
+          winbar = true;
+          default_winbar_panes = [
+            "body"
+            "headers"
+            "headers_body"
+          ];
+          disable_script_print_output = false;
+          show_variable_info_text = false;
+          show_request_summary = true;
+
+          # Scratchpad default content for quick testing
+          scratchpad_default_contents = [
+            "@API_BASE=https://api.example.com"
+            "@TOKEN=your_token_here"
+            ""
+            "# @name Example GET Request"
+            "GET {{API_BASE}}/users HTTP/1.1"
+            "Accept: application/json"
+            "Authorization: Bearer {{TOKEN}}"
+            ""
+            "###"
+            ""
+            "# @name Example POST Request"
+            "POST {{API_BASE}}/users HTTP/1.1"
+            "Content-Type: application/json"
+            "Authorization: Bearer {{TOKEN}}"
+            ""
+            "{"
+            "  \"name\": \"John Doe\","
+            "  \"email\": \"john@example.com\""
+            "}"
+          ];
         };
-        winbar = true;
-        default_winbar_panes = [
-          "body"
-          "headers"
-          "headers_body"
-        ];
 
         contenttypes = {
           "application/json" = {
@@ -72,7 +109,6 @@
               "--html"
               "-"
             ];
-            pathresolver = [ ];
           };
           "application/yaml" = {
             ft = "yaml";
@@ -81,39 +117,29 @@
               "."
             ];
           };
+          "application/graphql" = {
+            ft = "graphql";
+            formatter = [
+              "prettier"
+              "--stdin-filepath"
+              "file.graphql"
+            ];
+          };
+          "application/javascript" = {
+            ft = "javascript";
+            formatter = [
+              "prettier"
+              "--stdin-filepath"
+              "file.js"
+            ];
+          };
         };
-
-        vscode_rest_client_environmentvars = true;
 
         # Debugging and output
         debug = false;
-        disable_script_print_output = false;
 
         # SSL/TLS certificates
         certificates = { };
-
-        # Scratchpad default content for quick testing
-        scratchpad_default_contents = [
-          "@API_BASE=https://api.example.com"
-          "@TOKEN=your_token_here"
-          ""
-          "# @name Example GET Request"
-          "GET {{API_BASE}}/users HTTP/1.1"
-          "Accept: application/json"
-          "Authorization: Bearer {{TOKEN}}"
-          ""
-          "###"
-          ""
-          "# @name Example POST Request"
-          "POST {{API_BASE}}/users HTTP/1.1"
-          "Content-Type: application/json"
-          "Authorization: Bearer {{TOKEN}}"
-          ""
-          "{"
-          "  \"name\": \"John Doe\","
-          "  \"email\": \"john@example.com\""
-          "}"
-        ];
       };
     };
 
