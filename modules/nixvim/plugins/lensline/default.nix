@@ -19,9 +19,11 @@
             name = "default";
             providers = [
               {
-                name = "references";
+                name = "usages";
                 enabled = true;
-                quiet_lsp = true;
+                include = [ "refs" ];
+                breakdown = false;
+                show_zero = true;
               }
               {
                 name = "last_author";
