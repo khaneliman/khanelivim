@@ -19,7 +19,10 @@
     {
       enable = lib.elem "markview" config.khanelivim.text.markdownRendering;
 
-      lazyLoad.settings.ft = filetypes;
+      lazyLoad.settings = {
+        ft = filetypes;
+        cmd = "Markview";
+      };
 
       settings = {
         preview = {
