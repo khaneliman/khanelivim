@@ -47,7 +47,7 @@
   keymaps = lib.mkIf config.plugins.markview.enable [
     {
       mode = "n";
-      key = "<leader>um";
+      key = "<leader>uem";
       action = "<cmd>Markview toggle<CR>";
       options = {
         desc = "Toggle Markdown Preview";

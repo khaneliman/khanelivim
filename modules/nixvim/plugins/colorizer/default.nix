@@ -11,7 +11,7 @@
   keymaps = lib.mkIf config.plugins.colorizer.enable [
     {
       mode = "n";
-      key = "<leader>uC";
+      key = "<leader>uac";
       action.__raw = ''
         function ()
          vim.g.colorizing_enabled = not vim.g.colorizing_enabled

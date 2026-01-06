@@ -64,9 +64,49 @@
           group = "UI/UX";
         }
         {
+          __unkeyed-1 = "<leader>ua";
+          group = "Appearance";
+          icon = "";
+        }
+        {
           __unkeyed-1 = "<leader>uc";
           group = "Completion";
           icon = "󰘦";
+        }
+        {
+          __unkeyed-1 = "<leader>ud";
+          group = "Diagnostics & Debugging";
+          icon = "";
+        }
+        {
+          __unkeyed-1 = "<leader>ue";
+          group = "Editor Toggles";
+          icon = "";
+        }
+        {
+          __unkeyed-1 = "<leader>ug";
+          group = "Git UI";
+          icon = "";
+        }
+        {
+          __unkeyed-1 = "<leader>un";
+          group = "Notifications";
+          icon = "";
+        }
+        {
+          __unkeyed-1 = "<leader>up";
+          group = "Performance & Profiling";
+          icon = "󰓅";
+        }
+        {
+          __unkeyed-1 = "<leader>us";
+          group = "Scroll & Screen";
+          icon = "󰍹";
+        }
+        {
+          __unkeyed-1 = "<leader>ut";
+          group = "Treesitter & Syntax";
+          icon = "";
         }
         {
           __unkeyed-1 = "<leader>w";

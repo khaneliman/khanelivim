@@ -20,7 +20,7 @@
   keymaps = lib.optionals config.plugins.showkeys.enable [
     {
       mode = "n";
-      key = "<leader>uk";
+      key = "<leader>usk";
       action = "<cmd>ShowkeysToggle<CR>";
       options = {
         desc = "Toggle showkeys";

@@ -6,7 +6,7 @@
 
   keymaps = lib.mkIf config.plugins.mini-pairs.enable [
     {
-      key = "<leader>up";
+      key = "<leader>uep";
       mode = "n";
       action.__raw = ''
         function ()
@@ -18,7 +18,7 @@
       };
     }
     {
-      key = "<leader>uP";
+      key = "<leader>ueP";
       mode = "n";
       action.__raw = ''
         function ()

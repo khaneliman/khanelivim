@@ -41,7 +41,7 @@
       ];
       keys = [
         {
-          __unkeyed-1 = "<leader>uu";
+          __unkeyed-1 = "<leader>ueu";
           __unkeyed-2 = "<cmd>UndotreeToggle<CR>";
           desc = "Undotree toggle";
         }

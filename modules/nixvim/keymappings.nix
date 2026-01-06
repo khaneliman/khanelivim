@@ -207,7 +207,7 @@
                 )
               )
               {
-                "<leader>ud" = {
+                "<leader>udd" = {
                   action.__raw = ''
                     function ()
                       vim.b.disable_diagnostics = not vim.b.disable_diagnostics
@@ -219,7 +219,7 @@
                   };
                 };
 
-                "<leader>uD" = {
+                "<leader>udD" = {
                   action.__raw = ''
                     function ()
                       vim.g.disable_diagnostics = not vim.g.disable_diagnostics
@@ -231,7 +231,7 @@
                   };
                 };
 
-                "<leader>uS" = {
+                "<leader>ues" = {
                   action.__raw = ''
                     function ()
                       if vim.g.spell_enabled then vim.cmd('setlocal nospell') end
@@ -244,7 +244,7 @@
                   };
                 };
 
-                "<leader>uw" = {
+                "<leader>uew" = {
                   action.__raw = ''
                     function ()
                       vim.wo.wrap = not vim.wo.wrap
@@ -254,7 +254,7 @@
                     desc = "Word Wrap toggle";
                   };
                 };
-                "<leader>uh" = {
+                "<leader>ueo" = {
                   action.__raw = ''
                     function ()
                       local curr_foldcolumn = vim.wo.foldcolumn
@@ -267,17 +267,34 @@
                   };
                 };
 
-                "<leader>uT" = {
+                "<leader>uet" = {
                   action = "<cmd>TabsToggle<CR>";
                   options = {
                     desc = "Toggle tabs/spaces";
+                  };
+                };
+
+                "<leader>ueW" = {
+                  action.__raw = ''
+                    function ()
+                      if (not vim.g.whitespace_character_enabled) then
+                        vim.cmd('set listchars=eol:¬,tab:>→,trail:~,extends:>,precedes:<,space:·')
+                        vim.cmd('set list')
+                      else
+                        vim.cmd('set nolist')
+                      end
+                      vim.g.whitespace_character_enabled = not vim.g.whitespace_character_enabled
+                      vim.notify(string.format("Showing white space characters %s", bool2str(vim.g.whitespace_character_enabled), "info"))
+                    end'';
+                  options = {
+                    desc = "White space character toggle";
                   };
                 };
               }
             )
             // {
               # Autoformat toggles (no snacks equivalent, always available)
-              "<leader>uf" = {
+              "<leader>uef" = {
                 action.__raw = ''
                   function ()
                     vim.cmd('FormatToggle!')
@@ -288,7 +305,7 @@
                 };
               };
 
-              "<leader>uF" = {
+              "<leader>ueF" = {
                 action.__raw = ''
                   function ()
                     vim.cmd('FormatToggle')
@@ -335,24 +352,6 @@
                 };
               };
             })
-            // {
-              "<leader>uW" = {
-                action.__raw = ''
-                  function ()
-                    if (not vim.g.whitespace_character_enabled) then
-                      vim.cmd('set listchars=eol:¬,tab:>→,trail:~,extends:>,precedes:<,space:·')
-                      vim.cmd('set list')
-                    else
-                      vim.cmd('set nolist')
-                    end
-                    vim.g.whitespace_character_enabled = not vim.g.whitespace_character_enabled
-                    vim.notify(string.format("Showing white space characters %s", bool2str(vim.g.whitespace_character_enabled), "info"))
-                  end'';
-                options = {
-                  desc = "White space character toggle";
-                };
-              };
-            }
             // (lib.optionalAttrs
               (
                 !config.plugins.snacks.enable

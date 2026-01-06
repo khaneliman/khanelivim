@@ -20,7 +20,7 @@
   keymaps = lib.mkIf config.plugins.mini-map.enable [
     {
       mode = "n";
-      key = "<leader>uM";
+      key = "<leader>usm";
       action.__raw = "MiniMap.toggle";
       options = {
         desc = "MiniMap toggle";
