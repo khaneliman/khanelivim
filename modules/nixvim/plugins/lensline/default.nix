@@ -59,8 +59,8 @@
     keymaps = lib.mkIf config.plugins.lensline.enable [
       {
         mode = "n";
-        key = "<leader>ul";
         action = "<cmd>LenslineToggleView<CR>";
+        key = "<leader>uL";
         options = {
           desc = "Lensline toggle";
         };
