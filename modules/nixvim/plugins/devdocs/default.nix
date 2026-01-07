@@ -15,7 +15,7 @@
 
     which-key.settings.spec = lib.mkIf config.plugins.devdocs.enable [
       {
-        __unkeyed-1 = "<leader>D";
+        __unkeyed-1 = "<leader>sh";
         group = "DevDocs";
         icon = " ";
       }
@@ -25,7 +25,7 @@
   keymaps = lib.mkIf config.plugins.devdocs.enable [
     {
       mode = "n";
-      key = "<leader>Dd";
+      key = "<leader>shd";
       action = "<CMD>DevDocs delete<CR>";
       options = {
         desc = "Delete DevDoc";
@@ -33,7 +33,7 @@
     }
     {
       mode = "n";
-      key = "<leader>Df";
+      key = "<leader>shf";
       action.__raw = ''
         function()
           local devdocs = require("devdocs")
@@ -54,7 +54,7 @@
     }
     {
       mode = "n";
-      key = "<leader>Dg";
+      key = "<leader>shg";
       action = "<CMD>DevDocs get<CR>";
       options = {
         desc = "Get DevDocs";
@@ -62,7 +62,7 @@
     }
     {
       mode = "n";
-      key = "<leader>Di";
+      key = "<leader>shi";
       action = "<CMD>DevDocs install<CR>";
       options = {
         desc = "Install DevDocs";
