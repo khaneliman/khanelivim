@@ -42,6 +42,8 @@
       };
     };
 
+    mini-align.enable = true;
+
     mini-basics.enable = true;
 
     mini-bracketed = {
@@ -51,6 +53,12 @@
         comment.suffix = "";
       };
     };
+
+    mini-icons = {
+      enable = true;
+      mockDevIcons = true;
+    };
+
     mini-snippets = lib.mkIf (config.khanelivim.editor.snippet == "mini-snippets") {
       enable = true;
       settings = {
@@ -59,11 +67,6 @@
           __unkeyed-2.__raw = "require('mini.snippets').gen_loader.from_lang()";
         };
       };
-    };
-    mini-align.enable = true;
-    mini-icons = {
-      enable = true;
-      mockDevIcons = true;
     };
   };
 }
