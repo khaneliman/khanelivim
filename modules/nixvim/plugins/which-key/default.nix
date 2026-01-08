@@ -10,113 +10,116 @@
     lazyLoad.settings.event = "DeferredUIEnter";
 
     settings = {
-      spec = [
-        {
-          __unkeyed-1 = "<leader>/";
-          icon = "";
-        }
-        {
-          __unkeyed-1 = "<leader>a";
-          group = "AI Assistant";
-          icon = "";
-          mode = [
-            "n"
-            "v"
-          ];
-        }
-        {
-          __unkeyed-1 = "<leader>gd";
-          group = "Diff";
-          icon = " ";
-        }
-        {
-          __unkeyed-1 = "<leader>b";
-          group = "Buffers";
-        }
-        {
-          __unkeyed-1 = "<leader>bs";
-          group = "󰒺 Sort";
-          icon = "";
-        }
-        {
-          __unkeyed-1 = "<leader>g";
-          group = "Git";
-          mode = [
-            "n"
-            "v"
-          ];
-        }
-        {
-          __unkeyed-1 = "<leader>gf";
-          group = "Git Find";
-        }
-        {
-          __unkeyed-1 = "<leader>f";
-          group = "Find";
-        }
-        {
-          __unkeyed-1 = "<leader>r";
-          group = "Refactor";
-          icon = " ";
-        }
-        {
-          __unkeyed-1 = "<leader>u";
-          group = "UI/UX";
-        }
-        {
-          __unkeyed-1 = "<leader>ua";
-          group = "Appearance";
-          icon = "";
-        }
-        {
-          __unkeyed-1 = "<leader>uc";
-          group = "Completion";
-          icon = "󰘦";
-        }
-        {
-          __unkeyed-1 = "<leader>ud";
-          group = "Diagnostics & Debugging";
-          icon = "";
-        }
-        {
-          __unkeyed-1 = "<leader>ue";
-          group = "Editor Toggles";
-          icon = "";
-        }
-        {
-          __unkeyed-1 = "<leader>ug";
-          group = "Git UI";
-          icon = "";
-        }
-        {
-          __unkeyed-1 = "<leader>un";
-          group = "Notifications";
-          icon = "";
-        }
-        {
-          __unkeyed-1 = "<leader>up";
-          group = "Performance & Profiling";
-          icon = "󰓅";
-        }
-        {
-          __unkeyed-1 = "<leader>us";
-          group = "Scroll & Screen";
-          icon = "󰍹";
-        }
-        {
-          __unkeyed-1 = "<leader>ut";
-          group = "Treesitter & Syntax";
-          icon = "";
-        }
-        {
-          __unkeyed-1 = "<leader>w";
-          icon = "";
-        }
-        {
-          __unkeyed-1 = "<leader>W";
-          icon = "󰽃";
-        }
-      ];
+      spec =
+        # Groups
+        [
+          {
+            __unkeyed-1 = "<leader>a";
+            group = "AI Assistant";
+            icon = "";
+            mode = [
+              "n"
+              "v"
+            ];
+          }
+          {
+            __unkeyed-1 = "<leader>b";
+            group = "Buffers";
+          }
+          {
+            __unkeyed-1 = "<leader>bs";
+            group = "󰒺 Sort";
+            icon = "";
+          }
+          {
+            __unkeyed-1 = "<leader>g";
+            group = "Git";
+            mode = [
+              "n"
+              "v"
+            ];
+          }
+          {
+            __unkeyed-1 = "<leader>gd";
+            group = "Diff";
+            icon = " ";
+          }
+          {
+            __unkeyed-1 = "<leader>gf";
+            group = "Git Find";
+          }
+          {
+            __unkeyed-1 = "<leader>f";
+            group = "Find";
+          }
+          {
+            __unkeyed-1 = "<leader>r";
+            group = "Refactor";
+            icon = " ";
+          }
+          {
+            __unkeyed-1 = "<leader>u";
+            group = "UI/UX";
+          }
+          {
+            __unkeyed-1 = "<leader>ua";
+            group = "Appearance";
+            icon = "";
+          }
+          {
+            __unkeyed-1 = "<leader>uc";
+            group = "Completion";
+            icon = "󰘦";
+          }
+          {
+            __unkeyed-1 = "<leader>ud";
+            group = "Diagnostics & Debugging";
+            icon = "";
+          }
+          {
+            __unkeyed-1 = "<leader>ue";
+            group = "Editor Toggles";
+            icon = "";
+          }
+          {
+            __unkeyed-1 = "<leader>ug";
+            group = "Git UI";
+            icon = "";
+          }
+          {
+            __unkeyed-1 = "<leader>up";
+            group = "Performance & Profiling";
+            icon = "󰓅";
+          }
+          {
+            __unkeyed-1 = "<leader>un";
+            group = "Notifications";
+            icon = "";
+          }
+          {
+            __unkeyed-1 = "<leader>us";
+            group = "Scroll & Screen";
+            icon = "󰍹";
+          }
+          {
+            __unkeyed-1 = "<leader>ut";
+            group = "Treesitter & Syntax";
+            icon = "";
+          }
+          # Missing icons
+          {
+            __unkeyed-1 = "<leader>w";
+            icon = "";
+          }
+          {
+            __unkeyed-1 = "<leader>W";
+            icon = "󰽃";
+          }
+          {
+            __unkeyed-1 = "<leader>/";
+            icon = "";
+          }
+        ];
 
       replace = {
         # key = [
