@@ -21,10 +21,6 @@
     };
     pkgs-by-name-for-flake-parts.url = "github:drupol/pkgs-by-name-for-flake-parts";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
-    kulala-nvim = {
-      url = "github:mistweaverco/kulala.nvim/develop";
-      flake = false;
-    };
     snacks-nvim = {
       url = "github:folke/snacks.nvim";
       flake = false;

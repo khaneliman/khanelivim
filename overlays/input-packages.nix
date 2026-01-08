@@ -52,11 +52,6 @@ in
         doCheck = false;
       };
 
-      kulala-nvim = super.kulala-nvim.overrideAttrs (_oldAttrs: {
-        version = flake.inputs.kulala-nvim.shortRev;
-        src = flake.inputs.kulala-nvim;
-      });
-
       snacks-nvim = super.snacks-nvim.overrideAttrs (_oldAttrs: {
         version = flake.inputs.snacks-nvim.shortRev;
         src = flake.inputs.snacks-nvim;
