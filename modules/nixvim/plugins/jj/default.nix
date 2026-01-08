@@ -93,11 +93,6 @@ in
         __unkeyed-1 = "<leader>jg";
         group = "Picker";
       }
-      {
-        __unkeyed-1 = "<leader>d";
-        group = "Diff";
-        icon = " ";
-      }
     ];
 
     keymaps = [
@@ -244,7 +239,7 @@ in
       # Diff commands
       {
         mode = "n";
-        key = "<leader>df";
+        key = "<leader>gdf";
         action.__raw = ''
           function() require("jj.diff").open_diff() end
         '';
@@ -254,7 +249,7 @@ in
       }
       {
         mode = "n";
-        key = "<leader>dF";
+        key = "<leader>gdF";
         action.__raw = ''
           function() require("jj.diff").open_hsplit() end
         '';
