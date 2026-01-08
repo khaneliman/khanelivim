@@ -51,13 +51,6 @@ in
       neotest = super.neotest.overrideAttrs {
         doCheck = false;
       };
-
-      snacks-nvim = super.snacks-nvim.overrideAttrs (_oldAttrs: {
-        version = flake.inputs.snacks-nvim.shortRev;
-        src = flake.inputs.snacks-nvim;
-        # nvimSkipModules = oldAttrs.nvimSkipModules ++ [
-        # ];
-      });
     }
   );
 }
