@@ -139,7 +139,7 @@
             "v"
           ];
           key = "<leader>asp";
-          action.__raw = "function() require('sidekick.cli').select_prompt() end";
+          action.__raw = "function() require('sidekick.cli').prompt() end";
           options.desc = "Ask Prompt";
         }
         {
