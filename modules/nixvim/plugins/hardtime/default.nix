@@ -9,7 +9,8 @@ in
     hardtime = {
       enable = true;
 
-      lazyLoad.settings.cmd = "Hardtime";
+      # FIXME: lazy loading broken
+      # lazyLoad.settings.cmd = [ "Hardtime" ];
 
       settings = {
         # NOTE: Default to off now.
