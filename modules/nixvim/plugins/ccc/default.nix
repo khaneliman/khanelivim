@@ -23,8 +23,8 @@
           /* Lua */ ''require("ccc").picker.css_hsl''
           /* Lua */ ''
             require("ccc").picker.ansi_escape {
-                            meaning1 = "bright"
-                          }''
+              meaning1 = "bright"
+            }''
         ];
         alpha_show = "hide";
         recognize = {
