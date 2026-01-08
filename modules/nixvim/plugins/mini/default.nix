@@ -28,8 +28,29 @@
   ];
 
   plugins = {
+    mini-ai = {
+      enable = lib.elem "mini-ai" config.khanelivim.editor.textObjects;
+      settings = lib.mkIf (lib.elem "treesitter-textobjects" config.khanelivim.editor.textObjects) {
+        custom_textobjects = {
+          f = {
+            __raw = "require('mini.ai').gen_spec.treesitter({ a = '@function.outer', i = '@function.inner' })";
+          };
+          c = {
+            __raw = "require('mini.ai').gen_spec.treesitter({ a = '@class.outer', i = '@class.inner' })";
+          };
+        };
+      };
+    };
+
     mini-basics.enable = true;
-    mini-bracketed.enable = true;
+
+    mini-bracketed = {
+      enable = true;
+      settings = lib.mkIf (lib.elem "treesitter-textobjects" config.khanelivim.editor.textObjects) {
+        file.suffix = "";
+        comment.suffix = "";
+      };
+    };
     mini-snippets = lib.mkIf (config.khanelivim.editor.snippet == "mini-snippets") {
       enable = true;
       settings = {
@@ -39,8 +60,6 @@
         };
       };
     };
-
-    mini-ai.enable = lib.elem "mini-ai" config.khanelivim.editor.textObjects;
     mini-align.enable = true;
     mini-icons = {
       enable = true;
