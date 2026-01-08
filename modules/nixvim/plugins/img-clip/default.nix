@@ -26,6 +26,15 @@
           };
         };
       };
+
+      which-key.settings.spec =
+        lib.optionals (lib.elem "img-clip" config.khanelivim.utilities.clipboard)
+          [
+            {
+              __unkeyed-1 = "<leader>P";
+              icon = "󰋩";
+            }
+          ];
     };
   };
 }
