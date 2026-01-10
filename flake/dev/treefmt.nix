@@ -90,7 +90,6 @@
 
           formatter.ruff-format.options = [ "--isolated" ];
           formatter.nixf-diagnose.options = [
-            "--auto-fix"
             "--ignore=sema-unused-def-lambda-witharg-formal"
             "--ignore=sema-primop-unknown"
           ];
