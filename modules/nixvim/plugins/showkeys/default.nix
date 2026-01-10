@@ -3,12 +3,7 @@
   plugins.showkeys = {
     enable = true;
 
-    lazyLoad.settings = {
-      event = [
-        "BufReadPost"
-        "BufNewFile"
-      ];
-    };
+    lazyLoad.settings.cmd = [ "ShowkeysToggle" ];
 
     settings = {
       position = "top-right";
