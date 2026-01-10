@@ -2,6 +2,7 @@
 {
   plugins.mini-map = {
     enable = true;
+    lazyLoad.settings.keys = [ "<leader>usm" ];
     settings = {
       # __raw = lua code
       # __unkeyed-1.* = no key, just the value
@@ -21,7 +22,11 @@
     {
       mode = "n";
       key = "<leader>usm";
-      action.__raw = "MiniMap.toggle";
+      action.__raw = ''
+        function()
+          require('mini.map').toggle()
+        end
+      '';
       options = {
         desc = "MiniMap toggle";
         silent = true;
