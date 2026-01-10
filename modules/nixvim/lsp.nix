@@ -113,7 +113,7 @@
 
   keymapsOnEvents.LspAttach = [
     (lib.mkIf (!config.plugins.conform-nvim.enable) {
-      action.__raw = ''vim.lsp.buf.format'';
+      action.__raw = "vim.lsp.buf.format";
       mode = "v";
       key = "<leader>lf";
       options = {

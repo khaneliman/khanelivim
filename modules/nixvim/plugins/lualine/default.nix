@@ -81,7 +81,7 @@ in
         ];
 
         lualine_x = [
-          { __raw = ''Snacks.profiler.status()''; }
+          { __raw = "Snacks.profiler.status()"; }
           {
             __unkeyed-1 = "diagnostics";
             # TODO: figure out how this works

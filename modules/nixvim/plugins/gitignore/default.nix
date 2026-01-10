@@ -17,7 +17,7 @@ in
     {
       mode = "n";
       key = "<leader>gi";
-      action.__raw = ''require('gitignore').generate'';
+      action.__raw = "require('gitignore').generate";
       options = {
         desc = "Gitignore generate";
         silent = true;

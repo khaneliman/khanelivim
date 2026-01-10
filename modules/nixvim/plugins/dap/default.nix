@@ -184,7 +184,7 @@
             name = "Launch (CodeLLDB)";
             type = "codelldb";
             request = "launch";
-            cwd = ''''${workspaceFolder}'';
+            cwd = "\${workspaceFolder}";
             stopOnEntry = false;
           };
 
@@ -193,7 +193,7 @@
             name = "Launch (GDB)";
             type = "gdb";
             request = "launch";
-            cwd = ''''${workspaceFolder}'';
+            cwd = "\${workspaceFolder}";
             stopOnEntry = false;
           };
 
@@ -202,7 +202,7 @@
             name = "Launch (LLDB)";
             type = "lldb";
             request = "launch";
-            cwd = ''''${workspaceFolder}'';
+            cwd = "\${workspaceFolder}";
             stopOnEntry = false;
             runInTerminal = false;
           };

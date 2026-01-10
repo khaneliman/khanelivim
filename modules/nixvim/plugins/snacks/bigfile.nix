@@ -17,8 +17,8 @@
                 vim.cmd([[NoMatchParen]])
               end
 
-              ${lib.optionalString config.plugins.mini-indentscope.enable ''vim.b.miniindentscope_disable = true''}
-              ${lib.optionalString config.plugins.blink-indent.enable ''vim.b.indent_guide = false''}
+              ${lib.optionalString config.plugins.mini-indentscope.enable "vim.b.miniindentscope_disable = true"}
+              ${lib.optionalString config.plugins.blink-indent.enable "vim.b.indent_guide = false"}
 
               -- Disable line numbers and relative line numbers
               vim.cmd("setlocal nonumber norelativenumber")

@@ -27,9 +27,9 @@
             pathBashdb = "${lib.getExe pkgs.bashdb}";
             pathBashdbLib = "${pkgs.bashdb}/share/basdhb/lib/";
             trace = true;
-            file = ''''${file}'';
-            program = ''''${file}'';
-            cwd = ''''${workspaceFolder}'';
+            file = "\${file}";
+            program = "\${file}";
+            cwd = "\${workspaceFolder}";
             pathCat = "cat";
             pathBash = "${lib.getExe pkgs.bash}";
             pathMkfifo = "mkfifo";

@@ -80,10 +80,10 @@
       settings = {
         adapters = [
           # Catch2 adapter for C++ testing
-          ''require('neotest-catch2')''
+          "require('neotest-catch2')"
         ]
         ++ lib.optionals config.plugins.rustaceanvim.enable [
-          /* Lua */ ''require('rustaceanvim.neotest')''
+          /* Lua */ "require('rustaceanvim.neotest')"
         ];
       };
 

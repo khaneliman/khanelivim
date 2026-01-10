@@ -114,14 +114,14 @@
             name = "Godot: Launch Game";
             request = "launch";
             program = "";
-            cwd = ''''${workspaceFolder}'';
+            cwd = "\${workspaceFolder}";
           };
 
           godot-attach-config = {
             type = "coreclr";
             name = "Godot: Attach to Process";
             request = "attach";
-            processId.__raw = ''require('dap.utils').pick_process'';
+            processId.__raw = "require('dap.utils').pick_process";
           };
         in
         {

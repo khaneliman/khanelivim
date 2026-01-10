@@ -90,7 +90,7 @@
                 return vim.g.dotnet_get_dll_path()
               end
             '';
-            cwd = ''''${workspaceFolder}'';
+            cwd = "\${workspaceFolder}";
           };
 
           netcoredb-config = coreclr-config;
