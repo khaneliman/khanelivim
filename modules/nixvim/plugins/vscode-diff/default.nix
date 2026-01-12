@@ -1,9 +1,15 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   plugins.vscode-diff = {
     enable =
       config.khanelivim.git.diffViewer == "vscode-diff"
       || builtins.elem "vscode-diff" config.khanelivim.git.integrations;
+    package = pkgs.vimPlugins.codediff-nvim;
 
     lazyLoad.settings = {
       cmd = "CodeDiff";
