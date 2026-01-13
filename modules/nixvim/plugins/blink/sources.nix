@@ -21,7 +21,7 @@
         ) "table.insert(common_sources, 'dictionary')"}
         ${lib.optionalString config.plugins.blink-emoji.enable "table.insert(common_sources, 'emoji')"}
         ${lib.optionalString (lib.elem pkgs.vimPlugins.blink-nerdfont-nvim config.extraPlugins) "table.insert(common_sources, 'nerdfont')"}
-        ${lib.optionalString config.plugins.blink-cmp-spell.enable "table.insert(common_sources, 'spell')"}
+        ${lib.optionalString config.plugins.blink-cmp-spell.enable "if vim.tbl_contains({ 'markdown', 'text', 'gitcommit', 'scratch' }, vim.bo.filetype) then table.insert(common_sources, 'spell') end"}
         ${lib.optionalString config.plugins.blink-cmp-words.enable "table.insert(common_sources, 'thesaurus')"}
         -- clipboard freezes
         --${lib.optionalString (lib.elem pkgs.vimPlugins.blink-cmp-yanky config.extraPlugins) "table.insert(common_sources, 'yank')"}
@@ -30,8 +30,19 @@
 
         -- Special context handling
         local success, node = pcall(vim.treesitter.get_node)
-        if success and node and vim.tbl_contains({ 'comment', 'line_comment', 'block_comment' }, node:type()) then
+        if
+          success
+          and node
+          and vim.tbl_contains({
+            'comment',
+            'line_comment',
+            'block_comment',
+            'string',
+            'string_content',
+          }, node:type())
+        then
           local comment_sources = { 'buffer', 'spell' }
+          ${lib.optionalString config.plugins.blink-emoji.enable "table.insert(comment_sources, 'emoji')"}
           ${lib.optionalString (
             config.plugins.blink-cmp-dictionary.enable || config.plugins.blink-cmp-words.enable
           ) "table.insert(comment_sources, 'dictionary')"}
@@ -179,6 +190,11 @@
             min_keyword_length = 3;
             max_items = 8;
             score_offset = 8;
+            enabled.__raw = ''
+              function()
+                return vim.tbl_contains({ 'markdown', 'text', 'gitcommit', 'scratch' }, vim.bo.filetype)
+              end
+            '';
             opts = lib.mkIf config.plugins.blink-cmp-words.enable {
               dictionary_search_threshold = 3;
               definition_pointers = [
@@ -204,7 +220,7 @@
       emoji = lib.mkIf config.plugins.blink-emoji.enable {
         name = "Emoji";
         module = "blink-emoji";
-        score_offset = 10;
+        score_offset = 3;
       };
 
       git = lib.mkIf config.plugins.blink-cmp-git.enable {
@@ -278,6 +294,11 @@
         min_keyword_length = 3;
         max_items = 8;
         score_offset = 10;
+        enabled.__raw = ''
+          function()
+            return vim.tbl_contains({ 'markdown', 'text', 'gitcommit', 'scratch' }, vim.bo.filetype)
+          end
+        '';
         opts = {
           definition_pointers = [
             "!"
