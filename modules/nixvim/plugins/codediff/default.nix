@@ -7,8 +7,8 @@
 {
   plugins.vscode-diff = {
     enable =
-      config.khanelivim.git.diffViewer == "vscode-diff"
-      || builtins.elem "vscode-diff" config.khanelivim.git.integrations;
+      config.khanelivim.git.diffViewer == "codediff"
+      || builtins.elem "codediff" config.khanelivim.git.integrations;
     package = pkgs.vimPlugins.codediff-nvim;
 
     lazyLoad.settings = {
@@ -82,7 +82,7 @@
         };
       }
     ]
-    ++ lib.optionals (config.khanelivim.git.diffViewer == "vscode-diff") [
+    ++ lib.optionals (config.khanelivim.git.diffViewer == "codediff") [
       {
         mode = "n";
         key = "<leader>gD";

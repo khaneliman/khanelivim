@@ -5,26 +5,26 @@
     diffViewer = lib.mkOption {
       type = lib.types.nullOr (
         lib.types.enum [
+          "codediff"
           "diffview"
-          "unified"
           "mini-diff"
-          "vscode-diff"
+          "unified"
         ]
       );
-      default = "vscode-diff";
+      default = "codediff";
       description = "Diff viewer plugin to use";
     };
 
     integrations = lib.mkOption {
       type = lib.types.listOf (
         lib.types.enum [
+          "codediff"
+          "git-conflict"
+          "git-worktree"
           "gitsigns"
           "snacks-gh"
           "snacks-gitbrowse"
           "snacks-lazygit"
-          "git-worktree"
-          "git-conflict"
-          "vscode-diff"
           "unified"
         ]
       );
