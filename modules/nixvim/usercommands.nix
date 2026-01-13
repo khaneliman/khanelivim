@@ -107,5 +107,39 @@
         end
       '';
     };
+
+    KhanelivimLogs = {
+      command.__raw = ''
+        function()
+          local logs = {
+            { name = "LSP Log", path = vim.lsp.get_log_path() },
+            { name = "Neovim Log", path = vim.fn.stdpath("state") .. "/log" },
+            { name = "Neovim Log (Alt)", path = vim.fn.stdpath("state") .. "/nvim.log" },
+          }
+
+          local existing_logs = {}
+          for _, log in ipairs(logs) do
+            if vim.fn.filereadable(log.path) == 1 then
+              table.insert(existing_logs, log)
+            end
+          end
+
+          if #existing_logs == 0 then
+             vim.notify("No logs found.", vim.log.levels.WARN)
+             return
+          end
+
+          vim.ui.select(existing_logs, {
+            prompt = "Select Log File:",
+            format_item = function(item) return item.name .. " (" .. item.path .. ")" end,
+          }, function(choice)
+            if choice then
+              vim.cmd("edit " .. choice.path)
+            end
+          end)
+        end
+      '';
+      desc = "Open available log files";
+    };
   };
 }
