@@ -170,6 +170,24 @@
         }
         {
           mode = "n";
+          key = "<leader>fL";
+          action.__raw = ''
+            function()
+              Snacks.picker.files({
+                dirs = { vim.fn.stdpath("state") },
+                ft = "log",
+                hidden = true,
+                ignored = true,
+                title = "Neovim Logs",
+              })
+            end
+          '';
+          options = {
+            desc = "Find Neovim Logs";
+          };
+        }
+        {
+          mode = "n";
           key = "<leader>fm";
           action = "<cmd>lua Snacks.picker.man()<cr>";
           options = {
