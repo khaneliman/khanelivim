@@ -138,7 +138,7 @@ in
       }
       {
         mode = "n";
-        key = "<leader>sj";
+        key = "<leader>jS";
         action.__raw = "require('jj.cmd').squash";
         options = {
           desc = "Squash";
