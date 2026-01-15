@@ -8,7 +8,7 @@
       keys = [
         "<leader>fg"
         "<leader>fs"
-        "<leader>fR"
+        "<leader>gr"
         "<leader>fF"
       ];
     };
@@ -56,7 +56,7 @@
     }
     {
       mode = "n";
-      key = "<leader>fR";
+      key = "<leader>gr";
       action = "<cmd>lua require('fff').refresh_git_status()<CR>";
       options = {
         desc = "Refresh git status";
