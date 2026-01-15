@@ -62,11 +62,4 @@
     }
   ];
 
-  plugins.which-key.settings.spec = lib.optionals (config.khanelivim.tasks.tool == "overseer") [
-    {
-      __unkeyed-1 = "<leader>R";
-      group = "Run";
-      icon = "";
-    }
-  ];
 }

@@ -35,13 +35,6 @@
       };
     };
 
-    which-key.settings.spec = lib.optionals config.plugins.comment-box.enable [
-      {
-        __unkeyed-1 = "<leader>c";
-        group = "Code & Comments";
-        icon = " ";
-      }
-    ];
   };
 
   keymaps = lib.mkIf config.plugins.comment-box.enable [

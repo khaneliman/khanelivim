@@ -95,13 +95,6 @@
       };
     };
 
-    which-key.settings.spec = lib.optionals config.plugins.rustaceanvim.enable [
-      {
-        __unkeyed-1 = "<leader>R";
-        group = "Run";
-        icon = "";
-      }
-    ];
   };
 
   keymaps = lib.mkIf config.plugins.rustaceanvim.enable [

@@ -79,18 +79,6 @@
         }
       ];
 
-      plugins.which-key.settings.spec = [
-        {
-          __unkeyed-1 = "<leader>m";
-          group = "Multicursor";
-          icon = "󰗧";
-          mode = [
-            "n"
-            "x"
-          ];
-        }
-      ];
-
       keymaps = [
         # Add or skip cursor above/below the main cursor
         {

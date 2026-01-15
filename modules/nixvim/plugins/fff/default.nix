@@ -29,14 +29,6 @@
     };
   };
 
-  plugins.which-key.settings.spec = lib.mkIf config.plugins.fff.enable [
-    {
-      __unkeyed-1 = "<leader>fF";
-      group = "File Filter";
-      icon = "󰈞";
-    }
-  ];
-
   keymaps = lib.optionals config.plugins.fff.enable [
     {
       mode = "n";

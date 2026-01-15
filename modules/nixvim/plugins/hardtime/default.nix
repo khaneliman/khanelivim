@@ -19,14 +19,6 @@ in
       };
     };
 
-    which-key.settings.spec = lib.optionals config.plugins.hardtime.enable [
-      {
-        __unkeyed-1 = "<leader>v";
-        mode = "n";
-        group = "Vim training";
-        icon = "󱛊";
-      }
-    ];
   };
 
   keymaps = lib.mkIf cfg.enable [

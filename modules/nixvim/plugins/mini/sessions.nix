@@ -9,14 +9,6 @@
     };
   };
 
-  plugins.which-key.settings.spec = lib.optionals config.plugins.mini-sessions.enable [
-    {
-      __unkeyed-1 = "<leader>S";
-      group = "Sessions";
-      icon = "󰘛";
-    }
-  ];
-
   keymaps = lib.optionals config.plugins.mini-sessions.enable [
     {
       mode = "n";

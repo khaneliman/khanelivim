@@ -29,13 +29,6 @@
       };
     };
 
-    which-key.settings.spec = lib.optionals config.plugins.git-conflict.enable [
-      {
-        __unkeyed-1 = "<leader>gc";
-        group = "Conflicts";
-        icon = "";
-      }
-    ];
   };
 
   keymaps = lib.mkIf config.plugins.git-conflict.enable [

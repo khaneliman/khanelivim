@@ -11,20 +11,6 @@
       };
     };
 
-    which-key.settings.spec =
-      lib.mkIf
-        (
-          config.plugins.snacks.enable
-          && lib.hasAttr "scratch" config.plugins.snacks.settings
-          && config.plugins.snacks.settings.scratch.enabled
-        )
-        [
-          {
-            __unkeyed-1 = "<leader>n";
-            group = "Notes";
-            icon = " ";
-          }
-        ];
   };
 
   keymaps =

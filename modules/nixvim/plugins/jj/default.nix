@@ -79,22 +79,6 @@ in
       require('jj').setup(${lib.generators.toLua { } cfg.settings})
     '';
 
-    plugins.which-key.settings.spec = [
-      {
-        __unkeyed-1 = "<leader>j";
-        group = "Jujutsu";
-        icon = "󱗘 ";
-      }
-      {
-        __unkeyed-1 = "<leader>jb";
-        group = "Bookmarks";
-      }
-      {
-        __unkeyed-1 = "<leader>jg";
-        group = "Picker";
-      }
-    ];
-
     keymaps = [
       {
         mode = "n";

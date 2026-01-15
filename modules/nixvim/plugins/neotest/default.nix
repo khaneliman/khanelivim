@@ -123,13 +123,6 @@
       };
     };
 
-    which-key.settings.spec = lib.optionals config.plugins.neotest.enable [
-      {
-        __unkeyed-1 = "<leader>t";
-        group = "Test";
-        icon = "󰙨";
-      }
-    ];
   };
 
   keymaps = lib.mkIf (config.plugins.neotest.enable && !config.plugins.lz-n.enable) [

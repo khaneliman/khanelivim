@@ -41,14 +41,6 @@
       };
     };
 
-    which-key.settings.spec = lib.optionals config.plugins.codesnap.enable [
-      {
-        __unkeyed-1 = "<leader>c";
-        mode = "v";
-        group = "Codesnap";
-        icon = "󰄄 ";
-      }
-    ];
   };
 
   keymaps = lib.mkIf config.plugins.codesnap.enable [

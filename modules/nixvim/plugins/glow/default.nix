@@ -25,14 +25,6 @@ in
       };
     };
 
-    which-key.settings.spec = [
-      {
-        __unkeyed-1 = "<leader>p";
-        mode = "n";
-        group = "Preview";
-        icon = " ";
-      }
-    ];
   };
 
   keymaps = lib.optionals config.plugins.glow.enable [

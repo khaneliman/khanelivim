@@ -81,13 +81,6 @@
       };
     };
 
-    which-key.settings.spec = lib.optionals config.plugins.neorg.enable [
-      {
-        __unkeyed-1 = "<leader>n";
-        group = "Notes";
-        icon = " ";
-      }
-    ];
   };
 
   keymaps = lib.mkIf config.plugins.neorg.enable (
@@ -95,19 +88,19 @@
       # Workspace operations
       {
         mode = "n";
-        key = "<leader>ni";
+        key = "<leader>noi";
         action = "<cmd>Neorg index<CR>";
         options.desc = "Open Index";
       }
       {
         mode = "n";
-        key = "<leader>nw";
+        key = "<leader>now";
         action = "<cmd>Neorg workspace<CR>";
         options.desc = "Select Workspace";
       }
       {
         mode = "n";
-        key = "<leader>nr";
+        key = "<leader>nor";
         action = "<cmd>Neorg return<CR>";
         options.desc = "Return to Workspace";
       }
@@ -157,7 +150,7 @@
       # Note creation
       {
         mode = "n";
-        key = "<leader>nn";
+        key = "<leader>non";
         action.__raw = ''
           function()
             vim.ui.input({ prompt = "Note name: " }, function(name)
@@ -173,13 +166,13 @@
     ++ lib.optionals (config.khanelivim.picker.tool == "snacks") [
       {
         mode = "n";
-        key = "<leader>ns";
+        key = "<leader>nos";
         action = "<cmd>lua Snacks.picker.files({ cwd = '~/notes' })<CR>";
         options.desc = "Search Notes";
       }
       {
         mode = "n";
-        key = "<leader>ng";
+        key = "<leader>nog";
         action = "<cmd>lua Snacks.picker.grep({ cwd = '~/notes' })<CR>";
         options.desc = "Grep Notes";
       }

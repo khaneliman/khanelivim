@@ -25,21 +25,6 @@
       };
     };
 
-    which-key.settings.spec = lib.optionals config.plugins.gitsigns.enable [
-      {
-        __unkeyed-1 = "<leader>gh";
-        group = "Hunks";
-        icon = " ";
-        mode = [
-          "n"
-          "v"
-        ];
-      }
-      {
-        __unkeyed-1 = "<leader>ug";
-        group = "Git";
-      }
-    ];
   };
 
   keymaps = lib.mkIf config.plugins.gitsigns.enable (

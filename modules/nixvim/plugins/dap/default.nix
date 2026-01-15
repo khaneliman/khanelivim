@@ -263,17 +263,6 @@
     };
     dap-python.enable = true;
 
-    which-key.settings.spec = lib.optionals config.plugins.dap.enable [
-      {
-        __unkeyed-1 = "<leader>d";
-        mode = [
-          "n"
-          "v"
-        ];
-        desc = "Debug";
-        # icon = " ";
-      }
-    ];
   };
 
   keymaps = lib.optionals (config.plugins.dap.enable && !config.plugins.dap.lazyLoad.enable) [

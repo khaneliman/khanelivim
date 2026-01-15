@@ -7,13 +7,6 @@
       lazyLoad.settings.event = "BufReadPre";
     };
 
-    which-key.settings.spec = lib.optionals config.plugins.persistence.enable [
-      {
-        __unkeyed-1 = "<leader>S";
-        group = "Persistence";
-        icon = "󰘛";
-      }
-    ];
   };
 
   keymaps = lib.optionals config.plugins.persistence.enable [

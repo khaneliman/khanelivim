@@ -154,17 +154,6 @@
       };
     };
 
-    which-key.settings.spec = lib.optionals config.plugins.kulala.enable [
-      {
-        __unkeyed-1 = "<leader>h";
-        group = "HTTP Client";
-        icon = "🌐";
-      }
-      {
-        __unkeyed-1 = "<leader>he";
-        group = "Environment";
-      }
-    ];
   };
 
   keymaps = lib.mkIf config.plugins.kulala.enable [

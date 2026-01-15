@@ -8,7 +8,7 @@ in
       enable = true;
 
       # TODO: migrate to mkNeovimPlugin
-      # lazyLoad.settings.keys = [ "<leader>gi" ];
+      # lazyLoad.settings.keys = [ "<leader>gI" ];
       # lazyLoad.settings.cmd = [ "Gitignore" ];
     };
   };
@@ -16,7 +16,7 @@ in
   keymaps = lib.mkIf cfg.enable [
     {
       mode = "n";
-      key = "<leader>gi";
+      key = "<leader>gI";
       action.__raw = "require('gitignore').generate";
       options = {
         desc = "Gitignore generate";
