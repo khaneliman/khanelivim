@@ -254,7 +254,7 @@ in
       }
       {
         mode = "n";
-        key = "<leader>jgh";
+        key = "<leader>jh";
         action.__raw = ''
           function() require("jj.picker").file_history() end
         '';
