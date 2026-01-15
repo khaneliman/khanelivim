@@ -31,7 +31,7 @@
         position = "left";
         width = 40;
         indent_markers = true;
-        view_mode = "list";
+        view_mode = "tree";
       };
 
       keymaps = {
