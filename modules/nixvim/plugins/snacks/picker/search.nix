@@ -128,6 +128,22 @@
           };
         }
         {
+          mode = "n";
+          key = "<leader>fZ";
+          action = "<cmd>lua Snacks.picker.search_history()<cr>";
+          options = {
+            desc = "Search History";
+          };
+        }
+        {
+          mode = "n";
+          key = "<leader>fz";
+          action = "<cmd>lua Snacks.picker.zoxide()<cr>";
+          options = {
+            desc = "Find Zoxide";
+          };
+        }
+        {
           mode = [
             "n"
             "x"

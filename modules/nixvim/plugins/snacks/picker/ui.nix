@@ -39,5 +39,13 @@
             desc = "Colorschemes";
           };
         }
+        {
+          mode = "n";
+          key = "<leader>fH";
+          action = "<cmd>lua Snacks.picker.highlights()<cr>";
+          options = {
+            desc = "Find Highlights";
+          };
+        }
       ];
 }

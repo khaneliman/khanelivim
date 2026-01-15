@@ -107,6 +107,14 @@
         }
         {
           mode = "n";
+          key = "<leader>fj";
+          action = "<cmd>lua Snacks.picker.jumps()<cr>";
+          options = {
+            desc = "Find jumps";
+          };
+        }
+        {
+          mode = "n";
           key = "<leader>X";
           action = "<cmd>lua Snacks.profiler.toggle()<cr>";
           options = {
