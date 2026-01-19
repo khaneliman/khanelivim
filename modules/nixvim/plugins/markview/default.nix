@@ -25,6 +25,9 @@
       };
 
       settings = {
+        # Fancy comment rendering which can conflict with todo-comments
+        comment.enable = lib.elem "markview" config.khanelivim.text.patterns;
+
         preview = {
           inherit filetypes;
 

@@ -41,6 +41,7 @@
         lib.types.enum [
           "todo-comments"
           "mini-hipatterns"
+          "markview"
         ]
       );
       default = [
