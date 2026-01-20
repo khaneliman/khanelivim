@@ -1,4 +1,9 @@
 { config, lib, ... }:
+let
+  isSnacks = config.khanelivim.picker.tool == "snacks";
+  isFzf = config.khanelivim.picker.tool == "fzf";
+  isLazy = config.plugins.todo-comments.lazyLoad.enable;
+in
 {
   plugins.todo-comments = {
     enable = lib.elem "todo-comments" config.khanelivim.text.patterns;
@@ -13,31 +18,33 @@
           ''
             function()
           ''
-          + lib.optionalString (config.khanelivim.picker.tool == "fzf") ''
+          + lib.optionalString isFzf ''
             require('lz.n').trigger_load('fzf-lua')
           ''
           + lib.optionalString config.plugins.trouble.enable ''
             require('lz.n').trigger_load('trouble.nvim')
           ''
-          + lib.optionalString (config.khanelivim.picker.tool == "snacks") ''
+          + lib.optionalString isSnacks ''
             require('lz.n').trigger_load('snacks.nvim')
           ''
           + ''
             end
           ''
         );
-        keys = lib.mkIf (config.khanelivim.picker.tool == "snacks") [
+
+        keys = lib.mkIf (isLazy && isSnacks) [
           {
             __unkeyed-1 = "<leader>ft";
             __unkeyed-2 = ''<CMD>lua Snacks.picker.todo_comments({ keywords = { "TODO", "FIX", "FIXME" }})<CR>'';
             desc = "Find TODOs";
           }
         ];
+
         cmd = [
           "TodoLocList"
           "TodoQuickFix"
         ]
-        ++ lib.optional (config.khanelivim.picker.tool == "fzf") "TodoFzfLua"
+        ++ lib.optional isFzf "TodoFzfLua"
         ++ lib.optional config.plugins.trouble.enable "TodoTrouble";
       };
     };
@@ -45,7 +52,7 @@
     keymaps = {
       todoTrouble.key = lib.mkIf config.plugins.trouble.enable "<leader>xq";
       # Fallback if snacks picker not enabled
-      todoFzfLua = lib.mkIf (config.khanelivim.picker.tool == "fzf") {
+      todoFzfLua = lib.mkIf isFzf {
         key = "<leader>ft";
         keywords = [
           "TODO"
@@ -55,4 +62,15 @@
       };
     };
   };
+
+  keymaps = lib.mkIf (config.plugins.todo-comments.enable && !isLazy && isSnacks) [
+    {
+      mode = "n";
+      key = "<leader>ft";
+      action = ''<CMD>lua Snacks.picker.todo_comments({ keywords = { "TODO", "FIX", "FIXME" }})<CR>'';
+      options = {
+        desc = "Find TODOs";
+      };
+    }
+  ];
 }

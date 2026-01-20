@@ -70,18 +70,4 @@
       }
     ];
   };
-
-  # Moved to todo-comments module since lazy loading wasn't working
-  keymaps =
-    lib.mkIf (config.plugins.snacks.enable && lib.hasAttr "picker" config.plugins.snacks.settings)
-      [
-        (lib.mkIf (!config.plugins.todo-comments.lazyLoad.enable) {
-          mode = "n";
-          key = "<leader>ft";
-          action = ''<cmd>lua Snacks.picker.todo_comments({ keywords = { "TODO", "FIX", "FIXME" }})<cr>'';
-          options = {
-            desc = "Find TODOs";
-          };
-        })
-      ];
 }
