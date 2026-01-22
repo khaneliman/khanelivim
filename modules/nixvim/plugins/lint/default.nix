@@ -11,6 +11,20 @@
 
       lazyLoad.settings.event = "DeferredUIEnter";
 
+      autoCmd = {
+        event = [
+          "BufReadPost"
+          "BufWritePost"
+          "InsertLeave"
+          "TextChanged"
+        ];
+        callback.__raw = ''
+          function()
+            require("lint").try_lint()
+          end
+        '';
+      };
+
       lintersByFt = {
         bash = [ "shellcheck" ];
         c = [ "clangtidy" ];
