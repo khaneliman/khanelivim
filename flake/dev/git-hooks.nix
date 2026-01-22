@@ -30,7 +30,12 @@
           };
           luacheck.enable = true;
           pre-commit-hook-ensure-sops.enable = true;
-          statix.enable = true;
+          statix = {
+            enable = true;
+            # Only staged changes
+            pass_filenames = true;
+            entry = "${lib.getExe pkgs.bash} -c 'for file in \"$@\"; do ${lib.getExe pkgs.statix} check \"$file\"; done' --";
+          };
           treefmt.enable = true;
           typos = {
             enable = true;
