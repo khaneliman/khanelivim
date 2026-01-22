@@ -107,6 +107,26 @@ in
             };
             colored = true;
           }
+          {
+            __unkeyed-1.__raw = ''
+              function()
+                local ok, lint = pcall(require, "lint")
+                if not ok then
+                  return ""
+                end
+                local running = lint.get_running()
+                if #running == 0 then
+                  return ""
+                end
+                return "󱉶 " .. table.concat(running, ", ")
+              end
+            '';
+            cond.__raw = ''
+              function()
+                return vim.bo.buftype == ""
+              end
+            '';
+          }
 
           (lib.mkIf config.plugins.sidekick.enable {
             __unkeyed-1.__raw = ''
