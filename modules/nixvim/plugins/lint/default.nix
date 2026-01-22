@@ -45,7 +45,11 @@
         # json = [ "jsonlint" ];
         lua = [ "luacheck" ];
         make = [ "checkmake" ];
-        markdown = [ "markdownlint" ];
+        gitcommit = [ "codespell" ];
+        markdown = [
+          "markdownlint-cli2"
+          "codespell"
+        ];
         nix = [
           "deadnix"
         ]
@@ -59,6 +63,7 @@
         # TODO:
         # xml = [ "xmllint" ];
         yaml = [ "yamllint" ];
+        "yaml.ghaction" = [ "actionlint" ];
       };
 
       linters = {
@@ -77,7 +82,10 @@
         # FIXME: removed from nixpkgs find altnerative
         # jsonlint.cmd = lib.getExe pkgs.nodePackages.jsonlint;
         luacheck.cmd = lib.getExe pkgs.luaPackages.luacheck;
+        actionlint.cmd = lib.getExe pkgs.actionlint;
+        codespell.cmd = lib.getExe pkgs.codespell;
         markdownlint.cmd = lib.getExe pkgs.markdownlint-cli;
+        markdownlint-cli2.cmd = lib.getExe pkgs.markdownlint-cli2;
         nix.cmd = lib.getExe' pkgs.nix "nix-instantiate";
         pylint.cmd = lib.getExe pkgs.pylint;
         shellcheck.cmd = lib.getExe pkgs.shellcheck;
