@@ -121,6 +121,14 @@
       description = "Terminal emulator plugins to use (can have multiple)";
     };
 
+    theme = lib.mkOption {
+      type = lib.types.enum [
+        "catppuccin"
+      ];
+      default = "catppuccin";
+      description = "Colorscheme/theme to use";
+    };
+
     zenMode = lib.mkOption {
       type = lib.types.nullOr (
         lib.types.enum [

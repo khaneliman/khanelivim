@@ -1,6 +1,6 @@
-{ config, ... }:
+{ config, lib, ... }:
 {
-  plugins = {
+  plugins = lib.mkIf (config.khanelivim.ui.theme == "catppuccin") {
     bufferline.settings = {
       # NOTE: fixes colorscheme with transparent_background
       # and better contrast selected tabs
@@ -63,6 +63,8 @@
   };
 
   colorschemes.catppuccin = {
+    enable = config.khanelivim.ui.theme == "catppuccin";
+
     lazyLoad.enable = config.plugins.lz-n.enable;
 
     settings = {

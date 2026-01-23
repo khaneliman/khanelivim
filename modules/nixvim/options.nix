@@ -1,5 +1,6 @@
 {
   lib,
+  config,
   ...
 }:
 {
@@ -9,8 +10,9 @@
     register = "unnamedplus";
   };
 
-  colorscheme = "catppuccin";
-  colorschemes.catppuccin.enable = true;
+  colorscheme = config.khanelivim.ui.theme;
+  colorschemes.catppuccin.enable = config.khanelivim.ui.theme == "catppuccin";
+  colorschemes.nord.enable = config.khanelivim.ui.theme == "nord";
   luaLoader.enable = true;
 
   globals = {
