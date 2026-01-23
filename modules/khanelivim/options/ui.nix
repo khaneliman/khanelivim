@@ -124,6 +124,7 @@
     theme = lib.mkOption {
       type = lib.types.enum [
         "catppuccin"
+        "nord"
       ];
       default = "catppuccin";
       description = "Colorscheme/theme to use";
