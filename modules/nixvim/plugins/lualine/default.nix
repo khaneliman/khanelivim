@@ -67,6 +67,7 @@ in
         };
 
         globalstatus = true;
+        inherit (config.khanelivim.ui) theme;
       };
 
       # +-------------------------------------------------+
