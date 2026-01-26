@@ -7,7 +7,8 @@
 {
   plugins = {
     roslyn = {
-      enable = config.khanelivim.lsp.csharp == "roslyn";
+      # FIXME: dotnet broken nixpkgs darwin
+      enable = config.khanelivim.lsp.csharp == "roslyn" && pkgs.stdenv.hostPlatform.isLinux;
 
       lazyLoad.settings.ft = [
         "cs"

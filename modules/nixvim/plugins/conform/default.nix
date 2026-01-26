@@ -87,14 +87,14 @@
             "shellharden"
             "shfmt"
           ];
-          bicep = [ "bicep" ];
+          bicep = lib.optionals pkgs.stdenv.hostPlatform.isLinux [ "bicep" ];
           c = [ "clang_format" ];
           cmake = [ "cmake-format" ];
           cpp = [ "clang_format" ];
-          cs = [ "csharpier" ];
+          cs = lib.optionals pkgs.stdenv.hostPlatform.isLinux [ "csharpier" ];
           css = [ "stylelint" ];
           fish = [ "fish_indent" ];
-          fsharp = [ "fantomas" ];
+          fsharp = lib.optionals pkgs.stdenv.hostPlatform.isLinux [ "fantomas" ];
           gdscript = [ "gdformat" ];
           go = [ "golines" ];
           java = [ "google-java-format" ];
@@ -124,7 +124,7 @@
           ];
           sql = [ "sqlfluff" ];
           # FIXME: broken nixpkgs
-          # swift = [ "swift_format" ];
+          swift = lib.optionals pkgs.stdenv.hostPlatform.isLinux [ "swift_format" ];
           terraform = [ "terraform_fmt" ];
           toml = [ "taplo" ];
           typescript = {
@@ -158,7 +158,9 @@
               };
             };
           };
-          csharpier.command = lib.getExe pkgs.csharpier;
+          csharpier = lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
+            command = lib.getExe pkgs.csharpier;
+          };
         };
       };
     };

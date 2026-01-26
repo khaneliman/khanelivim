@@ -5,7 +5,8 @@
   ...
 }:
 {
-  extraPackages = lib.mkIf config.plugins.dap.enable (
+  # FIXME: broken swift / dotnet darwin
+  extraPackages = lib.mkIf (config.plugins.dap.enable && pkgs.stdenv.hostPlatform.isLinux) (
     with pkgs;
     [
       netcoredbg
@@ -79,7 +80,8 @@
   };
 
   plugins = {
-    dap = {
+    # FIXME: broken swift / dotnet darwin
+    dap = lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
       adapters = {
         # Optional environment variable:
         #   GODOT - Path to Godot executable (defaults to "godot" in PATH)

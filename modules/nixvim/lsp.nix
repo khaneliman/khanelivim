@@ -64,7 +64,8 @@
       lua_ls.enable = config.khanelivim.lsp.lua == "lua-ls";
       # FIXME: fish broken darwin
       fish_lsp.enable = pkgs.stdenv.hostPlatform.isLinux;
-      fsautocomplete.enable = true;
+      # FIXME: dotnet broken darwin
+      fsautocomplete.enable = pkgs.stdenv.hostPlatform.isLinux;
       fsharp_language_server = {
         enable = false;
         # TODO: package FSharpLanguageServer
@@ -79,7 +80,8 @@
       java_language_server.enable = config.khanelivim.lsp.java == "java-language-server";
       jsonls.enable = true;
       kulala_ls.enable = true;
-      marksman.enable = true;
+      # FIXME: dotnet broken darwin
+      marksman.enable = pkgs.stdenv.hostPlatform.isLinux;
       nushell.enable = true;
       pyright.enable = config.khanelivim.lsp.python.typeChecker == "pyright";
       pylsp.enable = config.khanelivim.lsp.python.typeChecker == "pylsp";
@@ -87,7 +89,8 @@
       # FIXME: wayland dependency broken darwin again
       qmlls.enable = pkgs.stdenv.hostPlatform.isLinux;
       ruff.enable = lib.elem "ruff" config.khanelivim.lsp.python.linters;
-      roslyn_ls.enable = config.khanelivim.lsp.csharp == "roslyn_ls";
+      # FIXME: dotnet broken darwin
+      roslyn_ls.enable = config.khanelivim.lsp.csharp == "roslyn_ls" && pkgs.stdenv.hostPlatform.isLinux;
       sqls.enable = true;
       statix.enable = true;
       stylelint_lsp.enable = true;
