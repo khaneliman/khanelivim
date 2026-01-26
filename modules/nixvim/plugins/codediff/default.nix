@@ -1,15 +1,13 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 {
-  plugins.vscode-diff = {
+  plugins.codediff = {
     enable =
       config.khanelivim.git.diffViewer == "codediff"
       || builtins.elem "codediff" config.khanelivim.git.integrations;
-    package = pkgs.vimPlugins.codediff-nvim;
 
     lazyLoad.settings = {
       cmd = "CodeDiff";
@@ -56,7 +54,7 @@
   };
 
   keymaps =
-    lib.optionals config.plugins.vscode-diff.enable [
+    lib.optionals config.plugins.codediff.enable [
       {
         mode = "n";
         key = "<leader>gdv";
