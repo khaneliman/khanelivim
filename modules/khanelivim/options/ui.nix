@@ -125,6 +125,7 @@
       type = lib.types.enum [
         "catppuccin"
         "nord"
+        "tokyonight"
       ];
       default = "catppuccin";
       description = "Colorscheme/theme to use";
