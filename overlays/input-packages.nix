@@ -16,6 +16,9 @@ in
     claude-code
     github-copilot-cli
     opencode
+
+    # TODO: Remove after hitting channel
+    swift
     ;
 
   luaPackages = luaPackages // {
