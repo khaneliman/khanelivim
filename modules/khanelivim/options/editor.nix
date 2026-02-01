@@ -9,7 +9,7 @@
           "mini-pairs"
         ]
       );
-      default = "mini-pairs";
+      default = "blink-pairs";
       description = "Auto-pairing plugin to use";
     };
 
