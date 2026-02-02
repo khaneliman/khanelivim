@@ -56,16 +56,13 @@
       copilot.enable = !config.plugins.copilot-lua.enable;
       cssls.enable = true;
       dockerls.enable = lib.elem "dockerls" config.khanelivim.lsp.docker;
-      # FIXME: broken nixpkgs
-      # docker_language_server.enable = lib.elem "docker-language-server" config.khanelivim.lsp.docker;
+      docker_language_server.enable = lib.elem "docker-language-server" config.khanelivim.lsp.docker;
       # FIXME: [lspconfig] Unable to find ESLint library.
       # eslint.enable = true;
       emmylua_ls.enable = config.khanelivim.lsp.lua == "emmylua-ls";
       lua_ls.enable = config.khanelivim.lsp.lua == "lua-ls";
-      # FIXME: fish broken darwin
-      fish_lsp.enable = pkgs.stdenv.hostPlatform.isLinux;
-      # FIXME: dotnet broken darwin
-      fsautocomplete.enable = pkgs.stdenv.hostPlatform.isLinux;
+      fish_lsp.enable = true;
+      fsautocomplete.enable = true;
       fsharp_language_server = {
         enable = false;
         # TODO: package FSharpLanguageServer
@@ -81,17 +78,15 @@
       java_language_server.enable = config.khanelivim.lsp.java == "java-language-server";
       jsonls.enable = true;
       kulala_ls.enable = true;
-      # FIXME: dotnet broken darwin
-      marksman.enable = pkgs.stdenv.hostPlatform.isLinux;
-      nushell.enable = true;
+      marksman.enable = true;
+      # FIXME: broken darwin
+      nushell.enable = pkgs.stdenv.hostPlatform.isLinux;
       pyright.enable = config.khanelivim.lsp.python.typeChecker == "pyright";
       pylsp.enable = config.khanelivim.lsp.python.typeChecker == "pylsp";
       basedpyright.enable = config.khanelivim.lsp.python.typeChecker == "basedpyright";
-      # FIXME: wayland dependency broken darwin again
-      qmlls.enable = pkgs.stdenv.hostPlatform.isLinux;
+      qmlls.enable = true;
       ruff.enable = lib.elem "ruff" config.khanelivim.lsp.python.linters;
-      # FIXME: dotnet broken darwin
-      roslyn_ls.enable = config.khanelivim.lsp.csharp == "roslyn_ls" && pkgs.stdenv.hostPlatform.isLinux;
+      roslyn_ls.enable = config.khanelivim.lsp.csharp == "roslyn_ls";
       sqls.enable = true;
       statix.enable = true;
       stylelint_lsp.enable = true;

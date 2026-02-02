@@ -1,13 +1,11 @@
 {
   config,
-  pkgs,
   ...
 }:
 {
   plugins = {
     rzls = {
-      # FIXME: dotnet broken nixpkgs darwin
-      enable = config.khanelivim.lsp.csharp == "roslyn" && pkgs.stdenv.hostPlatform.isLinux;
+      enable = config.khanelivim.lsp.csharp == "roslyn";
       enableRazorFiletypeAssociation = true;
 
       lazyLoad.settings.ft = [

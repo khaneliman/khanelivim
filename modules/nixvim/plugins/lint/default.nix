@@ -74,8 +74,7 @@
         clippy.cmd = lib.getExe pkgs.rust-analyzer;
         cmakelint.cmd = lib.getExe' pkgs.cmake-format "cmake-lint";
         deadnix.cmd = lib.getExe pkgs.deadnix;
-        # FIXME: fish broken darwin
-        fish.cmd = lib.mkIf pkgs.stdenv.hostPlatform.isLinux (lib.getExe pkgs.fish);
+        fish.cmd = lib.getExe pkgs.fish;
         gdlint.cmd = lib.getExe' pkgs.gdtoolkit_4 "gdlint";
         golangcilint.cmd = lib.getExe pkgs.golangci-lint;
         htmlhint.cmd = lib.getExe pkgs.htmlhint;

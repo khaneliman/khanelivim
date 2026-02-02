@@ -18,7 +18,6 @@ in
     opencode
 
     # TODO: Remove after hitting channel
-    swift
     ;
 
   luaPackages = luaPackages // {

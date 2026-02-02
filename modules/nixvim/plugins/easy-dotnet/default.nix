@@ -7,8 +7,7 @@
 {
   plugins = {
     easy-dotnet = {
-      # FIXME: dotnet broken nixpkgs darwin
-      enable = pkgs.stdenv.hostPlatform.isLinux;
+      enable = true;
 
       lazyLoad.settings.ft = [
         "cs"

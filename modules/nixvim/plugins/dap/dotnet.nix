@@ -5,8 +5,7 @@
   ...
 }:
 {
-  # FIXME: broken swift / dotnet darwin
-  extraPackages = lib.mkIf (config.plugins.dap.enable && pkgs.stdenv.hostPlatform.isLinux) (
+  extraPackages = lib.mkIf config.plugins.dap.enable (
     with pkgs;
     [
       netcoredbg
@@ -60,54 +59,53 @@
     '';
   };
 
-  plugins = # FIXME: broken swift / dotnet darwin
-    lib.mkIf (!config.plugins.easy-dotnet.enable && pkgs.stdenv.hostPlatform.isLinux) {
-      dap = {
-        adapters = {
-          executables = {
-            coreclr = {
-              command = lib.getExe pkgs.netcoredbg;
-              args = [ "--interpreter=vscode" ];
-            };
+  plugins = lib.mkIf (!config.plugins.easy-dotnet.enable) {
+    dap = {
+      adapters = {
+        executables = {
+          coreclr = {
+            command = lib.getExe pkgs.netcoredbg;
+            args = [ "--interpreter=vscode" ];
+          };
 
-            netcoredbg = {
-              command = lib.getExe pkgs.netcoredbg;
-              args = [ "--interpreter=vscode" ];
-            };
+          netcoredbg = {
+            command = lib.getExe pkgs.netcoredbg;
+            args = [ "--interpreter=vscode" ];
           };
         };
-
-        configurations =
-          let
-            coreclr-config = {
-              type = "coreclr";
-              name = "launch - netcoredbg";
-              request = "launch";
-              program.__raw = ''
-                function()
-                  if vim.fn.confirm('Should I recompile first?', '&yes\n&no', 2) == 1 then
-                    vim.g.dotnet_build_project()
-                  end
-
-                  return vim.g.dotnet_get_dll_path()
-                end
-              '';
-              cwd = "\${workspaceFolder}";
-            };
-
-            netcoredb-config = coreclr-config;
-          in
-          {
-            cs = [
-              coreclr-config
-              netcoredb-config
-            ];
-
-            fsharp = [
-              coreclr-config
-              netcoredb-config
-            ];
-          };
       };
+
+      configurations =
+        let
+          coreclr-config = {
+            type = "coreclr";
+            name = "launch - netcoredbg";
+            request = "launch";
+            program.__raw = ''
+              function()
+                if vim.fn.confirm('Should I recompile first?', '&yes\n&no', 2) == 1 then
+                  vim.g.dotnet_build_project()
+                end
+
+                return vim.g.dotnet_get_dll_path()
+              end
+            '';
+            cwd = "\${workspaceFolder}";
+          };
+
+          netcoredb-config = coreclr-config;
+        in
+        {
+          cs = [
+            coreclr-config
+            netcoredb-config
+          ];
+
+          fsharp = [
+            coreclr-config
+            netcoredb-config
+          ];
+        };
     };
+  };
 }
