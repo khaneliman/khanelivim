@@ -77,6 +77,7 @@
       };
       gopls.enable = true;
       html.enable = true;
+      hyprls.enable = true;
       java_language_server.enable = config.khanelivim.lsp.java == "java-language-server";
       jsonls.enable = true;
       kulala_ls.enable = true;
