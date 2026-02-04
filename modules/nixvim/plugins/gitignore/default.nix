@@ -7,9 +7,10 @@ in
     gitignore = {
       enable = true;
 
-      # TODO: migrate to mkNeovimPlugin
-      # lazyLoad.settings.keys = [ "<leader>gI" ];
-      # lazyLoad.settings.cmd = [ "Gitignore" ];
+      lazyLoad.settings = {
+        keys = [ "<leader>gI" ];
+        cmd = [ "Gitignore" ];
+      };
     };
   };
 
@@ -17,7 +18,11 @@ in
     {
       mode = "n";
       key = "<leader>gI";
-      action.__raw = "require('gitignore').generate";
+      action.__raw = ''
+        function()
+          require('gitignore').generate()
+        end
+      '';
       options = {
         desc = "Gitignore generate";
         silent = true;
