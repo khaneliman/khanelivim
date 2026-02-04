@@ -12,7 +12,6 @@
       autoInstall = {
         enable = true;
         overrides = {
-          swift_format = lib.mkIf pkgs.stdenv.hostPlatform.isLinux null;
         };
       };
 
@@ -123,8 +122,7 @@
             "shfmt"
           ];
           sql = [ "sqlfluff" ];
-          # FIXME: broken nixpkgs
-          swift = lib.optionals pkgs.stdenv.hostPlatform.isLinux [ "swift_format" ];
+          swift = [ "swift_format" ];
           terraform = [ "terraform_fmt" ];
           toml = [ "taplo" ];
           typescript = {
