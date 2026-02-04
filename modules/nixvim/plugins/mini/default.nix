@@ -62,6 +62,13 @@
     mini-snippets = lib.mkIf (config.khanelivim.editor.snippet == "mini-snippets") {
       enable = true;
       settings = {
+        mappings = {
+          # Avoid conflicts with khanelivim's global insert-mode <C-j>/<C-k>/<C-h>/<C-l> movement maps.
+          expand = "<C-g><C-j>";
+          jump_next = "<C-g><C-l>";
+          jump_prev = "<C-g><C-h>";
+          stop = "<C-g><C-c>";
+        };
         snippets = {
           __unkeyed-1.__raw = lib.mkIf config.plugins.friendly-snippets.enable "require('mini.snippets').gen_loader.from_file('${config.plugins.friendly-snippets.package}/snippets/global.json')";
           __unkeyed-2.__raw = "require('mini.snippets').gen_loader.from_lang()";
