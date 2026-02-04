@@ -24,6 +24,7 @@ in
       ./lua.nix
       ./options.nix
       ./performance.nix
+      ./snippets
       ./usercommands.nix
       # keep-sorted end
     ];

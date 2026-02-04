@@ -1,0 +1,12 @@
+{
+	"nix-shell shebang": {
+		"prefix": ["nixpy", "nixshell"],
+		"body": [
+			"#!/usr/bin/env nix-shell",
+			"#!nix-shell -i ${1:python3} -p ${2:python3} ${3:python3Packages.requests}",
+			"",
+			"$0"
+		],
+		"desc": "nix-shell shebang for Python scripts"
+	}
+}

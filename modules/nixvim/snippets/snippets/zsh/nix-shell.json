@@ -1,0 +1,12 @@
+{
+	"nix-shell shebang": {
+		"prefix": ["nixsh", "nixshell"],
+		"body": [
+			"#!/usr/bin/env nix-shell",
+			"#!nix-shell -i ${1:zsh} -p ${2:jq}",
+			"",
+			"$0"
+		],
+		"desc": "nix-shell shebang for zsh scripts"
+	}
+}
