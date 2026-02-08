@@ -54,6 +54,14 @@
             ];
             desc = "Opencode Toggle";
           }
+          {
+            __unkeyed-1 = "<leader>asx";
+            mode = [
+              "n"
+              "v"
+            ];
+            desc = "Codex Toggle";
+          }
         ];
 
         settings = {
@@ -177,6 +185,15 @@
           key = "<leader>aso";
           action.__raw = "function() require('sidekick.cli').toggle({ name = 'opencode', focus = true }) end";
           options.desc = "Opencode Toggle";
+        }
+        {
+          mode = [
+            "n"
+            "v"
+          ];
+          key = "<leader>asx";
+          action.__raw = "function() require('sidekick.cli').toggle({ name = 'codex', focus = true }) end";
+          options.desc = "Codex Toggle";
         }
       ];
   };
