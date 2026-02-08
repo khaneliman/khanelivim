@@ -145,7 +145,7 @@ When adding plugins, place them in the appropriate category:
 
 ## Getting Help
 
-- Check the [CLAUDE.md](./CLAUDE.md) file for development guidance
+- Check the [AGENTS.md](./AGENTS.md) file for development guidance
 - Review existing plugin configurations for patterns
 - Use the development shell for access to helper commands
 - Ensure you understand Nixvim configuration patterns before major changes
