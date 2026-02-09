@@ -90,14 +90,14 @@
             desc = "Run Last";
           }
           {
-            __unkeyed-1 = "<leader>do";
+            __unkeyed-1 = "<leader>dO";
             __unkeyed-2.__raw = ''
               function() require('dap').step_out() end
             '';
             desc = "Step Out";
           }
           {
-            __unkeyed-1 = "<leader>dO";
+            __unkeyed-1 = "<leader>do";
             __unkeyed-2.__raw = ''
               function() require('dap').step_over() end
             '';
