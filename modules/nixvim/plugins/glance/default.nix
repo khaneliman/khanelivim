@@ -16,7 +16,7 @@ _: {
     {
       action = "<CMD>Glance definitions<CR>";
       mode = "n";
-      key = "<leader>lgd";
+      key = "<leader>ld";
       options = {
         desc = "Glance definition";
       };
@@ -24,7 +24,7 @@ _: {
     {
       action = "<CMD>Glance implementations<CR>";
       mode = "n";
-      key = "<leader>lgi";
+      key = "<leader>li";
       options = {
         desc = "Glance implementation";
       };
@@ -32,7 +32,7 @@ _: {
     {
       action = "<CMD>Glance references<CR>";
       mode = "n";
-      key = "<leader>lgr";
+      key = "<leader>lD";
       options = {
         desc = "Glance reference";
       };
@@ -40,7 +40,7 @@ _: {
     {
       action = "<CMD>Glance type_definitions<CR>";
       mode = "n";
-      key = "<leader>lgt";
+      key = "<leader>lt";
       options = {
         desc = "Glance type definition";
       };

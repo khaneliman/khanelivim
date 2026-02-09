@@ -188,6 +188,7 @@
           || (config.plugins.snacks.enable && !lib.hasAttr "picker" config.plugins.snacks.settings)
         )
         && !config.plugins.fzf-lua.enable
+        && !config.plugins.glance.enable
       )
       [
         # Definition and type_definition keymaps (conditionally)
