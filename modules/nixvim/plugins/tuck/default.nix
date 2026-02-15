@@ -7,6 +7,12 @@
 }:
 let
   cfg = config.plugins.tuck;
+  queryExtraFiles = lib.mapAttrs' (
+    name: _:
+    lib.nameValuePair "after/queries/tuck/${name}" {
+      source = ./queries + "/${name}";
+    }
+  ) (lib.filterAttrs (_: type: type == "regular") (builtins.readDir ./queries));
 
   luaConfig = ''
     require('tuck').setup(${lib.generators.toLua { } cfg.settings})
@@ -40,6 +46,8 @@ in
 
     # Auto-enable fzf-lua integration when fzf-lua is enabled, unless overridden.
     plugins.tuck.settings.integrations.fzf_lua = lib.mkDefault config.plugins.fzf-lua.enable;
+
+    extraFiles = lib.mkIf config.plugins.treesitter.enable queryExtraFiles;
 
     extraConfigLua = lib.mkIf (!config.plugins.lz-n.enable) luaConfig;
 
