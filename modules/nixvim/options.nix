@@ -59,6 +59,7 @@
     # Windows & Splits
     splitbelow = true;
     splitright = true;
+    splitkeep = "screen";
 
     # Mouse
     mouse = "a";
@@ -68,6 +69,7 @@
     incsearch = true;
     ignorecase = true; # Case-insensitive search
     smartcase = true; # Unless pattern contains uppercase
+    iskeyword = "@,48-57,_,192-255,-"; # Treat dash-separated text as a single word
 
     # Files & Buffers
     swapfile = false;
@@ -90,13 +92,17 @@
     breakindent = true;
     copyindent = true;
     preserveindent = true;
+    formatoptions = "rqnl1j";
+    formatlistpat = "^\\s*[0-9\\-\\+\\*]\\+[\\.)]*\\s\\+";
     linebreak = true;
     wrap = false;
 
     # Folding
-    foldlevel = 99; # Keep folds open by default
+    foldlevel = 10; # Keep most folds open, but preserve structure
     foldcolumn = "1";
     foldenable = true;
+    foldmethod = "indent";
+    foldnestmax = 10;
     foldlevelstart = -1; # -1 uses foldlevel value
     # foldtext = ""; # Empty uses builtin foldtext
     fillchars = {
