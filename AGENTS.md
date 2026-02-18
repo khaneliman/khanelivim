@@ -7,12 +7,20 @@ coding assistants when working with code in this repository.
 - `nix run` or `just run` - Activate the configuration (run Neovim)
 - `nix build` - Build the configuration
 - `nix develop` or `just dev` - Enter development shell
+- `nixvim-print-init` - Print the real generated `init.lua` for the active
+  config (source of truth for runtime behavior)
 - `nix fmt` or `just lint` - Format code (nixfmt, luacheck, biome)
 - `nix flake check` or `just check` - Check Nix flake for issues
 - `nix flake update` or `just update` - Update Nix flake dependencies
 - `new-plugin <name> <template>` - Generate new plugin templates (available in
   dev shell)
 - `deadnix -e` and `statix fix .` - Cleanup and fix Nix linting issues
+
+## Generated Lua Source of Truth
+
+- When debugging runtime behavior, always inspect `nixvim-print-init` output.
+- Do not assume playground or ad-hoc configs (for example
+  `~/.config/nvim/init.lua`) match the live generated setup.
 
 ## High-Level Code Architecture
 
