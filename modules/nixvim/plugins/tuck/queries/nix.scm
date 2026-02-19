@@ -1,15 +1,8 @@
 ; Function bodies
 (binding
-  expression: [
-    (if_expression)
-    (let_expression)
-    (function_expression)
-    (indented_string_expression)
-  ] @fold)
-
-; Multi-line Nix strings
-(apply_expression
-  argument: (indented_string_expression) @fold)
-
-; Multi-line lists
-(list_expression) @fold
+  attrpath: (attrpath) @binding_path
+  expression: (function_expression
+    body: (_) @fold)
+  ; ignore top level flake outputs
+  (#not-match? @binding_path "^outputs$")
+  (#not-match? @binding_path "^perSystem"))
