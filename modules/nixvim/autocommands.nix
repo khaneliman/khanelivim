@@ -95,6 +95,18 @@
       command = "setlocal spell spelllang=en_us";
     }
 
+    # Start markdown buffers with diagnostics disabled; user toggle can re-enable
+    {
+      event = "FileType";
+      pattern = "markdown";
+      callback.__raw = ''
+        function(args)
+          vim.b[args.buf].disable_diagnostics = true
+          vim.diagnostic.enable(false, { bufnr = args.buf })
+        end
+      '';
+    }
+
     # Auto-reload files changed externally
     {
       event = [
