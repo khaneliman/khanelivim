@@ -1,8 +1,13 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }:
+let
+  neovimVersion = pkgs.neovim.version or "0.0";
+  hasNeovim012OrNewer = lib.versionAtLeast neovimVersion "0.12";
+in
 {
   # Note: The basic clipboard setup below is overridden by vim.g.clipboard in globals
   # to add timeout wrappers that prevent wl-copy from freezing Neovim
@@ -142,5 +147,14 @@
     virtualedit = "block";
     startofline = true;
     title = true;
+  }
+  // lib.optionalAttrs hasNeovim012OrNewer {
+    # Use 0.12+/nightly popup capabilities when available.
+    completeitemalign = "abbr,kind,menu";
+    # completepopup = "height:12,width:60,border:single";
+    jumpoptions = "stack";
+    pumborder = "single";
+    pummaxwidth = 100;
+    completetimeout = 100;
   };
 }
