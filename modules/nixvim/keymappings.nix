@@ -1,8 +1,12 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
+let
+  hasNeovim012OrNewer = lib.versionAtLeast (pkgs.neovim.version or "0.0") "0.12";
+in
 {
   globals = {
     mapleader = " ";
@@ -197,6 +201,21 @@
                 };
               };
 
+            }
+            // lib.optionalAttrs (hasNeovim012OrNewer && !config.plugins.yanky.enable) {
+              # Paste linewise before/after current line from active register (0.12+)
+              "[p" = {
+                action = ''<Cmd>exe "iput! " . v:register<CR>'';
+                options = {
+                  desc = "Paste Above";
+                };
+              };
+              "]p" = {
+                action = ''<Cmd>exe "iput " . v:register<CR>'';
+                options = {
+                  desc = "Paste Below";
+                };
+              };
             }
             // (lib.optionalAttrs
               (
