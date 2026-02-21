@@ -20,7 +20,7 @@
                   "Microsoft.CodeAnalysis.LanguageServer",
                   "--stdio",
                   "--logLevel=Information",
-                  "--extensionLogDirectory=" .. vim.fs.dirname(vim.lsp.get_log_path()),
+                  "--extensionLogDirectory=" .. vim.fs.dirname(vim.lsp.log.get_filename()),
                   "--razorSourceGenerator=${pkgs.rzls}/lib/rzls/Microsoft.CodeAnalysis.Razor.Compiler.dll",
                   "--razorDesignTimePath=${pkgs.rzls}/lib/rzls/Targets/Microsoft.NET.Sdk.Razor.DesignTime.targets"
               },
