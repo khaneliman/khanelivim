@@ -45,7 +45,10 @@ in
     '';
 
     # Auto-enable fzf-lua integration when fzf-lua is enabled, unless overridden.
-    plugins.tuck.settings.integrations.fzf_lua = lib.mkDefault config.plugins.fzf-lua.enable;
+    plugins.tuck.settings = {
+      auto_unfold = false;
+      integrations.fzf_lua = config.plugins.fzf-lua.enable;
+    };
 
     extraFiles = lib.mkIf config.plugins.treesitter.enable queryExtraFiles;
 
