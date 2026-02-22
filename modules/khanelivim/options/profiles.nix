@@ -197,6 +197,7 @@ in
         avante.enable = lib.mkForce false;
         codecompanion.enable = lib.mkForce false;
         opencode.enable = lib.mkForce false;
+        claudecode.enable = lib.mkForce false;
         copilot-lua.enable = lib.mkForce false;
         copilot-chat.enable = lib.mkForce false;
         copilot-lsp.enable = lib.mkForce false;
