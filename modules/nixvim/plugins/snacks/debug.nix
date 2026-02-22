@@ -48,7 +48,7 @@
       [
         {
           mode = "n";
-          key = "<leader>dR";
+          key = "<leader>dX";
           action = "<cmd>lua Snacks.debug.run()<CR>";
           options = {
             desc = "Run Buffer";
@@ -56,7 +56,7 @@
         }
         {
           mode = "x";
-          key = "<leader>dR";
+          key = "<leader>dX";
           action = "<cmd>lua Snacks.debug.run()<CR>";
           options = {
             desc = "Run Selection";
