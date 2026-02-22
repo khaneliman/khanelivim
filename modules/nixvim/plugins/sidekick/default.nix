@@ -3,6 +3,14 @@
   lib,
   ...
 }:
+let
+  aiPlugins = config.khanelivim.ai.plugins;
+  sidekickClaude = builtins.elem "claudecode" aiPlugins;
+  sidekickCopilot = builtins.elem "copilot" aiPlugins || builtins.elem "copilot-lsp" aiPlugins;
+  sidekickGemini = builtins.elem "codecompanion" aiPlugins || builtins.elem "avante" aiPlugins;
+  sidekickCodex = builtins.elem "codex" aiPlugins;
+  sidekickOpencode = builtins.elem "opencode" aiPlugins;
+in
 {
   config = {
     plugins = {
@@ -22,6 +30,8 @@
             ];
             desc = "Ask Prompt";
           }
+        ]
+        ++ lib.optionals sidekickClaude [
           {
             __unkeyed-1 = "<leader>asc";
             mode = [
@@ -30,6 +40,8 @@
             ];
             desc = "Claude Toggle";
           }
+        ]
+        ++ lib.optionals sidekickCopilot [
           {
             __unkeyed-1 = "<leader>asC";
             mode = [
@@ -38,6 +50,8 @@
             ];
             desc = "Copilot Toggle";
           }
+        ]
+        ++ lib.optionals sidekickGemini [
           {
             __unkeyed-1 = "<leader>asg";
             mode = [
@@ -46,6 +60,8 @@
             ];
             desc = "Gemini Toggle";
           }
+        ]
+        ++ lib.optionals sidekickOpencode [
           {
             __unkeyed-1 = "<leader>aso";
             mode = [
@@ -54,6 +70,8 @@
             ];
             desc = "Opencode Toggle";
           }
+        ]
+        ++ lib.optionals sidekickCodex [
           {
             __unkeyed-1 = "<leader>asx";
             mode = [
@@ -150,6 +168,8 @@
           action.__raw = "function() require('sidekick.cli').prompt() end";
           options.desc = "Ask Prompt";
         }
+      ]
+      ++ lib.optionals sidekickClaude [
         {
           mode = [
             "n"
@@ -159,6 +179,8 @@
           action.__raw = "function() require('sidekick.cli').toggle({ name = 'claude', focus = true }) end";
           options.desc = "Claude Toggle";
         }
+      ]
+      ++ lib.optionals sidekickCopilot [
         {
           mode = [
             "n"
@@ -168,6 +190,8 @@
           action.__raw = "function() require('sidekick.cli').toggle({ name = 'copilot', focus = true }) end";
           options.desc = "Copilot Toggle";
         }
+      ]
+      ++ lib.optionals sidekickGemini [
         {
           mode = [
             "n"
@@ -177,6 +201,8 @@
           action.__raw = "function() require('sidekick.cli').toggle({ name = 'gemini', focus = true }) end";
           options.desc = "Gemini Toggle";
         }
+      ]
+      ++ lib.optionals sidekickOpencode [
         {
           mode = [
             "n"
@@ -186,6 +212,8 @@
           action.__raw = "function() require('sidekick.cli').toggle({ name = 'opencode', focus = true }) end";
           options.desc = "Opencode Toggle";
         }
+      ]
+      ++ lib.optionals sidekickCodex [
         {
           mode = [
             "n"
