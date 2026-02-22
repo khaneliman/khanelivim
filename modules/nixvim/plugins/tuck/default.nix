@@ -22,7 +22,8 @@ in
   # TODO: Consider upstreaming this module to nixvim
   options.plugins.tuck = {
     enable = lib.mkEnableOption "tuck" // {
-      default = true;
+      # FIXME: bug collapses all folds randomly
+      # default = true;
     };
 
     package = lib.mkOption {
