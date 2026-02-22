@@ -229,9 +229,9 @@ in
                 "<leader>udd" = {
                   action.__raw = ''
                     function ()
-                      vim.b.disable_diagnostics = not vim.b.disable_diagnostics
-                      vim.diagnostic.enable(not vim.b.disable_diagnostics, { bufnr = 0 })
-                      vim.notify(string.format("Buffer Diagnostics %s", bool2str(not vim.b.disable_diagnostics), "info"))
+                      local is_enabled = not vim.diagnostic.is_enabled({ bufnr = 0 })
+                      vim.diagnostic.enable(is_enabled, { bufnr = 0 })
+                      vim.notify(string.format("Buffer Diagnostics %s", bool2str(is_enabled), "info"))
                     end'';
                   options = {
                     desc = "Buffer Diagnostics toggle";
@@ -241,9 +241,9 @@ in
                 "<leader>udD" = {
                   action.__raw = ''
                     function ()
-                      vim.g.disable_diagnostics = not vim.g.disable_diagnostics
-                      vim.diagnostic.enable(not vim.g.disable_diagnostics)
-                      vim.notify(string.format("Global Diagnostics %s", bool2str(not vim.g.disable_diagnostics), "info"))
+                      local is_enabled = not vim.diagnostic.is_enabled()
+                      vim.diagnostic.enable(is_enabled)
+                      vim.notify(string.format("Global Diagnostics %s", bool2str(is_enabled), "info"))
                     end'';
                   options = {
                     desc = "Global Diagnostics toggle";

@@ -27,7 +27,6 @@ in
     loaded_python_provider = 0; # Python 2
 
     # Custom toggles for UI features
-    disable_diagnostics = false;
     disable_autoformat = false;
     spell_enabled = true;
     colorizing_enabled = false;

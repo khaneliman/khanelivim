@@ -101,7 +101,6 @@
       pattern = "markdown";
       callback.__raw = ''
         function(args)
-          vim.b[args.buf].disable_diagnostics = true
           vim.diagnostic.enable(false, { bufnr = args.buf })
         end
       '';
