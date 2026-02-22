@@ -6,9 +6,10 @@
 }:
 let
   aiPlugins = config.khanelivim.ai.plugins;
+
   sidekickClaude = builtins.elem "claudecode" aiPlugins;
-  sidekickCopilot = builtins.elem "copilot" aiPlugins || builtins.elem "copilot-lsp" aiPlugins;
-  sidekickGemini = builtins.elem "codecompanion" aiPlugins || builtins.elem "avante" aiPlugins;
+  sidekickCopilot = builtins.elem "copilot" aiPlugins;
+  sidekickGemini = builtins.elem "gemini" aiPlugins;
   sidekickCodex = builtins.elem "codex" aiPlugins;
   sidekickOpencode = builtins.elem "opencode" aiPlugins;
 in

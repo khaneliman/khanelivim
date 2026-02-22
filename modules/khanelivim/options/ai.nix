@@ -10,6 +10,7 @@
           "codex"
           "copilot"
           "copilot-lsp"
+          "gemini"
           "opencode"
           "sidekick"
           "windsurf"
@@ -20,6 +21,7 @@
         "copilot"
         "copilot-lsp"
         "codex"
+        "gemini"
         "opencode"
         "sidekick"
       ];
