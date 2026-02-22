@@ -4,12 +4,12 @@
 }:
 vimUtils.buildVimPlugin {
   pname = "tuck.nvim";
-  version = "0-unstable-02-12-2026";
+  version = "0-unstable-02-21-2026";
 
   src = pkgs.fetchFromGitHub {
     owner = "nuvic";
     repo = "tuck.nvim";
-    rev = "758d2888c93aab61bd97b25dbacce509c3dcc30e";
-    hash = "sha256-HaNw/tFJev5ank1gQZkDraaWhZkz5YLwRAvipRCGzZE=";
+    rev = "a5a4f0e7eaea4c4303311f11b002a6a2c51a69d5";
+    hash = "sha256-e759w9pUfnm9gPlYeS23XeAmA5Tl3HpT9KLPtZYIns8=";
   };
 }
