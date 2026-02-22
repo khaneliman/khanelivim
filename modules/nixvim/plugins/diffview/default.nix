@@ -23,8 +23,12 @@
         key = "<leader>gdv";
         action.__raw = ''
           function()
-            vim.g.diffview_enabled = not vim.g.diffview_enabled
-            if vim.g.diffview_enabled then
+            local has_view = false
+            local ok, lib = pcall(require, "diffview.lib")
+            if ok then
+              has_view = lib.get_current_view() ~= nil
+            end
+            if has_view then
               vim.cmd('DiffviewClose')
             else
               vim.cmd('DiffviewOpen')
@@ -41,8 +45,12 @@
         key = "<leader>gdV";
         action.__raw = ''
           function()
-            vim.g.diffview_enabled = not vim.g.diffview_enabled
-            if vim.g.diffview_enabled then
+            local has_view = false
+            local ok, lib = pcall(require, "diffview.lib")
+            if ok then
+              has_view = lib.get_current_view() ~= nil
+            end
+            if has_view then
               vim.cmd('DiffviewClose')
             else
               vim.cmd('DiffviewOpen FETCH_HEAD')
@@ -62,8 +70,12 @@
         key = "<leader>gD";
         action.__raw = ''
           function()
-            vim.g.diffview_enabled = not vim.g.diffview_enabled
-            if vim.g.diffview_enabled then
+            local has_view = false
+            local ok, lib = pcall(require, "diffview.lib")
+            if ok then
+              has_view = lib.get_current_view() ~= nil
+            end
+            if has_view then
               vim.cmd('DiffviewClose')
             else
               vim.cmd('DiffviewOpen')
