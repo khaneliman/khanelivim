@@ -175,13 +175,8 @@
       key = "<leader>fC";
       action.__raw = ''
         function()
-          require(" fzf-lua ").files {
-            prompt_title = " Config
-          Files
-          ",
-            cwd = vim.fn.stdpath "
-          config
-          ",
+          require("fzf-lua").files {
+            cwd = vim.fn.stdpath("config"),
             follow = true,
           }
         end
