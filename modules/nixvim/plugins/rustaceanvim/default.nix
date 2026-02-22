@@ -106,7 +106,7 @@
     }
     {
       mode = "n";
-      key = "<leader>dR";
+      key = "<leader>RD";
       action = "<cmd>RustLsp debuggables<CR>";
       options.desc = "Rust Debuggables";
     }
