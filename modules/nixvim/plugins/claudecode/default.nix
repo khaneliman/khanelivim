@@ -86,7 +86,7 @@
         ];
       };
 
-      keymaps = [
+      keymaps = lib.mkIf config.plugins.claudecode.enable [
         {
           mode = "n";
           key = "<leader>act";

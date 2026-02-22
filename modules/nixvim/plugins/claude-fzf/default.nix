@@ -8,7 +8,7 @@
   # TODO: Consider upstreaming this module to nixvim
   options.plugins.claude-fzf = {
     enable = lib.mkEnableOption "claude-fzf" // {
-      default = true;
+      default = config.plugins.claudecode.enable;
     };
 
     package = lib.mkPackageOption pkgs.vimPlugins "claude-fzf" {
