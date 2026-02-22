@@ -6,6 +6,8 @@
 {
   plugins = {
     dap-view = {
+      # dap-view.nvim documentation
+      # See: https://github.com/igorlfs/nvim-dap-view
       enable = config.khanelivim.debugging.ui == "dap-view";
 
       settings = {

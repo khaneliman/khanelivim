@@ -2,6 +2,8 @@
 {
   plugins = {
     diffview = {
+      # diffview.nvim documentation
+      # See: https://github.com/sindrets/diffview.nvim
       enable = config.khanelivim.git.diffViewer == "diffview";
 
       lazyLoad = {

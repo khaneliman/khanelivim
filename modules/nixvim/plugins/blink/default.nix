@@ -11,6 +11,8 @@
   ];
 
   plugins.blink-cmp = {
+    # blink-cmp documentation
+    # See: https://cmp.saghen.dev/
     enable = config.khanelivim.completion.tool == "blink";
 
     lazyLoad.settings.event = [

@@ -5,6 +5,8 @@
   ...
 }:
 {
+  # git-worktree.nvim documentation
+  # See: https://github.com/ThePrimeagen/git-worktree.nvim
   extraConfigLua = lib.mkIf (lib.elem "git-worktree" config.khanelivim.git.integrations) ''
     local Hooks = require("git-worktree.hooks")
     local config = require('git-worktree.config')

@@ -1,6 +1,8 @@
 _: {
   plugins = {
     glance = {
+      # glance.nvim documentation
+      # See: https://github.com/DNLHC/glance.nvim
       enable = true;
 
       lazyLoad.settings.cmd = "Glance";

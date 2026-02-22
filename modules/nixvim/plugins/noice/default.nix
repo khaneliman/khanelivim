@@ -2,6 +2,8 @@
 {
   plugins = {
     noice = {
+      # noice.nvim documentation
+      # See: https://github.com/folke/noice.nvim
       enable =
         config.khanelivim.ui.commandline == "noice" || config.khanelivim.ui.notifications == "noice";
 

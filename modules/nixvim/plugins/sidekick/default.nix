@@ -17,6 +17,8 @@ in
   config = {
     plugins = {
       sidekick = {
+        # sidekick.nvim documentation
+        # See: https://github.com/folke/sidekick.nvim
         enable = builtins.elem "sidekick" config.khanelivim.ai.plugins;
 
         package = pkgs.vimPlugins.sidekick-nvim.overrideAttrs {

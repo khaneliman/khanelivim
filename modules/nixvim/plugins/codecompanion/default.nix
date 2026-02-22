@@ -6,6 +6,8 @@
 {
   plugins = {
     codecompanion = {
+      # codecompanion.nvim documentation
+      # See: https://github.com/olimorris/codecompanion.nvim
       enable = builtins.elem "codecompanion" config.khanelivim.ai.plugins;
 
       lazyLoad.settings = {

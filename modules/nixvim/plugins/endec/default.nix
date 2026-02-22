@@ -1,5 +1,7 @@
 {
   plugins.endec = {
+    # endec.nvim documentation
+    # See: https://github.com/ovk/endec.nvim
     enable = true;
 
     lazyLoad.settings.event = "DeferredUIEnter";

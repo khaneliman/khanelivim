@@ -27,6 +27,8 @@
 
   plugins = {
     dap = {
+      # nvim-dap documentation
+      # See: https://github.com/mfussenegger/nvim-dap
       enable = lib.elem "dap" config.khanelivim.debugging.adapters;
 
       lazyLoad.settings = {

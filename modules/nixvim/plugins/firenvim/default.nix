@@ -2,6 +2,8 @@
 {
   plugins = {
     firenvim = {
+      # firenvim documentation
+      # See: https://github.com/glacambre/firenvim
       enable = true;
       # NOTE: Call the installation for first time use
       # :call firenvim#install(0)

@@ -2,6 +2,8 @@
 {
   plugins = {
     clangd-extensions = {
+      # clangd-extensions.nvim documentation
+      # See: https://sr.ht/~chinmay/clangd_extensions.nvim
       lazyLoad.settings.cmd = [
         "ClangdAST"
         "ClangdTypeHierarchy"

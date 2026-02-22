@@ -26,6 +26,8 @@
       };
     in
     {
+      # bufferline.nvim documentation
+      # See: https://github.com/akinsho/bufferline.nvim
       enable = config.khanelivim.ui.bufferline == "bufferline";
 
       lazyLoad.settings.event = "DeferredUIEnter";

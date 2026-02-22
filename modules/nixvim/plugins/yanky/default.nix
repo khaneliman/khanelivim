@@ -130,6 +130,8 @@ in
 {
   plugins = {
     yanky = {
+      # yanky.nvim documentation
+      # See: https://github.com/gbprod/yanky.nvim
       enable = lib.elem "yanky" config.khanelivim.utilities.clipboard;
 
       lazyLoad = {

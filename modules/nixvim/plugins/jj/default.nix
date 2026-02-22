@@ -68,7 +68,11 @@ in
           snacks = { };
         };
       };
-      description = "Configuration for jj";
+      description = ''
+        Configuration for jj.
+
+        See <https://github.com/NicolasGB/jj.nvim>
+      '';
     };
   };
 

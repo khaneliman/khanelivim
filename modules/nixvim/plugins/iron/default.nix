@@ -26,6 +26,8 @@
 
   plugins = {
     iron = {
+      # iron.nvim documentation
+      # See: https://github.com/Vigemus/iron.nvim
       enable = true;
 
       lazyLoad.settings.cmd = [

@@ -1,6 +1,8 @@
 { lib, config, ... }:
 {
   plugins.precognition = {
+    # precognition.nvim documentation
+    # See: https://github.com/tris203/precognition.nvim
     enable = true;
 
     lazyLoad.settings.cmd = "Precognition";

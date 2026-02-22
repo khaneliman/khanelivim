@@ -2,6 +2,8 @@
 {
   plugins = {
     ccc = {
+      # ccc.nvim documentation
+      # See: https://github.com/uga-rosa/ccc.nvim
       enable = true;
 
       lazyLoad = {

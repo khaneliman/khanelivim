@@ -12,6 +12,8 @@
 
   plugins = {
     fzf-lua = {
+      # fzf-lua documentation
+      # See: https://github.com/ibhagwan/fzf-lua
       enable = config.khanelivim.picker.tool == "fzf";
       profile = "telescope";
 

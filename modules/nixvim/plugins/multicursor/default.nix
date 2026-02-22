@@ -8,6 +8,11 @@
   # TODO: Upstream module
   options.plugins.multicursor.enable = lib.mkEnableOption "multicursor" // {
     default = true;
+    description = ''
+      Enable multicursor.nvim.
+
+      See <https://github.com/jake-stewart/multicursor.nvim>
+    '';
   };
 
   config =

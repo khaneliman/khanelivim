@@ -4,6 +4,8 @@ let
 in
 {
   plugins.markdown-preview = {
+    # markdown-preview.nvim documentation
+    # See: https://github.com/iamcco/markdown-preview.nvim
     enable = isEnabled;
     # Put plugin in opt/ for lazy loading
     autoLoad = false;

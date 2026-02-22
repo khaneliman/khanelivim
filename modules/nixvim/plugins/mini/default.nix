@@ -27,6 +27,8 @@
     ./trailspace.nix
   ];
 
+  # mini.nvim documentation
+  # See: https://github.com/echasnovski/mini.nvim
   plugins = {
     mini-ai = {
       enable = lib.elem "mini-ai" config.khanelivim.editor.textObjects;

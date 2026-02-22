@@ -2,6 +2,8 @@
 {
   plugins = {
     neoconf = {
+      # neoconf.nvim documentation
+      # See: https://github.com/folke/neoconf.nvim
       enable = true;
       lazyLoad.settings.event = "BufReadPre";
     };

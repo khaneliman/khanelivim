@@ -7,6 +7,8 @@
 {
   plugins = {
     conform-nvim = {
+      # conform-nvim documentation
+      # See: https://github.com/stevearc/conform.nvim
       enable = true;
 
       autoInstall = {

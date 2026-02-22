@@ -10,6 +10,8 @@ in
   # :s/\s\+/\r/g
 
   plugins = {
+    # friendly-snippets documentation
+    # See: https://github.com/rafamadriz/friendly-snippets
     friendly-snippets.enable = true;
 
     mini-snippets.settings.snippets = lib.mkIf friendlyEnabled {

@@ -6,6 +6,8 @@
 {
   plugins = {
     dap-ui = {
+      # nvim-dap-ui documentation
+      # See: https://github.com/rcarriga/nvim-dap-ui
       enable = config.khanelivim.debugging.ui == "dap-ui";
 
       lazyLoad.settings = {

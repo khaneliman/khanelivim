@@ -7,6 +7,8 @@
 {
   plugins = {
     roslyn = {
+      # roslyn.nvim documentation
+      # See: https://github.com/seblyng/roslyn.nvim
       enable = config.khanelivim.lsp.csharp == "roslyn";
 
       lazyLoad.settings.ft = [

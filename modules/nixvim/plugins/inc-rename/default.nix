@@ -1,6 +1,8 @@
 { config, lib, ... }:
 {
   plugins.inc-rename = {
+    # inc-rename.nvim documentation
+    # See: https://github.com/smjonas/inc-rename.nvim
     enable = config.khanelivim.editor.rename == "inc-rename";
 
     lazyLoad.settings = {

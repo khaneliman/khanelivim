@@ -6,6 +6,8 @@
 {
   config = {
     plugins.unified = {
+      # unified.nvim documentation
+      # See: https://github.com/axkirillov/unified.nvim
       enable =
         config.khanelivim.git.diffViewer == "unified"
         || builtins.elem "unified" config.khanelivim.git.integrations;

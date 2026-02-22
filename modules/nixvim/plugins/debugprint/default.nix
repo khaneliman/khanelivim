@@ -2,6 +2,8 @@
 {
   plugins = {
     debugprint = {
+      # debugprint.nvim documentation
+      # See: https://github.com/andrewferrier/debugprint.nvim
       enable = lib.elem "debugprint" config.khanelivim.debugging.adapters;
 
       lazyLoad.settings = {

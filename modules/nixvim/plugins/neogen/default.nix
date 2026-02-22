@@ -2,6 +2,8 @@
 {
   plugins = {
     neogen = {
+      # neogen documentation
+      # See: https://github.com/danymat/neogen
       enable = true;
       lazyLoad.settings.cmd = "Neogen";
     };

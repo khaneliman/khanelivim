@@ -6,6 +6,8 @@
 {
   plugins = {
     treesitter-context = {
+      # nvim-treesitter-context documentation
+      # See: https://github.com/nvim-treesitter/nvim-treesitter-context
       inherit (config.plugins.treesitter) enable;
       lazyLoad.settings.event = [
         "BufReadPost"

@@ -2,6 +2,8 @@
 {
   plugins = {
     persistence = {
+      # persistence.nvim documentation
+      # See: https://github.com/folke/persistence.nvim
       enable = lib.elem "persistence" config.khanelivim.utilities.sessions;
 
       lazyLoad.settings.event = "BufReadPre";

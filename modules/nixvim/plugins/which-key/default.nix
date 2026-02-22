@@ -5,6 +5,8 @@
 }:
 {
   plugins.which-key = lib.mkIf (config.khanelivim.ui.keybindingHelp == "which-key") {
+    # which-key.nvim documentation
+    # See: https://github.com/folke/which-key.nvim
     enable = true;
 
     lazyLoad.settings.event = "DeferredUIEnter";

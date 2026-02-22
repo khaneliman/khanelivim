@@ -6,6 +6,8 @@ let
 in
 {
   plugins.todo-comments = {
+    # todo-comments.nvim documentation
+    # See: https://github.com/folke/todo-comments.nvim
     enable = lib.elem "todo-comments" config.khanelivim.text.patterns;
 
     lazyLoad = {

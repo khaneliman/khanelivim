@@ -12,6 +12,8 @@
 
   plugins = {
     neotest = {
+      # neotest documentation
+      # See: https://github.com/nvim-neotest/neotest
       enable = true;
       lazyLoad = {
         settings = {

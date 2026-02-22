@@ -7,6 +7,8 @@ in
 
   plugins = {
     hardtime = {
+      # hardtime.nvim documentation
+      # See: https://github.com/m4xshen/hardtime.nvim
       enable = true;
 
       # FIXME: lazy loading broken

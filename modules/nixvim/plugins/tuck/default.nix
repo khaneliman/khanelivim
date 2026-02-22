@@ -36,7 +36,11 @@ in
     settings = lib.mkOption {
       type = lib.types.attrsOf lib.types.anything;
       default = { };
-      description = "Configuration passed to `require('tuck').setup(...)`.";
+      description = ''
+        Configuration passed to `require('tuck').setup(...)`.
+
+        See <https://github.com/khaneliman/tuck.nvim>
+      '';
     };
   };
 

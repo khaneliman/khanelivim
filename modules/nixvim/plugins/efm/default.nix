@@ -1,5 +1,7 @@
 {
   plugins = {
+    # efm-langserver documentation
+    # See: https://github.com/mattn/efm-langserver
     lsp.servers.efm = {
       enable = false;
       extraOptions.init_options = {

@@ -2,6 +2,8 @@
 {
   plugins = {
     nvim-lightbulb = {
+      # nvim-lightbulb documentation
+      # See: https://github.com/kosayoda/nvim-lightbulb
       enable = true;
       package = pkgs.vimPlugins.nvim-lightbulb.overrideAttrs (_old: {
         patches = [

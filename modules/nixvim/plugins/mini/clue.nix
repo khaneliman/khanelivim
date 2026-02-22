@@ -72,6 +72,12 @@
           keys = "<C-w>";
         }
 
+        # mini.basics toggles
+        {
+          mode = "n";
+          keys = "\\";
+        }
+
         # `z` key
         {
           mode = "n";
@@ -88,7 +94,15 @@
           keys = "[";
         }
         {
+          mode = "x";
+          keys = "[";
+        }
+        {
           mode = "n";
+          keys = "]";
+        }
+        {
+          mode = "x";
           keys = "]";
         }
       ];
@@ -108,7 +122,10 @@
           __raw = "require('mini.clue').gen_clues.registers()";
         }
         {
-          __raw = "require('mini.clue').gen_clues.windows()";
+          __raw = "require('mini.clue').gen_clues.square_brackets()";
+        }
+        {
+          __raw = "require('mini.clue').gen_clues.windows({ submode_resize = true })";
         }
         {
           __raw = "require('mini.clue').gen_clues.z()";

@@ -11,6 +11,8 @@
 
   plugins = {
     faster = {
+      # faster.nvim documentation
+      # See: https://github.com/pteroctopus/faster.nvim
       enable = lib.elem "faster" config.khanelivim.performance.optimizer;
 
       lazyLoad.settings = {

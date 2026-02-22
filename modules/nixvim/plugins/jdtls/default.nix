@@ -7,6 +7,8 @@
 {
   plugins = {
     jdtls = {
+      # nvim-jdtls documentation
+      # See: https://github.com/mfussenegger/nvim-jdtls
       enable = config.khanelivim.lsp.java == "nvim-jdtls";
 
       lazyLoad.settings.ft = "java";

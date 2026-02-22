@@ -12,6 +12,8 @@
 
   plugins = {
     treesitter = {
+      # nvim-treesitter documentation
+      # See: https://github.com/nvim-treesitter/nvim-treesitter
       enable = true;
 
       folding.enable = true;

@@ -2,6 +2,8 @@
 {
   plugins = {
     otter = {
+      # otter.nvim documentation
+      # See: https://github.com/jmbuhr/otter.nvim
       inherit (config.plugins.treesitter) enable;
       autoActivate = false;
 

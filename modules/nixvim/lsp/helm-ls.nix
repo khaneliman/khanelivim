@@ -9,6 +9,8 @@
   ];
 
   lsp = {
+    # helm-ls documentation
+    # See: https://github.com/mrjosh/helm-ls
     servers = {
       helm_ls.enable = true;
     };

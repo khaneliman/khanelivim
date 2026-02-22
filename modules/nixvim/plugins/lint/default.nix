@@ -7,6 +7,8 @@
 {
   plugins = {
     lint = {
+      # nvim-lint documentation
+      # See: https://github.com/mfussenegger/nvim-lint
       enable = true;
 
       lazyLoad.settings.event = "DeferredUIEnter";

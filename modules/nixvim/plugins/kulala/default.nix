@@ -24,6 +24,8 @@
 
   plugins = {
     kulala = {
+      # kulala.nvim documentation
+      # See: https://github.com/mistweaverco/kulala.nvim
       enable = config.khanelivim.editor.httpClient == "kulala";
 
       lazyLoad.settings = {

@@ -1,4 +1,6 @@
 {
+  # harper-ls documentation
+  # See: https://github.com/Automattic/harper
   lsp.servers.harper_ls = {
     enable = true;
     config = {

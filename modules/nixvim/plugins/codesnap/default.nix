@@ -7,6 +7,8 @@
 {
   plugins = {
     codesnap = {
+      # codesnap.nvim documentation
+      # See: https://github.com/mistricky/codesnap.nvim
       enable = lib.elem "codesnap" config.khanelivim.utilities.screenshots;
       package = pkgs.vimPlugins.codesnap-nvim;
 

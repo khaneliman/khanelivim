@@ -3,6 +3,8 @@
   config = {
     plugins = {
       img-clip = {
+        # img-clip.nvim documentation
+        # See: https://github.com/HakonHarnes/img-clip.nvim
         enable = lib.elem "img-clip" config.khanelivim.utilities.clipboard;
         lazyLoad.settings = {
           event = [ "DeferredUIEnter" ];

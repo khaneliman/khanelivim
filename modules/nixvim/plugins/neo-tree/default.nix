@@ -2,6 +2,8 @@
 {
   # TODO:https://github.com/GustavEikaas/easy-dotnet.nvim?tab=readme-ov-file#integrating-with-neo-tree
   plugins.neo-tree = {
+    # neo-tree.nvim documentation
+    # See: https://github.com/nvim-neo-tree/neo-tree.nvim
     enable = config.khanelivim.editor.fileManager == "neo-tree";
 
     lazyLoad.settings.cmd = [ "Neotree" ];

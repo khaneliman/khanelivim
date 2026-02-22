@@ -2,6 +2,8 @@
 {
   plugins = {
     fastaction = {
+      # fastaction.nvim documentation
+      # See: https://github.com/Chaitanyabsprip/fastaction.nvim
       enable = true;
 
       # Rely on lzn-auto-require or just setup keymaps in here?

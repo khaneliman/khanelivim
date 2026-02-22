@@ -5,6 +5,8 @@
   ...
 }:
 {
+  # clangd documentation
+  # See: https://clangd.llvm.org/
   lsp.servers.clangd = {
     enable = config.khanelivim.lsp.cpp == "clangd";
 

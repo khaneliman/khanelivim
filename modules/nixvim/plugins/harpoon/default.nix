@@ -2,6 +2,8 @@
 {
   plugins = {
     harpoon = {
+      # harpoon documentation
+      # See: https://github.com/ThePrimeagen/harpoon
       enable = true;
 
       lazyLoad.settings.keys = [

@@ -5,6 +5,8 @@
   ...
 }:
 {
+  # vs-tasks.nvim documentation
+  # See: https://github.com/EthanJWright/vs-tasks.nvim
   extraPlugins = lib.mkIf (config.khanelivim.tasks.tool == "vs-tasks") [
     pkgs.vimPlugins.vs-tasks-nvim
   ];

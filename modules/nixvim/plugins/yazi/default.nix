@@ -2,6 +2,8 @@
 {
   plugins = {
     yazi = {
+      # yazi.nvim documentation
+      # See: https://github.com/mikavilpas/yazi.nvim
       enable = config.khanelivim.editor.fileManager == "yazi";
 
       lazyLoad = {

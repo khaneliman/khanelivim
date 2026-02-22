@@ -21,6 +21,8 @@ let
 in
 {
   plugins.lualine = {
+    # lualine.nvim documentation
+    # See: https://github.com/nvim-lualine/lualine.nvim
     enable = config.khanelivim.ui.statusline == "lualine";
 
     lazyLoad.settings = {
