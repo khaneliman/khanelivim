@@ -120,7 +120,6 @@
             config.plugins.avante.enable
             || config.plugins.claudecode.enable
             || config.plugins.codecompanion.enable
-            || config.plugins.copilot-chat.enable
           )
           [
             {

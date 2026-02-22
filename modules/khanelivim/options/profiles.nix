@@ -199,7 +199,6 @@ in
         opencode.enable = lib.mkForce false;
         claudecode.enable = lib.mkForce false;
         copilot-lua.enable = lib.mkForce false;
-        copilot-chat.enable = lib.mkForce false;
         copilot-lsp.enable = lib.mkForce false;
       };
     })
