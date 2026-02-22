@@ -25,10 +25,10 @@
               __unkeyed-1 = "<leader>dn";
               __unkeyed-3.__raw = ''
                 function()
-                  require("neotest").run.run({strategy = "dap"})
+                  require("neotest").run.run_last({strategy = "dap"})
                 end
               '';
-              desc = "Neotest Debug";
+              desc = "Debug (Last)";
             }
             {
               __unkeyed-1 = "<leader>ta";
@@ -67,6 +67,44 @@
                 end
               '';
               desc = "Run (File)";
+            }
+            {
+              __unkeyed-1 = "<leader>tl";
+              __unkeyed-3.__raw = ''
+                function()
+                  require("neotest").run.run_last()
+                end
+              '';
+              desc = "Run (Last)";
+            }
+            {
+              __unkeyed-1 = "<leader>tf";
+              __unkeyed-3.__raw = ''
+                function()
+                  local neotest = require("neotest")
+                  neotest.jump.next({ status = "failed" })
+                  neotest.run.run()
+                end
+              '';
+              desc = "Run (Next Failed)";
+            }
+            {
+              __unkeyed-1 = "]n";
+              __unkeyed-3.__raw = ''
+                function()
+                  require("neotest").jump.next({ status = "failed" })
+                end
+              '';
+              desc = "Next Failed Test";
+            }
+            {
+              __unkeyed-1 = "[n";
+              __unkeyed-3.__raw = ''
+                function()
+                  require("neotest").jump.prev({ status = "failed" })
+                end
+              '';
+              desc = "Previous Failed Test";
             }
             {
               __unkeyed-1 = "<leader>ts";
@@ -131,11 +169,11 @@
       key = "<leader>dn";
       action.__raw = ''
         function()
-          require("neotest").run.run({strategy = "dap"})
+          require("neotest").run.run_last({strategy = "dap"})
         end
       '';
       options = {
-        desc = "Neotest Debug";
+        desc = "Debug (Last)";
       };
     }
     {
@@ -192,6 +230,56 @@
       '';
       options = {
         desc = "Run (File)";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>tl";
+      action.__raw = ''
+        function()
+          require("neotest").run.run_last()
+        end
+      '';
+      options = {
+        desc = "Run (Last)";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>tf";
+      action.__raw = ''
+        function()
+          local neotest = require("neotest")
+          neotest.jump.next({ status = "failed" })
+          neotest.run.run()
+        end
+      '';
+      options = {
+        desc = "Run (Next Failed)";
+      };
+    }
+    {
+      mode = "n";
+      key = "]n";
+      action.__raw = ''
+        function()
+          require("neotest").jump.next({ status = "failed" })
+        end
+      '';
+      options = {
+        desc = "Next Failed Test";
+      };
+    }
+    {
+      mode = "n";
+      key = "[n";
+      action.__raw = ''
+        function()
+          require("neotest").jump.prev({ status = "failed" })
+        end
+      '';
+      options = {
+        desc = "Previous Failed Test";
       };
     }
     {
