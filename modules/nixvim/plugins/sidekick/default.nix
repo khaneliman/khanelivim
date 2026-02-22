@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 let
@@ -16,6 +17,17 @@ in
     plugins = {
       sidekick = {
         enable = builtins.elem "sidekick" config.khanelivim.ai.plugins;
+
+        package = pkgs.vimPlugins.sidekick-nvim.overrideAttrs {
+          patches = [
+            # TODO: remove after pr merged
+            (pkgs.fetchpatch2 {
+              name = "codex";
+              url = "https://github.com/folke/sidekick.nvim/pull/257.patch?full_index=1";
+              hash = "sha256-Ut2GOodp4DpXwFVeyMw68y6r/R2hEVzUZKe39Uuzz1o=";
+            })
+          ];
+        };
 
         lazyLoad.settings.keys = [
           {
