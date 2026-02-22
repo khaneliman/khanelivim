@@ -74,7 +74,21 @@ in
       # | A | B | C                             X | Y | Z |
       # +-------------------------------------------------+
       sections = {
-        lualine_a = [ "mode" ];
+        lualine_a = [
+          "mode"
+          {
+            __unkeyed-1.__raw = ''
+              function()
+                return "[${config.khanelivim.profile}]"
+              end
+            '';
+            color = {
+              fg = "#11111b";
+              bg = "#a6e3a1";
+              gui = "bold";
+            };
+          }
+        ];
         lualine_b = [ "branch" ];
         lualine_c = [
           "filename"
