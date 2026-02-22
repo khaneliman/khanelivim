@@ -104,6 +104,13 @@
             desc = "Step Over";
           }
           {
+            __unkeyed-1 = "<leader>dR";
+            __unkeyed-2.__raw = ''
+              function() require('dap').restart() end
+            '';
+            desc = "Restart Debugging";
+          }
+          {
             __unkeyed-1 = "<leader>dp";
             __unkeyed-2.__raw = ''
               function() require('dap').pause() end
@@ -126,6 +133,48 @@
           }
           {
             __unkeyed-1 = "<leader>dt";
+            __unkeyed-2.__raw = ''
+              function() require('dap').terminate() end
+            '';
+            desc = "Terminate Debugging";
+          }
+          {
+            __unkeyed-1 = "<F5>";
+            __unkeyed-2.__raw = ''
+              function() require('dap').continue() end
+            '';
+            desc = "Continue Debugging (Start)";
+          }
+          {
+            __unkeyed-1 = "<F9>";
+            __unkeyed-2.__raw = ''
+              function() require('dap').toggle_breakpoint() end
+            '';
+            desc = "Breakpoint toggle";
+          }
+          {
+            __unkeyed-1 = "<F10>";
+            __unkeyed-2.__raw = ''
+              function() require('dap').step_over() end
+            '';
+            desc = "Step Over";
+          }
+          {
+            __unkeyed-1 = "<F11>";
+            __unkeyed-2.__raw = ''
+              function() require('dap').step_into() end
+            '';
+            desc = "Step Into";
+          }
+          {
+            __unkeyed-1 = "<F12>";
+            __unkeyed-2.__raw = ''
+              function() require('dap').step_out() end
+            '';
+            desc = "Step Out";
+          }
+          {
+            __unkeyed-1 = "<S-F5>";
             __unkeyed-2.__raw = ''
               function() require('dap').terminate() end
             '';
@@ -336,7 +385,14 @@
     {
       mode = "n";
       key = "<leader>do";
-      # action = "<CMD>DapStepOut<CR>";
+      action = "<CMD>lua require('dap').step_over()<CR>";
+      options = {
+        desc = "Step Over";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>dO";
       action = "<CMD>lua require('dap').step_out()<CR>";
       options = {
         desc = "Step Out";
@@ -344,11 +400,10 @@
     }
     {
       mode = "n";
-      key = "<leader>dO";
-      # action = "<CMD>DapStepOver<CR>";
-      action = "<CMD>lua require('dap').step_over()<CR>";
+      key = "<leader>dR";
+      action = "<CMD>lua require('dap').restart()<CR>";
       options = {
-        desc = "Step Over";
+        desc = "Restart Debugging";
       };
     }
     {
@@ -380,6 +435,54 @@
       mode = "n";
       key = "<leader>dt";
       # action = "<CMD>DapTerminate<CR>";
+      action = "<CMD>lua require('dap').terminate()<CR>";
+      options = {
+        desc = "Terminate Debugging";
+      };
+    }
+    {
+      mode = "n";
+      key = "<F5>";
+      action = "<CMD>lua require('dap').continue()<CR>";
+      options = {
+        desc = "Continue Debugging (Start)";
+      };
+    }
+    {
+      mode = "n";
+      key = "<F9>";
+      action = "<CMD>lua require('dap').toggle_breakpoint()<CR>";
+      options = {
+        desc = "Breakpoint toggle";
+      };
+    }
+    {
+      mode = "n";
+      key = "<F10>";
+      action = "<CMD>lua require('dap').step_over()<CR>";
+      options = {
+        desc = "Step Over";
+      };
+    }
+    {
+      mode = "n";
+      key = "<F11>";
+      action = "<CMD>lua require('dap').step_into()<CR>";
+      options = {
+        desc = "Step Into";
+      };
+    }
+    {
+      mode = "n";
+      key = "<F12>";
+      action = "<CMD>lua require('dap').step_out()<CR>";
+      options = {
+        desc = "Step Out";
+      };
+    }
+    {
+      mode = "n";
+      key = "<S-F5>";
       action = "<CMD>lua require('dap').terminate()<CR>";
       options = {
         desc = "Terminate Debugging";
