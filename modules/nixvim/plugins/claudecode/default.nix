@@ -30,7 +30,11 @@
           open_in_current_tab = true;
         };
       };
-      description = "Configuration for claudecode";
+      description = ''
+        Configuration for claudecode.
+
+        See <https://github.com/coder/claudecode.nvim>
+      '';
     };
   };
 

@@ -6,6 +6,8 @@
 {
   plugins = {
     opencode = {
+      # opencode.nvim documentation
+      # See: https://github.com/sudo-tee/opencode.nvim
       enable = builtins.elem "opencode" config.khanelivim.ai.plugins;
 
       settings = {

@@ -14,6 +14,8 @@ in
 {
   config = {
     plugins.patterns = {
+      # patterns.nvim documentation
+      # See: https://github.com/OXY2DEV/patterns.nvim
       enable = true;
 
       lazyLoad.settings.cmd = [ "Patterns" ];

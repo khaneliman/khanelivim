@@ -2,6 +2,8 @@
 {
   plugins = {
     undotree = {
+      # undotree documentation
+      # See: https://github.com/mbbill/undotree
       enable = true;
       # Put plugin in opt/ for lazy loading
       autoLoad = false;

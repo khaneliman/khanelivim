@@ -27,6 +27,8 @@
 
   plugins = {
     neorg = {
+      # neorg documentation
+      # See: https://github.com/nvim-neorg/neorg
       enable = true;
 
       lazyLoad.settings = {

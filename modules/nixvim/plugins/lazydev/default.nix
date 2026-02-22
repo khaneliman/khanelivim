@@ -2,6 +2,8 @@
 {
   plugins = {
     lazydev = {
+      # lazydev.nvim documentation
+      # See: https://github.com/folke/lazydev.nvim
       enable = true;
 
       lazyLoad.settings.ft = [

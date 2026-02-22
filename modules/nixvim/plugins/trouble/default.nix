@@ -2,6 +2,8 @@
 {
   plugins = {
     trouble = {
+      # trouble.nvim documentation
+      # See: https://github.com/folke/trouble.nvim
       enable = true;
 
       lazyLoad.settings.cmd = [ "Trouble" ];

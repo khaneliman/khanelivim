@@ -7,6 +7,8 @@
 {
   plugins = {
     easy-dotnet = {
+      # easy-dotnet.nvim documentation
+      # See: https://github.com/GustavEikaas/easy-dotnet.nvim
       enable = true;
 
       lazyLoad.settings.ft = [

@@ -1,4 +1,6 @@
 {
+  # typos-lsp documentation
+  # See: https://github.com/tekumara/typos-lsp
   lsp.servers.typos_lsp = {
     enable = true;
     config = {

@@ -27,6 +27,8 @@
   ];
 
   plugins = {
+    # snacks.nvim documentation
+    # See: https://github.com/folke/snacks.nvim
     snacks = {
       enable = true;
 

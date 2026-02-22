@@ -1,6 +1,8 @@
 { config, lib, ... }:
 {
   plugins.leetcode = {
+    # leetcode.nvim documentation
+    # See: https://github.com/kawre/leetcode.nvim
     enable = true;
 
     lazyLoad.settings = {

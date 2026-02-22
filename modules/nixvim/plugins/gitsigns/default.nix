@@ -2,6 +2,8 @@
 {
   plugins = {
     gitsigns = {
+      # gitsigns documentation
+      # See: https://github.com/lewis6991/gitsigns.nvim
       enable = lib.elem "gitsigns" config.khanelivim.git.integrations;
 
       lazyLoad.settings.event = [

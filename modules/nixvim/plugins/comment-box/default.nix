@@ -2,6 +2,8 @@
 {
   plugins = {
     comment-box = {
+      # comment-box.nvim documentation
+      # See: https://github.com/LudoPinelli/comment-box.nvim
       enable = lib.elem "comment-box" config.khanelivim.text.comments;
 
       lazyLoad = {

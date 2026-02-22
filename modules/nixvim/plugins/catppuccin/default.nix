@@ -63,6 +63,8 @@
   };
 
   colorschemes.catppuccin = {
+    # Catppuccin documentation
+    # See: https://github.com/catppuccin/nvim
     enable = config.khanelivim.ui.theme == "catppuccin";
 
     lazyLoad.enable = config.plugins.lz-n.enable;

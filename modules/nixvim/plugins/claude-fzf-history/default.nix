@@ -30,7 +30,11 @@
 
         logging.level = "WARN";
       };
-      description = "Configuration for claude-fzf-history";
+      description = ''
+        Configuration for claude-fzf-history.
+
+        See <https://github.com/pittcat/claude-fzf-history.nvim>
+      '';
     };
   };
 

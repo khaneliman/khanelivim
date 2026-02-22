@@ -5,6 +5,8 @@
 }:
 {
   plugins.codediff = {
+    # codediff.nvim documentation
+    # See: https://github.com/esmuellert/codediff.nvim
     enable =
       config.khanelivim.git.diffViewer == "codediff"
       || builtins.elem "codediff" config.khanelivim.git.integrations;

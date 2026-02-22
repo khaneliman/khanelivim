@@ -8,6 +8,8 @@
 {
   plugins = {
     git-conflict = {
+      # git-conflict.nvim documentation
+      # See: https://github.com/akinsho/git-conflict.nvim
       enable = lib.elem "git-conflict" config.khanelivim.git.integrations;
       package = self.packages.${system}.git-conflict;
 

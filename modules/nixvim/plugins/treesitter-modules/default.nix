@@ -28,7 +28,11 @@
           };
         };
       };
-      description = "Configuration for treesitter-modules";
+      description = ''
+        Configuration for treesitter-modules.
+
+        See <https://github.com/nvim-treesitter/nvim-treesitter>
+      '';
     };
   };
 

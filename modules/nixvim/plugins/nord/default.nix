@@ -65,6 +65,8 @@
   };
 
   colorschemes.nord = {
+    # nord.nvim documentation
+    # See: https://github.com/shaunsingh/nord.nvim
     enable = config.khanelivim.ui.theme == "nord";
 
     lazyLoad.enable = config.plugins.lz-n.enable;

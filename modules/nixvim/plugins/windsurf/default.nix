@@ -7,6 +7,8 @@
 {
   plugins = {
     windsurf-nvim = {
+      # windsurf.nvim documentation
+      # See: https://github.com/Exafunction/windsurf.nvim
       enable = builtins.elem "windsurf" config.khanelivim.ai.plugins;
 
       settings = {

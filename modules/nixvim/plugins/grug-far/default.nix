@@ -2,6 +2,8 @@
 {
   plugins = {
     grug-far = {
+      # grug-far.nvim documentation
+      # See: https://github.com/MagicDuck/grug-far.nvim
       enable = config.khanelivim.editor.search == "grug-far";
       lazyLoad = {
         settings = {

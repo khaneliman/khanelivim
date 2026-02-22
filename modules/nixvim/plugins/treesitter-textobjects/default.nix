@@ -6,6 +6,8 @@ let
 in
 {
   plugins.treesitter-textobjects = {
+    # nvim-treesitter-textobjects documentation
+    # See: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
     enable = lib.elem "treesitter-textobjects" config.khanelivim.editor.textObjects;
 
     settings = {

@@ -2,6 +2,8 @@
 {
   plugins = {
     typescript-tools = {
+      # typescript-tools.nvim documentation
+      # See: https://github.com/pmizio/typescript-tools.nvim
       enable = config.khanelivim.lsp.typescript == "typescript-tools";
 
       lazyLoad.settings.ft = [

@@ -15,6 +15,8 @@ in
 {
   plugins = {
     glow = {
+      # glow.nvim documentation
+      # See: https://github.com/ellisonleao/glow.nvim
       enable = lib.elem "glow" config.khanelivim.documentation.viewers;
 
       lazyLoad.settings.ft = "markdown";

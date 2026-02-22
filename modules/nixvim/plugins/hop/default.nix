@@ -2,6 +2,8 @@
 {
   plugins = {
     hop = {
+      # hop.nvim documentation
+      # See: https://github.com/smoka7/hop.nvim
       enable = config.khanelivim.editor.motion == "hop";
     };
   };

@@ -1,6 +1,8 @@
 { config, lib, ... }:
 {
   plugins.ts-comments = {
+    # ts-comments.nvim documentation
+    # See: https://github.com/folke/ts-comments.nvim
     enable = lib.elem "ts-comments" config.khanelivim.text.comments;
 
     lazyLoad.settings.event = "DeferredUIEnter";

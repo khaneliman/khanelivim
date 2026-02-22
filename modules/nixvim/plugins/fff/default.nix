@@ -1,6 +1,8 @@
 { config, lib, ... }:
 {
   plugins.fff = {
+    # fff.nvim documentation
+    # See: https://github.com/dmtrKovalenko/fff.nvim
     enable = true;
 
     # FIXME: commands don't filter correctly with lazy loading

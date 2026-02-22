@@ -18,7 +18,11 @@
     settings = lib.mkOption {
       type = lib.types.attrsOf lib.types.anything;
       default = { };
-      description = "Configuration for tuis";
+      description = ''
+        Configuration for tuis.
+
+        See <https://github.com/khaneliman/tuis.nvim>
+      '';
     };
   };
 

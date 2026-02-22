@@ -5,6 +5,8 @@
   ...
 }:
 {
+  # nixd documentation
+  # See: https://github.com/nix-community/nixd
   lsp.servers.nixd = {
     enable = config.khanelivim.lsp.nix == "nixd";
 

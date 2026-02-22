@@ -1,5 +1,7 @@
 _: {
   plugins.package-info = {
+    # package-info.nvim documentation
+    # See: https://github.com/vuki656/package-info.nvim
     enable = true;
 
     lazyLoad.settings = {

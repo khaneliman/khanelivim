@@ -6,6 +6,8 @@
 {
   plugins = {
     devdocs = {
+      # devdocs.nvim documentation
+      # See: https://github.com/luckasRanarison/nvim-devdocs
       enable = lib.elem "devdocs" config.khanelivim.documentation.viewers;
 
       lazyLoad.settings.cmd = [

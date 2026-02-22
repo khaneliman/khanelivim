@@ -2,6 +2,8 @@
 {
   plugins.markview =
     let
+      # markview.nvim documentation
+      # See: https://github.com/OXY2DEV/markview.nvim
       filetypes = [
         "Avante"
         "codecompanion"

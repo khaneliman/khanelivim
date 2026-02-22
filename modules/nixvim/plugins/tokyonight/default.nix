@@ -65,6 +65,8 @@
   };
 
   colorschemes.tokyonight = {
+    # tokyonight.nvim documentation
+    # See: https://github.com/folke/tokyonight.nvim
     enable = config.khanelivim.ui.theme == "tokyonight";
 
     lazyLoad.enable = config.plugins.lz-n.enable;

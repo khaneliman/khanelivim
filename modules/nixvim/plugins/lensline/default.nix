@@ -6,6 +6,8 @@
 {
   config = {
     plugins.lensline = {
+      # lensline.nvim documentation
+      # See: https://github.com/oribarilan/lensline.nvim
       enable = true;
 
       lazyLoad.settings.event = [

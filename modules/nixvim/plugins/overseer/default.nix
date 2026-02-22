@@ -2,6 +2,8 @@
 {
   plugins = {
     overseer = {
+      # overseer.nvim documentation
+      # See: https://github.com/stevearc/overseer.nvim
       enable = config.khanelivim.tasks.tool == "overseer";
 
       lazyLoad.settings.cmd = [

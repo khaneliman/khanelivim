@@ -5,6 +5,8 @@ in
 {
   plugins = {
     gitignore = {
+      # gitignore.nvim documentation
+      # See: https://github.com/wintermute-cell/gitignore.nvim
       enable = true;
 
       lazyLoad.settings = {

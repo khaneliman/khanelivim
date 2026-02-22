@@ -2,6 +2,8 @@
 {
   plugins = {
     refactoring = {
+      # refactoring.nvim documentation
+      # See: https://github.com/ThePrimeagen/refactoring.nvim
       enable = true;
 
       settings = {

@@ -6,6 +6,8 @@
 {
   plugins = {
     avante = {
+      # avante.nvim documentation
+      # See: https://github.com/yetone/avante.nvim
       enable = builtins.elem "avante" config.khanelivim.ai.plugins;
 
       lazyLoad.settings.event = [ "DeferredUIEnter" ];
