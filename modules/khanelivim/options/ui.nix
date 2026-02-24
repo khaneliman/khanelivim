@@ -95,6 +95,18 @@
       description = "Rename popup UI provider to use";
     };
 
+    signatureHelp = lib.mkOption {
+      type = lib.types.nullOr (
+        lib.types.enum [
+          "blink"
+          "noice"
+          "lsp-signature"
+        ]
+      );
+      default = "blink";
+      description = "LSP signature help UI provider to use (mutually exclusive)";
+    };
+
     statusColumn = lib.mkOption {
       type = lib.types.nullOr (
         lib.types.enum [

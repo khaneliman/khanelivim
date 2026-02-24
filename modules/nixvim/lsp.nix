@@ -214,7 +214,8 @@
 
   plugins = {
     lsp-format.enable = !config.plugins.conform-nvim.enable && config.plugins.lsp.enable;
-    lsp-signature.enable = config.plugins.lsp.enable;
+    lsp-signature.enable =
+      config.plugins.lsp.enable && config.khanelivim.ui.signatureHelp == "lsp-signature";
 
     which-key.settings.spec = [
       {

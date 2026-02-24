@@ -132,8 +132,11 @@ in
     pumheight = 10; # Max popup menu items
     infercase = true;
     completeopt = [
+      "menu"
       "menuone"
       "noselect"
+    ]
+    ++ lib.optionals (config.khanelivim.completion.tool != "blink") [
       "popup"
     ]; # Native completion options
 

@@ -253,7 +253,7 @@
       };
 
       signature = {
-        enabled = true;
+        enabled = config.khanelivim.ui.signatureHelp == "blink";
         window.border = "rounded";
       };
 

@@ -83,7 +83,7 @@
           };
 
           progress.enabled = true;
-          signature.enabled = !config.plugins.lsp-signature.enable;
+          signature.enabled = config.khanelivim.ui.signatureHelp == "noice";
         };
 
         popupmenu.backend = "nui";
