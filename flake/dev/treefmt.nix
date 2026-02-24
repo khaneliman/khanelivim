@@ -27,7 +27,8 @@
             enable = true;
           };
           deno = {
-            enable = true;
+            # FIXME: deno_fmt is currently broken
+            # enable = true;
             # Using biome for these
             excludes = [
               "*.ts"

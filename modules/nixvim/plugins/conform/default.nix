@@ -111,7 +111,8 @@
           http = [ "kulala-fmt" ];
           kdl = [ "kdlfmt" ];
           lua = [ "stylua" ];
-          markdown = [ "deno_fmt" ];
+          # FIXME: deno_fmt is currently broken
+          # markdown = [ "deno_fmt" ];
           nix = [ "nixfmt" ];
           python = [
             "isort"

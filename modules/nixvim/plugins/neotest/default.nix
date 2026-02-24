@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   self,
   system,
   ...
@@ -129,7 +130,8 @@
 
       adapters = lib.mkIf (config.plugins.treesitter.enable && config.plugins.neotest.enable) {
         bash.enable = true;
-        deno.enable = true;
+        # FIXME: deno_fmt is currently broken
+        # deno.enable = true;
         dotnet = {
           enable = true;
 
