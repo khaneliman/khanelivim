@@ -1,12 +1,9 @@
 {
   inputs,
   lib,
+  self,
   ...
 }:
-let
-  overlaysConfig = import ../overlays.nix { inherit inputs lib; };
-  allOverlays = lib.attrValues overlaysConfig.flake.overlays;
-in
 {
   imports = [
     ./devshell.nix
@@ -20,8 +17,8 @@ in
       _module.args.pkgs = lib.mkDefault (
         import inputs.nixpkgs {
           inherit system;
-          overlays = allOverlays;
-          config = { };
+          overlays = lib.attrValues self.overlays;
+          config.allowUnfree = true;
         }
       );
     };

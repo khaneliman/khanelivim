@@ -24,6 +24,8 @@
       sharedNixpkgs = import inputs.nixpkgs {
         inherit system;
         config = {
+          # Keep this aligned with modules/nixvim/default.nix semantics while
+          # using externally provided nixpkgs.pkgs for eval deduplication.
           allowAliases = false;
           allowUnfree = true;
         };
