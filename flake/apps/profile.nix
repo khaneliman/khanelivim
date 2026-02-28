@@ -37,22 +37,20 @@ _: {
                     return baseline_path
 
 
-                def extract_profile_name(package_path):
-                    """Extract profile name from package path or flake reference"""
-                    # Handle flake references like .#minimal, .#basic, etc.
-                    if package_path.startswith(".#"):
-                        name = package_path[2:]
-                        # Map known names to profile names
-                        if name in ["minimal", "basic", "standard"]:
-                            return name
-                        return "default"
-
-                    # Handle store paths like /nix/store/...-khanelivim-minimal/...
-                    path_str = str(package_path)
-                    for profile in ["minimal", "basic", "standard"]:
-                        if f"-{profile}" in path_str or f"/{profile}/" in path_str:
-                            return profile
-                    return "default"
+                def build_command_for_profile(profile):
+                    """Build command for a profile without requiring .#profile attrs"""
+                    if profile == "default":
+                        return "nix build --no-link --print-out-paths .#default"
+                    expr = (
+                        "let f = builtins.getFlake (toString ./.); "
+                        "in (f.lib.mkNixvimPackage { "
+                        f"system = builtins.currentSystem; profile = \"{profile}\"; "
+                        "})"
+                    )
+                    return (
+                        "nix build --impure --no-link --print-out-paths --expr "
+                        f"'{expr}'"
+                    )
 
 
                 def run_command(cmd, env=None):
@@ -76,14 +74,16 @@ _: {
                         return None
 
 
-                def build_nvim(package=".#default"):
+                def build_nvim(profile="default", package=None):
                     """Build nixvim and return path to nvim binary"""
-                    profile = extract_profile_name(package)
                     profile_label = f" ({profile})" if profile != "default" else ""
                     console.print(f"[blue]Building khanelivim{profile_label}...[/blue]")
-                    nixvim_path = run_command(
-                        f"nix build --no-link --print-out-paths {package}"
-                    )
+                    if package:
+                        nixvim_path = run_command(
+                            f"nix build --no-link --print-out-paths {package}"
+                        )
+                    else:
+                        nixvim_path = run_command(build_command_for_profile(profile))
                     if not nixvim_path:
                         console.print("[red]Failed to build nixvim[/red]")
                         sys.exit(1)
@@ -373,10 +373,16 @@ _: {
                         help="Profiling event (default: ui, uses VimEnter)",
                     )
                     parser.add_argument(
+                        "--profile",
+                        choices=["default", "minimal", "basic", "standard", "debug"],
+                        default="default",
+                        help="Profile preset to build and profile (default: default)",
+                    )
+                    parser.add_argument(
                         "--package",
-                        default=".#default",
-                        help="Flake package to profile (default: .#default). "
-                             "Use .#minimal, .#basic, .#standard for profile variants.",
+                        default=None,
+                        help="Optional explicit flake package ref to profile. "
+                             "Overrides --profile when provided.",
                     )
                     parser.add_argument(
                         "--output",
@@ -407,7 +413,13 @@ _: {
                     runs_dir.mkdir(exist_ok=True)
 
                     # Build nvim
-                    nvim_bin, profile = build_nvim(args.package)
+                    selected_profile = args.profile
+                    if args.package:
+                        selected_profile = "default"
+                    nvim_bin, profile = build_nvim(
+                        profile=selected_profile,
+                        package=args.package,
+                    )
                     console.print(f"[green]Built:[/green] {nvim_bin}")
                     console.print(f"[blue]Profile:[/blue] {profile}")
 
@@ -513,7 +525,7 @@ _: {
                             console.print(
                                 f"[yellow]No baseline found for profile "
                                 f"'{profile}' event '{args.event}'. "
-                                f"Run with --baseline --package {args.package} "
+                                f"Run with --baseline --profile {profile} "
                                 f"--event {args.event} first.[/yellow]"
                             )
 

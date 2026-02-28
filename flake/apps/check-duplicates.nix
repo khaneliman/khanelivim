@@ -26,6 +26,22 @@ _: {
                     sys.exit(1)
 
 
+            def build_command_for_profile(profile):
+                """Build command for a profile without requiring .#profile attrs"""
+                if profile == "default":
+                    return "nix build --no-link --print-out-paths .#default"
+                expr = (
+                    "let f = builtins.getFlake (toString ./.); "
+                    "in (f.lib.mkNixvimPackage { "
+                    f"system = builtins.currentSystem; profile = \"{profile}\"; "
+                    "})"
+                )
+                return (
+                    "nix build --impure --no-link --print-out-paths --expr "
+                    f"'{expr}'"
+                )
+
+
             def main():
                 # Check for --path flag
                 path_only = "--path" in sys.argv
@@ -38,9 +54,7 @@ _: {
                     print(f"Building nixvim package for profile: {profile}...")
 
                 try:
-                    nixvim_path = run_command(
-                        f"nix build --no-link --print-out-paths .#{profile}"
-                    )
+                    nixvim_path = run_command(build_command_for_profile(profile))
                 except SystemExit:
                     if not path_only:
                         print("Build failed.")

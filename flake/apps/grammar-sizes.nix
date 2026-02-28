@@ -34,12 +34,26 @@ _: {
                     sys.exit(1)
 
 
+            def build_command_for_profile(profile):
+                """Build command for a profile without requiring .#profile attrs"""
+                if profile == "default":
+                    return "nix build --no-link --print-out-paths .#default"
+                expr = (
+                    "let f = builtins.getFlake (toString ./.); "
+                    "in (f.lib.mkNixvimPackage { "
+                    f"system = builtins.currentSystem; profile = \"{profile}\"; "
+                    "})"
+                )
+                return (
+                    "nix build --impure --no-link --print-out-paths --expr "
+                    f"'{expr}'"
+                )
+
+
             def main():
                 profile = sys.argv[1] if len(sys.argv) > 1 else "default"
                 print(f"Building nixvim package for profile: {profile}...")
-                nixvim_path = run_command(
-                    f"nix build --no-link --print-out-paths .#{profile}"
-                )
+                nixvim_path = run_command(build_command_for_profile(profile))
 
                 print("Extracting pack directory from nvim wrapper...")
                 nvim_wrapper = Path(nixvim_path) / "bin" / "nvim"

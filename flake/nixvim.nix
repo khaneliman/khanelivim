@@ -4,22 +4,12 @@
   self,
   ...
 }:
-{
-  imports = [
-    inputs.nixvim.flakeModules.default
-  ];
-
-  nixvim = {
-    packages.enable = true;
-    checks.enable = true;
-  };
-
-  flake.nixvimModules = {
-    default = ../modules/nixvim;
-  };
-
-  perSystem =
-    { system, ... }:
+let
+  mkNixvimConfig =
+    {
+      system,
+      profile ? "full",
+    }:
     let
       sharedNixpkgs = import inputs.nixpkgs {
         inherit system;
@@ -30,50 +20,54 @@
           allowUnfree = true;
         };
       };
+    in
+    inputs.nixvim.lib.evalNixvim {
+      inherit system;
 
-      mkNixvimConfig =
+      extraSpecialArgs = {
+        inherit inputs system self;
+      };
+
+      modules = [
+        self.nixvimModules.default
         {
-          profile ? "full",
-        }:
-        inputs.nixvim.lib.evalNixvim {
-          inherit system;
+          nixpkgs.pkgs = lib.mkDefault sharedNixpkgs;
+          nixpkgs.config = lib.mkForce { };
+          khanelivim.profile = profile;
+        }
+      ];
+    };
+in
+{
+  imports = [
+    inputs.nixvim.flakeModules.default
+  ];
 
-          extraSpecialArgs = {
-            inherit inputs system self;
-          };
+  nixvim = {
+    packages.enable = false;
+    checks.enable = false;
+  };
 
-          modules = [
-            self.nixvimModules.default
-            {
-              nixpkgs.pkgs = lib.mkDefault sharedNixpkgs;
-              nixpkgs.config = lib.mkForce { };
-              khanelivim.profile = profile;
-            }
-          ];
-        };
+  flake = {
+    nixvimModules.default = ../modules/nixvim;
+    lib = {
+      inherit mkNixvimConfig;
+      mkNixvimPackage = args: (mkNixvimConfig args).config.build.package;
+      mkNixvimTest = args: (mkNixvimConfig args).config.build.test;
+    };
+  };
+
+  perSystem =
+    { system, ... }:
+    let
+      defaultConfig = mkNixvimConfig { inherit system; };
     in
     {
       nixvimConfigurations = {
         # Full featured (default)
-        khanelivim = mkNixvimConfig { };
-
-        # Profile variants for performance testing
-        minimal = mkNixvimConfig {
-          profile = "minimal";
-        };
-
-        basic = mkNixvimConfig {
-          profile = "basic";
-        };
-
-        standard = mkNixvimConfig {
-          profile = "standard";
-        };
-
-        # Debug variant with all optimizations disabled
-        debug = mkNixvimConfig {
-          profile = "debug";
-        };
+        khanelivim = defaultConfig;
       };
+
+      checks.khanelivim = defaultConfig.config.build.test;
     };
 }

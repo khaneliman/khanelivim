@@ -47,6 +47,6 @@
         };
       };
 
-      packages.default = config.packages.khanelivim;
+      packages.default = config.nixvimConfigurations.khanelivim.config.build.package;
     };
 }
