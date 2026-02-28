@@ -541,7 +541,9 @@ _: {
               }
               ''
                 makeWrapper ${profiler}/bin/profile-nvim $out/bin/profile-nvim \
-                  --prefix PATH : ${lib.makeBinPath [ pkgs.xvfb-run ]}
+                  ${lib.optionalString pkgs.stdenv.hostPlatform.isLinux ''
+                    --prefix PATH : ${lib.makeBinPath [ pkgs.xvfb-run ]}
+                  ''}
               '';
         in
         {
