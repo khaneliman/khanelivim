@@ -12,20 +12,43 @@
 
       settings = {
         auto_reload = true;
-        provider = {
-          enabled = "snacks";
-          snacks = {
-            win = {
-              enter = true;
-            };
-          };
-        };
+      }
+      // lib.optionalAttrs config.plugins.snacks.enable {
+        server.__raw = ''
+          (function()
+            local opencode_cmd = "opencode --port"
+            local snacks_terminal_opts = {
+              win = {
+                position = "right",
+                enter = true,
+                on_win = function(win)
+                  require("opencode.terminal").setup(win.win)
+                end,
+              },
+            }
+
+            return {
+              start = function()
+                require("snacks.terminal").open(opencode_cmd, snacks_terminal_opts)
+              end,
+              stop = function()
+                local terminal = require("snacks.terminal").get(opencode_cmd, snacks_terminal_opts)
+                if terminal then
+                  terminal:close()
+                end
+              end,
+              toggle = function()
+                require("snacks.terminal").toggle(opencode_cmd, snacks_terminal_opts)
+              end,
+            }
+          end)()
+        '';
       };
     };
 
     # TODO: check if actually required and upstream
     # Ensure snacks.nvim input is enabled (required dependency)
-    snacks.settings.input.enabled = true;
+    snacks.settings.input.enabled = lib.mkIf config.plugins.snacks.enable true;
 
     which-key.settings.spec = lib.optionals config.plugins.opencode.enable [
       {
