@@ -1,3 +1,6 @@
+For any Nix code or module task, use the `writing-nix` skill before making
+edits.
+
 ## Generated Lua Source of Truth
 
 - When debugging runtime behavior, always inspect `nixvim-print-init` output.
