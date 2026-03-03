@@ -23,27 +23,30 @@ provides guidelines for contributing to this Nixvim-based Neovim configuration.
 
 ## Commit Message Convention
 
-This repository follows a **component-based** commit message format:
+This repository follows a **Conventional Commits style** format:
 
 ```
-component: description
+type(scope): description
 ```
 
 ### Examples:
 
-- `conform: update deprecated setting`
-- `treesitter: fix duplicate package`
-- `kulala: fix duplicate package`
-- `khanelivim: format`
-- `flake.lock: update`
+- `feat(codex): add mcp integration`
+- `fix(waybar): restore accidentally deleted icon`
+- `refactor(nix): tweak gc schedule`
+- `docs(ai-tools): add fixup/autosquash workflow to git skill`
+- `chore(flake): lock update`
 
 ### Guidelines:
 
 - Use lowercase for the description
-- Use imperative mood ("fix", "add", "update", not "fixed", "added", "updated")
+- Keep the subject line under 50 characters when possible
+- Use imperative mood ("add", "fix", "update", not "added", "fixed", "updated")
 - No trailing period in the subject line
-- Component should match the plugin name, module, or area being modified
-- Keep the subject line concise and descriptive
+- Keep `type` to standard values (`feat`, `fix`, `refactor`, `docs`, `chore`)
+- Keep `scope` specific to the primary area affected
+- Breaking changes may use `!` (for example: `refactor(devShells)!: ...`)
+- Subject is the what, Body is the how/why
 
 ## Development Workflow
 
