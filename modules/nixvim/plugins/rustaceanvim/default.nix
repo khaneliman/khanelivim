@@ -99,60 +99,66 @@
 
   };
 
-  keymaps = lib.mkIf config.plugins.rustaceanvim.enable [
+  autoCmd = lib.mkIf config.plugins.rustaceanvim.enable [
     {
-      mode = "n";
-      key = "<leader>Rr";
-      action = "<cmd>RustLsp runnables<CR>";
-      options.desc = "Rust Runnables";
-    }
-    {
-      mode = "n";
-      key = "<leader>RD";
-      action = "<cmd>RustLsp debuggables<CR>";
-      options.desc = "Rust Debuggables";
-    }
-    {
-      mode = "n";
-      key = "<leader>Ra";
-      action = "<cmd>RustLsp codeAction<CR>";
-      options.desc = "Code Action (Rust)";
-    }
-    {
-      mode = "n";
-      key = "<leader>Rh";
-      action = "<cmd>RustLsp hover actions<CR>";
-      options.desc = "Hover Actions (Rust)";
-    }
-    {
-      mode = "n";
-      key = "<leader>Rm";
-      action = "<cmd>RustLsp expandMacro<CR>";
-      options.desc = "Expand Macro";
-    }
-    {
-      mode = "n";
-      key = "<leader>RM";
-      action = "<cmd>RustLsp rebuildProcMacros<CR>";
-      options.desc = "Rebuild Proc Macros";
-    }
-    {
-      mode = "n";
-      key = "<leader>Rd";
-      action = "<cmd>RustLsp openDocs<CR>";
-      options.desc = "Open Docs";
-    }
-    {
-      mode = "n";
-      key = "<leader>Rc";
-      action = "<cmd>RustLsp openCargo<CR>";
-      options.desc = "Open Cargo.toml";
-    }
-    {
-      mode = "n";
-      key = "<leader>Rg";
-      action = "<cmd>RustLsp crateGraph<CR>";
-      options.desc = "Crate Graph";
+      event = "FileType";
+      pattern = [ "rust" ];
+      callback.__raw = ''
+        function(args)
+          local opts = function(desc)
+            return { buffer = args.buf, desc = desc }
+          end
+          local map = function(mode, key, rust_lsp_cmd, desc)
+            vim.keymap.set(mode, key, "<cmd>RustLsp " .. rust_lsp_cmd .. "<CR>", opts(desc))
+          end
+
+          -- RUN / DEBUG
+          map("n", "<leader>Rr", "runnables", "Rust Runnables")
+          map("n", "<leader>RD", "debuggables", "Rust Debuggables")
+          -- map("n", "<leader>RR", "run", "Run target at cursor")
+          -- map("n", "<leader>DD", "debug", "Debug target at cursor")
+          -- map("n", "<leader>Rt", "testables", "Rust Testables")
+          -- map("n", "<leader>dc", "flyCheck run", "Rust FlyCheck Run")
+          -- map("n", "<leader>dx", "flyCheck cancel", "Rust FlyCheck Cancel")
+          -- map("n", "<leader>dX", "flyCheck clear", "Rust FlyCheck Clear")
+
+          -- LSP / REFACTOR / TRANSFORM
+          map({ "n", "x" }, "<leader>la", "codeAction", "Code Action (Rust)")
+          map("n", "<leader>lh", "hover actions", "Hover Actions (Rust)")
+          map("x", "<leader>lh", "hover range", "Hover Range (Rust)")
+          map("n", "<leader>lm", "expandMacro", "Expand Macro")
+          map("n", "<leader>lM", "rebuildProcMacros", "Rebuild Proc Macros")
+          map("n", "<leader>lJ", "joinLines", "Join Lines")
+          map("x", "<leader>lJ", "joinLines", "Join Lines (Selection)")
+          -- map("n", "<leader>lu", "moveItem up", "Move Item Up")
+          -- map("n", "<leader>ld", "moveItem down", "Move Item Down")
+          map("n", "<leader>ls", "ssr", "Structural Search/Replace")
+          map("x", "<leader>ls", "ssr", "Structural Search/Replace (Selection)")
+          -- map("n", "<leader>lt", "relatedTests", "Related Tests")
+
+          -- DIAGNOSTICS
+          -- map("n", "<leader>le", "explainError", "Explain Error (Cycle)")
+          -- map("n", "<leader>lE", "explainError current", "Explain Error (Current Line)")
+          -- map("n", "<leader>lq", "renderDiagnostic", "Render Diagnostic (Cycle)")
+          -- map("n", "<leader>lQ", "renderDiagnostic current", "Render Diagnostic (Current Line)")
+          -- map("n", "<leader>lr", "relatedDiagnostics", "Related Diagnostics")
+
+          -- NAVIGATION / DOCS / WORKSPACE
+          map("n", "<leader>sho", "openDocs", "Open Docs (Rust)")
+          map("n", "<leader>lC", "openCargo", "Open Cargo.toml")
+          map("n", "<leader>lG", "crateGraph", "Crate Graph")
+          -- map("n", "<leader>lp", "parentModule", "Open Parent Module")
+          -- map("n", "<leader>lS", "workspaceSymbol", "Workspace Symbol")
+          -- map("n", "<leader>lT", "workspaceSymbol onlyTypes", "Workspace Types")
+          -- map("n", "<leader>lA", "workspaceSymbol allSymbols", "Workspace All Symbols")
+          -- map("n", "<leader>lW", "reloadWorkspace", "Reload Workspace")
+          -- map("n", "<leader>lY", "syntaxTree", "Syntax Tree")
+          -- map("n", "<leader>lV", "view hir", "View HIR")
+          -- map("n", "<leader>lN", "view mir", "View MIR")
+          -- map("n", "<leader>shO", "externalDocs", "Open External Docs")
+          -- map("n", "<leader>slr", "logFile", "Open rust-analyzer Log")
+        end
+      '';
     }
   ];
 }
