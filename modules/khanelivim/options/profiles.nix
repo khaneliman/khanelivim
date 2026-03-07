@@ -1,6 +1,161 @@
 { lib, config, ... }:
 let
+  inherit (lib.attrsets) recursiveUpdate;
   cfg = config.khanelivim;
+
+  minimalProfile = {
+    khanelivim = {
+      ai = {
+        plugins = lib.mkDefault [ ];
+        chatEnable = lib.mkDefault false;
+      };
+
+      dashboard.tool = lib.mkDefault null;
+      documentation.viewers = lib.mkDefault [ ];
+
+      debugging = {
+        adapters = lib.mkDefault [ ];
+        ui = lib.mkDefault null;
+      };
+
+      git = {
+        integrations = lib.mkDefault [ ];
+        diffViewer = lib.mkDefault null;
+      };
+
+      editor = {
+        fileManager = lib.mkDefault null;
+        httpClient = lib.mkDefault null;
+        motion = lib.mkDefault null;
+        rename = lib.mkDefault null;
+        search = lib.mkDefault null;
+        textObjects = lib.mkDefault [ ];
+      };
+
+      picker.tool = lib.mkDefault null;
+
+      text = {
+        comments = lib.mkDefault [ ];
+        markdownRendering = lib.mkDefault [ ];
+        operators = lib.mkDefault [ ];
+        patterns = lib.mkDefault [ ];
+        splitJoin = lib.mkDefault null;
+        whitespace = lib.mkDefault null;
+      };
+
+      ui = {
+        animations = lib.mkDefault null;
+        bufferline = lib.mkDefault null;
+        commandline = lib.mkDefault null;
+        indentGuides = lib.mkDefault null;
+        keybindingHelp = lib.mkDefault null;
+        notifications = lib.mkDefault "snacks";
+        referenceHighlighting = lib.mkDefault null;
+        renamePopup = lib.mkDefault null;
+        signatureHelp = lib.mkDefault null;
+        statusColumn = lib.mkDefault null;
+        statusline = lib.mkDefault null;
+        terminal = lib.mkDefault [ ];
+      };
+
+      utilities = {
+        clipboard = lib.mkDefault [ ];
+        screenshots = lib.mkDefault [ ];
+        sessions = lib.mkDefault [ ];
+      };
+    };
+
+    plugins = {
+      dap.enable = lib.mkDefault false;
+      dap-go.enable = lib.mkDefault false;
+      dap-python.enable = lib.mkDefault false;
+      dap-ui.enable = lib.mkDefault false;
+      dap-virtual-text.enable = lib.mkDefault false;
+    };
+  };
+
+  basicProfile = recursiveUpdate minimalProfile {
+    khanelivim = {
+      editor = {
+        fileManager = lib.mkDefault "yazi";
+        motion = lib.mkDefault "flash";
+        textObjects = lib.mkDefault [ "mini-ai" ];
+      };
+
+      git.integrations = lib.mkDefault [ "gitsigns" ];
+      picker.tool = lib.mkDefault "snacks";
+
+      text.comments = lib.mkDefault [ "ts-comments" ];
+
+      ui = {
+        keybindingHelp = lib.mkDefault "which-key";
+        notifications = lib.mkDefault "snacks";
+        statusline = lib.mkDefault "lualine";
+        terminal = lib.mkDefault [ "snacks" ];
+      };
+    };
+  };
+
+  standardProfile = recursiveUpdate basicProfile {
+    khanelivim = {
+      ai = {
+        plugins = lib.mkDefault [
+          "sidekick"
+          "copilot"
+          "copilot-lsp"
+        ];
+        chatEnable = lib.mkDefault false;
+      };
+
+      dashboard.tool = lib.mkDefault "mini-starter";
+      documentation.viewers = lib.mkDefault [ "helpview" ];
+
+      debugging = {
+        adapters = lib.mkDefault [
+          "dap"
+          "dap-virtual-text"
+          "debugprint"
+        ];
+        ui = lib.mkDefault "dap-ui";
+      };
+
+      editor = {
+        rename = lib.mkDefault "inc-rename";
+        search = lib.mkDefault "grug-far";
+      };
+
+      git = {
+        diffViewer = lib.mkDefault "codediff";
+        integrations = lib.mkDefault [
+          "gitsigns"
+          "git-conflict"
+          "git-worktree"
+          "snacks-gitbrowse"
+          "snacks-lazygit"
+        ];
+      };
+
+      text = {
+        markdownRendering = lib.mkDefault [ "markview" ];
+        splitJoin = lib.mkDefault "mini-splitjoin";
+        patterns = lib.mkDefault [ "todo-comments" ];
+        whitespace = lib.mkDefault "mini-trailspace";
+      };
+
+      ui = {
+        bufferline = lib.mkDefault "bufferline";
+        indentGuides = lib.mkDefault "blink-indent";
+        renamePopup = lib.mkDefault "snacks";
+        statusColumn = lib.mkDefault "snacks";
+      };
+
+      utilities = {
+        clipboard = lib.mkDefault [ "yanky" ];
+        screenshots = lib.mkDefault [ "codesnap" ];
+        sessions = lib.mkDefault [ "persistence" ];
+      };
+    };
+  };
 in
 {
   options.khanelivim.profile = lib.mkOption {
@@ -11,204 +166,33 @@ in
       "full"
       "debug"
     ];
-    default = "full";
+    default = "standard";
     description = ''
-      Configuration profile preset for performance testing.
+      Configuration profile preset.
 
-      - minimal: Just treesitter, LSP, completion - no UI enhancements
-      - basic: Core editing + statusline + gitsigns + snacks picker
-      - standard: Full features, deduplicated (one AI tool, one file manager, etc.)
-      - full: All features enabled including duplicates (default)
-      - debug: Full features with all performance optimizations disabled and debug logging enabled
+      - minimal: Native-lean base with LSP, treesitter, blink, and minimal UI
+      - basic: Lean daily driver with yazi, snacks picker, flash, gitsigns, and lualine
+      - standard: Recommended developer default with AI, git, debugging, search, and core UI
+      - full: Everything enabled, including optional and overlapping workflows
+      - debug: Full profile with performance optimizations disabled and debug logging enabled
     '';
   };
 
   config = lib.mkMerge [
-    # Minimal: Just treesitter, LSP, completion
-    (lib.mkIf (cfg.profile == "minimal") {
-      khanelivim = {
-        ai = {
-          plugins = lib.mkForce [ ];
-          chatEnable = lib.mkForce false;
-        };
+    (lib.mkIf (cfg.profile == "minimal") (
+      recursiveUpdate minimalProfile {
+        khanelivim.performance.treesitter.whitelistMode = lib.mkDefault true;
+      }
+    ))
+    (lib.mkIf (cfg.profile == "basic") basicProfile)
+    (lib.mkIf (cfg.profile == "standard") standardProfile)
 
-        dashboard.tool = lib.mkForce null;
-
-        debugging = {
-          adapters = lib.mkForce [ ];
-          ui = lib.mkForce null;
-        };
-
-        git = {
-          integrations = lib.mkForce [ ];
-          diffViewer = lib.mkForce null;
-        };
-
-        # Minimal editor - keep essentials
-        editor = {
-          fileManager = lib.mkForce null;
-          httpClient = lib.mkForce null;
-          motion = lib.mkForce null;
-          search = lib.mkForce null;
-        };
-
-        performance.treesitter.whitelistMode = lib.mkForce true;
-
-        # Disable picker (use native)
-        picker.tool = lib.mkForce null;
-
-        # Minimal text editing
-        text = {
-          comments = lib.mkForce [ ];
-          markdownRendering = lib.mkForce [ ];
-          operators = lib.mkForce [ ];
-          patterns = lib.mkForce [ ];
-          splitJoin = lib.mkForce null;
-          whitespace = lib.mkForce null;
-        };
-
-        # Disable most UI
-        ui = {
-          animations = lib.mkForce null;
-          bufferline = lib.mkForce null;
-          commandline = lib.mkForce null;
-          indentGuides = lib.mkForce null;
-          keybindingHelp = lib.mkForce null;
-          notifications = lib.mkForce "snacks"; # Keep minimal notifications
-          referenceHighlighting = lib.mkForce null;
-          statusColumn = lib.mkForce null;
-          statusline = lib.mkForce null;
-          terminal = lib.mkForce [ ];
-        };
-
-        # Disable utilities
-        utilities = {
-          clipboard = lib.mkForce [ ];
-          screenshots = lib.mkForce [ ];
-          sessions = lib.mkForce [ ];
-        };
-      };
-
-      # Force disable plugins that nixvim modules enable by default
-      plugins = {
-        dap.enable = lib.mkForce false;
-        dap-go.enable = lib.mkForce false;
-        dap-python.enable = lib.mkForce false;
-        dap-ui.enable = lib.mkForce false;
-        dap-virtual-text.enable = lib.mkForce false;
-      };
-    })
-
-    # Basic: + statusline, basic git, snacks picker for navigation
-    (lib.mkIf (cfg.profile == "basic") {
-      khanelivim = {
-        ai = {
-          plugins = lib.mkForce [ ];
-          chatEnable = lib.mkForce false;
-        };
-
-        dashboard.tool = lib.mkForce null;
-
-        debugging = {
-          adapters = lib.mkForce [ ];
-          ui = lib.mkForce null;
-        };
-
-        git = {
-          integrations = lib.mkForce [ "gitsigns" ];
-          diffViewer = lib.mkForce null;
-        };
-
-        # No dedicated file manager - use snacks picker/explorer instead
-        editor = {
-          fileManager = lib.mkForce null;
-          httpClient = lib.mkForce null;
-          motion = lib.mkForce null;
-          search = lib.mkForce null;
-        };
-
-        performance.treesitter.whitelistMode = lib.mkForce true;
-
-        # Snacks picker for file navigation (<leader>ff, <leader>fe explorer)
-        picker.tool = lib.mkForce "snacks";
-
-        text = {
-          comments = lib.mkForce [ "ts-comments" ];
-          markdownRendering = lib.mkForce [ ];
-          operators = lib.mkForce [ ];
-          patterns = lib.mkForce [ ];
-          splitJoin = lib.mkForce null;
-          whitespace = lib.mkForce null;
-        };
-
-        # Basic UI - just statusline
-        ui = {
-          animations = lib.mkForce null;
-          bufferline = lib.mkForce null;
-          commandline = lib.mkForce null;
-          indentGuides = lib.mkForce null;
-          keybindingHelp = lib.mkForce null;
-          notifications = lib.mkForce "snacks";
-          referenceHighlighting = lib.mkForce null;
-          statusColumn = lib.mkForce null;
-          statusline = lib.mkForce "lualine";
-          terminal = lib.mkForce [ ];
-        };
-
-        utilities = {
-          clipboard = lib.mkForce [ ];
-          screenshots = lib.mkForce [ ];
-          sessions = lib.mkForce [ ];
-        };
-      };
-
-      # Force disable plugins that nixvim modules enable by default
-      plugins = {
-        dap.enable = lib.mkForce false;
-        dap-go.enable = lib.mkForce false;
-        dap-python.enable = lib.mkForce false;
-        dap-ui.enable = lib.mkForce false;
-        dap-virtual-text.enable = lib.mkForce false;
-      };
-    })
-
-    # Standard: Full functionality but deduplicated - no duplicate AI tools
-    (lib.mkIf (cfg.profile == "standard") {
-      khanelivim = {
-        ai = {
-          plugins = lib.mkForce [
-            "copilot"
-            "sidekick"
-          ];
-          chatEnable = lib.mkForce false;
-        };
-
-        # Streamlined comments
-        text.comments = lib.mkForce [
-          "ts-comments"
-        ];
-
-        # Single terminal
-        ui.terminal = lib.mkForce [ "snacks" ];
-      };
-
-      # Force disable duplicate AI plugins (keep sidekick + claudecode tools)
-      plugins = {
-        avante.enable = lib.mkForce false;
-        codecompanion.enable = lib.mkForce false;
-        opencode.enable = lib.mkForce false;
-        claudecode.enable = lib.mkForce false;
-        copilot-lua.enable = lib.mkForce false;
-        copilot-lsp.enable = lib.mkForce false;
-      };
-    })
-
-    # Debug: All features with performance optimizations disabled and debug logging enabled
+    # Debug: full profile with performance optimizations disabled and debug logging enabled
     (lib.mkIf (cfg.profile == "debug") {
       khanelivim = {
         performance = {
           optimizeEnable = lib.mkForce false;
-          optimizer = lib.mkForce [ ]; # Empty list disables all optimizers
+          optimizer = lib.mkForce [ ];
         };
       };
 
