@@ -309,10 +309,10 @@
       };
     };
     dap-go = {
-      enable = true;
+      inherit (config.plugins.dap) enable;
       settings.delve.path = "${lib.getExe pkgs.delve}";
     };
-    dap-python.enable = true;
+    dap-python.enable = config.plugins.dap.enable;
 
   };
 
