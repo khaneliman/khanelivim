@@ -18,6 +18,29 @@ let
       end
     end
   '';
+
+  tablineColors =
+    {
+      catppuccin = {
+        activeBg = "#8aadf4";
+        activeFg = "#1e2030";
+        inactiveBg = "#363a4f";
+        inactiveFg = "#cad3f5";
+      };
+      tokyonight = {
+        activeBg = "#7aa2f7";
+        activeFg = "#1a1b26";
+        inactiveBg = "#3b4261";
+        inactiveFg = "#c0caf5";
+      };
+      nord = {
+        activeBg = "#88c0d0";
+        activeFg = "#2e3440";
+        inactiveBg = "#434c5e";
+        inactiveFg = "#d8dee9";
+      };
+    }
+    .${config.khanelivim.ui.theme};
 in
 {
   plugins.lualine = {
@@ -237,15 +260,42 @@ in
 
       tabline = lib.mkIf (!config.plugins.bufferline.enable) {
         lualine_a = [
-          # NOTE: not high priority since i use bufferline now, but should fix left separator color
           {
             __unkeyed-1 = "buffers";
+            mode = 2;
+            max_length.__raw = "vim.o.columns * 2 / 3";
+            use_mode_colors = true;
+            show_filename_only = false;
+            hide_filename_extension = false;
+            filetype_names = {
+              TelescopePrompt = "Telescope";
+              snacks_picker_input = "Picker";
+              oil = "Oil";
+              checkhealth = "Health";
+            };
+            buffers_color = {
+              active = {
+                bg = tablineColors.activeBg;
+                fg = tablineColors.activeFg;
+                gui = "bold";
+              };
+              inactive = {
+                bg = tablineColors.inactiveBg;
+                fg = tablineColors.inactiveFg;
+              };
+            };
+            separators = {
+              left = "";
+              right = "";
+            };
             symbols = {
+              modified = " ●";
               alternate_file = "";
+              directory = "";
             };
           }
         ];
-        lualine_z = [ "tabs" ];
+        lualine_z = [ ];
       };
 
       winbar = {
