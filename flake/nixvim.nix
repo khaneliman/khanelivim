@@ -8,7 +8,7 @@ let
   mkNixvimConfig =
     {
       system,
-      profile ? "full",
+      profile ? "standard",
     }:
     let
       sharedNixpkgs = import inputs.nixpkgs {
@@ -64,7 +64,7 @@ in
     in
     {
       nixvimConfigurations = {
-        # Full featured (default)
+        # Recommended default profile
         khanelivim = defaultConfig;
       };
 
