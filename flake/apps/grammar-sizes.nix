@@ -10,7 +10,7 @@ _: {
       apps.check-grammar-sizes = {
         type = "app";
         program = lib.getExe (
-          pkgs.writers.writePython3Bin "check-grammar-sizes" { } ''
+          pkgs.writers.writePython3Bin "check-grammar-sizes" { } /* Python */ ''
             import re
             import subprocess
             import sys

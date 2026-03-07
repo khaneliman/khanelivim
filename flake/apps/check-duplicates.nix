@@ -10,7 +10,7 @@ _: {
       apps.check-duplicates = {
         type = "app";
         program = lib.getExe (
-          pkgs.writers.writePython3Bin "check-duplicates" { } ''
+          pkgs.writers.writePython3Bin "check-duplicates" { } /* Python */ ''
             import re
             import subprocess
             import sys

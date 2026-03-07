@@ -5,7 +5,7 @@ _: {
       apps.get-pack-dir = {
         type = "app";
         program = lib.getExe (
-          pkgs.writers.writePython3Bin "get-pack-dir" { } ''
+          pkgs.writers.writePython3Bin "get-pack-dir" { } /* Python */ ''
             import re
             import subprocess
             import sys
