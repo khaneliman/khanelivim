@@ -4,15 +4,6 @@
   pkgs,
   ...
 }:
-let
-  aiPlugins = config.khanelivim.ai.plugins;
-
-  sidekickClaude = builtins.elem "claudecode" aiPlugins;
-  sidekickCopilot = builtins.elem "copilot" aiPlugins;
-  sidekickGemini = builtins.elem "gemini" aiPlugins;
-  sidekickCodex = builtins.elem "codex" aiPlugins;
-  sidekickOpencode = builtins.elem "opencode" aiPlugins;
-in
 {
   config = {
     plugins = {
@@ -44,56 +35,6 @@ in
               "v"
             ];
             desc = "Ask Prompt";
-          }
-        ]
-        ++ lib.optionals sidekickClaude [
-          {
-            __unkeyed-1 = "<leader>asc";
-            mode = [
-              "n"
-              "v"
-            ];
-            desc = "Claude Toggle";
-          }
-        ]
-        ++ lib.optionals sidekickCopilot [
-          {
-            __unkeyed-1 = "<leader>asC";
-            mode = [
-              "n"
-              "v"
-            ];
-            desc = "Copilot Toggle";
-          }
-        ]
-        ++ lib.optionals sidekickGemini [
-          {
-            __unkeyed-1 = "<leader>asg";
-            mode = [
-              "n"
-              "v"
-            ];
-            desc = "Gemini Toggle";
-          }
-        ]
-        ++ lib.optionals sidekickOpencode [
-          {
-            __unkeyed-1 = "<leader>aso";
-            mode = [
-              "n"
-              "v"
-            ];
-            desc = "Opencode Toggle";
-          }
-        ]
-        ++ lib.optionals sidekickCodex [
-          {
-            __unkeyed-1 = "<leader>asx";
-            mode = [
-              "n"
-              "v"
-            ];
-            desc = "Codex Toggle";
           }
         ];
 
@@ -167,7 +108,7 @@ in
           };
         }
       ])
-      ++ [
+      ++ lib.optionals config.plugins.sidekick.enable [
         {
           mode = "n";
           key = "<leader>ast";
@@ -183,61 +124,36 @@ in
           action.__raw = "function() require('sidekick.cli').prompt() end";
           options.desc = "Ask Prompt";
         }
-      ]
-      ++ lib.optionals sidekickClaude [
-        {
-          mode = [
-            "n"
-            "v"
-          ];
-          key = "<leader>asc";
-          action.__raw = "function() require('sidekick.cli').toggle({ name = 'claude', focus = true }) end";
-          options.desc = "Claude Toggle";
-        }
-      ]
-      ++ lib.optionals sidekickCopilot [
-        {
-          mode = [
-            "n"
-            "v"
-          ];
-          key = "<leader>asC";
-          action.__raw = "function() require('sidekick.cli').toggle({ name = 'copilot', focus = true }) end";
-          options.desc = "Copilot Toggle";
-        }
-      ]
-      ++ lib.optionals sidekickGemini [
-        {
-          mode = [
-            "n"
-            "v"
-          ];
-          key = "<leader>asg";
-          action.__raw = "function() require('sidekick.cli').toggle({ name = 'gemini', focus = true }) end";
-          options.desc = "Gemini Toggle";
-        }
-      ]
-      ++ lib.optionals sidekickOpencode [
-        {
-          mode = [
-            "n"
-            "v"
-          ];
-          key = "<leader>aso";
-          action.__raw = "function() require('sidekick.cli').toggle({ name = 'opencode', focus = true }) end";
-          options.desc = "Opencode Toggle";
-        }
-      ]
-      ++ lib.optionals sidekickCodex [
-        {
-          mode = [
-            "n"
-            "v"
-          ];
-          key = "<leader>asx";
-          action.__raw = "function() require('sidekick.cli').toggle({ name = 'codex', focus = true }) end";
-          options.desc = "Codex Toggle";
-        }
       ];
+
+    autoCmd = lib.optionals config.plugins.sidekick.enable [
+      {
+        event = "VimEnter";
+        callback.__raw = ''
+          function()
+            local opts = function(desc)
+              return { desc = desc }
+            end
+
+            local map = function(mode, key, provider, binary, desc)
+              if vim.fn.executable(binary) ~= 1 then
+                return
+              end
+
+              vim.keymap.set(mode, key, function()
+                ${lib.optionalString config.plugins.lz-n.enable "require('lz.n').trigger_load('sidekick.nvim')"}
+                require("sidekick.cli").toggle({ name = provider, focus = true })
+              end, opts(desc))
+            end
+
+            map({ "n", "v" }, "<leader>asc", "claude", "claude", "Claude Toggle")
+            map({ "n", "v" }, "<leader>asC", "copilot", "copilot", "Copilot Toggle")
+            map({ "n", "v" }, "<leader>asg", "gemini", "gemini", "Gemini Toggle")
+            map({ "n", "v" }, "<leader>aso", "opencode", "opencode", "Opencode Toggle")
+            map({ "n", "v" }, "<leader>asx", "codex", "codex", "Codex Toggle")
+          end
+        '';
+      }
+    ];
   };
 }
