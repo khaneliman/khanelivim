@@ -23,10 +23,10 @@
     }
     {
       mode = "n";
-      key = "<leader>uN";
+      key = "<leader>fn";
       action = "<cmd>lua Snacks.notifier.show_history()<CR>";
       options = {
-        desc = "Show Notification History";
+        desc = "Find Notifications";
       };
     }
   ];
