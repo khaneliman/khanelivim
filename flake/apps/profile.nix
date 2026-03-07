@@ -9,7 +9,7 @@ _: {
     {
       apps.profile =
         let
-          defaultProfileBuildCommandPython = ''
+          defaultProfileBuildCommandPython = /* Python */ ''
             def build_command_for_profile(profile):
                 """Build command for a profile without requiring .#profile attrs"""
                 if profile == "default":

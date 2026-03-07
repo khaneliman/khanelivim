@@ -8,7 +8,7 @@ _: {
   ];
 
   perSystem = _: {
-    _module.args.profileBuildCommandPython = ''
+    _module.args.profileBuildCommandPython = /* Python */ ''
       def build_command_for_profile(profile):
           """Build command for a profile without requiring .#profile attrs"""
           if profile == "default":
