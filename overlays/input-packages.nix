@@ -14,6 +14,8 @@ in
 {
   inherit (nixpkgs-master-packages)
     claude-code
+    codex
+    gemini
     github-copilot-cli
     opencode
 
