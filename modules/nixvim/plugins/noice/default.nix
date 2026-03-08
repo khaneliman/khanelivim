@@ -82,7 +82,7 @@
             "cmp.entry.get_documentation" = true;
           };
 
-          progress.enabled = true;
+          progress.enabled = config.khanelivim.ui.notifications == "noice";
           signature.enabled = config.khanelivim.ui.signatureHelp == "noice";
         };
 
