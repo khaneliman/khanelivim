@@ -33,19 +33,21 @@
         preview = {
           inherit filetypes;
 
-          ignore_buftypes = [ ];
+          ignore_buftypes = [ "nofile" ];
 
           condition.__raw = ''
             function (buffer)
                local ft, bt = vim.bo[buffer].ft, vim.bo[buffer].bt;
 
+               if ft == "snacks_picker_preview" then
+                    return false;
+               end
+
                if bt == "nofile" and (ft == "Avante" or ft == "codecompanion") then
                     return true;
-               elseif bt == "nofile" then
-                    return false;
-               else
-                    return true;
                end
+
+               return nil;
             end
           '';
         };
