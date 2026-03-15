@@ -121,7 +121,12 @@
           (
             config.plugins.avante.enable
             || config.plugins.claudecode.enable
+            || config.plugins.claude-fzf.enable
+            || config.plugins.claude-fzf-history.enable
             || config.plugins.codecompanion.enable
+            || config.plugins.opencode.enable
+            || config.plugins.sidekick.enable
+            || config.plugins.windsurf-nvim.enable
           )
           [
             {
@@ -236,13 +241,24 @@
           icon = "";
         }
       ]
-      ++ lib.optionals (config.plugins.glow.enable || config.plugins.markdown-preview.enable) [
-        {
-          __unkeyed-1 = "<leader>p";
-          group = "Preview";
-          icon = " ";
-        }
-      ]
+      ++
+        lib.optionals
+          (
+            config.plugins.glow.enable
+            || config.plugins.markdown-preview.enable
+            || config.plugins.patterns.enable
+          )
+          [
+            {
+              __unkeyed-1 = "<leader>p";
+              group =
+                if config.plugins.glow.enable || config.plugins.markdown-preview.enable then
+                  if config.plugins.patterns.enable then "Preview & Patterns" else "Preview"
+                else
+                  "Patterns";
+              icon = " ";
+            }
+          ]
       ++ lib.optionals config.plugins.refactoring.enable [
         {
           __unkeyed-1 = "<leader>r";
