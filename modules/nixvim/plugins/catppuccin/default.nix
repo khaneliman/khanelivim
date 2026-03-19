@@ -59,7 +59,7 @@
         };
     };
 
-    lualine.settings.options.theme = "catppuccin";
+    lualine.settings.options.theme = lib.mkForce "catppuccin-nvim";
   };
 
   colorschemes.catppuccin = {
