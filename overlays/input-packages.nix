@@ -20,6 +20,7 @@ in
     opencode
 
     # TODO: Remove after hitting channel
+    direnv
     ;
 
   luaPackages = luaPackages // {
