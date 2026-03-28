@@ -189,7 +189,6 @@
         function()
           vim.diagnostic.jump({
             count = -1,
-            float = true,
           })
         end
       '';
@@ -205,7 +204,6 @@
         function()
           vim.diagnostic.jump({
             count = 1,
-            float = true,
           })
         end
       '';
