@@ -212,6 +212,15 @@
         desc = "Next diagnostic";
       };
     }
+    {
+      key = "<leader>lQ";
+      mode = "n";
+      action = lib.nixvim.mkRaw "vim.lsp.buf.workspace_diagnostics";
+      options = {
+        silent = true;
+        desc = "Workspace diagnostics";
+      };
+    }
   ]
   ++ lib.optionals (!config.plugins.glance.enable) [
     {
@@ -347,6 +356,10 @@
       {
         __unkeyed-1 = "<leader>lr";
         desc = "Rename";
+      }
+      {
+        __unkeyed-1 = "<leader>lQ";
+        desc = "Workspace Diagnostics";
       }
       {
         __unkeyed-1 = "<leader>lt";
