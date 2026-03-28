@@ -1,10 +1,13 @@
-{ config, ... }:
+{ config, lib, ... }:
+let
+  typescriptToolsEnabled = config.khanelivim.lsp.typescript == "typescript-tools";
+in
 {
   plugins = {
     typescript-tools = {
       # typescript-tools.nvim documentation
       # See: https://github.com/pmizio/typescript-tools.nvim
-      enable = config.khanelivim.lsp.typescript == "typescript-tools";
+      enable = typescriptToolsEnabled;
 
       lazyLoad.settings.ft = [
         "typescript"
@@ -34,6 +37,42 @@
           };
         };
       };
+    };
+  };
+
+  userCommands = lib.mkIf typescriptToolsEnabled {
+    TSToolsOpenTsserverLog = {
+      command.__raw = ''
+        function()
+          local log_dir = vim.uv.os_tmpdir()
+          local syntax_log = vim.fs.joinpath(log_dir, "tsserver_syntax.log")
+          local semantic_log = vim.fs.joinpath(log_dir, "tsserver_semantic.log")
+          local syntax_exists = vim.fn.filereadable(syntax_log) == 1
+          local semantic_exists = vim.fn.filereadable(semantic_log) == 1
+
+          if syntax_exists and semantic_exists then
+            vim.cmd(string.format("tabnew %s", vim.fn.fnameescape(syntax_log)))
+            vim.cmd(string.format("vsplit %s", vim.fn.fnameescape(semantic_log)))
+            return
+          end
+
+          if syntax_exists then
+            vim.cmd(string.format("tabnew %s", vim.fn.fnameescape(syntax_log)))
+            return
+          end
+
+          if semantic_exists then
+            vim.cmd(string.format("tabnew %s", vim.fn.fnameescape(semantic_log)))
+            return
+          end
+
+          vim.notify(
+            "No tsserver logs found. Use the debug profile or enable plugins.typescript-tools.settings.settings.tsserver_logs.",
+            vim.log.levels.WARN
+          )
+        end
+      '';
+      desc = "Open TypeScript tsserver logs.";
     };
   };
 }
