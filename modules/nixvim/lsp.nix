@@ -215,7 +215,20 @@
     {
       key = "<leader>lQ";
       mode = "n";
-      action = lib.nixvim.mkRaw "vim.lsp.buf.workspace_diagnostics";
+      action = lib.nixvim.mkRaw ''
+        function()
+          local supports_workspace_diagnostics = vim.iter(vim.lsp.get_clients({ bufnr = 0 })):any(function(client)
+            return client:supports_method("workspace/diagnostic")
+          end)
+
+          if not supports_workspace_diagnostics then
+            vim.notify("No attached LSP supports workspace diagnostics", vim.log.levels.INFO)
+            return
+          end
+
+          vim.lsp.buf.workspace_diagnostics()
+        end
+      '';
       options = {
         silent = true;
         desc = "Workspace diagnostics";
