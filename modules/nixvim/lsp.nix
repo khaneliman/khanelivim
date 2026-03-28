@@ -32,20 +32,13 @@
               };
             };
           };
-          root_markers = [
-            ".git"
-          ];
         };
       };
       angularls = {
         enable = true;
         config = {
-          # Keep Angular LS scoped to Angular/Nx workspaces instead of letting
-          # it inherit the global `.git` root marker.
-          root_markers = lib.mkForce [
-            "angular.json"
-            "nx.json"
-          ];
+          # Upstream root detection is fine once we stop forcing `.git` on
+          # every server, but Angular LS should still require a real workspace.
           workspace_required = true;
           # Upstream includes `typescriptreact`, which lets angularls attach in
           # React workspaces. Keep the Angular-relevant filetypes only.
@@ -107,7 +100,14 @@
       roslyn_ls.enable = config.khanelivim.lsp.csharp == "roslyn_ls";
       sqls.enable = true;
       statix.enable = true;
-      stylelint_lsp.enable = true;
+      stylelint_lsp = {
+        enable = true;
+        config = {
+          # Rely on upstream stylelint root detection, but avoid attaching when
+          # no stylelint workspace exists.
+          workspace_required = true;
+        };
+      };
       tailwindcss = {
         enable = true;
         config.filetypes = [
