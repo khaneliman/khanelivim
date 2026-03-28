@@ -159,6 +159,19 @@
         end
       '';
     }
+    {
+      event = "LspAttach";
+      callback.__raw = ''
+        function(args)
+          local client = vim.lsp.get_client_by_id(args.data.client_id)
+          if not client then return end
+
+          if client:supports_method("textDocument/linkedEditingRange") then
+            vim.lsp.linked_editing_range.enable(true, { client_id = client.id })
+          end
+        end
+      '';
+    }
   ];
 
   keymapsOnEvents.LspAttach = [
