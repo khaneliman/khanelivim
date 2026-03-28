@@ -247,6 +247,78 @@
         desc = "Workspace diagnostics";
       };
     }
+    {
+      key = "<leader>lE";
+      mode = "n";
+      action = lib.nixvim.mkRaw ''
+        function()
+          local format = function(diagnostic)
+            local source = diagnostic.source and string.format(" [%s]", diagnostic.source) or ""
+            local code = diagnostic.code and string.format(" (%s)", diagnostic.code) or ""
+            local message = diagnostic.message:gsub("%s+", " ")
+            return string.format("%s%s%s", message, source, code)
+          end
+
+          vim.diagnostic.setqflist({
+            open = true,
+            severity = { min = vim.diagnostic.severity.WARN },
+            title = "Workspace Diagnostics",
+            format = format,
+          })
+        end
+      '';
+      options = {
+        silent = true;
+        desc = "Workspace diagnostics list";
+      };
+    }
+    {
+      key = "<leader>lq";
+      mode = "n";
+      action = lib.nixvim.mkRaw ''
+        function()
+          local format = function(diagnostic)
+            local source = diagnostic.source and string.format(" [%s]", diagnostic.source) or ""
+            local code = diagnostic.code and string.format(" (%s)", diagnostic.code) or ""
+            local message = diagnostic.message:gsub("%s+", " ")
+            return string.format("%s%s%s", message, source, code)
+          end
+
+          vim.diagnostic.setloclist({
+            open = true,
+            severity = { min = vim.diagnostic.severity.WARN },
+            title = "Buffer Diagnostics",
+            format = format,
+          })
+        end
+      '';
+      options = {
+        silent = true;
+        desc = "Buffer diagnostics list";
+      };
+    }
+    {
+      key = "<leader>lx";
+      mode = "n";
+      action = lib.nixvim.mkRaw ''
+        function()
+          local supports_codelens = vim.iter(vim.lsp.get_clients({ bufnr = 0 })):any(function(client)
+            return client:supports_method("textDocument/codeLens")
+          end)
+
+          if not supports_codelens then
+            vim.notify("No attached LSP supports code lens", vim.log.levels.INFO)
+            return
+          end
+
+          vim.lsp.codelens.run()
+        end
+      '';
+      options = {
+        silent = true;
+        desc = "Run code lens";
+      };
+    }
   ]
   ++ lib.optionals (!config.plugins.glance.enable) [
     {
@@ -360,6 +432,10 @@
         desc = "Definition";
       }
       {
+        __unkeyed-1 = "<leader>lE";
+        desc = "Workspace Diagnostics List";
+      }
+      {
         __unkeyed-1 = "<leader>lD";
         desc = "References";
       }
@@ -384,12 +460,20 @@
         desc = "Rename";
       }
       {
+        __unkeyed-1 = "<leader>lq";
+        desc = "Buffer Diagnostics List";
+      }
+      {
         __unkeyed-1 = "<leader>lQ";
         desc = "Workspace Diagnostics";
       }
       {
         __unkeyed-1 = "<leader>lt";
         desc = "Type Definition";
+      }
+      {
+        __unkeyed-1 = "<leader>lx";
+        desc = "Run Code Lens";
       }
     ];
   };
