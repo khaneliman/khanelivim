@@ -25,7 +25,22 @@ in
           include_completions_with_insert_text = true;
           publish_diagnostic_on = "insert_leave";
           separate_diagnostic_server = true;
-          # Prefer project-local TypeScript and Yarn SDK resolution.
+          tsserver_file_preferences = {
+            # Conservative default: add the most useful hints without turning
+            # every TS buffer into an annotation wall.
+            # includeInlayParameterNameHints = "literals";
+            includeInlayEnumMemberValueHints = true;
+            includeCompletionsForModuleExports = true;
+            quotePreference = "auto";
+
+            # More complete, but noisier, inlay-hint presets to trial later:
+            includeInlayParameterNameHints = "all";
+            includeInlayFunctionParameterTypeHints = true;
+            includeInlayVariableTypeHints = true;
+            includeInlayVariableTypeHintsWhenTypeMatchesName = true;
+            includeInlayPropertyDeclarationTypeHints = true;
+            includeInlayFunctionLikeReturnTypeHints = true;
+          };
           tsserver_locale = "en";
           tsserver_max_memory = "auto";
           jsx_close_tag = {
@@ -39,6 +54,60 @@ in
       };
     };
   };
+
+  autoGroups = lib.mkIf typescriptToolsEnabled {
+    typescript_tools_group = { };
+  };
+
+  autoCmd = lib.mkIf typescriptToolsEnabled [
+    {
+      event = "FileType";
+      pattern = [
+        "javascript"
+        "javascriptreact"
+        "typescript"
+        "typescriptreact"
+      ];
+      group = "typescript_tools_group";
+      callback.__raw = ''
+        function(args)
+          local function apply_typescript_maps(bufnr)
+            local opts = function(desc)
+              return { buffer = bufnr, desc = desc }
+            end
+            local map = function(mode, key, command, desc)
+              vim.keymap.set(mode, key, function()
+                if vim.fn.exists(":" .. command) == 2 then
+                  vim.cmd(command)
+                  return
+                end
+                vim.notify(command .. " is not ready yet", vim.log.levels.WARN)
+              end, opts(desc))
+            end
+
+            map("n", "<leader>lF", "TSToolsFileReferences", "File References")
+            map("n", "<leader>lI", "TSToolsAddMissingImports", "Add Missing Imports")
+            map("n", "<leader>lL", "TSToolsOpenTsserverLog", "Open tsserver Logs")
+            map("n", "<leader>lM", "TSToolsRemoveUnused", "Remove Unused")
+            map("n", "<leader>lO", "TSToolsOrganizeImports", "Organize Imports")
+            map("n", "<leader>lR", "TSToolsRenameFile", "Rename File")
+            map("n", "<leader>lS", "TSToolsGoToSourceDefinition", "Source Definition")
+            map("n", "<leader>lT", "TSToolsSortImports", "Sort Imports")
+            map("n", "<leader>lU", "TSToolsRemoveUnusedImports", "Remove Unused Imports")
+            map("n", "<leader>lX", "TSToolsFixAll", "Fix All")
+          end
+
+          apply_typescript_maps(args.buf)
+          vim.api.nvim_create_autocmd("LspAttach", {
+            buffer = args.buf,
+            callback = function(ev)
+              apply_typescript_maps(ev.buf)
+            end,
+          })
+        end
+      '';
+    }
+  ];
 
   userCommands = lib.mkIf typescriptToolsEnabled {
     TSToolsOpenTsserverLog = {
