@@ -335,6 +335,30 @@ in
                 };
               };
 
+              "<leader>uec" = {
+                action.__raw = ''
+                  function ()
+                    local is_enabled = not vim.lsp.document_color.is_enabled({ bufnr = 0 })
+                    vim.lsp.document_color.enable(is_enabled, { bufnr = 0 })
+                    vim.notify(string.format("Document Colors %s", bool2str(is_enabled), "info"))
+                  end'';
+                options = {
+                  desc = "Document Colors toggle";
+                };
+              };
+
+              "<leader>ueS" = {
+                action.__raw = ''
+                  function ()
+                    local is_enabled = not vim.lsp.semantic_tokens.is_enabled({ bufnr = 0 })
+                    vim.lsp.semantic_tokens.enable(is_enabled, { bufnr = 0 })
+                    vim.notify(string.format("Semantic Tokens %s", bool2str(is_enabled), "info"))
+                  end'';
+                options = {
+                  desc = "Semantic Tokens toggle";
+                };
+              };
+
               # Base diff keybinds - always available
               "<leader>gdd" = {
                 action = "<cmd>diffthis<CR>";
