@@ -17,7 +17,7 @@
     };
 
     jump = {
-      severity.__raw = "vim.diagnostic.severity.WARN";
+      severity.__raw = "{ min = vim.diagnostic.severity.WARN }";
     };
 
     signs = {
