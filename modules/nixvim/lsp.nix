@@ -128,6 +128,39 @@
     };
   };
 
+  autoCmd = [
+    {
+      event = [
+        "BufWinEnter"
+        "LspAttach"
+      ];
+      callback.__raw = ''
+        function(args)
+          local bufnr = args.buf
+          if not bufnr or not vim.api.nvim_buf_is_valid(bufnr) then return end
+          if vim.bo[bufnr].filetype == "bigfile" then return end
+
+          local win = vim.fn.bufwinid(bufnr)
+          if win == -1 then return end
+
+          local has_lsp_folding = vim.iter(vim.lsp.get_clients({ bufnr = bufnr })):any(function(client)
+            return client:supports_method("textDocument/foldingRange")
+          end)
+
+          vim.api.nvim_win_call(win, function()
+            if has_lsp_folding then
+              vim.wo.foldmethod = "expr"
+              vim.wo.foldexpr = "v:lua.vim.lsp.foldexpr()"
+            else
+              vim.wo.foldmethod = "expr"
+              vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+            end
+          end)
+        end
+      '';
+    }
+  ];
+
   keymapsOnEvents.LspAttach = [
     (lib.mkIf (!config.plugins.conform-nvim.enable) {
       action.__raw = "vim.lsp.buf.format";
@@ -147,6 +180,38 @@
       options = {
         silent = true;
         desc = "Lsp diagnostic open_float";
+      };
+    }
+    {
+      key = "<leader>l[";
+      mode = "n";
+      action = lib.nixvim.mkRaw ''
+        function()
+          vim.diagnostic.jump({
+            count = -1,
+            float = true,
+          })
+        end
+      '';
+      options = {
+        silent = true;
+        desc = "Previous diagnostic";
+      };
+    }
+    {
+      key = "<leader>l]";
+      mode = "n";
+      action = lib.nixvim.mkRaw ''
+        function()
+          vim.diagnostic.jump({
+            count = 1,
+            float = true,
+          })
+        end
+      '';
+      options = {
+        silent = true;
+        desc = "Next diagnostic";
       };
     }
   ]
