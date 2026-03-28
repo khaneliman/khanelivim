@@ -37,7 +37,25 @@
           ];
         };
       };
-      angularls.enable = true;
+      angularls = {
+        enable = true;
+        config = {
+          # Keep Angular LS scoped to Angular/Nx workspaces instead of letting
+          # it inherit the global `.git` root marker.
+          root_markers = lib.mkForce [
+            "angular.json"
+            "nx.json"
+          ];
+          workspace_required = true;
+          # Upstream includes `typescriptreact`, which lets angularls attach in
+          # React workspaces. Keep the Angular-relevant filetypes only.
+          filetypes = [
+            "typescript"
+            "html"
+            "htmlangular"
+          ];
+        };
+      };
       bashls.enable = true;
       biome = {
         enable = true;
