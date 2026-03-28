@@ -347,6 +347,18 @@ in
                 };
               };
 
+              "<leader>ueC" = {
+                action.__raw = ''
+                  function ()
+                    local is_enabled = not vim.lsp.codelens.is_enabled({ bufnr = 0 })
+                    vim.lsp.codelens.enable(is_enabled, { bufnr = 0 })
+                    vim.notify(string.format("Code Lens %s", bool2str(is_enabled), "info"))
+                  end'';
+                options = {
+                  desc = "Code Lens toggle";
+                };
+              };
+
               "<leader>ueS" = {
                 action.__raw = ''
                   function ()
