@@ -4,44 +4,65 @@
   pkgs,
   ...
 }:
+let
+  inherit (pkgs.stdenv.hostPlatform) isDarwin isUnix;
+  bashDebugExtension = pkgs.vscode-utils.buildVscodeMarketplaceExtension {
+    mktplcRef = {
+      name = "bash-debug";
+      publisher = "rogalmic";
+      version = "0.3.9";
+      hash = "sha256-f8FUZCvz/PonqQP9RCNbyQLZPnN5Oce0Eezm/hD19Fg=";
+    };
+  };
+  bashDebugExtensionPath = "${bashDebugExtension}/share/vscode/extensions/rogalmic.bash-debug";
+  bundledBashdb = "${bashDebugExtensionPath}/bashdb_dir/bashdb";
+  bundledBashdbLib = "${bashDebugExtensionPath}/bashdb_dir";
+  pathPkill = if isDarwin then "/usr/bin/pkill" else lib.getExe' pkgs.procps "pkill";
+in
 {
-  extraPackages = lib.optionals (config.plugins.dap.enable && pkgs.stdenv.hostPlatform.isLinux) [
-    pkgs.bashdb
-  ];
-
-  plugins = {
+  plugins = lib.mkIf (config.plugins.dap.enable && isUnix) {
     dap = {
       adapters = {
-        executables = {
-          bashdb = lib.mkIf pkgs.stdenv.hostPlatform.isLinux { command = lib.getExe pkgs.bashdb; };
+        servers = {
+          bashdb = {
+            host = "127.0.0.1";
+            port = "\${port}";
+            executable = {
+              command = lib.getExe pkgs.nodejs;
+              args = [
+                "${bashDebugExtensionPath}/out/bashDebug.js"
+                "--server=\${port}"
+              ];
+            };
+          };
         };
       };
 
       configurations = {
-        sh = lib.optionals pkgs.stdenv.hostPlatform.isLinux [
+        sh = [
           {
+            # Primary config
             type = "bashdb";
             request = "launch";
             name = "Launch (BashDB)";
-            showDebugOutput = true;
-            pathBashdb = "${lib.getExe pkgs.bashdb}";
-            pathBashdbLib = "${pkgs.bashdb}/share/basdhb/lib/";
-            trace = true;
-            file = "\${file}";
-            program = "\${file}";
+            # Ancillary options
+            args.__raw = "{}";
+            argsString.__raw = "\"\"";
             cwd = "\${workspaceFolder}";
-            pathCat = "cat";
-            pathBash = "${lib.getExe pkgs.bash}";
-            pathMkfifo = "mkfifo";
-            pathPkill = "pkill";
-            args = { };
-            env = { };
+            env.__raw = "{}";
+            inherit pathPkill;
+            pathBash = lib.getExe pkgs.bash;
+            pathBashdb = bundledBashdb;
+            pathBashdbLib = bundledBashdbLib;
+            pathCat = lib.getExe' pkgs.coreutils "cat";
+            pathMkfifo = lib.getExe' pkgs.coreutils "mkfifo";
+            program = "\${file}";
+            showDebugOutput = true;
             terminalKind = "integrated";
+            trace = true;
           }
         ];
       };
-
     };
   };
-
 }
