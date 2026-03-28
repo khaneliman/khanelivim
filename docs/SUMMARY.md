@@ -1,6 +1,7 @@
 # Summary
 
 - [Overview](index.md)
+- [Selecting Profiles](using-profiles.md)
 - [Options Reference](options/index.md)
   <!-- OPTIONS:START -->
   <!-- OPTIONS:END -->

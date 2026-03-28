@@ -14,6 +14,8 @@ nix run .#docs
 
 ## Included Pages
 
+- `Selecting Profiles` explains how the flake default is chosen and how to build
+  a non-default profile.
 - `Options Reference` documents the `khanelivim.*` option surface from the
   evaluated module tree.
 - `Profile Matrix` shows the evaluated enablement for each profile.
