@@ -202,6 +202,26 @@ in
         log_level = "debug";
       };
 
+      plugins = {
+        copilot-lua.settings.logger = {
+          file_log_level = lib.mkForce (lib.nixvim.mkRaw "vim.log.levels.TRACE");
+          print_log_level = lib.mkForce (lib.nixvim.mkRaw "vim.log.levels.DEBUG");
+          trace_lsp = lib.mkForce "verbose";
+          trace_lsp_progress = lib.mkForce true;
+          log_lsp_messages = lib.mkForce true;
+        };
+
+        easy-dotnet.settings.server.log_level = lib.mkForce "Verbose";
+
+        fidget.settings.logger.level = lib.mkForce "debug";
+
+        kulala.settings.debug = lib.mkForce true;
+
+        overseer.settings.log_level = lib.mkForce (lib.nixvim.mkRaw "vim.log.levels.TRACE");
+
+        typescript-tools.settings.settings.tsserver_logs = lib.mkForce "verbose";
+      };
+
       extraConfigVim = ''
         set verbose=9
         set verbosefile=~/.cache/nvim/debug.log
