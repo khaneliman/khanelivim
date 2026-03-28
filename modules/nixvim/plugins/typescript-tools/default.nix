@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 {
   plugins = {
     typescript-tools = {
@@ -22,9 +22,9 @@
           include_completions_with_insert_text = true;
           publish_diagnostic_on = "insert_leave";
           separate_diagnostic_server = true;
+          # Prefer project-local TypeScript and Yarn SDK resolution.
           tsserver_locale = "en";
           tsserver_max_memory = "auto";
-          tsserver_path = "${pkgs.typescript}/lib/node_modules/typescript/lib/tsserver.js";
           jsx_close_tag = {
             enable = false;
             filetypes = [
