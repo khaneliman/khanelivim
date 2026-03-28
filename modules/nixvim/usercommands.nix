@@ -1,5 +1,14 @@
 {
   userCommands = {
+    LspLog = {
+      command.__raw = ''
+        function()
+          vim.cmd(string.format("tabnew %s", vim.lsp.log.get_filename()))
+        end
+      '';
+      desc = "Opens the Nvim LSP client log.";
+    };
+
     FormatDisable = {
       bang = true;
       command.__raw = ''
