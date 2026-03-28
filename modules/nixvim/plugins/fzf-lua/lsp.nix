@@ -27,6 +27,14 @@
     }
     {
       mode = "n";
+      key = "<leader>fG";
+      action = "<cmd>FzfLua lsp_workspace_symbols<CR>";
+      options = {
+        desc = "Find lsp workspace symbols";
+      };
+    }
+    {
+      mode = "n";
       key = "<leader>ld";
       action = "<cmd>FzfLua lsp_definitions<CR>";
       options = {

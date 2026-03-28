@@ -33,6 +33,14 @@
         }
         {
           mode = "n";
+          key = "<leader>fG";
+          action = "<cmd>lua Snacks.picker.lsp_workspace_symbols()<cr>";
+          options = {
+            desc = "Find lsp workspace symbols";
+          };
+        }
+        {
+          mode = "n";
           key = "<leader>ld";
           action = "<cmd>lua Snacks.picker.lsp_definitions()<cr>";
           options = {
