@@ -209,7 +209,7 @@ in
 
       extraConfigLua = ''
         -- Enable LSP debug logging
-        vim.lsp.set_log_level("DEBUG")
+        vim.lsp.log.set_level(vim.lsp.log.levels.DEBUG)
 
         -- Notify when debug profile is active
         vim.notify("DEBUG profile active - all optimizations disabled", vim.log.levels.WARN)
