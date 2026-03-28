@@ -17,6 +17,15 @@ in
       ];
 
       settings = {
+        handlers = {
+          "textDocument/publishDiagnostics".__raw = ''
+            require("typescript-tools.api").filter_diagnostics({
+              -- Suggestion-level diagnostic; useful in some teams, noisy in others.
+              -- 80006,
+            })
+          '';
+        };
+
         settings = {
           code_lens = "off";
           complete_function_calls = false;
@@ -41,6 +50,13 @@ in
             includeInlayPropertyDeclarationTypeHints = true;
             includeInlayFunctionLikeReturnTypeHints = true;
           };
+          tsserver_plugins = [
+            # These are only loaded when tsserver can resolve them from the
+            # workspace or runtime environment.
+            "@styled/typescript-styled-plugin"
+            # Older styled-components plugin name for older TS setups:
+            # "typescript-styled-plugin"
+          ];
           tsserver_locale = "en";
           tsserver_max_memory = "auto";
           jsx_close_tag = {
