@@ -169,6 +169,31 @@
           if client:supports_method("textDocument/linkedEditingRange") then
             vim.lsp.linked_editing_range.enable(true, { client_id = client.id })
           end
+
+          local python_type_checkers = {
+            pyright = true,
+            basedpyright = true,
+            pylsp = true,
+          }
+
+          if client.name == "ruff" then
+            local has_python_type_checker = vim.iter(vim.lsp.get_clients({ bufnr = args.buf })):any(function(other)
+              return other.id ~= client.id and python_type_checkers[other.name]
+            end)
+
+            if has_python_type_checker then
+              client.server_capabilities.hoverProvider = false
+            end
+            return
+          end
+
+          if python_type_checkers[client.name] then
+            for _, other in ipairs(vim.lsp.get_clients({ bufnr = args.buf })) do
+              if other.name == "ruff" then
+                other.server_capabilities.hoverProvider = false
+              end
+            end
+          end
         end
       '';
     }

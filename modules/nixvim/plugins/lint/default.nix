@@ -56,7 +56,7 @@
           "deadnix"
         ]
         ++ lib.optionals (!config.plugins.lsp.servers.statix.enable) [ "statix" ];
-        python = [ "ruff" ];
+        python = lib.mkIf (!config.lsp.servers.ruff.enable) [ "ruff" ];
         rust = [ "clippy" ];
         sh = [ "shellcheck" ];
         sql = [ "sqlfluff" ];
