@@ -34,7 +34,7 @@
         cpp = [ "clangtidy" ];
         # TODO:
         # cs = [ "sonarlint" ];
-        css = lib.mkIf (!config.plugins.lsp.servers.stylelint_lsp.enable) [ "stylelint" ];
+        css = lib.mkIf (!config.lsp.servers.stylelint_lsp.enable) [ "stylelint" ];
         fish = [ "fish" ];
         # TODO:
         # fsharp = [ "" ];
@@ -42,7 +42,7 @@
         go = [ "golangcilint" ];
         html = [ "htmlhint" ];
         java = [ "checkstyle" ];
-        javascript = lib.mkIf (!config.plugins.lsp.servers.biome.enable) [ "biomejs" ];
+        javascript = lib.mkIf (!config.lsp.servers.biome.enable) [ "biomejs" ];
         # FIXME: removed from nixpkgs find altnerative
         # json = [ "jsonlint" ];
         lua = [ "luacheck" ];
@@ -55,13 +55,13 @@
         nix = [
           "deadnix"
         ]
-        ++ lib.optionals (!config.plugins.lsp.servers.statix.enable) [ "statix" ];
+        ++ lib.optionals (!config.lsp.servers.statix.enable) [ "statix" ];
         python = lib.mkIf (!config.lsp.servers.ruff.enable) [ "ruff" ];
         rust = [ "clippy" ];
         sh = [ "shellcheck" ];
         sql = [ "sqlfluff" ];
         swift = [ "swiftlint" ];
-        typescript = lib.mkIf (!config.plugins.lsp.servers.biome.enable) [ "biomejs" ];
+        typescript = lib.mkIf (!config.lsp.servers.biome.enable) [ "biomejs" ];
         # TODO:
         # xml = [ "xmllint" ];
         yaml = [ "yamllint" ];
