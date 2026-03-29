@@ -80,7 +80,7 @@
             "basedpyright"
           ]
         );
-        default = "pyright";
+        default = "basedpyright";
         description = "Which Python type checker to use (mutually exclusive).";
       };
 
