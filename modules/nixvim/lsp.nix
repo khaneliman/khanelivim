@@ -238,6 +238,18 @@
     }
   ];
 
+  keymaps = [
+    {
+      key = "<leader>lT";
+      mode = "n";
+      action = "<cmd>ToolingInfo<CR>";
+      options = {
+        silent = true;
+        desc = "Tooling info";
+      };
+    }
+  ];
+
   keymapsOnEvents.LspAttach = [
     (lib.mkIf (!config.plugins.conform-nvim.enable) {
       action.__raw = "vim.lsp.buf.format";
@@ -620,6 +632,10 @@
         desc = "Type Definition";
       }
       {
+        __unkeyed-1 = "<leader>lT";
+        desc = "Tooling Info";
+      }
+      {
         __unkeyed-1 = "<leader>lX";
         desc = "Restart LSP";
       }
@@ -628,5 +644,19 @@
         desc = "Run Code Lens";
       }
     ];
+  };
+
+  userCommands = {
+    ToolingInfo = {
+      desc = "Show current buffer tooling details";
+      command.__raw = ''
+        function()
+          ${lib.optionalString (
+            config.plugins.lz-n.enable && config.plugins.conform-nvim.enable
+          ) "pcall(function() require('lz.n').trigger_load('conform.nvim') end)"}
+          require("khanelivim.tooling_info").notify(0)
+        end
+      '';
+    };
   };
 }

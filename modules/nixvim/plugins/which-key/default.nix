@@ -79,6 +79,26 @@
           icon = "";
         }
         {
+          __unkeyed-1 = "<leader>uec";
+          desc = "Document Colors";
+        }
+        {
+          __unkeyed-1 = "<leader>ueC";
+          desc = "Code Lens";
+        }
+        {
+          __unkeyed-1 = "<leader>ueI";
+          desc = "Diagnostics In Insert";
+        }
+        {
+          __unkeyed-1 = "<leader>ueS";
+          desc = "Semantic Tokens";
+        }
+        {
+          __unkeyed-1 = "<leader>uev";
+          desc = "Diagnostic Virtual Lines";
+        }
+        {
           __unkeyed-1 = "<leader>ug";
           group = "Git UI";
           icon = "";

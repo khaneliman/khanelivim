@@ -1,5 +1,6 @@
 {
   extraFiles = {
+    "lua/khanelivim/tooling_info.lua".source = ./lua/khanelivim/tooling_info.lua;
     "lua/khanelivim/web_tools.lua".source = ./lua/khanelivim/web_tools.lua;
   };
 
