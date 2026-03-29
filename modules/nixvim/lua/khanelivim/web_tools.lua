@@ -179,10 +179,25 @@ function M.describe(bufnr)
 	local preferred = M.preferred_formatters(bufnr, filetype)
 
 	return {
+		diagnostics_owner = M.preferred_diagnostics_owner(bufnr),
 		filetype = filetype,
 		detected = detected,
 		preferred = preferred,
 	}
+end
+
+function M.preferred_diagnostics_owner(bufnr)
+	local detected = M.detect(bufnr)
+
+	if detected.biome then
+		return "biome"
+	end
+
+	if detected.eslint then
+		return "eslint"
+	end
+
+	return nil
 end
 
 return M

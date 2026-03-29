@@ -174,6 +174,13 @@
         function(args)
           local client = vim.lsp.get_client_by_id(args.data.client_id)
           if not client then return end
+          local web_tools = require("khanelivim.web_tools")
+          local diagnostics_owner = web_tools.preferred_diagnostics_owner(args.buf)
+
+          if client.name == "eslint" and diagnostics_owner == "biome" then
+            client:stop(true)
+            return
+          end
 
           if client:supports_method("textDocument/linkedEditingRange") then
             vim.lsp.linked_editing_range.enable(true, { client_id = client.id })
