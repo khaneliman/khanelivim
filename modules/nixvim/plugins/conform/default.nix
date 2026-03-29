@@ -71,7 +71,7 @@
               return
             end
 
-            return { lsp_fallback = true }
+            return { lsp_format = "fallback" }
           end
         '';
 
