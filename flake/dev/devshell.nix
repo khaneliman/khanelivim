@@ -7,12 +7,9 @@
       ...
     }:
     let
-      packages = with pkgs; [
-        deadnix
+      manualPackages = with pkgs; [
         nixd
-        nixfmt
         python3
-        statix
         (writeShellScriptBin "new-plugin" ''
           if [ $# -ne 2 ]; then
             echo "Usage: new-plugin <plugin-name> <template-type>"
@@ -22,6 +19,8 @@
           ${./new-plugin.py} "$1" "$2"
         '')
       ];
+
+      packages = lib.unique (manualPackages ++ config.pre-commit.settings.enabledPackages);
     in
     {
       devShells.default = pkgs.mkShell {
