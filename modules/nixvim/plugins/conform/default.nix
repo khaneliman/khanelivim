@@ -106,6 +106,12 @@
             timeout_ms = 2000;
             stop_after_first = true;
           };
+          javascriptreact = {
+            __unkeyed-1 = "prettierd";
+            __unkeyed-2 = "biome";
+            timeout_ms = 2000;
+            stop_after_first = true;
+          };
           json = [ "jq" ];
           html = [ "prettierd" ];
           http = [ "kulala-fmt" ];
@@ -130,6 +136,12 @@
           terraform = [ "terraform_fmt" ];
           toml = [ "taplo" ];
           typescript = {
+            __unkeyed-1 = "prettierd";
+            __unkeyed-2 = "biome";
+            timeout_ms = 2000;
+            stop_after_first = true;
+          };
+          typescriptreact = {
             __unkeyed-1 = "prettierd";
             __unkeyed-2 = "biome";
             timeout_ms = 2000;
