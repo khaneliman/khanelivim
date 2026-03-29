@@ -68,8 +68,17 @@
       cssls.enable = true;
       dockerls.enable = lib.elem "dockerls" config.khanelivim.lsp.docker;
       docker_language_server.enable = lib.elem "docker-language-server" config.khanelivim.lsp.docker;
-      # FIXME: [lspconfig] Unable to find ESLint library.
-      # eslint.enable = true;
+      eslint = {
+        enable = true;
+        config.settings = {
+          # Keep formatting with conform/prettier/biome and let ESLint focus on
+          # diagnostics and fix/code-action workflows.
+          format = false;
+          # Upstream can resolve a workspace-local ESLint install on its own,
+          # but Nix-managed projects need an explicit global fallback.
+          nodePath = "${pkgs.eslint}/lib/node_modules";
+        };
+      };
       emmylua_ls.enable = config.khanelivim.lsp.lua == "emmylua-ls";
       lua_ls.enable = config.khanelivim.lsp.lua == "lua-ls";
       fish_lsp.enable = true;
