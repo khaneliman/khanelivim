@@ -5,6 +5,57 @@
   ...
 }:
 {
+  autoGroups = lib.mkIf config.plugins.easy-dotnet.enable {
+    easy_dotnet_group = { };
+  };
+
+  autoCmd = lib.mkIf config.plugins.easy-dotnet.enable [
+    {
+      event = "FileType";
+      pattern = [
+        "cs"
+        "fsharp"
+      ];
+      group = "easy_dotnet_group";
+      callback.__raw = ''
+        function(args)
+          local function apply_easy_dotnet_maps(bufnr)
+            local opts = function(desc)
+              return { buffer = bufnr, desc = desc }
+            end
+            local map = function(mode, key, command, desc)
+              vim.keymap.set(mode, key, function()
+                if vim.fn.exists(":Dotnet") == 2 then
+                  vim.cmd("Dotnet " .. command)
+                  return
+                end
+                vim.notify("Dotnet command is not ready yet", vim.log.levels.WARN)
+              end, opts(desc))
+            end
+
+            map("n", "<leader>zb", "build", ".NET Build")
+            map("n", "<leader>zd", "debug", ".NET Debug")
+            map("n", "<leader>zD", "diagnostic", ".NET Diagnostics")
+            map("n", "<leader>ze", "diagnostic errors", ".NET Diagnostic Errors")
+            map("n", "<leader>zo", "outdated", ".NET Outdated Packages")
+            map("n", "<leader>zr", "run", ".NET Run")
+            map("n", "<leader>zt", "testrunner", ".NET Test Runner")
+            map("n", "<leader>zW", "diagnostic warnings", ".NET Diagnostic Warnings")
+            map("n", "<leader>zw", "watch", ".NET Watch")
+          end
+
+          apply_easy_dotnet_maps(args.buf)
+          vim.api.nvim_create_autocmd("LspAttach", {
+            buffer = args.buf,
+            callback = function(ev)
+              apply_easy_dotnet_maps(ev.buf)
+            end,
+          })
+        end
+      '';
+    }
+  ];
+
   plugins = {
     easy-dotnet = {
       # easy-dotnet.nvim documentation
