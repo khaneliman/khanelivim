@@ -3,6 +3,13 @@ ALWAYS Read @CONTRIBUTING.md when making changes.
 For any Nix code or module task, use the `writing-nix` skill before making
 edits.
 
+## Git Operations
+
+- Never run git staging, reset, checkout, commit, or other index-mutating
+  commands in parallel.
+- Git commands that touch the index or worktree must be run serially, one at a
+  time.
+
 ## Generated Lua Source of Truth
 
 - When debugging runtime behavior, always inspect `nixvim-print-init` output.
