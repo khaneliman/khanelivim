@@ -43,6 +43,7 @@
         html = [ "htmlhint" ];
         java = [ "checkstyle" ];
         javascript = lib.mkIf (!config.lsp.servers.biome.enable) [ "biomejs" ];
+        javascriptreact = lib.mkIf (!config.lsp.servers.biome.enable) [ "biomejs" ];
         # FIXME: removed from nixpkgs find altnerative
         # json = [ "jsonlint" ];
         lua = [ "luacheck" ];
@@ -57,11 +58,11 @@
         ]
         ++ lib.optionals (!config.lsp.servers.statix.enable) [ "statix" ];
         python = lib.mkIf (!config.lsp.servers.ruff.enable) [ "ruff" ];
-        rust = [ "clippy" ];
         sh = [ "shellcheck" ];
         sql = [ "sqlfluff" ];
         swift = [ "swiftlint" ];
         typescript = lib.mkIf (!config.lsp.servers.biome.enable) [ "biomejs" ];
+        typescriptreact = lib.mkIf (!config.lsp.servers.biome.enable) [ "biomejs" ];
         # TODO:
         # xml = [ "xmllint" ];
         yaml = [ "yamllint" ];
@@ -73,7 +74,6 @@
         checkmake.cmd = lib.getExe pkgs.checkmake;
         checkstyle.cmd = lib.getExe pkgs.checkstyle;
         clangtidy.cmd = lib.getExe' pkgs.clang-tools "clang-tidy";
-        clippy.cmd = lib.getExe pkgs.rust-analyzer;
         cmakelint.cmd = lib.getExe' pkgs.cmake-format "cmake-lint";
         deadnix.cmd = lib.getExe pkgs.deadnix;
         fish.cmd = lib.getExe pkgs.fish;
