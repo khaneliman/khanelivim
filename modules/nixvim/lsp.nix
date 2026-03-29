@@ -172,6 +172,29 @@
         end
       '';
     }
+    {
+      event = [
+        "BufEnter"
+        "CursorHold"
+        "InsertLeave"
+        "LspAttach"
+      ];
+      callback.__raw = ''
+        function(args)
+          local bufnr = args.buf
+          if not bufnr or not vim.api.nvim_buf_is_valid(bufnr) then return end
+
+          local supports_codelens = vim.iter(vim.lsp.get_clients({ bufnr = bufnr })):any(function(client)
+            return client:supports_method("textDocument/codeLens")
+          end)
+
+          if not supports_codelens then return end
+          if not vim.lsp.codelens.is_enabled({ bufnr = bufnr }) then return end
+
+          vim.lsp.codelens.refresh({ bufnr = bufnr })
+        end
+      '';
+    }
   ];
 
   keymapsOnEvents.LspAttach = [
