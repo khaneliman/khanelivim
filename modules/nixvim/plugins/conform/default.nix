@@ -114,8 +114,9 @@
           markdown = [ "deno_fmt" ];
           nix = [ "nixfmt" ];
           python = [
-            "isort"
-            "ruff"
+            "ruff_fix"
+            "ruff_format"
+            "ruff_organize_imports"
           ];
           rest = [ "kulala-fmt" ];
           rust = [ "rustfmt" ];
