@@ -5,10 +5,6 @@
   ...
 }:
 {
-  extraFiles = {
-    "lua/khanelivim/web_tools.lua".source = ../../lua/khanelivim/web_tools.lua;
-  };
-
   plugins = {
     conform-nvim = {
       # conform-nvim documentation
