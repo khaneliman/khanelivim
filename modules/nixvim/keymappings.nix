@@ -359,6 +359,33 @@ in
                 };
               };
 
+              "<leader>uev" = {
+                action.__raw = ''
+                  function ()
+                    local current = vim.diagnostic.config().virtual_lines
+                    local is_enabled = current == false or current == nil
+                    vim.diagnostic.config({
+                      virtual_lines = is_enabled and { current_line = true } or false,
+                    })
+                    vim.notify(string.format("Diagnostic Virtual Lines %s", bool2str(is_enabled), "info"))
+                  end'';
+                options = {
+                  desc = "Diagnostic Virtual Lines toggle";
+                };
+              };
+
+              "<leader>ueI" = {
+                action.__raw = ''
+                  function ()
+                    local is_enabled = not (vim.diagnostic.config().update_in_insert == true)
+                    vim.diagnostic.config({ update_in_insert = is_enabled })
+                    vim.notify(string.format("Diagnostics In Insert %s", bool2str(is_enabled), "info"))
+                  end'';
+                options = {
+                  desc = "Diagnostics In Insert toggle";
+                };
+              };
+
               "<leader>ueS" = {
                 action.__raw = ''
                   function ()
