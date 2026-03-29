@@ -5,6 +5,10 @@
   ...
 }:
 {
+  autoGroups = lib.mkIf (config.khanelivim.lsp.csharp == "roslyn") {
+    roslyn_group = { };
+  };
+
   plugins = {
     roslyn = {
       # roslyn.nvim documentation
@@ -60,6 +64,42 @@
   # Roslyn doesn't follow lsp spec and noice expects it to
   # Just disable progress for now
   autoCmd = lib.mkIf (config.khanelivim.lsp.csharp == "roslyn") [
+    {
+      event = "FileType";
+      pattern = [
+        "cs"
+        "cshtml"
+        "razor"
+      ];
+      group = "roslyn_group";
+      callback = {
+        __raw = ''
+          function(args)
+            local function apply_roslyn_maps(bufnr)
+              local opts = function(desc)
+                return { buffer = bufnr, desc = desc }
+              end
+
+              vim.keymap.set("n", "<leader>zT", function()
+                if vim.fn.exists(":Roslyn") == 2 then
+                  vim.cmd("Roslyn target")
+                  return
+                end
+                vim.notify("Roslyn command is not ready yet", vim.log.levels.WARN)
+              end, opts("Roslyn Target"))
+            end
+
+            apply_roslyn_maps(args.buf)
+            vim.api.nvim_create_autocmd("LspAttach", {
+              buffer = args.buf,
+              callback = function(ev)
+                apply_roslyn_maps(ev.buf)
+              end,
+            })
+          end
+        '';
+      };
+    }
     {
       event = [ "FileType" ];
       pattern = [
