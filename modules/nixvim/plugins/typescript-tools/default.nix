@@ -101,20 +101,16 @@ in
               end, opts(desc))
             end
 
-            map("n", "<leader>lF", "TSToolsFileReferences", "File References")
-            map("n", "<leader>lL", "TSToolsOpenTsserverLog", "Open tsserver Logs")
-            map("n", "<leader>lM", "TSToolsRemoveUnused", "Remove Unused")
-            map("n", "<leader>lO", "TSToolsOrganizeImports", "Organize Imports")
-            map("n", "<leader>lR", "TSToolsRenameFile", "Rename File")
-            map("n", "<leader>lS", "TSToolsGoToSourceDefinition", "Source Definition")
-            map("n", "<leader>lT", "TSToolsSortImports", "Sort Imports")
-            map("n", "<leader>lU", "TSToolsRemoveUnusedImports", "Remove Unused Imports")
-
-            -- These are available via code actions and can return later if we
-            -- find stable, ergonomic mnemonics that do not collide with
-            -- generic LSP management keys.
-            -- map("n", "<leader>lI", "TSToolsAddMissingImports", "Add Missing Imports")
-            -- map("n", "<leader>lX", "TSToolsFixAll", "Fix All")
+            map("n", "<leader>zi", "TSToolsAddMissingImports", "Add Missing Imports")
+            map("n", "<leader>zf", "TSToolsFixAll", "Fix All")
+            map("n", "<leader>zl", "TSToolsOpenTsserverLog", "Open tsserver Logs")
+            map("n", "<leader>zm", "TSToolsRemoveUnused", "Remove Unused")
+            map("n", "<leader>zo", "TSToolsOrganizeImports", "Organize Imports")
+            map("n", "<leader>zn", "TSToolsRenameFile", "Rename File")
+            map("n", "<leader>zs", "TSToolsGoToSourceDefinition", "Source Definition")
+            map("n", "<leader>zt", "TSToolsSortImports", "Sort Imports")
+            map("n", "<leader>zu", "TSToolsRemoveUnusedImports", "Remove Unused Imports")
+            map("n", "<leader>zR", "TSToolsFileReferences", "File References")
           end
 
           apply_typescript_maps(args.buf)
