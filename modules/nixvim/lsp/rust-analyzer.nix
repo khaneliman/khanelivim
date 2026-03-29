@@ -12,10 +12,21 @@
     # installRustc = true;
 
     config.settings = {
+      cargo = {
+        buildScripts.enable = true;
+        features = "all";
+      };
+
       diagnostics = {
         enable = true;
         # experimental.enable = true;
         styleLints.enable = true;
+      };
+
+      checkOnSave = true;
+      check = {
+        command = "clippy";
+        features = "all";
       };
 
       files = {
@@ -39,6 +50,8 @@
       procMacro = {
         enable = true;
       };
+
+      rustc.source = "discover";
     };
   };
 }
