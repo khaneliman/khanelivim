@@ -226,6 +226,15 @@
       };
     }
     {
+      key = "<leader>lI";
+      mode = "n";
+      action = "<cmd>checkhealth vim.lsp<CR>";
+      options = {
+        silent = true;
+        desc = "LSP info";
+      };
+    }
+    {
       key = "<leader>lQ";
       mode = "n";
       action = lib.nixvim.mkRaw ''
@@ -245,6 +254,15 @@
       options = {
         silent = true;
         desc = "Workspace diagnostics";
+      };
+    }
+    {
+      key = "<leader>lX";
+      mode = "n";
+      action = "<cmd>lsp restart<CR>";
+      options = {
+        silent = true;
+        desc = "Restart LSP";
       };
     }
     {
@@ -407,6 +425,10 @@
 
     which-key.settings.spec = [
       {
+        __unkeyed-1 = "gx";
+        desc = "Open Document Link";
+      }
+      {
         __unkeyed-1 = "<leader>l";
         group = "LSP";
         icon = " ";
@@ -448,6 +470,10 @@
         desc = "Lsp Hover";
       }
       {
+        __unkeyed-1 = "<leader>lI";
+        desc = "LSP Info";
+      }
+      {
         __unkeyed-1 = "<leader>lH";
         desc = "Diagnostic Hover";
       }
@@ -470,6 +496,10 @@
       {
         __unkeyed-1 = "<leader>lt";
         desc = "Type Definition";
+      }
+      {
+        __unkeyed-1 = "<leader>lX";
+        desc = "Restart LSP";
       }
       {
         __unkeyed-1 = "<leader>lx";
