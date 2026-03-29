@@ -108,6 +108,11 @@
           icon = "";
         }
         {
+          __unkeyed-1 = "<leader>z";
+          group = "Language";
+          icon = "󰘦";
+        }
+        {
           __unkeyed-1 = "<leader>W";
           icon = "󰽃";
         }
