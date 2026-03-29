@@ -291,6 +291,31 @@
       };
     }
     {
+      key = "<leader>lW";
+      mode = "n";
+      action = lib.nixvim.mkRaw ''
+        function()
+          local format = function(diagnostic)
+            local source = diagnostic.source and string.format(" [%s]", diagnostic.source) or ""
+            local code = diagnostic.code and string.format(" (%s)", diagnostic.code) or ""
+            local message = diagnostic.message:gsub("%s+", " ")
+            return string.format("%s%s%s", message, source, code)
+          end
+
+          vim.diagnostic.setqflist({
+            open = true,
+            severity = { min = vim.diagnostic.severity.ERROR, max = vim.diagnostic.severity.ERROR },
+            title = "Workspace Errors",
+            format = format,
+          })
+        end
+      '';
+      options = {
+        silent = true;
+        desc = "Workspace errors list";
+      };
+    }
+    {
       key = "<leader>lq";
       mode = "n";
       action = lib.nixvim.mkRaw ''
@@ -313,6 +338,31 @@
       options = {
         silent = true;
         desc = "Buffer diagnostics list";
+      };
+    }
+    {
+      key = "<leader>le";
+      mode = "n";
+      action = lib.nixvim.mkRaw ''
+        function()
+          local format = function(diagnostic)
+            local source = diagnostic.source and string.format(" [%s]", diagnostic.source) or ""
+            local code = diagnostic.code and string.format(" (%s)", diagnostic.code) or ""
+            local message = diagnostic.message:gsub("%s+", " ")
+            return string.format("%s%s%s", message, source, code)
+          end
+
+          vim.diagnostic.setloclist({
+            open = true,
+            severity = { min = vim.diagnostic.severity.ERROR, max = vim.diagnostic.severity.ERROR },
+            title = "Buffer Errors",
+            format = format,
+          })
+        end
+      '';
+      options = {
+        silent = true;
+        desc = "Buffer errors list";
       };
     }
     {
@@ -462,6 +512,10 @@
         desc = "References";
       }
       {
+        __unkeyed-1 = "<leader>le";
+        desc = "Buffer Errors List";
+      }
+      {
         __unkeyed-1 = "<leader>lf";
         desc = "Format";
       }
@@ -492,6 +546,10 @@
       {
         __unkeyed-1 = "<leader>lQ";
         desc = "Workspace Diagnostics";
+      }
+      {
+        __unkeyed-1 = "<leader>lW";
+        desc = "Workspace Errors List";
       }
       {
         __unkeyed-1 = "<leader>lt";
