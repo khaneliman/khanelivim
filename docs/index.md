@@ -14,6 +14,9 @@ nix run .#docs
 
 ## Included Pages
 
+- `Language Tooling Workflows` explains the generic `<leader>l` and
+  language-specific `<leader>z` runtime model, plus the workspace-aware web
+  tooling ownership rules.
 - `Selecting Profiles` explains how the flake default is chosen and how to build
   a non-default profile.
 - `Options Reference` documents the `khanelivim.*` option surface from the

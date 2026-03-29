@@ -327,7 +327,7 @@ various programming languages, including:
 - **Lua** - lua-ls with lazydev
 - **Markdown** - marksman, harper-ls
 - **Nix** - nil-ls, nixd
-- **Python** - pyright
+- **Python** - basedpyright, ruff
 - **Rust** - rust-analyzer (via rustaceanvim)
 - **SQL** - sqls
 - **TOML** - taplo
@@ -340,33 +340,47 @@ associations, initialization options, and formatting configurations.
 
 ### LSP Keymappings:
 
-The configuration defines key mappings for common LSP actions:
+Khanelivim splits runtime tooling into two groups:
+
+- `<leader>l` for generic LSP and diagnostics actions
+- `<leader>z` for language-specific tooling in the current buffer
 
 - **Code Navigation:**
-  - `gd` - Go to definition
-  - `gD` - Go to declaration
-  - `gi` - Go to implementation
-  - `gt` / `gy` - Go to type definition
-  - `gr` - Find references
-  - `K` - Hover documentation
+  - `gd`, `grr`, `gri`, `K`, and `gx` still use Neovim's built-in LSP motions
+  - `<leader>ld`, `<leader>li`, `<leader>lt` expose definition, implementation,
+    and type definition in the LSP group
 
 - **Code Actions:**
-  - `<leader>ca` - Code actions
-  - `<leader>rn` - Rename symbol
-  - `<leader>f` - Format code
+  - `<leader>la` - Code actions
+  - `<leader>lr` - Rename symbol
+  - `<leader>lf` - Format code
+  - `<leader>lT` - Show current buffer tooling details
+  - `<leader>lI` / `<leader>lX` - LSP health and restart
 
 - **Diagnostics:**
-  - `]d` / `[d` - Next/previous diagnostic
-  - `<leader>e` - Show line diagnostics
-  - `<leader>q` - Open diagnostics list
+  - `<leader>l[` / `<leader>l]` - Previous/next diagnostic
+  - `<leader>lH` - Show line diagnostics
+  - `<leader>lq`, `<leader>le`, `<leader>lE`, `<leader>lW` - Buffer/workspace
+    diagnostics and error lists
+  - `<leader>lQ` - Request workspace diagnostics when the attached LSP supports
+    them
+
+- **Language-specific tooling:**
+  - TypeScript, Rust, Python, and .NET add buffer-local actions under
+    `<leader>z`
+  - Examples include import organization, Rust runnables, Python env/test
+    helpers, and .NET build/debug/test flows
 
 ### Additional Features:
 
-- **Automatic formatting** via conform.nvim with language-specific formatters
+- **Automatic formatting** via conform.nvim with workspace-aware formatter
+  ownership for Biome and Prettier
 - **Linting integration** with various linters through nvim-lint
 - **Code completion** powered by Blink with LSP, Copilot, and snippet sources
 - **Debugging support** via DAP with UI and virtual text
 - **Testing integration** through Neotest with multiple language adapters
+- **Workspace-aware diagnostics ownership** so Biome and ESLint do not both stay
+  active in the same JS/TS workspace
 - **Project-wide search** and refactoring tools (Spectre, Grug-far,
   Refactoring.nvim)
 
@@ -431,25 +445,53 @@ The configuration defines key mappings for common LSP actions:
 
 ### Code Navigation (LSP)
 
-| Key          | Action               | Description             |
-| ------------ | -------------------- | ----------------------- |
-| `gd`         | Go to definition     | Jump to definition      |
-| `grr`        | Find references      | Show all references     |
-| `gri`        | Go to implementation | Jump to implementation  |
-| `gy`         | Go to type def       | Jump to type definition |
-| `K`          | Hover docs           | Show documentation      |
-| `<leader>la` | Code actions         | Show code actions       |
+| Key          | Action               | Description                    |
+| ------------ | -------------------- | ------------------------------ |
+| `gd`         | Go to definition     | Jump to definition             |
+| `grr`        | Find references      | Show all references            |
+| `gri`        | Go to implementation | Jump to implementation         |
+| `gy`         | Go to type def       | Jump to type definition        |
+| `K`          | Hover docs           | Show documentation             |
+| `gx`         | Open document link   | Follow LSP document links      |
+| `<leader>la` | Code actions         | Show code actions              |
+| `<leader>lr` | Rename               | Rename symbol                  |
+| `<leader>lT` | Tooling info         | Inspect current buffer tooling |
+| `<leader>lI` | LSP health           | Run `:checkhealth vim.lsp`     |
+| `<leader>lX` | Restart LSP          | Restart attached LSP clients   |
 
 ### Diagnostics & Debugging
 
-| Key              | Action           | Description             |
-| ---------------- | ---------------- | ----------------------- |
-| `<leader>xx`     | Diagnostics      | Toggle diagnostics list |
-| `<leader>fd`     | Find diagnostics | Buffer diagnostics      |
-| `<leader>fD`     | Find diagnostics | Workspace diagnostics   |
-| `<leader>db`     | Debug breakpoint | Toggle breakpoint       |
-| `<leader>dc`     | Debug continue   | Start/continue debug    |
-| `<leader>di/o/O` | Debug step       | Step into/out/over      |
+| Key          | Action                  | Description                        |
+| ------------ | ----------------------- | ---------------------------------- |
+| `<leader>xx` | Diagnostics             | Toggle diagnostics list            |
+| `<leader>fd` | Find diagnostics        | Buffer diagnostics                 |
+| `<leader>fD` | Find diagnostics        | Workspace diagnostics              |
+| `<leader>l[` | Diagnostic jump         | Previous diagnostic                |
+| `<leader>l]` | Diagnostic jump         | Next diagnostic                    |
+| `<leader>lH` | Diagnostic hover        | Open float at current position     |
+| `<leader>lq` | Buffer diagnostics list | Send buffer diagnostics to loclist |
+| `<leader>le` | Buffer errors list      | Send buffer errors to loclist      |
+| `<leader>lE` | Workspace diagnostics   | Send diagnostics to quickfix       |
+| `<leader>lW` | Workspace errors list   | Send errors to quickfix            |
+| `<leader>lx` | Run code lens           | Execute code lens when supported   |
+| `<leader>db` | Debug breakpoint        | Toggle breakpoint                  |
+| `<leader>dc` | Debug continue          | Start/continue debug               |
+| `<leader>di` | Debug step              | Step into                          |
+| `<leader>do` | Debug step              | Step over                          |
+| `<leader>dO` | Debug step              | Step out                           |
+
+### Language Workflows
+
+Language-specific actions live under `<leader>z` and are buffer-local.
+
+- TypeScript uses `<leader>z` for actions like add imports, fix all, organize
+  imports, source definition, and tsserver logs.
+- Rust uses `<leader>z` for runnables, debuggables, crate graph, cargo,
+  rust-analyzer logs, and macro tools.
+- Python uses `<leader>zv`, `<leader>zc`, `<leader>zL`, `<leader>zt`,
+  `<leader>zT`, `<leader>zl`, and `<leader>zd` for env/test/debug workflows.
+- .NET uses `<leader>z` for build, run, debug, test, watch, diagnostics, and
+  outdated-package flows.
 
 ### Quick Navigation
 
@@ -462,13 +504,18 @@ The configuration defines key mappings for common LSP actions:
 
 ### Toggle Options
 
-| Key          | Action             | Description        |
-| ------------ | ------------------ | ------------------ |
-| `<leader>ud` | Toggle diagnostics | Buffer diagnostics |
-| `<leader>uf` | Toggle formatting  | Auto-formatting    |
-| `<leader>uw` | Toggle word wrap   | Text wrapping      |
-| `<leader>uS` | Toggle spell check | Spell checking     |
-| `<leader>uT` | Toggle terminal    | Terminal interface |
+| Key           | Action                       | Description                   |
+| ------------- | ---------------------------- | ----------------------------- |
+| `<leader>ud`  | Toggle diagnostics           | Buffer diagnostics            |
+| `<leader>uf`  | Toggle formatting            | Auto-formatting               |
+| `<leader>uw`  | Toggle word wrap             | Text wrapping                 |
+| `<leader>uS`  | Toggle spell check           | Spell checking                |
+| `<leader>uT`  | Toggle terminal              | Terminal interface            |
+| `<leader>ueI` | Toggle diagnostics in insert | Show diagnostics while typing |
+| `<leader>uev` | Toggle virtual lines         | Diagnostic virtual lines      |
+| `<leader>ueC` | Toggle code lens             | Code lens display             |
+| `<leader>uec` | Toggle document colors       | LSP document colors           |
+| `<leader>ueS` | Toggle semantic tokens       | Semantic token highlighting   |
 
 ### Utility
 
@@ -480,7 +527,8 @@ The configuration defines key mappings for common LSP actions:
 | `<leader>:`  | Command history | Recent command history  |
 
 _Note: Use `<leader>` (Space) and wait to see all available options via
-which-key. Many plugins provide additional context-specific keybindings._
+which-key. Many plugins provide additional context-specific keybindings. See
+`docs/language-tooling.md` for the current runtime tooling model._
 
 ## Architecture
 
