@@ -176,11 +176,30 @@
           if not client then return end
           local web_tools = require("khanelivim.web_tools")
           local diagnostics_owner = web_tools.preferred_diagnostics_owner(args.buf)
+          local filetype = vim.bo[args.buf].filetype
 
           if client.name == "eslint" and diagnostics_owner == "biome" then
             client:stop(true)
             return
           end
+
+          ${lib.optionalString config.plugins.conform-nvim.enable ''
+            local web_formatting_clients = {
+              angularls = true,
+              biome = true,
+              cssls = true,
+              eslint = true,
+              html = true,
+              ts_ls = true,
+              tsgo = true,
+              ["typescript-tools"] = true,
+            }
+
+            if web_tools.is_web_filetype(filetype) and web_formatting_clients[client.name] then
+              client.server_capabilities.documentFormattingProvider = false
+              client.server_capabilities.documentRangeFormattingProvider = false
+            end
+          ''}
 
           if client:supports_method("textDocument/linkedEditingRange") then
             vim.lsp.linked_editing_range.enable(true, { client_id = client.id })

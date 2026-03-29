@@ -172,6 +172,10 @@ function M.preferred_formatters(bufnr, filetype)
 	return nil
 end
 
+function M.is_web_filetype(filetype)
+	return js_like[filetype] or html_like[filetype] or css_like[filetype] or false
+end
+
 function M.describe(bufnr)
 	bufnr = bufnr == 0 and vim.api.nvim_get_current_buf() or bufnr
 	local filetype = vim.bo[bufnr].filetype
