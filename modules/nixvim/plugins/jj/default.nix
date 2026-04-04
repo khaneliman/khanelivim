@@ -77,6 +77,9 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    __depPackages.jj.default = "jujutsu";
+    dependencies.jj.enable = lib.mkDefault true;
+
     extraPlugins = [ cfg.package ];
 
     extraConfigLua = ''
