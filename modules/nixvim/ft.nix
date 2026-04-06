@@ -3,6 +3,7 @@
     extension = {
       avsc = "json";
       rasi = "scss";
+      tl = "teal";
       ignore = "gitignore";
     };
 

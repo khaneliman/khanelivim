@@ -1,5 +1,9 @@
 {
   extraFiles = {
+    "ftplugin/teal.vim".source = builtins.toFile "teal.vim" ''
+      " Register Teal as a known runtime filetype so vim.lsp health checks stop
+      " flagging it as unknown. Real detection still comes from vim.filetype.add().
+    '';
     "lua/khanelivim/tooling_info.lua".source = ./lua/khanelivim/tooling_info.lua;
     "lua/khanelivim/web_tools.lua".source = ./lua/khanelivim/web_tools.lua;
   };
