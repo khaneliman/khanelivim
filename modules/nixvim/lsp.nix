@@ -131,6 +131,7 @@
         ];
       };
       taplo.enable = true;
+      teal_ls.enable = true;
       ts_ls.enable = config.khanelivim.lsp.typescript == "ts_ls";
       tsgo.enable = config.khanelivim.lsp.typescript == "tsgo";
       yamlls.enable = true;
