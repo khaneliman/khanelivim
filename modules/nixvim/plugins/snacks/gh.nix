@@ -7,6 +7,8 @@ let
   isEnabled = lib.elem "snacks-gh" config.khanelivim.git.integrations;
 in
 {
+  dependencies.gh.enable = lib.mkDefault isEnabled;
+
   plugins = {
     snacks = {
       settings = {
