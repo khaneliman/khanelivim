@@ -45,6 +45,8 @@
       '';
     in
     lib.mkIf config.plugins.claudecode.enable {
+      dependencies.claude-code.enable = lib.mkDefault true;
+
       extraConfigLua = lib.mkIf (!config.plugins.lz-n.enable) luaConfig;
 
       extraPlugins = [
