@@ -3,16 +3,21 @@
   lib,
   ...
 }:
+let
+  isEnabled = lib.elem "snacks-lazygit" config.khanelivim.git.integrations;
+in
 {
+  dependencies.lazygit.enable = lib.mkDefault isEnabled;
+
   plugins = {
     snacks = {
       settings = {
-        lazygit.enabled = lib.elem "snacks-lazygit" config.khanelivim.git.integrations;
+        lazygit.enabled = isEnabled;
       };
     };
   };
 
-  keymaps = lib.mkIf (lib.elem "snacks-lazygit" config.khanelivim.git.integrations) [
+  keymaps = lib.mkIf isEnabled [
     {
       mode = "n";
       key = "<leader>gg";
