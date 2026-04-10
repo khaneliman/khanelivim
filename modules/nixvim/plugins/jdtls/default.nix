@@ -5,6 +5,15 @@
   ...
 }:
 {
+  extraPackages = lib.mkIf (config.khanelivim.lsp.java == "nvim-jdtls") [
+    pkgs.jdk
+    pkgs.jdt-language-server
+    pkgs.lombok
+    pkgs.maven
+    pkgs.gradle
+    pkgs.unzip
+  ];
+
   plugins = {
     jdtls = {
       # nvim-jdtls documentation
@@ -13,147 +22,58 @@
 
       lazyLoad.settings.ft = "java";
 
-      luaConfig.pre =
-        let
-          java-debug = "${pkgs.vscode-extensions.vscjava.vscode-java-debug}/share/vscode/extensions/vscjava.vscode-java-debug/server";
-          java-test = "${pkgs.vscode-extensions.vscjava.vscode-java-test}/share/vscode/extensions/vscjava.vscode-java-test/server";
-        in
-        # Lua
-        ''
-          local jdtls = require("jdtls")
-          local jdtls_dap = require("jdtls.dap")
-          local jdtls_setup = require("jdtls.setup")
-
-          _M.jdtls = {}
-          _M.jdtls.bundles = {}
-
-          local java_debug_bundle = vim.split(vim.fn.glob("${java-debug}" .. "/*.jar"), "\n")
-          local java_test_bundle = vim.split(vim.fn.glob("${java-test}" .. "/*.jar", true), "\n")
-
-          -- add jars to the bundle list if there are any
-          if java_debug_bundle[1] ~= "" then
-              vim.list_extend(_M.jdtls.bundles, java_debug_bundle)
-          end
-
-          if java_test_bundle[1] ~= "" then
-              vim.list_extend(_M.jdtls.bundles, java_test_bundle)
-          end
-        '';
-
       settings = {
         cmd = [
-          "${lib.getExe pkgs.jdt-language-server}"
+          (lib.getExe pkgs.jdt-language-server)
           "-data"
-          "vim.fn.stdpath 'cache' .. '/jdtls/' .. vim.fn.fnamemodify(vim.fn.getcwd(), ':t')"
-          "-configuration"
-          ''vim.fn.stdpath 'cache' .. "/jdtls/config"''
+          {
+            __raw = ''
+              (function()
+                local root_markers = { ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" }
+                local root = require("jdtls.setup").find_root(root_markers)
+                return vim.fn.stdpath("cache") .. "/jdtls/" .. vim.fn.sha256(root or vim.fn.getcwd())
+              end)()
+            '';
+          }
+          "-javaagent:${pkgs.lombok}/share/java/lombok.jar"
+          "-vmargs"
+          "-Xmx4G"
+          "-XX:+UseG1GC"
         ];
 
         init_options = {
-          bundles.__raw = "_M.jdtls.bundles";
-          # FIXME: not working
-          # bundles = {
-          #   __unkeyed-1.__raw = ''vim.fn.glob("${pkgs.vscode-extensions.vscjava.vscode-java-debug}/share/vscode/extensions/vscjava.vscode-java-debug/server/com.microsoft.java.debug.plugin-*.jar", 1)'';
-          #   __unkeyed-2.__raw = ''vim.split(vim.fn.glob("${pkgs.vscode-extensions.vscjava.vscode-java-test}/share/vscode/extensions/vscjava.vscode-java-test/server/*.jar", 1), "\n")'';
-          # };
+          # Temporarily disabled bundles due to OSGi resolution issues in logs
+          bundles = [ ];
+          extendedClientCapabilities = {
+            progressReportProvider = true;
+            classFileContentsSupport = true;
+            generateToStringPromptSupport = true;
+            hashCodeEqualsPromptSupport = true;
+            advancedExtractInterfaceSupport = true;
+            advancedOrganizeImportsSupport = true;
+            generateConstructorsPromptSupport = true;
+            generateDelegateMethodsPromptSupport = true;
+          };
         };
 
-        root_dir.__raw = "require('jdtls.setup').find_root({'.git', 'mvnw', 'gradlew'})";
+        root_dir.__raw = "require('jdtls.setup').find_root({'.git', 'mvnw', 'gradlew', 'pom.xml', 'build.gradle'})";
 
-        java = {
-          configuration = {
-            updateBuildConfiguration = "interactive";
-            runtimes = [
-              pkgs.jdk11
-              pkgs.jdk17
-              pkgs.jdk
-            ];
-          };
-          codeGeneration = {
-            toString = {
-              # template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}",
-              useBlocks = true;
-            };
-          };
-          contentProvider = { };
-          completion = {
-            favoriteStaticMembers = [
-              "org.hamcrest.MatcherAssert.assertThat"
-              "org.hamcrest.Matchers.*"
-              "org.hamcrest.CoreMatchers.*"
-              "org.junit.jupiter.api.Assertions.*"
-              "java.util.Objects.requireNonNull"
-              "java.util.Objects.requireNonNullElse"
-              "org.mockito.Mockito.*"
-            ];
-            filteredTypes = [
-              "com.sun.*"
-              "io.micrometer.shaded.*"
-              "java.awt.*"
-              "jdk.*"
-              "sun.*"
-            ];
-            importOrder = [
-              "java"
-              "javax"
-              "com"
-              "org"
-            ];
-          };
-          eclipse = {
-            downloadSources = true;
-          };
-          format = {
-            enabled = true;
-            settings = {
-              url = "${
-                (pkgs.fetchurl {
-                  url = "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml";
-                  sha256 = "sha256-51Uku2fj/8iNXGgO11JU4HLj28y7kcSgxwjc+r8r35E=";
-                })
-              }";
-              profile = "GoogleStyle";
-            };
-          };
-          implementationCodeLens = {
-            enabled = true;
-          };
-          import = {
-            gradle = {
-              enabled = true;
-              wrapper = {
-                enabled = true;
-              };
-            };
-            maven = {
-              enabled = true;
-            };
-          };
-          inlayHints = {
-            parameterNames = {
-              enabled = "all";
-            };
-          };
-          maven = {
-            downloadSources = true;
-          };
-          references = {
-            includeDecompiledSources = true;
-          };
-          referencesCodeLens = {
-            enabled = true;
-          };
-          signatureHelp = {
-            enabled = true;
-          };
-          preferred = "fernflower";
-          sources = {
-            organizeImports = {
-              starThreshold = 9999;
-              staticStarThreshold = 9999;
+        capabilities = {
+          textDocument = {
+            semanticTokens = {
+              dynamicRegistration = false;
             };
           };
         };
+
+        settings =
+          (import ./java-settings.nix {
+            inherit pkgs;
+            inherit (pkgs) fetchurl;
+          })
+          // {
+            java.configuration.updateBuildConfiguration = "automatic";
+          };
       };
     };
   };
