@@ -12,6 +12,10 @@
       " nvim-lspconfig's gdscript config advertises this Godot 3 GDScript alias.
       " Keep real detection on Neovim's gdscript filetype.
     '';
+    "ftplugin/gotmpl.vim".source = builtins.toFile "gotmpl.vim" ''
+      " nvim-lspconfig's gopls config advertises Go template support.
+      " Real detection still comes from vim.filetype.add().
+    '';
     "ftplugin/yaml.docker-compose.vim".source = builtins.toFile "yaml.docker-compose.vim" ''
       " nvim-lspconfig's yamlls config advertises this YAML subtype.
       " Real detection still comes from vim.filetype.add().

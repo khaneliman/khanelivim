@@ -2,6 +2,7 @@
   filetype = {
     extension = {
       avsc = "json";
+      gotmpl = "gotmpl";
       rasi = "scss";
       tl = "teal";
       ignore = "gitignore";
