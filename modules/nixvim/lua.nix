@@ -4,6 +4,10 @@
       " Register Teal as a known runtime filetype so vim.lsp health checks stop
       " flagging it as unknown. Real detection still comes from vim.filetype.add().
     '';
+    "ftplugin/gd.vim".source = builtins.toFile "gd.vim" ''
+      " nvim-lspconfig's gdscript config advertises this legacy GDScript alias.
+      " Keep *.gd detection on Neovim's gdscript filetype.
+    '';
     "ftplugin/yaml.docker-compose.vim".source = builtins.toFile "yaml.docker-compose.vim" ''
       " nvim-lspconfig's yamlls config advertises this YAML subtype.
       " Real detection still comes from vim.filetype.add().
