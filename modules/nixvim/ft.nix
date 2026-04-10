@@ -3,6 +3,7 @@
     extension = {
       avsc = "json";
       gotmpl = "gotmpl";
+      mdx = "markdown.mdx";
       rasi = "scss";
       tl = "teal";
       ignore = "gitignore";

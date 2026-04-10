@@ -16,6 +16,10 @@
       " nvim-lspconfig's gopls config advertises Go template support.
       " Real detection still comes from vim.filetype.add().
     '';
+    "ftplugin/markdown.mdx.vim".source = builtins.toFile "markdown.mdx.vim" ''
+      " nvim-lspconfig's marksman config advertises MDX as a Markdown subtype.
+      " Real detection still comes from vim.filetype.add().
+    '';
     "ftplugin/yaml.docker-compose.vim".source = builtins.toFile "yaml.docker-compose.vim" ''
       " nvim-lspconfig's yamlls config advertises this YAML subtype.
       " Real detection still comes from vim.filetype.add().
