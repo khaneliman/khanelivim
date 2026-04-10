@@ -8,6 +8,10 @@
       " nvim-lspconfig's gdscript config advertises this legacy GDScript alias.
       " Keep *.gd detection on Neovim's gdscript filetype.
     '';
+    "ftplugin/gdscript3.vim".source = builtins.toFile "gdscript3.vim" ''
+      " nvim-lspconfig's gdscript config advertises this Godot 3 GDScript alias.
+      " Keep real detection on Neovim's gdscript filetype.
+    '';
     "ftplugin/yaml.docker-compose.vim".source = builtins.toFile "yaml.docker-compose.vim" ''
       " nvim-lspconfig's yamlls config advertises this YAML subtype.
       " Real detection still comes from vim.filetype.add().
