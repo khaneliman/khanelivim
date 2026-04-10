@@ -21,6 +21,7 @@
     ./operators.nix
     ./pairs.nix
     ./sessions.nix
+    ./snippets.nix
     ./splitjoin.nix
     ./starter.nix
     ./surround.nix
