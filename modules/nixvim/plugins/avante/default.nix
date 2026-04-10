@@ -16,18 +16,18 @@
         provider = "claude-code";
         providers = {
           claude = {
-            model = "claude-sonnet-4-5";
+            model = "claude-sonnet-4-6";
           };
         };
         acp_providers = {
           claude-code = {
-            model = "claude-sonnet-4-5";
+            model = "claude-sonnet-4-6";
             env = {
               ANTHROPIC_API_KEY.__raw = ''os.getenv("ANTHROPIC_API_KEY")'';
             };
           };
           gemini-cli = {
-            model = "gemini-2.5-pro";
+            model = "gemini-3.1-pro-preview";
             env = {
               GEMINI_API_KEY.__raw = ''os.getenv("GEMINI_API_KEY")'';
             };
