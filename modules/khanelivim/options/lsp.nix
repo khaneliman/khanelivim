@@ -42,6 +42,7 @@
       type = lib.types.nullOr (
         lib.types.enum [
           "nvim-jdtls"
+          "nvim-java"
           "java-language-server"
         ]
       );
