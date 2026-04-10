@@ -80,7 +80,7 @@
           "mini-snippets"
         ]
       );
-      default = "mini-snippets";
+      default = null;
       description = "Snippet engine to use";
     };
 
@@ -99,6 +99,7 @@
       ];
       description = "Text objects plugins to use (complementary)";
     };
-    # keep-sorted end
+
   };
+  # keep-sorted end
 }
