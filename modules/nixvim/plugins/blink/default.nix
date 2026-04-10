@@ -257,7 +257,13 @@
         window.border = "rounded";
       };
 
-      snippets.preset = "mini_snippets";
+      snippets.preset =
+        if config.khanelivim.editor.snippet == "mini-snippets" then
+          "mini_snippets"
+        else if config.khanelivim.editor.snippet == "luasnip" then
+          "luasnip"
+        else
+          "default";
     };
   };
 
