@@ -135,6 +135,24 @@
 
       snippets = {
         score_offset = 60;
+        opts =
+          lib.mkIf (config.plugins.friendly-snippets.enable && config.khanelivim.editor.snippet == null)
+            {
+              friendly_snippets = true;
+              extended_filetypes = {
+                html = [ "angular" ];
+                typescript = [
+                  "angular"
+                  "remix-ts"
+                ];
+                typescriptreact = [
+                  "angular"
+                  "remix-ts"
+                ];
+                cs = [ "unity" ];
+                cpp = [ "unreal" ];
+              };
+            };
         should_show_items.__raw = ''
           function(ctx)
             return ctx.trigger.initial_kind ~= 'trigger_character'
