@@ -20,6 +20,10 @@
       " nvim-lspconfig's marksman config advertises MDX as a Markdown subtype.
       " Real detection still comes from vim.filetype.add().
     '';
+    "ftplugin/qmljs.vim".source = builtins.toFile "qmljs.vim" ''
+      " nvim-lspconfig's qmlls config advertises this QML JavaScript alias.
+      " Keep real detection on Neovim's qml filetype unless a qmljs extension is needed.
+    '';
     "ftplugin/yaml.docker-compose.vim".source = builtins.toFile "yaml.docker-compose.vim" ''
       " nvim-lspconfig's yamlls config advertises this YAML subtype.
       " Real detection still comes from vim.filetype.add().
