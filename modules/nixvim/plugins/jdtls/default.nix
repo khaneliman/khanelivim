@@ -29,18 +29,20 @@
           {
             __raw = ''
               (function()
-                local root = require('jdtls.setup').find_root({'.git', 'mvnw', 'gradlew', 'pom.xml', 'build.gradle'})
+                local root_markers = { ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" }
+                local root = require("jdtls.setup").find_root(root_markers)
                 return vim.fn.stdpath("cache") .. "/jdtls/" .. vim.fn.sha256(root or vim.fn.getcwd())
               end)()
             '';
           }
           "-javaagent:${pkgs.lombok}/share/java/lombok.jar"
           "-vmargs"
-          "-Xmx2G"
+          "-Xmx4G"
           "-XX:+UseG1GC"
         ];
 
         init_options = {
+          # Temporarily disabled bundles due to OSGi resolution issues in logs
           bundles = [ ];
           extendedClientCapabilities = {
             progressReportProvider = true;
@@ -70,13 +72,7 @@
             inherit (pkgs) fetchurl;
           })
           // {
-            java = {
-              configuration.updateBuildConfiguration = "automatic";
-              import = {
-                maven.enabled = true;
-                gradle.enabled = true;
-              };
-            };
+            java.configuration.updateBuildConfiguration = "automatic";
           };
       };
     };
