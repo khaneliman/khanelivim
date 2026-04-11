@@ -1,4 +1,7 @@
 { pkgs, fetchurl }:
+let
+  jdkHome = jdk: "${jdk}/lib/openjdk";
+in
 {
   java = {
     configuration = {
@@ -6,19 +9,15 @@
       runtimes = [
         {
           name = "JavaSE-11";
-          path = "${pkgs.jdk11}";
+          path = jdkHome pkgs.jdk11;
         }
         {
           name = "JavaSE-17";
-          path = "${pkgs.jdk17}";
+          path = jdkHome pkgs.jdk17;
         }
         {
           name = "JavaSE-21";
-          path = "${pkgs.jdk21}";
-        }
-        {
-          name = "JavaSE-23";
-          path = "${pkgs.jdk}";
+          path = jdkHome pkgs.jdk21;
           default = true;
         }
       ];

@@ -76,9 +76,70 @@ in
             .. "/"
             .. kind
         end
+
+        function _G.khanelivim_jdtls.source_paths(root)
+          local patterns = {
+            root .. "/src/main/java",
+            root .. "/src/test/java",
+            root .. "/**/src/main/java",
+            root .. "/**/src/test/java",
+          }
+          local paths = {}
+
+          for _, pattern in ipairs(patterns) do
+            for _, path in ipairs(vim.fn.glob(pattern, true, true)) do
+              if vim.fn.isdirectory(path) == 1 and not vim.tbl_contains(paths, path) then
+                table.insert(paths, path)
+              end
+            end
+          end
+
+          if #paths == 0 then
+            table.insert(paths, root)
+          end
+
+          return paths
+        end
+
+        function _G.khanelivim_jdtls.patch_client(client)
+          if client._khanelivim_source_paths_patched then
+            return
+          end
+
+          local original_request = client.request
+          client.request = function(self, method, params, handler, bufnr)
+            local requested_setting = params
+              and params.command == "java.project.getSettings"
+              and params.arguments
+              and params.arguments[2]
+              and params.arguments[2][1]
+
+            if method == "workspace/executeCommand" and requested_setting == "org.eclipse.jdt.ls.core.sourcePaths" then
+              local response = {
+                ["org.eclipse.jdt.ls.core.sourcePaths"] = _G.khanelivim_jdtls.source_paths(self.config.root_dir),
+              }
+
+              if handler then
+                vim.schedule(function()
+                  handler(nil, response, {
+                    bufnr = bufnr,
+                    client_id = self.id,
+                    method = method,
+                  })
+                end)
+              end
+
+              return true
+            end
+
+            return original_request(self, method, params, handler, bufnr)
+          end
+
+          client._khanelivim_source_paths_patched = true
+        end
       '';
 
-      settings = lib.recursiveUpdate {
+      settings = {
         cmd = [
           (lib.getExe pkgs.jdt-language-server)
           "-data"
@@ -119,7 +180,15 @@ in
             };
           };
         };
-      } javaSettings;
+
+        on_init.__raw = ''
+          function(client)
+            _G.khanelivim_jdtls.patch_client(client)
+          end
+        '';
+
+        settings = javaSettings;
+      };
     };
   };
 }
