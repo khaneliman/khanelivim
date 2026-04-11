@@ -38,19 +38,32 @@ in
         function _G.khanelivim_jdtls.find_root()
           local bufname = vim.api.nvim_buf_get_name(0)
           local current = bufname ~= "" and vim.fs.dirname(bufname) or vim.uv.cwd()
+          local gradle_settings_root = nil
+          local nearest_maven_root = nil
+          local nearest_gradle_root = nil
 
           while current and current ~= "" do
-            local has_java_build_root =
+            local has_gradle_settings =
+              vim.uv.fs_stat(current .. "/settings.gradle")
+              or vim.uv.fs_stat(current .. "/settings.gradle.kts")
+            local has_maven_root =
               vim.uv.fs_stat(current .. "/pom.xml")
               or vim.uv.fs_stat(current .. "/mvnw")
-              or vim.uv.fs_stat(current .. "/build.gradle")
+            local has_gradle_root =
+              vim.uv.fs_stat(current .. "/build.gradle")
               or vim.uv.fs_stat(current .. "/build.gradle.kts")
-              or vim.uv.fs_stat(current .. "/settings.gradle")
-              or vim.uv.fs_stat(current .. "/settings.gradle.kts")
               or vim.uv.fs_stat(current .. "/gradlew")
 
-            if has_java_build_root then
-              return current
+            if has_gradle_settings then
+              gradle_settings_root = current
+            end
+
+            if not nearest_maven_root and has_maven_root then
+              nearest_maven_root = current
+            end
+
+            if not nearest_gradle_root and has_gradle_root then
+              nearest_gradle_root = current
             end
 
             if vim.uv.fs_stat(current .. "/.git") then
@@ -65,7 +78,7 @@ in
             current = parent
           end
 
-          return vim.uv.cwd()
+          return gradle_settings_root or nearest_maven_root or nearest_gradle_root or vim.uv.cwd()
         end
 
         function _G.khanelivim_jdtls.workspace_dir(kind)
