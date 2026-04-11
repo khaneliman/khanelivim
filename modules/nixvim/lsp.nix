@@ -245,6 +245,19 @@
           local bufnr = args.buf
           if not bufnr or not vim.api.nvim_buf_is_valid(bufnr) then return end
 
+          local jdtls_client = vim.iter(vim.lsp.get_clients({ bufnr = bufnr })):find(function(client)
+            return client.name == "jdtls"
+          end)
+
+          if
+            jdtls_client
+            and _G.khanelivim_jdtls
+            and _G.khanelivim_jdtls.is_large_gradle_workspace(jdtls_client.config.root_dir)
+          then
+            vim.lsp.codelens.enable(false, { bufnr = bufnr })
+            return
+          end
+
           local supports_codelens = vim.iter(vim.lsp.get_clients({ bufnr = bufnr })):any(function(client)
             return client:supports_method("textDocument/codeLens")
           end)
