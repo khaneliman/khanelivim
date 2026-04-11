@@ -5,14 +5,10 @@
   ...
 }:
 let
-  javaSettings = lib.recursiveUpdate
-    (import ./java-settings.nix {
-      inherit pkgs;
-      inherit (pkgs) fetchurl;
-    })
-    {
-      java.configuration.updateBuildConfiguration = "automatic";
-    };
+  javaSettings = import ./java-settings.nix {
+    inherit pkgs;
+    inherit (pkgs) fetchurl;
+  };
 in
 {
   extraPackages = lib.mkIf (config.khanelivim.lsp.java == "nvim-jdtls") [
@@ -87,6 +83,33 @@ in
             .. vim.fn.sha256(_G.khanelivim_jdtls.find_root())
             .. "/"
             .. kind
+        end
+
+        function _G.khanelivim_jdtls.is_large_gradle_workspace(root)
+          if not root then
+            return false
+          end
+
+          local has_gradle_settings =
+            vim.uv.fs_stat(root .. "/settings.gradle")
+            or vim.uv.fs_stat(root .. "/settings.gradle.kts")
+
+          if not has_gradle_settings then
+            return false
+          end
+
+          local project_count = 0
+
+          for name, entry_type in vim.fs.dir(root) do
+            if entry_type == "directory" then
+              local path = root .. "/" .. name
+              if vim.uv.fs_stat(path .. "/build.gradle") or vim.uv.fs_stat(path .. "/build.gradle.kts") then
+                project_count = project_count + 1
+              end
+            end
+          end
+
+          return project_count >= 2
         end
 
         function _G.khanelivim_jdtls.source_paths(root)
@@ -199,7 +222,12 @@ in
           end
         '';
 
-        settings = javaSettings;
+        settings = lib.recursiveUpdate javaSettings {
+          java = {
+            implementationCodeLens.enabled.__raw = "not _G.khanelivim_jdtls.is_large_gradle_workspace(_G.khanelivim_jdtls.find_root())";
+            referencesCodeLens.enabled.__raw = "not _G.khanelivim_jdtls.is_large_gradle_workspace(_G.khanelivim_jdtls.find_root())";
+          };
+        };
       };
     };
   };
