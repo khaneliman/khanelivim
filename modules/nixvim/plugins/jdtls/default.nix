@@ -38,7 +38,6 @@ in
         function _G.khanelivim_jdtls.find_root()
           local bufname = vim.api.nvim_buf_get_name(0)
           local current = bufname ~= "" and vim.fs.dirname(bufname) or vim.uv.cwd()
-          local highest_java_root = nil
 
           while current and current ~= "" do
             local has_java_build_root =
@@ -51,7 +50,7 @@ in
               or vim.uv.fs_stat(current .. "/gradlew")
 
             if has_java_build_root then
-              highest_java_root = current
+              return current
             end
 
             if vim.uv.fs_stat(current .. "/.git") then
@@ -66,7 +65,7 @@ in
             current = parent
           end
 
-          return highest_java_root or vim.uv.cwd()
+          return vim.uv.cwd()
         end
 
         function _G.khanelivim_jdtls.workspace_dir(kind)
