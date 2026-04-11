@@ -4,7 +4,22 @@
   pkgs,
   ...
 }:
+let
+  javaSettings = import ./java-settings.nix {
+    inherit pkgs;
+    inherit (pkgs) fetchurl;
+  };
+in
 {
+  extraPackages = lib.mkIf (config.khanelivim.lsp.java == "nvim-jdtls") [
+    pkgs.jdk
+    pkgs.jdt-language-server
+    pkgs.lombok
+    pkgs.maven
+    pkgs.gradle
+    pkgs.unzip
+  ];
+
   plugins = {
     jdtls = {
       # nvim-jdtls documentation
@@ -13,145 +28,204 @@
 
       lazyLoad.settings.ft = "java";
 
-      luaConfig.pre =
-        let
-          java-debug = "${pkgs.vscode-extensions.vscjava.vscode-java-debug}/share/vscode/extensions/vscjava.vscode-java-debug/server";
-          java-test = "${pkgs.vscode-extensions.vscjava.vscode-java-test}/share/vscode/extensions/vscjava.vscode-java-test/server";
-        in
-        # Lua
-        ''
-          local jdtls = require("jdtls")
-          local jdtls_dap = require("jdtls.dap")
-          local jdtls_setup = require("jdtls.setup")
+      luaConfig.pre = ''
+        _G.khanelivim_jdtls = _G.khanelivim_jdtls or {}
 
-          _M.jdtls = {}
-          _M.jdtls.bundles = {}
+        function _G.khanelivim_jdtls.find_root()
+          local bufname = vim.api.nvim_buf_get_name(0)
+          local current = bufname ~= "" and vim.fs.dirname(bufname) or vim.uv.cwd()
+          local gradle_settings_root = nil
+          local nearest_maven_root = nil
+          local nearest_gradle_root = nil
 
-          local java_debug_bundle = vim.split(vim.fn.glob("${java-debug}" .. "/*.jar"), "\n")
-          local java_test_bundle = vim.split(vim.fn.glob("${java-test}" .. "/*.jar", true), "\n")
+          while current and current ~= "" do
+            local has_gradle_settings =
+              vim.uv.fs_stat(current .. "/settings.gradle")
+              or vim.uv.fs_stat(current .. "/settings.gradle.kts")
+            local has_maven_root =
+              vim.uv.fs_stat(current .. "/pom.xml")
+              or vim.uv.fs_stat(current .. "/mvnw")
+            local has_gradle_root =
+              vim.uv.fs_stat(current .. "/build.gradle")
+              or vim.uv.fs_stat(current .. "/build.gradle.kts")
+              or vim.uv.fs_stat(current .. "/gradlew")
 
-          -- add jars to the bundle list if there are any
-          if java_debug_bundle[1] ~= "" then
-              vim.list_extend(_M.jdtls.bundles, java_debug_bundle)
+            if has_gradle_settings then
+              gradle_settings_root = current
+            end
+
+            if not nearest_maven_root and has_maven_root then
+              nearest_maven_root = current
+            end
+
+            if not nearest_gradle_root and has_gradle_root then
+              nearest_gradle_root = current
+            end
+
+            if vim.uv.fs_stat(current .. "/.git") then
+              break
+            end
+
+            local parent = vim.fs.dirname(current)
+            if not parent or parent == current then
+              break
+            end
+
+            current = parent
           end
 
-          if java_test_bundle[1] ~= "" then
-              vim.list_extend(_M.jdtls.bundles, java_test_bundle)
+          return gradle_settings_root or nearest_maven_root or nearest_gradle_root or vim.uv.cwd()
+        end
+
+        function _G.khanelivim_jdtls.workspace_dir(kind)
+          return vim.fn.stdpath("cache")
+            .. "/jdtls/"
+            .. vim.fn.sha256(_G.khanelivim_jdtls.find_root())
+            .. "/"
+            .. kind
+        end
+
+        function _G.khanelivim_jdtls.is_large_gradle_workspace(root)
+          if not root then
+            return false
           end
-        '';
+
+          local has_gradle_settings =
+            vim.uv.fs_stat(root .. "/settings.gradle")
+            or vim.uv.fs_stat(root .. "/settings.gradle.kts")
+
+          if not has_gradle_settings then
+            return false
+          end
+
+          local project_count = 0
+
+          for name, entry_type in vim.fs.dir(root) do
+            if entry_type == "directory" then
+              local path = root .. "/" .. name
+              if vim.uv.fs_stat(path .. "/build.gradle") or vim.uv.fs_stat(path .. "/build.gradle.kts") then
+                project_count = project_count + 1
+              end
+            end
+          end
+
+          return project_count >= 2
+        end
+
+        function _G.khanelivim_jdtls.source_paths(root)
+          local patterns = {
+            root .. "/src/main/java",
+            root .. "/src/test/java",
+            root .. "/**/src/main/java",
+            root .. "/**/src/test/java",
+          }
+          local paths = {}
+
+          for _, pattern in ipairs(patterns) do
+            for _, path in ipairs(vim.fn.glob(pattern, true, true)) do
+              if vim.fn.isdirectory(path) == 1 and not vim.tbl_contains(paths, path) then
+                table.insert(paths, path)
+              end
+            end
+          end
+
+          if #paths == 0 then
+            table.insert(paths, root)
+          end
+
+          return paths
+        end
+
+        function _G.khanelivim_jdtls.patch_client(client)
+          if client._khanelivim_source_paths_patched then
+            return
+          end
+
+          local original_request = client.request
+          client.request = function(self, method, params, handler, bufnr)
+            local requested_setting = params
+              and params.command == "java.project.getSettings"
+              and params.arguments
+              and params.arguments[2]
+              and params.arguments[2][1]
+
+            if method == "workspace/executeCommand" and requested_setting == "org.eclipse.jdt.ls.core.sourcePaths" then
+              local response = {
+                ["org.eclipse.jdt.ls.core.sourcePaths"] = _G.khanelivim_jdtls.source_paths(self.config.root_dir),
+              }
+
+              if handler then
+                vim.schedule(function()
+                  handler(nil, response, {
+                    bufnr = bufnr,
+                    client_id = self.id,
+                    method = method,
+                  })
+                end)
+              end
+
+              return true
+            end
+
+            return original_request(self, method, params, handler, bufnr)
+          end
+
+          client._khanelivim_source_paths_patched = true
+        end
+      '';
 
       settings = {
         cmd = [
-          "${lib.getExe pkgs.jdt-language-server}"
+          (lib.getExe pkgs.jdt-language-server)
           "-data"
-          "vim.fn.stdpath 'cache' .. '/jdtls/' .. vim.fn.fnamemodify(vim.fn.getcwd(), ':t')"
+          {
+            __raw = "_G.khanelivim_jdtls.workspace_dir('data')";
+          }
           "-configuration"
-          ''vim.fn.stdpath 'cache' .. "/jdtls/config"''
+          {
+            __raw = "_G.khanelivim_jdtls.workspace_dir('config')";
+          }
+          "-javaagent:${pkgs.lombok}/share/java/lombok.jar"
+          "-vmargs"
+          "-Xmx4G"
+          "-XX:+UseG1GC"
         ];
 
         init_options = {
-          bundles.__raw = "_M.jdtls.bundles";
-          # FIXME: not working
-          # bundles = {
-          #   __unkeyed-1.__raw = ''vim.fn.glob("${pkgs.vscode-extensions.vscjava.vscode-java-debug}/share/vscode/extensions/vscjava.vscode-java-debug/server/com.microsoft.java.debug.plugin-*.jar", 1)'';
-          #   __unkeyed-2.__raw = ''vim.split(vim.fn.glob("${pkgs.vscode-extensions.vscjava.vscode-java-test}/share/vscode/extensions/vscjava.vscode-java-test/server/*.jar", 1), "\n")'';
-          # };
+          # Temporarily disabled bundles due to OSGi resolution issues in logs
+          bundles = [ ];
+          extendedClientCapabilities = {
+            progressReportProvider = true;
+            classFileContentsSupport = true;
+            generateToStringPromptSupport = true;
+            hashCodeEqualsPromptSupport = true;
+            advancedExtractInterfaceSupport = true;
+            advancedOrganizeImportsSupport = true;
+            generateConstructorsPromptSupport = true;
+            generateDelegateMethodsPromptSupport = true;
+          };
         };
 
-        root_dir.__raw = "require('jdtls.setup').find_root({'.git', 'mvnw', 'gradlew'})";
+        root_dir.__raw = "_G.khanelivim_jdtls.find_root()";
 
-        java = {
-          configuration = {
-            updateBuildConfiguration = "interactive";
-            runtimes = [
-              pkgs.jdk11
-              pkgs.jdk17
-              pkgs.jdk
-            ];
-          };
-          codeGeneration = {
-            toString = {
-              # template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}",
-              useBlocks = true;
+        capabilities = {
+          textDocument = {
+            semanticTokens = {
+              dynamicRegistration = false;
             };
           };
-          contentProvider = { };
-          completion = {
-            favoriteStaticMembers = [
-              "org.hamcrest.MatcherAssert.assertThat"
-              "org.hamcrest.Matchers.*"
-              "org.hamcrest.CoreMatchers.*"
-              "org.junit.jupiter.api.Assertions.*"
-              "java.util.Objects.requireNonNull"
-              "java.util.Objects.requireNonNullElse"
-              "org.mockito.Mockito.*"
-            ];
-            filteredTypes = [
-              "com.sun.*"
-              "io.micrometer.shaded.*"
-              "java.awt.*"
-              "jdk.*"
-              "sun.*"
-            ];
-            importOrder = [
-              "java"
-              "javax"
-              "com"
-              "org"
-            ];
-          };
-          eclipse = {
-            downloadSources = true;
-          };
-          format = {
-            enabled = true;
-            settings = {
-              url = "${
-                (pkgs.fetchurl {
-                  url = "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml";
-                  sha256 = "sha256-51Uku2fj/8iNXGgO11JU4HLj28y7kcSgxwjc+r8r35E=";
-                })
-              }";
-              profile = "GoogleStyle";
-            };
-          };
-          implementationCodeLens = {
-            enabled = true;
-          };
-          import = {
-            gradle = {
-              enabled = true;
-              wrapper = {
-                enabled = true;
-              };
-            };
-            maven = {
-              enabled = true;
-            };
-          };
-          inlayHints = {
-            parameterNames = {
-              enabled = "all";
-            };
-          };
-          maven = {
-            downloadSources = true;
-          };
-          references = {
-            includeDecompiledSources = true;
-          };
-          referencesCodeLens = {
-            enabled = true;
-          };
-          signatureHelp = {
-            enabled = true;
-          };
-          preferred = "fernflower";
-          sources = {
-            organizeImports = {
-              starThreshold = 9999;
-              staticStarThreshold = 9999;
-            };
+        };
+
+        on_init.__raw = ''
+          function(client)
+            _G.khanelivim_jdtls.patch_client(client)
+          end
+        '';
+
+        settings = lib.recursiveUpdate javaSettings {
+          java = {
+            implementationCodeLens.enabled.__raw = "not _G.khanelivim_jdtls.is_large_gradle_workspace(_G.khanelivim_jdtls.find_root())";
+            referencesCodeLens.enabled.__raw = "not _G.khanelivim_jdtls.is_large_gradle_workspace(_G.khanelivim_jdtls.find_root())";
           };
         };
       };
