@@ -82,7 +82,11 @@
             "cmp.entry.get_documentation" = true;
           };
 
-          progress.enabled = config.khanelivim.ui.notifications == "noice";
+          progress = {
+            enabled = config.khanelivim.ui.notifications == "noice";
+            throttle = 1000 / 10;
+            view = "notify";
+          };
           signature.enabled = config.khanelivim.ui.signatureHelp == "noice";
         };
 
@@ -109,26 +113,17 @@
               skip = true;
             };
           }
-          # Skip noisy LSP progress messages
+          # Keep LSP progress in one compact Noice notification instead of
+          # spawning a new box for each update.
           {
             filter = {
               event = "lsp";
               kind = "progress";
-              cond.__raw = ''
-                function(message)
-                  local client = vim.tbl_get(message.opts, 'progress', 'client')
-                  local servers = { 'jdtls' }
-
-                  for index, value in ipairs(servers) do
-                      if value == client then
-                          return true
-                      end
-                  end
-                end
-              '';
             };
+            view = "notify";
             opts = {
-              skip = true;
+              merge = true;
+              replace = true;
             };
           }
           # Skip annoying "written" messages
