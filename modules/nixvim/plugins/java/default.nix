@@ -109,23 +109,6 @@ in
         return project_count >= 2
       end
 
-      _G.khanelivim_jdtls.status = _G.khanelivim_jdtls.status or { id = nil, message = nil }
-
-      function _G.khanelivim_jdtls.status_notify(message)
-        if not message or message == "" or message == _G.khanelivim_jdtls.status.message then
-          return
-        end
-
-        local id = vim.notify(message, vim.log.levels.INFO, {
-          title = "jdtls",
-          replace = _G.khanelivim_jdtls.status.id,
-          hide_from_history = true,
-          timeout = false,
-        })
-
-        _G.khanelivim_jdtls.status.id = id
-        _G.khanelivim_jdtls.status.message = message
-      end
     '';
 
     settings = {
@@ -163,17 +146,6 @@ in
       ];
 
       root_dir.__raw = "_G.khanelivim_jdtls.find_root()";
-
-      handlers = {
-        "language/status".__raw = ''
-          function(_, data)
-            local message = data and data.message
-            if message and message ~= "" then
-              _G.khanelivim_jdtls.status_notify(message)
-            end
-          end
-        '';
-      };
     };
   };
 }
