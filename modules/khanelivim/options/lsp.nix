@@ -46,7 +46,7 @@
           "java-language-server"
         ]
       );
-      default = "nvim-jdtls";
+      default = "nvim-java";
       description = "Which Java LSP implementation to use.";
     };
 
