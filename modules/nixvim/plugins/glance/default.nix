@@ -1,9 +1,13 @@
-_: {
+{ pkgs, ... }:
+{
   plugins = {
     glance = {
       # glance.nvim documentation
       # See: https://github.com/DNLHC/glance.nvim
       enable = true;
+      package = pkgs.vimPlugins.glance-nvim.overrideAttrs (old: {
+        patches = (old.patches or [ ]) ++ [ ./escape-statusline.patch ];
+      });
 
       lazyLoad.settings.cmd = "Glance";
 

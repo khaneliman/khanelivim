@@ -1,0 +1,27 @@
+diff --git a/lua/glance/winbar.lua b/lua/glance/winbar.lua
+--- a/lua/glance/winbar.lua
++++ b/lua/glance/winbar.lua
+@@ -3,6 +3,14 @@
+ local Winbar = {}
+ Winbar.__index = Winbar
+ 
++local function escape_statusline(value)
++  if value == nil then
++    return ''
++  end
++
++  return tostring(value):gsub('%%', '%%%%')
++end
++
+ function Winbar:new(winnr)
+   local scope = { sections = {}, winnr = winnr, last_values = {} }
+   setmetatable(scope, self)
+@@ -27,7 +35,7 @@
+   local winbar_value = ''
+   for section, value in pairs(section_values) do
+     winbar_value =
+-      string.format('%s%%#%s# %s', winbar_value, self.sections[section], value)
++      string.format('%s%%#%s# %s', winbar_value, self.sections[section], escape_statusline(value))
+   end
+ 
+   self.last_values = section_values
