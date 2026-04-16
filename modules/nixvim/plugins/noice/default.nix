@@ -85,7 +85,7 @@
           progress = {
             enabled = config.khanelivim.ui.notifications == "noice";
             throttle = 1000 / 10;
-            view = "notify";
+            view = "lsp_progress";
           };
           signature.enabled = config.khanelivim.ui.signatureHelp == "noice";
         };
@@ -111,19 +111,6 @@
             };
             opts = {
               skip = true;
-            };
-          }
-          # Keep LSP progress in one compact Noice notification instead of
-          # spawning a new box for each update.
-          {
-            filter = {
-              event = "lsp";
-              kind = "progress";
-            };
-            view = "notify";
-            opts = {
-              merge = true;
-              replace = true;
             };
           }
           # Skip annoying "written" messages
@@ -209,6 +196,19 @@
             size = {
               width = "auto";
               max_width = 60;
+            };
+          };
+
+          lsp_progress = lib.mkIf (config.khanelivim.ui.notifications == "noice") {
+            view = "mini";
+            position = {
+              col = "100%";
+            };
+            size = {
+              width = "auto";
+              height = "auto";
+              max_width = 60;
+              max_height = 6;
             };
           };
         };
