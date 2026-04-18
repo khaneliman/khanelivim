@@ -55,6 +55,18 @@ in
       neotest = super.neotest.overrideAttrs {
         doCheck = false;
       };
+
+      # TODO: remove after upstreamed
+      # https://github.com/nvim-java/nvim-java/pull/487
+      nvim-java = super.nvim-java.overrideAttrs (old: {
+        patches = (old.patches or [ ]) ++ [
+          (prev.fetchpatch {
+            name = "nvim-java-pr-487.patch";
+            url = "https://patch-diff.githubusercontent.com/raw/nvim-java/nvim-java/pull/487.patch";
+            hash = "sha256-qe89H0pNd0qOuvilrhWfZqHrqy3PV/E/wguEUad0nEA=";
+          })
+        ];
+      });
     }
   );
 }
