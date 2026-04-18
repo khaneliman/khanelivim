@@ -7,3 +7,10 @@ updates:
     commit-message:
       # Prefix all commit messages with "npm: "
       prefix: ".github"
+  - package-ecosystem: "nix"
+    directory: "/"
+    target-branch: "main"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "chore(flake):"
