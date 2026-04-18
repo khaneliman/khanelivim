@@ -70,6 +70,7 @@ Start here:
 
 - `Using the Flake` for the supported ways to run, install, and customize this
   config
+- `Keymaps` for generated, UX-oriented keybinding pages
 - `Selecting Profiles` for `minimal`, `basic`, `standard`, `full`, and `debug`
 - `Options Reference` for the `khanelivim.*` module surface
 - `Profile Matrix` for the evaluated differences between profiles

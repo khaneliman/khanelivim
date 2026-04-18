@@ -21,6 +21,8 @@ nix run .#docs
   `khanelivim.*`, then `plugins.*`, then `extraConfigLua`.
 - `Development Workflow` documents the repo-facing shell, checks, plugin
   generator, docs build, and profiling commands.
+- `Keymaps` groups runtime-discovered mappings into UX-oriented pages like
+  navigation, search, git, LSP, toggles, and language workflows.
 - `Language Tooling Workflows` explains the generic `<leader>l` and
   language-specific `<leader>z` runtime model, plus the workspace-aware web
   tooling ownership rules.
