@@ -31,6 +31,19 @@ Examples:
 
 Use the generated `Options Reference` when looking for the supported knobs.
 
+Cross-cutting policy toggles also live here. For example, you can disable all
+account-backed integrations, or only selected categories:
+
+```nix
+{
+  khanelivim.integrations.accountBacked = {
+    enable = true;
+    ai.enable = false;
+    timeTracking.enable = false;
+  };
+}
+```
+
 ## 2. Override `plugins.*` When The Public Surface Is Too Coarse
 
 Drop to plugin-specific settings when the feature already exists in the plugin,

@@ -7,6 +7,7 @@
     ./options/documentation.nix
     ./options/editor.nix
     ./options/git.nix
+    ./options/integrations.nix
     ./options/loading.nix
     ./options/lsp.nix
     ./options/performance.nix
