@@ -14,6 +14,13 @@ nix run .#docs
 
 ## Included Pages
 
+- `Using the Flake` explains the supported ways to run the default package,
+  install it from Home Manager, or build a customized package through the flake
+  `lib` helpers.
+- `Customizing Khanelivim` explains the intended override layers:
+  `khanelivim.*`, then `plugins.*`, then `extraConfigLua`.
+- `Development Workflow` documents the repo-facing shell, checks, plugin
+  generator, docs build, and profiling commands.
 - `Language Tooling Workflows` explains the generic `<leader>l` and
   language-specific `<leader>z` runtime model, plus the workspace-aware web
   tooling ownership rules.
