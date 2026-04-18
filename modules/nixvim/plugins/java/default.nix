@@ -25,17 +25,18 @@ in
   plugins.java = {
     enable = javaEnabled;
 
+    lazyLoad.settings.ft = [ "java" ];
+
     luaConfig.pre = ''
       _G.khanelivim_jdtls = _G.khanelivim_jdtls or {}
 
-      function _G.khanelivim_jdtls.find_root()
-        local bufname = vim.api.nvim_buf_get_name(0)
-        local current = bufname ~= "" and vim.fs.dirname(bufname) or vim.uv.cwd()
+      function _G.khanelivim_jdtls.find_root(startpath)
+        local current = startpath and vim.fs.dirname(startpath) or nil
         local gradle_settings_root = nil
         local nearest_maven_root = nil
         local nearest_gradle_root = nil
 
-        while current and current ~= "" do
+        while current and current ~= "" and current ~= "." do
           local has_gradle_settings =
             vim.uv.fs_stat(current .. "/settings.gradle")
             or vim.uv.fs_stat(current .. "/settings.gradle.kts")
@@ -71,13 +72,22 @@ in
           current = parent
         end
 
-        return gradle_settings_root or nearest_maven_root or nearest_gradle_root or vim.uv.cwd()
+        return gradle_settings_root or nearest_maven_root or nearest_gradle_root
       end
 
-      function _G.khanelivim_jdtls.workspace_dir(kind)
+      function _G.khanelivim_jdtls.find_root_for_buffer(bufnr)
+        local path = vim.api.nvim_buf_get_name(bufnr)
+        if path == "" then
+          return nil
+        end
+
+        return _G.khanelivim_jdtls.find_root(path)
+      end
+
+      function _G.khanelivim_jdtls.workspace_dir(root, kind)
         return vim.fn.stdpath("cache")
           .. "/jdtls/"
-          .. vim.fn.sha256(_G.khanelivim_jdtls.find_root())
+          .. vim.fn.sha256(root)
           .. "/"
           .. kind
       end
@@ -132,20 +142,39 @@ in
       cmd = [
         (lib.getExe pkgs.jdt-language-server)
         "-data"
-        {
-          __raw = "_G.khanelivim_jdtls.workspace_dir('data')";
-        }
+        ""
         "-configuration"
-        {
-          __raw = "_G.khanelivim_jdtls.workspace_dir('config')";
-        }
+        ""
         "-javaagent:${pkgs.lombok}/share/java/lombok.jar"
         "-vmargs"
         "-Xmx4G"
         "-XX:+UseG1GC"
       ];
 
-      root_dir.__raw = "_G.khanelivim_jdtls.find_root()";
+      on_new_config.__raw = ''
+        function(new_config, root_dir)
+          new_config.cmd = {
+            "${lib.getExe pkgs.jdt-language-server}",
+            "-data",
+            _G.khanelivim_jdtls.workspace_dir(root_dir, "data"),
+            "-configuration",
+            _G.khanelivim_jdtls.workspace_dir(root_dir, "config"),
+            "-javaagent:${pkgs.lombok}/share/java/lombok.jar",
+            "-vmargs",
+            "-Xmx4G",
+            "-XX:+UseG1GC",
+          }
+        end
+      '';
+
+      root_dir.__raw = ''
+        function(bufnr, on_dir)
+          local root = _G.khanelivim_jdtls.find_root_for_buffer(bufnr)
+          if root then
+            on_dir(root)
+          end
+        end
+      '';
     };
   };
 }
