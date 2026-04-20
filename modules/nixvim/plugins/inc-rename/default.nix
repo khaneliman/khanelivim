@@ -26,6 +26,19 @@
   keymaps = lib.optionals config.plugins.inc-rename.enable [
     {
       mode = "n";
+      key = "grn";
+      action.__raw = ''
+        function()
+          return ":IncRename " .. vim.fn.expand("<cword>")
+        end
+      '';
+      options = {
+        expr = true;
+        desc = "Rename Symbol";
+      };
+    }
+    {
+      mode = "n";
       key = "gR";
       action.__raw = ''
         function()
