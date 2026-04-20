@@ -107,6 +107,14 @@
         }
         {
           mode = "n";
+          key = "gO";
+          action = "<cmd>lua Snacks.picker.lsp_symbols()<cr>";
+          options = {
+            desc = "Document Symbols";
+          };
+        }
+        {
+          mode = "n";
           key = "gy";
           action = "<cmd>lua Snacks.picker.lsp_type_definitions()<cr>";
           options = {
