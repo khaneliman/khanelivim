@@ -35,7 +35,7 @@
       settings = {
         options = {
           mode = "buffers";
-          always_show_bufferline = true;
+          always_show_bufferline = false;
           buffer_close_icon = "󰅖";
           close_command.__raw = mouse.close;
           close_icon = "";
