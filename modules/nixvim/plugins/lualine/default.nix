@@ -18,7 +18,34 @@ let
       end
     end
   '';
+  statusMetadataCond = name: ''
+    function()
+      local budget = math.floor(vim.fn.winwidth(0) * 0.25)
+      local encoding = vim.bo.fenc ~= "" and vim.bo.fenc or vim.o.enc
+      local priority = { "filetype", "fileformat", "encoding" }
+      local widths = {
+        filetype = vim.fn.strdisplaywidth(vim.bo.filetype ~= "" and vim.bo.filetype or "text") + 4,
+        fileformat = vim.fn.strdisplaywidth(vim.bo.fileformat) + 4,
+        encoding = vim.fn.strdisplaywidth(encoding) + 2,
+      }
+      local used = 0
 
+      for _, item in ipairs(priority) do
+        local width = widths[item] or 0
+        if used + width > budget then
+          return false
+        end
+
+        if item == "${name}" then
+          return true
+        end
+
+        used = used + width
+      end
+
+      return false
+    end
+  '';
   tablineColors =
     {
       catppuccin = {
@@ -227,9 +254,18 @@ in
             icon = "";
             color.fg = "#ffffff";
           }
-          "encoding"
-          "fileformat"
-          "filetype"
+          {
+            __unkeyed-1 = "encoding";
+            cond.__raw = statusMetadataCond "encoding";
+          }
+          {
+            __unkeyed-1 = "fileformat";
+            cond.__raw = statusMetadataCond "fileformat";
+          }
+          {
+            __unkeyed-1 = "filetype";
+            cond.__raw = statusMetadataCond "filetype";
+          }
         ];
 
         lualine_y = [
