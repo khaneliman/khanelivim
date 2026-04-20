@@ -536,6 +536,15 @@
       [
         # Code action keymap (if fzf-lua is not enabled)
         {
+          key = "gra";
+          mode = "n";
+          action = lib.nixvim.mkRaw "vim.lsp.buf.code_action";
+          options = {
+            silent = true;
+            desc = "Code Action";
+          };
+        }
+        {
           key = "<leader>la";
           mode = "n";
           action = lib.nixvim.mkRaw "vim.lsp.buf.code_action";
