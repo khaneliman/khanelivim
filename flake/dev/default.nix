@@ -8,6 +8,7 @@
   imports = [
     ./devshell.nix
     ./git-hooks.nix
+    ./parse.nix
     ./treefmt.nix
   ];
 
