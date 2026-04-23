@@ -5,6 +5,8 @@ powerful [Nixvim flake](https://github.com/nix-community/nixvim). It is meant to
 be reproducible, portable, and easy to extend without maintaining a separate Lua
 config per machine.
 
+![Overview](assets/overview.png)
+
 ![Screenshot](assets/screenshot.png)
 
 ## Key Features
