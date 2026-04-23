@@ -20,7 +20,18 @@
         '')
       ];
 
-      packages = lib.unique (manualPackages ++ config.pre-commit.settings.enabledPackages);
+      shellHookPackages = lib.filter (
+        pkg:
+        let
+          packageName = pkg.pname or (lib.getName pkg);
+        in
+        !(builtins.elem packageName [
+          "lix"
+          "nix"
+        ])
+      ) config.pre-commit.settings.enabledPackages;
+
+      packages = lib.unique (manualPackages ++ shellHookPackages);
     in
     {
       devShells.default = pkgs.mkShell {
