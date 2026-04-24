@@ -17,11 +17,6 @@ in
     pkgs.lombok
   ];
 
-  extraPlugins = lib.mkIf javaEnabled [
-    # TODO: upstream dependency
-    pkgs.vimPlugins.spring-boot-nvim
-  ];
-
   plugins.java = {
     enable = javaEnabled;
 
@@ -124,6 +119,7 @@ in
     settings = {
       # Keep JDK management in Nix
       jdk.auto_install = false;
+      spring_boot_tools.enable = false;
       root_markers = [
         "pom.xml"
         "mvnw"
