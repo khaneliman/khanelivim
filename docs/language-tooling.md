@@ -32,7 +32,7 @@ Examples:
 - TypeScript: organize imports, fix all, add missing imports, source definition,
   tsserver logs
 - Rust: runnables, debuggables, crate graph, cargo, rust-analyzer logs, macro
-  expansion
+  expansion, RustOwl visualization with `<leader>zw`
 - Python: virtual environment selection, cached env activation, venv logs,
   nearest/file/last test, DAP-backed test debugging
 - .NET: build, run, debug, test runner, watch, diagnostics, outdated packages
