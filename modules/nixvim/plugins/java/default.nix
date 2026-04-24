@@ -19,6 +19,35 @@ in
 
   plugins.java = {
     enable = javaEnabled;
+    package = pkgs.vimPlugins.nvim-java.overrideAttrs (old: {
+      # TODO: Remove when nvim-java/nvim-java#487 is merged and reaches nixpkgs.
+      patches = (old.patches or [ ]) ++ [
+        (pkgs.fetchpatch {
+          name = "nvim-java-pr-487.patch";
+          url = "https://patch-diff.githubusercontent.com/raw/nvim-java/nvim-java/pull/487.patch";
+          hash = "sha256-qe89H0pNd0qOuvilrhWfZqHrqy3PV/E/wguEUad0nEA=";
+        })
+      ];
+
+      postPatch = ''
+        ${old.postPatch or ""}
+
+        substituteInPlace lua/java.lua \
+          --replace-fail "table.insert(to_install, { name = 'jdtls', version = config.jdtls.version })" "if config.jdtls.enable ~= false then
+          table.insert(to_install, { name = 'jdtls', version = config.jdtls.version })
+        end" \
+          --replace-fail "pkgm:install_all(" "if config.pkgm and config.pkgm.enable == false then
+          to_install = {}
+        end
+
+        pkgm:install_all(" \
+          --replace-fail "vim.lsp.enable('jdtls')" "" \
+          --replace-fail "require('java.startup.lsp_setup').setup(config)" "if config.jdtls.enable ~= false then
+          require('java.startup.lsp_setup').setup(config)
+          vim.lsp.enable('jdtls')
+        end"
+      '';
+    });
 
     lazyLoad.settings.ft = [ "java" ];
 
@@ -119,7 +148,13 @@ in
     settings = {
       # Keep JDK management in Nix
       jdk.auto_install = false;
-      spring_boot_tools.enable = false;
+      # Keep nvim-java's feature APIs, but use the Nix-managed JDTLS below.
+      jdtls.enable = false;
+      pkgm.enable = false;
+      # Spring Boot is configured by the root spring-boot plugin module.
+      spring_boot_tools = {
+        enable = false;
+      };
       root_markers = [
         "pom.xml"
         "mvnw"
@@ -170,6 +205,32 @@ in
             on_dir(root)
           end
         end
+      '';
+
+      init_options.bundles.__raw = ''
+        (function()
+          local bundles = vim
+            .iter({
+              vim.fn.glob(
+                "${pkgs.vscode-extensions.vscjava.vscode-java-debug}/share/vscode/extensions/vscjava.vscode-java-debug/server/*.jar",
+                true,
+                true
+              ),
+              vim.fn.glob(
+                "${pkgs.vscode-extensions.vscjava.vscode-java-test}/share/vscode/extensions/vscjava.vscode-java-test/server/*.jar",
+                true,
+                true
+              ),
+            })
+            :flatten()
+            :totable()
+
+          if _G.khanelivim_spring_boot_jdtls_bundles then
+            vim.list_extend(bundles, _G.khanelivim_spring_boot_jdtls_bundles())
+          end
+
+          return bundles
+        end)()
       '';
     };
   };
