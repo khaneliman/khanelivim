@@ -17,7 +17,7 @@
             desc = "Sidekick Toggle";
           }
           {
-            __unkeyed-1 = "<leader>asp";
+            __unkeyed-1 = "<leader>asP";
             mode = [
               "n"
               "v"
@@ -108,7 +108,7 @@
             "n"
             "v"
           ];
-          key = "<leader>asp";
+          key = "<leader>asP";
           action.__raw = "function() require('sidekick.cli').prompt() end";
           options.desc = "Ask Prompt";
         }
@@ -139,6 +139,7 @@
             map({ "n", "v" }, "<leader>asg", "gemini", "gemini", "Gemini Toggle")
             map({ "n", "v" }, "<leader>aso", "opencode", "opencode", "Opencode Toggle")
             map({ "n", "v" }, "<leader>asx", "codex", "codex", "Codex Toggle")
+            map({ "n", "v" }, "<leader>asp", "pi", "pi", "PI Coding Agent Toggle")
           end
         '';
       }
