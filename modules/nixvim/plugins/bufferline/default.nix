@@ -3,6 +3,20 @@
   plugins.bufferline =
     let
       mouse = {
+        left = /* Lua */ ''
+          function(bufnum)
+            if vim.w.sidekick_session_id then
+              vim.cmd.wincmd("p")
+              vim.cmd.stopinsert()
+
+              if vim.w.sidekick_session_id then
+                return
+              end
+            end
+
+            vim.api.nvim_set_current_buf(bufnum)
+          end
+        '';
         right = "'vertical sbuffer %d'";
         close =
           if config.khanelivim.ui.bufferDelete == "mini-bufremove" then
@@ -40,6 +54,8 @@
           close_command.__raw = mouse.close;
           close_icon = "";
           diagnostics = "nvim_lsp";
+          # Keep sidekick focused windows from being repurposed by tab clicks.
+          left_mouse_command.__raw = mouse.left;
           diagnostics_indicator = /* Lua */ ''
             function(count, level, diagnostics_dict, context)
               local s = ""
