@@ -138,7 +138,8 @@
           http = [ "kulala-fmt" ];
           kdl = [ "kdlfmt" ];
           lua = [ "stylua" ];
-          markdown = [ "deno_fmt" ];
+          # FIXME:
+          markdown = lib.mkIf pkgs.stdenv.hostPlatform.isLinux [ "deno_fmt" ];
           nix = [ "nixfmt" ];
           python = [
             "ruff_fix"
