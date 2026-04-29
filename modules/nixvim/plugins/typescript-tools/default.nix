@@ -35,9 +35,11 @@ in
         };
 
         settings = {
-          code_lens = "off";
+          # TODO: typescript-tools.nvim's CodeLens autocmd still calls the
+          # deprecated vim.lsp.codelens.refresh() API on Neovim 0.12+.
+          code_lens = "all";
           complete_function_calls = false;
-          disable_member_code_lens = true;
+          disable_member_code_lens = false;
           expose_as_code_action = "all";
           include_completions_with_insert_text = true;
           publish_diagnostic_on = "insert_leave";
