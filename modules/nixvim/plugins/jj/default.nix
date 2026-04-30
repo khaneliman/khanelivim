@@ -11,7 +11,7 @@ in
   # TODO: Consider upstreaming this module to nixvim
   options.plugins.jj = {
     enable = lib.mkEnableOption "jj" // {
-      default = true;
+      default = builtins.elem "jj" config.khanelivim.jj.integrations;
     };
 
     package = lib.mkPackageOption pkgs.vimPlugins "jj" {
@@ -80,223 +80,89 @@ in
     __depPackages.jj.default = "jujutsu";
     dependencies.jj.enable = lib.mkDefault true;
 
-    extraPlugins = [ cfg.package ];
-
-    extraConfigLua = ''
+    extraConfigLua = lib.mkIf (!config.plugins.lz-n.enable) ''
       require('jj').setup(${lib.generators.toLua { } cfg.settings})
     '';
 
-    keymaps = [
+    extraPlugins = [
       {
-        mode = "n";
-        key = "<leader>jd";
-        action.__raw = "require('jj.cmd').describe";
-        options = {
-          desc = "Describe";
-        };
+        plugin = cfg.package;
+        optional = config.plugins.lz-n.enable;
       }
+    ];
+
+    plugins.lz-n.plugins = lib.mkIf config.plugins.lz-n.enable [
       {
-        mode = "n";
-        key = "<leader>jl";
-        action.__raw = "require('jj.cmd').log";
-        options = {
-          desc = "Log";
-        };
-      }
-      {
-        mode = "n";
-        key = "<leader>je";
-        action.__raw = "require('jj.cmd').edit";
-        options = {
-          desc = "Edit";
-        };
-      }
-      {
-        mode = "n";
-        key = "<leader>jn";
-        action.__raw = "require('jj.cmd').new";
-        options = {
-          desc = "New";
-        };
-      }
-      {
-        mode = "n";
-        key = "<leader>js";
-        action.__raw = "require('jj.cmd').status";
-        options = {
-          desc = "Status";
-        };
-      }
-      {
-        mode = "n";
-        key = "<leader>jS";
-        action.__raw = "require('jj.cmd').squash";
-        options = {
-          desc = "Squash";
-        };
-      }
-      {
-        mode = "n";
-        key = "<leader>ju";
-        action.__raw = "require('jj.cmd').undo";
-        options = {
-          desc = "Undo";
-        };
-      }
-      {
-        mode = "n";
-        key = "<leader>jy";
-        action.__raw = "require('jj.cmd').redo";
-        options = {
-          desc = "Redo";
-        };
-      }
-      {
-        mode = "n";
-        key = "<leader>jr";
-        action.__raw = "require('jj.cmd').rebase";
-        options = {
-          desc = "Rebase";
-        };
-      }
-      {
-        mode = "n";
-        key = "<leader>jbc";
-        action.__raw = "require('jj.cmd').bookmark_create";
-        options = {
-          desc = "Create bookmark";
-        };
-      }
-      {
-        mode = "n";
-        key = "<leader>jbd";
-        action.__raw = "require('jj.cmd').bookmark_delete";
-        options = {
-          desc = "Delete bookmark";
-        };
-      }
-      {
-        mode = "n";
-        key = "<leader>jbm";
-        action.__raw = "require('jj.cmd').bookmark_move";
-        options = {
-          desc = "Move bookmark";
-        };
-      }
-      {
-        mode = "n";
-        key = "<leader>ja";
-        action.__raw = "require('jj.cmd').abandon";
-        options = {
-          desc = "Abandon";
-        };
-      }
-      {
-        mode = "n";
-        key = "<leader>jf";
-        action.__raw = "require('jj.cmd').fetch";
-        options = {
-          desc = "Fetch";
-        };
-      }
-      {
-        mode = "n";
-        key = "<leader>jp";
-        action.__raw = "require('jj.cmd').push";
-        options = {
-          desc = "Push";
-        };
-      }
-      {
-        mode = "n";
-        key = "<leader>jpr";
-        action.__raw = "require('jj.cmd').open_pr";
-        options = {
-          desc = "Open PR";
-        };
-      }
-      {
-        mode = "n";
-        key = "<leader>jpl";
-        action.__raw = ''
+        __unkeyed-1 = "jj.nvim";
+        cmd = [ "J" ];
+        after = ''
           function()
-              require("jj.cmd").open_pr { list_bookmarks = true }
+            require('jj').setup(${lib.generators.toLua { } cfg.settings})
           end
         '';
-        options = {
-          desc = "Open PR (List)";
-        };
       }
-      # Diff commands
+    ];
+
+    autoCmd = [
       {
-        mode = "n";
-        key = "<leader>gdf";
-        action.__raw = ''
-          function() require("jj.diff").open_diff() end
-        '';
-        options = {
-          desc = "Diff current buffer";
-        };
-      }
-      {
-        mode = "n";
-        key = "<leader>gdF";
-        action.__raw = ''
-          function() require("jj.diff").open_hsplit() end
-        '';
-        options = {
-          desc = "Diff current buffer (Split)";
-        };
-      }
-      # Pickers
-      {
-        mode = "n";
-        key = "<leader>gj";
-        action.__raw = ''
-          function() require("jj.picker").status() end
-        '';
-        options = {
-          desc = "Status picker";
-        };
-      }
-      {
-        mode = "n";
-        key = "<leader>jh";
-        action.__raw = ''
-          function() require("jj.picker").file_history() end
-        '';
-        options = {
-          desc = "History picker";
-        };
-      }
-      # Log all
-      {
-        mode = "n";
-        key = "<leader>jL";
-        action.__raw = ''
-          function()
-            require("jj.cmd").log {
-              revisions = "all()",
-            }
+        event = [
+          "BufReadPost"
+          "BufNewFile"
+        ];
+        callback.__raw = ''
+          function(args)
+            local bufnr = args.buf
+            if vim.b[bufnr].khanelivim_jj_keymaps then
+              return
+            end
+
+            local path = vim.api.nvim_buf_get_name(bufnr)
+            local dir = path ~= "" and vim.fn.fnamemodify(path, ":p:h") or vim.fn.getcwd()
+            if vim.fn.finddir(".jj", dir .. ";") == "" then
+              return
+            end
+
+            vim.b[bufnr].khanelivim_jj_keymaps = true
+
+            local opts = function(desc)
+              return { buffer = bufnr, desc = desc }
+            end
+
+            local map = function(mode, key, fn, desc)
+              vim.keymap.set(mode, key, function()
+                ${lib.optionalString config.plugins.lz-n.enable ''require("lz.n").trigger_load("jj.nvim")''}
+                fn()
+              end, opts(desc))
+            end
+
+            map("n", "<leader>jd", function() require("jj.cmd").describe() end, "Describe")
+            map("n", "<leader>jl", function() require("jj.cmd").log() end, "Log")
+            map("n", "<leader>je", function() require("jj.cmd").edit() end, "Edit")
+            map("n", "<leader>jn", function() require("jj.cmd").new() end, "New")
+            map("n", "<leader>js", function() require("jj.cmd").status() end, "Status")
+            map("n", "<leader>jS", function() require("jj.cmd").squash() end, "Squash")
+            map("n", "<leader>ju", function() require("jj.cmd").undo() end, "Undo")
+            map("n", "<leader>jy", function() require("jj.cmd").redo() end, "Redo")
+            map("n", "<leader>jr", function() require("jj.cmd").rebase() end, "Rebase")
+            map("n", "<leader>jbc", function() require("jj.cmd").bookmark_create() end, "Create bookmark")
+            map("n", "<leader>jbd", function() require("jj.cmd").bookmark_delete() end, "Delete bookmark")
+            map("n", "<leader>jbm", function() require("jj.cmd").bookmark_move() end, "Move bookmark")
+            map("n", "<leader>ja", function() require("jj.cmd").abandon() end, "Abandon")
+            map("n", "<leader>jf", function() require("jj.cmd").fetch() end, "Fetch")
+            map("n", "<leader>jp", function() require("jj.cmd").push() end, "Push")
+            map("n", "<leader>jpr", function() require("jj.cmd").open_pr() end, "Open PR")
+            map("n", "<leader>jpl", function() require("jj.cmd").open_pr({ list_bookmarks = true }) end, "Open PR (List)")
+            map("n", "<leader>gdf", function() require("jj.diff").open_diff() end, "Diff current buffer")
+            map("n", "<leader>gdF", function() require("jj.diff").open_hsplit() end, "Diff current buffer (Split)")
+            map("n", "<leader>gj", function() require("jj.picker").status() end, "Status picker")
+            map("n", "<leader>jh", function() require("jj.picker").file_history() end, "History picker")
+            map("n", "<leader>jL", function() require("jj.cmd").log({ revisions = "all()" }) end, "Log all")
+            map("n", "<leader>jt", function()
+              require("jj.cmd").j("tug")
+              require("jj.cmd").log({})
+            end, "Tug")
           end
         '';
-        options = {
-          desc = "Log all";
-        };
-      }
-      # Tug
-      {
-        mode = "n";
-        key = "<leader>jt";
-        action.__raw = ''
-          function()
-            require("jj.cmd").j("tug")
-            require("jj.cmd").log({})
-          end
-        '';
-        options = {
-          desc = "Tug";
-        };
       }
     ];
   };

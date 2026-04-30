@@ -84,6 +84,7 @@ let
       };
 
       git.integrations = lib.mkDefault [ "gitsigns" ];
+      jj.integrations = lib.mkDefault [ "jjsigns" ];
       picker.tool = lib.mkDefault "snacks";
 
       text.comments = lib.mkDefault [ "ts-comments" ];
@@ -134,6 +135,11 @@ let
           "snacks-lazygit"
         ];
       };
+
+      jj.integrations = [
+        "jj"
+        "jjsigns"
+      ];
 
       text = mkDefaultAttrs {
         markdownRendering = [ "markview" ];
