@@ -132,6 +132,7 @@ let
           "git-worktree"
           "hunk"
           "octo"
+          "snacks-gh"
           "snacks-gitbrowse"
           "snacks-lazygit"
         ];
