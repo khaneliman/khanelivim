@@ -131,6 +131,7 @@ let
           "git-conflict"
           "git-worktree"
           "hunk"
+          "octo"
           "snacks-gitbrowse"
           "snacks-lazygit"
         ];

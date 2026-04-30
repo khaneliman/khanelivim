@@ -24,6 +24,7 @@
           "git-worktree"
           "gitsigns"
           "hunk"
+          "octo"
           "snacks-gh"
           "snacks-gitbrowse"
           "snacks-lazygit"
