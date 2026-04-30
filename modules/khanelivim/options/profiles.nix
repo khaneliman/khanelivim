@@ -114,10 +114,9 @@ let
       debugging = mkDefaultAttrs {
         adapters = [
           "dap"
-          "dap-virtual-text"
           "debugprint"
         ];
-        ui = "dap-ui";
+        ui = "dap-view";
       };
 
       editor = mkDefaultAttrs {
