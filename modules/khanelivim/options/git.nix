@@ -7,6 +7,7 @@
         lib.types.enum [
           "codediff"
           "diffview"
+          "hunk"
           "mini-diff"
           "unified"
         ]
@@ -22,6 +23,7 @@
           "git-conflict"
           "git-worktree"
           "gitsigns"
+          "hunk"
           "snacks-gh"
           "snacks-gitbrowse"
           "snacks-lazygit"

@@ -130,6 +130,7 @@ let
           "gitsigns"
           "git-conflict"
           "git-worktree"
+          "hunk"
           "snacks-gitbrowse"
           "snacks-lazygit"
         ];
