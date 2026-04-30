@@ -41,7 +41,9 @@
 
           folds = {
             open = true;
-            git_hl = lib.elem "gitsigns" config.khanelivim.git.integrations;
+            git_hl =
+              lib.elem "gitsigns" config.khanelivim.git.integrations
+              || lib.elem "jjsigns" config.khanelivim.jj.integrations;
           };
         };
         quickfile.enabled = true;
