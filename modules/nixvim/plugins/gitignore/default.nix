@@ -10,7 +10,7 @@ in
       enable = true;
 
       lazyLoad.settings = {
-        keys = [ "<leader>gI" ];
+        keys = [ "<leader>gG" ];
         cmd = [ "Gitignore" ];
       };
     };
@@ -19,7 +19,7 @@ in
   keymaps = lib.mkIf cfg.enable [
     {
       mode = "n";
-      key = "<leader>gI";
+      key = "<leader>gG";
       action.__raw = ''
         function()
           require('gitignore').generate()
