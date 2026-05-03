@@ -130,8 +130,7 @@
 
       adapters = lib.mkIf (config.plugins.treesitter.enable && config.plugins.neotest.enable) {
         bash.enable = true;
-        # FIXME:
-        deno.enable = pkgs.stdenv.hostPlatform.isLinux;
+        deno.enable = true;
         dotnet = {
           enable = true;
 
