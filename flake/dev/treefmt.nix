@@ -27,8 +27,7 @@
             enable = true;
           };
           deno = {
-            # FIXME: broken rusty_v8
-            # enable = true;
+            enable = true;
             # Using biome for these
             excludes = [
               "*.ts"
