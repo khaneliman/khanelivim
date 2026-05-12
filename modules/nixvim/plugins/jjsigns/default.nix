@@ -73,6 +73,7 @@
       '';
     in
     lib.mkIf config.plugins.jjsigns.enable {
+      __depPackages.jj.default = lib.mkDefault "jujutsu";
       dependencies.jj.enable = lib.mkDefault true;
 
       extraPlugins = [
