@@ -1,0 +1,26 @@
+diff --git a/lua/jjsigns/signs.lua b/lua/jjsigns/signs.lua
+index 83361cf..e91c580 100644
+--- a/lua/jjsigns/signs.lua
++++ b/lua/jjsigns/signs.lua
+@@ -56,6 +56,7 @@ function M.place_signs(bufnr, signs)
+   }
+ 
+   -- Place new signs
++  local line_count = api.nvim_buf_line_count(bufnr)
+   for _, sign_data in ipairs(signs) do
+     local line = sign_data.line - 1 -- Convert to 0-indexed
+     local sign_type = sign_data.type
+@@ -62,7 +63,7 @@ function M.place_signs(bufnr, signs)
+     local sign_config = config.config.signs[sign_type]
+ 
+-    if sign_config then
++    if sign_config and sign_data.line >= 1 and sign_data.line <= line_count then
+       local opts = {
+         id = line + 1, -- Use line number as ID (1-indexed)
+         priority = config.config.sign_priority,
+       }
+ 
+       -- Add sign column text
+       if config.config.signcolumn then
+         opts.sign_text = sign_config.text
+         opts.sign_hl_group = get_sign_hl(sign_type, 'text')

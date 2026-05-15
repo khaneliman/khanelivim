@@ -22,6 +22,9 @@
           rev = "f5f5cefef0945cc00ba914584275f9cef8c2e792";
           hash = "sha256-nZu61pIkd85nISneMBy82ZZPB7Wj85Uy2LsOoWo99CE=";
         };
+        patches = [
+          ./skip-out-of-range-signs.patch
+        ];
       };
       description = "jjsigns.nvim package to use.";
     };
