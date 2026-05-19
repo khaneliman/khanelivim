@@ -3,11 +3,24 @@
   lib,
   ...
 }:
+let
+  injectionQueryDir = ./queries/nix/injections;
+  injectionQueryFiles =
+    path:
+    lib.filter (name: lib.hasSuffix ".scm" name) (
+      builtins.attrNames (lib.filterAttrs (_: type: type == "regular") (builtins.readDir path))
+    );
+  injectionQuery =
+    path:
+    lib.concatStringsSep "\n\n" (
+      map (name: builtins.readFile (path + "/${name}")) (injectionQueryFiles path)
+    );
+in
 {
 
-  # Home manager injections
+  # Nix injections
   extraFiles = lib.mkIf config.plugins.treesitter.nixvimInjections {
-    "after/queries/nix/injections.scm".source = ./injections-hm.scm;
+    "after/queries/nix/injections.scm".text = injectionQuery injectionQueryDir;
   };
 
   plugins = {
