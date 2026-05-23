@@ -19,8 +19,9 @@ jobs:
           install_url: https://nixos.org/nix/install
           extra_nix_config: |
             auto-optimise-store = true
+            allow-import-from-derivation = false
             access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
             experimental-features = nix-command flakes
             system = ${{ matrix.arch }}
       - name: run flake check
-        run: nix flake check --system ${{ matrix.arch }}
+        run: nix flake check --system ${{ matrix.arch }} --option allow-import-from-derivation false
