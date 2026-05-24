@@ -102,7 +102,7 @@ in
     wrap = false;
 
     # Folding
-    foldlevel = 10; # Keep most folds open, but preserve structure
+    foldlevel = 20; # Keep most folds open, but preserve structure
     foldcolumn = "1";
     foldenable = true;
     foldmethod = "indent";
