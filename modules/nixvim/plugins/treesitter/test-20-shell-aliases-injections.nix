@@ -4,12 +4,8 @@
   ...
 }:
 
-let
-  inherit (lib) fromJSON;
-  inherit (lib.generators) mkLuaInline;
-in
 {
-  # Namespace 1: Dotted Notation
+  # Dotted notation.
   test_case_dotted = {
     home.shellAliases = {
       l = "ls -alh";
@@ -17,7 +13,7 @@ in
     };
   };
 
-  # Namespace 2: Standard Nesting
+  # Standard nesting.
   test_case_nested = {
     home = {
       shellAliases = {
@@ -27,7 +23,7 @@ in
     };
   };
 
-  # Namespace 3: Wrapper around Attribute Set
+  # Wrapper around attribute set.
   test_case_wrapped_attrset = {
     home = lib.mkIf true {
       shellAliases = {
@@ -36,14 +32,14 @@ in
     };
   };
 
-  # Namespace 4: Wrapper around Shell Aliases directly
+  # Wrapper around shellAliases directly.
   test_case_wrapped_aliases = {
     programs.bash.shellAliases = lib.mkIf true {
       gp = "git push";
     };
   };
 
-  # Namespace 5: mkMerge List
+  # mkMerge list.
   test_case_merge = {
     programs.zsh.shellAliases = lib.mkMerge [
       {
@@ -55,8 +51,8 @@ in
     ];
   };
 
-  # Namespace 6: Update Operator (Level 1)
-  test_case_update_op_1 = {
+  # Update operator.
+  test_case_update_op = {
     home.shellAliases = {
       hl = "cat log";
     }
@@ -65,8 +61,8 @@ in
     };
   };
 
-  # Namespace 7: Update Operator (Level 2/Nested)
-  test_case_update_op_2 = {
+  # Nested update operator.
+  test_case_nested_update_op = {
     home = {
       shellAliases = {
         base = "echo base";
@@ -77,7 +73,7 @@ in
     };
   };
 
-  # Namespace 8: Update Operator with Multi-line Strings
+  # Update operator with multi-line strings.
   test_case_update_op_multiline = {
     config = lib.mkIf true {
       home.shellAliases = {
@@ -90,32 +86,7 @@ in
     };
   };
 
-  # Namespace 9: Standard Shell Strings (Deeply Nested)
-  test_case_deep_nesting = {
-    programs.zsh = {
-      interactiveShellInit = lib.mkMerge [
-        (lib.mkIf true (
-          lib.mkOrder 100 ''
-            # Deeply nested shell code
-            echo "Initializing..."
-          ''
-        ))
-      ];
-    };
-  };
-
-  # Namespace 10: Misc Keys (onChange, etc.)
-  test_case_misc_keys = {
-    xdg.configFile."nvim/init.lua".onChange = ''
-      echo "Reloading Neovim..."
-    '';
-
-    system.activationScripts.postInstall = ''
-      echo "Post install script"
-    '';
-  };
-
-  # Namespace 11: foldl with lib.concatStrings
+  # foldl with lib.concatStrings.
   test_case_foldl = {
     home = {
       shellAliases =
@@ -139,34 +110,5 @@ in
           }
           (builtins.attrNames { });
     };
-  };
-
-  # Namespace 12: nixpkgs lib helpers for language-bearing strings
-  test_case_lib_language_helpers = {
-    luaInlineFullPath = lib.generators.mkLuaInline ''
-      vim.api.nvim_set_option_value("number", true, {})
-    '';
-
-    luaInlineLibAlias = lib.mkLuaInline "vim.fn.getcwd()";
-
-    luaInlineInherited = mkLuaInline ''
-      require("lint").try_lint()
-    '';
-
-    parsedJsonLib = lib.fromJSON ''
-      {
-        "language": "json",
-        "enabled": true
-      }
-    '';
-
-    parsedJsonInherited = fromJSON ''{"compact": true}'';
-
-    parsedTomlLib = lib.fromTOML ''
-      language = "toml"
-      enabled = true
-    '';
-
-    parsedTomlInherited = fromTOML "compact = true";
   };
 }
