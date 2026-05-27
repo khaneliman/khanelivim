@@ -277,7 +277,7 @@
 
           if not vim.lsp.codelens.is_enabled({ bufnr = bufnr }) then return end
 
-          vim.lsp.codelens.refresh({ bufnr = bufnr })
+          vim.lsp.codelens.enable(true, { bufnr = bufnr })
         end
       '';
     }
