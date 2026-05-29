@@ -202,6 +202,7 @@ let
       (
         with pkgs.vimPlugins;
         [
+          self.packages.${system}.neotest-bun
           neotest-bash
           neotest-deno
           neotest-dotnet
@@ -222,6 +223,7 @@ in
 
   extraPlugins = lib.mkIf config.plugins.neotest.enable (
     [
+      self.packages.${system}.neotest-bun
       self.packages.${system}.neotest-catch2
     ]
     ++ neotestAdapterPlugins
@@ -371,6 +373,27 @@ in
           })
         ]
         ++ lib.optionals (config.plugins.treesitter.enable && config.plugins.neotest.enable) [
+          (lazyAdapter {
+            name = "neotest-bun";
+            module = "neotest-bun";
+            filetypes = [
+              "javascript"
+              "javascriptreact"
+              "typescript"
+              "typescriptreact"
+            ];
+            patterns = [
+              "%.spec%.js$"
+              "%.spec%.jsx$"
+              "%.spec%.ts$"
+              "%.spec%.tsx$"
+              "%.test%.js$"
+              "%.test%.jsx$"
+              "%.test%.ts$"
+              "%.test%.tsx$"
+            ];
+            rootPatterns = [ "package.json" ];
+          })
           (lazyAdapter {
             name = "neotest-bash";
             module = "neotest-bash";
