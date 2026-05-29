@@ -1,5 +1,6 @@
 {
   config,
+  inputs,
   lib,
   pkgs,
   self,
@@ -223,6 +224,7 @@ in
 
   extraPlugins = lib.mkIf config.plugins.neotest.enable (
     [
+      inputs.neotest-nix.packages.${system}.neotest-nix
       self.packages.${system}.neotest-bun
       self.packages.${system}.neotest-catch2
     ]
@@ -361,6 +363,27 @@ in
             ];
             testPathIgnorePatterns = [ "/test/main%.cpp$" ];
             testPathPatterns = [ "/test/.+%.cpp$" ];
+          })
+          (lazyAdapter {
+            name = "neotest-nix";
+            module = "neotest-nix";
+            filetypes = [ "nix" ];
+            patterns = [ "%.nix$" ];
+            rootPatterns = [ "flake.nix" ];
+            # discover_eval_checks evaluates the flake to surface generated
+            # outputs. eval_outputs widens that beyond `checks` to also pick up
+            # home-manager-style test derivations under legacyPackages.test-*.
+            setup = /* Lua */ ''
+              function(module)
+                return module.setup({
+                  discover_eval_checks = true,
+                  eval_outputs = {
+                    { attr = "checks" },
+                    { attr = "legacyPackages", match = "^test%-" },
+                  },
+                })
+              end
+            '';
           })
         ]
         ++ lib.optionals config.plugins.rustaceanvim.enable [
