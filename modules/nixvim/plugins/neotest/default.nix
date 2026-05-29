@@ -46,6 +46,10 @@ let
     end
   '';
   luaList = values: "{ ${lib.concatMapStringsSep ", " builtins.toJSON values} }";
+  junitConsoleStandalone = pkgs.fetchurl {
+    url = "https://repo1.maven.org/maven2/org/junit/platform/junit-platform-console-standalone/6.0.3/junit-platform-console-standalone-6.0.3.jar";
+    hash = "sha256-O6DWFQr3khShQR+eovvvhk7vaLaMiaF/ZywLib/506I=";
+  };
   lazyAdapter =
     {
       name,
@@ -55,6 +59,7 @@ let
       rootPatterns ? [ ],
       rootFilePatterns ? [ ],
       packageJsonPatterns ? [ ],
+      beforeRequire ? "nil",
       setup ? "nil",
       testPathIgnorePatterns ? [ ],
       testPathPatterns ? [ ],
@@ -69,11 +74,15 @@ let
           root_patterns = ${luaList rootPatterns},
           root_file_patterns = ${luaList rootFilePatterns},
           package_json_patterns = ${luaList packageJsonPatterns},
+          before_require = ${beforeRequire},
           setup = ${setup},
           test_path_ignore_patterns = ${luaList testPathIgnorePatterns},
           test_path_patterns = ${luaList testPathPatterns},
         }
         local filetypes = {}
+        if spec.before_require then
+          spec.before_require()
+        end
         local module = require(spec.module)
         local adapter = spec.setup and spec.setup(module) or module
         local adapter_is_test_file = adapter.is_test_file
@@ -514,6 +523,19 @@ in
               "settings.gradle"
               "settings.gradle.kts"
             ];
+            beforeRequire = ''
+              function()
+                require("neotest-java.context_holder").update_notification_shown = true
+              end
+            '';
+            setup = ''
+              function(module)
+                return module({
+                  junit_jar = "${junitConsoleStandalone}",
+                  disable_update_notifications = true,
+                })
+              end
+            '';
           })
           (lazyAdapter {
             name = "neotest-jest";
