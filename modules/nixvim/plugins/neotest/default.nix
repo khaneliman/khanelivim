@@ -1,14 +1,231 @@
 {
   config,
   lib,
+  pkgs,
   self,
   system,
   ...
 }:
+let
+  neotestSubprocessRuntimePatch = /* Lua */ ''
+    local subprocess = require("neotest.lib").subprocess
+
+    if not subprocess._khanelivim_runtime_patch then
+      local add_paths_to_rtp = subprocess.add_paths_to_rtp
+
+      subprocess.add_paths_to_rtp = function(paths)
+        local filtered = {}
+        local seen = {}
+
+        local function add(path)
+          if type(path) == "string" and path ~= "" and not seen[path] then
+            table.insert(filtered, path)
+            seen[path] = true
+          end
+        end
+
+        for _, path in ipairs(paths or {}) do
+          add(path)
+        end
+
+        local treesitter = vim.api.nvim_get_runtime_file("lua/nvim-treesitter/init.lua", false)[1]
+        if treesitter then
+          add((treesitter:gsub("/lua/nvim%-treesitter/init%.lua$", "")))
+        end
+
+        return add_paths_to_rtp(filtered)
+      end
+
+      subprocess._khanelivim_runtime_patch = true
+      end
+  '';
+  neotestSubprocessRuntimePatchFn = /* Lua */ ''
+    function()
+      ${neotestSubprocessRuntimePatch}
+    end
+  '';
+  luaList = values: "{ ${lib.concatMapStringsSep ", " builtins.toJSON values} }";
+  lazyAdapter =
+    {
+      name,
+      module,
+      filetypes,
+      patterns ? [ ],
+      rootPatterns ? [ ],
+      rootFilePatterns ? [ ],
+      packageJsonPatterns ? [ ],
+      setup ? "nil",
+      testPathIgnorePatterns ? [ ],
+      testPathPatterns ? [ ],
+    }:
+    /* Lua */ ''
+      (function()
+        local spec = {
+          name = "${name}",
+          module = "${module}",
+          filetypes = ${luaList filetypes},
+          patterns = ${luaList patterns},
+          root_patterns = ${luaList rootPatterns},
+          root_file_patterns = ${luaList rootFilePatterns},
+          package_json_patterns = ${luaList packageJsonPatterns},
+          setup = ${setup},
+          test_path_ignore_patterns = ${luaList testPathIgnorePatterns},
+          test_path_patterns = ${luaList testPathPatterns},
+        }
+        local filetypes = {}
+        local module = require(spec.module)
+        local adapter = spec.setup and spec.setup(module) or module
+        local adapter_is_test_file = adapter.is_test_file
+
+        for _, ft in ipairs(spec.filetypes) do
+          filetypes[ft] = true
+        end
+
+        local function matches(path)
+          local _, ft = pcall(vim.filetype.match, { filename = path })
+          if ft and filetypes[ft] then
+            return true
+          end
+
+          for _, pattern in ipairs(spec.patterns) do
+            if path:match(pattern) then
+              return true
+            end
+          end
+
+          return false
+        end
+
+        local function root(path)
+          if #spec.root_patterns > 0 then
+            local marker = vim.fs.find(spec.root_patterns, { path = path, upward = true })[1]
+            if marker then
+              return vim.fs.dirname(marker)
+            end
+          end
+
+          if #spec.root_file_patterns > 0 then
+            local start = path
+            if vim.fn.isdirectory(start) == 0 then
+              start = vim.fs.dirname(start)
+            end
+
+            local dir = start
+            while dir do
+              local ok, entries = pcall(vim.fn.readdir, dir)
+              if ok then
+                for _, entry in ipairs(entries) do
+                  for _, pattern in ipairs(spec.root_file_patterns) do
+                    if entry:match(pattern) then
+                      return dir
+                    end
+                  end
+                end
+              end
+
+              local parent = vim.fs.dirname(dir)
+              if not parent or parent == dir then
+                break
+              end
+              dir = parent
+            end
+          end
+
+          if #spec.root_patterns > 0 or #spec.root_file_patterns > 0 then
+            return nil
+          end
+
+          if vim.fn.isdirectory(path) == 0 and matches(path) then
+            return vim.fs.dirname(path)
+          end
+
+          return nil
+        end
+
+        local function matches_package_json(path)
+          if #spec.package_json_patterns == 0 then
+            return true
+          end
+
+          local project_root = root(path)
+          if not project_root then
+            return false
+          end
+
+          local package_json = vim.fs.joinpath(project_root, "package.json")
+          local ok, content = pcall(require("neotest.lib").files.read, package_json)
+          if not ok then
+            return false
+          end
+          for _, pattern in ipairs(spec.package_json_patterns) do
+            if content:match(pattern) then
+              return true
+            end
+          end
+
+          return false
+        end
+
+        adapter.name = spec.name
+        adapter.is_test_file = function(path)
+          for _, pattern in ipairs(spec.test_path_ignore_patterns) do
+            if path:match(pattern) then
+              return false
+            end
+          end
+
+          if not root(path) then
+            return false
+          end
+
+          if not matches_package_json(path) then
+            return false
+          end
+
+          for _, pattern in ipairs(spec.test_path_patterns) do
+            if path:match(pattern) then
+              return true
+            end
+          end
+
+          if not matches(path) then
+            return false
+          end
+          return adapter_is_test_file(path)
+        end
+
+        return adapter
+      end)()
+    '';
+  neotestAdapterPlugins =
+    lib.optionals (config.plugins.treesitter.enable && config.plugins.neotest.enable)
+      (
+        with pkgs.vimPlugins;
+        [
+          neotest-bash
+          neotest-deno
+          neotest-dotnet
+          neotest-go
+          neotest-java
+          neotest-jest
+          neotest-playwright
+          neotest-plenary
+          neotest-python
+          neotest-zig
+        ]
+      );
+in
 {
-  extraPlugins = lib.mkIf config.plugins.neotest.enable [
-    self.packages.${system}.neotest-catch2
-  ];
+  extraConfigLuaPre = lib.mkIf (
+    config.plugins.neotest.enable && !config.plugins.lz-n.enable
+  ) neotestSubprocessRuntimePatch;
+
+  extraPlugins = lib.mkIf config.plugins.neotest.enable (
+    [
+      self.packages.${system}.neotest-catch2
+    ]
+    ++ neotestAdapterPlugins
+  );
 
   plugins = {
     neotest = {
@@ -17,6 +234,7 @@
       enable = true;
       lazyLoad = {
         settings = {
+          before.__raw = neotestSubprocessRuntimePatchFn;
           keys = [
             {
               __unkeyed-1 = "<leader>tt";
@@ -120,47 +338,250 @@
       settings = {
         adapters = [
           # Catch2 adapter for C++ testing
-          "require('neotest-catch2')"
+          (lazyAdapter {
+            name = "neotest-catch2";
+            module = "neotest-catch2";
+            filetypes = [
+              "c"
+              "cpp"
+            ];
+            patterns = [
+              "%.cc$"
+              "%.cpp$"
+              "%.cxx$"
+              "%.hh$"
+              "%.hpp$"
+              "%.hxx$"
+            ];
+            rootPatterns = [
+              "CMakeLists.txt"
+              "meson.build"
+            ];
+            testPathIgnorePatterns = [ "/test/main%.cpp$" ];
+            testPathPatterns = [ "/test/.+%.cpp$" ];
+          })
         ]
         ++ lib.optionals config.plugins.rustaceanvim.enable [
-          /* Lua */ "require('rustaceanvim.neotest')"
+          (lazyAdapter {
+            name = "rustaceanvim.neotest";
+            module = "rustaceanvim.neotest";
+            filetypes = [ "rust" ];
+            patterns = [ "%.rs$" ];
+            rootPatterns = [ "Cargo.toml" ];
+          })
+        ]
+        ++ lib.optionals (config.plugins.treesitter.enable && config.plugins.neotest.enable) [
+          (lazyAdapter {
+            name = "neotest-bash";
+            module = "neotest-bash";
+            filetypes = [
+              "bash"
+              "sh"
+            ];
+            patterns = [
+              "%.bats$"
+              "%.sh$"
+            ];
+            rootPatterns = [
+              ".git"
+              "lib"
+            ];
+          })
+          (lazyAdapter {
+            name = "neotest-deno";
+            module = "neotest-deno";
+            filetypes = [
+              "javascript"
+              "javascriptreact"
+              "typescript"
+              "typescriptreact"
+            ];
+            patterns = [
+              "[_%.]test%.cjs$"
+              "[_%.]test%.cts$"
+              "[_%.]test%.js$"
+              "[_%.]test%.jsx$"
+              "[_%.]test%.mjs$"
+              "[_%.]test%.mts$"
+              "[_%.]test%.ts$"
+              "[_%.]test%.tsx$"
+              "/test%.cjs$"
+              "/test%.cts$"
+              "/test%.js$"
+              "/test%.jsx$"
+              "/test%.mjs$"
+              "/test%.mts$"
+              "/test%.ts$"
+              "/test%.tsx$"
+            ];
+            rootPatterns = [
+              "deno.json"
+              "deno.jsonc"
+              "import_map.json"
+            ];
+          })
+          (lazyAdapter {
+            name = "neotest-dotnet";
+            module = "neotest-dotnet";
+            filetypes = [
+              "cs"
+              "fsharp"
+              "vb"
+            ];
+            patterns = [
+              "%.cs$"
+              "%.fs$"
+              "%.vb$"
+            ];
+            rootPatterns = [
+              "global.json"
+              "Directory.Build.props"
+            ];
+            rootFilePatterns = [
+              "%.csproj$"
+              "%.fsproj$"
+              "%.sln$"
+            ];
+            setup = "function(module) return module({ dap = { args = { justMyCode = false } } }) end";
+          })
+          (lazyAdapter {
+            name = "neotest-go";
+            module = "neotest-go";
+            filetypes = [ "go" ];
+            patterns = [ "_test%.go$" ];
+            rootPatterns = [
+              "go.mod"
+              "go.sum"
+            ];
+          })
+          (lazyAdapter {
+            name = "neotest-java";
+            module = "neotest-java";
+            filetypes = [ "java" ];
+            patterns = [ "%.java$" ];
+            rootPatterns = [
+              "build.gradle"
+              "build.gradle.kts"
+              "gradlew"
+              "mvnw"
+              "pom.xml"
+              "settings.gradle"
+              "settings.gradle.kts"
+            ];
+          })
+          (lazyAdapter {
+            name = "neotest-jest";
+            module = "neotest-jest";
+            filetypes = [
+              "javascript"
+              "javascriptreact"
+              "typescript"
+              "typescriptreact"
+            ];
+            patterns = [
+              "__tests__"
+              "%.e2e%-spec%.coffee$"
+              "%.e2e%-spec%.js$"
+              "%.e2e%-spec%.jsx$"
+              "%.e2e%-spec%.ts$"
+              "%.e2e%-spec%.tsx$"
+              "%.integration%.coffee$"
+              "%.integration%.js$"
+              "%.integration%.jsx$"
+              "%.integration%.ts$"
+              "%.integration%.tsx$"
+              "%.regression%.coffee$"
+              "%.regression%.js$"
+              "%.regression%.jsx$"
+              "%.regression%.ts$"
+              "%.regression%.tsx$"
+              "%.spec%.coffee$"
+              "%.spec%.js$"
+              "%.spec%.jsx$"
+              "%.spec%.ts$"
+              "%.spec%.tsx$"
+              "%.test%.coffee$"
+              "%.test%.js$"
+              "%.test%.jsx$"
+              "%.test%.ts$"
+              "%.test%.tsx$"
+              "%.unit%.coffee$"
+              "%.unit%.js$"
+              "%.unit%.jsx$"
+              "%.unit%.ts$"
+              "%.unit%.tsx$"
+            ];
+            rootPatterns = [ "package.json" ];
+            packageJsonPatterns = [
+              "\"jest\""
+              "\"@jest/"
+              "\"ts-jest\""
+            ];
+          })
+          (lazyAdapter {
+            name = "neotest-playwright";
+            module = "neotest-playwright";
+            filetypes = [
+              "javascript"
+              "javascriptreact"
+              "typescript"
+              "typescriptreact"
+            ];
+            patterns = [
+              "%.spec%.js$"
+              "%.spec%.jsx$"
+              "%.spec%.ts$"
+              "%.spec%.tsx$"
+              "%.test%.js$"
+              "%.test%.jsx$"
+              "%.test%.ts$"
+              "%.test%.tsx$"
+            ];
+            rootPatterns = [
+              "playwright.config.js"
+              "playwright.config.ts"
+            ];
+            setup = "function(module) return module.adapter end";
+          })
+          (lazyAdapter {
+            name = "neotest-plenary";
+            module = "neotest-plenary";
+            filetypes = [ "lua" ];
+            patterns = [
+              "_spec%.lua$"
+              "_test%.lua$"
+            ];
+            rootPatterns = [
+              ".luarc.json"
+              "lua"
+            ];
+          })
+          (lazyAdapter {
+            name = "neotest-python";
+            module = "neotest-python";
+            filetypes = [ "python" ];
+            patterns = [
+              "_test%.py$"
+              "test_.*%.py$"
+            ];
+            rootPatterns = [
+              "mypy.ini"
+              "pyproject.toml"
+              "pytest.ini"
+              "setup.py"
+              "setup.cfg"
+            ];
+          })
+          (lazyAdapter {
+            name = "neotest-zig";
+            module = "neotest-zig";
+            filetypes = [ "zig" ];
+            patterns = [ "%.zig$" ];
+            rootPatterns = [ "build.zig" ];
+          })
         ];
       };
 
-      adapters = lib.mkIf (config.plugins.treesitter.enable && config.plugins.neotest.enable) {
-        bash.enable = true;
-        deno.enable = true;
-        dotnet = {
-          enable = true;
-
-          settings = {
-            dap = {
-              args = {
-                justMyCode = false;
-              };
-            };
-          };
-        };
-        go.enable = true;
-        java.enable = true;
-        # NOTE: just run NeotestJava setup
-        # java.settings = {
-        # Not sure why this wasn't working
-        # junit_jar =
-        #   pkgs.fetchurl
-        #     {
-        #       url = "https://repo1.maven.org/maven2/org/junit/platform/junit-platform-console-standalone/1.10.1/junit-platform-console-standalone-1.10.1.jar";
-        #       hash = "sha256-tC6qU9E1dtF9tfuLKAcipq6eNtr5X0JivG6W1Msgcl8=";
-        #     }
-        #     .outPath;
-        # };
-        jest.enable = true;
-        playwright.enable = true;
-        plenary.enable = true;
-        python.enable = true;
-        # rust.enable = true;
-        zig.enable = true;
-      };
     };
 
   };
