@@ -3,6 +3,13 @@
   pkgs,
   neovim-tasks,
 }:
+let
+  luaexpat = pkgs.luajitPackages.luaexpat;
+  luaexpatRtp = pkgs.runCommand "luaexpat-neovim-rtp" { } ''
+    mkdir -p $out/lua
+    ln -s ${luaexpat}/lib/lua/5.1/lxp.so $out/lua/lxp.so
+  '';
+in
 vimUtils.buildVimPlugin {
   pname = "neotest-catch2";
   version = "0-unstable-01-22-2024";
@@ -14,8 +21,8 @@ vimUtils.buildVimPlugin {
     hash = "sha256-7JMBEo5XpUSq69P0bup+yO40QwDZBXJ+q+ol0q/iAes=";
   };
 
-  propagatedBuildInputs = [
-    pkgs.luajitPackages.luaexpat
+  requiredLuaModules = [
+    luaexpat
   ];
 
   dependencies = with pkgs.vimPlugins; [
@@ -23,5 +30,9 @@ vimUtils.buildVimPlugin {
     neotest
     nvim-nio
     neovim-tasks
+  ];
+
+  nativeCheckInputs = [
+    luaexpatRtp
   ];
 }
