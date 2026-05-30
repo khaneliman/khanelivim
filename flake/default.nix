@@ -39,12 +39,8 @@
         inherit system;
         overlays = lib.attrValues self.overlays;
         config = {
+          allowAliases = false;
           allowUnfree = true;
-          # NOTE: Keep aliases enabled for the main flake pkgs path for now.
-          # `allowAliases = false` currently breaks git-hooks-nix installation.
-          # Nixvim eval config sets allowAliases explicitly in flake/nixvim.nix.
-          # FIXME: unify this once the git-hooks issue is resolved.
-          # allowAliases = false;
         };
       };
 

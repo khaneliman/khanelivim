@@ -14,9 +14,8 @@ let
     let
       sharedNixpkgs = import inputs.nixpkgs {
         inherit system;
+        overlays = lib.attrValues self.overlays;
         config = {
-          # Keep this aligned with modules/nixvim/default.nix semantics while
-          # using externally provided nixpkgs.pkgs for eval deduplication.
           allowAliases = false;
           allowUnfree = true;
         };
@@ -60,9 +59,9 @@ in
   };
 
   perSystem =
-    { system, ... }:
+    { pkgs, system, ... }:
     let
-      defaultConfig = mkNixvimConfig { inherit system; };
+      defaultConfig = mkNixvimConfig { inherit pkgs system; };
     in
     {
       nixvimConfigurations = {

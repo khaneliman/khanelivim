@@ -100,10 +100,17 @@
 
         settings.hooks = {
           # keep-sorted start block=yes newline_separated=no
-          actionlint.enable = true;
-          clang-tidy.enable = true;
+          actionlint = {
+            enable = true;
+            package = pkgs.actionlint;
+          };
+          clang-tidy = {
+            enable = true;
+            package = pkgs.llvmPackages.clang-tools;
+          };
           deadnix = {
             enable = true;
+            package = pkgs.deadnix;
 
             settings = {
               edit = true;
@@ -114,19 +121,30 @@
             package = pkgs.eslint_d;
           };
           lix-parse = mkParseHook "lix" pkgs.lixPackageSets.latest.lix;
-          luacheck.enable = true;
+          luacheck = {
+            enable = true;
+            package = pkgs.luaPackages.luacheck;
+          };
           nix-parse = mkParseHook "nix" pkgs.nixVersions.latest;
-          pre-commit-hook-ensure-sops.enable = true;
+          pre-commit-hook-ensure-sops = {
+            enable = true;
+            package = pkgs.pre-commit-hook-ensure-sops;
+          };
           statix = {
             enable = true;
+            package = pkgs.statix;
             # Only staged changes
             pass_filenames = true;
             entry = "${lib.getExe pkgs.bash} -c 'for file in \"$@\"; do ${lib.getExe pkgs.statix} check \"$file\"; done' --";
           };
-          treefmt.enable = true;
+          treefmt = {
+            enable = true;
+            package = pkgs.treefmt;
+          };
           typos = {
             enable = true;
             excludes = [ "^generated/" ];
+            package = pkgs.typos;
           };
           # keep-sorted end
         };
