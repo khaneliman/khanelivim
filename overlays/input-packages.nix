@@ -9,7 +9,8 @@ let
     };
   };
   # my-packages = flake.packages.${prev.stdenv.system};
-  inherit (nixpkgs-master-packages) luaPackages vimPlugins;
+  # masterLuaPackages = nixpkgs-master-packages.luaPackages;
+  # masterVimPlugins = nixpkgs-master-packages.vimPlugins;
 in
 {
   inherit (nixpkgs-master-packages)
@@ -22,16 +23,20 @@ in
     # TODO: Remove after hitting channel
     ;
 
-  luaPackages = luaPackages // {
+  luaPackages = prev.luaPackages // {
     #
     # Specific package overlays need to go in here to not get ignored
+    # Pull faster updates from nixpkgs-master with:
+    # inherit (masterLuaPackages) some-package;
     #
   };
 
-  vimPlugins = vimPlugins.extend (
+  vimPlugins = prev.vimPlugins.extend (
     _self: super: {
       #
       # Specific package overlays need to go in here to not get ignored
+      # Pull faster updates from nixpkgs-master with:
+      # inherit (masterVimPlugins) some-plugin;
       #
       nvim-java-core = super.nvim-java-core.overrideAttrs (old: {
         # TODO: File upstream and remove once nvim-java-core uses client:request.
