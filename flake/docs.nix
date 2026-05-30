@@ -8,14 +8,19 @@
       ...
     }:
     let
+      nixvimPkgs = import inputs.nixpkgs {
+        inherit system;
+        config = {
+          allowAliases = false;
+          allowUnfree = true;
+        };
+      };
       optionsEval = inputs.self.lib.mkNixvimConfig {
         inherit system;
+        pkgs = nixvimPkgs;
         profile = "standard";
       };
-      docsNvimPackage = inputs.self.lib.mkNixvimPackage {
-        inherit system;
-        profile = "standard";
-      };
+      docsNvimPackage = optionsEval.config.build.package;
 
       khanelivimOptions = pkgs.nixosOptionsDoc {
         options = lib.filterAttrs (name: _: name == "khanelivim") optionsEval.options;
@@ -33,7 +38,14 @@
       profiles = builtins.attrNames profileDescriptions;
 
       mkProfileConfig =
-        profile: (inputs.self.lib.mkNixvimConfig { inherit system profile; }).config.khanelivim;
+        profile:
+        if profile == "standard" then
+          optionsEval.config.khanelivim
+        else
+          (inputs.self.lib.mkNixvimConfig {
+            inherit system profile;
+            pkgs = nixvimPkgs;
+          }).config.khanelivim;
 
       profileMatrix = lib.genAttrs profiles (
         profile:

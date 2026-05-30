@@ -8,6 +8,7 @@ let
   mkNixvimConfig =
     {
       system,
+      pkgs ? null,
       profile ? "standard",
     }:
     let
@@ -20,6 +21,7 @@ let
           allowUnfree = true;
         };
       };
+      nixvimPkgs = if pkgs == null then sharedNixpkgs else pkgs;
     in
     inputs.nixvim.lib.evalNixvim {
       inherit system;
@@ -31,7 +33,7 @@ let
       modules = [
         self.nixvimModules.default
         {
-          nixpkgs.pkgs = lib.mkDefault sharedNixpkgs;
+          nixpkgs.pkgs = lib.mkDefault nixvimPkgs;
           nixpkgs.config = lib.mkForce { };
           khanelivim.profile = profile;
         }
