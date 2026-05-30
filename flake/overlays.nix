@@ -1,12 +1,10 @@
 { inputs, lib, ... }:
 let
-  overlayFiles =
-    with builtins;
-    lib.pipe ../overlays [
-      readDir
-      (lib.filterAttrs (name: type: type == "regular" && lib.hasSuffix ".nix" name))
-      attrNames
-    ];
+  overlayFiles = lib.pipe ../overlays [
+    builtins.readDir
+    (lib.filterAttrs (name: type: type == "regular" && lib.hasSuffix ".nix" name))
+    builtins.attrNames
+  ];
 in
 {
   flake.overlays = lib.listToAttrs (
