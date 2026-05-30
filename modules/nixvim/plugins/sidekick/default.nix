@@ -30,6 +30,111 @@
           mux = {
             enabled = true;
           };
+
+          cli.tools = {
+            claude_yolo = {
+              cmd = [
+                "claude"
+                "--dangerously-skip-permissions"
+              ];
+              is_proc = "\\<claude\\>";
+              url = "https://github.com/anthropics/claude-code";
+              resume = [ "--resume" ];
+              continue = [ "--continue" ];
+              format.__raw = ''
+                function(text)
+                  local Text = require("sidekick.text")
+
+                  Text.transform(text, function(str)
+                    return str:find("[^%w/_%.%-]") and ('"' .. str .. '"') or str
+                  end, "SidekickLocFile")
+
+                  local ret = Text.to_string(text)
+                  ret = ret:gsub("@([^@]-) :L(%d+)%-L(%d+)", "@%1#L%2-%3")
+
+                  return ret
+                end
+              '';
+            };
+
+            codex_yolo = {
+              cmd = [
+                "codex"
+                "--dangerously-bypass-approvals-and-sandbox"
+              ];
+              is_proc = "\\<codex\\>";
+              url = "https://github.com/openai/codex";
+              resume = [ "resume" ];
+              continue = [
+                "resume"
+                "--last"
+              ];
+            };
+
+            copilot_yolo = {
+              cmd = [
+                "copilot"
+                "--banner"
+                "--yolo"
+              ];
+              is_proc.__raw = ''
+                function(_, proc)
+                  local re = vim.regex("\\<copilot\\>")
+                  return re:match_str(proc.cmd) and not proc.cmd:find("language%-server") or false
+                end
+              '';
+              url = "https://github.com/github/copilot-cli";
+              resume = [ "--resume" ];
+              continue = [ "--continue" ];
+            };
+
+            gemini_yolo = {
+              cmd = [
+                "gemini"
+                "--yolo"
+              ];
+              is_proc = "\\<gemini\\>";
+              url = "https://github.com/google-gemini/gemini-cli";
+              format.__raw = ''
+                function(text)
+                  require("sidekick.text").transform(text, function(str)
+                    return str:gsub("([^%w/_%.%-])", "\\%1")
+                  end, "SidekickLocFile")
+                end
+              '';
+            };
+
+            opencode_yolo = {
+              cmd = [
+                "opencode"
+                "run"
+                "--interactive"
+                "--dangerously-skip-permissions"
+              ];
+              env = {
+                OPENCODE_THEME = "system";
+              };
+              keys = {
+                prompt = [
+                  "<a-p>"
+                  "prompt"
+                ];
+              };
+              is_proc = "\\<opencode\\>";
+              url = "https://github.com/sst/opencode";
+              continue = [ "--continue" ];
+              native_scroll = true;
+            };
+
+            pi_yolo = {
+              cmd = [ "pi" ];
+              is_proc = "\\<pi\\>";
+              url = "https://github.com/badlogic/pi-mono";
+              resume = [ "--resume" ];
+              continue = [ "--continue" ];
+              native_scroll = false;
+            };
+          };
         };
       };
 
@@ -38,6 +143,15 @@
           __unkeyed-1 = "<leader>as";
           group = "Sidekick";
           icon = "🤖";
+          mode = [
+            "n"
+            "v"
+          ];
+        }
+        {
+          __unkeyed-1 = "<leader>asy";
+          group = "Sidekick YOLO";
+          icon = "󰐃";
           mode = [
             "n"
             "v"
@@ -134,12 +248,23 @@
               end, opts(desc))
             end
 
+            local yolo = function(mode, key, provider, binary, desc)
+              map(mode, key, provider .. "_yolo", binary, desc)
+            end
+
             map({ "n", "v" }, "<leader>asc", "claude", "claude", "Claude Toggle")
             map({ "n", "v" }, "<leader>asC", "copilot", "copilot", "Copilot Toggle")
             map({ "n", "v" }, "<leader>asg", "gemini", "gemini", "Gemini Toggle")
             map({ "n", "v" }, "<leader>aso", "opencode", "opencode", "Opencode Toggle")
             map({ "n", "v" }, "<leader>asx", "codex", "codex", "Codex Toggle")
             map({ "n", "v" }, "<leader>asp", "pi", "pi", "PI Coding Agent Toggle")
+
+            yolo({ "n", "v" }, "<leader>asyc", "claude", "claude", "Claude YOLO Toggle")
+            yolo({ "n", "v" }, "<leader>asyC", "copilot", "copilot", "Copilot YOLO Toggle")
+            yolo({ "n", "v" }, "<leader>asyg", "gemini", "gemini", "Gemini YOLO Toggle")
+            yolo({ "n", "v" }, "<leader>asyo", "opencode", "opencode", "Opencode YOLO Toggle")
+            yolo({ "n", "v" }, "<leader>asyx", "codex", "codex", "Codex YOLO Toggle")
+            yolo({ "n", "v" }, "<leader>asyp", "pi", "pi", "PI Coding Agent Toggle")
           end
         '';
       }
