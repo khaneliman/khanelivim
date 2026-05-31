@@ -7,8 +7,8 @@ let
   injectionQueryDir = ./queries/nix/injections;
   injectionQueryFiles =
     path:
-    lib.filter (name: lib.hasSuffix ".scm" name) (
-      builtins.attrNames (lib.filterAttrs (_: type: type == "regular") (builtins.readDir path))
+    builtins.attrNames (
+      lib.filterAttrs (name: type: type == "regular" && lib.hasSuffix ".scm" name) (builtins.readDir path)
     );
   injectionQuery =
     path:

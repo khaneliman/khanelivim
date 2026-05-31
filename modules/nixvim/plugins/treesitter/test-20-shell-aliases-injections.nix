@@ -86,11 +86,11 @@
     };
   };
 
-  # foldl with lib.concatStrings.
+  # foldl' with lib.concatStrings.
   test_case_foldl = {
     home = {
       shellAliases =
-        lib.foldl (aliases: system: aliases // { "ssh-''${system}" = "ssh ''${system} -t tmux a"; })
+        builtins.foldl' (aliases: system: aliases // { "ssh-''${system}" = "ssh ''${system} -t tmux a"; })
           {
             ssh-list-perm-user = ''find ~/.ssh -exec stat -c "%a %n" {} \;'';
 
