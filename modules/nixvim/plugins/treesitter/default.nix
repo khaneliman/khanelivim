@@ -34,14 +34,19 @@ in
       indent.enable = true;
 
       grammarPackages =
-        if config.khanelivim.performance.treesitter.whitelistMode then
-          lib.filter (
-            g: lib.elem g.pname config.khanelivim.performance.treesitter.includedGrammars
-          ) config.plugins.treesitter.package.allGrammars
-        else
-          lib.filter (
-            g: !(lib.elem g.pname config.khanelivim.performance.treesitter.excludedGrammars)
-          ) config.plugins.treesitter.package.allGrammars;
+        let
+          whitelistMode = config.khanelivim.performance.treesitter.whitelistMode;
+          grammarSet = lib.genAttrs (
+            if whitelistMode then
+              config.khanelivim.performance.treesitter.includedGrammars
+            else
+              config.khanelivim.performance.treesitter.excludedGrammars
+          ) (_: true);
+          grammarIsSelected = g: grammarSet.${g.pname} or false;
+        in
+        lib.filter (
+          if whitelistMode then grammarIsSelected else g: !grammarIsSelected g
+        ) config.plugins.treesitter.package.allGrammars;
       nixvimInjections = true;
     };
   };
