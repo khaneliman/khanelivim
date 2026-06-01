@@ -29,7 +29,15 @@
           "TextChanged"
         ];
         callback.__raw = ''
-          function()
+          function(args)
+            -- Octo comment/body buffers use the compound filetype "markdown.gh",
+            -- which nvim-lint resolves down to the markdown linters. Skip any
+            -- buffer carrying the "gh" filetype component.
+            for _, sub_ft in ipairs(vim.split(vim.bo[args.buf].filetype, ".", { plain = true })) do
+              if sub_ft == "gh" then
+                return
+              end
+            end
             require("lint").try_lint()
           end
         '';
