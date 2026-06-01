@@ -6,6 +6,8 @@
 }:
 let
   hasNeovim012OrNewer = lib.versionAtLeast (pkgs.neovim.version or "0.0") "0.12";
+  hasSnacksPicker =
+    config.plugins.snacks.enable && lib.hasAttr "picker" config.plugins.snacks.settings;
 in
 {
   globals = {
@@ -81,32 +83,15 @@ in
               # navigate quickfix list
               "]q" = {
                 action = "<cmd>cnext<CR>";
+                options = {
+                  desc = "Next quickfix item";
+                };
               };
               "[q" = {
                 action = "<cmd>cprev<CR>";
-              };
-
-              # resize with arrows
-              "<C-Up>" = {
-                action = "<cmd>resize -2<CR>";
-              };
-              "<C-Down>" = {
-                action = "<cmd>resize +2<CR>";
-              };
-              "<C-Left>" = {
-                action = "<cmd>vertical resize +2<CR>";
-              };
-              "<C-Right>" = {
-                action = "<cmd>vertical resize -2<CR>";
-              };
-
-              # move current line up/down
-              # M = Alt key
-              "<M-k>" = {
-                action = "<cmd>move-2<CR>";
-              };
-              "<M-j>" = {
-                action = "<cmd>move+<CR>";
+                options = {
+                  desc = "Previous quickfix item";
+                };
               };
 
               "<Leader>w" = {
@@ -128,6 +113,12 @@ in
                 options = {
                   desc = "Move cursor up";
                   expr = true;
+                };
+              };
+              "<C-s>" = {
+                action = "<Cmd>w<CR>";
+                options = {
+                  desc = "Save";
                 };
               };
               "<Leader>q" = {
@@ -200,7 +191,34 @@ in
                   desc = "Previous buffer";
                 };
               };
-
+              "<C-Up>" = {
+                action = "<cmd>resize -2<CR>";
+              };
+              "<C-Down>" = {
+                action = "<cmd>resize +2<CR>";
+              };
+              "<C-Left>" = {
+                action = "<cmd>vertical resize +2<CR>";
+              };
+              "<C-Right>" = {
+                action = "<cmd>vertical resize -2<CR>";
+              };
+            }
+            // lib.optionalAttrs (!hasSnacksPicker) {
+              "gy" = {
+                action = ''"+y'';
+                options = {
+                  desc = "Copy to system clipboard";
+                };
+              };
+            }
+            // lib.optionalAttrs (!config.plugins.yanky.enable) {
+              "gp" = {
+                action = ''"+p'';
+                options = {
+                  desc = "Paste from system clipboard";
+                };
+              };
             }
             // lib.optionalAttrs (hasNeovim012OrNewer && !config.plugins.yanky.enable) {
               # Paste linewise before/after current line from active register (0.12+)
@@ -460,54 +478,85 @@ in
               options = attrs.options or { };
             }
           )
-          {
-            # Better indenting
-            "<S-Tab>" = {
-              action = "<gv";
-              options = {
-                desc = "Unindent line";
+          (
+            {
+              # Better indenting
+              "<S-Tab>" = {
+                action = "<gv";
+                options = {
+                  desc = "Unindent line";
+                };
               };
-            };
-            "<" = {
-              action = "<gv";
-              options = {
-                desc = "Unindent line";
+              "<" = {
+                action = "<gv";
+                options = {
+                  desc = "Unindent line";
+                };
               };
-            };
-            "<Tab>" = {
-              action = ">gv";
-              options = {
-                desc = "Indent line";
+              "<Tab>" = {
+                action = ">gv";
+                options = {
+                  desc = "Indent line";
+                };
               };
-            };
-            ">" = {
-              action = ">gv";
-              options = {
-                desc = "Indent line";
+              "j" = {
+                action = "v:count == 0 ? 'gj' : 'j'";
+                options = {
+                  desc = "Move cursor down";
+                  expr = true;
+                };
               };
-            };
+              "k" = {
+                action = "v:count == 0 ? 'gk' : 'k'";
+                options = {
+                  desc = "Move cursor up";
+                  expr = true;
+                };
+              };
+              ">" = {
+                action = ">gv";
+                options = {
+                  desc = "Indent line";
+                };
+              };
 
-            # Move selected line/block in visual mode
-            "K" = {
-              action = "<cmd>m '<-2<CR>gv=gv<cr>";
-            };
-            "J" = {
-              action = "<cmd>m '>+1<CR>gv=gv<cr>";
-            };
-
-            # Backspace delete in visual
-            "<BS>" = {
-              action = "x";
-            };
-
-            "<leader>/" = {
-              action = "gc";
-              options = {
-                desc = "Toggle comment selection";
-                remap = true;
+              # Move selected line/block in visual mode
+              "K" = {
+                action = "<cmd>m '<-2<CR>gv=gv<cr>";
               };
-            };
-          };
+              "J" = {
+                action = "<cmd>m '>+1<CR>gv=gv<cr>";
+              };
+
+              "<leader>/" = {
+                action = "gc";
+                options = {
+                  desc = "Toggle comment selection";
+                  remap = true;
+                };
+              };
+              "gy" = {
+                action = ''"+y'';
+                options = {
+                  desc = "Copy to system clipboard";
+                };
+              };
+              "<C-s>" = {
+                action = "<Esc><Cmd>w<CR>";
+                options = {
+                  desc = "Save";
+                };
+              };
+            }
+            // lib.optionalAttrs (!config.plugins.yanky.enable) {
+              "gp" = {
+                action = ''"+P'';
+                options = {
+                  desc = "Paste from system clipboard";
+                };
+              };
+            }
+          );
       insert =
         lib.mapAttrsToList
           (
@@ -532,6 +581,12 @@ in
             };
             "<C-j>" = {
               action = "<C-o>gj";
+            };
+            "<C-s>" = {
+              action = "<Esc><Cmd>w<CR>";
+              options = {
+                desc = "Save";
+              };
             };
           };
     in

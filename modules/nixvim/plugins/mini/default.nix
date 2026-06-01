@@ -3,6 +3,9 @@
   lib,
   ...
 }:
+let
+  hasTreeSitterTextobjects = lib.elem "treesitter-textobjects" config.khanelivim.editor.textObjects;
+in
 {
   imports = [
     ./animate.nix
@@ -33,7 +36,7 @@
   plugins = {
     mini-ai = {
       enable = lib.elem "mini-ai" config.khanelivim.editor.textObjects;
-      settings = lib.mkIf (lib.elem "treesitter-textobjects" config.khanelivim.editor.textObjects) {
+      settings = lib.mkIf hasTreeSitterTextobjects {
         custom_textobjects = {
           f = {
             __raw = "require('mini.ai').gen_spec.treesitter({ a = '@function.outer', i = '@function.inner' })";
@@ -47,14 +50,29 @@
 
     mini-align.enable = true;
 
-    mini-basics.enable = true;
+    mini-basics = {
+      enable = true;
+      settings = {
+        # Keep core editing/LSP maps owned by khanelivim's explicit keymap layer.
+        mappings.basic = false;
+      };
+    };
 
     mini-bracketed = {
       enable = true;
-      settings = lib.mkIf (lib.elem "treesitter-textobjects" config.khanelivim.editor.textObjects) {
-        file.suffix = "";
-        comment.suffix = "";
-      };
+      settings = lib.mkMerge [
+        {
+          indent.suffix = "";
+          quickfix.suffix = "";
+        }
+        (lib.mkIf hasTreeSitterTextobjects {
+          comment.suffix = "";
+          file.suffix = "";
+        })
+        (lib.mkIf config.plugins.gitsigns.enable {
+          comment.suffix = "";
+        })
+      ];
     };
 
     mini-icons = {
