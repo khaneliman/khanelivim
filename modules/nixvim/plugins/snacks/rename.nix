@@ -72,7 +72,7 @@
       [
         {
           mode = "n";
-          key = "<leader>cr";
+          key = "<leader>lR";
           action = "<cmd>lua Snacks.rename.rename_file()<CR>";
           options = {
             desc = "Rename File";

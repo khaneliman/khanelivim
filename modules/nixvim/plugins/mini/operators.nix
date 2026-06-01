@@ -16,7 +16,7 @@
 
       # Replace text with register
       replace = {
-        prefix = "gr";
+        prefix = "gz";
       };
 
       # Sort text
@@ -38,7 +38,7 @@
       icon = "󰎂 ";
     }
     {
-      __unkeyed-1 = "gr";
+      __unkeyed-1 = "gz";
       group = "Replace";
       icon = " ";
     }

@@ -25,7 +25,7 @@
   keymaps = lib.mkIf config.plugins.treesitter-context.enable [
     {
       mode = "n";
-      key = "<leader>ut";
+      key = "<leader>utc";
       action = "<cmd>TSContextToggle<cr>";
       options = {
         desc = "Treesitter Context toggle";

@@ -27,7 +27,7 @@
     }
     {
       mode = "n";
-      key = "<leader>ut";
+      key = "<leader>ueT";
       action = "<cmd>lua Snacks.terminal.toggle()<CR>";
       options = {
         desc = "Toggle Terminal";
