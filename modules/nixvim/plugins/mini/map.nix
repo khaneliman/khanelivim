@@ -2,7 +2,12 @@
 {
   plugins.mini-map = {
     enable = true;
-    lazyLoad.settings.keys = [ "<leader>usm" ];
+    lazyLoad.settings.keys = [
+      {
+        __unkeyed-1 = "<leader>usm";
+        desc = "MiniMap toggle";
+      }
+    ];
     settings = {
       # __raw = lua code
       # __unkeyed-1.* = no key, just the value

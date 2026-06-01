@@ -10,7 +10,12 @@ in
       enable = true;
 
       lazyLoad.settings = {
-        keys = [ "<leader>gG" ];
+        keys = [
+          {
+            __unkeyed-1 = "<leader>gG";
+            desc = "Gitignore generate";
+          }
+        ];
         cmd = [ "Gitignore" ];
       };
     };

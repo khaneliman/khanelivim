@@ -73,6 +73,7 @@
             }
             {
               __unkeyed-1 = "<c-leftmouse>";
+              desc = "Add cursor with mouse";
               mode = "n";
             }
           ];
