@@ -58,6 +58,14 @@ in
           desc = "Resume Review";
         };
       }
+      {
+        mode = "n";
+        key = "<leader>gvc";
+        action = "<cmd>Octo pr checkout<CR>";
+        options = {
+          desc = "Checkout PR";
+        };
+      }
     ]
     ++ lib.optionals (!hasSnacksGh) [
       {
