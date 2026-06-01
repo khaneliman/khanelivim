@@ -194,6 +194,19 @@
           icon = "󰈞";
         }
       ]
+      ++
+        lib.optionals
+          (config.plugins.octo.enable || lib.elem "snacks-gh" config.khanelivim.git.integrations)
+          [
+            {
+              __unkeyed-1 = "<leader>gv";
+              group = "GitHub";
+              icon = "";
+              mode = [
+                "n"
+              ];
+            }
+          ]
       ++ lib.optionals config.plugins.git-conflict.enable [
         {
           __unkeyed-1 = "<leader>gc";

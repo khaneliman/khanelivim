@@ -21,22 +21,11 @@ in
     };
   };
 
-  plugins.which-key.settings.spec = lib.optionals config.plugins.octo.enable [
-    {
-      __unkeyed-1 = "<leader>gv";
-      group = "GitHub Review";
-      icon = "";
-      mode = [
-        "n"
-      ];
-    }
-  ];
-
   keymaps = lib.mkIf config.plugins.octo.enable (
     [
       {
         mode = "n";
-        key = "<leader>gvp";
+        key = "<leader>gvo";
         action = "<cmd>Octo pr<CR>";
         options = {
           desc = "Open PR";
@@ -66,24 +55,6 @@ in
           desc = "Checkout PR";
         };
       }
-    ]
-    ++ lib.optionals (!hasSnacksGh) [
-      {
-        mode = "n";
-        key = "<leader>gvP";
-        action = "<cmd>Octo pr list<CR>";
-        options = {
-          desc = "List PRs";
-        };
-      }
-      {
-        mode = "n";
-        key = "<leader>gvi";
-        action = "<cmd>Octo issue list<CR>";
-        options = {
-          desc = "List Issues";
-        };
-      }
       {
         mode = "n";
         key = "<leader>gvs";
@@ -98,6 +69,25 @@ in
         action = "<cmd>Octo actions<CR>";
         options = {
           desc = "Actions";
+        };
+      }
+    ]
+    # When snacks-gh is absent, octo provides the PR/issue browse entry points.
+    ++ lib.optionals (!hasSnacksGh) [
+      {
+        mode = "n";
+        key = "<leader>gvp";
+        action = "<cmd>Octo pr list<CR>";
+        options = {
+          desc = "Pull Requests";
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>gvi";
+        action = "<cmd>Octo issue list<CR>";
+        options = {
+          desc = "Issues";
         };
       }
     ]

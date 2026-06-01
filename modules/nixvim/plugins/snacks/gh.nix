@@ -40,34 +40,34 @@ in
   keymaps = lib.mkIf isEnabled [
     {
       mode = "n";
-      key = "<leader>gi";
+      key = "<leader>gvi";
       action.__raw = "function() Snacks.picker.gh_issue() end";
       options = {
-        desc = "GitHub Issues (open)";
+        desc = "Issues (open)";
       };
     }
     {
       mode = "n";
-      key = "<leader>gI";
+      key = "<leader>gvI";
       action.__raw = "function() Snacks.picker.gh_issue({ state = 'all' }) end";
       options = {
-        desc = "GitHub Issues (all)";
+        desc = "Issues (all)";
       };
     }
     {
       mode = "n";
-      key = "<leader>gp";
+      key = "<leader>gvp";
       action.__raw = "function() Snacks.picker.gh_pr() end";
       options = {
-        desc = "GitHub Pull Requests (open)";
+        desc = "Pull Requests (open)";
       };
     }
     {
       mode = "n";
-      key = "<leader>gP";
+      key = "<leader>gvP";
       action.__raw = "function() Snacks.picker.gh_pr({ state = 'all' }) end";
       options = {
-        desc = "GitHub Pull Requests (all)";
+        desc = "Pull Requests (all)";
       };
     }
   ];
