@@ -48,6 +48,14 @@
           group = "Git Find";
         }
         {
+          __unkeyed-1 = "<leader>gb";
+          group = "Blame";
+          mode = [
+            "n"
+            "x"
+          ];
+        }
+        {
           __unkeyed-1 = "<leader>l";
           group = "LSP";
         }

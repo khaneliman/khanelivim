@@ -110,7 +110,7 @@
       }
       {
         mode = "n";
-        key = "<leader>gb";
+        key = "<leader>gbb";
         action.__raw = "function() require('gitsigns').blame_line{full=true} end";
         options = {
           desc = "Blame Line";
@@ -118,7 +118,7 @@
       }
       {
         mode = "n";
-        key = "<leader>gB";
+        key = "<leader>gbf";
         action = "<cmd>Gitsigns blame<CR>";
         options = {
           desc = "Blame File";

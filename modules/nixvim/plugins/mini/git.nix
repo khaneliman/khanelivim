@@ -33,18 +33,18 @@
     # }
     {
       mode = "";
-      key = "<leader>gH";
+      key = "<leader>gbr";
       action = "<CMD>lua MiniGit.show_range_history()<CR>";
       options = {
-        desc = "Show range history";
+        desc = "Range History";
       };
     }
     {
       mode = "n";
-      key = "<leader>g.";
+      key = "<leader>gbc";
       action = "<CMD>lua MiniGit.show_at_cursor()<CR>";
       options = {
-        desc = "Show git context";
+        desc = "Show at Cursor";
       };
     }
   ];
