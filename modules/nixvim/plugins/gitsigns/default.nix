@@ -116,6 +116,14 @@
           desc = "Blame Line";
         };
       }
+      {
+        mode = "n";
+        key = "<leader>gB";
+        action = "<cmd>Gitsigns blame<CR>";
+        options = {
+          desc = "Blame File";
+        };
+      }
       # Hunk Actions
       {
         mode = "n";
