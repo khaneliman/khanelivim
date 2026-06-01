@@ -41,7 +41,7 @@
         }
         {
           mode = "n";
-          key = "<leader>ld";
+          key = "<leader>lsd";
           action = "<cmd>lua Snacks.picker.lsp_definitions()<cr>";
           options = {
             desc = "Goto Definition";
@@ -49,7 +49,7 @@
         }
         {
           mode = "n";
-          key = "<leader>li";
+          key = "<leader>lsi";
           action = "<cmd>lua Snacks.picker.lsp_implementations()<cr>";
           options = {
             desc = "Goto Implementation";
@@ -57,7 +57,7 @@
         }
         {
           mode = "n";
-          key = "<leader>lD";
+          key = "<leader>lsD";
           action = "<cmd>lua Snacks.picker.lsp_references()<cr>";
           options = {
             desc = "Find references";
@@ -65,7 +65,7 @@
         }
         {
           mode = "n";
-          key = "<leader>lt";
+          key = "<leader>lst";
           action = "<cmd>lua Snacks.picker.lsp_type_definitions()<cr>";
           options = {
             desc = "Goto Type Definition";

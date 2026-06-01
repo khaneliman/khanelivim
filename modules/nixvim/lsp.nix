@@ -670,6 +670,10 @@
         desc = "Rename";
       }
       {
+        __unkeyed-1 = "<leader>ls";
+        group = "LSP Search";
+      }
+      {
         __unkeyed-1 = "<leader>lq";
         desc = "Buffer Diagnostics List";
       }

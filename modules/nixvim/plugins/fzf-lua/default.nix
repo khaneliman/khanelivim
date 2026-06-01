@@ -118,38 +118,6 @@
     }
     {
       mode = "n";
-      key = "<leader>ld";
-      action = "<cmd>FzfLua lsp_definitions<CR>";
-      options = {
-        desc = "Goto Definition";
-      };
-    }
-    {
-      mode = "n";
-      key = "<leader>li";
-      action = "<cmd>FzfLua lsp_implementations<CR>";
-      options = {
-        desc = "Goto Implementation";
-      };
-    }
-    {
-      mode = "n";
-      key = "<leader>lD";
-      action = "<cmd>FzfLua lsp_references<CR>";
-      options = {
-        desc = "Find references";
-      };
-    }
-    {
-      mode = "n";
-      key = "<leader>lt";
-      action = "<cmd>FzfLua lsp_typedefs<CR>";
-      options = {
-        desc = "Goto Type Definition";
-      };
-    }
-    {
-      mode = "n";
       key = "<leader>gs";
       action = "<cmd>FzfLua git_status<CR>";
       options = {

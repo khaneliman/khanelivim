@@ -35,7 +35,7 @@
     }
     {
       mode = "n";
-      key = "<leader>ld";
+      key = "<leader>lsd";
       action = "<cmd>FzfLua lsp_definitions<CR>";
       options = {
         desc = "Goto definition";
@@ -43,7 +43,7 @@
     }
     {
       mode = "n";
-      key = "<leader>lD";
+      key = "<leader>lsD";
       action = "<cmd>FzfLua lsp_references<CR>";
       options = {
         desc = "Find References";
@@ -51,7 +51,7 @@
     }
     {
       mode = "n";
-      key = "<leader>li";
+      key = "<leader>lsi";
       action = "<cmd>FzfLua lsp_implementations<CR>";
       options = {
         desc = "Find Implementations";
@@ -59,7 +59,7 @@
     }
     {
       mode = "n";
-      key = "<leader>lt";
+      key = "<leader>lst";
       action = "<cmd>FzfLua lsp_typedefs<CR>";
       options = {
         desc = "Goto Type Definition";

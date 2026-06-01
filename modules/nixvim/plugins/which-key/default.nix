@@ -255,13 +255,6 @@
           group = "Picker";
         }
       ]
-      ++ lib.optionals config.plugins.glance.enable [
-        {
-          __unkeyed-1 = "<leader>lg";
-          group = "Glance";
-          icon = "󰍉";
-        }
-      ]
       ++ lib.optionals config.plugins.multicursor.enable [
         {
           __unkeyed-1 = "<leader>m";
