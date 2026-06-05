@@ -301,27 +301,13 @@
         desc = "Tooling info";
       };
     }
-  ];
-
-  keymapsOnEvents.LspAttach = [
-    (lib.mkIf (!config.plugins.conform-nvim.enable) {
-      action.__raw = "vim.lsp.buf.format";
-      mode = "v";
-      key = "<leader>lf";
-      options = {
-        silent = true;
-        buffer = false;
-        desc = "Format selection";
-      };
-    })
-    # Diagnostic keymaps
     {
       key = "<leader>lH";
       mode = "n";
       action = lib.nixvim.mkRaw "vim.diagnostic.open_float";
       options = {
         silent = true;
-        desc = "Lsp diagnostic open_float";
+        desc = "Diagnostic open_float";
       };
     }
     {
@@ -352,46 +338,6 @@
       options = {
         silent = true;
         desc = "Next diagnostic";
-      };
-    }
-    {
-      key = "<leader>lI";
-      mode = "n";
-      action = "<cmd>checkhealth vim.lsp<CR>";
-      options = {
-        silent = true;
-        desc = "LSP info";
-      };
-    }
-    {
-      key = "<leader>lQ";
-      mode = "n";
-      action = lib.nixvim.mkRaw ''
-        function()
-          local supports_workspace_diagnostics = vim.iter(vim.lsp.get_clients({ bufnr = 0 })):any(function(client)
-            return client:supports_method("workspace/diagnostic")
-          end)
-
-          if not supports_workspace_diagnostics then
-            vim.notify("No attached LSP supports workspace diagnostics", vim.log.levels.INFO)
-            return
-          end
-
-          vim.lsp.buf.workspace_diagnostics()
-        end
-      '';
-      options = {
-        silent = true;
-        desc = "Workspace diagnostics";
-      };
-    }
-    {
-      key = "<leader>lX";
-      mode = "n";
-      action = "<cmd>lsp restart<CR>";
-      options = {
-        silent = true;
-        desc = "Restart LSP";
       };
     }
     {
@@ -492,6 +438,59 @@
       options = {
         silent = true;
         desc = "Buffer errors list";
+      };
+    }
+  ];
+
+  keymapsOnEvents.LspAttach = [
+    (lib.mkIf (!config.plugins.conform-nvim.enable) {
+      action.__raw = "vim.lsp.buf.format";
+      mode = "v";
+      key = "<leader>lf";
+      options = {
+        silent = true;
+        buffer = false;
+        desc = "Format selection";
+      };
+    })
+    {
+      key = "<leader>lI";
+      mode = "n";
+      action = "<cmd>checkhealth vim.lsp<CR>";
+      options = {
+        silent = true;
+        desc = "LSP info";
+      };
+    }
+    {
+      key = "<leader>lQ";
+      mode = "n";
+      action = lib.nixvim.mkRaw ''
+        function()
+          local supports_workspace_diagnostics = vim.iter(vim.lsp.get_clients({ bufnr = 0 })):any(function(client)
+            return client:supports_method("workspace/diagnostic")
+          end)
+
+          if not supports_workspace_diagnostics then
+            vim.notify("No attached LSP supports workspace diagnostics", vim.log.levels.INFO)
+            return
+          end
+
+          vim.lsp.buf.workspace_diagnostics()
+        end
+      '';
+      options = {
+        silent = true;
+        desc = "Workspace diagnostics";
+      };
+    }
+    {
+      key = "<leader>lX";
+      mode = "n";
+      action = "<cmd>lsp restart<CR>";
+      options = {
+        silent = true;
+        desc = "Restart LSP";
       };
     }
     {
