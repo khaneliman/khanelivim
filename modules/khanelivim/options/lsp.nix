@@ -112,6 +112,7 @@
         lib.types.enum [
           "typescript-tools"
           "ts_ls"
+          "tsgo"
         ]
       );
       default = "typescript-tools";

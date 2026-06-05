@@ -21,6 +21,10 @@
     # keep-sorted end
   ];
 
+  extraPackages = lib.mkIf (config.khanelivim.lsp.typescript == "tsgo") [
+    pkgs.typescript-go
+  ];
+
   lsp = {
     inlayHints.enable = true;
 
