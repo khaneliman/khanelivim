@@ -109,11 +109,11 @@
       callback = {
         __raw = ''
           function()
-            vim.api.nvim_clear_autocmds {
+            pcall(vim.api.nvim_clear_autocmds, {
               group = "noice_lsp_progress",
               event = "LspProgress",
               pattern = "*",
-            }
+            })
           end
         '';
       };
