@@ -15,6 +15,7 @@
         enable = true;
 
         overrides = {
+          xmllint = pkgs.libxml2;
           swiftlint = lib.mkIf pkgs.stdenv.hostPlatform.isLinux null;
         };
       };
@@ -78,10 +79,29 @@
         swift = [ "swiftlint" ];
         typescript = lib.mkIf (!config.lsp.servers.biome.enable) [ "biomejs" ];
         typescriptreact = lib.mkIf (!config.lsp.servers.biome.enable) [ "biomejs" ];
-        # TODO:
-        # xml = [ "xmllint" ];
+        xml = [ "xmllint" ];
         yaml = [ "yamllint" ];
         "yaml.ghaction" = [ "actionlint" ];
+      };
+
+      customLinters.xmllint = {
+        cmd = "xmllint";
+        args = [
+          "--noout"
+          "-"
+        ];
+        stdin = true;
+        stream = "stderr";
+        ignore_exitcode = true;
+        parser = ''
+          require('lint.parser').from_pattern(
+            '^.-:(%d+): parser error : (.*)$',
+            { 'lnum', 'message' },
+            nil,
+            { source = 'xmllint', severity = vim.diagnostic.severity.ERROR },
+            { lnum_offset = -1 }
+          )
+        '';
       };
 
     };
