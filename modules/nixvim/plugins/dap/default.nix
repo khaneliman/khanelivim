@@ -186,6 +186,7 @@
 
       adapters = {
         executables = {
+          # Compatibility alias for VS Code-style configs; backed by GDB DAP.
           cppdbg = {
             command = "gdb";
             args = [
@@ -209,12 +210,12 @@
 
         servers = {
           codelldb = {
-            port = 13000;
+            port = "\${port}";
             executable = {
               command = "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb";
               args = [
                 "--port"
-                "13000"
+                "\${port}"
               ];
             };
           };
@@ -259,6 +260,7 @@
         in
         {
           c = [
+            codelldb-config
             lldb-config
           ]
           ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
