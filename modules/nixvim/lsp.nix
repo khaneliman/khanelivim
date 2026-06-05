@@ -124,6 +124,10 @@
       stylelint_lsp = {
         enable = true;
         config = {
+          cmd = [
+            (lib.getExe pkgs.stylelint-lsp)
+            "--stdio"
+          ];
           # Rely on upstream stylelint root detection, but avoid attaching when
           # no stylelint workspace exists.
           workspace_required = true;
