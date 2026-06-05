@@ -45,7 +45,7 @@ language-specific power features easy to reach.
 Web tooling is workspace-aware:
 
 - Formatting owner:
-  - `biome.json` / `biome.jsonc` / `package.json#biomejs` -> Biome
+  - `biome.json` / `biome.jsonc` -> Biome
   - Prettier config / `package.json#prettier` -> Prettier
   - otherwise -> fallback order, currently `biome` then `prettierd` for JS/TS
 - Diagnostics owner:

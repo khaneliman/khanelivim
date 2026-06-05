@@ -120,7 +120,7 @@ function M.detect(bufnr)
 	end
 
 	return {
-		biome = find_upward(path, biome_config_files) or package_json_has_key(path, "biomejs"),
+		biome = find_upward(path, biome_config_files),
 		eslint = find_upward(path, eslint_config_files) or package_json_has_key(path, "eslintConfig"),
 		prettier = find_upward(path, prettier_config_files) or package_json_has_key(path, "prettier"),
 	}
