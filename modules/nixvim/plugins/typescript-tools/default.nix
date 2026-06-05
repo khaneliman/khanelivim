@@ -125,6 +125,10 @@ in
           end
 
           apply_typescript_maps(args.buf)
+          if vim.b[args.buf].khanelivim_typescript_tools_lsp_attach_maps then
+            return
+          end
+          vim.b[args.buf].khanelivim_typescript_tools_lsp_attach_maps = true
           vim.api.nvim_create_autocmd("LspAttach", {
             buffer = args.buf,
             callback = function(ev)

@@ -55,6 +55,10 @@
           end
 
           apply_easy_dotnet_maps(args.buf)
+          if vim.b[args.buf].khanelivim_easy_dotnet_lsp_attach_maps then
+            return
+          end
+          vim.b[args.buf].khanelivim_easy_dotnet_lsp_attach_maps = true
           vim.api.nvim_create_autocmd("LspAttach", {
             buffer = args.buf,
             callback = function(ev)

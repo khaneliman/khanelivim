@@ -169,6 +169,10 @@
 
           -- Set immediately, then re-apply on LspAttach to override generic LSP maps.
           apply_rust_maps(args.buf)
+          if vim.b[args.buf].khanelivim_rustaceanvim_lsp_attach_maps then
+            return
+          end
+          vim.b[args.buf].khanelivim_rustaceanvim_lsp_attach_maps = true
           vim.api.nvim_create_autocmd("LspAttach", {
             buffer = args.buf,
             callback = function(ev)
