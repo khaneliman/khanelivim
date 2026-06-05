@@ -341,10 +341,19 @@ in
           })
         ];
 
-        # TODO: Need to dynamically hide/show component so navic takes precedence on smaller width
         lualine_x = [
           {
             __unkeyed-1 = "filename";
+            cond.__raw = ''
+              function()
+                if vim.fn.winwidth(0) >= 120 then
+                  return true
+                end
+
+                local ok, navic = pcall(require, "nvim-navic")
+                return not ok or not navic.is_available()
+              end
+            '';
             newfile_status = true;
             path = 3;
             # Shorten path names to fit navic component
