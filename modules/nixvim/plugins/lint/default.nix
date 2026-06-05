@@ -60,8 +60,7 @@
         java = [ "checkstyle" ];
         javascript = lib.mkIf (!config.lsp.servers.biome.enable) [ "biomejs" ];
         javascriptreact = lib.mkIf (!config.lsp.servers.biome.enable) [ "biomejs" ];
-        # FIXME: removed from nixpkgs find altnerative
-        # json = [ "jsonlint" ];
+        json = [ "jq" ];
         lua = [ "luacheck" ];
         make = [ "checkmake" ];
         gitcommit = [ "codespell" ];
