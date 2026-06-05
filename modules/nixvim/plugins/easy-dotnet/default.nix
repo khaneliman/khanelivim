@@ -72,11 +72,18 @@
       # See: https://github.com/GustavEikaas/easy-dotnet.nvim
       enable = true;
 
-      lazyLoad.settings.ft = [
-        "cs"
-        "fsharp"
-        "xml"
-      ];
+      lazyLoad.settings = {
+        before.__raw = ''
+          function()
+            require("lz.n").trigger_load("nvim-dap")
+          end
+        '';
+        ft = [
+          "cs"
+          "fsharp"
+          "xml"
+        ];
+      };
 
       settings = {
         picker =
