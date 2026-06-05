@@ -35,16 +35,18 @@
             port = conf.port or 8086,
           }
           if conf.start_neovim then
-            local dap_run = dap.run
-            dap.run = function(c)
-              adapter.port = c.port
-              adapter.host = c.host
+            local server = require("osv").launch({
+              host = adapter.host,
+              port = adapter.port,
+              blocking = false,
+            })
+            if server then
+              adapter.host = server.host or adapter.host
+              adapter.port = server.port or adapter.port
             end
-            require("osv").run_this()
-            dap.run = dap_run
           end
           callback(adapter)
-          end
+        end
       '';
       # TODO: support lua in nixvim
       # adapters = {
@@ -61,8 +63,9 @@
           {
             type = "nlua";
             request = "attach";
-            name = "Run this file";
-            start_neovim = { };
+            name = "Launch current Neovim instance";
+            port = 8086;
+            start_neovim = true;
           }
           {
             type = "nlua";
