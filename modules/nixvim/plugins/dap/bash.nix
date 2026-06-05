@@ -49,7 +49,7 @@ in
             args.__raw = "{}";
             argsString.__raw = "\"\"";
             cwd = "\${workspaceFolder}";
-            env.__raw = "{}";
+            env.__raw = "vim.empty_dict()";
             inherit pathPkill;
             pathBash = lib.getExe pkgs.bash;
             pathBashdb = bundledBashdb;
@@ -57,9 +57,9 @@ in
             pathCat = lib.getExe' pkgs.coreutils "cat";
             pathMkfifo = lib.getExe' pkgs.coreutils "mkfifo";
             program = "\${file}";
-            showDebugOutput = true;
+            showDebugOutput = false;
             terminalKind = "integrated";
-            trace = true;
+            trace = false;
           }
         ];
       };
