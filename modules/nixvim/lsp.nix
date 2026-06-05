@@ -196,7 +196,7 @@
           local filetype = vim.bo[args.buf].filetype
 
           if client.name == "eslint" and diagnostics_owner == "biome" then
-            client:stop(true)
+            vim.lsp.buf_detach_client(args.buf, client.id)
             return
           end
 
