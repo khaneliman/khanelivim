@@ -15,11 +15,14 @@
   globals = {
     # Yoinked from https://github.com/fm39hz/nvim-lazyvim/blob/main/lua/plugins/development/language/csharp.lua
     find_godot_project.__raw = ''
-      function()
+      function(start_dir)
         if not _G.godot_project_cache then
           _G.godot_project_cache = {}
         end
-        local current_dir = vim.fn.getcwd()
+        local current_dir = vim.fn.fnamemodify(start_dir or vim.fn.getcwd(), ":p")
+        if current_dir ~= "/" then
+          current_dir = current_dir:gsub("/$", "")
+        end
 
         if _G.godot_project_cache[current_dir] then
           return _G.godot_project_cache[current_dir].file_path, _G.godot_project_cache[current_dir].dir_path
@@ -87,7 +90,34 @@
         # Example: export GODOT="/usr/local/bin/godot4"
         godot.__raw = ''
           function(on_config, config, parent_session)
-            local _, project_dir = _G.find_godot_project()
+            local search_dirs = {}
+            local seen = {}
+            local function add_search_dir(dir)
+              if dir and dir ~= "" and vim.fn.isdirectory(dir) == 1 then
+                local normalized = vim.fn.fnamemodify(dir, ":p")
+                if normalized ~= "/" then
+                  normalized = normalized:gsub("/$", "")
+                end
+                if not seen[normalized] then
+                  table.insert(search_dirs, normalized)
+                  seen[normalized] = true
+                end
+              end
+            end
+
+            add_search_dir(config.cwd)
+            add_search_dir(vim.fn.expand("%:p:h"))
+            add_search_dir(vim.fn.getcwd())
+
+            local project_dir
+            for _, search_dir in ipairs(search_dirs) do
+              local _, found_dir = vim.g.find_godot_project(search_dir)
+              if found_dir then
+                project_dir = found_dir
+                break
+              end
+            end
+
             project_dir = project_dir or vim.fn.getcwd()
             local godot_executable = os.getenv("GODOT") or "godot"
 
