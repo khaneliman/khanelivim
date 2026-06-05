@@ -2,9 +2,15 @@
   config,
   lib,
   pkgs,
+  self,
+  system,
   ...
 }:
 {
+  extraPackages = lib.mkIf config.plugins.easy-dotnet.enable [
+    self.packages.${system}.easydotnet
+  ];
+
   autoGroups = lib.mkIf config.plugins.easy-dotnet.enable {
     easy_dotnet_group = { };
   };
