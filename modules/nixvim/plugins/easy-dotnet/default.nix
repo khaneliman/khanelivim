@@ -110,34 +110,104 @@
           debug_dll = nil
         end
 
-        local function rebuild_project(co, path)
+        local function rebuild_project(path)
+          local co = coroutine.running()
+          if co == nil then
+            error("F# DAP build must run inside a coroutine")
+          end
+
           local spinner = require("easy-dotnet.ui-modules.spinner").new()
+          local build_error = nil
           spinner:start_spinner("Building")
-          vim.fn.jobstart({ "dotnet", "build", path }, {
+          local job = vim.fn.jobstart({ "dotnet", "build", path }, {
             on_exit = function(_, return_code)
               if return_code == 0 then
                 spinner:stop_spinner("Built successfully")
               else
-                spinner:stop_spinner("Build failed with exit code " .. return_code, vim.log.levels.ERROR)
-                error("Build failed")
+                build_error = "Build failed with exit code " .. return_code
+                spinner:stop_spinner(build_error, vim.log.levels.ERROR)
               end
-              coroutine.resume(co)
+
+              local ok, resume_error = coroutine.resume(co)
+              if not ok then
+                vim.notify(
+                  "Failed to resume F# DAP build: " .. tostring(resume_error),
+                  vim.log.levels.ERROR
+                )
+              end
             end,
           })
+
+          if job <= 0 then
+            spinner:stop_spinner("Failed to start dotnet build", vim.log.levels.ERROR)
+            error("Failed to start dotnet build")
+          end
+
           coroutine.yield()
+          if build_error ~= nil then
+            error(build_error)
+          end
         end
 
         local function trim(value)
           return value and value:match("^%s*(.-)%s*$") or nil
         end
 
-        local function get_project_metadata(project_path)
-          local xml = table.concat(vim.fn.readfile(project_path), "\n")
-          local target_framework = trim(xml:match("<TargetFramework>([^<]+)</TargetFramework>"))
-          local target_frameworks = trim(xml:match("<TargetFrameworks>([^<]+)</TargetFrameworks>"))
-          if not target_framework and target_frameworks then
-            target_framework = trim(vim.split(target_frameworks, ";", { plain = true })[1])
+        local function first_target_framework(target_framework, target_frameworks)
+          target_framework = trim(target_framework)
+          if target_framework and target_framework ~= "" then
+            return target_framework
           end
+
+          target_frameworks = trim(target_frameworks)
+          if target_frameworks and target_frameworks ~= "" then
+            return trim(vim.split(target_frameworks, ";", { plain = true })[1])
+          end
+
+          return nil
+        end
+
+        local function get_project_metadata_from_msbuild(project_path)
+          local output = vim.fn.system({
+            "dotnet",
+            "msbuild",
+            project_path,
+            "-getProperty:TargetFramework",
+            "-getProperty:TargetFrameworks",
+            "-getProperty:AssemblyName",
+            "-nologo",
+          })
+          if vim.v.shell_error ~= 0 or output == "" then
+            return nil
+          end
+
+          local ok, metadata = pcall(vim.json.decode, output)
+          local properties = ok and metadata and metadata.Properties or nil
+          if type(properties) ~= "table" then
+            return nil
+          end
+
+          local target_framework = first_target_framework(
+            properties.TargetFramework,
+            properties.TargetFrameworks
+          )
+          if not target_framework or target_framework == "" then
+            return nil
+          end
+
+          return {
+            assembly_name = trim(properties.AssemblyName)
+              or vim.fn.fnamemodify(project_path, ":t:r"),
+            target_framework = target_framework,
+          }
+        end
+
+        local function get_project_metadata_from_xml(project_path)
+          local xml = table.concat(vim.fn.readfile(project_path), "\n")
+          local target_framework = first_target_framework(
+            xml:match("<TargetFramework>([^<]+)</TargetFramework>"),
+            xml:match("<TargetFrameworks>([^<]+)</TargetFrameworks>")
+          )
 
           if not target_framework or target_framework == "" then
             error("Unable to determine TargetFramework for " .. project_path)
@@ -147,6 +217,11 @@
             assembly_name = trim(xml:match("<AssemblyName>([^<]+)</AssemblyName>")) or vim.fn.fnamemodify(project_path, ":t:r"),
             target_framework = target_framework,
           }
+        end
+
+        local function get_project_metadata(project_path)
+          return get_project_metadata_from_msbuild(project_path)
+            or get_project_metadata_from_xml(project_path)
         end
 
         local function ensure_dll()
@@ -188,8 +263,7 @@
             request = "launch",
             program = function()
               local dll = ensure_dll()
-              local co = coroutine.running()
-              rebuild_project(co, dll.project_path)
+              rebuild_project(dll.project_path)
               return dll.dll_path
             end,
             cwd = function()

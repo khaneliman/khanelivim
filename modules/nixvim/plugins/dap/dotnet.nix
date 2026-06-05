@@ -25,17 +25,19 @@
 
         vim.g['dotnet_last_proj_path'] = path
 
-        local cmd = 'dotnet build -c Debug ' .. path .. ' > /dev/null'
+        local cmd = { 'dotnet', 'build', '-c', 'Debug', path }
 
         print("")
-        print('Cmd to execute: ' .. cmd)
+        print('Cmd to execute: ' .. table.concat(cmd, ' '))
 
-        local f = os.execute(cmd)
+        local output = vim.fn.system(cmd)
+        local exit_code = vim.v.shell_error
 
-        if f == 0 then
+        if exit_code == 0 then
             print('\nBuild: ✔️ ')
         else
-            print('\nBuild: ❌ (code: ' .. f .. ')')
+            print('\nBuild: ❌ (code: ' .. exit_code .. ')')
+            print(output)
         end
       end
     '';
@@ -79,7 +81,7 @@
         let
           coreclr-config = {
             type = "coreclr";
-            name = "launch - netcoredbg";
+            name = "launch - coreclr";
             request = "launch";
             program.__raw = ''
               function()
@@ -93,17 +95,20 @@
             cwd = "\${workspaceFolder}";
           };
 
-          netcoredb-config = coreclr-config;
+          netcoredbg-config = coreclr-config // {
+            type = "netcoredbg";
+            name = "launch - netcoredbg";
+          };
         in
         {
           cs = [
             coreclr-config
-            netcoredb-config
+            netcoredbg-config
           ];
 
           fsharp = [
             coreclr-config
-            netcoredb-config
+            netcoredbg-config
           ];
         };
     };
