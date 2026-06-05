@@ -46,10 +46,6 @@
       };
     };
 
-    # TODO: check if actually required and upstream
-    # Ensure snacks.nvim input is enabled (required dependency)
-    snacks.settings.input.enabled = lib.mkIf config.plugins.snacks.enable true;
-
     which-key.settings.spec = lib.optionals config.plugins.opencode.enable [
       {
         __unkeyed-1 = "<leader>ao";
