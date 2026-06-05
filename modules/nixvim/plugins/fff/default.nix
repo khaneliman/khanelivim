@@ -5,28 +5,6 @@
     # See: https://github.com/dmtrKovalenko/fff.nvim
     enable = true;
 
-    # FIXME: commands don't filter correctly with lazy loading
-    # lazyLoad.settings = {
-    #   cmd = [ "FFFFind" ];
-    #   keys = [
-    #     "<leader>fFa"
-    #     "<leader>fFc"
-    #     "<leader>fFd"
-    #     "<leader>fFf"
-    #     "<leader>fFh"
-    #     "<leader>fFi"
-    #     "<leader>fFm"
-    #     "<leader>fFo"
-    #     "<leader>fFp"
-    #     "<leader>fFr"
-    #     "<leader>fFs"
-    #     "<leader>fg"
-    #     "<leader>fs"
-    #     "<leader>gr"
-    #     "<leader>fF"
-    #   ];
-    # };
-
     settings = {
       # Debug mode disabled to prevent race condition crashes when quickly opening files
       # from dashboard. Debug mode spawns ~20 background threads (rayon workers, inotify
