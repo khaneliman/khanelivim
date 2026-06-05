@@ -11,9 +11,6 @@ in
       # See: https://github.com/m4xshen/hardtime.nvim
       enable = true;
 
-      # FIXME: lazy loading broken
-      # lazyLoad.settings.cmd = [ "Hardtime" ];
-
       settings = {
         # NOTE: Default to off now.
         enabled = false;
