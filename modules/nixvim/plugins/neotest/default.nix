@@ -46,6 +46,10 @@ let
     end
   '';
   luaList = values: "{ ${lib.concatMapStringsSep ", " builtins.toJSON values} }";
+  neotestNixPackage = lib.attrByPath [ system "neotest-nix" ] null (
+    inputs.neotest-nix.packages or { }
+  );
+  neotestNixEnabled = neotestNixPackage != null;
   junitConsoleStandalone = pkgs.fetchurl {
     url = "https://repo1.maven.org/maven2/org/junit/platform/junit-platform-console-standalone/6.0.3/junit-platform-console-standalone-6.0.3.jar";
     hash = "sha256-O6DWFQr3khShQR+eovvvhk7vaLaMiaF/ZywLib/506I=";
@@ -232,8 +236,8 @@ in
   ) neotestSubprocessRuntimePatch;
 
   extraPlugins = lib.mkIf config.plugins.neotest.enable (
-    [
-      inputs.neotest-nix.packages.${system}.neotest-nix
+    (lib.optional neotestNixEnabled neotestNixPackage)
+    ++ [
       self.packages.${system}.neotest-bun
       self.packages.${system}.neotest-catch2
     ]
@@ -373,6 +377,8 @@ in
             testPathIgnorePatterns = [ "/test/main%.cpp$" ];
             testPathPatterns = [ "/test/.+%.cpp$" ];
           })
+        ]
+        ++ lib.optionals neotestNixEnabled [
           (lazyAdapter {
             name = "neotest-nix";
             module = "neotest-nix";

@@ -20,6 +20,7 @@ let
           allowUnfree = true;
         };
       };
+      hasNixvimPackages = lib.hasAttr system inputs.nixvim.packages;
       nixvimPkgs = if pkgs == null then sharedNixpkgs else pkgs;
     in
     inputs.nixvim.lib.evalNixvim {
@@ -32,6 +33,7 @@ let
       modules = [
         self.nixvimModules.default
         {
+          enableMan = lib.mkDefault hasNixvimPackages;
           nixpkgs.pkgs = lib.mkDefault nixvimPkgs;
           nixpkgs.config = lib.mkForce { };
           khanelivim.profile = profile;
