@@ -398,8 +398,10 @@
               once = true,
               callback = auto_export,
             })
-            -- Fallback timer for headless mode (DeferredUIEnter won't fire)
-            if vim.fn.has("gui_running") == 0 and vim.fn.has("nvim") == 1 then
+            if vim.g.lz_n_did_deferred_ui_enter then
+              auto_export()
+            elseif vim.fn.has("gui_running") == 0 and vim.fn.has("nvim") == 1 then
+              -- Fallback timer for headless mode (DeferredUIEnter won't fire)
               vim.defer_fn(function()
                 -- Only run if DeferredUIEnter hasn't fired yet
                 if vim.g._profiler_auto_exported then return end
