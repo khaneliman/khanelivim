@@ -38,6 +38,15 @@ in
       # Pull faster updates from nixpkgs-master with:
       # inherit (masterVimPlugins) some-plugin;
       #
+      sqlite-lua = super.sqlite-lua.overrideAttrs (old: {
+        nvimSkipModules = prev.lib.unique (
+          prev.lib.toList (old.nvimSkipModules or [ ])
+          ++ [
+            "sqlite.examples.bookmarks"
+          ]
+        );
+      });
+
       nvim-java-core = super.nvim-java-core.overrideAttrs (old: {
         # TODO: File upstream and remove once nvim-java-core uses client:request.
         postPatch = ''

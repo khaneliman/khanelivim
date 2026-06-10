@@ -21,11 +21,17 @@ in
     enable = javaEnabled;
     package = pkgs.vimPlugins.nvim-java.overrideAttrs (old: {
       # TODO: Remove when nvim-java/nvim-java#487 is merged and reaches nixpkgs.
+      prePatch = ''
+        # Keep PR doc hunk in sync with current vendored header timestamp.
+        substituteInPlace doc/nvim-java.txt \
+          --replace "Last change: 2025 December 10" "Last change: 2026 February 05"
+      '';
+
       patches = (old.patches or [ ]) ++ [
         (pkgs.fetchpatch {
           name = "nvim-java-pr-487.patch";
           url = "https://patch-diff.githubusercontent.com/raw/nvim-java/nvim-java/pull/487.patch";
-          hash = "sha256-qe89H0pNd0qOuvilrhWfZqHrqy3PV/E/wguEUad0nEA=";
+          hash = "sha256-uaIC/KASLOSoxroXcRcMrj3m2rtW88GtRUn1uNhtmNk=";
         })
       ];
 
