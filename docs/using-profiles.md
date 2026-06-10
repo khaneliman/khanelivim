@@ -20,11 +20,17 @@ currently defaults to the `standard` profile.
 
 Available profiles:
 
-- `minimal`
-- `basic`
-- `standard`
-- `full`
-- `debug`
+- `minimal` - native-lean base with LSP, treesitter, blink, and minimal UI
+- `basic` - lean daily driver with yazi, snacks picker, flash, gitsigns, and
+  lualine
+- `standard` - recommended developer default with AI, git, debugging, search,
+  and core UI
+- `full` - khaneliman's maximal daily configuration. This profile applies no
+  overrides: every khanelivim option keeps its declared default, which is the
+  everything-enabled setup that `minimal`, `basic`, and `standard` trim down
+  from. There is intentionally no `full` block in `profiles.nix`.
+- `debug` - `full` with performance optimizations disabled and debug logging
+  enabled
 
 See the `Profile Matrix` page for the evaluated differences between them.
 

@@ -183,7 +183,9 @@ in
       - minimal: Native-lean base with LSP, treesitter, blink, and minimal UI
       - basic: Lean daily driver with yazi, snacks picker, flash, gitsigns, and lualine
       - standard: Recommended developer default with AI, git, debugging, search, and core UI
-      - full: Everything enabled, including optional and overlapping workflows
+      - full: khaneliman's maximal daily configuration. Applies no overrides at
+        all; every khanelivim option keeps its declared default, which is the
+        everything-enabled setup the other profiles trim down from.
       - debug: Full profile with performance optimizations disabled and debug logging enabled
     '';
   };
@@ -196,6 +198,9 @@ in
     ))
     (lib.mkIf (cfg.profile == "basic") basicProfile)
     (lib.mkIf (cfg.profile == "standard") standardProfile)
+
+    # Full: intentionally no block. The declared option defaults ARE the full
+    # configuration; the other profiles exist to pare it down.
 
     # Debug: full profile with performance optimizations disabled and debug logging enabled
     (lib.mkIf (cfg.profile == "debug") {
