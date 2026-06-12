@@ -24,6 +24,7 @@
           "git-worktree"
           "gitsigns"
           "hunk"
+          "native-difftool"
           "octo"
           "snacks-gh"
           "snacks-gitbrowse"

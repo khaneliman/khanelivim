@@ -106,5 +106,31 @@
       '';
       options.desc = "Undotree toggle";
     }
+  ]
+  ++ lib.optionals (lib.elem "native-difftool" config.khanelivim.git.integrations) [
+    {
+      mode = "n";
+      key = "<leader>gdn";
+      action.__raw = ''
+        function()
+          vim.ui.input({ prompt = "Diff left: ", completion = "file" }, function(left)
+            if not left or left == "" then return end
+
+            vim.ui.input({ prompt = "Diff right: ", completion = "file" }, function(right)
+              if not right or right == "" then return end
+
+              pcall(vim.cmd, "packadd nvim.difftool")
+              if vim.fn.exists(":DiffTool") ~= 2 then
+                vim.notify(":DiffTool requires bundled nvim.difftool", vim.log.levels.WARN)
+                return
+              end
+
+              vim.cmd("DiffTool " .. vim.fn.fnameescape(left) .. " " .. vim.fn.fnameescape(right))
+            end)
+          end)
+        end
+      '';
+      options.desc = "Native DiffTool";
+    }
   ];
 }
