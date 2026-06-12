@@ -20,20 +20,41 @@ currently defaults to the `standard` profile.
 
 Available profiles:
 
-- `minimal` - native-first base with LSP, native completion/UI, and minimal
-  plugins
-- `basic` - lean daily-lite profile with yazi, snacks picker, flash, gitsigns,
-  and treesitter
-- `standard` - recommended developer default with AI, git, debugging, search,
-  and core UI
-- `full` - khaneliman's maximal daily configuration. This profile applies no
-  overrides: every khanelivim option keeps its declared default, which is the
-  everything-enabled setup that `minimal`, `basic`, and `standard` trim down
-  from. There is intentionally no `full` block in `profiles.nix`.
-- `debug` - `full` with performance optimizations disabled and debug logging
-  enabled
+- `minimal` - rescue and smoke-test profile. Native UI/LSP with the smallest
+  plugin surface. Use this when debugging breakage, testing native Neovim
+  behavior, or working where startup cost and moving parts matter most.
+- `basic` - comfortable remote editor. Native core plus treesitter, picker,
+  statusline, key hints, file navigation, git signs, motion, and small editing
+  comforts. Use this for SSH, containers, and daily-lite sessions.
+- `standard` - conservative daily workstation. Current workflow-rich defaults
+  stay intact because this is the khanelinix daily driver. Use this for normal
+  development until standard pruning gets a dedicated pass.
+- `full` - lab profile. Every optional and overlapping workflow remains enabled:
+  alternate providers, experiments, account-backed tools, demos, and rarely used
+  workflows. There is intentionally no `full` block in `profiles.nix`.
+- `debug` - incident profile. `full` behavior with performance optimizations
+  disabled and debug logging enabled.
 
 See the `Profile Matrix` page for the evaluated differences between them.
+
+## Plugin Posture
+
+Profiles are meant to answer "why would I reach for this?", not only "how many
+plugins are enabled?"
+
+- Basic editor experience: treesitter, small `mini.*` editing helpers, comments,
+  statusline, keybinding help, picker, file manager, motion, and git signs.
+- Workflow layer: completion engine, formatter/linter orchestration, diagnostics
+  browser, LSP navigation UI, project search, sessions, clipboard history, task
+  runner, debugger, tests, and richer git/JJ tools.
+- Specialized workstation layer: language-specific IDE plugins, refactoring,
+  generated docs, framework helpers, and project-local environment integration.
+- Fluff or visual nicety: dashboards, bufferline, animations, richer command UI,
+  color previews, status decorations, screenshots, map views, and teaching
+  overlays.
+- Full-only experiments: duplicate providers, alternate AI clients, note
+  systems, coding challenge tools, REPL integrations, browser integrations,
+  broad test adapter sets, and rarely used markdown/documentation viewers.
 
 ## Local Example
 

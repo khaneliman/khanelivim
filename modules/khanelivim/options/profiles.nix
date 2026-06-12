@@ -326,13 +326,18 @@ in
     description = ''
       Configuration profile preset.
 
-      - minimal: native-first base with LSP, native completion/UI, and minimal plugins
-      - basic: lean daily-lite profile with yazi, snacks picker, flash, gitsigns, and treesitter
-      - standard: Recommended developer default with AI, git, debugging, search, and core UI
-      - full: khaneliman's maximal daily configuration. Applies no overrides at
-        all; every khanelivim option keeps its declared default, which is the
-        everything-enabled setup the other profiles trim down from.
-      - debug: Full profile with performance optimizations disabled and debug logging enabled
+      - minimal: rescue and smoke-test profile with native UI/LSP and the
+        smallest plugin surface.
+      - basic: comfortable remote editor with native core, treesitter, picker,
+        statusline, key hints, file, and git basics.
+      - standard: conservative daily workstation profile with current
+        workflow-rich defaults preserved.
+      - full: lab profile with every optional and overlapping workflow enabled.
+        Applies no overrides: every khanelivim option keeps its declared
+        default, which is the everything-enabled setup the other profiles trim
+        down from.
+      - debug: incident profile with full behavior, performance optimizations
+        disabled, and debug logging enabled.
     '';
   };
 

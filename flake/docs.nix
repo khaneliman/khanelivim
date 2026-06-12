@@ -20,11 +20,11 @@
       };
 
       profileDescriptions = {
-        minimal = "Native-first base with LSP, native completion/UI, and minimal plugins.";
-        basic = "Lean daily-lite profile with yazi, snacks picker, flash, gitsigns, and treesitter.";
-        standard = "Recommended developer default with AI, git, debugging, search, and core UI.";
-        full = "Everything enabled, including optional and overlapping workflows.";
-        debug = "Full profile with performance optimizations disabled and debug logging enabled.";
+        minimal = "Rescue and smoke-test profile with native UI/LSP and the smallest plugin surface.";
+        basic = "Comfortable remote editor with native core, treesitter, picker, statusline, key hints, file, and git basics.";
+        standard = "Conservative daily workstation profile with current workflow-rich defaults preserved.";
+        full = "Lab profile with every optional and overlapping workflow enabled.";
+        debug = "Incident profile with full behavior, performance optimizations disabled, and debug logging enabled.";
       };
 
       profiles = builtins.attrNames profileDescriptions;
