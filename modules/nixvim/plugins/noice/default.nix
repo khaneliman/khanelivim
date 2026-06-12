@@ -219,7 +219,7 @@
     };
 
     notify = {
-      enable = true;
+      enable = config.khanelivim.ui.notifications == "noice";
       lazyLoad.settings.event = "DeferredUIEnter";
     };
   };
