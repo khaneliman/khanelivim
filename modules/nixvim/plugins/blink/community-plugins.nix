@@ -1,12 +1,13 @@
 { config, ... }:
 let
+  blinkEnabled = config.khanelivim.completion.tool == "blink";
   mkBlinkPlugin =
     {
       enable ? true,
       ...
     }@args:
     {
-      inherit enable;
+      enable = blinkEnabled && enable;
       lazyLoad.settings.event = [
         "InsertEnter"
         "CmdlineEnter"
