@@ -74,7 +74,7 @@
     easy-dotnet = {
       # easy-dotnet.nvim documentation
       # See: https://github.com/GustavEikaas/easy-dotnet.nvim
-      enable = true;
+      enable = lib.mkDefault true;
 
       lazyLoad.settings = {
         before.__raw = ''

@@ -4,7 +4,7 @@
     fastaction = {
       # fastaction.nvim documentation
       # See: https://github.com/Chaitanyabsprip/fastaction.nvim
-      enable = true;
+      enable = lib.mkDefault true;
 
       # Rely on lzn-auto-require or just setup keymaps in here?
       lazyLoad.settings.lazy = true;

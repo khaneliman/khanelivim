@@ -1,9 +1,10 @@
+{ lib, ... }:
 {
   # Shows the breadcrumb lsp node path in lualine
   plugins.navic = {
     # nvim-navic documentation
     # See: https://github.com/SmiteshP/nvim-navic
-    enable = true;
+    enable = lib.mkDefault true;
 
     lazyLoad.settings.event = [
       "BufReadPost"

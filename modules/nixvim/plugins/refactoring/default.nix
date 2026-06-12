@@ -4,7 +4,7 @@
     refactoring = {
       # refactoring.nvim documentation
       # See: https://github.com/ThePrimeagen/refactoring.nvim
-      enable = true;
+      enable = lib.mkDefault true;
 
       settings = {
         # Prompt for return types in languages that support it

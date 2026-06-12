@@ -30,7 +30,7 @@
     # snacks.nvim documentation
     # See: https://github.com/folke/snacks.nvim
     snacks = {
-      enable = true;
+      enable = lib.mkDefault true;
 
       settings = {
         indent.enabled = config.khanelivim.ui.indentGuides == "snacks";

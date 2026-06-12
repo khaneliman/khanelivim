@@ -3,7 +3,7 @@
   plugins = {
     # friendly-snippets documentation
     # See: https://github.com/rafamadriz/friendly-snippets
-    friendly-snippets.enable = true;
+    friendly-snippets.enable = lib.mkDefault true;
   };
 
   plugins.luasnip.luaConfig.post =

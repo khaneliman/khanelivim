@@ -4,7 +4,7 @@
     neogen = {
       # neogen documentation
       # See: https://github.com/danymat/neogen
-      enable = true;
+      enable = lib.mkDefault true;
       lazyLoad.settings.cmd = "Neogen";
     };
   };

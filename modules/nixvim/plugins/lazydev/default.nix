@@ -4,7 +4,7 @@
     lazydev = {
       # lazydev.nvim documentation
       # See: https://github.com/folke/lazydev.nvim
-      enable = true;
+      enable = lib.mkDefault true;
 
       lazyLoad.settings.ft = [
         "lua"

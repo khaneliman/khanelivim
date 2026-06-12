@@ -3,7 +3,7 @@
   plugins.showkeys = {
     # showkeys.nvim documentation
     # See: https://github.com/nvzone/showkeys
-    enable = true;
+    enable = lib.mkDefault true;
 
     lazyLoad.settings.cmd = [ "ShowkeysToggle" ];
 

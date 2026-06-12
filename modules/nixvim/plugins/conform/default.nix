@@ -9,10 +9,10 @@
     conform-nvim = {
       # conform-nvim documentation
       # See: https://github.com/stevearc/conform.nvim
-      enable = true;
+      enable = lib.mkDefault true;
 
       autoInstall = {
-        enable = true;
+        enable = lib.mkDefault true;
         overrides = {
           swift_format = lib.mkIf pkgs.stdenv.hostPlatform.isLinux null;
         };

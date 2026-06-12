@@ -15,7 +15,7 @@
   plugins.venv-selector = {
     # venv-selector.nvim documentation
     # See: https://github.com/linux-cultist/venv-selector.nvim
-    enable = true;
+    enable = lib.mkDefault true;
 
     lazyLoad.settings.ft = [ "python" ];
 

@@ -4,7 +4,7 @@
     colorizer = {
       # nvim-colorizer.lua documentation
       # See: https://github.com/norcalli/nvim-colorizer.lua
-      enable = true;
+      enable = lib.mkDefault true;
 
       lazyLoad.settings.cmd = "ColorizerToggle";
     };

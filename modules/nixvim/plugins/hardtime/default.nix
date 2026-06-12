@@ -9,7 +9,7 @@ in
     hardtime = {
       # hardtime.nvim documentation
       # See: https://github.com/m4xshen/hardtime.nvim
-      enable = true;
+      enable = lib.mkDefault true;
 
       settings = {
         # NOTE: Default to off now.

@@ -1,7 +1,8 @@
+{ lib, ... }:
 {
   plugins = {
     mini-surround = {
-      enable = true;
+      enable = lib.mkDefault true;
 
       lazyLoad.settings.keys = [
         {

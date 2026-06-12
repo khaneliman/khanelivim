@@ -1,9 +1,10 @@
+{ lib, ... }:
 {
   plugins = {
     nvim-lightbulb = {
       # nvim-lightbulb documentation
       # See: https://github.com/kosayoda/nvim-lightbulb
-      enable = true;
+      enable = lib.mkDefault true;
 
       lazyLoad.settings.event = [
         "BufReadPost"

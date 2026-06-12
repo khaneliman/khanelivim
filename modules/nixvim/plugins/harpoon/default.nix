@@ -4,7 +4,7 @@
     harpoon = {
       # harpoon documentation
       # See: https://github.com/ThePrimeagen/harpoon
-      enable = true;
+      enable = lib.mkDefault true;
 
       lazyLoad.settings.keys = [
         {

@@ -3,7 +3,7 @@
   plugins.fff = {
     # fff.nvim documentation
     # See: https://github.com/dmtrKovalenko/fff.nvim
-    enable = true;
+    enable = lib.mkDefault true;
 
     settings = {
       # Debug mode disabled to prevent race condition crashes when quickly opening files

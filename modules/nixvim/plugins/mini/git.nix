@@ -1,6 +1,6 @@
 { lib, config, ... }:
 {
-  plugins.mini-git.enable = true;
+  plugins.mini-git.enable = lib.mkDefault true;
 
   # Disable mini.git globally at startup to prevent errors with plugin buffers.
   globals.minigit_disable = true;

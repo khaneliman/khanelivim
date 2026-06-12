@@ -29,7 +29,7 @@
     neorg = {
       # neorg documentation
       # See: https://github.com/nvim-neorg/neorg
-      enable = true;
+      enable = lib.mkDefault true;
 
       lazyLoad.settings = {
         ft = "norg";

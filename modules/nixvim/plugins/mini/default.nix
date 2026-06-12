@@ -48,10 +48,10 @@ in
       };
     };
 
-    mini-align.enable = true;
+    mini-align.enable = lib.mkDefault true;
 
     mini-basics = {
-      enable = true;
+      enable = lib.mkDefault true;
       settings = {
         # Keep core editing/LSP maps owned by khanelivim's explicit keymap layer.
         mappings.basic = false;
@@ -59,7 +59,7 @@ in
     };
 
     mini-bracketed = {
-      enable = true;
+      enable = lib.mkDefault true;
       settings = lib.mkMerge [
         {
           indent.suffix = "";
@@ -76,7 +76,7 @@ in
     };
 
     mini-icons = {
-      enable = true;
+      enable = lib.mkDefault true;
       mockDevIcons = true;
     };
 

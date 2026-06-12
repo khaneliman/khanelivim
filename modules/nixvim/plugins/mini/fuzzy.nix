@@ -1,5 +1,6 @@
-_: {
+{ lib, ... }:
+{
   plugins = {
-    mini-fuzzy.enable = true;
+    mini-fuzzy.enable = lib.mkDefault true;
   };
 }

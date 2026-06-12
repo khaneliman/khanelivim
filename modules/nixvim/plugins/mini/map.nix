@@ -1,7 +1,7 @@
 { config, lib, ... }:
 {
   plugins.mini-map = {
-    enable = true;
+    enable = lib.mkDefault true;
     lazyLoad.settings.keys = [
       {
         __unkeyed-1 = "<leader>usm";

@@ -1,8 +1,9 @@
+{ lib, ... }:
 {
   plugins.smartcolumn = {
     # smartcolumn.nvim documentation
     # See: https://github.com/m4xshen/smartcolumn.nvim
-    enable = true;
+    enable = lib.mkDefault true;
 
     lazyLoad.settings.event = [
       "BufReadPost"

@@ -3,7 +3,7 @@
   plugins.leetcode = {
     # leetcode.nvim documentation
     # See: https://github.com/kawre/leetcode.nvim
-    enable = true;
+    enable = lib.mkDefault true;
 
     lazyLoad.settings = {
       cmd = [

@@ -27,7 +27,7 @@ in
     treesitter = {
       # nvim-treesitter documentation
       # See: https://github.com/nvim-treesitter/nvim-treesitter
-      enable = true;
+      enable = lib.mkDefault true;
 
       folding.enable = true;
       highlight.enable = true;

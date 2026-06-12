@@ -28,7 +28,7 @@
     iron = {
       # iron.nvim documentation
       # See: https://github.com/Vigemus/iron.nvim
-      enable = true;
+      enable = lib.mkDefault true;
 
       lazyLoad.settings.cmd = [
         "IronRepl"

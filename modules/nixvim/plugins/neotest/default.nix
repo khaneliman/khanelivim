@@ -248,7 +248,7 @@ in
     neotest = {
       # neotest documentation
       # See: https://github.com/nvim-neotest/neotest
-      enable = true;
+      enable = lib.mkDefault true;
       lazyLoad = {
         settings = {
           before.__raw = neotestSubprocessRuntimePatchFn;

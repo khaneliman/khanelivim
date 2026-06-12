@@ -4,7 +4,7 @@
     firenvim = {
       # firenvim documentation
       # See: https://github.com/glacambre/firenvim
-      enable = true;
+      enable = lib.mkDefault true;
       # NOTE: Call the installation for first time use
       # :call firenvim#install(0)
 
