@@ -5,5 +5,7 @@ Noice = "Noice"
 # Keymaps
 fo = "fo"
 aso = "aso"
+ges = "ges"
+ue = "ue"
 # Vim commands
 enew = "enew"
