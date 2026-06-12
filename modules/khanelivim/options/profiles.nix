@@ -173,7 +173,9 @@ let
   basicProfile = recursiveUpdate minimalProfile {
     khanelivim = {
       editor = mkDefaultAttrs {
+        autopairs = "mini-pairs";
         fileManager = "yazi";
+        movement = "mini-move";
         motion = "flash";
         textObjects = [ "mini-ai" ];
       };
@@ -186,10 +188,19 @@ let
 
       text.comments = lib.mkDefault [ "ts-comments" ];
 
+      ui = mkDefaultAttrs {
+        keybindingHelp = "which-key";
+        statusline = "lualine";
+      };
+
       utilities.undoTree = lib.mkDefault "native";
     };
 
     plugins = {
+      mini-bracketed.enable = mkProfileEnable;
+      mini-icons.enable = mkProfileEnable;
+      mini-surround.enable = mkProfileEnable;
+      sleuth.enable = mkProfileEnable;
       snacks.enable = mkProfileEnable;
       treesitter.enable = mkProfileEnable;
     };
