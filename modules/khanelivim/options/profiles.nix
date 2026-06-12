@@ -3,6 +3,74 @@ let
   inherit (lib.attrsets) recursiveUpdate;
   cfg = config.khanelivim;
   mkDefaultAttrs = lib.mapAttrs (_: lib.mkDefault);
+  mkProfileOverride = lib.mkOverride 900;
+  mkProfileEnable = mkProfileOverride true;
+  mkProfileDisable = mkProfileOverride false;
+  mkPluginGateAttrs =
+    enabled:
+    lib.genAttrs leanGatedPluginNames (_: {
+      enable = enabled;
+    });
+  mkPluginGateProfile =
+    enabled:
+    recursiveUpdate (mkPluginGateAttrs enabled) {
+      conform-nvim.autoInstall.enable = enabled;
+      lint.autoInstall.enable = enabled;
+    };
+
+  leanGatedPluginNames = [
+    "ccc"
+    "colorizer"
+    "conform-nvim"
+    "direnv"
+    "easy-dotnet"
+    "endec"
+    "fastaction"
+    "fff"
+    "firenvim"
+    "friendly-snippets"
+    "gitignore"
+    "hardtime"
+    "harpoon"
+    "iron"
+    "lazydev"
+    "leetcode"
+    "lensline"
+    "lint"
+    "mini-align"
+    "mini-basics"
+    "mini-bracketed"
+    "mini-fuzzy"
+    "mini-git"
+    "mini-icons"
+    "mini-map"
+    "mini-surround"
+    "multicursor"
+    "navic"
+    "neoconf"
+    "neogen"
+    "neorg"
+    "neotest"
+    "nix"
+    "nix-develop"
+    "nvim-lightbulb"
+    "package-info"
+    "patterns"
+    "precognition"
+    "refactoring"
+    "rustowl"
+    "showkeys"
+    "sleuth"
+    "smartcolumn"
+    "snacks"
+    "sqlite-lua"
+    "treesitter"
+    "treesitter-context"
+    "treesitter-modules"
+    "tuis"
+    "venv-selector"
+    "vim-suda"
+  ];
 
   minimalProfile = {
     khanelivim = {
@@ -21,25 +89,43 @@ let
       };
 
       git = mkDefaultAttrs {
-        integrations = [ ];
+        integrations = [ "native-difftool" ];
         diffViewer = null;
       };
 
+      integrations.accountBacked = {
+        enable = lib.mkDefault false;
+        ai.enable = lib.mkDefault false;
+        timeTracking.enable = lib.mkDefault false;
+      };
+
+      jj.integrations = lib.mkDefault [ ];
+
       lsp = mkDefaultAttrs {
+        csharp = "roslyn_ls";
         diagnosticsViewer = "native";
+        java = "java-language-server";
         navigation = "native";
+        rust = "rust-analyzer";
+        typescript = "ts_ls";
       };
 
       editor = mkDefaultAttrs {
+        autopairs = null;
         fileManager = null;
         httpClient = null;
         motion = null;
+        movement = null;
         rename = null;
         search = null;
         textObjects = [ ];
       };
 
+      performance.optimizer = lib.mkDefault [ ];
+
       picker.tool = lib.mkDefault null;
+
+      tasks.tool = lib.mkDefault null;
 
       text = mkDefaultAttrs {
         comments = [ ];
@@ -52,6 +138,7 @@ let
 
       ui = mkDefaultAttrs {
         animations = null;
+        bufferDelete = null;
         bufferline = null;
         commandline = "ui2";
         indentGuides = null;
@@ -63,6 +150,7 @@ let
         statusColumn = null;
         statusline = null;
         terminal = [ ];
+        zenMode = null;
       };
 
       utilities = mkDefaultAttrs {
@@ -73,12 +161,12 @@ let
       };
     };
 
-    plugins = {
-      dap.enable = lib.mkDefault false;
-      dap-go.enable = lib.mkDefault false;
-      dap-python.enable = lib.mkDefault false;
-      dap-ui.enable = lib.mkDefault false;
-      dap-virtual-text.enable = lib.mkDefault false;
+    plugins = recursiveUpdate (mkPluginGateProfile mkProfileDisable) {
+      dap.enable = mkProfileDisable;
+      dap-go.enable = mkProfileDisable;
+      dap-python.enable = mkProfileDisable;
+      dap-ui.enable = mkProfileDisable;
+      dap-virtual-text.enable = mkProfileDisable;
     };
   };
 
@@ -94,19 +182,16 @@ let
         "gitsigns"
         "native-difftool"
       ];
-      jj.integrations = lib.mkDefault [ "jjsigns" ];
-      lsp.navigation = lib.mkDefault "picker";
       picker.tool = lib.mkDefault "snacks";
 
       text.comments = lib.mkDefault [ "ts-comments" ];
 
-      ui = mkDefaultAttrs {
-        keybindingHelp = "which-key";
-        statusline = "lualine";
-        terminal = [ "snacks" ];
-      };
-
       utilities.undoTree = lib.mkDefault "native";
+    };
+
+    plugins = {
+      snacks.enable = mkProfileEnable;
+      treesitter.enable = mkProfileEnable;
     };
   };
 
@@ -134,8 +219,13 @@ let
       };
 
       editor = mkDefaultAttrs {
+        autopairs = "mini-pairs";
+        fileManager = "yazi";
+        motion = "flash";
+        movement = "mini-move";
         rename = "inc-rename";
         search = "grug-far";
+        textObjects = [ "mini-ai" ];
       };
 
       git = mkDefaultAttrs {
@@ -145,11 +235,18 @@ let
           "git-conflict"
           "git-worktree"
           "hunk"
+          "native-difftool"
           "octo"
           "snacks-gh"
           "snacks-gitbrowse"
           "snacks-lazygit"
         ];
+      };
+
+      integrations.accountBacked = {
+        enable = lib.mkDefault true;
+        ai.enable = lib.mkDefault true;
+        timeTracking.enable = lib.mkDefault true;
       };
 
       jj.integrations = [
@@ -158,9 +255,17 @@ let
       ];
 
       lsp = mkDefaultAttrs {
+        csharp = "roslyn";
         diagnosticsViewer = "trouble";
+        java = "nvim-java";
         navigation = "glance";
+        rust = "rustaceanvim";
+        typescript = "typescript-tools";
       };
+
+      performance.optimizer = lib.mkDefault [ "faster" ];
+
+      tasks.tool = lib.mkDefault "overseer";
 
       text = mkDefaultAttrs {
         markdownRendering = [ "markview" ];
@@ -170,21 +275,31 @@ let
       };
 
       ui = mkDefaultAttrs {
+        animations = "snacks";
+        bufferDelete = "snacks";
         bufferline = "bufferline";
         commandline = "noice";
         indentGuides = "blink-indent";
+        keybindingHelp = "which-key";
         notifications = "noice";
+        referenceHighlighting = "snacks-words";
         renamePopup = "snacks";
+        signatureHelp = "blink";
         statusColumn = "snacks";
+        statusline = "lualine";
+        terminal = [ "snacks" ];
+        zenMode = "snacks";
       };
 
       utilities = mkDefaultAttrs {
         clipboard = [ "yanky" ];
         screenshots = [ "codesnap" ];
         sessions = [ "persistence" ];
-        undoTree = "plugin";
+        undoTree = "native";
       };
     };
+
+    plugins = mkPluginGateProfile mkProfileEnable;
   };
 in
 {
@@ -200,8 +315,8 @@ in
     description = ''
       Configuration profile preset.
 
-      - minimal: Native-lean base with LSP, treesitter, blink, and minimal UI
-      - basic: Lean daily driver with yazi, snacks picker, flash, gitsigns, and lualine
+      - minimal: native-first base with LSP, native completion/UI, and minimal plugins
+      - basic: lean daily-lite profile with yazi, snacks picker, flash, gitsigns, and treesitter
       - standard: Recommended developer default with AI, git, debugging, search, and core UI
       - full: khaneliman's maximal daily configuration. Applies no overrides at
         all; every khanelivim option keeps its declared default, which is the

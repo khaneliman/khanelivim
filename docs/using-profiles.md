@@ -20,9 +20,10 @@ currently defaults to the `standard` profile.
 
 Available profiles:
 
-- `minimal` - native-lean base with LSP, treesitter, blink, and minimal UI
-- `basic` - lean daily driver with yazi, snacks picker, flash, gitsigns, and
-  lualine
+- `minimal` - native-first base with LSP, native completion/UI, and minimal
+  plugins
+- `basic` - lean daily-lite profile with yazi, snacks picker, flash, gitsigns,
+  and treesitter
 - `standard` - recommended developer default with AI, git, debugging, search,
   and core UI
 - `full` - khaneliman's maximal daily configuration. This profile applies no

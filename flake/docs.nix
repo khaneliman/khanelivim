@@ -20,8 +20,8 @@
       };
 
       profileDescriptions = {
-        minimal = "Native-lean base with LSP, treesitter, blink, and minimal UI.";
-        basic = "Lean daily driver with yazi, snacks picker, flash, gitsigns, and lualine.";
+        minimal = "Native-first base with LSP, native completion/UI, and minimal plugins.";
+        basic = "Lean daily-lite profile with yazi, snacks picker, flash, gitsigns, and treesitter.";
         standard = "Recommended developer default with AI, git, debugging, search, and core UI.";
         full = "Everything enabled, including optional and overlapping workflows.";
         debug = "Full profile with performance optimizations disabled and debug logging enabled.";
