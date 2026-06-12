@@ -139,7 +139,6 @@
           };
           treefmt = {
             enable = true;
-            package = pkgs.treefmt;
           };
           typos = {
             enable = true;
