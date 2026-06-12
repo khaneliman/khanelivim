@@ -1,4 +1,5 @@
-_: {
+{ config, lib, ... }:
+{
   extraConfigLua = ''
     if vim.fn.has("nvim-0.12") == 1 then
       vim.opt.completeitemalign = "abbr,kind,menu"
@@ -23,7 +24,30 @@ _: {
         end,
       })
     end
+
+    ${lib.optionalString (config.khanelivim.completion.tool == "native") ''
+      if vim.fn.has("nvim-0.12") == 1 then
+        vim.opt.autocomplete = true
+        vim.opt.completeopt:append({ "popup", "nearest" })
+      end
+    ''}
   '';
+
+  autoCmd = lib.optionals (config.khanelivim.completion.tool == "native") [
+    {
+      event = "LspAttach";
+      callback.__raw = ''
+        function(args)
+          if not vim.lsp.completion then return end
+
+          local client = vim.lsp.get_client_by_id(args.data.client_id)
+          if not client or not client:supports_method("textDocument/completion") then return end
+
+          vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
+        end
+      '';
+    }
+  ];
 
   keymaps = [
     {
