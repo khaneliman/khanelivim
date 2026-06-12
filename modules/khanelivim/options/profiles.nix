@@ -63,6 +63,7 @@ let
         clipboard = [ ];
         screenshots = [ ];
         sessions = [ ];
+        undoTree = "native";
       };
     };
 
@@ -94,6 +95,8 @@ let
         statusline = "lualine";
         terminal = [ "snacks" ];
       };
+
+      utilities.undoTree = lib.mkDefault "plugin";
     };
   };
 

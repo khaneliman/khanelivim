@@ -36,6 +36,17 @@
       default = [ "persistence" ];
       description = "Session management plugins (can complement each other)";
     };
+
+    undoTree = lib.mkOption {
+      type = lib.types.nullOr (
+        lib.types.enum [
+          "native"
+          "plugin"
+        ]
+      );
+      default = "plugin";
+      description = "Undo tree provider to use";
+    };
     #keep-sorted end
   };
 }

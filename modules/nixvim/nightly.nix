@@ -88,5 +88,23 @@
       '';
       options.desc = "Open logs";
     }
+  ]
+  ++ lib.optionals (config.khanelivim.utilities.undoTree == "native") [
+    {
+      mode = "n";
+      key = "<leader>ueu";
+      action.__raw = ''
+        function()
+          pcall(vim.cmd, "packadd nvim.undotree")
+          if vim.fn.exists(":Undotree") ~= 2 then
+            vim.notify(":Undotree requires bundled nvim.undotree", vim.log.levels.WARN)
+            return
+          end
+
+          vim.cmd("Undotree")
+        end
+      '';
+      options.desc = "Undotree toggle";
+    }
   ];
 }
