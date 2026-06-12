@@ -11,6 +11,7 @@ let
         chatEnable = false;
       };
 
+      completion.tool = lib.mkDefault "native";
       dashboard.tool = lib.mkDefault null;
       documentation.viewers = lib.mkDefault [ ];
 
@@ -22,6 +23,11 @@ let
       git = mkDefaultAttrs {
         integrations = [ ];
         diffViewer = null;
+      };
+
+      lsp = mkDefaultAttrs {
+        diagnosticsViewer = "native";
+        navigation = "native";
       };
 
       editor = mkDefaultAttrs {
@@ -47,10 +53,10 @@ let
       ui = mkDefaultAttrs {
         animations = null;
         bufferline = null;
-        commandline = null;
+        commandline = "ui2";
         indentGuides = null;
         keybindingHelp = null;
-        notifications = "snacks";
+        notifications = "native";
         referenceHighlighting = null;
         renamePopup = null;
         signatureHelp = null;
@@ -84,8 +90,12 @@ let
         textObjects = [ "mini-ai" ];
       };
 
-      git.integrations = lib.mkDefault [ "gitsigns" ];
+      git.integrations = lib.mkDefault [
+        "gitsigns"
+        "native-difftool"
+      ];
       jj.integrations = lib.mkDefault [ "jjsigns" ];
+      lsp.navigation = lib.mkDefault "picker";
       picker.tool = lib.mkDefault "snacks";
 
       text.comments = lib.mkDefault [ "ts-comments" ];
@@ -96,7 +106,7 @@ let
         terminal = [ "snacks" ];
       };
 
-      utilities.undoTree = lib.mkDefault "plugin";
+      utilities.undoTree = lib.mkDefault "native";
     };
   };
 
@@ -111,6 +121,7 @@ let
         chatEnable = false;
       };
 
+      completion.tool = lib.mkDefault "blink";
       dashboard.tool = lib.mkDefault "mini-starter";
       documentation.viewers = lib.mkDefault [ "helpview" ];
 
@@ -146,6 +157,11 @@ let
         "jjsigns"
       ];
 
+      lsp = mkDefaultAttrs {
+        diagnosticsViewer = "trouble";
+        navigation = "glance";
+      };
+
       text = mkDefaultAttrs {
         markdownRendering = [ "markview" ];
         splitJoin = "mini-splitjoin";
@@ -166,6 +182,7 @@ let
         clipboard = [ "yanky" ];
         screenshots = [ "codesnap" ];
         sessions = [ "persistence" ];
+        undoTree = "plugin";
       };
     };
   };
