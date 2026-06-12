@@ -5,7 +5,12 @@
 }:
 {
   keymaps =
-    lib.mkIf (config.plugins.snacks.enable && lib.hasAttr "picker" config.plugins.snacks.settings)
+    lib.mkIf
+      (
+        config.khanelivim.lsp.navigation == "picker"
+        && config.plugins.snacks.enable
+        && lib.hasAttr "picker" config.plugins.snacks.settings
+      )
       [
         {
           mode = "n";

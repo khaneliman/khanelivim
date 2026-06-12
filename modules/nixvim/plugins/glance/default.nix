@@ -1,10 +1,15 @@
-{ pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   plugins = {
     glance = {
       # glance.nvim documentation
       # See: https://github.com/DNLHC/glance.nvim
-      enable = true;
+      enable = config.khanelivim.lsp.navigation == "glance";
       package = pkgs.vimPlugins.glance-nvim.overrideAttrs (old: {
         patches = (old.patches or [ ]) ++ [
           ./escape-statusline.patch
@@ -21,7 +26,7 @@
 
   };
 
-  keymaps = [
+  keymaps = lib.mkIf config.plugins.glance.enable [
     {
       action = "<CMD>Glance definitions<CR>";
       mode = "n";

@@ -576,37 +576,90 @@
           };
         }
       ]
-  ++
-    lib.optionals
-      (
-        (
-          !config.plugins.snacks.enable
-          || (config.plugins.snacks.enable && !lib.hasAttr "picker" config.plugins.snacks.settings)
-        )
-        && !config.plugins.fzf-lua.enable
-        && !config.plugins.glance.enable
-      )
-      [
-        # Definition and type_definition keymaps (conditionally)
-        {
-          key = "<leader>ld";
-          mode = "n";
-          action = lib.nixvim.mkRaw "vim.lsp.buf.definition";
-          options = {
-            silent = true;
-            desc = "Lsp buf definition";
-          };
-        }
-        {
-          key = "<leader>lt";
-          mode = "n";
-          action = lib.nixvim.mkRaw "vim.lsp.buf.type_definition";
-          options = {
-            silent = true;
-            desc = "Lsp buf type_definition";
-          };
-        }
-      ];
+  ++ lib.optionals (config.khanelivim.lsp.navigation == "native") [
+    {
+      key = "gd";
+      mode = "n";
+      action = lib.nixvim.mkRaw "vim.lsp.buf.definition";
+      options = {
+        silent = true;
+        desc = "Goto definition";
+      };
+    }
+    {
+      key = "gD";
+      mode = "n";
+      action = lib.nixvim.mkRaw "vim.lsp.buf.declaration";
+      options = {
+        silent = true;
+        desc = "Goto declaration";
+      };
+    }
+    {
+      key = "grr";
+      mode = "n";
+      action = lib.nixvim.mkRaw "vim.lsp.buf.references";
+      options = {
+        silent = true;
+        nowait = true;
+        desc = "Goto references";
+      };
+    }
+    {
+      key = "gri";
+      mode = "n";
+      action = lib.nixvim.mkRaw "vim.lsp.buf.implementation";
+      options = {
+        silent = true;
+        desc = "Goto implementation";
+      };
+    }
+    {
+      key = "gy";
+      mode = "n";
+      action = lib.nixvim.mkRaw "vim.lsp.buf.type_definition";
+      options = {
+        silent = true;
+        desc = "Goto type definition";
+      };
+    }
+    {
+      key = "<leader>ld";
+      mode = "n";
+      action = lib.nixvim.mkRaw "vim.lsp.buf.definition";
+      options = {
+        silent = true;
+        desc = "Lsp buf definition";
+      };
+    }
+    {
+      key = "<leader>lD";
+      mode = "n";
+      action = lib.nixvim.mkRaw "vim.lsp.buf.references";
+      options = {
+        silent = true;
+        desc = "Lsp buf references";
+      };
+    }
+    {
+      key = "<leader>li";
+      mode = "n";
+      action = lib.nixvim.mkRaw "vim.lsp.buf.implementation";
+      options = {
+        silent = true;
+        desc = "Lsp buf implementation";
+      };
+    }
+    {
+      key = "<leader>lt";
+      mode = "n";
+      action = lib.nixvim.mkRaw "vim.lsp.buf.type_definition";
+      options = {
+        silent = true;
+        desc = "Lsp buf type definition";
+      };
+    }
+  ];
 
   plugins = {
     lsp-format.enable = !config.plugins.conform-nvim.enable && config.plugins.lsp.enable;

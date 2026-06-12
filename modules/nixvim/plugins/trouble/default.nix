@@ -4,7 +4,7 @@
     trouble = {
       # trouble.nvim documentation
       # See: https://github.com/folke/trouble.nvim
-      enable = true;
+      enable = config.khanelivim.lsp.diagnosticsViewer == "trouble";
 
       lazyLoad.settings.cmd = [ "Trouble" ];
 

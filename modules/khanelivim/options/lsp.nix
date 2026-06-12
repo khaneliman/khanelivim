@@ -24,6 +24,15 @@
       description = "Which C# LSP to enable (mutually exclusive).";
     };
 
+    diagnosticsViewer = lib.mkOption {
+      type = lib.types.enum [
+        "native"
+        "trouble"
+      ];
+      default = "trouble";
+      description = "LSP diagnostics viewer to use.";
+    };
+
     docker = lib.mkOption {
       type = lib.types.listOf (
         lib.types.enum [
@@ -59,6 +68,16 @@
       );
       default = "emmylua-ls";
       description = "Which Lua LSP to enable (mutually exclusive).";
+    };
+
+    navigation = lib.mkOption {
+      type = lib.types.enum [
+        "glance"
+        "native"
+        "picker"
+      ];
+      default = "glance";
+      description = "LSP navigation UI to use.";
     };
 
     nix = lib.mkOption {
