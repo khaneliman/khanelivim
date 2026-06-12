@@ -19,6 +19,7 @@ in
       ./keymappings.nix
       ./lsp.nix
       ./lua.nix
+      ./nightly.nix
       ./options.nix
       ./performance.nix
       ./snippets
