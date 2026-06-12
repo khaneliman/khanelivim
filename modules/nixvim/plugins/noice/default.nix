@@ -12,6 +12,7 @@
       settings = {
         # Hides the title above noice boxes
         cmdline = {
+          enabled = config.khanelivim.ui.commandline == "noice";
           format = {
             cmdline = {
               pattern = "^:";
@@ -98,7 +99,7 @@
 
         presets = {
           bottom_search = false;
-          command_palette = true;
+          command_palette = config.khanelivim.ui.commandline == "noice";
           long_message_to_split = true;
           inc_rename = config.khanelivim.ui.renamePopup == "noice";
           lsp_doc_border = true;

@@ -31,6 +31,14 @@
         vim.opt.completeopt:append({ "popup", "nearest" })
       end
     ''}
+
+    ${lib.optionalString (config.khanelivim.ui.commandline == "ui2") ''
+      if vim.fn.has("nvim-0.12") == 1 then
+        pcall(function()
+          require("vim._core.ui2").enable()
+        end)
+      end
+    ''}
   '';
 
   autoCmd = lib.optionals (config.khanelivim.completion.tool == "native") [

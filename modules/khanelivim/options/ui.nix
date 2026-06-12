@@ -34,6 +34,7 @@
       type = lib.types.nullOr (
         lib.types.enum [
           "noice"
+          "ui2"
         ]
       );
       default = "noice";
