@@ -19,8 +19,8 @@ in
 {
 
   # Nix injections
-  extraFiles = lib.mkIf config.plugins.treesitter.nixvimInjections {
-    "after/queries/nix/injections.scm".text = injectionQuery injectionQueryDir;
+  extraFiles = lib.mkIf config.plugins.treesitter.enable {
+    "queries/nix/injections.scm".text = injectionQuery injectionQueryDir;
   };
 
   plugins = {
@@ -47,7 +47,7 @@ in
         lib.filter (
           if whitelistMode then grammarIsSelected else g: !grammarIsSelected g
         ) config.plugins.treesitter.package.allGrammars;
-      nixvimInjections = true;
+      nixvimInjections = lib.mkForce false;
     };
   };
 }
