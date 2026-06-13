@@ -26,7 +26,6 @@
         "gzip"
         "matchit"
         "matchparen"
-        "netrwPlugin"
         "rplugin"
         "tarPlugin"
         "tohtml"
