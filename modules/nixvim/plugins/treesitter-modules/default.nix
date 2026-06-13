@@ -4,6 +4,12 @@
   pkgs,
   ...
 }:
+let
+  cfg = config.plugins.treesitter-modules;
+  luaConfig = ''
+    require('treesitter-modules').setup(${lib.generators.toLua { } cfg.settings})
+  '';
+in
 {
   # TODO: Consider upstreaming this module to nixvim
   options.plugins.treesitter-modules = {
@@ -36,15 +42,26 @@
     };
   };
 
-  config = lib.mkIf config.plugins.treesitter-modules.enable {
+  config = lib.mkIf cfg.enable {
     extraPlugins = [
-      config.plugins.treesitter-modules.package
+      {
+        plugin = cfg.package;
+        optional = config.plugins.lz-n.enable;
+      }
     ];
 
-    extraConfigLua = ''
-      require('treesitter-modules').setup(${
-        lib.generators.toLua { } config.plugins.treesitter-modules.settings
-      })
-    '';
+    extraConfigLua = lib.mkIf (!config.plugins.lz-n.enable) luaConfig;
+
+    plugins.lz-n.plugins = lib.mkIf config.plugins.lz-n.enable [
+      {
+        __unkeyed-1 = "treesitter-modules.nvim";
+        event = "FileType";
+        after.__raw = ''
+          function()
+            ${luaConfig}
+          end
+        '';
+      }
+    ];
   };
 }
