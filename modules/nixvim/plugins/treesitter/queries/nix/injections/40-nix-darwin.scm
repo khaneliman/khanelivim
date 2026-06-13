@@ -6,7 +6,11 @@
 ;;   ...
 ;; '';
 (binding
-  attrpath: (attrpath) @activation_script_path
+  attrpath: (attrpath
+    (_)*
+    (identifier) @activation_scripts
+    (identifier) @_script_name
+    (identifier) @text .)
   expression: [
     (string_expression (string_fragment) @injection.content)
     (indented_string_expression (string_fragment) @injection.content)
@@ -26,7 +30,8 @@
       (indented_string_expression (string_fragment) @injection.content)
     ])
   ]
-  (#match? @activation_script_path "(^|\\.)activationScripts\\.[^.]+\\.text$")
+  (#eq? @activation_scripts "activationScripts")
+  (#eq? @text "text")
   (#set! injection.language "bash"))
 
 ;; system.activationScripts.<name>.text = ''
@@ -35,7 +40,11 @@
 ;;   ''}
 ;; '';
 (binding
-  attrpath: (attrpath) @activation_script_path
+  attrpath: (attrpath
+    (_)*
+    (identifier) @activation_scripts
+    (identifier) @_script_name
+    (identifier) @text .)
   expression: [
     (indented_string_expression
       (interpolation
@@ -53,5 +62,6 @@
           (indented_string_expression (string_fragment) @injection.content)
         ]))))
   ]
-  (#match? @activation_script_path "(^|\\.)activationScripts\\.[^.]+\\.text$")
+  (#eq? @activation_scripts "activationScripts")
+  (#eq? @text "text")
   (#set! injection.language "bash"))

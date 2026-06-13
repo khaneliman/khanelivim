@@ -51,13 +51,7 @@
       ]))
     ]))
 
-    ; 7. Wrapper around List
-    (apply_expression argument: (list_expression [
-      (string_expression (string_fragment) @injection.content)
-      (indented_string_expression (string_fragment) @injection.content)
-    ]))
-
-    ; 8. Wrapper around List with nested wrappers
+    ; 7. Wrapper around List with nested wrappers
     (apply_expression argument: (parenthesized_expression (apply_expression argument: (list_expression [
        (string_expression (string_fragment) @injection.content)
        (indented_string_expression (string_fragment) @injection.content)
