@@ -14,7 +14,7 @@
       settings = {
         autocmd = {
           enabled = true;
-          updatetime = 200;
+          updatetime = 500;
         };
         # jdtls can choke on background code-action probes when external
         # diagnostics include invalid ranges, so keep lightbulb manual for Java.

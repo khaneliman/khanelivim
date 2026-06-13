@@ -54,7 +54,7 @@
           max_lines = 2000;
           max_lenses = 100;
         };
-        debounce_ms = 300;
+        debounce_ms = 500;
       };
     };
 

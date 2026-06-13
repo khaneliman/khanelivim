@@ -15,7 +15,7 @@
         current_line_blame = true;
 
         current_line_blame_opts = {
-          delay = 500;
+          delay = 1000;
 
           ignore_blank_lines = true;
           ignore_whitespace = true;
@@ -24,6 +24,7 @@
         };
 
         signcolumn = true;
+        update_debounce = 200;
       };
     };
 
