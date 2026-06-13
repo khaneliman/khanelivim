@@ -27,7 +27,6 @@
           "BufReadPost"
           "BufWritePost"
           "InsertLeave"
-          "TextChanged"
         ];
         callback.__raw = ''
           function(args)
