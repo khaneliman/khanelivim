@@ -142,7 +142,28 @@ in
         lualine_b = [ "branch" ];
         lualine_c = [
           "filename"
-          "diff"
+          (
+            if config.plugins.gitsigns.enable then
+              {
+                __unkeyed-1 = "diff";
+                source.__raw = ''
+                  function()
+                    local gitsigns = vim.b.gitsigns_status_dict
+                    if not gitsigns then
+                      return nil
+                    end
+
+                    return {
+                      added = gitsigns.added,
+                      modified = gitsigns.changed,
+                      removed = gitsigns.removed,
+                    }
+                  end
+                '';
+              }
+            else
+              "diff"
+          )
         ];
 
         lualine_x = [
@@ -168,8 +189,8 @@ in
           {
             __unkeyed-1.__raw = ''
               function()
-                local ok, lint = pcall(require, "lint")
-                if not ok then
+                local lint = package.loaded["lint"]
+                if not lint then
                   return ""
                 end
                 local running = lint.get_running()
@@ -228,19 +249,8 @@ in
           {
             __unkeyed-1.__raw = ''
               function()
-                  local msg = ""
-                  local buf_ft = vim.bo.filetype
-                  local clients = vim.lsp.get_clients()
-                  if next(clients) == nil then
-                      return msg
-                  end
-                  for _, client in ipairs(clients) do
-                      local filetypes = client.config.filetypes
-                      if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-                          return client.name
-                      end
-                  end
-                  return msg
+                  local clients = vim.lsp.get_clients({ bufnr = 0 })
+                  return clients[1] and clients[1].name or ""
               end
             '';
             icon = "";
