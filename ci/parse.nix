@@ -19,8 +19,13 @@ runCommand "nix-parse-${nix.name}"
     ];
   }
   ''
+    export NIX_CONF_DIR=$TMPDIR/nix-conf
     export NIX_STORE_DIR=$TMPDIR/store
     export NIX_STATE_DIR=$TMPDIR/state
+
+    mkdir -p "$NIX_CONF_DIR"
+    printf "%s\n" "experimental-features = nix-command flakes" > "$NIX_CONF_DIR/nix.conf"
+
     nix-store --init
 
     cd "${repository}"

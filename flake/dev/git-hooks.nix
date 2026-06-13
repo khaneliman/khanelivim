@@ -25,43 +25,30 @@
             mkdir -p "$cache_root"
             workdir="$(mktemp -d "$cache_root/pre-commit-${hookName}-parse.XXXXXX")"
             trap 'rm -rf "$workdir"' EXIT
-            raw_parse_log="$workdir/nix-parse.raw.log"
             parse_log="$workdir/nix-parse.log"
+            nix_conf_dir="$workdir/nix-conf"
             store_init_failed=0
             parse_failed=0
 
-            filter_parse_log() {
-              : > "$parse_log"
-              while IFS= read -r line || [ -n "$line" ]; do
-                case "$line" in
-                  "warning: unknown experimental feature "*|"warning: unknown setting "*)
-                    ;;
-                  *)
-                    printf "%s\n" "$line" >> "$parse_log"
-                    ;;
-                esac
-              done < "$raw_parse_log"
-            }
+            mkdir -p "$nix_conf_dir"
+            printf "%s\n" "experimental-features = nix-command flakes" > "$nix_conf_dir/nix.conf"
 
-            : > "$raw_parse_log"
-
+            export NIX_CONF_DIR="$nix_conf_dir"
             export NIX_STORE_DIR="$workdir/store"
             export NIX_STATE_DIR="$workdir/state"
 
             mkdir -p "$NIX_STATE_DIR" "$NIX_STORE_DIR"
-            if ! ${nixStore} --init 2>> "$raw_parse_log"; then
+            if ! ${nixStore} --init 2>> "$parse_log"; then
               store_init_failed=1
             fi
 
             if [ "$store_init_failed" -eq 0 ]; then
               for file in "$@"; do
-                if ! ${nixInstantiate} --parse "$file" > /dev/null 2>> "$raw_parse_log"; then
+                if ! ${nixInstantiate} --parse "$file" > /dev/null 2>> "$parse_log"; then
                   parse_failed=1
                 fi
               done
             fi
-
-            filter_parse_log
 
             if [ -s "$parse_log" ]; then
               cat "$parse_log" >&2
