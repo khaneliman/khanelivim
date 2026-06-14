@@ -1,0 +1,82 @@
+name: CI
+permissions:
+  contents: read
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+jobs:
+  build:
+    name: Build on ${{ matrix.system }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - system: x86_64-linux
+            os: ubuntu-latest
+          - system: aarch64-darwin
+            os: macos-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - name: Install Nix
+        uses: cachix/install-nix-action@v31
+        with:
+          extra_nix_config: |
+            auto-optimise-store = true
+            allow-import-from-derivation = false
+            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+            experimental-features = nix-command flakes
+            system = ${{ matrix.system }}
+      - name: Setup Cachix
+        uses: cachix/cachix-action@v17
+        with:
+          name: khanelivim
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+      - name: Build default package
+        run: nix build -L --accept-flake-config .#default
+  flake-check:
+    name: Flake check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - name: Check Nix flake inputs
+        uses: DeterminateSystems/flake-checker-action@v12
+      - name: Install Nix
+        uses: cachix/install-nix-action@v31
+        with:
+          install_url: https://nixos.org/nix/install
+          extra_nix_config: |
+            auto-optimise-store = true
+            allow-import-from-derivation = false
+            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+            experimental-features = nix-command flakes
+            system = x86_64-linux
+      - name: Setup Cachix
+        uses: cachix/cachix-action@v17
+        with:
+          name: khanelivim
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+      - name: Run flake check
+        run: nix flake check -L --accept-flake-config --option allow-import-from-derivation false
+  ci-success:
+    name: CI success
+    needs: [build, flake-check]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify dependent jobs succeeded
+        if: ${{ contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled') }}
+        run: exit 1
+      - name: Report success
+        run: echo "All required CI jobs passed."
