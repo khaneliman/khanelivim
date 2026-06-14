@@ -4,6 +4,10 @@ on:
   workflow_dispatch:
   schedule:
     - cron: "0 0 * * *"
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
 jobs:
   update-flake-lock:
     runs-on: ubuntu-latest

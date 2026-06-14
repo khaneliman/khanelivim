@@ -1,5 +1,7 @@
 on: [push, pull_request, workflow_dispatch]
 name: Lint Nix code
+permissions:
+  contents: read
 jobs:
   statix:
     name: Lint code

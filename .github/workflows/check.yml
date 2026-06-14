@@ -1,5 +1,7 @@
 name: Check
 on: [pull_request, workflow_dispatch]
+permissions:
+  contents: read
 jobs:
   checks:
     name: Check expressions on ${{ matrix.arch }}
