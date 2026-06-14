@@ -52,6 +52,7 @@ jobs:
           extra_nix_config: |
             access-tokens = github.com=${{github.token}}
       - name: Update flake.lock
+        id: update
         uses: DeterminateSystems/update-flake-lock@v28
         with:
           token: ${{ steps.app-token.outputs.token || github.token }}
@@ -72,3 +73,14 @@ jobs:
             [${{ github.run_id }}]: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
           pr-labels: |
             merge-queue
+      - name: Enable auto-merge
+        if: steps.update.outputs.pull-request-number
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token || github.token }}
+          PR_NUMBER: ${{ steps.update.outputs.pull-request-number }}
+        run: |
+          if ! [[ "$PR_NUMBER" =~ ^[0-9]+$ ]]; then
+            echo "Invalid PR number: $PR_NUMBER" >&2
+            exit 1
+          fi
+          gh pr merge --auto --squash "$PR_NUMBER"
