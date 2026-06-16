@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 {
@@ -10,6 +11,15 @@
         # sidekick.nvim documentation
         # See: https://github.com/folke/sidekick.nvim
         enable = builtins.elem "sidekick" config.khanelivim.ai.plugins;
+
+        package = pkgs.vimPlugins.sidekick-nvim.overrideAttrs (oldAttrs: {
+          patches = (oldAttrs.patches or [ ]) ++ [
+            (pkgs.fetchpatch {
+              url = "https://github.com/folke/sidekick.nvim/pull/322.patch";
+              hash = "sha256-0B8ScG2+I0kHajjplbtSzY0yve6u7EJIn05FXvxmfTY=";
+            })
+          ];
+        });
 
         lazyLoad.settings.keys = [
           {
