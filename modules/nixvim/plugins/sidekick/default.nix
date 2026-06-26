@@ -98,17 +98,19 @@
               continue = [ "--continue" ];
             };
 
-            gemini_yolo = {
+            antigravity_yolo = {
               cmd = [
-                "gemini"
-                "--yolo"
+                "agy"
+                "--dangerously-skip-permissions"
               ];
-              is_proc = "\\<gemini\\>";
-              url = "https://github.com/google-gemini/gemini-cli";
+              is_proc = "\\<agy\\>";
+              url = "https://antigravity.google/docs/cli-overview";
+              resume = [ "--continue" ];
+              continue = [ "--continue" ];
               format.__raw = ''
                 function(text)
                   require("sidekick.text").transform(text, function(str)
-                    return str:gsub("([^%w/_%.%-])", "\\%1")
+                    return str:find("[^%w/_%.%-]") and ('"' .. str .. '"') or str
                   end, "SidekickLocFile")
                 end
               '';
@@ -264,14 +266,14 @@
 
             map({ "n", "v" }, "<leader>asc", "claude", "claude", "Claude Toggle")
             map({ "n", "v" }, "<leader>asC", "copilot", "copilot", "Copilot Toggle")
-            map({ "n", "v" }, "<leader>asg", "gemini", "gemini", "Gemini Toggle")
+            map({ "n", "v" }, "<leader>asa", "antigravity", "agy", "Antigravity Toggle")
             map({ "n", "v" }, "<leader>aso", "opencode", "opencode", "Opencode Toggle")
             map({ "n", "v" }, "<leader>asx", "codex", "codex", "Codex Toggle")
             map({ "n", "v" }, "<leader>asp", "pi", "pi", "PI Coding Agent Toggle")
 
             yolo({ "n", "v" }, "<leader>asyc", "claude", "claude", "Claude YOLO Toggle")
             yolo({ "n", "v" }, "<leader>asyC", "copilot", "copilot", "Copilot YOLO Toggle")
-            yolo({ "n", "v" }, "<leader>asyg", "gemini", "gemini", "Gemini YOLO Toggle")
+            yolo({ "n", "v" }, "<leader>asya", "antigravity", "agy", "Antigravity YOLO Toggle")
             yolo({ "n", "v" }, "<leader>asyo", "opencode", "opencode", "Opencode YOLO Toggle")
             yolo({ "n", "v" }, "<leader>asyx", "codex", "codex", "Codex YOLO Toggle")
             yolo({ "n", "v" }, "<leader>asyp", "pi", "pi", "PI Coding Agent Toggle")
