@@ -120,7 +120,6 @@
       ruff.enable = lib.elem "ruff" config.khanelivim.lsp.python.linters;
       roslyn_ls.enable = config.khanelivim.lsp.csharp == "roslyn_ls";
       sqls.enable = true;
-      statix.enable = true;
       stylelint_lsp = {
         enable = true;
         config = {
