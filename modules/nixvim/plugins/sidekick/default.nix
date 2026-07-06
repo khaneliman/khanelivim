@@ -71,6 +71,7 @@
               cmd = [
                 "codex"
                 "--dangerously-bypass-approvals-and-sandbox"
+                "--dangerously-bypass-hook-trust"
               ];
               is_proc = "\\<codex\\>";
               url = "https://github.com/openai/codex";
