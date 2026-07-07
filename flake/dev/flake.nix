@@ -8,7 +8,9 @@
       inputs = {
         pkgs-by-name-for-flake-parts.follows = "";
         neovim-nightly-overlay.follows = "";
+        neotest-nix.follows = "";
         nixvim.follows = "";
+        rustowl-flake.follows = "";
       };
     };
     nixpkgs.follows = "root/nixpkgs";

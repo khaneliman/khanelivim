@@ -1,21 +1,5 @@
 {
   "nodes": {
-    "flake-compat": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1767039857,
-        "narHash": "sha256-vNpUSpF5Nuw8xvDLj2KCwwksIbjua2LZCqhV1LNRDns=",
-        "owner": "NixOS",
-        "repo": "flake-compat",
-        "rev": "5edf11c44bc78a0d334f6334cdaf7d60d732daab",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "repo": "flake-compat",
-        "type": "github"
-      }
-    },
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": [
@@ -37,30 +21,6 @@
         "type": "github"
       }
     },
-    "git-hooks": {
-      "inputs": {
-        "flake-compat": "flake-compat",
-        "gitignore": "gitignore",
-        "nixpkgs": [
-          "root",
-          "rustowl-flake",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1781733627,
-        "narHash": "sha256-U3yTuGBnmXvXoQI3qkpfEDsn9RovQPAjN7ndRco+3u0=",
-        "owner": "cachix",
-        "repo": "git-hooks.nix",
-        "rev": "3bbec39bc90eadfa031e6f3b77272f3f60803e39",
-        "type": "github"
-      },
-      "original": {
-        "owner": "cachix",
-        "repo": "git-hooks.nix",
-        "type": "github"
-      }
-    },
     "git-hooks-nix": {
       "inputs": {
         "flake-compat": [],
@@ -79,54 +39,6 @@
       "original": {
         "owner": "cachix",
         "repo": "git-hooks.nix",
-        "type": "github"
-      }
-    },
-    "gitignore": {
-      "inputs": {
-        "nixpkgs": [
-          "root",
-          "rustowl-flake",
-          "git-hooks",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1709087332,
-        "narHash": "sha256-HG2cCnktfHsKV0s4XW83gU3F57gaTljL9KNSuG6bnQs=",
-        "owner": "hercules-ci",
-        "repo": "gitignore.nix",
-        "rev": "637db329424fd7e46cf4185293b9cc8c88c95394",
-        "type": "github"
-      },
-      "original": {
-        "owner": "hercules-ci",
-        "repo": "gitignore.nix",
-        "type": "github"
-      }
-    },
-    "neotest-nix": {
-      "inputs": {
-        "flake-parts": [
-          "root",
-          "flake-parts"
-        ],
-        "nixpkgs": [
-          "root",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1781716663,
-        "narHash": "sha256-rA4yM/SGi9kPDDbUZWH5r5L/rHehQkZ3WUMXDHKMLo0=",
-        "owner": "khaneliman",
-        "repo": "neotest-nix",
-        "rev": "61ba4c732ed5d685deb33b7f42963ff765752991",
-        "type": "github"
-      },
-      "original": {
-        "owner": "khaneliman",
-        "repo": "neotest-nix",
         "type": "github"
       }
     },
@@ -175,13 +87,13 @@
     "root_2": {
       "inputs": {
         "flake-parts": "flake-parts",
-        "neotest-nix": "neotest-nix",
+        "neotest-nix": [],
         "neovim-nightly-overlay": [],
         "nixpkgs": "nixpkgs",
         "nixpkgs-master": "nixpkgs-master",
         "nixvim": [],
         "pkgs-by-name-for-flake-parts": [],
-        "rustowl-flake": "rustowl-flake"
+        "rustowl-flake": []
       },
       "locked": {
         "path": "../../",
@@ -192,71 +104,6 @@
         "type": "path"
       },
       "parent": []
-    },
-    "rust-overlay": {
-      "inputs": {
-        "nixpkgs": [
-          "root",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1782789458,
-        "narHash": "sha256-CR55gKCChD9ffN1Ag5az20Z3RD4tylHlcM1SSohkMA8=",
-        "owner": "oxalica",
-        "repo": "rust-overlay",
-        "rev": "067959ef838c440558ca519cf08ca87f43c3db3a",
-        "type": "github"
-      },
-      "original": {
-        "owner": "oxalica",
-        "repo": "rust-overlay",
-        "type": "github"
-      }
-    },
-    "rustowl": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1782791362,
-        "narHash": "sha256-6uyc6zEB1qChqdJNzIBbJtP8PU/7hHKiIcfgOEizbqA=",
-        "owner": "cordx56",
-        "repo": "rustowl",
-        "rev": "0d1baaab615f8ea26f4d0e431d245d1b2db4ff12",
-        "type": "github"
-      },
-      "original": {
-        "owner": "cordx56",
-        "repo": "rustowl",
-        "type": "github"
-      }
-    },
-    "rustowl-flake": {
-      "inputs": {
-        "flake-parts": [
-          "root",
-          "flake-parts"
-        ],
-        "git-hooks": "git-hooks",
-        "nixpkgs": [
-          "root",
-          "nixpkgs"
-        ],
-        "rust-overlay": "rust-overlay",
-        "rustowl": "rustowl"
-      },
-      "locked": {
-        "lastModified": 1782875074,
-        "narHash": "sha256-XJbKBFLoPpobw4B+ZfCvvoMVGw2pQrLN5pKjM/yGPBY=",
-        "owner": "nix-community",
-        "repo": "rustowl-flake",
-        "rev": "980b6d6b9fc1ba72eb63a140abae4db7c1230ea7",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "rustowl-flake",
-        "type": "github"
-      }
     },
     "treefmt-nix": {
       "inputs": {
