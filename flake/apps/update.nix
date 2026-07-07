@@ -15,9 +15,11 @@ _: {
         apps = {
           description = "Applications & packages";
           inputs = [
+            "neotest-nix"
+            "neovim-nightly-overlay"
             "nixvim"
             "pkgs-by-name-for-flake-parts"
-            "snacks-nvim"
+            "rustowl-flake"
           ];
         };
       };
