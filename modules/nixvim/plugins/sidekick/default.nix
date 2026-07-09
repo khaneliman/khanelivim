@@ -43,9 +43,17 @@
 
           cli.tools = {
             claude_yolo = {
+              # --permission-mode bypassPermissions alone still honors any
+              # explicit `permissions.ask` rules from the user's global Claude
+              # settings.json (e.g. git push, sudo, curl) - only an explicit
+              # --settings override with an empty ask array clears it. `deny`
+              # rules still merge across every settings layer regardless.
               cmd = [
                 "claude"
-                "--permission-mode bypassPermissions"
+                "--permission-mode"
+                "bypassPermissions"
+                "--settings"
+                ''{"permissions":{"ask":[],"defaultMode":"bypassPermissions"}}''
               ];
               is_proc = "\\<claude\\>";
               url = "https://github.com/anthropics/claude-code";
