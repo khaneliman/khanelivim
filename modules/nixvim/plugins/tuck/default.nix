@@ -39,7 +39,7 @@ in
       description = ''
         Configuration passed to `require('tuck').setup(...)`.
 
-        See <https://github.com/khaneliman/tuck.nvim>
+        See <https://github.com/nuvic/tuck.nvim>
       '';
     };
   };
