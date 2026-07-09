@@ -10,6 +10,19 @@
     ./lsp.nix
   ];
 
+  # Register fzf-lua as the `vim.ui.select()` provider (used by LSP code
+  # actions, Neovim 0.13's native builtin pickers, etc). fzf-lua is
+  # lazy-loaded on `:FzfLua` (see `lazyLoad.settings.cmd` below), so trigger
+  # that load on first use instead of eagerly requiring fzf-lua here.
+  # See: https://github.com/ibhagwan/fzf-lua#vimuiselect
+  extraConfigLua = lib.mkIf (config.khanelivim.picker.tool == "fzf") ''
+    vim.ui.select = function(...)
+      ${lib.optionalString config.plugins.lz-n.enable "require('lz.n').trigger_load('fzf-lua')"}
+      require("fzf-lua").register_ui_select()
+      return vim.ui.select(...)
+    end
+  '';
+
   plugins = {
     fzf-lua = {
       # fzf-lua documentation
