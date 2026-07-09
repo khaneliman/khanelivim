@@ -44,17 +44,15 @@ local function format_jump_severity(value)
 end
 
 local function unique(list)
-	local seen = {}
-	local ordered = {}
+	local filtered = {}
 
 	for _, item in ipairs(list) do
-		if item and item ~= "" and not seen[item] then
-			seen[item] = true
-			table.insert(ordered, item)
+		if item and item ~= "" then
+			table.insert(filtered, item)
 		end
 	end
 
-	return ordered
+	return vim.list.unique(filtered)
 end
 
 local function describe_clients(bufnr)
