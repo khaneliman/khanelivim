@@ -45,7 +45,7 @@
             claude_yolo = {
               cmd = [
                 "claude"
-                "--dangerously-skip-permissions"
+                "--permission-mode bypassPermissions"
               ];
               is_proc = "\\<claude\\>";
               url = "https://github.com/anthropics/claude-code";
