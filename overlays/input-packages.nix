@@ -10,7 +10,7 @@ let
   };
   # my-packages = flake.packages.${prev.stdenv.system};
   # masterLuaPackages = nixpkgs-master-packages.luaPackages;
-  # masterVimPlugins = nixpkgs-master-packages.vimPlugins;
+  masterVimPlugins = nixpkgs-master-packages.vimPlugins;
 in
 {
   inherit (nixpkgs-master-packages)
@@ -38,6 +38,12 @@ in
       # Pull faster updates from nixpkgs-master with:
       # inherit (masterVimPlugins) some-plugin;
       #
+
+      # TODO: Remove after 2026-06-29 update hits channel.
+      # Fixes E5108 `_info` nil error on nightly (vim.opt internals changed);
+      # upstream fix: folke/ts-comments.nvim@426303d
+      inherit (masterVimPlugins) ts-comments-nvim;
+
       nvim-java-core = super.nvim-java-core.overrideAttrs (old: {
         # TODO: File upstream and remove once nvim-java-core uses client:request.
         postPatch = ''
