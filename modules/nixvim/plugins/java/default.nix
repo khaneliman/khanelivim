@@ -20,37 +20,13 @@ in
   plugins.java = {
     enable = javaEnabled;
     package = pkgs.vimPlugins.nvim-java.overrideAttrs (old: {
-      # TODO: Remove when nvim-java/nvim-java#487 is merged and reaches nixpkgs.
-      prePatch = ''
-        # Keep PR doc hunk in sync with current vendored header timestamp.
-        substituteInPlace doc/nvim-java.txt \
-          --replace "Last change: 2025 December 10" "Last change: 2026 February 05"
-      '';
-
-      patches = (old.patches or [ ]) ++ [
-        (pkgs.fetchpatch {
-          name = "nvim-java-pr-487.patch";
-          url = "https://patch-diff.githubusercontent.com/raw/nvim-java/nvim-java/pull/487.patch";
-          hash = "sha256-uaIC/KASLOSoxroXcRcMrj3m2rtW88GtRUn1uNhtmNk=";
-        })
-      ];
-
       postPatch = ''
         ${old.postPatch or ""}
 
         substituteInPlace lua/java.lua \
-          --replace-fail "table.insert(to_install, { name = 'jdtls', version = config.jdtls.version })" "if config.jdtls.enable ~= false then
-          table.insert(to_install, { name = 'jdtls', version = config.jdtls.version })
-        end" \
-          --replace-fail "pkgm:install_all(" "if config.pkgm and config.pkgm.enable == false then
-          to_install = {}
-        end
-
-        pkgm:install_all(" \
-          --replace-fail "vim.lsp.enable('jdtls')" "" \
+          --replace-fail "local pkgm = Manager()" "local pkgm = config.pkgm and config.pkgm.enable == false and { install = function() end } or Manager()" \
           --replace-fail "require('java.startup.lsp_setup').setup(config)" "if config.jdtls.enable ~= false then
           require('java.startup.lsp_setup').setup(config)
-          vim.lsp.enable('jdtls')
         end"
       '';
     });

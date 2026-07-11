@@ -42,7 +42,26 @@ let
           nixpkgs.config = lib.mkForce { };
           khanelivim.profile = profile;
         }
-      ];
+      ]
+      # FIXME: nixpkgs' optimized `pandoc` lost Lua support on aarch64-darwin
+      # after the staging-next 2026-06-27 merge:
+      # https://github.com/NixOS/nixpkgs/commit/1e94a0307f544377e2f2332daa7fca2833a1adc3
+      # Keep this scoped to Nixvim's man docs and remove it once `pkgs.pandoc`
+      # reports `+lua` on Darwin again.
+      ++ lib.optional nixvimPkgs.stdenv.isDarwin {
+        flake = lib.mkForce (
+          inputs.nixvim
+          // {
+            packages = inputs.nixvim.packages // {
+              ${system} = inputs.nixvim.packages.${system} // {
+                man-docs = inputs.nixvim.packages.${system}.man-docs.override {
+                  pandoc = nixvimPkgs.haskellPackages.pandoc-cli;
+                };
+              };
+            };
+          }
+        );
+      };
     };
 in
 {
