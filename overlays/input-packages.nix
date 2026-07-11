@@ -10,7 +10,7 @@ let
   };
   # my-packages = flake.packages.${prev.stdenv.system};
   # masterLuaPackages = nixpkgs-master-packages.luaPackages;
-  masterVimPlugins = nixpkgs-master-packages.vimPlugins;
+  # masterVimPlugins = nixpkgs-master-packages.vimPlugins;
 in
 {
   inherit (nixpkgs-master-packages)
@@ -23,13 +23,14 @@ in
     # TODO: Remove after hitting channel
     ;
 
-  luaPackages = prev.luaPackages // {
-    #
-    # Specific package overlays need to go in here to not get ignored
-    # Pull faster updates from nixpkgs-master with:
-    # inherit (masterLuaPackages) some-package;
-    #
-  };
+  # Dormant until a Lua package needs a targeted override.
+  # luaPackages = prev.luaPackages // {
+  #   #
+  #   # Specific package overlays need to go in here to not get ignored
+  #   # Pull faster updates from nixpkgs-master with:
+  #   # inherit (masterLuaPackages) some-package;
+  #   #
+  # };
 
   vimPlugins = prev.vimPlugins.extend (
     _self: super: {
@@ -39,10 +40,7 @@ in
       # inherit (masterVimPlugins) some-plugin;
       #
 
-      # TODO: Remove after 2026-06-29 update hits channel.
-      # Fixes E5108 `_info` nil error on nightly (vim.opt internals changed);
-      # upstream fix: folke/ts-comments.nvim@426303d
-      inherit (masterVimPlugins) ts-comments-nvim;
+      # inherit (masterVimPlugins) ts-comments-nvim;
 
       nvim-java-core = super.nvim-java-core.overrideAttrs (old: {
         # TODO: File upstream and remove once nvim-java-core uses client:request.
