@@ -216,7 +216,7 @@ let
       (
         with pkgs.vimPlugins;
         [
-          self.packages.${system}.neotest-bun
+          neotest-bun
           neotest-bash
           neotest-deno
           neotest-dotnet
@@ -238,7 +238,7 @@ in
   extraPlugins = lib.mkIf config.plugins.neotest.enable (
     (lib.optional neotestNixEnabled neotestNixPackage)
     ++ [
-      self.packages.${system}.neotest-bun
+      pkgs.vimPlugins.neotest-bun
       self.packages.${system}.neotest-catch2
     ]
     ++ neotestAdapterPlugins
