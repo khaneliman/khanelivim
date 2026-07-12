@@ -93,7 +93,8 @@
             copilot_yolo = {
               cmd = [
                 "copilot"
-                "--banner"
+                "--mode"
+                "autopilot"
                 "--yolo"
               ];
               is_proc.__raw = ''
