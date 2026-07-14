@@ -51,3 +51,7 @@ result
 
 # Profile data (regenerate with nix run .#profile)
 profiles/
+
+# okf-memory: local, uncommitted curated memory
+.okf/
+.planning/
