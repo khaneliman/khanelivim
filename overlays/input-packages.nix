@@ -42,6 +42,30 @@ in
 
       # inherit (masterVimPlugins) ts-comments-nvim;
 
+      fff-nvim = super.fff-nvim.overrideAttrs (
+        old:
+        let
+          fff-nvim-lib = old.passthru.fff-nvim-lib.overrideAttrs (oldLib: {
+            # Prevent zlob's Zig build from targeting the build machine's native CPU.
+            env = (oldLib.env or { }) // {
+              CI = true;
+            };
+          });
+        in
+        {
+          postPatch = old.postPatch + ''
+            substituteInPlace lua/fff/download.lua \
+              --replace-fail \
+                '${old.passthru.fff-nvim-lib}/lib' \
+                '${fff-nvim-lib}/lib'
+          '';
+
+          passthru = old.passthru // {
+            inherit fff-nvim-lib;
+          };
+        }
+      );
+
       nvim-java-core = super.nvim-java-core.overrideAttrs (old: {
         # TODO: File upstream and remove once nvim-java-core uses client:request.
         postPatch = ''
