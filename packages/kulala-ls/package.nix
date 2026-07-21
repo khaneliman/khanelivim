@@ -7,13 +7,13 @@
 
 buildNpmPackage (finalAttrs: {
   pname = "kulala-ls";
-  version = "1.10.0";
+  version = "1.11.1";
 
   src = fetchFromGitHub {
     owner = "mistweaverco";
     repo = "kulala-ls";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-DSpQ38wQ7uRxbJwPUVtFLrlc8gur/0MHzLc1itCsOR0=";
+    hash = "sha256-GhOK3Gpg5sS6K6GtiPaPoiIzK4qZ9Q5hMKBhKh9W3M8=";
   };
 
   patches = [
