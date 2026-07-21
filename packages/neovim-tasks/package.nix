@@ -4,13 +4,13 @@
 }:
 vimUtils.buildVimPlugin {
   pname = "neovim-tasks";
-  version = "0-unstable-09-08-2025";
+  version = "0-unstable-07-01-2026";
 
   src = pkgs.fetchFromGitHub {
     owner = "Shatur";
     repo = "neovim-tasks";
-    rev = "820d3b8fb3b7b5e7334bc84cdd4eacc7d1e6f990";
-    hash = "sha256-hEVXnkQJyuLFjHngYtPZ3VQPoSrQ40VW1LjsHlbQGh8=";
+    rev = "053c566cca93cfbf64c22f5f0b87d834cfc0e78c";
+    hash = "sha256-JgkeKGjlmXqa+/hh5iss59uOvxBFXHorjhou4ftAk0Y=";
   };
 
   dependencies = with pkgs.vimPlugins; [
