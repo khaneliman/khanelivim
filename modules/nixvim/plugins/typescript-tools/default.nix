@@ -16,6 +16,20 @@ in
       # typescript-tools.nvim documentation
       # See: https://github.com/pmizio/typescript-tools.nvim
       enable = typescriptToolsEnabled;
+      package = pkgs.vimPlugins.typescript-tools-nvim.overrideAttrs (old: {
+        postPatch = (old.postPatch or "") + ''
+          substituteInPlace lua/typescript-tools/autocommands/code_lens.lua \
+            --replace-fail \
+              'pcall(vim.lsp.codelens.refresh)' \
+              'pcall(vim.lsp.codelens.enable, true)' \
+            --replace-fail \
+              'pcall(vim.lsp.codelens.refresh, { bufnr = e.buf })' \
+              'if vim.lsp.codelens.is_enabled({ bufnr = e.buf }) then
+                vim.lsp.codelens.enable(false, { bufnr = e.buf })
+                vim.lsp.codelens.enable(true, { bufnr = e.buf })
+              end'
+        '';
+      });
 
       lazyLoad.settings.ft = [
         "typescript"
@@ -35,8 +49,6 @@ in
         };
 
         settings = {
-          # TODO: typescript-tools.nvim's CodeLens autocmd still calls the
-          # deprecated vim.lsp.codelens.refresh() API on Neovim 0.12+.
           code_lens = "all";
           complete_function_calls = false;
           disable_member_code_lens = false;
