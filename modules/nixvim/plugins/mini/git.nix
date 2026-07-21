@@ -22,15 +22,14 @@
   ];
 
   keymaps = lib.mkIf config.plugins.mini-git.enable [
-    # TODO: relocate
-    # {
-    #   mode = "n";
-    #   key = "<leader>gD";
-    #   action = "<CMD>lua MiniGit.show_diff_source()<CR>";
-    #   options = {
-    #     desc = "Show diff source";
-    #   };
-    # }
+    {
+      mode = "n";
+      key = "<leader>gbd";
+      action = "<CMD>lua MiniGit.show_diff_source()<CR>";
+      options = {
+        desc = "Show Diff Source";
+      };
+    }
     {
       mode = "";
       key = "<leader>gbr";
