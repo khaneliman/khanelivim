@@ -26,9 +26,8 @@
 
   plugins = {
     dap = {
-      luaConfig.content = ''
-        local dap = require("dap")
-        dap.adapters.nlua = function(callback, conf)
+      adapters.nlua.__raw = ''
+        function(callback, conf)
           local adapter = {
             type = "server",
             host = conf.host or "127.0.0.1",
@@ -48,15 +47,6 @@
           callback(adapter)
         end
       '';
-      # TODO: support lua in nixvim
-      # adapters = {
-      #   servers = {
-      #     nlua = {
-      #       host = "127.0.0.1";
-      #       port = 8086;
-      #     };
-      #   };
-      # };
 
       configurations = {
         lua = [
