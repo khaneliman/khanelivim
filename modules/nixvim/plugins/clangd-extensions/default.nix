@@ -13,7 +13,6 @@
       ];
 
       inherit (config.plugins.treesitter) enable;
-      enableOffsetEncodingWorkaround = true;
 
       settings = {
         ast = {
