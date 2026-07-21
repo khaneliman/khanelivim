@@ -7,11 +7,11 @@
 
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "spring-boot-language-server";
-  version = "2.2.2026042300";
+  version = "2.3.2026072100";
 
   src = fetchurl {
     url = "https://open-vsx.org/api/VMware/vscode-spring-boot/${finalAttrs.version}/file/VMware.vscode-spring-boot-${finalAttrs.version}.vsix";
-    hash = "sha256-Cq9Vc0c5UNtXoe+/1mqroIO4w1t97DQN2NDxOjnCrh0=";
+    hash = "sha256-TqJL9sM2/BU7rZJ8QTR/Eg2lmtco7/pfzBIAcjxqk9c=";
   };
 
   nativeBuildInputs = [
@@ -29,6 +29,14 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     mkdir -p "$out"
     cp -r source/extension/language-server "$out/language-server"
     cp -r source/extension/jars "$out/jars"
+
+    serverJar="$(
+      find "$out/language-server" -maxdepth 1 -type f \
+        -name 'spring-boot-language-server-*-exec.jar' -print -quit
+    )"
+    test -n "$serverJar"
+    ln -s "$(basename "$serverJar")" "$out/language-server/spring-boot-language-server.jar"
+
     runHook postInstall
   '';
 

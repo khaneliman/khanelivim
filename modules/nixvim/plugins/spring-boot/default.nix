@@ -16,7 +16,7 @@ in
 
     settings = {
       java_cmd = "${pkgs.jdk}/bin/java";
-      ls_path = "${springBootLanguageServer}/language-server/spring-boot-language-server-2.2.0-SNAPSHOT-exec.jar";
+      ls_path = "${springBootLanguageServer}/language-server/spring-boot-language-server.jar";
       jdtls_name = "jdtls";
     };
   };
