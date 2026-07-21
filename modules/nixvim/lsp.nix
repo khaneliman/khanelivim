@@ -111,8 +111,7 @@
         ];
       };
       marksman.enable = true;
-      # FIXME: broken darwin
-      nushell.enable = pkgs.stdenv.hostPlatform.isLinux;
+      nushell.enable = true;
       pyright.enable = config.khanelivim.lsp.python.typeChecker == "pyright";
       pylsp.enable = config.khanelivim.lsp.python.typeChecker == "pylsp";
       basedpyright.enable = config.khanelivim.lsp.python.typeChecker == "basedpyright";
