@@ -60,7 +60,7 @@ in
       enabled = true;
       settings = {
         url = fetchurl {
-          url = "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml";
+          url = "https://raw.githubusercontent.com/google/styleguide/505ba68c74eb97e6966f60907ce893001bedc706/eclipse-java-google-style.xml";
           sha256 = "sha256-51Uku2fj/8iNXGgO11JU4HLj28y7kcSgxwjc+r8r35E=";
         };
         profile = "GoogleStyle";
