@@ -23,9 +23,8 @@ in
       imagemagick
       # PDF rendering
       ghostscript
-      # Mermaid diagrams (requires Chromium from Homebrew on Darwin)
-      # TODO: figure out no chromium
-      # mermaid-cli
+      # Mermaid diagrams (uses Chromium from Homebrew on Darwin)
+      mermaid-cli
       # Math expression rendering
       typst
       # LaTeX for math expressions
