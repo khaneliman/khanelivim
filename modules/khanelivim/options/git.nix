@@ -23,6 +23,7 @@
           "git-conflict"
           "git-worktree"
           "gitsigns"
+          "guh"
           "hunk"
           "native-difftool"
           "octo"
@@ -34,6 +35,7 @@
       );
       default = [
         "gitsigns"
+        "guh"
         "snacks-gh"
         "snacks-gitbrowse"
         "snacks-lazygit"

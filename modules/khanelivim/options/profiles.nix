@@ -245,6 +245,7 @@ let
           "gitsigns"
           "git-conflict"
           "git-worktree"
+          "guh"
           "hunk"
           "native-difftool"
           "octo"
