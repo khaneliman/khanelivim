@@ -66,7 +66,6 @@ let
     "sqlite-lua"
     "treesitter"
     "treesitter-context"
-    "treesitter-modules"
     "tuis"
     "venv-selector"
     "vim-suda"

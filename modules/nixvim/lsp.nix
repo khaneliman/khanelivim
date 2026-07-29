@@ -178,9 +178,6 @@
               if vim.lsp.foldtext then
                 vim.wo.foldtext = "v:lua.vim.lsp.foldtext()"
               end
-            else
-              vim.wo.foldmethod = "expr"
-              vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
             end
           end)
         end
