@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   hasSnacksGh = lib.elem "snacks-gh" config.khanelivim.git.integrations;
 
@@ -13,10 +18,25 @@ in
 
     lazyLoad.settings.cmd = "Octo";
 
+    package = pkgs.vimPlugins.octo-nvim.overrideAttrs (oldAttrs: {
+      patches = (oldAttrs.patches or [ ]) ++ [
+        (pkgs.fetchpatch {
+          url = "https://github.com/pwntester/octo.nvim/commit/57068fcdc0e9156f739abcf7fe9f0c057b762b11.patch";
+          hash = "sha256-65PkXtiIYpdSI+Qs/XEsWffCJeai7HNfH8Br+4JawoY=";
+        })
+      ];
+    });
+
     settings = {
+      enable_builtin = true;
+      notifications.current_repo_only = true;
       picker = lib.mkIf (
         config.khanelivim.picker.tool != null
       ) pickerByTool.${config.khanelivim.picker.tool};
+      poll = {
+        enabled = false;
+        interval = 30000;
+      };
       use_local_fs = true;
     };
   };
@@ -58,7 +78,12 @@ in
       {
         mode = "n";
         key = "<leader>gvs";
-        action = "<cmd>Octo search<CR>";
+        action.__raw = ''
+          function()
+            ${lib.optionalString config.plugins.lz-n.enable ''require("lz.n").trigger_load("octo.nvim")''}
+            require("octo.utils").create_base_search_command({ include_current_repo = true })
+          end
+        '';
         options = {
           desc = "Search";
         };
@@ -66,9 +91,25 @@ in
       {
         mode = "n";
         key = "<leader>gva";
-        action = "<cmd>Octo actions<CR>";
+        action = "<cmd>Octo<CR>";
         options = {
           desc = "Actions";
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>gvn";
+        action = "<cmd>Octo notification list<CR>";
+        options = {
+          desc = "Notifications";
+        };
+      }
+      {
+        mode = "n";
+        key = "<leader>gvw";
+        action = "<cmd>Octo poll toggle<CR>";
+        options = {
+          desc = "Toggle polling";
         };
       }
     ]
