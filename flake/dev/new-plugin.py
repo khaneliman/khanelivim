@@ -253,7 +253,7 @@ def main():
         print("  2. Add the plugin to your modules/nixvim/plugins/default.nix imports")
         print("  3. Run 'nix flake check' to verify the configuration")
 
-    except Exception as e:
+    except (OSError, ValueError) as e:
         print(f"Error: {e}")
         sys.exit(1)
 

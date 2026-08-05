@@ -1,4 +1,3 @@
-# flake8: noqa: E501
 import argparse
 import json
 import os
@@ -92,6 +91,7 @@ def run_profile(nvim_bin, output_path, event="ui", interactive=False):
         result = subprocess.run(
             [str(nvim_bin)],
             env=merged_env,
+            check=False,
         )
     elif event == "ui":
         # Headless for VimEnter - fast, no display needed
@@ -102,6 +102,7 @@ def run_profile(nvim_bin, output_path, event="ui", interactive=False):
             capture_output=True,
             text=True,
             env=merged_env,
+            check=False,
         )
     else:
         # xvfb for deferred/lazy events that need UIEnter
@@ -112,6 +113,7 @@ def run_profile(nvim_bin, output_path, event="ui", interactive=False):
             capture_output=True,
             text=True,
             env=merged_env,
+            check=False,
         )
 
     # Check if output file was created
@@ -144,7 +146,7 @@ def average_profiles(profiles):
         return None
 
     avg = {
-        "timestamp": datetime.now().isoformat(),
+        "timestamp": datetime.now().astimezone().isoformat(),
         "event": profiles[0].get("event", "unknown"),
         "iterations": len(profiles),
         "startup_time_ms": 0,
@@ -439,7 +441,7 @@ def main():
     print_profile_summary(averaged, "Averaged Profile")
 
     # Save profile
-    timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
+    timestamp = datetime.now().astimezone().strftime("%Y%m%d-%H%M%S")
     output_dir = args.output or CACHE_DIR
 
     if args.output:

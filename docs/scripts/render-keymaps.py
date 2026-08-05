@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 from __future__ import annotations
 
 import json
@@ -220,8 +218,6 @@ def classify(entry: dict[str, object], label: str) -> str:
             "-",
             "<c-c>",
             "<c-n>",
-            "<leader>w",
-            "<leader>q",
             "<leader>w",
             "<leader>q",
         }
