@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 let
@@ -17,15 +16,6 @@ in
     enable = lib.elem "octo" config.khanelivim.git.integrations;
 
     lazyLoad.settings.cmd = "Octo";
-
-    package = pkgs.vimPlugins.octo-nvim.overrideAttrs (oldAttrs: {
-      patches = (oldAttrs.patches or [ ]) ++ [
-        (pkgs.fetchpatch {
-          url = "https://github.com/pwntester/octo.nvim/commit/57068fcdc0e9156f739abcf7fe9f0c057b762b11.patch";
-          hash = "sha256-65PkXtiIYpdSI+Qs/XEsWffCJeai7HNfH8Br+4JawoY=";
-        })
-      ];
-    });
 
     settings = {
       enable_builtin = true;
