@@ -48,7 +48,7 @@ let
       # https://github.com/NixOS/nixpkgs/commit/1e94a0307f544377e2f2332daa7fca2833a1adc3
       # Keep this scoped to Nixvim's man docs and remove it once `pkgs.pandoc`
       # reports `+lua` on Darwin again.
-      ++ lib.optional nixvimPkgs.stdenv.isDarwin {
+      ++ lib.optional nixvimPkgs.stdenv.hostPlatform.isDarwin {
         flake = lib.mkForce (
           inputs.nixvim
           // {

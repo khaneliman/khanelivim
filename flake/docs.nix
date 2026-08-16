@@ -96,7 +96,7 @@
         }
       );
 
-      opener = if pkgs.stdenv.isDarwin then "open" else "xdg-open";
+      opener = if pkgs.stdenv.hostPlatform.isDarwin then "open" else "xdg-open";
       openDocs = pkgs.writeShellScript "open-khanelivim-docs" ''
         path="${config.packages.docs-html}/index.html"
         if ! ${opener} "$path"; then

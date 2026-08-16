@@ -12,7 +12,7 @@ let
 in
 {
   # Set Chromium path for mermaid-cli on Darwin (chromium not available in nixpkgs for aarch64-darwin)
-  env = lib.optionalAttrs (pkgs.stdenv.isDarwin && imageEnabled) {
+  env = lib.optionalAttrs (pkgs.stdenv.hostPlatform.isDarwin && imageEnabled) {
     PUPPETEER_EXECUTABLE_PATH = "/Applications/Chromium.app/Contents/MacOS/Chromium";
   };
 
