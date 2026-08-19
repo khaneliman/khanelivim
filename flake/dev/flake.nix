@@ -21,7 +21,6 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         # Optional inputs removed
-        gitignore.follows = "";
         flake-compat.follows = "";
       };
     };
