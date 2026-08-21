@@ -1,6 +1,5 @@
 {
   config,
-  lib,
   ...
 }:
 {
@@ -10,7 +9,19 @@
       # See: https://github.com/milanglacier/minuet-ai.nvim
       enable = builtins.elem "minuet" config.khanelivim.ai.plugins;
 
-      lazyLoad.settings.event = [ "InsertEnter" ];
+      lazyLoad.settings = {
+        event = [ "InsertEnter" ];
+
+        # The toggle command exists only after the plugin loads, so the keymap
+        # doubles as a load trigger.
+        keys = [
+          {
+            __unkeyed-1 = "<leader>am";
+            __unkeyed-2 = "<cmd>Minuet blink toggle<CR>";
+            desc = "Toggle Minuet Auto Completion";
+          }
+        ];
+      };
 
       settings = {
         provider = "openai_fim_compatible";
@@ -45,15 +56,4 @@
       };
     };
   };
-
-  keymaps = lib.mkIf (builtins.elem "minuet" config.khanelivim.ai.plugins) [
-    {
-      mode = "n";
-      key = "<leader>am";
-      action = "<cmd>Minuet blink toggle<CR>";
-      options = {
-        desc = "Toggle Minuet Auto Completion";
-      };
-    }
-  ];
 }
