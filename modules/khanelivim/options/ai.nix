@@ -11,6 +11,7 @@
           "copilot"
           "copilot-lsp"
           "gemini"
+          "minuet"
           "opencode"
           "sidekick"
           "windsurf"
@@ -37,6 +38,7 @@
         - codex: OpenAI Codex integration
         - copilot: GitHub Copilot (includes chat)
         - copilot-lsp: GitHub Copilot LSP integration
+        - minuet: Local completion at the cursor, served by ollama
         - opencode: OpenCode AI assistant with snacks integration
         - sidekick: Multi-provider AI suggestion system (Claude, Copilot, Gemini, Opencode)
         - windsurf: Codeium Windsurf integration

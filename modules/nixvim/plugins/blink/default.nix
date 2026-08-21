@@ -43,7 +43,9 @@
         };
 
         trigger = {
-          prefetch_on_insert = true;
+          # Prefetching sends a request on every insert, which wastes local
+          # model time when minuet is a source.
+          prefetch_on_insert = !config.plugins.minuet.enable;
           show_on_backspace = true;
           # Disabled: Prefer manual completion control with <C-.>
           # Uncomment to auto-show after typing these characters:

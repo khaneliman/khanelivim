@@ -20,6 +20,7 @@
           config.plugins.blink-cmp-dictionary.enable || config.plugins.blink-cmp-words.enable
         ) "table.insert(common_sources, 'dictionary')"}
         ${lib.optionalString config.plugins.blink-emoji.enable "table.insert(common_sources, 'emoji')"}
+        ${lib.optionalString config.plugins.minuet.enable "table.insert(common_sources, 'minuet')"}
         ${lib.optionalString (lib.elem pkgs.vimPlugins.blink-nerdfont-nvim config.extraPlugins) "table.insert(common_sources, 'nerdfont')"}
         ${lib.optionalString config.plugins.blink-cmp-spell.enable "if vim.tbl_contains({ 'markdown', 'text', 'gitcommit', 'scratch' }, vim.bo.filetype) then table.insert(common_sources, 'spell') end"}
         ${lib.optionalString config.plugins.blink-cmp-words.enable "table.insert(common_sources, 'thesaurus')"}
@@ -260,6 +261,17 @@
             };
           };
         };
+      };
+
+      minuet = lib.mkIf config.plugins.minuet.enable {
+        name = "minuet";
+        module = "minuet.blink";
+        async = true;
+        # Matches the minuet request_timeout default of 3 seconds.
+        timeout_ms = 3000;
+        # Copilot outranks minuet where both run, because a local model is the
+        # fallback rather than the preferred source.
+        score_offset = 50;
       };
 
       nerdfont = lib.mkIf (lib.elem pkgs.vimPlugins.blink-nerdfont-nvim config.extraPlugins) {
