@@ -34,9 +34,10 @@
         context_window = 1024;
 
         provider_options.openai_fim_compatible = {
-          # Ollama needs no credential, but minuet requires the name of a
-          # non-null environment variable as a placeholder.
-          api_key = "TERM";
+          # Ollama needs no credential, but minuet refuses to send a request
+          # without one. Return a constant rather than naming an environment
+          # variable, which may be unset.
+          api_key.__raw = "function() return 'ollama' end";
           name = "Ollama";
 
           # The legacy completions endpoint carries the suffix field, so the
