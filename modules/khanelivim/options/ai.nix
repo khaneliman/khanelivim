@@ -1,4 +1,11 @@
-{ lib, ... }:
+{ config, lib, ... }:
+let
+  gate = config.khanelivim.integrations.accountBacked;
+
+  # These plugins reach a local endpoint, so they need no account, token, or
+  # API key. The account-backed gate must keep them.
+  localPlugins = [ "minuet" ];
+in
 {
   options.khanelivim.ai = {
     plugins = lib.mkOption {
@@ -26,10 +33,19 @@
         "opencode"
         "sidekick"
       ];
+      # The account-backed gate filters the merged value here. It cannot force
+      # this option instead, because reading the list to filter it would create
+      # an evaluation cycle.
+      apply =
+        plugins: if gate.enable && gate.ai.enable then plugins else lib.intersectLists plugins localPlugins;
+
       description = ''
         List of AI plugins to enable.
         Multiple plugins can be enabled simultaneously.
         Set to [] to disable all AI features.
+
+        Disabling khanelivim.integrations.accountBacked.ai keeps only the
+        plugins that serve completions from a local endpoint.
 
         Available plugins:
         - avante: Claude AI interface with inline editing
