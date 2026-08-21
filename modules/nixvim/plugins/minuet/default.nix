@@ -1,13 +1,20 @@
 {
   config,
+  lib,
+  pkgs,
   ...
 }:
+let
+  enabled = builtins.elem "minuet" config.khanelivim.ai.plugins;
+
+  duetEnabled = enabled && config.khanelivim.ai.duetEnable;
+in
 {
   plugins = {
     minuet = {
       # minuet-ai.nvim documentation
       # See: https://github.com/milanglacier/minuet-ai.nvim
-      enable = builtins.elem "minuet" config.khanelivim.ai.plugins;
+      enable = enabled;
 
       lazyLoad.settings = {
         event = [ "InsertEnter" ];
@@ -19,6 +26,41 @@
             __unkeyed-1 = "<leader>am";
             __unkeyed-2 = "<cmd>Minuet blink toggle<CR>";
             desc = "Toggle Minuet Auto Completion";
+          }
+        ]
+        ++ lib.optionals duetEnabled [
+          {
+            __unkeyed-1 = "<leader>anp";
+            __unkeyed-2 = "<cmd>Minuet duet predict<CR>";
+            desc = "Predict Next Edit";
+          }
+          {
+            __unkeyed-1 = "<leader>ana";
+            __unkeyed-2 = "<cmd>Minuet duet apply<CR>";
+            desc = "Apply Next Edit";
+          }
+          {
+            __unkeyed-1 = "<leader>and";
+            __unkeyed-2 = "<cmd>Minuet duet dismiss<CR>";
+            desc = "Dismiss Next Edit";
+          }
+          {
+            __unkeyed-1 = "<A-z>";
+            __unkeyed-2 = "<cmd>Minuet duet predict<CR>";
+            mode = "i";
+            desc = "Predict Next Edit";
+          }
+          {
+            __unkeyed-1 = "<A-a>";
+            __unkeyed-2 = "<cmd>Minuet duet apply<CR>";
+            mode = "i";
+            desc = "Apply Next Edit";
+          }
+          {
+            __unkeyed-1 = "<A-x>";
+            __unkeyed-2 = "<cmd>Minuet duet dismiss<CR>";
+            mode = "i";
+            desc = "Dismiss Next Edit";
           }
         ];
       };
@@ -53,6 +95,27 @@
             max_tokens = 56;
             top_p = 0.9;
           };
+        };
+
+        duet = lib.mkIf duetEnabled {
+          provider = "openai_compatible";
+
+          provider_options.openai_compatible = {
+            api_key.__raw = "function() return 'ollama' end";
+            name = "Ollama";
+
+            # Duet rewrites a whole region, so it posts a chat request rather
+            # than a completion request.
+            end_point = "http://localhost:11434/v1/chat/completions";
+
+            # An instruct model has to serve the rewrite. This tag activates
+            # 3B of its 30B parameters, which keeps a prediction interactive.
+            model = "qwen3-coder:30b";
+          };
+
+          # The edit recorder shells out to diff. Read it from the store
+          # instead of the user's PATH.
+          recent_edits.diff_program = lib.getExe' pkgs.diffutils "diff";
         };
       };
     };

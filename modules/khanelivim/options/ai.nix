@@ -64,5 +64,17 @@ in
     chatEnable = lib.mkEnableOption "AI chat functionality" // {
       default = true;
     };
+
+    duetEnable = lib.mkEnableOption "minuet next edit prediction" // {
+      description = ''
+        Predict the next edit with a local model through minuet's duet module.
+
+        Needs "minuet" in khanelivim.ai.plugins. Upstream calls duet
+        experimental, so this stays off until a user opts in.
+
+        Duet rewrites a region through a chat endpoint. Completion at the
+        cursor uses a separate provider and a separate model.
+      '';
+    };
   };
 }
