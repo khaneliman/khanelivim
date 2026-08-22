@@ -31,6 +31,24 @@
             adapter = "gemini_cli";
           };
         };
+
+        adapters.http.local_llm.__raw = ''
+          function()
+            return require('codecompanion.adapters').extend('openai_compatible', {
+              name = 'local_llm',
+              formatted_name = 'Local',
+              env = {
+                -- The server needs no credential, but the adapter sends the
+                -- header regardless.
+                api_key = 'local',
+                url = '${lib.removeSuffix "/v1" config.khanelivim.ai.localEndpoint}',
+                chat_url = '/v1/chat/completions',
+                models_endpoint = '/v1/models',
+              },
+            })
+          end
+        '';
+
         opts = {
           send_code = true;
         };
