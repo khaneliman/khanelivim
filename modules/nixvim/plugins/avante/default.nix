@@ -18,6 +18,16 @@
           claude = {
             model = "claude-sonnet-4-6";
           };
+
+          # Selectable rather than default, and reachable through the shared
+          # endpoint option so a move needs no edit here.
+          local_llm = {
+            __inherited_from = "openai";
+            endpoint = config.khanelivim.ai.localEndpoint;
+            # The server needs no credential, but avante reads one.
+            api_key_name = "";
+            model = "qwen3-coder-30b";
+          };
         };
         acp_providers = {
           claude-code = {
