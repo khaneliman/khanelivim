@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 {
@@ -13,7 +14,7 @@
       lazyLoad.settings.event = [ "DeferredUIEnter" ];
 
       settings = {
-        provider = "claude-code";
+        provider = "codex";
         providers = {
           claude = {
             model = "claude-sonnet-4-6";
@@ -30,6 +31,23 @@
           };
         };
         acp_providers = {
+          # An ACP bridge ships as its own binary, so name the store path rather
+          # than trusting PATH inside the editor.
+          codex = {
+            command = lib.getExe pkgs.codex-acp;
+            # The bridge embeds an older codex core, and the API rejects a newer
+            # model slug for it: gpt-5.6-sol returns 400 asking for a newer
+            # client. gpt-5.5 completes a turn.
+            args = [
+              "-c"
+              "model=\"gpt-5.5\""
+            ];
+            # No credential here: the bridge reads the signed-in session from
+            # CODEX_HOME, and this user holds ChatGPT tokens rather than an API
+            # key.
+            env = { };
+          };
+
           claude-code = {
             model = "claude-sonnet-4-6";
             env = {
