@@ -65,6 +65,21 @@ in
       default = true;
     };
 
+    localEndpoint = lib.mkOption {
+      type = lib.types.str;
+      default = "http://127.0.0.1:8090/v1";
+      example = "http://gpu-host.lan:8090/v1";
+      description = ''
+        OpenAI-compatible base URL for locally served models.
+
+        The default points at a proxy on this machine, so the flake works on
+        its own. A host that runs the model elsewhere, or on another port, sets
+        this once and every plugin that reads it follows. minuet names ollama
+        directly, because it needs a fill-in-the-middle endpoint the proxy does
+        not serve.
+      '';
+    };
+
     duetEnable = lib.mkEnableOption "minuet next edit prediction" // {
       description = ''
         Predict the next edit with a local model through minuet's duet module.
