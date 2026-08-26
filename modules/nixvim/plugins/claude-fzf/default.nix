@@ -5,7 +5,8 @@
 }:
 {
   plugins.claude-fzf = {
-    enable = lib.mkDefault config.plugins.claudecode.enable;
+    # claude-fzf needs fzf-lua, which loads only with the fzf picker.
+    enable = lib.mkDefault (config.plugins.claudecode.enable && config.plugins.fzf-lua.enable);
 
     settings = {
       keymaps = {
