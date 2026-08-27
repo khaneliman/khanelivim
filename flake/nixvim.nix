@@ -5,6 +5,8 @@
   ...
 }:
 let
+  inputPatches = import ./input-patches.nix { inherit inputs lib; };
+
   mkNixvimConfig =
     {
       system,
@@ -24,10 +26,18 @@ let
           ];
         };
       };
-      hasNixvimPackages = lib.hasAttr system inputs.nixvim.packages;
       nixvimPkgs = if pkgs == null then sharedNixpkgs else pkgs;
+      nixvimSource = inputPatches.mkPatchedSource {
+        pkgs = nixvimPkgs;
+        inputName = "nixvim";
+      };
+      nixvimLib =
+        (inputs.nixpkgs.lib.extend (
+          import "${nixvimSource}/lib/overlay.internal.nix" { flake = inputs.nixvim; }
+        )).nixvim;
+      hasNixvimPackages = lib.hasAttr system inputs.nixvim.packages;
     in
-    inputs.nixvim.lib.evalNixvim {
+    nixvimLib.evalNixvim {
       inherit system;
 
       extraSpecialArgs = {
