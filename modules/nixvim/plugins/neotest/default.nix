@@ -46,9 +46,24 @@ let
     end
   '';
   luaList = values: "{ ${lib.concatMapStringsSep ", " builtins.toJSON values} }";
-  neotestNixPackage = lib.attrByPath [ system "neotest-nix" ] null (
+  neotestNixPackageUnmodified = lib.attrByPath [ system "neotest-nix" ] null (
     inputs.neotest-nix.packages or { }
   );
+  neotestNixPackage =
+    if
+      neotestNixPackageUnmodified == null
+      || !config.performance.combinePlugins.enable
+      || !config.plugins.treesitter.enable
+    then
+      neotestNixPackageUnmodified
+    else
+      neotestNixPackageUnmodified.overrideAttrs (old: {
+        # The active nvim-treesitter package already provides the Nix parser.
+        # Keeping this older dependency causes parser/nix.so to collide in the plugin pack.
+        dependencies = builtins.filter (
+          dependency: lib.getName dependency != "nvim-treesitter-grammar-nix"
+        ) (old.dependencies or [ ]);
+      });
   neotestNixEnabled = neotestNixPackage != null;
   junitConsoleStandalone = pkgs.fetchurl {
     url = "https://repo1.maven.org/maven2/org/junit/platform/junit-platform-console-standalone/6.0.3/junit-platform-console-standalone-6.0.3.jar";

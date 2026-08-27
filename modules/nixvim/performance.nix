@@ -24,13 +24,14 @@ in
     };
 
     combinePlugins = {
-      # NOTE: constant doc/tags conflicts
-      # enable = true;
+      enable = true;
 
       standalonePlugins = with pkgs.vimPlugins; [
         "firenvim"
+        "mason.nvim"
         "neotest"
         "nvim-treesitter"
+        "snacks.nvim"
         mini-nvim
         overseer-nvim
         vs-tasks-nvim
