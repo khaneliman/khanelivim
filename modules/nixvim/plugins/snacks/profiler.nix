@@ -405,7 +405,6 @@
               vim.defer_fn(function()
                 -- Only run if DeferredUIEnter hasn't fired yet
                 if vim.g._profiler_auto_exported then return end
-                vim.g._profiler_auto_exported = true
                 auto_export()
               end, 3000) -- 3 second fallback for headless
             end

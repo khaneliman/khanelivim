@@ -29,6 +29,7 @@ _: {
             builtins.replaceStrings [ defaultProfileBuildCommandPython ] [ profileBuildCommandPython ]
               (builtins.readFile ./scripts/profile_nvim.py);
           profiler = pkgs.writers.writePython3Bin "profile-nvim" {
+            flakeIgnore = [ "E501" ];
             libraries = [ pkgs.python3Packages.rich ];
           } profilerScript;
           wrapped =
