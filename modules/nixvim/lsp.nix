@@ -26,7 +26,12 @@
   ];
 
   lsp = {
+    completion = {
+      enable = config.khanelivim.completion.tool == "native";
+      settings.autotrigger = true;
+    };
     inlayHints.enable = true;
+    linkedEditingRange.enable = true;
 
     servers = {
       "*" = {
@@ -215,10 +220,6 @@
               client.server_capabilities.documentRangeFormattingProvider = false
             end
           ''}
-
-          if client:supports_method("textDocument/linkedEditingRange") then
-            vim.lsp.linked_editing_range.enable(true, { client_id = client.id })
-          end
 
           local python_type_checkers = {
             pyright = true,

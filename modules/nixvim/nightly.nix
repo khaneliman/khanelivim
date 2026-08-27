@@ -41,22 +41,6 @@
     ''}
   '';
 
-  autoCmd = lib.optionals (config.khanelivim.completion.tool == "native") [
-    {
-      event = "LspAttach";
-      callback.__raw = ''
-        function(args)
-          if not vim.lsp.completion then return end
-
-          local client = vim.lsp.get_client_by_id(args.data.client_id)
-          if not client or not client:supports_method("textDocument/completion") then return end
-
-          vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
-        end
-      '';
-    }
-  ];
-
   keymaps = [
     {
       mode = "n";
