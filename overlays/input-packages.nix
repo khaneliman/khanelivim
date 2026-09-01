@@ -37,6 +37,20 @@ in
     }
   );
 
+  vscode-extensions = prev.vscode-extensions // {
+    vscjava = prev.vscode-extensions.vscjava // {
+      vscode-java-test = prev.vscode-extensions.vscjava.vscode-java-test.overrideAttrs {
+        version = "0.46.0";
+
+        src = prev.fetchurl {
+          name = "vscode-java-test-0.46.0.vsix";
+          url = "https://vscjava.gallery.vsassets.io/_apis/public/gallery/publisher/vscjava/extension/vscode-java-test/0.46.0/assetbyname/Microsoft.VisualStudio.Services.VSIXPackage";
+          hash = "sha256-Nxc1yAA78t1r5QZtGHCTGW2NSld9e8Nxwifbn69UKvM=";
+        };
+      };
+    };
+  };
+
   # Dormant until a Lua package needs a targeted override.
   # luaPackages = prev.luaPackages // {
   #   #
