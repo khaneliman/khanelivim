@@ -28,6 +28,9 @@ in
           --replace-fail "require('java.startup.lsp_setup').setup(config)" "if config.jdtls.enable ~= false then
           require('java.startup.lsp_setup').setup(config)
         end"
+
+        substituteInPlace lua/java-refactor/api/refactor.lua \
+          --replace-fail "diagnostics = vim.lsp.diagnostic.get_line_diagnostics(0)," ""
       '';
     });
 
@@ -39,7 +42,8 @@ in
       function _G.khanelivim_jdtls.find_root(startpath)
         local current = startpath and vim.fs.dirname(startpath) or nil
         local gradle_settings_root = nil
-        local nearest_maven_root = nil
+        local git_root = nil
+        local maven_root = nil
         local nearest_gradle_root = nil
 
         while current and current ~= "" and current ~= "." do
@@ -58,8 +62,8 @@ in
             gradle_settings_root = current
           end
 
-          if not nearest_maven_root and has_maven_root then
-            nearest_maven_root = current
+          if has_maven_root then
+            maven_root = current
           end
 
           if not nearest_gradle_root and has_gradle_root then
@@ -67,6 +71,7 @@ in
           end
 
           if vim.uv.fs_stat(current .. "/.git") then
+            git_root = current
             break
           end
 
@@ -78,7 +83,7 @@ in
           current = parent
         end
 
-        return gradle_settings_root or nearest_maven_root or nearest_gradle_root
+        return gradle_settings_root or (maven_root and git_root) or maven_root or nearest_gradle_root
       end
 
       function _G.khanelivim_jdtls.find_root_for_buffer(bufnr)
@@ -152,31 +157,25 @@ in
   lsp.servers.jdtls = lib.mkIf javaEnabled {
     enable = true;
     config = {
-      cmd = [
-        (lib.getExe pkgs.jdt-language-server)
-        "-data"
-        ""
-        "-configuration"
-        ""
-        "-javaagent:${pkgs.lombok}/share/java/lombok.jar"
-        "-vmargs"
-        "-Xmx4G"
-        "-XX:+UseG1GC"
-      ];
+      cmd.__raw = ''
+        function(dispatchers, lsp_config)
+          local root = assert(lsp_config.root_dir, "JDTLS root not found")
 
-      on_new_config.__raw = ''
-        function(new_config, root_dir)
-          new_config.cmd = {
+          return vim.lsp.rpc.start({
             "${lib.getExe pkgs.jdt-language-server}",
             "-data",
-            _G.khanelivim_jdtls.workspace_dir(root_dir, "data"),
+            _G.khanelivim_jdtls.workspace_dir(root, "data"),
             "-configuration",
-            _G.khanelivim_jdtls.workspace_dir(root_dir, "config"),
+            _G.khanelivim_jdtls.workspace_dir(root, "config"),
             "-javaagent:${pkgs.lombok}/share/java/lombok.jar",
             "-vmargs",
             "-Xmx4G",
             "-XX:+UseG1GC",
-          }
+          }, dispatchers, {
+            cwd = lsp_config.cmd_cwd or root,
+            env = lsp_config.cmd_env,
+            detached = lsp_config.detached,
+          })
         end
       '';
 
@@ -189,31 +188,69 @@ in
         end
       '';
 
-      init_options.bundles.__raw = ''
-        (function()
-          local bundles = vim
-            .iter({
-              vim.fn.glob(
-                "${pkgs.vscode-extensions.vscjava.vscode-java-debug}/share/vscode/extensions/vscjava.vscode-java-debug/server/*.jar",
-                true,
-                true
-              ),
-              vim.fn.glob(
-                "${pkgs.vscode-extensions.vscjava.vscode-java-test}/share/vscode/extensions/vscjava.vscode-java-test/server/*.jar",
-                true,
-                true
-              ),
-            })
-            :flatten()
-            :totable()
+      init_options = {
+        bundles.__raw = ''
+          (function()
+            local function extension_bundles(root)
+              local package_json = vim.json.decode(
+                table.concat(vim.fn.readfile(root .. "/package.json"), "\n")
+              )
 
-          if _G.khanelivim_spring_boot_jdtls_bundles then
-            vim.list_extend(bundles, _G.khanelivim_spring_boot_jdtls_bundles())
-          end
+              return vim.tbl_map(function(relative_path)
+                return root .. "/" .. relative_path:gsub("^%./", "")
+              end, package_json.contributes.javaExtensions)
+            end
 
-          return bundles
-        end)()
-      '';
+            local debug_root =
+              "${pkgs.vscode-extensions.vscjava.vscode-java-debug}/share/vscode/extensions/vscjava.vscode-java-debug"
+            local test_root =
+              "${pkgs.vscode-extensions.vscjava.vscode-java-test}/share/vscode/extensions/vscjava.vscode-java-test"
+            local bundles = vim
+              .iter({
+                extension_bundles(debug_root),
+                extension_bundles(test_root),
+              })
+              :flatten()
+              :totable()
+
+            if _G.khanelivim_spring_boot_jdtls_bundles then
+              vim.list_extend(bundles, _G.khanelivim_spring_boot_jdtls_bundles())
+            end
+
+            return bundles
+          end)()
+        '';
+
+        extendedClientCapabilities = {
+          actionableRuntimeNotificationSupport = true;
+          advancedExtractRefactoringSupport = true;
+          advancedGenerateAccessorsSupport = true;
+          advancedIntroduceParameterRefactoringSupport = true;
+          advancedOrganizeImportsSupport = true;
+          advancedUpgradeGradleSupport = true;
+          classFileContentsSupport = true;
+          clientDocumentSymbolProvider = false;
+          clientHoverProvider = false;
+          executeClientCommandSupport = true;
+          extractInterfaceSupport = true;
+          generateConstructorsPromptSupport = true;
+          generateDelegateMethodsPromptSupport = true;
+          generateToStringPromptSupport = true;
+          gradleChecksumWrapperPromptSupport = true;
+          hashCodeEqualsPromptSupport = true;
+          inferSelectionSupport = [
+            "extractConstant"
+            "extractField"
+            "extractInterface"
+            "extractMethod"
+            "extractVariableAllOccurrence"
+            "extractVariable"
+          ];
+          moveRefactoringSupport = true;
+          onCompletionItemSelectedCommand = "editor.action.triggerParameterHints";
+          overrideMethodsPromptSupport = true;
+        };
+      };
     };
   };
 }
