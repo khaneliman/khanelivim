@@ -13,6 +13,14 @@ in
 {
   plugins.spring-boot = {
     enable = javaEnabled;
+    package = pkgs.vimPlugins.spring-boot-nvim.overrideAttrs (old: {
+      postPatch = ''
+        ${old.postPatch or ""}
+
+        substituteInPlace lua/spring_boot.lua \
+          --replace-fail '          return result' '          return result == nil and vim.NIL or result'
+      '';
+    });
 
     settings = {
       java_cmd = "${pkgs.jdk}/bin/java";
