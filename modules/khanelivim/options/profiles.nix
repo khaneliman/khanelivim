@@ -242,7 +242,7 @@ let
         diffViewer = "codediff";
         integrations = [
           "gitsigns"
-          "git-conflict"
+          "resolve"
           "git-worktree"
           "guh"
           "hunk"

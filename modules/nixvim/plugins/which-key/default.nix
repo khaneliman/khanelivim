@@ -222,7 +222,7 @@ in
               ];
             }
           ]
-      ++ lib.optionals config.plugins.git-conflict.enable [
+      ++ lib.optionals config.plugins.resolve.enable [
         {
           __unkeyed-1 = "<leader>gc";
           group = "Conflicts";

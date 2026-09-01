@@ -27,6 +27,7 @@
           "hunk"
           "native-difftool"
           "octo"
+          "resolve"
           "snacks-gh"
           "snacks-gitbrowse"
           "snacks-lazygit"
@@ -40,7 +41,7 @@
         "snacks-gitbrowse"
         "snacks-lazygit"
         "git-worktree"
-        "git-conflict"
+        "resolve"
         "unified"
       ];
       description = "Git integration plugins to enable (complementary)";
