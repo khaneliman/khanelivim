@@ -33,15 +33,19 @@
       };
 
       settings = {
+        kulala_core = {
+          path = lib.getExe pkgs.kulala-core;
+          timeout = 5000;
+        };
+        lsp.enable = true;
+
         # Environment options
         default_env = "dev";
         environment_scope = "b";
         vscode_rest_client_environmentvars = true;
 
         # Request options
-        request_timeout = 5000;
         urlencode = "always";
-        format_json_on_redirect = true;
 
         # UI Options
         ui = {
@@ -63,7 +67,6 @@
             "headers"
             "headers_body"
           ];
-          disable_script_print_output = false;
           show_variable_info_text = false;
           show_request_summary = true;
 
@@ -98,7 +101,11 @@
               "jq"
               "."
             ];
-            pathresolver.__raw = "require('kulala.parser.jsonpath').parse";
+            pathresolver = [
+              "jq"
+              "-r"
+              ".{{path}}"
+            ];
           };
           "application/xml" = {
             ft = "xml";
@@ -151,8 +158,6 @@
         # Debugging and output
         debug = false;
 
-        # SSL/TLS certificates
-        certificates = { };
       };
     };
 
