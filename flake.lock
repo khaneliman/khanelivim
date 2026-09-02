@@ -200,6 +200,7 @@
         "nixpkgs-master": "nixpkgs-master",
         "nixvim": "nixvim",
         "pkgs-by-name-for-flake-parts": "pkgs-by-name-for-flake-parts",
+        "rust-overlay": "rust-overlay",
         "rustowl-flake": "rustowl-flake"
       }
     },
@@ -248,7 +249,9 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "rust-overlay": "rust-overlay",
+        "rust-overlay": [
+          "rust-overlay"
+        ],
         "rustowl": "rustowl"
       },
       "locked": {
