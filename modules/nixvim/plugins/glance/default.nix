@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }:
 {
@@ -10,12 +9,6 @@
       # glance.nvim documentation
       # See: https://github.com/DNLHC/glance.nvim
       enable = config.khanelivim.lsp.navigation == "glance";
-      package = pkgs.vimPlugins.glance-nvim.overrideAttrs (old: {
-        patches = (old.patches or [ ]) ++ [
-          ./escape-statusline.patch
-          ./neovim-0.13-islist.patch
-        ];
-      });
 
       lazyLoad.settings.cmd = "Glance";
 
