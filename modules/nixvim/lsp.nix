@@ -29,13 +29,19 @@
       settings.autotrigger = true;
     };
     inlayHints.enable = true;
-    inlineCompletion.enable =
-      !config.plugins.blink-cmp.enable
-      && !config.plugins.copilot-lua.enable
-      && !config.plugins.minuet.enable
-      && !config.plugins.sidekick.enable;
+    inlineCompletion = {
+      enable = true;
+      activate =
+        !config.plugins.blink-cmp.enable
+        && !config.plugins.copilot-lua.enable
+        && !config.plugins.minuet.enable
+        && !config.plugins.sidekick.enable;
+    };
     linkedEditingRange.enable = true;
-    onTypeFormatting.enable = !config.plugins.conform-nvim.enable;
+    onTypeFormatting = {
+      enable = true;
+      activate = !config.plugins.conform-nvim.enable;
+    };
 
     servers = {
       "*" = {
