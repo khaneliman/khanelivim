@@ -11,3 +11,13 @@ ges = "ges"
 ue = "ue"
 # Vim commands
 enew = "enew"
+
+[default.extend-identifiers]
+# Plugin API fields
+format_annote = "format_annote"
+# Keymaps
+aas = "aas"
+bse = "bse"
+ues = "ues"
+# Vim commands
+iput = "iput"
