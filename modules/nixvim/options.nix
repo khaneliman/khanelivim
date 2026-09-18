@@ -4,6 +4,8 @@
   ...
 }:
 {
+  autoconfigure = true;
+
   # Note: The basic clipboard setup below is overridden by vim.g.clipboard in globals
   # to add timeout wrappers that prevent wl-copy from freezing Neovim
   clipboard = {
