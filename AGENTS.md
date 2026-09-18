@@ -1,6 +1,6 @@
 ALWAYS Read @CONTRIBUTING.md when making changes.
 
-For any Nix code or module task, use the `writing-nix` skill before making
+For any Nix code or module task, use the `nix-toolkit` skill before making
 edits.
 
 ## Git Operations
