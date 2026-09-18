@@ -122,7 +122,7 @@
             package = pkgs.statix;
             # Only staged changes
             pass_filenames = true;
-            entry = "${lib.getExe pkgs.bash} -c 'for file in \"$@\"; do ${lib.getExe pkgs.statix} check \"$file\"; done' --";
+            entry = "${lib.getExe pkgs.bash} -e -c 'for file in \"$@\"; do ${lib.getExe pkgs.statix} check \"$file\"; done' --";
           };
           treefmt = {
             enable = true;
