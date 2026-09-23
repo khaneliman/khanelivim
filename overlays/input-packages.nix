@@ -19,24 +19,6 @@ in
     # TODO: Remove after hitting channel
     ;
 
-  kulala-core = prev.kulala-core.overrideAttrs (
-    finalAttrs: previousAttrs: {
-      version = "0.37.0";
-
-      src = prev.fetchFromGitHub {
-        owner = "mistweaverco";
-        repo = "kulala-core";
-        tag = "v${finalAttrs.version}";
-        hash = "sha256-rqfxp+i2o2DA8vle8yr+C6TzHcF2Q7kwYkW2VLMaKw0=";
-      };
-
-      node_modules = previousAttrs.node_modules.overrideAttrs {
-        inherit (finalAttrs) version src;
-        outputHash = "sha256-y/Wl87g9BEok6DbUIKxMhp9rhSBpfFDQt5BSiUJzpW4=";
-      };
-    }
-  );
-
   vscode-extensions = prev.vscode-extensions // {
     vscjava = prev.vscode-extensions.vscjava // {
       vscode-java-test = prev.vscode-extensions.vscjava.vscode-java-test.overrideAttrs {
