@@ -10,6 +10,11 @@
   lsp.servers.nixd = {
     enable = config.khanelivim.lsp.nix == "nixd";
 
+    config.cmd = [
+      (lib.getExe config.lsp.servers.nixd.package)
+      "--log=error"
+    ];
+
     config.settings.nixd =
       # let
       # Yoinked from https://github.com/MattSturgeon/nix-config/commit/b8aa42d6c01465949ef5cd9d4dc086d4eaa36793
