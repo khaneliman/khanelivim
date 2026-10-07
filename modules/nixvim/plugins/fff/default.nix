@@ -13,6 +13,7 @@
         enabled = false;
         show_scores = false;
       };
+      logging.log_level = "warn";
       preview = {
         enabled = true;
         line_numbers = true;
