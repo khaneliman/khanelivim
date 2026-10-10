@@ -10,22 +10,6 @@
       [
         {
           mode = "n";
-          key = "<leader>fd";
-          action = "<cmd>FzfLua diagnostics_document<CR>";
-          options = {
-            desc = "Find buffer diagnostics";
-          };
-        }
-        {
-          mode = "n";
-          key = "<leader>fD";
-          action = "<cmd>FzfLua diagnostics_workspace<CR>";
-          options = {
-            desc = "Find workspace diagnostics";
-          };
-        }
-        {
-          mode = "n";
           key = "<leader>fl";
           action = "<cmd>FzfLua lsp_document_symbols<CR>";
           options = {
