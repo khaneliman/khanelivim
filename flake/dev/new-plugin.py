@@ -120,7 +120,7 @@ CUSTOM_LAZY_TEMPLATE = """{
               # ];
               after = ''
                 function()
-                  $${luaConfig}
+                  ${luaConfig}
                 end
               '';
             }
@@ -180,6 +180,12 @@ NIXVIM_TEMPLATE = """{ config, lib, ... }:
 
 def create_plugin_directory(plugin_name, base_path):
     """Create the plugin directory structure."""
+    if (
+        not plugin_name
+        or plugin_name in {".", ".."}
+        or Path(plugin_name).name != plugin_name
+    ):
+        raise ValueError("Plugin name must be one directory name")
     plugin_dir = base_path / "modules" / "nixvim" / "plugins" / plugin_name
     plugin_dir.mkdir(parents=True, exist_ok=True)
     return plugin_dir
@@ -243,14 +249,17 @@ def main():
 
         # Write to default.nix
         output_file = plugin_dir / "default.nix"
-        output_file.write_text(final_content)
+        with output_file.open("x", encoding="utf-8") as handle:
+            handle.write(final_content)
 
         print(f"✓ Created plugin template at {output_file}")
         print(f"  Plugin: {args.plugin_name}")
         print(f"  Template: {args.template_type}")
         print("\nNext steps:")
         print(f"  1. Edit {output_file} to configure the plugin")
-        print("  2. Add the plugin to your modules/nixvim/plugins/default.nix imports")
+        print(
+            "  2. Plugin directories are discovered automatically; wire options if needed"
+        )
         print("  3. Run 'nix flake check' to verify the configuration")
 
     except (OSError, ValueError) as e:
