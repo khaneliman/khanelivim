@@ -100,18 +100,21 @@
               vim.notify('No location found to preview')
               return nil
             end
-            if not result[1] then
+            local location = result.uri and result or result[1]
+            if not location then
               vim.notify('Cant peek location')
               return nil
             end
-          local buf, _ = vim.lsp.util.preview_location(result[1])
+            local buf, _ = vim.lsp.util.preview_location(location)
             if buf then
               local cur_buf = vim.api.nvim_get_current_buf()
               vim.bo[buf].filetype = vim.bo[cur_buf].filetype
             end
           end
 
-          local params = vim.lsp.util.make_position_params()
+          local params = function(client)
+            return vim.lsp.util.make_position_params(0, client.offset_encoding)
+          end
           return vim.lsp.buf_request(0, opts.fargs[1], params, preview_location_callback)
         end
       '';
