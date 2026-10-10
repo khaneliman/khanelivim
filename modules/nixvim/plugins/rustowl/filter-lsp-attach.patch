@@ -1,0 +1,15 @@
+diff --git a/lua/rustowl/show-on-hover.lua b/lua/rustowl/show-on-hover.lua
+--- a/lua/rustowl/show-on-hover.lua
++++ b/lua/rustowl/show-on-hover.lua
+@@ -14,7 +14,10 @@ function M.enable_on_lsp_attach()
+   vim.api.nvim_create_autocmd('LspAttach', {
+     group = augroup,
+     callback = function(event)
+-      M.enable(event.buf)
++      local client = vim.lsp.get_client_by_id(event.data.client_id)
++      if client and client.name == 'rustowl' then
++        M.enable(event.buf)
++      end
+     end,
+   })
+ end

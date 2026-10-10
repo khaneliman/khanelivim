@@ -19,8 +19,14 @@ in
 
     package = lib.mkOption {
       type = lib.types.package;
-      default = inputs.rustowl-flake.packages.${system}.rustowl-nvim;
-      defaultText = lib.literalExpression "inputs.rustowl-flake.packages.\${system}.rustowl-nvim";
+      default = inputs.rustowl-flake.packages.${system}.rustowl-nvim.overrideAttrs (old: {
+        patches = (old.patches or [ ]) ++ [ ./filter-lsp-attach.patch ];
+      });
+      defaultText = lib.literalExpression ''
+        inputs.rustowl-flake.packages.''${system}.rustowl-nvim.overrideAttrs (old: {
+          patches = (old.patches or [ ]) ++ [ ./filter-lsp-attach.patch ];
+        })
+      '';
       description = "The RustOwl Neovim plugin package to use.";
     };
 
