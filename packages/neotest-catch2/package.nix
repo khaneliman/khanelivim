@@ -5,10 +5,6 @@
 }:
 let
   luaexpat = pkgs.luajitPackages.luaexpat;
-  luaexpatRtp = pkgs.runCommand "luaexpat-neovim-rtp" { } ''
-    mkdir -p $out/lua
-    ln -s ${luaexpat}/lib/lua/5.1/lxp.so $out/lua/lxp.so
-  '';
 in
 vimUtils.buildVimPlugin {
   pname = "neotest-catch2";
@@ -32,7 +28,4 @@ vimUtils.buildVimPlugin {
     neovim-tasks
   ];
 
-  nativeCheckInputs = [
-    luaexpatRtp
-  ];
 }
