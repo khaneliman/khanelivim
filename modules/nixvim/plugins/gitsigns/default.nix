@@ -100,7 +100,11 @@
         action.__raw = ''
           function()
             local file = vim.fn.expand('%')
-            vim.fn.system('git restore --staged ' .. file)
+            local output = vim.fn.system({ 'git', '--literal-pathspecs', 'restore', '--staged', '--', file })
+            if vim.v.shell_error ~= 0 then
+              vim.notify(output, vim.log.levels.ERROR, { title = 'Gitsigns' })
+              return
+            end
             require('gitsigns').refresh()
             vim.notify('Unstaged ' .. file, vim.log.levels.INFO, { title = 'Gitsigns' })
           end
