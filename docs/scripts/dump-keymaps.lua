@@ -98,7 +98,7 @@ vim.wait(300)
 
 local payload = {
 	profile = "standard",
-	generatedAt = os.date("!%Y-%m-%dT%H:%M:%SZ"),
+	generatedAt = os.date("!%Y-%m-%dT%H:%M:%SZ", tonumber(vim.env.SOURCE_DATE_EPOCH) or 1),
 	warnings = warnings,
 	sampleFiletypes = vim.tbl_map(function(buf)
 		return buf.filetype

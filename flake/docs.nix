@@ -127,6 +127,17 @@
           KEYMAPS_OUTPUT="$TMPDIR/keymaps.json" \
           KEYMAPS_SAMPLE_DIR="$TMPDIR/keymap-samples" \
           ${docsNvimPackage}/bin/nvim --headless "+lua dofile('scripts/dump-keymaps.lua')" +qall
+          # Neovim keymap enumeration and JSON object order vary between runs.
+          python3 - "$TMPDIR/keymaps.json" <<'PY'
+          import json
+          import pathlib
+          import sys
+
+          path = pathlib.Path(sys.argv[1])
+          payload = json.loads(path.read_text(encoding="utf-8"))
+          payload["maps"].sort(key=lambda entry: json.dumps(entry, sort_keys=True))
+          path.write_text(json.dumps(payload, sort_keys=True) + "\n", encoding="utf-8")
+          PY
           python3 scripts/split-options.py options.md options "<!-- OPTIONS:START -->" "<!-- OPTIONS:END -->"
           python3 scripts/render-profile-matrix.py profile-matrix.json profiles.md
           python3 scripts/render-keymaps.py "$TMPDIR/keymaps.json" keymaps SUMMARY.md "<!-- KEYMAPS:START -->" "<!-- KEYMAPS:END -->"
