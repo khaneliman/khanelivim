@@ -1,5 +1,5 @@
 {
-  description = "A home-manager template providing useful tools & settings for Nix-based development";
+  description = "A reproducible Neovim configuration built with Nixvim";
 
   inputs = {
     # Core Nix ecosystem
