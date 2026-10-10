@@ -338,7 +338,7 @@ def main():
     )
     parser.add_argument(
         "--profile",
-        choices=["default", "minimal", "basic", "standard", "debug"],
+        choices=["default", "minimal", "basic", "standard", "full", "debug"],
         default="default",
         help="Profile preset to build and profile (default: default)",
     )
