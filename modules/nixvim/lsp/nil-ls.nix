@@ -10,7 +10,7 @@
   lsp.servers.nil_ls = {
     enable = config.khanelivim.lsp.nix == "nil-ls";
 
-    config.settings = {
+    config.settings.nil = {
       formatting = {
         command = [ "${lib.getExe pkgs.nixfmt}" ];
       };
