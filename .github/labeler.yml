@@ -1,6 +1,6 @@
 Flake-Modules:
   - changed-files:
-      - any-glob-to-any-file: flake-modules/**/*
+      - any-glob-to-any-file: flake/**/*
 Modules:
   - changed-files:
       - any-glob-to-any-file: modules/**/*
