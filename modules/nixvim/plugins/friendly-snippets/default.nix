@@ -6,16 +6,19 @@
     friendly-snippets.enable = lib.mkDefault true;
   };
 
-  plugins.luasnip.luaConfig.post =
+  plugins.luasnip.filetypeExtend =
     lib.mkIf (config.plugins.friendly-snippets.enable && config.khanelivim.editor.snippet == "luasnip")
-      ''
-        require("luasnip.loaders.from_vscode").lazy_load()
-
-        local ls = require("luasnip")
-        ls.filetype_extend("typescript", { "angular", "remix-ts" })
-        ls.filetype_extend("typescriptreact", { "angular", "remix-ts" })
-        ls.filetype_extend("html", { "angular" })
-        ls.filetype_extend("cs", { "unity" })
-        ls.filetype_extend("cpp", { "unreal" })
-      '';
+      {
+        typescript = [
+          "angular"
+          "remix-ts"
+        ];
+        typescriptreact = [
+          "angular"
+          "remix-ts"
+        ];
+        html = [ "angular" ];
+        cs = [ "unity" ];
+        cpp = [ "unreal" ];
+      };
 }

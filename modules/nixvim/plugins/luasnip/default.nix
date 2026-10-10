@@ -1,23 +1,9 @@
-{ config, lib, ... }:
+{ config, ... }:
 {
   plugins.luasnip = {
     # LuaSnip documentation
     # See: https://github.com/L3MON4D3/LuaSnip
     enable = config.khanelivim.editor.snippet == "luasnip";
     lazyLoad.settings.event = "InsertEnter";
-    settings = lib.mkIf config.plugins.blink-cmp.enable {
-      snippets = {
-        expand.__raw = "function(snippet) require('luasnip').lsp_expand(snippet) end";
-        active.__raw = ''
-          function(filter)
-            if filter and filter.direction then
-              return require('luasnip').jumpable(filter.direction)
-            end
-            return require('luasnip').in_snippet()
-          end
-        '';
-        jump.__raw = "function(direction) require('luasnip').jump(direction) end";
-      };
-    };
   };
 }
