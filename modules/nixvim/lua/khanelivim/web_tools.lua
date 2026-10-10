@@ -96,8 +96,7 @@ local function find_upward(path, names)
 end
 
 local function package_json_has_key(path, key)
-	local dir = vim.fs.dirname(path)
-	for parent in vim.fs.parents(dir) do
+	for parent in vim.fs.parents(path) do
 		local package_json = vim.fs.joinpath(parent, "package.json")
 		if vim.uv.fs_stat(package_json) then
 			local decoded = read_json(package_json)
