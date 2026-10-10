@@ -38,7 +38,7 @@
         scss.linter = [ "stylelint" ];
         sh.linter = [ "shellcheck" ];
         sql.linter = [ "sqlfluff" ];
-        typecript.linter = [ "eslint_d" ];
+        typescript.linter = [ "eslint_d" ];
         yaml.linter = [ "yamllint" ];
       };
     };
