@@ -11,7 +11,7 @@
     # installCargo = true;
     # installRustc = true;
 
-    config.settings = {
+    config.settings."rust-analyzer" = {
       cargo = {
         buildScripts.enable = true;
         features = "all";
