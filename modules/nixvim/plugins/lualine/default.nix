@@ -1,7 +1,7 @@
 { config, lib, ... }:
 let
   cond.__raw = ''
-    function()
+    (function()
       local cache = {}
       return function()
         local bufnr = vim.api.nvim_get_current_buf()
@@ -16,7 +16,7 @@ let
         end
         return cache[bufnr]
       end
-    end
+    end)()
   '';
   statusMetadataCond = name: ''
     function()
