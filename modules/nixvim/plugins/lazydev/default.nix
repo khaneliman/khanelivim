@@ -17,7 +17,7 @@
       score_offset = 100;
     };
 
-    which-key.settings.spec = lib.optionals config.plugins.persistence.enable [
+    which-key.settings.spec = lib.optionals config.plugins.lazydev.enable [
       {
         __unkeyed-1 = "<leader>ll";
         group = "LazyDev";

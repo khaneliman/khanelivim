@@ -322,13 +322,20 @@ in
           icon = "";
         }
       ]
-      ++ lib.optionals (config.plugins.persistence.enable || config.plugins.mini.enable) [
-        {
-          __unkeyed-1 = "<leader>S";
-          group = "Sessions";
-          icon = "󰘛";
-        }
-      ]
+      ++
+        lib.optionals
+          (
+            config.plugins.persistence.enable
+            || config.plugins.mini-sessions.enable
+            || (config.plugins.mini.enable && config.plugins.mini.modules ? sessions)
+          )
+          [
+            {
+              __unkeyed-1 = "<leader>S";
+              group = "Sessions";
+              icon = "󰘛";
+            }
+          ]
       ++ lib.optionals config.plugins.neotest.enable [
         {
           __unkeyed-1 = "<leader>t";
