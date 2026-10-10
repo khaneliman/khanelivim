@@ -153,35 +153,7 @@
 
         -- Export to JSON format
         local function export_json(data, path)
-          -- Simple JSON encoder (no external deps)
-          local function encode_value(val)
-            if val == nil then return "null" end
-            if type(val) == "boolean" then return val and "true" or "false" end
-            if type(val) == "number" then return string.format("%.6f", val) end
-            if type(val) == "string" then
-              return '"' .. val:gsub('\\', '\\\\'):gsub('"', '\\"'):gsub('\n', '\\n') .. '"'
-            end
-            if type(val) == "table" then
-              if #val > 0 then
-                -- Array
-                local items = {}
-                for _, v in ipairs(val) do
-                  table.insert(items, encode_value(v))
-                end
-                return "[" .. table.concat(items, ",") .. "]"
-              else
-                -- Object
-                local items = {}
-                for k, v in pairs(val) do
-                  table.insert(items, '"' .. k .. '":' .. encode_value(v))
-                end
-                return "{" .. table.concat(items, ",") .. "}"
-              end
-            end
-            return "null"
-          end
-
-          local json = encode_value(data)
+          local json = vim.json.encode(data)
           local file = io.open(path, "w")
           if file then
             file:write(json)
