@@ -129,9 +129,8 @@
             opencode_yolo = {
               cmd = [
                 "opencode"
-                "run"
-                "--interactive"
-                "--dangerously-skip-permissions"
+                "--mini"
+                "--auto"
               ];
               env = {
                 OPENCODE_THEME = "system";
