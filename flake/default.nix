@@ -41,10 +41,6 @@
         config = {
           allowAliases = false;
           allowUnfree = true;
-          permittedInsecurePackages = [
-            # FIXME: pnpm 9 unsafe ignore for stylelint-lsp.
-            "pnpm-9.15.9"
-          ];
         };
       };
 
