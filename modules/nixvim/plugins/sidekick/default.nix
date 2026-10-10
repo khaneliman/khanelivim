@@ -37,10 +37,6 @@
         ];
 
         settings = {
-          mux = {
-            enabled = true;
-          };
-
           cli.tools = {
             claude_yolo = {
               # --permission-mode bypassPermissions alone still honors any
