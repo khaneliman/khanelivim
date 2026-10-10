@@ -231,7 +231,6 @@ let
       (
         with pkgs.vimPlugins;
         [
-          neotest-bun
           neotest-bash
           neotest-deno
           neotest-dotnet
