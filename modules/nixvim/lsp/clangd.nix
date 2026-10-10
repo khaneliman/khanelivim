@@ -11,7 +11,7 @@
     enable = config.khanelivim.lsp.cpp == "clangd";
 
     config = {
-      settings.init_options = {
+      init_options = {
         usePlaceholders = true;
         completeUnimported = true;
         clangdFileStatus = true;
