@@ -23,11 +23,6 @@
               -- Disable line numbers and relative line numbers
               vim.cmd("setlocal nonumber norelativenumber")
 
-              -- Syntax highlighting
-              vim.schedule(function()
-                vim.bo[ctx.buf].syntax = ctx.ft
-              end)
-
               -- Disable matchparen
               vim.cmd("let g:loaded_matchparen = 1")
 
