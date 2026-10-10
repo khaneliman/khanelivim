@@ -49,7 +49,7 @@ _: {
                 except SystemExit:
                     if not path_only:
                         print("Build failed.")
-                    return
+                    raise
 
                 if not path_only:
                     print("Extracting pack directory from nvim wrapper...")
