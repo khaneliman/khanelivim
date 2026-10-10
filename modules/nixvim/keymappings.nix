@@ -271,9 +271,8 @@ in
                 "<leader>ues" = {
                   action.__raw = ''
                     function ()
-                      if vim.g.spell_enabled then vim.cmd('setlocal nospell') end
-                      if not vim.g.spell_enabled then vim.cmd('setlocal spell') end
-                      vim.g.spell_enabled = not vim.g.spell_enabled
+                      vim.wo.spell = not vim.wo.spell
+                      vim.g.spell_enabled = vim.wo.spell
                       vim.notify(string.format("Spell %s", bool2str(vim.g.spell_enabled), "info"))
                     end'';
                   options = {
@@ -297,7 +296,7 @@ in
                       local curr_foldcolumn = vim.wo.foldcolumn
                       if curr_foldcolumn ~= "0" then vim.g.last_active_foldcolumn = curr_foldcolumn end
                       vim.wo.foldcolumn = curr_foldcolumn == "0" and (vim.g.last_active_foldcolumn or "1") or "0"
-                      vim.notify(string.format("Fold Column %s", bool2str(vim.wo.foldcolumn), "info"))
+                      vim.notify(string.format("Fold Column %s", bool2str(vim.wo.foldcolumn ~= "0"), "info"))
                     end'';
                   options = {
                     desc = "Fold Column toggle";
@@ -436,7 +435,7 @@ in
                 };
               };
             }
-            // (lib.optionalAttrs (config.khanelivim.git.diffViewer == "none") {
+            // (lib.optionalAttrs (config.khanelivim.git.diffViewer == null) {
               "<leader>gD" = {
                 action.__raw = ''
                   function()
