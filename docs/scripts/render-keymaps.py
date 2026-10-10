@@ -6,6 +6,7 @@ import re
 import shutil
 import sys
 from collections import defaultdict
+from html import escape
 
 CATEGORY_ORDER = [
     ("essential-navigation", "Essential Navigation"),
@@ -274,11 +275,12 @@ def render_table(entries: list[dict[str, object]]) -> list[str]:
 
     for entry in entries:
         modes = " ".join(f"`{mode}`" for mode in sorted(entry["modes"], key=mode_key))
+        key = normalize_lhs(str(entry["lhs"])).replace("|", "\\|")
         lines.append(
             "| {key} | {modes} | {desc} | {context} |".format(
-                key=f"`{normalize_lhs(str(entry['lhs']))}`",
+                key=f"`{key}`",
                 modes=modes,
-                desc=entry["label"].replace("|", "\\|"),
+                desc=escape(entry["label"], quote=False).replace("|", "\\|"),
                 context=display_context(entry),
             )
         )
