@@ -1,5 +1,5 @@
 { flake }:
-_final: prev:
+final: prev:
 let
   nixpkgs-master-packages = import flake.inputs.nixpkgs-master {
     inherit (prev.stdenv) system;
@@ -18,6 +18,22 @@ in
     github-copilot-cli
     # TODO: Remove after hitting channel
     ;
+
+  pythonPackagesExtensions = prev.pythonPackagesExtensions ++ [
+    (
+      _pythonFinal: pythonPrev:
+      prev.lib.optionalAttrs prev.stdenv.hostPlatform.isDarwin {
+        debugpy = pythonPrev.debugpy.overridePythonAttrs (oldAttrs: {
+          # Remove once nixpkgs updates this test for its hardcoded LLDB path.
+          postPatch = (oldAttrs.postPatch or "") + ''
+            substituteInPlace tests/debugpy/server/test_add_code_to_python_process.py \
+              --replace-fail '"lldb --no-lldbinit --script-language Python "' \
+                '"${prev.lib.getExe' final.lldb "lldb"} --no-lldbinit --script-language Python "'
+          '';
+        });
+      }
+    )
+  ];
 
   vscode-extensions = prev.vscode-extensions // {
     vscjava = prev.vscode-extensions.vscjava // {
