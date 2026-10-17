@@ -47,6 +47,10 @@ let
           nixpkgs.pkgs = lib.mkDefault nixvimPkgs;
           nixpkgs.config = lib.mkForce { };
           khanelivim.profile = profile;
+
+          # Nixvim's package maps still reference the removed luaPackages alias.
+          plugins.lint.autoInstall.overrides.luacheck = lib.mkDefault nixvimPkgs.lua55Packages.luacheck;
+          lsp.servers.teal_ls.package = lib.mkDefault nixvimPkgs.lua55Packages.teal-language-server;
         }
       ]
       # FIXME: nixpkgs' optimized `pandoc` lost Lua support on aarch64-darwin

@@ -110,7 +110,7 @@
           lix-parse = mkParseHook "lix" pkgs.lixPackageSets.latest.lix;
           luacheck = {
             enable = true;
-            package = pkgs.luaPackages.luacheck;
+            package = pkgs.lua55Packages.luacheck;
           };
           nix-parse = mkParseHook "nix" pkgs.nixVersions.latest;
           pre-commit-hook-ensure-sops = {
