@@ -1,23 +1,16 @@
-{ flake }:
-_final: prev:
-let
-  nixpkgs-master-packages = import flake.inputs.nixpkgs-master {
-    inherit (prev.stdenv) system;
-    config = {
-      allowUnfree = true;
-      allowAliases = false;
-    };
-  };
+_: _final: prev: {
+  # Dormant until a package needs updates ahead of nixpkgs-unstable. Take
+  # `{ flake }:` again and bind these in a `let` to pull from nixpkgs-master:
+  # nixpkgs-master-packages = import flake.inputs.nixpkgs-master {
+  #   inherit (prev.stdenv) system;
+  #   config = {
+  #     allowUnfree = true;
+  #     allowAliases = false;
+  #   };
+  # };
   # my-packages = flake.packages.${prev.stdenv.system};
   # masterLuaPackages = nixpkgs-master-packages.luaPackages;
   # masterVimPlugins = nixpkgs-master-packages.vimPlugins;
-in
-{
-  inherit (nixpkgs-master-packages)
-    claude-code
-    github-copilot-cli
-    # TODO: Remove after hitting channel
-    ;
 
   vscode-extensions = prev.vscode-extensions // {
     vscjava = prev.vscode-extensions.vscjava // {
