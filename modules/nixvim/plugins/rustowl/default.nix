@@ -2,6 +2,7 @@
   config,
   inputs,
   lib,
+  pkgs,
   system,
   ...
 }:
@@ -32,8 +33,25 @@ in
 
     serverPackage = lib.mkOption {
       type = lib.types.package;
-      default = inputs.rustowl-flake.packages.${system}.rustowl;
-      defaultText = lib.literalExpression "inputs.rustowl-flake.packages.\${system}.rustowl";
+      # nixpkgs' cargoSetupHook makes aws-lc-sys and tikv-jemalloc-sys link
+      # the nixpkgs libraries instead of vendored copies, and rustowl-flake
+      # does not provide them. The jemalloc build must be the unprefixed one
+      # because rustowl enables tikv-jemalloc-sys's
+      # override_allocator_on_supported_platforms feature.
+      default = inputs.rustowl-flake.packages.${system}.rustowl.overrideAttrs (old: {
+        buildInputs = (old.buildInputs or [ ]) ++ [
+          pkgs.aws-lc
+          pkgs.rust-jemalloc-sys-unprefixed
+        ];
+      });
+      defaultText = lib.literalExpression ''
+        inputs.rustowl-flake.packages.''${system}.rustowl.overrideAttrs (old: {
+          buildInputs = (old.buildInputs or [ ]) ++ [
+            pkgs.aws-lc
+            pkgs.rust-jemalloc-sys-unprefixed
+          ];
+        })
+      '';
       description = "The RustOwl server package to expose in Neovim's PATH.";
     };
 
