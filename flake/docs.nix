@@ -97,15 +97,16 @@
       );
 
       opener = if pkgs.stdenv.hostPlatform.isDarwin then "open" else "xdg-open";
-      openDocs = pkgs.writeShellScript "open-khanelivim-docs" ''
+    in
+    {
+      packages.docs = pkgs.writeShellScriptBin "khanelivim-docs" ''
         path="${config.packages.docs-html}/index.html"
         if ! ${opener} "$path"; then
           echo "Failed to open docs with ${opener}. Docs are at:"
           echo "$path"
         fi
       '';
-    in
-    {
+
       packages.docs-html = pkgs.stdenvNoCC.mkDerivation {
         name = "docs-html";
         src = ../docs;
@@ -158,7 +159,7 @@
 
       apps.docs = {
         type = "app";
-        program = "${openDocs}";
+        program = lib.getExe config.packages.docs;
         meta.description = "Open the generated khanelivim docs in a browser";
       };
 

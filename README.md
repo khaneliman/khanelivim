@@ -68,6 +68,9 @@ nix build .#docs-html
 nix run .#docs
 ```
 
+The `docs` package installs the same launcher as a `khanelivim-docs` command, so
+the docs can follow the version you have pinned. See `Using the Flake`.
+
 Start here:
 
 - `Using the Flake` for the supported ways to run, install, and customize this

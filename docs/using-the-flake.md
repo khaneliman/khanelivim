@@ -33,6 +33,19 @@ The supported Home Manager workflow is to install the built Neovim package via
 This repo does not expose a dedicated Home Manager module for configuration. Use
 the package or build a customized package through the flake `lib` helpers.
 
+To keep the docs for the version you have pinned, install the `docs` package
+next to the editor. It adds a `khanelivim-docs` command that opens the generated
+site in a browser.
+
+```nix
+{
+  home.packages = [
+    khanelivim.packages.${pkgs.system}.default
+    khanelivim.packages.${pkgs.system}.docs
+  ];
+}
+```
+
 ## 3. Build A Customized Config
 
 Use `khanelivim.lib.mkNixvimConfig` when you want an evaluated config you can
