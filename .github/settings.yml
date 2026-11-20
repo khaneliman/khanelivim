@@ -6,7 +6,7 @@ repository:
   # A short description of the repository that will show up on GitHub
   description: Nixvim neovim flake.
   # A URL with more information about the repository
-  homepage: ""
+  homepage: "https://khaneliman.github.io/khanelivim/"
   # A comma-separated list of topics to set on the repository
   topics: "neovim,nixos,unstable,nixvim,nix"
   # Either `true` to make the repository private, or `false` to make it public.

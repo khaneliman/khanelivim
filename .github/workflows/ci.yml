@@ -46,7 +46,27 @@ jobs:
       # Nothing else builds the docs, so without this step they never reach
       # Cachix and every reader has to build them against the default package.
       - name: Build docs
-        run: nix build -L --accept-flake-config .#docs-html
+        run: nix build -L --accept-flake-config --out-link docs-html .#docs-html
+      - name: Upload docs for GitHub Pages
+        if: ${{ matrix.system == 'x86_64-linux' && github.ref == 'refs/heads/main' }}
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: docs-html/
+  deploy-docs:
+    name: Deploy docs
+    needs: build
+    if: ${{ github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
   flake-check:
     name: Flake check
     runs-on: ubuntu-latest

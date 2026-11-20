@@ -29,6 +29,13 @@ with the cache enabled, Nix substitutes the generated site for a pushed revision
 instead of building the editor. On other systems, and for revisions CI has not
 pushed, `nix run .#docs` still builds everything locally.
 
+## Published Site
+
+Every push to `main` deploys the `docs-html` output from the Linux CI build to
+GitHub Pages at <https://khaneliman.github.io/khanelivim/>. The published site
+always tracks `main`. For the docs of a pinned revision, use `nix run .#docs`
+from that revision or install the `docs` package.
+
 ## Notes
 
 - The option reference covers the `khanelivim.*` surface. It does not attempt to

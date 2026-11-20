@@ -61,7 +61,10 @@ Install it from Home Manager via `home.packages`:
 ## Docs
 
 The generated docs are the canonical reference for profiles, options, and
-workflow details.
+workflow details. The docs for `main` are published at
+<https://khaneliman.github.io/khanelivim/>.
+
+To build or open them locally:
 
 ```bash
 nix build .#docs-html
