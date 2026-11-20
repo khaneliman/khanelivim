@@ -14,9 +14,32 @@
       };
       docsNvimPackage = optionsEval.config.build.package;
 
+      repoRoot = toString ../.;
+      declarationRef = inputs.self.rev or "main";
+
       khanelivimOptions = pkgs.nixosOptionsDoc {
         options = lib.filterAttrs (name: _: name == "khanelivim") optionsEval.options;
         warningsAreErrors = false;
+        # Declarations are store paths on the machine that evaluated the docs,
+        # which are dead links once the site is published. Link GitHub instead.
+        transformOptions =
+          opt:
+          opt
+          // {
+            declarations = map (
+              declaration:
+              let
+                relativePath = lib.removePrefix "${repoRoot}/" (toString declaration);
+              in
+              if lib.hasPrefix "${repoRoot}/" (toString declaration) then
+                {
+                  name = relativePath;
+                  url = "https://github.com/khaneliman/khanelivim/blob/${declarationRef}/${relativePath}";
+                }
+              else
+                declaration
+            ) opt.declarations;
+          };
       };
 
       profileDescriptions = {
@@ -150,6 +173,11 @@
           cp options.md "$out/raw/options.md"
           cp profile-matrix.json "$out/raw/profile-matrix.json"
           cp profiles.md "$out/raw/profiles.md"
+
+          if grep -rl 'file:///nix/store/' "$out"; then
+            echo "The files above link into the Nix store, which breaks on the published site." >&2
+            exit 1
+          fi
 
           runHook postBuild
         '';
