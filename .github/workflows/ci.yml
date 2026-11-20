@@ -43,6 +43,10 @@ jobs:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
       - name: Build default package
         run: nix build -L --accept-flake-config .#default
+      # Nothing else builds the docs, so without this step they never reach
+      # Cachix and every reader has to build them against the default package.
+      - name: Build docs
+        run: nix build -L --accept-flake-config .#docs-html
   flake-check:
     name: Flake check
     runs-on: ubuntu-latest

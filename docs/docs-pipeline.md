@@ -19,6 +19,16 @@ nix build .#docs-html
 nix run .#docs
 ```
 
+## Binary Cache
+
+The build runs the `standard` profile headless to collect keymaps, so building
+the docs locally needs the whole default package. CI builds `docs-html` on
+`x86_64-linux` and `aarch64-darwin` and pushes it to the `khanelivim` Cachix
+cache. Pull requests from forks are built but not pushed. On those two systems,
+with the cache enabled, Nix substitutes the generated site for a pushed revision
+instead of building the editor. On other systems, and for revisions CI has not
+pushed, `nix run .#docs` still builds everything locally.
+
 ## Notes
 
 - The option reference covers the `khanelivim.*` surface. It does not attempt to
